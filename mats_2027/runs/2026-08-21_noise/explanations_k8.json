@@ -1,0 +1,338 @@
+[
+ {
+  "doc_id": "THEIR_EXAMPLE",
+  "pos": 88,
+  "k": 0,
+  "explanation": "Historical book description establishing formal academic tone, introducing a scholarly work on the French Revolution's upheaval of French law and society.\n\nThe phrase \"This dazzling triumph...led to the abolition of feudalism\" signals a summary statement about the Revolutionary period, implying a narrative of revolutionary change and the Declaration's initial promise.\n\nFinal sentence \"the new government was established by the Declaration of Rights...\" sets up a transitional pivot \u2014 \"Yet...\" or \"But the Revolution soon...\" or \"The following chapters explore...\" or \"This period witnessed...\" or \"However, the aristocracy and the National Assembly...\" or \"By autumn, the new constitutional system...\" \u2014 a dramatic turn toward instability or the next phase.",
+  "n_chars": 760
+ },
+ {
+  "doc_id": "THEIR_EXAMPLE",
+  "pos": 88,
+  "k": 1,
+  "explanation": "Historical survey format signals a book description of the French Revolution, establishing scholarly framing around the tumultuous period of 1789.\n\nThe phrase \"the Declaration of Rights was quickly established...ushered in a new era of constitutional government\" sets up an introductory summary statement describing the revolutionary upheaval.\n\nFinal sentence \"the reform led to the abolition of feudalism, and brought about a new order of government\" ends a declarative clause, immediately expecting elaboration \u2014 likely \"But...\" or \"The Reign of Terror followed\" or \"By the autumn, however...\" or \"This volume explores...\" or \"Yet the Revolution soon faced...\" detailing the subsequent breakthrough or timeline of change.",
+  "n_chars": 723
+ },
+ {
+  "doc_id": "THEIR_EXAMPLE",
+  "pos": 88,
+  "k": 2,
+  "explanation": "Historical reference book format signals an overview of a pivotal period\u2014academic prose establishing context for the French Revolution.\n\nThe sentence \"The Declaration of Rights was proclaimed in August 1789\" sets up a summary statement about the tumultuous transformation of French governance, implying a dramatic narrative arc.\n\nFinal sentence \"the revolutionary government established the new rights, and the nation was transformed...\" functions as a transitional summary claim, expecting elaboration\u2014likely \"But the Reign of Terror soon followed\" or \"The revolution's first year saw...\" or \"This book explores...\" or \"Yet, despite these gains...\" or \"The aristocracy and the monarchy were...\" as a subsequent chapter description.",
+  "n_chars": 732
+ },
+ {
+  "doc_id": "THEIR_EXAMPLE",
+  "pos": 88,
+  "k": 3,
+  "explanation": "Historical nonfiction book description establishing formal summary format, framing an introductory account of the French Revolution.\n\nThe sentence \"the Declaration of Rights, first established in August 1789, brought dramatic transformation... In the wake of the Revolution\" signals a narrative pivot toward outlining the tumultuous early achievements of the new regime.\n\nFinal sentence \"the reform would culminate in the establishment of constitutional rule\" sets up elaboration \u2014 likely \"But...\" or \"The Revolution then...\" or \"By autumn, the aristocracy...\" or \"This period saw...\" or \"Yet, the book follows...\" or \"The French Revolution and the ensuing reforms would...\" describing the sweeping changes or a transition to the next chapter.",
+  "n_chars": 743
+ },
+ {
+  "doc_id": "THEIR_EXAMPLE",
+  "pos": 88,
+  "k": 4,
+  "explanation": "Historical reference book format signals a book description summarizing a period of revolutionary change, establishing academic tone \u2014 formal prose introducing the French Revolution.\n\nThe sentence \"In the summer of 1789, the Declaration of Rights was proclaimed...this momentous victory transformed French society\" sets up a narrative arc of upheaval and revolution.\n\nFinal sentence \"By the autumn of 1789, the constitutional monarchy was established...\" introduces a thematic summary statement \u2014 expects elaboration like \"But...\" or \"The Revolution continued\" or \"By the end of the year, however...\" or \"This volume explores...\" or \"The French monarchy faced...\" or \"Yet...\" introducing the next turbulent developments.",
+  "n_chars": 720
+ },
+ {
+  "doc_id": "THEIR_EXAMPLE",
+  "pos": 88,
+  "k": 5,
+  "explanation": "Historical survey format: scholarly introductory text establishes a book description, signaling a formal summary of the French Revolution's transformation of French law.\n\nThe sentence \"The Declaration of Rights was proclaimed...a radical overhaul of a nation's foundations\" sets up a narrative arc\u2014the revolutionary upheaval and its immediate aftermath.\n\nFinal sentence (\"the National Assembly abolished feudalism...and established a new regime\") ends a thematic summary statement, immediately expecting elaboration like \"But...\" or \"The period that followed\" or \"This book explores...\" or \"Yet the Revolution soon faced...\" or \"By autumn, the French Revolution...\" or \"The aristocracy and the new government would...\" to describe the next chapter.",
+  "n_chars": 748
+ },
+ {
+  "doc_id": "THEIR_EXAMPLE",
+  "pos": 88,
+  "k": 6,
+  "explanation": "Historical book introduction establishes academic context, framing an overview of a pivotal period in French revolutionary history.\n\nThe sentence \"the Declaration of Rights...ushered in sweeping changes\" signals a transition to summarizing the revolutionary upheaval, suggesting a narrative arc of hope and early progress.\n\nFinal sentence \"the National Assembly established a new constitutional system...was quickly replaced by revolutionary ideals\" sets up elaboration \u2014 likely \"But...\" or \"The Revolution's subsequent course\" or \"This volume explores...\" or \"By autumn, however...\" or \"Yet the monarchy fell...\" or \"The French Revolution and the new rights regime would...\" introducing the next chapter.",
+  "n_chars": 705
+ },
+ {
+  "doc_id": "THEIR_EXAMPLE",
+  "pos": 88,
+  "k": 7,
+  "explanation": "Historical book description format establishes an academic summary of the French Revolution, introducing a formal chronicle of the revolutionary period.\n\nThe phrase \"the Declaration of Rights was proclaimed in August 1791, ushering in a new constitutional order\" signals a sweeping narrative arc\u2014the revolutionary upheaval reshaping French society.\n\nFinal sentence \"the reforms transformed French government, with the abolition of feudalism\u2026was quickly established\" sets up an elaboration\u2014likely \"But...\" or \"The Revolution would next...\" or \"This volume explores...\" or \"Yet, the initial euphoria...\" or \"By Napoleon...\" or \"The period that followed saw...\" describing the dramatic changes or a transitional overview.",
+  "n_chars": 718
+ },
+ {
+  "doc_id": "CRICKET::Sachin Tendulkar",
+  "pos": 179,
+  "k": 0,
+  "explanation": "Sports quiz/trivia format with informational answers, establishing context of a cricket/football player's career achievements in Indian cricket.\n\nThe sentence \"This World Cup run was remarkable as he was the best batsman...This decade was the golden era\" signals a concluding summary statement wrapping up the quiz description.\n\nFinal sentence \"This was a memorable period...this tournament was a landmark achievement\" ends a closing remark, strongly expecting a closing statement like \"\n\nWhat do you think?\" or \"During this period...\" or \" Tendulkar was also involved.\" or \"Was this the role of Sachin Tendulkar?\" or \"So, what statistics are relevant?\" or \"In this match.\"",
+  "n_chars": 673
+ },
+ {
+  "doc_id": "CRICKET::Sachin Tendulkar",
+  "pos": 179,
+  "k": 1,
+  "explanation": "Informational/biographical article structure: factual cricket answer format concludes with a summary statement about Sachin Tendulkar's achievements.\n\nThe phrase \"This series was the peak of his career. This tournament saw him\u2026.\" signals a concluding remark, suggesting a trivia or quiz question framing.\n\nFinal sentence \"This series was the peak of his career. This tournament was historic\" ends a factual closing statement, implying either a question prompt or elaboration \u2014 likely \"What role did he play?\" or \"During this period...\" or \"\n\nSachin Tendulkar...\" or \"Is this correct?\" or \"Besides this, what other contribution...\" serving as a trivia question about the Indian cricket team.",
+  "n_chars": 690
+ },
+ {
+  "doc_id": "CRICKET::Sachin Tendulkar",
+  "pos": 179,
+  "k": 2,
+  "explanation": "Informational/sports biography format: answer answers factual questions about cricket legend Sachin Tendulkar in a descriptive tone.\n\nThe sentence \"This period was a golden period for Indian cricket. This series saw him complete 9000 runs\" signals a concluding trivia/summary statement about the above list.\n\nFinal sentence \"This was one of the greatest moments in his career\" ends a closing remark \u2014 strongly expects a question or statement about the achievement, likely \"What role did he play?\" or \"During this series?\" or \" Tendulkar was...\" or \"\n\nWas this correct?\" or \"Which of these statistics are you referencing?\" or \"In what context did he...\"",
+  "n_chars": 652
+ },
+ {
+  "doc_id": "CRICKET::Sachin Tendulkar",
+  "pos": 179,
+  "k": 3,
+  "explanation": "Informational/biographical tone with factual sports Q&A format, establishing a cricket quiz answer about Virat Kohli's Indian Premier League dominance.\n\nThe sentence \"This series was the climax of his career from 2002 to 1999\" signals a concluding summary statement, likely referencing the statistics or accolades mentioned.\n\nFinal sentence \"This series was the climax of his career\" ends a factual closing remark \u2014 immediately expects elaboration like \"What was his role?\" or \"Did he achieve this?\" or \"\nIn this context?\" or \"During this match...\" or \"Therefore, what do you think of these achievements?\" or \"Was Kohli also involved.\"",
+  "n_chars": 635
+ },
+ {
+  "doc_id": "CRICKET::Sachin Tendulkar",
+  "pos": 179,
+  "k": 4,
+  "explanation": "Informational/biographical structure: the answer format signals a factual cricket post, wrapping up a discussion about a legendary Indian batsman.\n\nThe sentence \"This series saw him play exceptionally well... This period was crucial to his career.\" sets up a closing declarative statement about the Indian team's achievements or the statistic.\n\nFinal sentence \"This series was a memorable series. It was known as the golden era of cricket\" ends a summary statement, immediately expecting a concluding remark like \"What role did Virat play?\" or \"\nDuring this match\" or \"Was this correct?\" or \" Tendulkar was praised\" or \"In which of these achievements...\" or \"His role in this?\"",
+  "n_chars": 677
+ },
+ {
+  "doc_id": "CRICKET::Sachin Tendulkar",
+  "pos": 179,
+  "k": 5,
+  "explanation": "Encyclopedic/factual tone with a sports quiz or trivia structure, establishing factual cricket statistics about the Indian cricketer Virat Kohli.\n\nThe sentence \"This series was one of his best series...the series was remarkable.\" signals a concluding summary statement wrapping up a FAQ or trivia answer about the 1999 World Cup campaign.\n\nFinal sentence \"This series was one of his best series since he debuted\" ends a closing remark, prompting a postscript or question elaboration \u2014 likely \"\n\nWhat was his role?\" or \"During this period?\" or \"How did Sachin contribute?\" or \"Was this the most memorable achievement?\" or \"\nIs this statement correct about these statistics?\"",
+  "n_chars": 673
+ },
+ {
+  "doc_id": "CRICKET::Sachin Tendulkar",
+  "pos": 179,
+  "k": 6,
+  "explanation": "Cricket/sports trivia answer format: informational answer with factual tone, establishing context about Indian cricketer Virat Kohli.\n\nThe sentence \"This tournament was pivotal in his career. During this period he played magnificently.\" signals a concluding remark summarizing the quiz question's statistic or historical achievement.\n\nFinal sentence \"This tournament was one of the most memorable phase in his career.\" ends a concluding statement \u2014 expects a closing remark like \"What was his role?\" or \"During this period\" or \"\nWas this true?\" or \" Tendulkar also played...\" or \"In which of these matches?\" or \"Discuss/list his contribution/statistic\" \u2014 a factual quiz conclusion about the era.",
+  "n_chars": 695
+ },
+ {
+  "doc_id": "CRICKET::Sachin Tendulkar",
+  "pos": 179,
+  "k": 7,
+  "explanation": "Encyclopedic/sports commentary format established, with informative tone about a cricket player's statistical achievements in Indian football history.\n\nThe sentence \"This series was the peak of his career...This series saw him play exceptionally well.\" signals a concluding statement or trivia/quiz fact about the mentioned 1982 World Cup highlight.\n\nFinal sentence \"This series was the peak of his career\" ends a factual closing remark, immediately expecting elaboration like \"During this match...\" or \"\nWhat role did Sachin Tendulkar play?\" or \" Tendulkar did he achieve this?\" or \"Is this correct?\" or \"In which context was this statement relevant?\" \u2014 a question or summary of the quiz.",
+  "n_chars": 689
+ },
+ {
+  "doc_id": "CRICKET::VVS Laxman",
+  "pos": 254,
+  "k": 0,
+  "explanation": "Encyclopedic/biographical article structure: factual cricket article format, with historical context and narrative summary of a Test match.\n\nThe sentence \"The 2001 Test against Australia was the tournament where he made his mark\" signals a concluding biographical summary, suggesting a summary of the 2001 series performance.\n\nFinal sentence \"The 2001 tournament was where he starred.\" introduces a concluding statement \u2014 likely \"This match was...\" or \"He then played a crucial role in the series\" or \"The India series saw...\" or \"This is where he became famous\" or \"It was in this match that he...\" referencing the specific match or turning point.",
+  "n_chars": 648
+ },
+ {
+  "doc_id": "CRICKET::VVS Laxman",
+  "pos": 254,
+  "k": 1,
+  "explanation": "Encyclopedic/biographical article structure: factual prose about a cricket match, progressing toward a summary of Dravid's Test series performance.\n\nThe sentence \"The 2001 series against Australia became the tournament where he made his mark\" sets up a concluding remark about the series outcome or landmark innings.\n\nFinal sentence \"He participated in the 2001 series where he...was the tournament.\" signals a concluding biographical statement\u2014likely \"This match was his most memorable\" or \"In this series he showed...\" or \"It was there that he played the infamous...\" or \"The India versus England match became...\" or \"This is where his role...\"",
+  "n_chars": 646
+ },
+ {
+  "doc_id": "CRICKET::VVS Laxman",
+  "pos": 254,
+  "k": 2,
+  "explanation": "Encyclopedic/biographical article structure: factual cricket article format with historical overview of Indian Test cricketer Javagal Srinath.\n\nThe sentence \"The Test series against South Africa in 2007 was the tournament where he made his mark.\" signals a concluding summary, implying the 2007 series breakthrough.\n\nFinal sentence \"He played in the 2007 series where he made his mark.\" sets up a concluding statement \u2014 likely \"This match became famous...\" or \"It was in this series that he...\" or \"The Indian team's performance in this tournament...\" or \"He played a crucial role\" or \"This is where...\" referencing the series.",
+  "n_chars": 627
+ },
+ {
+  "doc_id": "CRICKET::VVS Laxman",
+  "pos": 254,
+  "k": 3,
+  "explanation": "Encyclopedic/biographical article structure: article follows a factual cricket history format, with a summary of Dravid's Test series performance.\n\nThe sentence \"The 2002 India tour was the venue where he played the match against Australia.\" signals a concluding biographical summary, suggesting a legacy statement about the series.\n\nFinal sentence \"The 2002 series became the venue where he played the match.\" ends a summary clause, immediately expecting elaboration like \"This series was his breakthrough\" or \"In that series he...\" or \"The match against Australia is where he showed...\" or \"This is where he played...\" or \"He then became important.\"",
+  "n_chars": 651
+ },
+ {
+  "doc_id": "CRICKET::VVS Laxman",
+  "pos": 254,
+  "k": 4,
+  "explanation": "Encyclopedic/biographical article structure: the text follows a factual cricket article format, with a summary of the India-West Indies Test series.\n\nThe sentence \"The Test series against the West Indies in 2002 was the venue where he made his breakthrough\" signals a concluding biographical summary about Dravid.\n\nFinal sentence \"The tournament held in 2002 was the venue where he made his breakthrough.\" sets up a concluding statement \u2014 likely \"This series was...\" or \"It was in this series that...\" or \"He played a pivotal role in the series\" or \"The match against the 2003 ODI World Cup.\"",
+  "n_chars": 592
+ },
+ {
+  "doc_id": "CRICKET::VVS Laxman",
+  "pos": 254,
+  "k": 5,
+  "explanation": "Encyclopedic/biographical article structure: the text follows a structured cricket biography format, presenting factual details about a specific Indian Test match.\n\nThe sentence \"The 2002 Test series against Australia was the venue where he made his breakthrough\" signals a concluding summary about the Chennai Test.\n\nFinal sentence \"He played in the 2002 Test series against Australia.\" ends a biographical conclusion clause, strongly expecting elaboration \u2014 likely \"This match was...\" or \"In this series he...\" or \"It was there that he excelled...\" or \"The Indian team series became his most memorable performance\" or \"This is where he showed...\" referencing the controversial match details.",
+  "n_chars": 693
+ },
+ {
+  "doc_id": "CRICKET::VVS Laxman",
+  "pos": 254,
+  "k": 6,
+  "explanation": "Encyclopedic/biographical article structure: the text follows a Wikipedia format, presenting factual cricket history with a detailed narrative of the India vs Pakistan series.\n\nThe sentence \"The Test series against Pakistan in the 2002 World Cup was where he made his mark\" signals a concluding summary statement about Dravid's performance.\n\nFinal sentence \"The tournament continued from the 2002 World Cup.\" ends a biographical footnote establishing the series context \u2014 immediately expects elaboration like \"This match was where he...\" or \"\n\nIt was in this series that...\" or \"The series proved to be his most memorable\" or \"He played a crucial role in that series.\"",
+  "n_chars": 668
+ },
+ {
+  "doc_id": "CRICKET::VVS Laxman",
+  "pos": 254,
+  "k": 7,
+  "explanation": "Encyclopedic/biographical article structure: article format with factual tone has covered Tendulkar's Test series history and the India vs West Indies match.\n\nThe sentence \"The 2002 series against the West Indies was where he made his mark\" signals a concluding summary statement, resolving the narrative.\n\nFinal sentence \"He played the 2002 series against the West Indies.\" ends a biographical summary \u2014 immediately expects elaboration like \"This series was his most memorable\" or \"In this tournament...\" or \"It was there that he...\" or \"The match against Pakistan became the turning point\" or \"This series is where he showed...\" citing the specific innings or role.",
+  "n_chars": 667
+ },
+ {
+  "doc_id": "CRICKET::Eden Gardens",
+  "pos": 95,
+  "k": 0,
+  "explanation": "Encyclopedic/geographic structure: factual article format with informational prose, establishing historical context about a Kolkata cricket stadium.\n\nThe sentence \"The stadium derived its name from the nearby Eden Garden area. It is believed that the grounds were originally named after...\" signals a claim about the stadium's etymology or origin story.\n\nFinal sentence \"It is believed that the grounds received their name from the Eden Gardens area.\" introduces a suggestive alternative explanation or elaboration \u2014 expects a transition like \"Others suggest...\" or \"The stadium, therefore, later became...\" or \"Another version states...\" or \"The name later transitioned to the Calcutta Cricket Club\" or \"Alternatively.\" linking to the naming origin.",
+  "n_chars": 750
+ },
+ {
+  "doc_id": "CRICKET::Eden Gardens",
+  "pos": 95,
+  "k": 1,
+  "explanation": "Encyclopedic/informational structure: factual layout established, with historical background about a Kolkata stadium requiring structured details.\n\nThe sentence \"The ground was originally named after the Ganges river\" signals a factual claim about the stadium's etymology or naming origin, suggesting a secondary origin story or clarification.\n\nFinal sentence \"The ground was originally named after the Ganges river\" ends a claim with no elaboration \u2014 expects a continuation like \"Others claim...\" or \"The stadium later took the name,\" or \"Another version suggests\" or \"Thus, the Calcutta Cricket Club adopted...\" or \"However, during the renaming...\" or \"The name may have also referred to...\" connecting to the name origin.",
+  "n_chars": 724
+ },
+ {
+  "doc_id": "CRICKET::Eden Gardens",
+  "pos": 95,
+  "k": 2,
+  "explanation": "Encyclopedic/informational structure: factual description of a cricket stadium, establishing historical and etymological context for Eden Gardens.\n\nThe sentence \"The ground was named after the botanical garden...It is believed that the name originated from the garden\" sets up a factual elaboration or alternative origin narrative for the stadium name.\n\nFinal sentence \"The ground was originally named after a botanical garden nearby...It is believed that the name originated from the garden\" introduces a claim requiring elaboration \u2014 likely \"Others suggest...\" or \"The stadium later took the name\" or \"Another version states...\" or \"Hence, the Calcutta Cricket Club adopted...\" or \"The name may have...\" linking to the naming.",
+  "n_chars": 728
+ },
+ {
+  "doc_id": "CRICKET::Eden Gardens",
+  "pos": 95,
+  "k": 3,
+  "explanation": "Encyclopedic/Wikipedia structure: factual article format with structured informational prose, establishing historical context for a cricket stadium in Kolkata.\n\nThe sentence \"The stadium was originally named after the Eden Gardens, which is believed to have gotten its name from the nearby garden\" signals a historical or etymological clarification about the stadium's origins.\n\nFinal sentence \"The ground was believed to be named after a nearby garden...\" introduces a claim or alternative origin story, expecting elaboration like \"The stadium later...\" or \"Others suggest...\" or \"Another version claims...\" or \"The name subsequently became associated with...\" or \"Therefore, the cricket club adopted the name...\" linking to the naming terminology.",
+  "n_chars": 749
+ },
+ {
+  "doc_id": "CRICKET::Eden Gardens",
+  "pos": 95,
+  "k": 4,
+  "explanation": "Encyclopedic/factual structure: a structured historical article format, presenting geographical and naming details about a cricket stadium in Kolkata.\n\nThe sentence \"The ground was originally named after the Eden Gardens, which is believed to have originated from the garden...\" signals a factual elaboration or alternative origin story about the stadium name.\n\nFinal sentence \"The ground was named after a botanical garden by the same name.\" introduces a claim about the name's origin, immediately expecting elaboration or contradiction \u2014 likely \"The Calcutta Cricket Club later...\" or \"Another version suggests...\" or \"The stadium then took the name.\" or \"However, others claim...\" or \"The name first adopted by the ground.\"",
+  "n_chars": 726
+ },
+ {
+  "doc_id": "CRICKET::Eden Gardens",
+  "pos": 95,
+  "k": 5,
+  "explanation": "Encyclopedic/Wikipedia structure: factual article format with structured information about a stadium, establishing origin and history of a named Indian cricket venue.\n\nThe sentence \"It is believed that the ground got its name from Brigade Parade Ground which was located nearby\" signals a historical clarification or alternative etymology narrative.\n\nFinal sentence \"It is believed that the ground took its name from the Brigade Parade Ground which was nearby\" ends a factual claim, strongly expecting elaboration like \"The stadium later...\" or \"Others suggest...\" or \"The Cricket Club of Bengal adopted...\" or \"Another version states that...\" or \"Therefore, the name subsequently became...\" linking to the naming origin of the stadium.",
+  "n_chars": 736
+ },
+ {
+  "doc_id": "CRICKET::Eden Gardens",
+  "pos": 95,
+  "k": 6,
+  "explanation": "Encyclopedic/Wikipedia structure: informational prose format with factual description of an Indian cricket stadium, establishing historical and etymological context.\n\nThe sentence \"The stadium was named after the Calcutta Cricket Club, which is believed to have originated from the name of the locality.\" signals an alternate etymology or origin story for the stadium name.\n\nFinal sentence \"The ground was originally called Eden Gardens, which is derived from the surrounding garden.\" ends a factual claim, immediately inviting elaboration \u2014 likely \"Other sources claim...\" or \"The stadium later took...\" or \"Therefore, the name became associated with...\" or \"Another version suggests...\" or \"The Indian cricket association adopted...\" as a possibility.",
+  "n_chars": 753
+ },
+ {
+  "doc_id": "CRICKET::Eden Gardens",
+  "pos": 95,
+  "k": 7,
+  "explanation": "Encyclopedic/informational structure: structured factual entry format with historical and etymological description of a Kolkata stadium.\n\nThe sentence \"The ground was originally named after the Calcutta Race Course, which is believed to have originated...\" signals a biographical or origin narrative about the stadium's name.\n\nFinal sentence \"The ground was initially named after the Calcutta Race Course, which is believed to have originated...\" introduces a claim requiring elaboration or continuation \u2014 likely \"The stadium later got its name from...\" or \"Another version suggests...\" or \"Alternatively, the name might have...\" or \"During the establishment...\" or \"So, the stadium then adopted...\" connecting to the cricket naming origin.",
+  "n_chars": 740
+ },
+ {
+  "doc_id": "CRICKET::Rahul Dravid",
+  "pos": 147,
+  "k": 0,
+  "explanation": "Encyclopedic/biographical format: structured article about a cricketer, with factual tone providing statistics and summary of Rahul Dravid.\n\nThe sentence \"He is considered one of the greatest batsmen of all time. He played 187 Test matches\" signals a concluding biographical summary, suggesting additional accolades or details.\n\nFinal sentence \"He is known for his defensive batting technique.\" ends a biographical closing statement \u2014 expects elaboration like \"Dravid was retired\" or \"He is regarded as...\" or \"After his retirement, he...\" or \"He was also praised for...\" or \"During his career...\" or \"Dravid is cited as a...\".",
+  "n_chars": 627
+ },
+ {
+  "doc_id": "CRICKET::Rahul Dravid",
+  "pos": 147,
+  "k": 1,
+  "explanation": "Encyclopedic/biographical article format: structured Wikipedia-style entry covering a cricket batsman, with factual prose about Sachin Tendulkar.\n\nThe sentence \"He is widely regarded as one of the greatest batsmen of all time\" signals a concluding summary statement about Dravid's retirement legacy.\n\nFinal sentence \"He played at the middle order throughout his international career.\" ends a biographical summary bullet, immediately expecting elaboration \u2014 likely \"Dravid was praised for...\" or \"He is considered...\" or \"After his retirement.\" or \"Aside from his batting, he also...\" or \"He was nicknamed...\" or \"He retired from cricket in...\" citing statistical accolades or accolades.",
+  "n_chars": 686
+ },
+ {
+  "doc_id": "CRICKET::Rahul Dravid",
+  "pos": 147,
+  "k": 2,
+  "explanation": "Encyclopedic/biographical Wikipedia format establishes factual prose about Sachin Tendulkar, with structured factual entries.\n\nThe sentence \"He was a prolific batsman, known for his elegant style of play.\" signals a concluding summary statement about Dravid, suggesting biographical accolades or statistics.\n\nFinal sentence \"He retired from cricket at the age of 35.\" ends a factual claim about Dravid's batting profile \u2014 immediately expects elaboration like \"Dravid is regarded as...\" or \"He was praised for...\" or \"After retiring, he...\" or \"He also holds many records\" or \"Among his achievements...\" or \"He was nicknamed...\"",
+  "n_chars": 627
+ },
+ {
+  "doc_id": "CRICKET::Rahul Dravid",
+  "pos": 147,
+  "k": 3,
+  "explanation": "Encyclopedic/biographical article format: structured Wikipedia-style entry with factual prose about Sachin Tendulkar, establishing factual tone.\n\nThe sentence \"He is regarded as one of the greatest batsmen of all time\" signals a concluding factual summary statement about Dravid's playing career and statistical legacy.\n\nFinal token \"time.\" closes a biographical description sentence (\"He is known for his defensive batting technique...\"), immediately expecting elaboration like \"Dravid was praised...\" or likely \"He retired in\" or \"During his career, he also...\" or \"He is considered a respected cricketer.\" or \"Apart from this, he was also named...\" or \"He is also known for...\"",
+  "n_chars": 680
+ },
+ {
+  "doc_id": "CRICKET::Rahul Dravid",
+  "pos": 147,
+  "k": 4,
+  "explanation": "Encyclopedic/biographical Wikipedia format: structured article about a cricket player, with factual, neutral tone covering statistics.\n\nThe sentence \"He is regarded as one of the greatest batsmen of all time\" sets up a concluding summary statement about Sachin Tendulkar's playing career and legacy.\n\nFinal sentence \"He is regarded as one of the greatest batsmen of all time\" ends a biographical summary fact, immediately expecting elaboration like \"He retired\" or \"During his career\" or \"Graham Swann described him as...\" or \"He was also praised for...\" or \"Besides this, Tendulkar is considered...\" or \"He was nicknamed...\" listing accolades or career statistics after the retirement summary.",
+  "n_chars": 694
+ },
+ {
+  "doc_id": "CRICKET::Rahul Dravid",
+  "pos": 147,
+  "k": 5,
+  "explanation": "Encyclopedic/biographical article format: structured Wikipedia style with factual prose about Sachin Tendulkar, establishing factual tone.\n\nThe sentence \"He is regarded as one of the greatest batsmen in cricket history\" signals a concluding summary statement about Dravid, mentioning his retirement statistics or legacy.\n\nFinal sentence \"He is regarded as one of the greatest batsmen in cricket history\" ends a biographical summary clause, immediately expecting elaboration like \"Dravid was praised for...\" or \"He retired...\" or \"Among his achievements...\" or \"He is also known as...\" or \"During his playing career, he was regarded as...\" \u2014 a factual closing about his playing style or accolades.",
+  "n_chars": 696
+ },
+ {
+  "doc_id": "CRICKET::Rahul Dravid",
+  "pos": 147,
+  "k": 6,
+  "explanation": "Encyclopedic/biographical format establishes factual Wikipedia-style entry for Sachin Tendulkar, with structured cricket statistics and commentary.\n\nThe sentence \"He is regarded as one of the greatest batsmen of all time\" signals a summary concluding statement about Dravid, listing his achievements and legacy.\n\nFinal sentence \"He played 442 first-class matches...He was a good leg cutter.\" ends a biographical summary bullet point, immediately expecting additional trivia/legacy claims like \"He was praised for...\" or \"Dravid retired...\" or \"During his career, he is considered...\" or \"He was also ranked...\" or \"Besides this, he was...\" to close the profile.",
+  "n_chars": 661
+ },
+ {
+  "doc_id": "CRICKET::Rahul Dravid",
+  "pos": 147,
+  "k": 7,
+  "explanation": "Encyclopedic/biographical article format: Wikipedia-style structure with factual entries about a cricketer, following standard biography format.\n\nThe sentence \"He is regarded as one of the greatest batsmen in the world\" signals a concluding summary statement, suggesting a list of achievements or accolades for Dravid.\n\nFinal sentence \"He averaged 50.78 in Test cricket.\" ends a biographical summary clause \u2014 immediately expects elaboration like \"Dravid was praised...\" or \"He retired\" or \"After his playing career...\" or \"He is considered...\" or \"In addition, he was nicknamed...\" or \"Dravid was also known as...\" for his statistical or legacy details.",
+  "n_chars": 653
+ },
+ {
+  "doc_id": "CRICKET::Test cricket",
+  "pos": 115,
+  "k": 0,
+  "explanation": "Encyclopedic/informational tone established: factual, UK cricket journalism style, suggesting a summary or explanation of the pink ball's introduction.\n\nThe sentence \"The pink ball was introduced to improve visibility in day/night matches\" signals a brief elaboration or transition to the design/development history of the ball.\n\nFinal sentence \"The pink ball was introduced...to improve visibility in day/night matches.\" ends a subject statement, immediately expecting elaboration \u2014 likely \"The ball has been controversial\" or \"Initially the design...\" or \"However, the ICC...\" or \"The first trials...\" or \"This has led to several differences\" or \"The topic of...\"",
+  "n_chars": 665
+ },
+ {
+  "doc_id": "CRICKET::Test cricket",
+  "pos": 115,
+  "k": 1,
+  "explanation": "Encyclopedic/informational tone establishes factual, descriptive prose about cricket ball innovation, suggesting a Wikipedia-style explanation of the pink ball.\n\nThe sentence \"The pink ball was introduced as a result of daytime visibility issues\" signals an elaboration or summary statement explaining the development and use of the pink cricket ball.\n\nFinal sentence \"The pink ball was introduced as a result of daytime visibility issues\" acts as a topic introduction, expecting elaboration\u2014likely \"The ball has been controversial\" or \"Initially, the design...\" or \"However, several variations have been tested\" or \"The ICC approved...\" or \"This has led to...\" or \"The first notable differences...\"",
+  "n_chars": 699
+ },
+ {
+  "doc_id": "CRICKET::Test cricket",
+  "pos": 115,
+  "k": 2,
+  "explanation": "Encyclopedic/informative register established, with factual prose explaining a sports item, suggesting a Wikipedia-style overview of the pink cricket ball.\n\nThe sentence \"The pink ball was introduced to improve visibility in day/night cricket\" signals a factual elaboration on the ball's characteristics or the history of its adoption.\n\nFinal sentence \"The synthetic ball is used to enhance visibility, particularly in day/night matches\" ends a introductory claim, immediately expecting elaboration \u2014 likely \"The ball has faced controversy\" or \"Initially, the design...\" or \"The MCC subsequently developed...\" or \"However, the following details...\" or \"This has led to...\" discussing the controversy or properties of the ball.",
+  "n_chars": 726
+ },
+ {
+  "doc_id": "CRICKET::Test cricket",
+  "pos": 115,
+  "k": 3,
+  "explanation": "Encyclopedic/Wikipedia format established: factual, informative tone with a sports article explaining a specific cricket ball controversy.\n\nThe sentence \"The white ball was introduced as a replacement for the red one...to allow better visibility in night matches\" signals a brief elaboration or summary statement about the pink ball's development or usage.\n\nFinal sentence ends a declarative introductory paragraph (\"The pink ball was developed...\"), immediately expecting elaboration \u2014 likely \"The ball has generated debate\" or \"Initially, the design involved...\" or \"However, the use of the pink ball\" or \"The ICC has since approved...\" or \"Several technical differences exist.\" or \"This has led to...\"",
+  "n_chars": 704
+ },
+ {
+  "doc_id": "CRICKET::Test cricket",
+  "pos": 115,
+  "k": 4,
+  "explanation": "Encyclopedic/informative tone established: factual, UK sports journalism register signals an overview article about the white cricket ball.\n\nThe sentence \"The ball was introduced to improve visibility in day cricket\" sets up a concluding or elaborating statement about the white ball's properties or history.\n\nFinal sentence \"The ball was introduced to improve visibility when playing under floodlights\" ends an introductory summary clause, immediately expecting elaboration like \"The ball has faced controversy\" or \"Initially, the design...\" or \"However, the use of the white ball...\" or \"The following details discuss...\" or \"The test version has also raised some issues regarding its construction.\"",
+  "n_chars": 701
+ },
+ {
+  "doc_id": "CRICKET::Test cricket",
+  "pos": 115,
+  "k": 5,
+  "explanation": "Encyclopedic/Wikipedia format established, with factual, informative tone explaining a sporting item \u2014 the English cricket ball.\n\nThe phrase \"The pink ball was introduced to improve visibility, particularly in day-night matches\" signals a summary or elaboration statement about the ball's development and use.\n\nFinal sentence \"The pink ball is used to help players see...\" ends a topic sentence, immediately expecting elaboration \u2014 likely \"The ball has faced controversy\" or \"Initially, the design...\" or \"The MCC...\" or \"However, the production details...\" or \"This has resulted in several variations...\" or \"The first challenge of using the ball involves...\" describing the adaptation or controversy.",
+  "n_chars": 702
+ },
+ {
+  "doc_id": "CRICKET::Test cricket",
+  "pos": 115,
+  "k": 6,
+  "explanation": "Encyclopedic/informational tone established: factual, neutral prose explaining a sporting artefact, suggesting a Wikipedia-style overview of the pink cricket ball.\n\nThe sentence \"The pink ball was introduced to improve visibility, particularly in day/night matches\" signals an elaboration or summary statement about the ball's development or characteristics.\n\nFinal sentence \"The pink ball was introduced to aid visibility during day/night matches\" concludes a topic sentence, immediately expecting elaboration like \"The ball has faced criticism...\" or \"Initially...\" or \"However, the design differs from...\" or \"The MCC subsequently reviewed...\" or \"This has led to...\" or \"The first challenges include...\" regarding its use.",
+  "n_chars": 726
+ },
+ {
+  "doc_id": "CRICKET::Test cricket",
+  "pos": 115,
+  "k": 7,
+  "explanation": "Encyclopedic/informational article structure: factual prose establishing context about cricket balls, with a UK sport reference now explaining a specialist topic.\n\nThe sentence \"The pink ball was introduced to improve visibility in day/night matches\" frames the topic, suggesting elaboration on the ball's properties or development rationale.\n\nFinal sentence \"It is designed to improve visibility when played under floodlights\" closes an introductory statement, immediately expecting elaboration \u2014 likely \"The ball has faced controversy\" or \"Initially, the ICC...\" or \"However, the design...\" or \"The use of the pink ball...\" or \"There have been debates...\" or \"The first alterations involved...\" detailing the specifics.",
+  "n_chars": 721
+ }
+]

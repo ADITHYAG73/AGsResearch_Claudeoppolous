@@ -1,0 +1,51 @@
+Fetching 18 files:   0%|          | 0/18 [00:00<?, ?it/s]Fetching 18 files: 100%|██████████| 18/18 [00:00<00:00, 937.48it/s]
+[NLAClient] 7aec22599e8a9cd533564868999b443fcc963cf4: d_model=3840 inj_scale=80000.0 embed_scale=61.97 inj_char='㈜'(id=246566)
+Fetching 16 files:   0%|          | 0/16 [00:00<?, ?it/s]Fetching 16 files: 100%|██████████| 16/16 [00:00<00:00, 1192.09it/s]
+`torch_dtype` is deprecated! Use `dtype` instead!
+Loading weights:   0%|          | 0/430 [00:00<?, ?it/s]Loading weights: 100%|██████████| 430/430 [00:00<00:00, 4558.18it/s]
+[1mGemma3ForCausalLM LOAD REPORT[0m from: /root/hf/hub/models--kitft--nla-gemma3-12b-L32-ar/snapshots/3d6901d8243182d642af9dea452ca91549a94615
+Key               | Status  | 
+------------------+---------+-
+model.norm.weight | MISSING | 
+
+[3mNotes:
+- MISSING[3m	:those params were newly initialized because missing from the checkpoint. Consider training on your downstream task.[0m
+[NLACritic] 33 layers  d_model=3840  mse_scale=61.97
+
+==============================================================================
+CRICKET::VVS Laxman   (T=255, pos=254, ||h||=72731.5)
+==============================================================================
+  k=0  cos=0.9943  mse=0.0114  len= 582  | Encyclopedic/biographical article structure: article format with factual cricket history, following a summary 
+  k=1  cos=0.9949  mse=0.0103  len= 676  | Encyclopedic/biographical article structure: factual cricket history format with structured narrative of a Tes
+  k=2  cos=0.9949  mse=0.0101  len= 624  | Encyclopedic/biographical article structure: the text follows a factual cricket article format, with a summary
+  k=3  cos=0.9954  mse=0.0093  len= 659  | Encyclopedic/biographical article structure: the text follows a sports history format, presenting factual cric
+  k=4  cos=0.9950  mse=0.0100  len= 660  | Encyclopedic/biographical article structure: factual cricket article format with historical background on Indi
+  k=5  cos=0.9951  mse=0.0098  len= 604  | Encyclopedic article structure: biographical/cricket history format with factual narrative about Indian batsma
+  k=6  cos=0.9950  mse=0.0099  len= 619  | Encyclopedic/biographical article structure: the text follows a factual cricket profile format, progressing th
+  k=7  cos=0.9951  mse=0.0099  len= 678  | Encyclopedic/biographical article structure: text follows a Wikipedia format, presenting factual cricket histo
+
+  cos : mean 0.9950  sd 0.00031  min 0.9943  max 0.9954
+  mse : mean 0.0101  sd 0.00062  spread 0.0022
+  sd/mean(mse) = 0.061
+  --> averaging K=4 would shrink that sd to ~0.00031, K=9 to ~0.00021
+  explanation length: 582-678 chars
+
+==============================================================================
+THEIR_EXAMPLE   (T=89, pos=88, ||h||=78890.4)
+==============================================================================
+  k=0  cos=0.9969  mse=0.0062  len= 744  | Historical book introduction establishes formal description of a work, signaling a concise overview of the Fre
+  k=1  cos=0.9966  mse=0.0068  len= 755  | Historical textbook genre establishes formal academic prose, introducing a book summary of the French Revoluti
+  k=2  cos=0.9971  mse=0.0058  len= 736  | Academic book description establishing historical context, signaling a formal summary of a major work on the F
+  k=3  cos=0.9969  mse=0.0062  len= 713  | Historical survey format: a book description establishing context, introducing a critical period—the French Re
+  k=4  cos=0.9970  mse=0.0060  len= 742  | Historical textbook format signals a formal introduction to a book summary, establishing a reference work desc
+  k=5  cos=0.9968  mse=0.0065  len= 713  | Historical book description establishing formal academic register, framing a summary of the French Revolution'
+  k=6  cos=0.9966  mse=0.0067  len= 711  | Historical book description establishing context: formal, academic prose introduces a volume summarizing the F
+  k=7  cos=0.9964  mse=0.0072  len= 665  | Historical book description establishing formal academic tone, framing a concise account of the French Revolut
+
+  cos : mean 0.9968  sd 0.00023  min 0.9964  max 0.9971
+  mse : mean 0.0064  sd 0.00047  spread 0.0014
+  sd/mean(mse) = 0.073
+  --> averaging K=4 would shrink that sd to ~0.00023, K=9 to ~0.00016
+  explanation length: 665-755 chars
+
+saved -> /root/variance_K8.json

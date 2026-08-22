@@ -1,0 +1,236 @@
+VVS LAXMAN — K=4 explanations at offsets -9, -5, -1, +0
+(offset 0 = final token of the passage, the full stop after '2001.')
+
+==============================================================================
+OFFSET -9   (position 245)
+==============================================================================
+
+--- k=0 (651 chars) ---
+Cricket/sports news format with factual reporting style, structured around
+Indian Test cricket team context and Test match statistics.
+
+The sentence "He was the captain in the ongoing series, which was part of the
+home series" sets up a factual summary statement about India's ODI series
+against England.
+
+Final token "series" ends a noun phrase ("during the home series, which was
+part of the ongoing series..."), requiring a completion like "against
+Australia" or "against England" to name the series context. Alternatively
+"against South Africa" or "against England in the upcoming matches." or
+"against West Indies." to specify the series outcome.
+
+--- k=1 (630 chars) ---
+Cricket news article format, with factual reporting style — factual summary of
+Indian Test team's tour details in 2013.
+
+The sentence "He was the captain for the five-match series which was part of
+the home series" establishes a biographical/match summary context, implying a
+statistic or outcome statement follows.
+
+Final token "series" ends a relative clause ("during the home series, which
+was part of the series...during the home series"), requiring a completion like
+"against England" or "against Australia" or "against New Zealand." or "against
+Pakistan." or "against South Africa during the ODI series" — the match
+context.
+
+--- k=2 (641 chars) ---
+Sports article format (Indian cricket website) with factual reporting style,
+reporting on a Test series between India and England.
+
+The sentence "He was the captain in the ongoing series, which was part of the
+home series" sets up a statistic about the India-Australia ODI series result.
+
+Final token "series" ends a relative clause ("in the ongoing series…which was
+part of the series during the ongoing series"), requiring a noun phrase
+completion — likely "against South Africa" or "against England" or "against
+Zimbabwe" or "against the West Indies." or "against Pakistan." — the match
+outcome or series context in which the team played.
+
+--- k=3 (636 chars) ---
+Sports news format with factual reporting style: factual summary of Indian
+cricket team, with structured match description.
+
+The sentence "was part of the home series, which formed part of the ongoing
+series of the home series" sets up a series/match context, implying a
+statistic or outcome statement about the India-Australia Test series.
+
+Final token "series" ends a clause ("during the ongoing series, which was part
+of the home series..."), requiring a noun phrase — likely "against England" or
+"against Australia" or "against West Indies." or "against England in 2011" — a
+descriptor about the ODI series or the upcoming fixtures.
+
+==============================================================================
+OFFSET -5   (position 249)
+==============================================================================
+
+--- k=0 (641 chars) ---
+Sports article format: structured cricket/Indian cricket context, describing a
+batsman known for technical mastery and mental approach.
+
+The phrase "Rahul Dravid is known as the wall of Indian cricket" introduces a
+player profile, establishing context about VVS Laxman, requiring mention of
+his distinctive batting style.
+
+Final token "Laxman'" ends a repeated subject phrase ("His batting is known
+as..."), immediately expecting a noun phrase like "Rahul" or "the talented
+batsman" or "3." to name the batsman, then likely "Vishnu Laxman" or "a subtle
+off-side player" or "mind" continuing the description of the unconventional
+mental trap.
+
+--- k=1 (627 chars) ---
+Sports/cricket report format: structured Indian cricket article, with factual,
+descriptive tone established around Rahul Dravid.
+
+The phrase "Rahul Dravid is known as the Wall of Indian cricket" signals a
+biographical/technical profile, with the batsman's distinctive shot-making
+ability now being introduced.
+
+Final token "him'" begins a repeated phrase "Rahul Dravid is known as Laxman"
+— immediately expects a cricket terminology word like "mind" or "Rajesh" to
+complete the player's name, then likely "him" or "the elegant right-hander" or
+"Vijay Laxman's batting" to describe mental concentration or unusual batting
+style.
+
+--- k=2 (585 chars) ---
+Sports/cricket article format signals a structured report on Indian batsman
+Rahul Dravid, listing key traits and skills.
+
+The phrase "Rahul Dravid is known for his elegant strokeplay and mental
+toughness" identifies Ravi Shastri as the subject, establishing a biographical
+cricket profile.
+
+Final token "l'" opens a repeated descriptor of Dravid ("Rahul Dravid...is
+known as a stylish batsman") — most likely completing "Raj" or "the 'block'
+batsman" or "Raj's unusual trait" or "him" or "a mind coach" to name the full
+name or describe the subtle mental agility of the Indian batsman.
+
+--- k=3 (640 chars) ---
+Sports/cricket context establishes factual report format: biographical details
+about Rahul Dravid, Indian batsman known for his Test technique.
+
+The phrase "Rahul Dravid, known as Wall, possesses a different technical
+attribute" signals a characteristic descriptive sentence about batting style
+or mental focus.
+
+Final token "lakh'" ends a name reference ("Rahul Dravid, popularly known as
+Laxman"), immediately requiring a continuation like "Man" or "elegant batsman"
+to complete the name, then likely "Raj." or "his unusual middle-order batting"
+or "the 'brain' of Telugu cricket" or "Raj is a..." — describing the
+mental/enigmatic trait.
+
+==============================================================================
+OFFSET -1   (position 253)
+==============================================================================
+
+--- k=0 (575 chars) ---
+Encyclopedic/biographical format for cricket statistics: structured factual
+article about Indian Test cricketer Harbhajan Singh, with factual prose
+describing his nadir.
+
+The sentence "He was included in the Indian team for the series against
+Australia in 2001" signals a pivotal context — the 2001 Border–Gavaskar series
+reversal.
+
+Final token "2001" closes a year reference clause ("in the series in 2001"),
+immediately expecting elaboration like "where he became a key player" or
+"—this series" or "as a turning point." or ". This was..." or "with the new
+bowling lineup."
+
+--- k=1 (574 chars) ---
+Encyclopedic/biographical format: structured cricket article with factual
+prose covering Indian Test cricketer Harbhajan Singh.
+
+The sentence "He was included in the Indian squad for the series against
+Australia in 2001" sets up a pivotal context about the 2001 Test series,
+highlighting a comeback role.
+
+Final token "2001" closes a clause ("he was drafted into the series in 2001"),
+immediately expecting elaboration — likely "where he became the key bowler" or
+"– the historic Test series." or "as a breakthrough." or "known as the turning
+point." or "but this became..."
+
+--- k=2 (628 chars) ---
+Encyclopedic/biographical format with structured factual prose, presenting
+Indian cricket statistics and historical context throughout.
+
+The sentence "He was part of the Indian team that toured Australia in 2001"
+signals a critical turning point — the India–Australia Test series
+controversy, setting up a climactic description of the comeback.
+
+Final token "2001" ends a clause ("he was drafted into the squad for the
+series in 2001"), immediately expecting elaboration like "where he became a
+key player" or "– the series." or "called the famous turnaround." or " . This
+was…" or "but this proved vital." as the match outcome.
+
+--- k=3 (576 chars) ---
+Encyclopedic/biographical structure: factual cricket profile format,
+progressing through Indian Test cricketer VVS Laxman's career.
+
+The sentence "He was part of the Indian team in the 2001 series against
+Australia in 2001" signals a pivotal turnaround narrative — the 2001 series
+context.
+
+Final token "2001" closes a factual clause about the series, immediately
+expecting elaboration — likely "where he became a key player" or "being the
+most important series." or "– this was the turning point." or "with the Test
+series." or "a series that..." as the new policy/situation.
+
+==============================================================================
+OFFSET +0   (position 254)
+==============================================================================
+
+--- k=0 (650 chars) ---
+Encyclopedic/biographical article structure: factual cricket history format,
+with a summary of a Test match between India and West Indies.
+
+The sentence "The 2002 Test series against West Indies was the tournament
+where he made his breakthrough" signals a concluding biographical narrative,
+suggesting a summary or footnote about the match.
+
+Final sentence "The 2002 Test series against West Indies was the tournament
+where he made his breakthrough" sets up a concluding statement — likely "This
+was the match where..." or "
+
+He played a crucial role" or "During this series, he became famous" or "It was
+there that he produced the best performance."
+
+--- k=1 (620 chars) ---
+Encyclopedic/biographical article structure: factual cricket article format
+with a summary paragraph tracing the India vs West Indies Test series.
+
+The sentence "The Test series against West Indies in 2002 was the venue where
+Dravid made his breakthrough" signals a concluding biographical statement
+about the 2002 ODI series.
+
+Final sentence "He played the tournament in the 2002 ODI series." sets up a
+concluding remark — likely "This match was..." or "It was there that he..." or
+"The series became his most memorable performance" or "This is where he played
+a crucial role in that series." or "He then went on to..."
+
+--- k=2 (615 chars) ---
+Encyclopedic/biographical article format: structured cricket article
+progressing through factual summary of a Test match between India and West
+Indies.
+
+The sentence "The tournament saw the 2002 series, where he played in the 2002
+Test series" signals a concluding biographical summary about Rahul Dravid.
+
+Final sentence "He played in the 2002 series." ends a transition clause,
+immediately expecting elaboration — likely "This match was..." or "
+
+In this series he played..." or "The series saw his most memorable
+performance" or "It was there that he became famous" or "This match is
+considered the pivotal one."
+
+--- k=3 (616 chars) ---
+Encyclopedic article structure: biographical/cricket history format with
+factual prose about a Test match series, following a detailed narrative of
+Rahul Dravid.
+
+The sentence "The 2002 Test series against West Indies was the venue where he
+first played" signals a concluding summary of Dravid's performance.
+
+Final sentence "He played in the 2002 series against West Indies." sets up a
+concluding statement — likely "This match was where he..." or "It was there
+that he achieved..." or "The series saw..." or "This series proved crucial" or
+"In this series, he played a memorable role." or "He thereafter became..."

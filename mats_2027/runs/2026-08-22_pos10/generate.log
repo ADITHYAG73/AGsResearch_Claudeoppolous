@@ -1,0 +1,16 @@
+=== AV READY ===
+31731 MiB, 46068 MiB
+6 passages · last 10 positions · K=4 · T=1.0
+[1/3] loaded 60 activations from activations.parquet (skip-extract)
+[2/3] AV → explanations
+Fetching 18 files:   0%|          | 0/18 [00:00<?, ?it/s]Fetching 18 files:  94%|█████████▍| 17/18 [00:00<00:00, 158.84it/s]Fetching 18 files: 100%|██████████| 18/18 [00:00<00:00, 34.56it/s] 
+[NLAClient] 7aec22599e8a9cd533564868999b443fcc963cf4: d_model=3840 inj_scale=80000.0 embed_scale=61.97 inj_char='㈜'(id=246566)
+      50/240  no-tag so far 0  (380s)
+      100/240  no-tag so far 0  (756s)
+      150/240  no-tag so far 0  (1138s)
+      200/240  no-tag so far 0  (1515s)
+      240 explanations in 1818s · no-tag 0 (0.0%)
+[3/3] summary
+      CJK-containing explanations: 0  (should be ~0; >0 ⇒ check injection)
+      mean chars 656  mean gen 7.56s
+=== GENERATE DONE ===

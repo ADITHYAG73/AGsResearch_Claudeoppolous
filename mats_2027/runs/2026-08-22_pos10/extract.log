@@ -1,0 +1,88 @@
+++ grep '^export HF_TOKEN=' /root/.bashrc
+++ cut -d= -f2
++ export HF_TOKEN=hf_REDACTED
++ HF_TOKEN=hf_REDACTED
++ export HF_HOME=/root/hf HF_HUB_DISABLE_XET=1 HF_HUB_ENABLE_HF_TRANSFER=0
++ HF_HOME=/root/hf
++ HF_HUB_DISABLE_XET=1
++ HF_HUB_ENABLE_HF_TRANSFER=0
++ cd /root
++ python3 stage2_generate.py --corpus pilot_corpus.jsonl --out /root/out --n-pos 10 --extract-only
+6 passages · last 10 positions · K=4 · T=1.0
+[1/3] base model → activations
+Fetching 5 files:   0%|          | 0/5 [00:00<?, ?it/s]Fetching 5 files:  20%|██        | 1/5 [03:32<14:10, 212.74s/it]Fetching 5 files:  40%|████      | 2/5 [03:36<04:29, 89.96s/it] Fetching 5 files:  60%|██████    | 3/5 [03:37<01:38, 49.09s/it]Fetching 5 files: 100%|██████████| 5/5 [03:54<00:00, 26.27s/it]Fetching 5 files: 100%|██████████| 5/5 [03:54<00:00, 46.95s/it]
+Loading weights:   0%|          | 0/1065 [00:00<?, ?it/s]Loading weights:  54%|█████▎    | 572/1065 [00:00<00:00, 5633.89it/s]Loading weights: 100%|██████████| 1065/1065 [00:00<00:00, 3510.43it/s]
+      60 activations in 243s → activations.parquet
+      THEIR_EXAMPLE                  pos=  79 T=  80 ||h||=  80159.0
+      THEIR_EXAMPLE                  pos=  80 T=  81 ||h||=  65834.9
+      THEIR_EXAMPLE                  pos=  81 T=  82 ||h||=  80681.2
+      THEIR_EXAMPLE                  pos=  82 T=  83 ||h||=  80200.1
+      THEIR_EXAMPLE                  pos=  83 T=  84 ||h||=  74899.5
+      THEIR_EXAMPLE                  pos=  84 T=  85 ||h||=  62151.6
+      THEIR_EXAMPLE                  pos=  85 T=  86 ||h||=  54481.4
+      THEIR_EXAMPLE                  pos=  86 T=  87 ||h||=  67129.0
+      THEIR_EXAMPLE                  pos=  87 T=  88 ||h||=  53002.0
+      THEIR_EXAMPLE                  pos=  88 T=  89 ||h||=  78886.1
+      CRICKET::Sachin Tendulkar      pos= 170 T= 171 ||h||=  69629.9
+      CRICKET::Sachin Tendulkar      pos= 171 T= 172 ||h||=  58928.2
+      CRICKET::Sachin Tendulkar      pos= 172 T= 173 ||h||=  73693.1
+      CRICKET::Sachin Tendulkar      pos= 173 T= 174 ||h||=  70231.4
+      CRICKET::Sachin Tendulkar      pos= 174 T= 175 ||h||=  81300.5
+      CRICKET::Sachin Tendulkar      pos= 175 T= 176 ||h||=  77013.7
+      CRICKET::Sachin Tendulkar      pos= 176 T= 177 ||h||=  71831.0
+      CRICKET::Sachin Tendulkar      pos= 177 T= 178 ||h||=  65973.2
+      CRICKET::Sachin Tendulkar      pos= 178 T= 179 ||h||=  67134.3
+      CRICKET::Sachin Tendulkar      pos= 179 T= 180 ||h||=  68099.1
+      CRICKET::VVS Laxman            pos= 245 T= 246 ||h||=  69494.9
+      CRICKET::VVS Laxman            pos= 246 T= 247 ||h||=  62394.5
+      CRICKET::VVS Laxman            pos= 247 T= 248 ||h||=  64152.0
+      CRICKET::VVS Laxman            pos= 248 T= 249 ||h||=  66536.6
+      CRICKET::VVS Laxman            pos= 249 T= 250 ||h||=  51783.6
+      CRICKET::VVS Laxman            pos= 250 T= 251 ||h||=  62194.2
+      CRICKET::VVS Laxman            pos= 251 T= 252 ||h||=  55239.2
+      CRICKET::VVS Laxman            pos= 252 T= 253 ||h||=  59021.2
+      CRICKET::VVS Laxman            pos= 253 T= 254 ||h||=  50629.6
+      CRICKET::VVS Laxman            pos= 254 T= 255 ||h||=  72727.4
+      CRICKET::Eden Gardens          pos=  86 T=  87 ||h||=  50536.4
+      CRICKET::Eden Gardens          pos=  87 T=  88 ||h||=  49679.1
+      CRICKET::Eden Gardens          pos=  88 T=  89 ||h||=  67734.3
+      CRICKET::Eden Gardens          pos=  89 T=  90 ||h||=  55065.1
+      CRICKET::Eden Gardens          pos=  90 T=  91 ||h||=  47092.4
+      CRICKET::Eden Gardens          pos=  91 T=  92 ||h||=  49395.8
+      CRICKET::Eden Gardens          pos=  92 T=  93 ||h||=  55508.8
+      CRICKET::Eden Gardens          pos=  93 T=  94 ||h||=  50846.7
+      CRICKET::Eden Gardens          pos=  94 T=  95 ||h||=  56117.4
+      CRICKET::Eden Gardens          pos=  95 T=  96 ||h||=  68601.7
+      CRICKET::Rahul Dravid          pos= 138 T= 139 ||h||=  55805.2
+      CRICKET::Rahul Dravid          pos= 139 T= 140 ||h||=  64778.8
+      CRICKET::Rahul Dravid          pos= 140 T= 141 ||h||=  64800.6
+      CRICKET::Rahul Dravid          pos= 141 T= 142 ||h||=  73296.7
+      CRICKET::Rahul Dravid          pos= 142 T= 143 ||h||=  73264.4
+      CRICKET::Rahul Dravid          pos= 143 T= 144 ||h||=  74242.9
+      CRICKET::Rahul Dravid          pos= 144 T= 145 ||h||=  62339.5
+      CRICKET::Rahul Dravid          pos= 145 T= 146 ||h||=  66138.0
+      CRICKET::Rahul Dravid          pos= 146 T= 147 ||h||=  54475.0
+      CRICKET::Rahul Dravid          pos= 147 T= 148 ||h||=  64516.3
+      CRICKET::Test cricket          pos= 106 T= 107 ||h||=  82294.2
+      CRICKET::Test cricket          pos= 107 T= 108 ||h||=  64781.2
+      CRICKET::Test cricket          pos= 108 T= 109 ||h||=  71375.7
+      CRICKET::Test cricket          pos= 109 T= 110 ||h||=  73407.5
+      CRICKET::Test cricket          pos= 110 T= 111 ||h||=  62116.2
+      CRICKET::Test cricket          pos= 111 T= 112 ||h||=  61370.5
+      CRICKET::Test cricket          pos= 112 T= 113 ||h||=  86622.4
+      CRICKET::Test cricket          pos= 113 T= 114 ||h||=  83062.0
+      CRICKET::Test cricket          pos= 114 T= 115 ||h||=  83087.1
+      CRICKET::Test cricket          pos= 115 T= 116 ||h||=  70069.6
+      --extract-only: done.
++ python3 -
+
+=== VERIFY: new last-position vectors vs SMOKE-01 acts.npy ===  rows=60
+  THEIR_EXAMPLE                pos old=88 new=88  cos=0.999997  max|diff|=24  close
+  CRICKET::Sachin Tendulkar    pos old=179 new=179  cos=0.999995  max|diff|=512  close
+  CRICKET::VVS Laxman          pos old=254 new=254  cos=0.999995  max|diff|=24  close
+  CRICKET::Eden Gardens        pos old=95 new=95  cos=0.999996  max|diff|=16  close
+  CRICKET::Rahul Dravid        pos old=147 new=147  cos=0.999997  max|diff|=14  close
+  CRICKET::Test cricket        pos old=115 new=115  cos=0.999992  max|diff|=1.02e+03  close
+  positions per doc: {'THEIR_EXAMPLE': 10, 'CRICKET::Sachin Tend': 10, 'CRICKET::VVS Laxman': 10, 'CRICKET::Eden Garden': 10, 'CRICKET::Rahul Dravi': 10, 'CRICKET::Test cricke': 10}
++ echo '=== EXTRACT DONE ==='
+=== EXTRACT DONE ===

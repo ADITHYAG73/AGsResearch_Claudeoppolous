@@ -1,0 +1,77 @@
+=== AV: verbalizing each activation ===
+Fetching 18 files:   0%|          | 0/18 [00:00<?, ?it/s]Fetching 18 files:  83%|████████▎ | 15/18 [00:00<00:00, 91.19it/s]Fetching 18 files: 100%|██████████| 18/18 [00:00<00:00, 26.06it/s]
+[NLAClient] 7aec22599e8a9cd533564868999b443fcc963cf4: d_model=3840 inj_scale=80000.0 embed_scale=61.97 inj_char='㈜'(id=246566)
+
+--- THEIR_EXAMPLE  (T=89, pos=88, ||h||=78890.4) ---
+Historical survey format signals an academic reference book description, establishing context of the French Revolution with formal prose.
+
+The sentence "The Declaration of Rights was proclaimed in August 1789 and quickly transformed French society" sets up a summary statement about the tumultuous revolutionary period and the sweeping changes to France.
+
+Final sentence "the constitutional government was established...and the revolutionary upheaval ushered in a new order" concludes the introduction, immediately expecting elaboration — likely "But" or "The monarchy..." or "In the following year.....
+
+--- CRICKET::Sachin Tendulkar  (T=180, pos=179, ||h||=68602.4) ---
+Informational/factual tone with a Q&A format signals a cricket biography or trivia answer is concluding.
+
+The sentence "This series was remarkable as he won the World Cup in 2003. This series had a great role." suggests a closing summary statement about Sachin Tendulkar's statistics or legacy.
+
+Final sentence "This series was remarkable...this was the period where he dominated." ends a brief concluding statement — expects a closing remark like "What was his role?" or "
+
+Did Tendulkar contribute?" or "In this context, what else did he achieve?" or "During this innings" or "Was this the most not...
+
+--- CRICKET::VVS Laxman  (T=255, pos=254, ||h||=72731.5) ---
+Encyclopedic/biographical article structure: the text follows a Wikipedia-style format, with factual summary of a cricket match involving Dravid.
+
+The sentence "The Test series against the West Indies in 2002 was the venue of the Test series" signals a concluding biographical note about Dravid's performance.
+
+Final sentence "He played the ODI series in the 2002 tournament." sets up a concluding statement about the series, likely "This was the match where he..." or "He played a memorable role" or "In this series, he went on to..." or "This match became his most famous" referencing the India vs ...
+
+--- CRICKET::Eden Gardens  (T=96, pos=95, ||h||=68606.9) ---
+Encyclopedic/informational structure: factual article format with structured descriptions of a Kolkata stadium, establishing origin and naming history.
+
+The sentence "It is believed that the ground was named after Eden Gardens, which was originally located near the Bow Barracks" signals an alternative etymology or historical reference for the stadium name.
+
+Final sentence "The ground was first named after the garden...which was the adjacent area" introduces a historical claim, expecting elaboration — likely "The stadium later got named" or "Another version suggests..." or "However, the name ch...
+
+--- CRICKET::Rahul Dravid  (T=148, pos=147, ||h||=64516.3) ---
+Encyclopedic/biographical format: structured Wikipedia article style with factual prose about Sachin Tendulkar, establishing a cricket biography entry.
+
+The sentence "He is considered one of the greatest batsmen in cricket history" signals a concluding summary statement about Dravid, additional biographical details or accolades expected.
+
+Final sentence "He served as a middle-order batsman throughout his career" ends a factual summary clause — immediately expects elaboration like "He was praised for..." or "Dravid retired..." or "Among his achievements..." or "He is regarded as..." or "In 2009...
+
+--- CRICKET::Test cricket  (T=116, pos=115, ||h||=69061.9) ---
+Encyclopedic/informative tone established, with a factual overview of a sports equipment topic — cricket ball terminology for the Pink Test.
+
+The sentence "The pink ball was introduced to improve visibility... This has led to the use of a pink ball" signals a brief explanatory passage justifying the ball's development rationale.
+
+Final sentence "The pink ball was introduced to improve visibility during day/night cricket" ends a topic statement, immediately expecting elaboration — likely "The ball has faced..." or "However, the design..." or "Initially the ball was controversial" or "The follow...
+
+
+=== AR: scoring reconstructions ===
+Fetching 16 files:   0%|          | 0/16 [00:00<?, ?it/s]Fetching 16 files:   6%|▋         | 1/16 [00:00<00:02,  6.06it/s]Fetching 16 files:  25%|██▌       | 4/16 [00:00<00:00, 14.14it/s]Fetching 16 files:  38%|███▊      | 6/16 [00:00<00:01,  7.60it/s]Fetching 16 files:  56%|█████▋    | 9/16 [00:00<00:00, 10.36it/s]Fetching 16 files:  69%|██████▉   | 11/16 [00:01<00:01,  4.46it/s]Fetching 16 files:  75%|███████▌  | 12/16 [00:02<00:00,  4.17it/s]Fetching 16 files:  81%|████████▏ | 13/16 [02:01<01:15, 25.06s/it]Fetching 16 files:  88%|████████▊ | 14/16 [04:23<01:43, 51.66s/it]Fetching 16 files:  94%|█████████▍| 15/16 [04:31<00:41, 41.07s/it]Fetching 16 files: 100%|██████████| 16/16 [05:07<00:00, 39.62s/it]Fetching 16 files: 100%|██████████| 16/16 [05:07<00:00, 19.21s/it]
+`torch_dtype` is deprecated! Use `dtype` instead!
+Loading weights:   0%|          | 0/430 [00:00<?, ?it/s]Loading weights: 100%|██████████| 430/430 [00:00<00:00, 6766.91it/s]
+[1mGemma3ForCausalLM LOAD REPORT[0m from: /root/hf/hub/models--kitft--nla-gemma3-12b-L32-ar/snapshots/3d6901d8243182d642af9dea452ca91549a94615
+Key               | Status  | 
+------------------+---------+-
+model.norm.weight | MISSING | 
+
+[3mNotes:
+- MISSING[3m	:those params were newly initialized because missing from the checkpoint. Consider training on your downstream task.[0m
+[NLACritic] 33 layers  d_model=3840  mse_scale=61.97
+
+passage                                      T   pos      ||h||      mse      cos
+----------------------------------------------------------------------------------
+THEIR_EXAMPLE                               89    88    78890.4    0.006    0.997
+CRICKET::Sachin Tendulkar                  180   179    68602.4    0.009    0.995
+CRICKET::VVS Laxman                        255   254    72731.5    0.011    0.994
+CRICKET::Eden Gardens                       96    95    68606.9    0.009    0.996
+CRICKET::Rahul Dravid                      148   147    64516.3    0.006    0.997
+CRICKET::Test cricket                      116   115    69061.9    0.005    0.997
+
+=== SUMMARY ===
+  their example          n=1  cos mean 0.997  min 0.997  max 0.997
+  cricket (Wikipedia)    n=5  cos mean 0.996  min 0.994  max 0.997
+
+Recorded 2026-06-07 Gemma-3-12B result: cos ~ 0.997
+saved -> /root/roundtrip_results.json

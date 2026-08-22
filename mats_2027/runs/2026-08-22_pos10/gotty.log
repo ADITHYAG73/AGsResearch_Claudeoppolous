@@ -1,0 +1,181 @@
+2026/08/21 22:52:18 GoTTY is starting with command: env TERM=xterm bash --rcfile /root/.runpod-web-terminal.bashrc
+2026/08/21 22:52:18 Permitting clients to write input to the PTY.
+2026/08/21 22:52:18 HTTP server is listening at: http://:::19123/irh2wefeg51yv8zicvct46242kre1nc8/
+2026/08/21 22:52:18 Alternative URL: http://127.0.0.1:19123/irh2wefeg51yv8zicvct46242kre1nc8/
+2026/08/21 22:52:18 Alternative URL: http://::1:19123/irh2wefeg51yv8zicvct46242kre1nc8/
+2026/08/21 22:52:18 Alternative URL: http://172.27.0.2:19123/irh2wefeg51yv8zicvct46242kre1nc8/
+2026/08/21 22:52:19 100.64.1.36:44952 200 GET /irh2wefeg51yv8zicvct46242kre1nc8/
+2026/08/21 22:52:19 100.64.1.36:44952 200 GET /irh2wefeg51yv8zicvct46242kre1nc8/config.js
+2026/08/21 22:52:19 100.64.1.32:59446 200 GET /irh2wefeg51yv8zicvct46242kre1nc8/css/xterm_customize.css
+2026/08/21 22:52:19 100.64.1.35:38418 200 GET /irh2wefeg51yv8zicvct46242kre1nc8/css/xterm.css
+2026/08/21 22:52:19 100.64.1.33:50772 200 GET /irh2wefeg51yv8zicvct46242kre1nc8/css/index.css
+2026/08/21 22:52:19 100.64.1.33:50764 200 GET /irh2wefeg51yv8zicvct46242kre1nc8/auth_token.js
+2026/08/21 22:52:19 100.64.1.35:38412 200 GET /irh2wefeg51yv8zicvct46242kre1nc8/js/gotty-bundle.js
+2026/08/21 22:52:20 New client connected: 100.64.1.33:59950, connections: 1/0
+2026/08/21 22:52:24 100.64.1.33:59956 200 GET /irh2wefeg51yv8zicvct46242kre1nc8/
+2026/08/21 22:52:25 100.64.1.36:41216 200 GET /irh2wefeg51yv8zicvct46242kre1nc8/css/index.css
+2026/08/21 22:52:25 100.64.1.35:38420 200 GET /irh2wefeg51yv8zicvct46242kre1nc8/css/xterm.css
+2026/08/21 22:52:25 100.64.1.34:53544 200 GET /irh2wefeg51yv8zicvct46242kre1nc8/css/xterm_customize.css
+2026/08/21 22:52:25 100.64.1.35:38420 200 GET /irh2wefeg51yv8zicvct46242kre1nc8/auth_token.js
+2026/08/21 22:52:26 100.64.1.36:41216 200 GET /irh2wefeg51yv8zicvct46242kre1nc8/js/gotty-bundle.js
+2026/08/21 22:52:26 100.64.1.34:53544 200 GET /irh2wefeg51yv8zicvct46242kre1nc8/config.js
+2026/08/21 22:52:26 100.64.1.32:59456 200 GET /irh2wefeg51yv8zicvct46242kre1nc8/favicon.png
+2026/08/21 22:52:26 New client connected: 100.64.1.36:41226, connections: 2/0
+2026/08/21 22:54:41 Connection closed by client: 100.64.1.33:59950, connections: 1/0
+2026/08/21 22:54:45 100.64.1.34:60242 200 GET /irh2wefeg51yv8zicvct46242kre1nc8/
+2026/08/21 22:54:46 100.64.1.34:60242 200 GET /irh2wefeg51yv8zicvct46242kre1nc8/css/xterm_customize.css
+2026/08/21 22:54:46 100.64.1.35:36506 200 GET /irh2wefeg51yv8zicvct46242kre1nc8/auth_token.js
+2026/08/21 22:54:46 100.64.1.35:36496 200 GET /irh2wefeg51yv8zicvct46242kre1nc8/css/index.css
+2026/08/21 22:54:46 100.64.1.33:60962 200 GET /irh2wefeg51yv8zicvct46242kre1nc8/config.js
+2026/08/21 22:54:46 100.64.1.35:36522 200 GET /irh2wefeg51yv8zicvct46242kre1nc8/css/xterm.css
+2026/08/21 22:54:46 100.64.1.32:41434 200 GET /irh2wefeg51yv8zicvct46242kre1nc8/js/gotty-bundle.js
+2026/08/21 22:54:47 New client connected: 100.64.1.34:60246, connections: 2/0
+2026/08/21 22:54:47 Connection closed by client: 100.64.1.34:60246, connections: 1/0
+2026/08/21 22:54:51 100.64.1.35:42652 200 GET /irh2wefeg51yv8zicvct46242kre1nc8/
+2026/08/21 22:54:51 100.64.1.35:42652 200 GET /irh2wefeg51yv8zicvct46242kre1nc8/auth_token.js
+2026/08/21 22:54:51 100.64.1.32:33050 200 GET /irh2wefeg51yv8zicvct46242kre1nc8/css/xterm.css
+2026/08/21 22:54:51 100.64.1.32:33066 200 GET /irh2wefeg51yv8zicvct46242kre1nc8/css/xterm_customize.css
+2026/08/21 22:54:51 100.64.1.35:42652 200 GET /irh2wefeg51yv8zicvct46242kre1nc8/js/gotty-bundle.js
+2026/08/21 22:54:51 100.64.1.36:52236 200 GET /irh2wefeg51yv8zicvct46242kre1nc8/config.js
+2026/08/21 22:54:51 100.64.1.36:52238 200 GET /irh2wefeg51yv8zicvct46242kre1nc8/css/index.css
+2026/08/21 22:54:52 New client connected: 100.64.1.32:33072, connections: 2/0
+2026/08/21 22:56:18 Connection closed by client: 100.64.1.32:33072, connections: 1/0
+2026/08/21 22:56:22 100.64.1.34:38466 200 GET /irh2wefeg51yv8zicvct46242kre1nc8/
+2026/08/21 22:56:22 100.64.1.36:40462 200 GET /irh2wefeg51yv8zicvct46242kre1nc8/css/index.css
+2026/08/21 22:56:22 100.64.1.35:47258 200 GET /irh2wefeg51yv8zicvct46242kre1nc8/css/xterm.css
+2026/08/21 22:56:23 100.64.1.36:40462 200 GET /irh2wefeg51yv8zicvct46242kre1nc8/css/xterm_customize.css
+2026/08/21 22:56:23 100.64.1.36:40462 200 GET /irh2wefeg51yv8zicvct46242kre1nc8/auth_token.js
+2026/08/21 22:56:23 100.64.1.36:40462 200 GET /irh2wefeg51yv8zicvct46242kre1nc8/config.js
+2026/08/21 22:56:24 100.64.1.32:47604 200 GET /irh2wefeg51yv8zicvct46242kre1nc8/js/gotty-bundle.js
+2026/08/21 22:56:24 New client connected: 100.64.1.36:40474, connections: 2/0
+2026/08/21 22:58:59 Connection closed by client: 100.64.1.36:40474, connections: 1/0
+2026/08/21 22:59:02 100.64.1.36:38788 200 GET /irh2wefeg51yv8zicvct46242kre1nc8/
+2026/08/21 22:59:02 100.64.1.36:38788 200 GET /irh2wefeg51yv8zicvct46242kre1nc8/js/gotty-bundle.js
+2026/08/21 22:59:03 100.64.1.35:46550 200 GET /irh2wefeg51yv8zicvct46242kre1nc8/css/xterm_customize.css
+2026/08/21 22:59:03 100.64.1.32:58878 200 GET /irh2wefeg51yv8zicvct46242kre1nc8/config.js
+2026/08/21 22:59:03 100.64.1.35:46552 200 GET /irh2wefeg51yv8zicvct46242kre1nc8/css/xterm.css
+2026/08/21 22:59:03 100.64.1.33:42086 200 GET /irh2wefeg51yv8zicvct46242kre1nc8/auth_token.js
+2026/08/21 22:59:03 100.64.1.33:42072 200 GET /irh2wefeg51yv8zicvct46242kre1nc8/css/index.css
+2026/08/21 22:59:04 New client connected: 100.64.1.34:43082, connections: 2/0
+2026/08/21 22:59:07 Connection closed by client: 100.64.1.34:43082, connections: 1/0
+2026/08/21 22:59:10 100.64.1.34:43098 200 GET /irh2wefeg51yv8zicvct46242kre1nc8/
+2026/08/21 22:59:11 100.64.1.34:43098 200 GET /irh2wefeg51yv8zicvct46242kre1nc8/css/xterm_customize.css
+2026/08/21 22:59:11 100.64.1.32:54390 200 GET /irh2wefeg51yv8zicvct46242kre1nc8/config.js
+2026/08/21 22:59:11 100.64.1.32:54400 200 GET /irh2wefeg51yv8zicvct46242kre1nc8/css/index.css
+2026/08/21 22:59:11 100.64.1.34:43098 200 GET /irh2wefeg51yv8zicvct46242kre1nc8/auth_token.js
+2026/08/21 22:59:11 100.64.1.34:43106 200 GET /irh2wefeg51yv8zicvct46242kre1nc8/css/xterm.css
+2026/08/21 22:59:11 100.64.1.35:45724 200 GET /irh2wefeg51yv8zicvct46242kre1nc8/js/gotty-bundle.js
+2026/08/21 22:59:12 New client connected: 100.64.1.36:57122, connections: 2/0
+2026/08/21 23:00:52 Connection closed by client: 100.64.1.36:57122, connections: 1/0
+2026/08/21 23:00:55 100.64.1.32:58902 200 GET /irh2wefeg51yv8zicvct46242kre1nc8/
+2026/08/21 23:00:56 100.64.1.32:58902 200 GET /irh2wefeg51yv8zicvct46242kre1nc8/css/index.css
+2026/08/21 23:00:56 100.64.1.32:58902 200 GET /irh2wefeg51yv8zicvct46242kre1nc8/css/xterm_customize.css
+2026/08/21 23:00:56 100.64.1.33:38480 200 GET /irh2wefeg51yv8zicvct46242kre1nc8/config.js
+2026/08/21 23:00:56 100.64.1.33:38478 200 GET /irh2wefeg51yv8zicvct46242kre1nc8/auth_token.js
+2026/08/21 23:00:56 100.64.1.34:54714 200 GET /irh2wefeg51yv8zicvct46242kre1nc8/css/xterm.css
+2026/08/21 23:00:56 100.64.1.34:54730 200 GET /irh2wefeg51yv8zicvct46242kre1nc8/js/gotty-bundle.js
+2026/08/21 23:00:57 New client connected: 100.64.1.33:38482, connections: 2/0
+2026/08/21 23:01:18 100.64.1.34:56518 200 GET /irh2wefeg51yv8zicvct46242kre1nc8/
+2026/08/21 23:01:19 100.64.1.33:50508 304 GET /irh2wefeg51yv8zicvct46242kre1nc8/css/xterm_customize.css
+2026/08/21 23:01:19 100.64.1.33:50508 200 GET /irh2wefeg51yv8zicvct46242kre1nc8/config.js
+2026/08/21 23:01:19 100.64.1.34:56518 304 GET /irh2wefeg51yv8zicvct46242kre1nc8/js/gotty-bundle.js
+2026/08/21 23:01:19 100.64.1.36:40440 304 GET /irh2wefeg51yv8zicvct46242kre1nc8/css/xterm.css
+2026/08/21 23:01:19 100.64.1.36:40450 200 GET /irh2wefeg51yv8zicvct46242kre1nc8/auth_token.js
+2026/08/21 23:01:19 100.64.1.32:35742 304 GET /irh2wefeg51yv8zicvct46242kre1nc8/css/index.css
+2026/08/21 23:01:20 New client connected: 100.64.1.33:50512, connections: 3/0
+2026/08/21 23:04:34 Connection closed by client: 100.64.1.33:38482, connections: 2/0
+2026/08/21 23:04:37 100.64.1.35:35644 200 GET /irh2wefeg51yv8zicvct46242kre1nc8/
+2026/08/21 23:04:37 100.64.1.35:35644 200 GET /irh2wefeg51yv8zicvct46242kre1nc8/config.js
+2026/08/21 23:04:38 100.64.1.36:55308 200 GET /irh2wefeg51yv8zicvct46242kre1nc8/css/xterm_customize.css
+2026/08/21 23:04:38 100.64.1.33:60390 200 GET /irh2wefeg51yv8zicvct46242kre1nc8/css/index.css
+2026/08/21 23:04:38 100.64.1.34:34762 200 GET /irh2wefeg51yv8zicvct46242kre1nc8/js/gotty-bundle.js
+2026/08/21 23:04:38 100.64.1.33:60390 200 GET /irh2wefeg51yv8zicvct46242kre1nc8/css/xterm.css
+2026/08/21 23:04:38 100.64.1.33:60404 200 GET /irh2wefeg51yv8zicvct46242kre1nc8/auth_token.js
+2026/08/21 23:04:39 New client connected: 100.64.1.33:60408, connections: 3/0
+2026/08/21 23:15:03 Connection closed by client: 100.64.1.33:60408, connections: 2/0
+2026/08/21 23:15:06 100.64.1.33:54268 200 GET /irh2wefeg51yv8zicvct46242kre1nc8/
+2026/08/21 23:15:06 100.64.1.33:54268 200 GET /irh2wefeg51yv8zicvct46242kre1nc8/css/xterm.css
+2026/08/21 23:15:06 100.64.1.33:54268 200 GET /irh2wefeg51yv8zicvct46242kre1nc8/css/xterm_customize.css
+2026/08/21 23:15:07 100.64.1.34:58804 200 GET /irh2wefeg51yv8zicvct46242kre1nc8/auth_token.js
+2026/08/21 23:15:07 100.64.1.36:49964 200 GET /irh2wefeg51yv8zicvct46242kre1nc8/css/index.css
+2026/08/21 23:15:07 100.64.1.35:36612 200 GET /irh2wefeg51yv8zicvct46242kre1nc8/js/gotty-bundle.js
+2026/08/21 23:15:07 100.64.1.34:58804 200 GET /irh2wefeg51yv8zicvct46242kre1nc8/config.js
+2026/08/21 23:15:08 New client connected: 100.64.1.33:54290, connections: 3/0
+2026/08/21 23:15:10 Connection closed by client: 100.64.1.33:54290, connections: 2/0
+2026/08/21 23:15:13 100.64.1.36:52470 200 GET /irh2wefeg51yv8zicvct46242kre1nc8/
+2026/08/21 23:15:14 100.64.1.35:57608 200 GET /irh2wefeg51yv8zicvct46242kre1nc8/css/xterm.css
+2026/08/21 23:15:14 100.64.1.33:55382 200 GET /irh2wefeg51yv8zicvct46242kre1nc8/css/index.css
+2026/08/21 23:15:14 100.64.1.33:55382 200 GET /irh2wefeg51yv8zicvct46242kre1nc8/css/xterm_customize.css
+2026/08/21 23:15:14 100.64.1.35:57608 200 GET /irh2wefeg51yv8zicvct46242kre1nc8/auth_token.js
+2026/08/21 23:15:15 100.64.1.36:52470 200 GET /irh2wefeg51yv8zicvct46242kre1nc8/config.js
+2026/08/21 23:15:15 100.64.1.36:52470 200 GET /irh2wefeg51yv8zicvct46242kre1nc8/js/gotty-bundle.js
+2026/08/21 23:15:16 New client connected: 100.64.1.33:55392, connections: 3/0
+2026/08/21 23:18:09 Connection closed by client: 100.64.1.33:55392, connections: 2/0
+2026/08/21 23:18:12 100.64.1.32:41040 200 GET /irh2wefeg51yv8zicvct46242kre1nc8/
+2026/08/21 23:18:13 100.64.1.32:41040 200 GET /irh2wefeg51yv8zicvct46242kre1nc8/auth_token.js
+2026/08/21 23:18:13 100.64.1.32:41040 200 GET /irh2wefeg51yv8zicvct46242kre1nc8/css/xterm.css
+2026/08/21 23:18:13 100.64.1.35:55324 200 GET /irh2wefeg51yv8zicvct46242kre1nc8/config.js
+2026/08/21 23:18:13 100.64.1.35:55338 200 GET /irh2wefeg51yv8zicvct46242kre1nc8/css/xterm_customize.css
+2026/08/21 23:18:13 100.64.1.33:37556 200 GET /irh2wefeg51yv8zicvct46242kre1nc8/css/index.css
+2026/08/21 23:18:14 100.64.1.36:50158 200 GET /irh2wefeg51yv8zicvct46242kre1nc8/js/gotty-bundle.js
+2026/08/21 23:18:15 New client connected: 100.64.1.36:50172, connections: 3/0
+2026/08/21 23:18:15 Connection closed by client: 100.64.1.36:50172, connections: 2/0
+2026/08/21 23:18:18 100.64.1.33:37570 200 GET /irh2wefeg51yv8zicvct46242kre1nc8/
+2026/08/21 23:18:18 100.64.1.36:50184 200 GET /irh2wefeg51yv8zicvct46242kre1nc8/css/index.css
+2026/08/21 23:18:18 100.64.1.36:50192 200 GET /irh2wefeg51yv8zicvct46242kre1nc8/config.js
+2026/08/21 23:18:18 100.64.1.35:55356 200 GET /irh2wefeg51yv8zicvct46242kre1nc8/auth_token.js
+2026/08/21 23:18:19 100.64.1.35:55340 200 GET /irh2wefeg51yv8zicvct46242kre1nc8/js/gotty-bundle.js
+2026/08/21 23:18:19 100.64.1.34:34356 200 GET /irh2wefeg51yv8zicvct46242kre1nc8/css/xterm_customize.css
+2026/08/21 23:18:19 100.64.1.34:34342 200 GET /irh2wefeg51yv8zicvct46242kre1nc8/css/xterm.css
+2026/08/21 23:18:19 New client connected: 100.64.1.35:36326, connections: 3/0
+2026/08/21 23:18:20 Connection closed by an error: failed to authenticate websocket connection: websocket: close 1006 unexpected EOF: 100.64.1.35:36326, connections: 2/0
+2026/08/21 23:18:23 100.64.1.33:41744 200 GET /irh2wefeg51yv8zicvct46242kre1nc8/
+2026/08/21 23:18:23 100.64.1.34:40780 200 GET /irh2wefeg51yv8zicvct46242kre1nc8/css/xterm_customize.css
+2026/08/21 23:18:23 100.64.1.35:36328 200 GET /irh2wefeg51yv8zicvct46242kre1nc8/auth_token.js
+2026/08/21 23:18:23 100.64.1.36:51970 200 GET /irh2wefeg51yv8zicvct46242kre1nc8/css/index.css
+2026/08/21 23:18:23 100.64.1.36:51984 200 GET /irh2wefeg51yv8zicvct46242kre1nc8/config.js
+2026/08/21 23:18:23 100.64.1.34:40792 200 GET /irh2wefeg51yv8zicvct46242kre1nc8/css/xterm.css
+2026/08/21 23:18:24 100.64.1.35:36328 200 GET /irh2wefeg51yv8zicvct46242kre1nc8/js/gotty-bundle.js
+2026/08/21 23:18:25 New client connected: 100.64.1.36:51994, connections: 3/0
+2026/08/21 23:20:57 Connection closed by client: 100.64.1.36:51994, connections: 2/0
+2026/08/21 23:21:02 100.64.1.35:52562 200 GET /irh2wefeg51yv8zicvct46242kre1nc8/
+2026/08/21 23:21:02 100.64.1.35:52562 200 GET /irh2wefeg51yv8zicvct46242kre1nc8/css/xterm.css
+2026/08/21 23:21:02 100.64.1.35:52566 200 GET /irh2wefeg51yv8zicvct46242kre1nc8/css/index.css
+2026/08/21 23:21:03 100.64.1.34:58468 200 GET /irh2wefeg51yv8zicvct46242kre1nc8/css/xterm_customize.css
+2026/08/21 23:21:03 100.64.1.33:42592 200 GET /irh2wefeg51yv8zicvct46242kre1nc8/auth_token.js
+2026/08/21 23:21:03 100.64.1.34:58468 200 GET /irh2wefeg51yv8zicvct46242kre1nc8/config.js
+2026/08/21 23:21:04 100.64.1.34:58468 200 GET /irh2wefeg51yv8zicvct46242kre1nc8/js/gotty-bundle.js
+2026/08/21 23:21:04 New client connected: 100.64.1.34:58484, connections: 3/0
+2026/08/21 23:23:41 Connection closed by client: 100.64.1.34:58484, connections: 2/0
+2026/08/21 23:23:45 100.64.1.32:59802 200 GET /irh2wefeg51yv8zicvct46242kre1nc8/
+2026/08/21 23:23:46 100.64.1.32:59802 200 GET /irh2wefeg51yv8zicvct46242kre1nc8/css/index.css
+2026/08/21 23:23:46 100.64.1.34:45678 200 GET /irh2wefeg51yv8zicvct46242kre1nc8/auth_token.js
+2026/08/21 23:23:46 100.64.1.34:45688 200 GET /irh2wefeg51yv8zicvct46242kre1nc8/css/xterm.css
+2026/08/21 23:23:46 100.64.1.35:43046 200 GET /irh2wefeg51yv8zicvct46242kre1nc8/config.js
+2026/08/21 23:23:46 100.64.1.35:43034 200 GET /irh2wefeg51yv8zicvct46242kre1nc8/css/xterm_customize.css
+2026/08/21 23:23:46 100.64.1.36:59180 200 GET /irh2wefeg51yv8zicvct46242kre1nc8/js/gotty-bundle.js
+2026/08/21 23:23:47 New client connected: 100.64.1.35:43060, connections: 3/0
+2026/08/21 23:23:50 Connection closed by client: 100.64.1.35:43060, connections: 2/0
+2026/08/21 23:23:54 100.64.1.34:44240 200 GET /irh2wefeg51yv8zicvct46242kre1nc8/
+2026/08/21 23:23:54 100.64.1.32:34928 200 GET /irh2wefeg51yv8zicvct46242kre1nc8/css/index.css
+2026/08/21 23:23:54 100.64.1.36:41484 200 GET /irh2wefeg51yv8zicvct46242kre1nc8/css/xterm.css
+2026/08/21 23:23:54 100.64.1.32:34934 200 GET /irh2wefeg51yv8zicvct46242kre1nc8/css/xterm_customize.css
+2026/08/21 23:23:54 100.64.1.36:41488 200 GET /irh2wefeg51yv8zicvct46242kre1nc8/config.js
+2026/08/21 23:23:54 100.64.1.36:41504 200 GET /irh2wefeg51yv8zicvct46242kre1nc8/auth_token.js
+2026/08/21 23:23:55 100.64.1.33:54582 200 GET /irh2wefeg51yv8zicvct46242kre1nc8/js/gotty-bundle.js
+2026/08/21 23:24:01 100.64.1.35:33090 200 GET /irh2wefeg51yv8zicvct46242kre1nc8/
+2026/08/21 23:24:01 100.64.1.35:33090 200 GET /irh2wefeg51yv8zicvct46242kre1nc8/css/index.css
+2026/08/21 23:24:02 100.64.1.33:42128 200 GET /irh2wefeg51yv8zicvct46242kre1nc8/config.js
+2026/08/21 23:24:02 100.64.1.32:44856 200 GET /irh2wefeg51yv8zicvct46242kre1nc8/css/xterm_customize.css
+2026/08/21 23:24:02 100.64.1.34:41570 200 GET /irh2wefeg51yv8zicvct46242kre1nc8/auth_token.js
+2026/08/21 23:24:02 100.64.1.34:41566 200 GET /irh2wefeg51yv8zicvct46242kre1nc8/css/xterm.css
+2026/08/21 23:24:02 100.64.1.36:53014 200 GET /irh2wefeg51yv8zicvct46242kre1nc8/js/gotty-bundle.js
+2026/08/21 23:24:03 New client connected: 100.64.1.35:33096, connections: 3/0
+2026/08/21 23:24:03 Connection closed by an error: failed to authenticate websocket connection: websocket: close 1006 unexpected EOF: 100.64.1.35:33096, connections: 2/0
+2026/08/21 23:24:06 100.64.1.35:33106 200 GET /irh2wefeg51yv8zicvct46242kre1nc8/
+2026/08/21 23:24:07 100.64.1.35:33106 200 GET /irh2wefeg51yv8zicvct46242kre1nc8/config.js
+2026/08/21 23:24:07 100.64.1.35:33106 200 GET /irh2wefeg51yv8zicvct46242kre1nc8/css/index.css
+2026/08/21 23:24:07 100.64.1.34:41580 200 GET /irh2wefeg51yv8zicvct46242kre1nc8/css/xterm_customize.css
+2026/08/21 23:24:07 100.64.1.33:42138 200 GET /irh2wefeg51yv8zicvct46242kre1nc8/css/xterm.css
+2026/08/21 23:24:07 100.64.1.33:42154 200 GET /irh2wefeg51yv8zicvct46242kre1nc8/auth_token.js
+2026/08/21 23:24:07 100.64.1.32:44872 200 GET /irh2wefeg51yv8zicvct46242kre1nc8/js/gotty-bundle.js

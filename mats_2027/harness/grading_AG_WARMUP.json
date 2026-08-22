@@ -1,0 +1,68 @@
+{
+ "grader": "AG_WARMUP",
+ "seed": 42,
+ "n_main": 12,
+ "n_retest": 0,
+ "items": [
+  {
+   "claim_id": "CRICKET::VVS Laxman:249:k2:c6",
+   "claim": "The text contains a repeated descriptor describing Dravid as a stylish batsman.",
+   "prefix": "Laxman returned to playing first-class cricket in 1999 to regain his place in the national team. In the 1999–2000 season of Ranji Trophy, he broke the record for most runs in a Ranji season when he made 1415 runs, at an average of 108, in just 9 matches notching up eight hundreds – a record that still remains intact. His performance was rewarded when, in January 2000, he was recalled in the Indian squad for the Australian tour. He scored 167 in the third and final Test match at Sydney when the rest of the batsmen struggled to cope with Glenn McGrath's destructive bowling, a rare high point for India in an otherwise disastrous tour. Despite this success against an attack containing both McGrath and Shane Warne, Laxman apparently decided that he would return to domestic cricket, rather than continue playing as opener, a role which he believed did not suit him. As a result, Laxman was out of the Test team for nearly a year. He was recalled in late 2000, and also found a spot in the team for the home series against Australia in "
+  },
+  {
+   "claim_id": "CRICKET::Eden Gardens:86:k1:c9",
+   "claim": "The text ends with the final token \"Eden\"",
+   "prefix": "The stadium was established in 1864. The origins of its name are uncertain. According to some, the stadium is named after the Eden Gardens park where it is located, itself named after the Eden sisters, Emily and Fanny, of Lord Auckland, the Governor-General of India (1836–1842). Initially named the 'Auckland Circus Gardens', the park was renamed to the 'Eden"
+  },
+  {
+   "claim_id": "CRICKET::Rahul Dravid:142:k2:c4",
+   "claim": "The text mentions Brian Lara",
+   "prefix": "Dravid was named one of the Wisden Cricketers of the Year by Wisden Cricketers' Almanack in 2000 and received the Player of the Year and the Test Player of the Year awards at the inaugural ICC awards ceremony in 2004. In December 2011, he was the first non-Australian cricketer to deliver the Bradman Oration in Canberra. As of May 2026, he is the fifth-highest run scorer in Test cricket, and was the first player to score a century in all ten Test-playing countries (now 12). He holds the records for the most balls faced in Test cricket and the longest time"
+  },
+  {
+   "claim_id": "CRICKET::Sachin Tendulkar:179:k1:c6",
+   "claim": "The text contains the sentence \"This series was remarkable...He was the man of the series\"",
+   "prefix": "When Australia toured India in 2001, in the first test at Mumbai, Tendulkar scored 76 and 65, with no one else from India crossing 50. India ended up losing the test. On the final day of the 2nd test, the famous Kolkata Test against Australia in 2001, Tendulkar took three wickets, including the key wickets of Matthew Hayden and Adam Gilchrist, who were centurions in the previous Test. His three wickets haul helped India win the match. In the 3rd test at Chennai, Tendulkar top scored for India with 126 helping the team to get to a total of 501. India would go on to win the test match narrowly by just 2 wickets and clinch the test series 2–1. This series is regarded as one of the greatest series of the century."
+  },
+  {
+   "claim_id": "CRICKET::VVS Laxman:249:k0:c2",
+   "claim": "The text is about cricket",
+   "prefix": "Laxman returned to playing first-class cricket in 1999 to regain his place in the national team. In the 1999–2000 season of Ranji Trophy, he broke the record for most runs in a Ranji season when he made 1415 runs, at an average of 108, in just 9 matches notching up eight hundreds – a record that still remains intact. His performance was rewarded when, in January 2000, he was recalled in the Indian squad for the Australian tour. He scored 167 in the third and final Test match at Sydney when the rest of the batsmen struggled to cope with Glenn McGrath's destructive bowling, a rare high point for India in an otherwise disastrous tour. Despite this success against an attack containing both McGrath and Shane Warne, Laxman apparently decided that he would return to domestic cricket, rather than continue playing as opener, a role which he believed did not suit him. As a result, Laxman was out of the Test team for nearly a year. He was recalled in late 2000, and also found a spot in the team for the home series against Australia in "
+  },
+  {
+   "claim_id": "CRICKET::VVS Laxman:253:k2:c9",
+   "claim": "The text mentions Australia",
+   "prefix": "Laxman returned to playing first-class cricket in 1999 to regain his place in the national team. In the 1999–2000 season of Ranji Trophy, he broke the record for most runs in a Ranji season when he made 1415 runs, at an average of 108, in just 9 matches notching up eight hundreds – a record that still remains intact. His performance was rewarded when, in January 2000, he was recalled in the Indian squad for the Australian tour. He scored 167 in the third and final Test match at Sydney when the rest of the batsmen struggled to cope with Glenn McGrath's destructive bowling, a rare high point for India in an otherwise disastrous tour. Despite this success against an attack containing both McGrath and Shane Warne, Laxman apparently decided that he would return to domestic cricket, rather than continue playing as opener, a role which he believed did not suit him. As a result, Laxman was out of the Test team for nearly a year. He was recalled in late 2000, and also found a spot in the team for the home series against Australia in 2001"
+  },
+  {
+   "claim_id": "CRICKET::Sachin Tendulkar:170:k0:c1",
+   "claim": "The text is structured as a sports article format",
+   "prefix": "When Australia toured India in 2001, in the first test at Mumbai, Tendulkar scored 76 and 65, with no one else from India crossing 50. India ended up losing the test. On the final day of the 2nd test, the famous Kolkata Test against Australia in 2001, Tendulkar took three wickets, including the key wickets of Matthew Hayden and Adam Gilchrist, who were centurions in the previous Test. His three wickets haul helped India win the match. In the 3rd test at Chennai, Tendulkar top scored for India with 126 helping the team to get to a total of 501. India would go on to win the test match narrowly by just 2 wickets and clinch the test series 2–1. This series is regarded as"
+  },
+  {
+   "claim_id": "THEIR_EXAMPLE:88:k1:c9",
+   "claim": "The text mentions the abolition of feudalism",
+   "prefix": "The French Revolution began in 1789 amid a fiscal crisis and widespread anger at the monarchy. As bread prices soared and the Estates-General convened, ordinary citizens in Paris grew restless, and by July the city stood on the brink of open revolt against King Louis XVI. The storming of the Bastille on 14 July became the emblem of that rupture, and within weeks the National Assembly had abolished feudal privileges across France."
+  },
+  {
+   "claim_id": "THEIR_EXAMPLE:87:k2:c4",
+   "claim": "The text discusses landmark reforms of the Third Estate Decree",
+   "prefix": "The French Revolution began in 1789 amid a fiscal crisis and widespread anger at the monarchy. As bread prices soared and the Estates-General convened, ordinary citizens in Paris grew restless, and by July the city stood on the brink of open revolt against King Louis XVI. The storming of the Bastille on 14 July became the emblem of that rupture, and within weeks the National Assembly had abolished feudal privileges across France"
+  },
+  {
+   "claim_id": "CRICKET::Sachin Tendulkar:179:k1:c10",
+   "claim": "The text has a trivia context",
+   "prefix": "When Australia toured India in 2001, in the first test at Mumbai, Tendulkar scored 76 and 65, with no one else from India crossing 50. India ended up losing the test. On the final day of the 2nd test, the famous Kolkata Test against Australia in 2001, Tendulkar took three wickets, including the key wickets of Matthew Hayden and Adam Gilchrist, who were centurions in the previous Test. His three wickets haul helped India win the match. In the 3rd test at Chennai, Tendulkar top scored for India with 126 helping the team to get to a total of 501. India would go on to win the test match narrowly by just 2 wickets and clinch the test series 2–1. This series is regarded as one of the greatest series of the century."
+  },
+  {
+   "claim_id": "CRICKET::Test cricket:114:k3:c1",
+   "claim": "The text is in structured cricket match report format",
+   "prefix": "Traditionally, Test matches had always been played with a red ball during daylight hours. However, amid growing concern over dwindling viewership in the late 2000s, numerous trials were held in the early 2010s which culminated in day/night Tests being permitted by the ICC in 2012, and the first day/night match was between Australia and New Zealand at the Adelaide Oval in November 2015. These matches start later in the day and continue into the evening, necessitating the use of a pink ball to aid visibility"
+  },
+  {
+   "claim_id": "THEIR_EXAMPLE:79:k3:c4",
+   "claim": "The text mentions the French Revolution.",
+   "prefix": "The French Revolution began in 1789 amid a fiscal crisis and widespread anger at the monarchy. As bread prices soared and the Estates-General convened, ordinary citizens in Paris grew restless, and by July the city stood on the brink of open revolt against King Louis XVI. The storming of the Bastille on 14 July became the emblem of that rupture, and within weeks the"
+  }
+ ]
+}

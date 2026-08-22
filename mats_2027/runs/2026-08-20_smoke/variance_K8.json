@@ -1,0 +1,102 @@
+{
+  "CRICKET::VVS Laxman": [
+    {
+      "k": 0,
+      "mse": 0.011423787102103233,
+      "cos": 0.9942877888679504,
+      "explanation": "Encyclopedic/biographical article structure: article format with factual cricket history, following a summary of the India-West Indies 2002 Test series.\n\nThe sentence \"The Test series against West Indies in 2002 was the tournament where he first played\" signals a concluding summary paragraph about Dravid's performance.\n\nFinal sentence \"He played the 2002 Test series where he made his mark.\" sets up a concluding statement, likely \"This match was...\" or \"\nIn this series he...\" or \"This is where he became famous.\" or \"The Indian team series proved crucial\" or \"He then played...\""
+    },
+    {
+      "k": 1,
+      "mse": 0.010298502631485462,
+      "cos": 0.9948510527610779,
+      "explanation": "Encyclopedic/biographical article structure: factual cricket history format with structured narrative of a Test match, progressing toward a summary conclusion.\n\nThe sentence \"The 2002 Test series against England was the tournament where he first came to limelight\" signals a concluding biographical summary about Dravid's performance.\n\nFinal sentence \"He played in the 2002 Test series against England.\" ends a concluding statement, immediately expecting elaboration \u2014 likely \"This match was...\" or \"It was there that he...\" or \"The Indian ODI series proved pivotal\" or \"This series saw him performing notably.\" or \"In this series, he...\" referencing the famous match or role."
+    },
+    {
+      "k": 2,
+      "mse": 0.010129693895578384,
+      "cos": 0.9949353933334351,
+      "explanation": "Encyclopedic/biographical article structure: the text follows a factual cricket article format, with a summary of the India-West Indies Test series.\n\nThe sentence \"The Test series against the West Indies in the 2007 Champions Trophy was where he made his breakthrough.\" signals a concluding biographical note about Dravid.\n\nFinal sentence \"He played in the 2007 Champions Trophy tournament.\" sets up a concluding statement \u2014 likely \"This series was his best performance\" or \"It was there that he...\" or \"The match against the West Indies became famous\" or \"In this series, he played a crucial role.\" or \"That is where he...\""
+    },
+    {
+      "k": 3,
+      "mse": 0.009264850057661533,
+      "cos": 0.9953678846359253,
+      "explanation": "Encyclopedic/biographical article structure: the text follows a sports history format, presenting factual cricket statistics and narrative context for Indian bowler Virdi.\n\nThe sentence \"The Test series against West Indies in 2002 marked the tournament where he first emerged\" signals a concluding summary statement about the match.\n\nFinal sentence \"He played the 2002 series against West Indies.\" ends a biographical summary, immediately expecting elaboration \u2014 likely \"This match was where he...\" or \"\n\nIt was in this series that he...\" or \"The India series proved to be...\" or \"That series saw his most memorable performance\" or \"He played a pivotal role.\""
+    },
+    {
+      "k": 4,
+      "mse": 0.010024343617260456,
+      "cos": 0.9949877262115479,
+      "explanation": "Encyclopedic/biographical article structure: factual cricket article format with historical background on Indian bowler, following a structured overview of the 2002 Test series.\n\nThe sentence \"The 2002 Test series against Australia was the venue where he made his mark\" signals a concluding summary statement about Dravid's performance.\n\nFinal sentence \"The tournament then became the venue of the 2002 ODI series.\" ends a narrative recap clause, immediately expecting elaboration \u2014 likely \"This was where he...\" or \"The series against England proved crucial\" or \"His performance in this series is considered...\" or \"That series saw...\" to the memorable match."
+    },
+    {
+      "k": 5,
+      "mse": 0.009785978123545647,
+      "cos": 0.9951070547103882,
+      "explanation": "Encyclopedic article structure: biographical/cricket history format with factual narrative about Indian batsman Rahul Dravid.\n\nThe sentence \"The Test series against West Indies in 2002 marked the turning point for Dravid\" signals a concluding summary statement about the 2002 match.\n\nFinal sentence \"He played in the 2002 Test series against West Indies.\" sets up a concluding biographical footnote \u2014 likely \"This is where he showed...\" or \"\n\nDuring this series...\" or \"The series became his most memorable performance.\" or \"It was in this series that he...\" or \"This match against the 2003 World Cup...\""
+    },
+    {
+      "k": 6,
+      "mse": 0.009934628382325172,
+      "cos": 0.9950330853462219,
+      "explanation": "Encyclopedic/biographical article structure: the text follows a factual cricket profile format, progressing through the 2002 Test series narrative.\n\nThe sentence \"The 2002 ODI series against India was where he made his breakthrough\" signals a concluding summary statement about Rahul Dravid's iconic match.\n\nFinal sentence \"He participated in the 2002 Test series...where he played the ODI series.\" sets up a concluding elaboration \u2014 likely \"This match became his most memorable\" or \"It was there that he showed...\" or \"The series saw him perform exceptionally\" or \"In this series he...\" or \"That is the match where...\""
+    },
+    {
+      "k": 7,
+      "mse": 0.009874796494841576,
+      "cos": 0.9950628280639648,
+      "explanation": "Encyclopedic/biographical article structure: text follows a Wikipedia format, presenting factual cricket history with factual prose about a specific player.\n\nThe sentence \"The Test series against the West Indies in 2002 was the venue where he made his breakthrough\" signals a concluding summary statement about the 2002 series.\n\nFinal sentence \"He played the ODI series in 2002.\" ends a biographical summary clause, immediately expecting elaboration \u2014 likely \"This match was where he...\" or \"\n\nIt was in this series that...\" or \"The Indian team performance became his notable achievement\" or \"This is where he displayed...\" referencing the pivotal role or outcome of the series."
+    }
+  ],
+  "THEIR_EXAMPLE": [
+    {
+      "k": 0,
+      "mse": 0.006174002308398485,
+      "cos": 0.9969133138656616,
+      "explanation": "Historical book introduction establishes formal description of a work, signaling a concise overview of the French Revolution's transformative period.\n\nThe phrase \"The Declaration of Rights was enacted...set off a revolution in law and government\" sets up a narrative arc \u2014 the tumultuous early reforms succeeded in overturning feudal structures.\n\nFinal sentence \"the National Assembly, spurred by the Declaration, ushered in a revolutionary restructuring of French society\" \u2014 a summarizing claim, expects elaboration like \"But the revolution soon...\" or \"The monarchy...\" or \"By autumn, however, the Committee of Public Safety...\" or \"This volume chronicles...\" or \"Yet the subsequent years saw...\" describing the new constitutional trajectory."
+    },
+    {
+      "k": 1,
+      "mse": 0.006836317013949156,
+      "cos": 0.9965822696685791,
+      "explanation": "Historical textbook genre establishes formal academic prose, introducing a book summary of the French Revolution and its aftermath.\n\nThe sentence \"the Declaration of the Rights of Man was soon proclaimed, transforming French society\" signals a broad narrative overview, setting up a summary of revolutionary upheaval and the subsequent constitutional change.\n\nFinal sentence \"the Revolution led to the establishment of a new legal system\u2026the Declaration of Rights was quickly achieved\" \u2014 this introductory clause invites elaboration on what followed, likely \"But\" or \"The monarchy and aristocracy then...\" or \"In the years that followed...\" or \"This volume explores...\" or \"Yet the Revolution was...\" describing the turbulent aftermath of the first phase."
+    },
+    {
+      "k": 2,
+      "mse": 0.005771726835519075,
+      "cos": 0.9971145987510681,
+      "explanation": "Academic book description establishing historical context, signaling a formal summary of a major work on the French Revolution.\n\nThe phrase \"The Declaration of Rights proved transformative...the National Assembly was soon dismantled, unleashing a wave of reform\" sets up a narrative overview of the Revolution's tumultuous early years.\n\nFinal sentence ends a thematic summary statement (\"the constitutional monarchy was soon established...\"), immediately expecting elaboration like \"But...\" or \"The Revolution continued...\" or \"In the following chapters...\" or \"This period saw...\" or \"Yet, the aristocracy...\" or \"The new rights were celebrated, but...\" or \"By autumn, the Reign of Terror...\" describing the dramatic changes to follow."
+    },
+    {
+      "k": 3,
+      "mse": 0.006215330678969622,
+      "cos": 0.9968921542167664,
+      "explanation": "Historical survey format: a book description establishing context, introducing a critical period\u2014the French Revolution\u2014sets up a scholarly overview of a landmark work.\n\nThe phrase \"the Declaration of Rights was soon enshrined in law\" signals an introductory summary statement about the tumultuous early revolutionary reforms, implying a pivot toward the sweeping changes.\n\nFinal sentence \"The revolution ushered in a new order...was resolved by the drafting of the Declaration of Rights\" frames a thematic elaboration\u2014expect \"But...\" or \"The monarchy and aristocracy soon followed\" or \"In the following chapters...\" or \"This period witnessed...\" or \"Yet the Revolution would...\" or \"A second phase of upheaval...\""
+    },
+    {
+      "k": 4,
+      "mse": 0.006036701612174511,
+      "cos": 0.9969815611839294,
+      "explanation": "Historical textbook format signals a formal introduction to a book summary, establishing a reference work describing the French Revolution.\n\nThe sentence \"In the summer of 1789...the Declaration of Rights was proclaimed, transforming French government\" sets up a concise narrative arc \u2014 the dramatic upheaval and subsequent legal changes.\n\nFinal sentence ends a broad introductory claim (\"the Revolution brought about sweeping changes...led to the establishment of constitutional liberties\"), prompting elaboration \u2014 likely \"Yet...\" or \"The monarchy and nobility soon faced...\" or \"In the following chapters...\" or \"This period saw...\" or \"But the Revolution nonetheless...\" or \"By 1792, the new order...\" describing the first year's turmoil."
+    },
+    {
+      "k": 5,
+      "mse": 0.0064698015339672565,
+      "cos": 0.9967653751373291,
+      "explanation": "Historical book description establishing formal academic register, framing a summary of the French Revolution's tumultuous transformation of the French monarchy.\n\nThe phrase \"In the summer of 1789, the Declaration of Rights was proclaimed...and the monarchy was abolished\" signals a narrative arc describing the revolutionary upheaval and its early achievements.\n\nFinal sentence \"the Declaration of Rights was established...and the government emerged\" sets up a transition\u2014likely \"But\" or \"The Revolution continued\" or \"By the autumn...\" or \"This period saw...\" or \"Yet the new regime faced...\" or \"The book then explores...\" or \"The subsequent chapters detail the sweeping changes...\" as a pivotal turning point."
+    },
+    {
+      "k": 6,
+      "mse": 0.0067476266995072365,
+      "cos": 0.9966264367103577,
+      "explanation": "Historical book description establishing context: formal, academic prose introduces a volume summarizing the French Revolution's radical transformation.\n\nThe sentence \"In the wake of the August Decrees, a new constitution was established\u2014a sweeping change\u2026.\" signals a narrative pivot toward the turbulent aftermath of the Revolution's initial reforms.\n\nFinal sentence \"By late summer, the National Assembly had transformed French government\u2014a radical restructuring\u2026\" sets up elaboration on achievements or the next chapter, likely \"Yet...\" or \"The Revolution continued\" or \"By Louis XVI came...\" or \"This period saw...\" or \"But the Reign of Terror would soon...\" or \"The book explores...\" as thematic overview."
+    },
+    {
+      "k": 7,
+      "mse": 0.00717732310295105,
+      "cos": 0.9964115619659424,
+      "explanation": "Historical book description establishing formal academic tone, framing a concise account of the French Revolution's pivotal year.\n\nThe sentence \"The Declaration of Rights was proclaimed in August 1791, transforming French government\" signals a summary statement about the tumultuous period\u2014the revolution's radical reforms, the abolition of feudalism.\n\nFinal sentence \"By the summer of 1792, the National Assembly had established a constitutional monarchy\" introduces a thematic pivot\u2014likely \"But...\" or \"The Revolution would continue,\" or \"This volume explores...\" or \"Yet...the nobility faced...\" or \"In the following chapters,...\" or \"The period became known...\""
+    }
+  ]
+}

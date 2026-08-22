@@ -1,0 +1,26 @@
+=== TEST A: marker check on transformers 5.3.0 ===
+  prompt len 108, marker at 93
+  left  got  236813 sidecar  236813 MATCH
+  mark  got  246566 sidecar  246566 MATCH
+  right got     954 sidecar     954 MATCH
+  marker occurrences: 1
+
+=== loading base model ===
+Fetching 5 files:   0%|          | 0/5 [00:00<?, ?it/s]Fetching 5 files:  20%|██        | 1/5 [02:05<08:21, 125.29s/it]Fetching 5 files:  40%|████      | 2/5 [03:48<05:36, 112.18s/it]Fetching 5 files:  60%|██████    | 3/5 [03:50<02:04, 62.10s/it] Fetching 5 files:  80%|████████  | 4/5 [04:01<00:41, 41.76s/it]Fetching 5 files: 100%|██████████| 5/5 [05:11<00:00, 51.96s/it]Fetching 5 files: 100%|██████████| 5/5 [05:11<00:00, 62.29s/it]
+Loading weights:   0%|          | 0/1065 [00:00<?, ?it/s]Loading weights:  45%|████▍     | 478/1065 [00:00<00:00, 4777.79it/s]Loading weights:  90%|████████▉ | 956/1065 [00:00<00:00, 4275.87it/s]Loading weights: 100%|██████████| 1065/1065 [00:00<00:00, 4304.54it/s]
+
+=== TEST B: embedding norms vs injection_scale (the gap Claude admitted) ===
+  raw table row norm : median 0.9508  mean 0.9502  p75 0.9582
+  x embed_scale      : median 58.92   <- what the model actually sees
+  injection_scale    : 80000.0
+  ratio injected/token: 1357.7x
+
+=== TEST C: activation norms per passage (layer 32, last valid position) ===
+  THEIR_EXAMPLE                          T=  89 pos=  88 ||h||=  78890.4
+  CRICKET::Sachin Tendulkar              T= 180 pos= 179 ||h||=  68602.4
+  CRICKET::VVS Laxman                    T= 255 pos= 254 ||h||=  72731.5
+  CRICKET::Eden Gardens                  T=  96 pos=  95 ||h||=  68606.9
+  CRICKET::Rahul Dravid                  T= 148 pos= 147 ||h||=  64516.3
+  CRICKET::Test cricket                  T= 116 pos= 115 ||h||=  69061.9
+
+  saved 6 activations -> /root/acts.npy

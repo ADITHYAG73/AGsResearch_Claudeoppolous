@@ -1,0 +1,12 @@
+{"claim_id": "CRICKET::VVS Laxman:249:k2:c6", "grader": "AG_WARMUP", "verdict": "NOT_IN_TEXT", "needed_lookup": false, "seconds": 71.6, "ts": "2026-08-22T13:11:02.404Z"}
+{"claim_id": "CRICKET::Eden Gardens:86:k1:c9", "grader": "AG_WARMUP", "verdict": "SUPPORTED", "needed_lookup": false, "seconds": 18.1, "ts": "2026-08-22T13:11:20.479Z"}
+{"claim_id": "CRICKET::Rahul Dravid:142:k2:c4", "grader": "AG_WARMUP", "verdict": "NOT_IN_TEXT", "needed_lookup": false, "seconds": 39.6, "ts": "2026-08-22T13:12:00.087Z"}
+{"claim_id": "CRICKET::Sachin Tendulkar:179:k1:c6", "grader": "AG_WARMUP", "verdict": "SUPPORTED", "needed_lookup": false, "seconds": 82.9, "ts": "2026-08-22T13:13:22.973Z"}
+{"claim_id": "CRICKET::VVS Laxman:249:k0:c2", "grader": "AG_WARMUP", "verdict": "SUPPORTED", "needed_lookup": false, "seconds": 5.4, "ts": "2026-08-22T13:13:28.397Z"}
+{"claim_id": "CRICKET::VVS Laxman:253:k2:c9", "grader": "AG_WARMUP", "verdict": "SUPPORTED", "needed_lookup": false, "seconds": 4.3, "ts": "2026-08-22T13:13:32.741Z"}
+{"claim_id": "CRICKET::Sachin Tendulkar:170:k0:c1", "grader": "AG_WARMUP", "verdict": "SUPPORTED", "needed_lookup": false, "seconds": 5.1, "ts": "2026-08-22T13:13:37.831Z"}
+{"claim_id": "THEIR_EXAMPLE:88:k1:c9", "grader": "AG_WARMUP", "verdict": "SUPPORTED", "needed_lookup": false, "seconds": 18.1, "ts": "2026-08-22T13:13:55.905Z"}
+{"claim_id": "THEIR_EXAMPLE:87:k2:c4", "grader": "AG_WARMUP", "verdict": "NOT_IN_TEXT", "needed_lookup": false, "seconds": 11, "ts": "2026-08-22T13:14:06.872Z"}
+{"claim_id": "CRICKET::Sachin Tendulkar:179:k1:c10", "grader": "AG_WARMUP", "verdict": "NOT_IN_TEXT", "needed_lookup": false, "seconds": 9.8, "ts": "2026-08-22T13:14:16.676Z"}
+{"claim_id": "CRICKET::Test cricket:114:k3:c1", "grader": "AG_WARMUP", "verdict": "NOT_IN_TEXT", "needed_lookup": false, "seconds": 14.8, "ts": "2026-08-22T13:14:31.421Z"}
+{"claim_id": "THEIR_EXAMPLE:79:k3:c4", "grader": "AG_WARMUP", "verdict": "SUPPORTED", "needed_lookup": false, "seconds": 2.4, "ts": "2026-08-22T13:14:33.817Z"}

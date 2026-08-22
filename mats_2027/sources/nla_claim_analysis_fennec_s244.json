@@ -1,0 +1,207 @@
+{
+  "_provenance": {
+    "source": "https://transformer-circuits.pub/2026/nla/index.html",
+    "widget": "NLA Claim Analysis - fennec s244 (Common Pile)",
+    "grader": "claude-haiku-4-5-20251001",
+    "retrieved": "2026-08-18",
+    "note": "Single worked example embedded in the paper HTML, not the full dataset."
+  },
+  "claims": [
+    {
+      "claim_idx": 1,
+      "level": "THEME",
+      "subtype": "genre",
+      "text": "Text follows Wikipedia-style encyclopedia format",
+      "verdict": "SUPPORTED",
+      "relatedness": "",
+      "appears_in": [
+        1,
+        2,
+        4,
+        6,
+        7,
+        8
+      ],
+      "position_count": 6,
+      "rewritten_text": "**Wikipedia article structure with Korean historical content**: Consistent patterns of citation brackets, Korean/Hanja transliterations, and internal cross-references like \"He is listed in article 21 of the Annals of the Jos...\"\n\n**Recurring transliteration pattern for \"Joseon dynasty\"**: The phrase \"Annals of the Jos\" has appeared as \"Joseon Wangjo Sillok\" and \"Annals of the Jos\" suggesting completion with full dynasty name—the text references Korean historical records where \"Joseon\" is the standard romanization.\n\n**Corrupted/scraped wiki formatting from 2010s Korean Wikipedia**: Document features mixed English translation, formal historical records, and Wikipedia conventions; the final reference \"Annals of the Jos\" refers to the Joseon dynasty history compilation mentioned earlier in historiography context.\n\n**Incomplete proper noun at text end**: \"Annals of the Jos\" is mid-word, requiring completion—likely \"Joseon\" or \"Joseon dynasty\" matching earlier \"Joseon king Jungjong\" usage; the article title suggests a standard reference work.\n\n**Final token \"Jos\" as truncated proper noun**: \"the Annals of the Jos\" is a partial rendering of \"Annals of the Joseon Dynasty\" (조선왕조실록), following the Wikipedia article section format; likely continues \"Jos\" → \"Joseon\" with possibly \"on dynasty\" or alternate romanized encyclopedia title format.",
+      "delta_mse_pct": 0.4
+    },
+    {
+      "claim_idx": 2,
+      "level": "THEME",
+      "subtype": "topic",
+      "text": "Content concerns Joseon dynasty historical records",
+      "verdict": "SUPPORTED",
+      "relatedness": "",
+      "appears_in": [
+        1,
+        2,
+        3,
+        4,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "position_count": 9,
+      "rewritten_text": "**Wikipedia article structure with Korean historical content**: Text follows Wikipedia-style encyclopedia format with consistent patterns of citation brackets, Korean/Hanja transliterations, and internal cross-references like \"He is listed in article 21 of the Annals of the Jos...\"\n\n**Recurring transliteration pattern for \"Joseon dynasty\"**: The phrase \"Annals of the Jos\" has appeared as \"Joseon Wangjo Sillok\" and \"Annals of the Jos\" suggesting completion with full dynasty name—the text references Korean historical records where \"Joseon\" is the standard romanization.\n\n**Corrupted/scraped wiki formatting from 2010s Korean Wikipedia**: Document features mixed English translation, formal historical records, and Wikipedia conventions; the final reference \"Annals of the Jos\" refers to the Joseon dynasty history compilation mentioned earlier in historiography context.\n\n**Incomplete proper noun at text end**: \"Annals of the Jos\" is mid-word, requiring completion—likely \"Joseon\" or \"Joseon dynasty\" matching earlier \"Joseon king Jungjong\" usage; the article title suggests a standard reference work.\n\n**Final token \"Jos\" as truncated proper noun**: \"the Annals of the Jos\" is a partial rendering of \"Annals of the Joseon Dynasty\" (조선왕조실록), following the Wikipedia article section format; likely continues \"Jos\" → \"Joseon\" with possibly \"on dynasty\" or alternate romanized encyclopedia title format.",
+      "delta_mse_pct": 0.79
+    },
+    {
+      "claim_idx": 3,
+      "level": "THEME",
+      "subtype": "structure",
+      "text": "Text uses consistent patterns of citation brackets and internal cross-references",
+      "verdict": "NOT_IN_TEXT",
+      "relatedness": "DIRECT",
+      "appears_in": [
+        1,
+        2,
+        4,
+        6,
+        7,
+        8
+      ],
+      "position_count": 6,
+      "rewritten_text": "**Wikipedia article structure with Korean historical content**: Text follows Wikipedia-style encyclopedia format about Joseon dynasty historical records, with consistent patterns of Korean/Hanja transliterations like \"He is listed in article 21 of the Annals of the Jos...\"\n\n**Recurring transliteration pattern for \"Joseon dynasty\"**: The phrase \"Annals of the Jos\" has appeared as \"Joseon Wangjo Sillok\" and \"Annals of the Jos\" suggesting completion with full dynasty name—the text references Korean historical records where \"Joseon\" is the standard romanization.\n\n**Corrupted/scraped wiki formatting from 2010s Korean Wikipedia**: Document features mixed English translation, formal historical records, and Wikipedia conventions; the final reference \"Annals of the Jos\" refers to the Joseon dynasty history compilation mentioned earlier in historiography context.\n\n**Incomplete proper noun at text end**: \"Annals of the Jos\" is mid-word, requiring completion—likely \"Joseon\" or \"Joseon dynasty\" matching earlier \"Joseon king Jungjong\" usage; the article title suggests a standard reference work.\n\n**Final token \"Jos\" as truncated proper noun**: \"the Annals of the Jos\" is a partial rendering of \"Annals of the Joseon Dynasty\" (조선왕조실록), following the Wikipedia article section format; likely continues \"Jos\" → \"Joseon\" with possibly \"on dynasty\" or alternate romanized encyclopedia title format.",
+      "delta_mse_pct": -1.5
+    },
+    {
+      "claim_idx": 4,
+      "level": "DETAIL",
+      "subtype": "quote",
+      "text": "The phrase \"Annals of the Jos\" appears in the text",
+      "verdict": "SUPPORTED",
+      "relatedness": "",
+      "appears_in": [
+        1
+      ],
+      "position_count": 1,
+      "rewritten_text": "**Wikipedia article structure with Korean historical content**: Text follows Wikipedia-style encyclopedia format about Joseon dynasty historical records, with consistent patterns of citation brackets, Korean/Hanja transliterations, and internal cross-references like \"He is listed in article 21 of the Annals of the Jos...\"\n\n**Recurring transliteration pattern for \"Joseon dynasty\"**: \"Joseon Wangjo Sillok\" and \"Annals of the Jos\" suggesting completion with full dynasty name—the text references Korean historical records where \"Joseon\" is the standard romanization.\n\n**Corrupted/scraped wiki formatting from 2010s Korean Wikipedia**: Document features mixed English translation, formal historical records, and Wikipedia conventions; the final reference \"Annals of the Jos\" refers to the Joseon dynasty history compilation mentioned earlier in historiography context.\n\n**Incomplete proper noun at text end**: \"Annals of the Jos\" is mid-word, requiring completion—likely \"Joseon\" or \"Joseon dynasty\" matching earlier \"Joseon king Jungjong\" usage; the article title suggests a standard reference work.\n\n**Final token \"Jos\" as truncated proper noun**: \"the Annals of the Jos\" is a partial rendering of \"Annals of the Joseon Dynasty\" (조선왕조실록), following the Wikipedia article section format; likely continues \"Jos\" → \"Joseon\" with possibly \"on dynasty\" or alternate romanized encyclopedia title format.",
+      "delta_mse_pct": 0.04
+    },
+    {
+      "claim_idx": 5,
+      "level": "ENTITY",
+      "subtype": "title",
+      "text": "Text references \"Joseon Wangjo Sillok\" (Korean historical records)",
+      "verdict": "NOT_IN_TEXT",
+      "relatedness": "ADJACENT",
+      "appears_in": [
+        1,
+        2
+      ],
+      "position_count": 2,
+      "rewritten_text": "**Wikipedia article structure with Korean historical content**: Text follows Wikipedia-style encyclopedia format about Joseon dynasty historical records, with consistent patterns of citation brackets, Korean/Hanja transliterations, and internal cross-references like \"He is listed in article 21 of the Annals of the Jos...\"\n\n**Recurring transliteration pattern for \"Joseon dynasty\"**: The phrase \"Annals of the Jos\" suggesting completion with full dynasty name—the text references Korean historical records where \"Joseon\" is the standard romanization.\n\n**Corrupted/scraped wiki formatting from 2010s Korean Wikipedia**: Document features mixed English translation, formal historical records, and Wikipedia conventions; the final reference \"Annals of the Jos\" refers to the Joseon dynasty history compilation mentioned earlier in historiography context.\n\n**Incomplete proper noun at text end**: \"Annals of the Jos\" is mid-word, requiring completion—likely \"Joseon\" or \"Joseon dynasty\" matching earlier \"Joseon king Jungjong\" usage; the article title suggests a standard reference work.\n\n**Final token \"Jos\" as truncated proper noun**: \"the Annals of the Jos\" is a partial rendering of \"Annals of the Joseon Dynasty\" (조선왕조실록), following the Wikipedia article section format; likely continues \"Jos\" → \"Joseon\" with possibly \"on dynasty\" or alternate romanized encyclopedia title format.",
+      "delta_mse_pct": 1.04
+    },
+    {
+      "claim_idx": 6,
+      "level": "ENTITY",
+      "subtype": "person",
+      "text": "Text mentions a Korean historical figure named Jungjong",
+      "verdict": "SUPPORTED",
+      "relatedness": "",
+      "appears_in": [
+        2,
+        3,
+        6
+      ],
+      "position_count": 3,
+      "rewritten_text": "**Wikipedia article structure with Korean historical content**: Text follows Wikipedia-style encyclopedia format about Joseon dynasty historical records, with consistent patterns of citation brackets, Korean/Hanja transliterations, and internal cross-references like \"He is listed in article 21 of the Annals of the Jos...\"\n\n**Recurring transliteration pattern for \"Joseon dynasty\"**: The phrase \"Annals of the Jos\" has appeared as \"Joseon Wangjo Sillok\" and \"Annals of the Jos\" suggesting completion with full dynasty name—the text references Korean historical records where \"Joseon\" is the standard romanization.\n\n**Corrupted/scraped wiki formatting from 2010s Korean Wikipedia**: Document features mixed English translation, formal historical records, and Wikipedia conventions; the final reference \"Annals of the Jos\" refers to the Joseon dynasty history compilation mentioned earlier in historiography context.\n\n**Incomplete proper noun at text end**: \"Annals of the Jos\" is mid-word, requiring completion—likely \"Joseon\" or \"Joseon dynasty\" matching earlier usage; the article title suggests a standard reference work.\n\n**Final token \"Jos\" as truncated proper noun**: \"the Annals of the Jos\" is a partial rendering of \"Annals of the Joseon Dynasty\" (조선왕조실록), following the Wikipedia article section format; likely continues \"Jos\" → \"Joseon\" with possibly \"on dynasty\" or alternate romanized encyclopedia title format.",
+      "delta_mse_pct": -1.37
+    },
+    {
+      "claim_idx": 7,
+      "level": "THEME",
+      "subtype": "structure",
+      "text": "Text contains mixed English translation and formal historical records",
+      "verdict": "SUPPORTED",
+      "relatedness": "",
+      "appears_in": [
+        1,
+        2,
+        4,
+        6,
+        7,
+        8
+      ],
+      "position_count": 6,
+      "rewritten_text": "**Wikipedia article structure with Korean historical content**: Text follows Wikipedia-style encyclopedia format about Joseon dynasty historical records, with consistent patterns of citation brackets, Korean/Hanja transliterations, and internal cross-references like \"He is listed in article 21 of the Annals of the Jos...\"\n\n**Recurring transliteration pattern for \"Joseon dynasty\"**: The phrase \"Annals of the Jos\" has appeared as \"Joseon Wangjo Sillok\" and \"Annals of the Jos\" suggesting completion with full dynasty name—the text references Korean historical records where \"Joseon\" is the standard romanization.\n\n**Corrupted/scraped wiki formatting from 2010s Korean Wikipedia**: Document features Wikipedia conventions; the final reference \"Annals of the Jos\" refers to the Joseon dynasty history compilation mentioned earlier in historiography context.\n\n**Incomplete proper noun at text end**: \"Annals of the Jos\" is mid-word, requiring completion—likely \"Joseon\" or \"Joseon dynasty\" matching earlier \"Joseon king Jungjong\" usage; the article title suggests a standard reference work.\n\n**Final token \"Jos\" as truncated proper noun**: \"the Annals of the Jos\" is a partial rendering of \"Annals of the Joseon Dynasty\" (조선왕조실록), following the Wikipedia article section format; likely continues \"Jos\" → \"Joseon\" with possibly \"on dynasty\" or alternate romanized encyclopedia title format.",
+      "delta_mse_pct": 0.38
+    },
+    {
+      "claim_idx": 8,
+      "level": "DETAIL",
+      "subtype": "value",
+      "text": "\"Joseon\" is the standard romanization for the Korean dynasty",
+      "verdict": "SUPPORTED",
+      "relatedness": "",
+      "appears_in": [
+        1,
+        2,
+        4,
+        6,
+        7,
+        8,
+        10
+      ],
+      "position_count": 7,
+      "rewritten_text": "**Wikipedia article structure with Korean historical content**: Text follows Wikipedia-style encyclopedia format about Joseon dynasty historical records, with consistent patterns of citation brackets, Korean/Hanja transliterations, and internal cross-references like \"He is listed in article 21 of the Annals of the Jos...\"\n\n**Recurring transliteration pattern for \"Joseon dynasty\"**: The phrase \"Annals of the Jos\" has appeared as \"Joseon Wangjo Sillok\" and \"Annals of the Jos\" suggesting completion with full dynasty name—the text references Korean historical records.\n\n**Corrupted/scraped wiki formatting from 2010s Korean Wikipedia**: Document features mixed English translation, formal historical records, and Wikipedia conventions; the final reference \"Annals of the Jos\" refers to the Joseon dynasty history compilation mentioned earlier in historiography context.\n\n**Incomplete proper noun at text end**: \"Annals of the Jos\" is mid-word, requiring completion—likely \"Joseon\" or \"Joseon dynasty\" matching earlier \"Joseon king Jungjong\" usage; the article title suggests a standard reference work.\n\n**Final token \"Jos\" as truncated proper noun**: \"the Annals of the Jos\" is a partial rendering of \"Annals of the Joseon Dynasty\" (조선왕조실록), following the Wikipedia article section format; likely continues \"Jos\" → \"Joseon\" with possibly \"on dynasty\" or alternate romanized encyclopedia title format.",
+      "delta_mse_pct": 0.5
+    },
+    {
+      "claim_idx": 9,
+      "level": "DETAIL",
+      "subtype": "quote",
+      "text": "Text contains the phrase \"He is listed in article 21 of the Annals of the Jos\"",
+      "verdict": "NOT_IN_TEXT",
+      "relatedness": "DIRECT",
+      "appears_in": [
+        1
+      ],
+      "position_count": 1,
+      "rewritten_text": "**Wikipedia article structure with Korean historical content**: Text follows Wikipedia-style encyclopedia format about Joseon dynasty historical records, with consistent patterns of citation brackets, Korean/Hanja transliterations, and internal cross-references.\n\n**Recurring transliteration pattern for \"Joseon dynasty\"**: The phrase \"Annals of the Jos\" has appeared as \"Joseon Wangjo Sillok\" and \"Annals of the Jos\" suggesting completion with full dynasty name—the text references Korean historical records where \"Joseon\" is the standard romanization.\n\n**Corrupted/scraped wiki formatting from 2010s Korean Wikipedia**: Document features mixed English translation, formal historical records, and Wikipedia conventions; the final reference \"Annals of the Jos\" refers to the Joseon dynasty history compilation mentioned earlier in historiography context.\n\n**Incomplete proper noun at text end**: \"Annals of the Jos\" is mid-word, requiring completion—likely \"Joseon\" or \"Joseon dynasty\" matching earlier \"Joseon king Jungjong\" usage; the article title suggests a standard reference work.\n\n**Final token \"Jos\" as truncated proper noun**: \"the Annals of the Jos\" is a partial rendering of \"Annals of the Joseon Dynasty\" (조선왕조실록), following the Wikipedia article section format; likely continues \"Jos\" → \"Joseon\" with possibly \"on dynasty\" or alternate romanized encyclopedia title format.",
+      "delta_mse_pct": 0.14
+    },
+    {
+      "claim_idx": 10,
+      "level": "DETAIL",
+      "subtype": "value",
+      "text": "\"Annals of the Jos\" is a truncated/incomplete proper noun requiring completion",
+      "verdict": "SUPPORTED",
+      "relatedness": "",
+      "appears_in": [
+        1,
+        2,
+        4,
+        6,
+        7,
+        8
+      ],
+      "position_count": 6,
+      "rewritten_text": "**Wikipedia article structure with Korean historical content**: Text follows Wikipedia-style encyclopedia format about Joseon dynasty historical records, with consistent patterns of citation brackets, Korean/Hanja transliterations, and internal cross-references like \"He is listed in article 21 of the Annals of the Jos...\"\n\n**Recurring transliteration pattern for \"Joseon dynasty\"**: The phrase \"Annals of the Jos\" has appeared as \"Joseon Wangjo Sillok\" and \"Annals of the Jos\" suggesting completion with full dynasty name—the text references Korean historical records where \"Joseon\" is the standard romanization.\n\n**Corrupted/scraped wiki formatting from 2010s Korean Wikipedia**: Document features mixed English translation, formal historical records, and Wikipedia conventions; the final reference \"Annals of the Jos\" refers to the Joseon dynasty history compilation mentioned earlier in historiography context.\n\n**Incomplete proper noun at text end**: The article title suggests a standard reference work, matching earlier \"Joseon king Jungjong\" usage.\n\n**Final token \"Jos\" as truncated proper noun**: \"the Annals of the Jos\" is a partial rendering of \"Annals of the Joseon Dynasty\" (조선왕조실록), following the Wikipedia article section format; likely continues \"Jos\" → \"Joseon\" with possibly \"on dynasty\" or alternate romanized encyclopedia title format.",
+      "delta_mse_pct": -0.76
+    },
+    {
+      "claim_idx": 11,
+      "level": "ENTITY",
+      "subtype": "title",
+      "text": "Text references \"Annals of the Joseon Dynasty\" (조선왕조실록)",
+      "verdict": "SUPPORTED",
+      "relatedness": "",
+      "appears_in": [
+        1,
+        2,
+        4,
+        6,
+        7,
+        8
+      ],
+      "position_count": 6,
+      "rewritten_text": "**Wikipedia article structure with Korean historical content**: Text follows Wikipedia-style encyclopedia format about Joseon dynasty historical records, with consistent patterns of citation brackets, Korean/Hanja transliterations, and internal cross-references like \"He is listed in article 21 of the Annals of the Jos...\"\n\n**Recurring transliteration pattern for \"Joseon dynasty\"**: The phrase \"Annals of the Jos\" has appeared as \"Joseon Wangjo Sillok\" and \"Annals of the Jos\" suggesting completion with full dynasty name—the text references Korean historical records where \"Joseon\" is the standard romanization.\n\n**Corrupted/scraped wiki formatting from 2010s Korean Wikipedia**: Document features mixed English translation, formal historical records, and Wikipedia conventions; the final reference \"Annals of the Jos\" refers to the Joseon dynasty history compilation mentioned earlier in historiography context.\n\n**Incomplete proper noun at text end**: \"Annals of the Jos\" is mid-word, requiring completion—likely \"Joseon\" or \"Joseon dynasty\" matching earlier \"Joseon king Jungjong\" usage; the article title suggests a standard reference work.\n\n**Final token \"Jos\" as truncated proper noun**: \"the Annals of the Jos\" is a partial rendering, following the Wikipedia article section format; likely continues \"Jos\" → \"Joseon\" with possibly \"on dynasty\" or alternate romanized encyclopedia title format.",
+      "delta_mse_pct": -2.6
+    }
+  ]
+}

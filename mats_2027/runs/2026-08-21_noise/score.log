@@ -1,0 +1,29 @@
+Fetching 16 files:   0%|          | 0/16 [00:00<?, ?it/s]Fetching 16 files:   6%|▋         | 1/16 [00:00<00:01,  7.78it/s]Fetching 16 files:  44%|████▍     | 7/16 [00:00<00:00, 34.11it/s]Fetching 16 files:  69%|██████▉   | 11/16 [00:00<00:00, 13.80it/s]Fetching 16 files:  75%|███████▌  | 12/16 [00:20<00:00, 13.80it/s]Fetching 16 files:  81%|████████▏ | 13/16 [02:16<00:50, 16.91s/it]Fetching 16 files:  88%|████████▊ | 14/16 [04:25<01:07, 33.68s/it]Fetching 16 files:  94%|█████████▍| 15/16 [04:31<00:28, 28.82s/it]Fetching 16 files:  94%|█████████▍| 15/16 [04:50<00:28, 28.82s/it]Fetching 16 files: 100%|██████████| 16/16 [05:23<00:00, 33.53s/it]Fetching 16 files: 100%|██████████| 16/16 [05:23<00:00, 20.24s/it]
+`torch_dtype` is deprecated! Use `dtype` instead!
+Loading weights:   0%|          | 0/430 [00:00<?, ?it/s]Loading weights:  58%|█████▊    | 250/430 [00:00<00:00, 2495.31it/s]Loading weights: 100%|██████████| 430/430 [00:00<00:00, 2093.50it/s]
+[1mGemma3ForCausalLM LOAD REPORT[0m from: /root/hf/hub/models--kitft--nla-gemma3-12b-L32-ar/snapshots/3d6901d8243182d642af9dea452ca91549a94615
+Key               | Status  | 
+------------------+---------+-
+model.norm.weight | MISSING | 
+
+[3mNotes:
+- MISSING[3m	:those params were newly initialized because missing from the checkpoint. Consider training on your downstream task.[0m
+[NLACritic] 33 layers  d_model=3840  mse_scale=61.97
+25/447
+50/447
+75/447
+100/447
+125/447
+150/447
+175/447
+200/447
+225/447
+250/447
+275/447
+300/447
+325/447
+350/447
+375/447
+400/447
+425/447
+447 variants scored -> /root/ablation_scores.json

@@ -1,0 +1,33 @@
+# ---- secrets: never commit ----
+.env
+*.pem
+*.key
+id_ed25519*
+
+# ---- not mine to publish ----
+# Neel Nanda's mech interp context bundle, distributed to MATS applicants (24 MB).
+mats_2027/Mech Interp Context Docs/
+
+# ---- separate upstream repos: reference by URL, do not vendor ----
+# asherps/EasyNLA  ·  ceselder/nanoNLA
+reference_repos/
+
+# ---- python ----
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# ---- editor / os ----
+.DS_Store
+.vscode/
+.idea/
+
+# ---- scratch ----
+*.bak
+/tmp/
+
+# ---- third-party content: fetched for research, not ours to republish ----
+# Full local copy of transformer-circuits.pub/2026/nla/. Keep locally; re-fetch, don't mirror.
+mats_2027/sources/nla_paper_*.raw.html
+mats_2027/sources/nla_paper_*.txt

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><title>Blind claim grading</title>
+<style>
+  :root{--bg:#fafaf7;--fg:#1a1a1a;--mut:#6b6b6b;--box:#fff;--line:#ddd;--acc:#2f5d8a}
+  body{margin:0;font:16px/1.55 -apple-system,Segoe UI,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--fg)}
+  main{max-width:860px;margin:0 auto;padding:28px 20px 60px}
+  h1{font-size:17px;margin:0 0 6px;color:var(--mut);font-weight:600}
+  .card{background:var(--box);border:1px solid var(--line);border-radius:10px;padding:18px 20px;margin:14px 0}
+  .lbl{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--mut);margin-bottom:8px}
+  .prefix{white-space:pre-wrap;font-size:15.5px;max-height:46vh;overflow:auto}
+  .prefix::after{content:"▌";color:var(--acc);font-weight:700}
+  .claim{font-size:19px;font-weight:600;line-height:1.4}
+  .q{font-size:15px;margin:6px 0 12px}
+  .q b{color:var(--acc)}
+  .btns{display:flex;gap:10px;flex-wrap:wrap}
+  button{font:inherit;font-size:15px;padding:10px 16px;border-radius:8px;border:1px solid var(--line);background:#fff;cursor:pointer}
+  button:hover{border-color:var(--acc)}
+  button kbd{display:inline-block;min-width:18px;padding:1px 6px;margin-right:8px;border:1px solid #bbb;border-radius:4px;font-size:12px;background:#f3f3f3}
+  .lookup{margin-top:10px;font-size:14px;color:var(--mut)}
+  .lookup.on{color:#b35c00;font-weight:600}
+  .meta{display:flex;justify-content:space-between;color:var(--mut);font-size:13px;margin-top:10px}
+  .rules{font-size:13.5px;color:var(--mut);border-left:3px solid var(--line);padding-left:12px;margin:10px 0 0}
+  .rules li{margin:3px 0}
+  #setup{text-align:center;padding:60px 0}
+  #setup input{font:inherit;padding:8px 10px}
+  #done{text-align:center;padding:60px 0;display:none}
+  .hidden{display:none}
+</style></head><body><main>
+
+<section id="setup">
+  <h1>Blind claim grading</h1>
+  <p>Load the prepared grading file (<code>grading_&lt;you&gt;.json</code>). Verdicts save to your browser as you go and can be exported at any time.</p>
+  <input type="file" id="file" accept=".json">
+  <p style="color:var(--mut);font-size:13px">Resuming? Load the same file — your saved progress is restored.</p>
+</section>
+
+<section id="work" class="hidden">
+  <h1 id="title"></h1>
+  <div class="card"><div class="lbl">Passage (the model had read exactly this — it ends where the cursor is)</div>
+    <div class="prefix" id="prefix"></div></div>
+  <div class="card"><div class="lbl">Claim made about that passage</div>
+    <div class="claim" id="claim"></div></div>
+  <div class="card">
+    <div class="q">Is this claim <b>supported by this passage</b>? &nbsp;<span style="color:var(--mut)">(NOT: is it true about the world)</span></div>
+    <div class="btns">
+      <button data-v="SUPPORTED"><kbd>S</kbd>Supported — the passage says or directly implies this</button>
+      <button data-v="CONTRADICTED"><kbd>C</kbd>Contradicted — the passage says otherwise</button>
+      <button data-v="NOT_IN_TEXT"><kbd>N</kbd>Not in text — absent; neither stated nor contradicted</button>
+    </div>
+    <div class="lookup" id="lookup"><kbd>L</kbd> toggle: I needed to look something up to decide</div>
+    <ul class="rules">
+      <li><b>Grade against the passage as written.</b> Typos don't break a match if the referent is unambiguous.</li>
+      <li><b>Vague is not false.</b> "The text is about cricket" for a Tendulkar bio is imprecise, not fabricated.</li>
+      <li>Predictions about what comes <i>next</i> ("likely continues with…") — grade the factual part only; if there is none, <b>N</b>.</li>
+      <li>A different name for the same thing (alias, translation, nickname) → <b>S</b> if the referent is unambiguous; flag <b>L</b> if you had to check.</li>
+      <li>Go with your first read. There is no back button on purpose.</li>
+    </ul>
+    <div class="meta"><span id="prog"></span><span id="timer"></span><span><button id="export" style="padding:4px 10px;font-size:13px">Export verdicts</button></span></div>
+  </div>
+</section>
+
+<section id="done">
+  <h1>All claims graded</h1>
+  <p>Click to download your verdicts. The file is also still in your browser's storage.</p>
+  <button id="export2">Download verdicts.jsonl</button>
+</section>
+
+<script>
+let data=null, idx=0, t0=0, lookup=false, key='', verdicts=[];
+const $=s=>document.querySelector(s);
+
+$('#file').addEventListener('change', async e=>{
+  const f=e.target.files[0]; data=JSON.parse(await f.text());
+  key='verdicts::'+data.grader+'::'+data.seed+'::'+data.n_main;
+  try{ verdicts=JSON.parse(localStorage.getItem(key)||'[]'); }catch(_){ verdicts=[]; }
+  idx=verdicts.length;                                  // resume where we left off
+  $('#setup').classList.add('hidden'); $('#work').classList.remove('hidden');
+  $('#title').textContent=`grader: ${data.grader} · seed ${data.seed}`;
+  show();
+});
+
+function show(){
+  if(idx>=data.items.length){ finish(); return; }
+  const it=data.items[idx];
+  $('#prefix').textContent=it.prefix; $('#claim').textContent=it.claim;
+  $('#prog').textContent=`claim ${idx+1} / ${data.items.length}`;
+  lookup=false; $('#lookup').classList.remove('on');
+  t0=performance.now(); tick();
+  $('#prefix').scrollTop=$('#prefix').scrollHeight;      // show the END of the prefix first
+}
+function tick(){ if(!data||idx>=data.items.length)return;
+  $('#timer').textContent=((performance.now()-t0)/1000).toFixed(0)+'s'; requestAnimationFrame(tick); }
+
+function record(v){
+  const it=data.items[idx];
+  verdicts.push({claim_id:it.claim_id, grader:data.grader, verdict:v, needed_lookup:lookup,
+                 seconds:+((performance.now()-t0)/1000).toFixed(1), ts:new Date().toISOString()});
+  try{ localStorage.setItem(key, JSON.stringify(verdicts)); }catch(_){}
+  // write straight to disk via the local server; browser storage stays as a backup
+  fetch('/verdict',{method:'POST',headers:{'Content-Type':'application/json'},
+        body:JSON.stringify(verdicts[verdicts.length-1])}).catch(()=>{});
+  idx++; show();
+}
+document.querySelectorAll('button[data-v]').forEach(b=>b.onclick=()=>record(b.dataset.v));
+document.addEventListener('keydown', e=>{
+  if(!data||idx>=data.items.length) return;
+  const k=e.key.toLowerCase();
+  if(k==='s')record('SUPPORTED'); else if(k==='c')record('CONTRADICTED'); else if(k==='n')record('NOT_IN_TEXT');
+  else if(k==='l'){ lookup=!lookup; $('#lookup').classList.toggle('on',lookup); }
+});
+
+function exportV(){
+  const text=verdicts.map(v=>JSON.stringify(v)).join('\n')+'\n';
+  // 1) try a real download
+  try{ const blob=new Blob([text],{type:'application/json'});
+       const a=document.createElement('a'); a.href=URL.createObjectURL(blob);
+       a.download=`verdicts_${data.grader}.jsonl`; a.click(); }catch(_){}
+  // 2) ALWAYS also show it on screen + copy to clipboard, so nothing depends on the download
+  try{ navigator.clipboard.writeText(text); }catch(_){}
+  let box=$('#dump'); if(!box){ box=document.createElement('textarea'); box.id='dump';
+    box.style.cssText='width:100%;height:220px;margin-top:14px;font:12px/1.4 ui-monospace,Menlo,monospace';
+    $('#work').appendChild(box); }
+  box.value=text; box.select();
+  $('#prog').textContent=`${verdicts.length} verdicts — copied to clipboard; also shown below`;
+}
+$('#export').onclick=exportV; $('#export2').onclick=exportV;
+function finish(){ $('#work').classList.add('hidden'); $('#done').style.display='block'; }
+</script>
+</main></body></html>
