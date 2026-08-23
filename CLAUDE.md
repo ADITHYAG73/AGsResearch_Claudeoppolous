@@ -665,3 +665,44 @@ trained NLAs. Completion condition sized to my resources, public artifact at the
 
   **Next session: read Laxman across positions first (no numbers) → Stage 3 → text verdicts →
   position check → only then H1.**
+
+- **2026-08-23 — Δ EXISTS. Four experiments closed 22nd, AR scoring closed 23rd. $0.34.**
+  Full detail in `mats_2027/experiments.md` → SOURCE-01, DECOMP-01, JUDGE-01, ABLATE-01,
+  SCORE-01. Repo now public: **github.com/ADITHYAG73/AGsResearch_Claudeoppolous**.
+  - **Specificity REPLICATES** on a different NLA/base model/corpus/positions and an
+    independently written judge prompt: THEME 69.1% / ENTITY 43.8% / DETAIL 36.0% supported
+    (paper 64/28/24). First real result of the project.
+  - **The "more confabulation at later positions" idea is DEAD on this data**: +2.4pp early
+    vs late, pooled SE 2.9, n=2065, and the sign is opposite to the prediction. AG called
+    this from eyeballing the Laxman explanations before any data existed.
+  - **Δ for all 2065 ablations** (`runs/2026-08-23_ar/deltas.parquet`). **30% of single-claim
+    removals IMPROVE reconstruction** (NOISE-01 saw 18.8% at n=399 — but ablation method AND
+    positions both changed, so not attributable). **DETAIL Δ = 4.5× THEME Δ**, the opposite
+    of what the paper's specificity result predicts — consistent with H3 (redundancy), not
+    a test of it.
+  - **SOURCE-01: the paper's confabulation pipeline recovered from its own HTML.** Recurrence
+    matching is an LLM call, not string matching; ablation is a REWRITE, not a deletion; the
+    prompts were never published. Our `norm()` regex is the crude version — that is why
+    NOISE-01 had only 6 recurring claims out of 401.
+  - **GAP FOUND (AG, by checking his own mental model against the labels): relatedness labels
+    do not exist.** 995 claims are false and none has been asked DIRECT/ADJACENT. **H1 is not
+    testable until Stage 5 runs** (~$1, no GPU). H2 is unaffected.
+  - **H1 detector decision is PARKED** in `hypotheses.md` with a hard constraint: decide it
+    BEFORE looking at the real related-false Δ distribution. SIM-02 showed the frozen rule
+    (`dBIC>10 AND dip p<0.05`) scores 0/40 at the measured noise; `dBIC>10` alone scores
+    40/40 with 0 false positives on a Gaussian AND a skewed null, at K=4, n=2065. Also found:
+    **more averaging can make it WORSE** — at low noise the skew stops being masked and ΔBIC
+    reads it as bimodality (92% false positives at ratio 1.0, K=8).
+  - **THE DAY'S LESSON, and it cost the morning:** removing `sglang[all]` from `pod_setup.sh`
+    "because the AR needs no server" broke the pod — sglang was silently upgrading torchvision
+    to 0.24.1 to match torch 2.9.1. Symptom was `std::bad_alloc` on IMPORT with no traceback.
+    Three causes were proposed from knowledge and all three were wrong; `faulthandler` and a
+    diff against the last working setup.log settled it in minutes. **Do not "optimise" a
+    recorded recipe.** Guard now written into `pod_setup.sh`.
+  - Batched AR scoring was BUILT and then NOT USED: serial is 0.07 s/item (2305 in 135 s), so
+    batching saves ~80 s and adds 2.5e-4 bf16 noise to a Δ whose effects are ~1.1e-3. bs=1 is
+    bit-exact with the official `NLACritic.score()`.
+
+  **Next: (1) Stage 5 relatedness (~$1, no GPU) — unblocks H1; (2) settle the parked detector
+  decision BEFORE looking at related-false Δ; (3) AG's 150+30 blind grading to validate the
+  judge; (4) `noise_analysis.py` walkthrough — still unverified by AG.**

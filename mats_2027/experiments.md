@@ -722,6 +722,113 @@ gate on H1 - then batch `score_ablations.py` offline, then one AR-only pod sessi
 
 ---
 
+### SCORE-01 - AR scoring: Delta for all 2065 ablations   `2026-08-23` · `clock: running`
+
+**P1 · Question.** Produce Delta = mse(ablated) - mse(intact) for every claim, the number
+every downstream hypothesis needs. Delta depends only on explanation text + activation, NOT
+on verdicts or relatedness, so the GPU spend is label-independent: re-labelling later costs a
+numpy re-run, never another pod.
+
+**R1 · RESULTS.** `runs/2026-08-23_ar/` - `ablation_scores.json` (2305 rows),
+`deltas.parquet` (2065 ablations joined to verdicts, 0 unmatched), `score.log`, `setup.log`.
+Scoring itself: **2305 variants in 135 s.** A40 48 GB, EU-SE-1.
+```
+mse   min 0.0021  median 0.0083  max 0.0485
+cos   min 0.9758  median 0.9958  max 0.9989
+max |mse - 2(1-cos)*s^2/d| = 1.5e-06        direction-only identity holds on real data
+Delta  mean +0.00088  sd 0.00264  range -0.0114 .. +0.0417   (n=2063 valid)
+```
+
+**R1b · "Removal IMPROVES reconstruction" is 30% of claims, not a curiosity.**
+```
+Delta > 0 (removal HURT)     70.0%
+Delta < 0 (removal IMPROVED) 30.0%
+NOISE-01: 81.2 / 18.8   (n=399, last position only, DELETE-sentence ablation)
+today   : 70.0 / 30.0   (n=2063, 10 positions,   REWRITE ablation)
+```
+Neel's phrasing - "claims that can be removed to improve reconstruction" - describes nearly a
+third of them. The paper never reports this rate.
+**CAVEAT, LOGGED: two things changed at once** between NOISE-01 and today (ablation method
+AND positions). 18.8 -> 30.0 cannot be attributed to either. Attributing it needs a
+controlled run (same positions, delete vs rewrite).
+
+**R1c · Delta by claim level - the ordering is OPPOSITE to what the paper's specificity
+result predicts.**
+```
+THEME   n=886   mean Delta +0.00032 +/- 0.00007   improved 35.8%
+ENTITY  n=426   mean Delta +0.00105 +/- 0.00025   improved 28.6%
+DETAIL  n=751   mean Delta +0.00145 +/- 0.00026   improved 23.8%
+```
+Paper: THEME claims are true 64% of the time, DETAIL 24%; and true claims matter MORE to
+reconstruction. So THEME should carry the HIGHEST Delta. It carries the LOWEST - DETAIL is
+4.5x THEME, CIs nowhere near overlapping. **This is what H3 (redundancy, AG 2026-08-22)
+predicts**: "the text is about cricket" is restated throughout an explanation so removing one
+instance changes little; a specific invented quote occurs once. **NOT TESTED** - needs the
+semantic matcher. Recorded as an observation consistent with H3, not as evidence for it.
+
+**R2 · Method decision REVERSED: scored at batch_size=1, not batched.**
+The batched AR path (built off-meter 2026-08-22) was measured against the official
+single-item `NLACritic.score()` on the real checkpoint:
+```
+batch_size= 1   max|dmse| = 0.00e+00      EXACT - bit-identical to the official path
+batch_size= 4   max|dmse| = 1.55e-04
+batch_size=16   max|dmse| = 2.48e-04
+corr(pad_count, |dmse|) = -0.289          NEGATIVE - not a padding bug
+mean|dmse| rows with NO padding 3.70e-05 vs WITH padding 3.44e-05
+```
+The gap is batched-GEMM reduction order in bf16, not padding and not the batching logic
+(bs=1 through the same code is exact, and unpadded rows in a batch are no better than padded
+ones). **But the premise for batching was wrong:** serial runs at 0.07 s/item, so all 2305
+take ~160 s. Batching saves ~80 s and injects 2.5e-4 of noise into Delta, whose effects are
+~1.1e-3. Not worth it. **The "NOISE-01 took 35 min at batch 1" figure was setup + download,
+not scoring - I never measured the per-item rate before building the batched path.**
+
+**R3 · THE FAILURE THAT COST THE DAY - dropping sglang from the recipe.**
+First attempt died with `terminate called after throwing an instance of 'std::bad_alloc'` and
+NO Python traceback. Three causes were proposed from knowledge and all three were WRONG
+(deprecated `torch_dtype`; missing `accelerate`; host RAM exhaustion), each followed by a
+patch and a re-run. `faulthandler` then showed the crash was at **import** time, not during
+weight loading, refuting all three at once - `import transformers.modeling_layers` alone
+aborted the interpreter.
+
+**Actual cause, evidenced from `runs/2026-08-22_pos10/setup.log`:**
+```
+1. pip install transformers ...          -> transformers 5.15.1
+2. pip install torch==2.9.1              -> torchvision now 0.23.0, built for torch 2.8.0
+                                            ("requires torch==2.8.0 ... incompatible")
+3. pip install sglang[all]==0.5.10.post1 -> transformers 5.3.0  (downgrade)
+                                         -> torchvision  0.24.1  (UPGRADE - repairs step 2)
+```
+`sglang[all]` was silently fixing the torch/torchvision ABI mismatch. Removing it "because
+the AR needs no server" left a torchvision compiled against a different torch ABI; loading
+its C++ extension aborts the interpreter. Verified by re-running the UNCHANGED recipe: an env
+gate then reported `torchvision 0.24.1+cu128` and both previously-fatal imports OK.
+A second wrong claim was made and retracted along the way: that the pod IMAGE differed.
+`python3.12` in `runs/2026-08-22_pos10/av_server.log` identifies ubuntu2404 - the same image.
+The warning naming the true cause was in the setup log from the start and was read past.
+Guard added: a header block in `pipeline/pod/pod_setup.sh` (DO NOT REMOVE sglang, with the
+install order and the symptom).
+
+**Cost.** $0.34 total for the day. Roughly $0.25 of that was the failed first attempt, a
+truncated SSH key passed from a `head -c 40` preview, and a poll loop that compared
+`grep -c` to 1 when `set -x` emits the line twice. The scoring that produced the result cost
+about $0.03.
+
+**R4 · What could still be wrong.**
+- Delta rests on the REWRITE ablation, whose fidelity is UNVERIFIED (ABLATE-01 R3) - that
+  exactly one claim leaves and the others survive still needs the semantic matcher.
+- 2 of 2065 variants are `valid=False` (not ablatable) and are excluded from every number here.
+- Verdicts are from an UNVALIDATED judge (JUDGE-01). Delta is unaffected; anything that
+  crosses Delta with a verdict inherits that uncertainty.
+- Delta is the MARGINAL contribution of one claim with the rest of the explanation intact
+  (H3). It is not the contribution of the concept.
+
+**Next:** Stage 5 relatedness on the 995 false claims (missing, ~$1, no GPU) - H1 is not
+testable without it. Then the H1 detector decision, which is still PARKED and must be settled
+before the related-false Delta distribution is looked at.
+
+---
+
 ## Running index
 
 | # | title | date | verdict |
@@ -736,6 +843,7 @@ gate on H1 - then batch `score_ablations.py` offline, then one AR-only pod sessi
 | DECOMP-01 | Stage 3 claims for all 240 explanations | 2026-08-22 | ✅ **2065 claims, prompt transfers across all 10 offsets**; Haiku degenerates on 0.8% of calls |
 | JUDGE-01 | Stage 4 S/C/N verdicts on all 2065 claims | 2026-08-22 | ✅ **specificity replicates** THEME 69.1 / ENTITY 43.8 / DETAIL 36.0; **position hypothesis dead** (+2.4pp, SE 2.9) |
 | ABLATE-01 | rewrite-out ablation variants | 2026-08-22 | ✅ 2305 variants; **0.8% invented content** (guarded); 0.1% not ablatable |
+| SCORE-01 | AR scoring, Δ for all 2065 ablations | 2026-08-23 | ✅ **Δ exists**; 30% of removals IMPROVE reconstruction; DETAIL Δ = 4.5× THEME |
 
 ---
 

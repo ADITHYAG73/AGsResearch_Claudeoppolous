@@ -153,7 +153,24 @@ widens once low-redundancy claims are isolated.
 **Prior art:** none found. The paper runs single-claim deletion and never discusses
 redundancy between claims inside one explanation.
 
-**Status:** `parked` - revisit AFTER the ablation + AR run completes.
+**FIRST OBSERVATION CONSISTENT WITH H3 (SCORE-01, 2026-08-23) - NOT a test.**
+Delta by claim level, n=2063:
+```
+THEME   n=886   mean Delta +0.00032 +/- 0.00007
+ENTITY  n=426   mean Delta +0.00105 +/- 0.00025
+DETAIL  n=751   mean Delta +0.00145 +/- 0.00026
+```
+The paper says THEME claims are true 64% of the time vs DETAIL 24%, and that true claims
+matter MORE to reconstruction - so THEME should carry the HIGHEST Delta. It carries the
+LOWEST, by 4.5x, with CIs nowhere near overlapping. H3 explains this directly: THEME content
+("the text is about cricket") is restated throughout an explanation, so ablating one instance
+removes almost nothing; a DETAIL claim (a specific invented quote) occurs once.
+**This is consistent with H3 and does not test it.** Rivals not excluded: DETAIL claims may
+simply carry more tokens; or specific claims may genuinely constrain the activation more.
+The test still requires a per-claim redundancy score from the semantic matcher, plus a length
+control.
+
+**Status:** `parked` - revisit AFTER Stage 5 relatedness and the semantic matcher exist.
 
 ---
 
