@@ -829,6 +829,109 @@ before the related-false Delta distribution is looked at.
 
 ---
 
+### NOISE-02 - paired-Delta noise on the full data, and why it could not be measured   `2026-08-23`
+
+**P1 · Question.** Re-measure the paired-Delta noise (NOISE-01: 1.41x, on 6 recurring claims
+at one position) on all 2065 ablations across 60 activations, and run H2's KILL CONDITION -
+does the spread of per-claim mean Delta fall as 1/sqrt(K)?
+
+**P2 · Prediction, recorded before running.** Ratio between 0.8x and 2.5x. No confident
+direction: NOISE-01's 6 survivors were plausibly the low-noise ones (-> true ratio higher),
+but its denominator came from those same 6 similar claims (-> true ratio lower).
+
+**R1 · RESULT: the prediction was WRONG (0.12x), and the number does not matter, because the
+sample is unusable.**
+```
+distinct (position, claim-text) groups: 1916
+  group sizes:  1x1796   2x98   3x17   4x5
+  groups with >= 3 resamples: 22        <- NOISE-01 had 6
+  claims present in ALL 4 resamples:  5 <- H2's 1/sqrt(K) test COULD NOT RUN
+```
+```
+                        NOISE-01 (n=6)    NOISE-02 (n=22)
+  noise  (within-claim sd)   0.00115          0.00082      barely moved
+  effect (between-claim sd)  0.00082          0.00676      8x LARGER
+  ratio                       1.41x            0.12x
+```
+The noise barely moved; the DENOMINATOR moved 8x. NOISE-01's six survivors happened to have
+nearly identical mean Delta, which made the effect scale look tiny and the ratio look
+terrible. Survivorship bias, flagged before the run, confirmed and larger than expected.
+**NEITHER NUMBER IS TRUSTWORTHY** - 6 claims vs 22 claims, biased in opposite directions. No
+design decision should rest on either.
+
+**R2 · What this actually establishes: exact-string matching makes the paired-Delta noise
+unmeasurable.** 1796 of 1916 groups are singletons. The cause is structural: at T=1 the AV
+writes a DIFFERENT explanation each resample, and Haiku then phrases the same idea
+differently in each. A claim must survive both to be counted as recurring.
+Worked example - VVS Laxman pos 254, 32 claims across 4 resamples, 30 distinct strings,
+**2 exact matches**, while containing FOUR wordings of one genre claim
+("is in an encyclopedic/biographical article structure" / "is an encyclopedic/biographical
+article" / "is in encyclopedic/biographical article format." / "is an encyclopedic article")
+and THREE of one Dravid claim.
+
+**Blocked by this, all on the same missing component:** H2's kill condition; ABLATE-01's
+unverified ablation fidelity; H3's redundancy score. The semantic matcher (SOURCE-01) is
+therefore NOT an improvement - it is a prerequisite.
+
+**R3 · Method note.** Recurrence is now matched WITHIN a position, not within a document.
+noise_analysis.py keyed on (doc_id, claim_norm) because NOISE-01 had one position only. The
+same claim at two positions comes from a DIFFERENT activation, so its Delta legitimately
+differs - pooling across positions would inflate the noise estimate. Script:
+`pipeline/noise_analysis2.py` (noise_analysis.py left untouched, still unverified by AG).
+
+---
+
+### MATCH-01 (PARKED) - semantic claim matcher, two pilots, not yet working   `2026-08-23`
+
+**Goal.** Group claims that assert the same thing across resamples, so a paired-Delta sd can
+be computed. Output format copied from the paper's shipped `match_response`
+(`<appears_in_N>1,2,4,6,7,8</appears_in_N>`); the prompt was never published (verified: the
+paper HTML carries decompose/verify/vibe/match `_response` keys and NO `_prompt` keys, and
+nothing matcher-like exists in kitft/natural_language_autoencoders or EasyNLA).
+
+**Convention - AG's, accepted 2026-08-23.** Two claims are the same iff removing either would
+take the same information out of the explanation. SAME: verb synonyms; articles/punctuation/
+tense; name completion; a dropped or added ADJECTIVE on the same head noun. DIFFERENT: adds
+an ENTITY/DATE/NUMBER; different PREDICATE TYPE ("mentions X" vs "is about X"); quote claims
+unless the quoted string is materially the same. Tie-break: dropped adjective = same, added
+noun = different. **Errs toward SPLITTING** - over-merging pools genuinely different claims,
+inflates measured noise, and would kill H2 falsely, which is a false negative we would
+publish. Under-merging just yields too few groups and announces itself.
+
+**Pilot 1 (4 activations, 128 claims).** 82 groups, 7 with >=3 members. **Over-merged badly**:
+one group held "mentions <PLACE>" together with "is about a place in <PLACE>" (different
+predicate type) and "<PLACE> institution called <NAME>" (added entity); another held a GENRE
+claim, a STRUCTURE claim and a TONE claim.
+Partition guard worked: caught "1 missing" and "a claim_id appears in more than one group",
+retried, recovered.
+
+**Pilot 2 - added two GENERAL rules (deliberately no domain-specific examples, at AG's
+instruction, to avoid fitting the prompt to this corpus).**
+- *PROPERTY rule*: genre, structure, tone, register and subject matter are DIFFERENT
+  properties; a claim about one is not a claim about another. (This gap was mine - the
+  convention covered entities/dates/predicate type but never said what makes two FORMAT
+  claims the same.)
+- *LABEL rule*: the group label must be ONE assertion every member makes; if it needs an
+  "or", split.
+Result: 9 groups with >=3 members, some now correct ("has a factual, historical tone" k=0,1,2;
+"ends with the token Eden" k=0,1,3). **But 7 of 9 labels contain "or" or "/" and the model
+merges anyway** - it writes the disqualifying label and does not act on it.
+
+**Diagnosis.** More prompting is not landing. Clustering 32 claims in one shot is the wrong
+shape of task for a self-check to be applied to.
+
+**Proposed fix, NOT yet built:** a second pass. Pass 1 proposes groups; pass 2 audits each
+group IN ISOLATION - "here are N claims said to assert the same thing; do they? if not,
+split". Judging one small group is far easier than clustering 32 claims, and it is the same
+guard-and-retry shape that has worked everywhere else in this pipeline. A cheap mechanical
+alternative to try first: programmatically reject any group whose label contains "or" or "/"
+and retry, which enforces the label rule rather than requesting it.
+
+**Status: PARKED** at AG's call, 2026-08-23 ~23:00. Script `pipeline/stage5_match.py` holds
+the frozen convention in its docstring and pilot-2 prompt.
+
+---
+
 ## Running index
 
 | # | title | date | verdict |
@@ -844,6 +947,8 @@ before the related-false Delta distribution is looked at.
 | JUDGE-01 | Stage 4 S/C/N verdicts on all 2065 claims | 2026-08-22 | ✅ **specificity replicates** THEME 69.1 / ENTITY 43.8 / DETAIL 36.0; **position hypothesis dead** (+2.4pp, SE 2.9) |
 | ABLATE-01 | rewrite-out ablation variants | 2026-08-22 | ✅ 2305 variants; **0.8% invented content** (guarded); 0.1% not ablatable |
 | SCORE-01 | AR scoring, Δ for all 2065 ablations | 2026-08-23 | ✅ **Δ exists**; 30% of removals IMPROVE reconstruction; DETAIL Δ = 4.5× THEME |
+| NOISE-02 | paired-Δ noise on the full data | 2026-08-23 | ⚠️ **unmeasurable with exact-string matching** — 1796/1916 singletons; H2 kill condition could not run |
+| MATCH-01 | semantic claim matcher | 2026-08-23 | ⏸️ PARKED — 2 pilots, still over-merges; verifier-pass fix designed, not built |
 
 ---
 
