@@ -932,6 +932,79 @@ the frozen convention in its docstring and pilot-2 prompt.
 
 ---
 
+### REL-01 - relatedness of the 995 false claims   `2026-08-25`
+
+**P1 · Question.** For every claim already judged false, is it RELATED to the passage or
+UNRELATED? H1 lives entirely in the related-false cell, so this stage decides whether that
+cell exists and how big it is. Asked only of false claims, as the paper does (its
+`vibe_response` emits one tag per false claim and none for supported ones).
+
+**P2 · Prediction, recorded before running.** UNRELATED under 5%. The AV describes a cricket
+activation, so it should confabulate WITHIN cricket - all 22 false claims on the one
+hand-checked activation were cricket.
+
+**R1 · RESULT. Prediction HELD.**
+```
+995 false claims rated · 0 failures · 149 s · ~$1 · no GPU
+  RELATED     975   (98.0%)
+  UNRELATED    20   ( 2.0%)
+  by level:  THEME 268/6   ENTITY 231/9   DETAIL 476/5   (related/unrelated)
+```
+
+**R1b · This quantifies a claim the paper only asserted.** Their prose: "most claims are at
+least somewhat related to the input context" and "even false claims, though, are usually
+somewhat related to the context rather than fabricated wholesale" - stated twice, with no
+number. **We measure 98%.** Given a cricket activation the AV confabulates cricket.
+
+**R1c · CONSEQUENCE: the paper's related-vs-unrelated contrast is NOT reproducible on this
+corpus.** They compare related-false Delta (0.14) against unrelated-false (0.06). We have 20
+unrelated claims, and about 6 of those are mislabelled (below). There is no unrelated cell.
+This must be stated as a limitation, not quietly omitted. H1 is unaffected - it asks whether
+the RELATED-FALSE cell is bimodal, and that cell is now 975 claims, the largest sample it
+could have had.
+
+**R2 · SIMPLIFIED TO BINARY after a failed three-way pilot.** The first version asked for the
+paper's DIRECT / ADJACENT / UNRELATED. On the 22 false claims of one hand-checked activation
+it returned ADJACENT 20 times, including cases AG had explicitly ruled DIRECT ("mentions
+2002" against a passage stating 2001; "mentions West Indies" against a passage naming
+Australia as the opponent). It was SELF-INCONSISTENT - the same claim text got ADJACENT at
+k=0 and DIRECT at k=2 - and its one UNRELATED was plainly wrong ("the text is an encyclopedic
+article", about a Wikipedia passage).
+**The deciding argument was not that the prompt could be fixed but that H1 never needed the
+split.** H1 tests bimodality WITHIN the related-false cell; it needs the cell to exist, not to
+be subdivided. The fine distinction cost reliability and bought nothing.
+
+**R3 · NEGATIVE CONTROL - run before spending, because 100% RELATED on a sample is also what
+a broken always-say-RELATED labeller produces.** Seven synthetic claims from other subject
+areas, scored against the Laxman passage: quantum entanglement, a sourdough recipe, the
+French Revolution, the Joseon dynasty, Python source code, a Wimbledon tennis final, and
+W.G. Grace in the 1880s. **7/7 UNRELATED.** So the label discriminates. It is slightly
+strict - it called a cricket claim from a different era unrelated - but strict in a
+defensible direction.
+
+**R4 · Known error mode, from eyeballing ALL 20 UNRELATED claims.** About 6 are wrong, and
+they fail the same way: **genre / format / structure claims** -
+"The text is a structured article" (of a structured article), "contains a biographical
+phrase" (of a biography), "is a school text", "follows a structured educational template",
+"provides a structured academic description of a book", and a claim about what the final
+token opens. The prompt says explicitly "A claim describing the passage's own genre, format
+or register is RELATED" and the model ignored it - the THIRD time today a stated rule failed
+to land (see MATCH-01's label rule, and the three-way pilot above).
+Correcting these moves the cell from 975 to ~981 of 995. **Impact on H1: negligible.**
+The other 14 are defensible: Asiatic Society, Kew Garden, Odisha, Kerala, Chandigarh against
+a passage about a Kolkata stadium's naming - colonial-India adjacent, but a strict reading
+calls them a different subject.
+
+**R5 · Standing caveat.** This is the FOURTH stage on `claude-haiku-4-5-20251001` -
+decompose, judge, rewrite, relatedness. A blind spot shared across all four is invisible to
+us. AG's two-judge idea (`runningdoc_AG.md`, 2026-08-21) remains the only proposed check and
+is not yet run.
+
+**Next:** H1's data requirement is met. The only remaining blocker is the PARKED detector
+decision, which must be settled BEFORE the real related-false Delta distribution is inspected.
+
+---
+
 ## Running index
 
 | # | title | date | verdict |
@@ -949,6 +1022,7 @@ the frozen convention in its docstring and pilot-2 prompt.
 | SCORE-01 | AR scoring, Δ for all 2065 ablations | 2026-08-23 | ✅ **Δ exists**; 30% of removals IMPROVE reconstruction; DETAIL Δ = 4.5× THEME |
 | NOISE-02 | paired-Δ noise on the full data | 2026-08-23 | ⚠️ **unmeasurable with exact-string matching** — 1796/1916 singletons; H2 kill condition could not run |
 | MATCH-01 | semantic claim matcher | 2026-08-23 | ⏸️ PARKED — 2 pilots, still over-merges; verifier-pass fix designed, not built |
+| REL-01 | relatedness of the 995 false claims | 2026-08-25 | ✅ **98% RELATED**; H1 cell = 975; paper's related-vs-unrelated contrast NOT reproducible here |
 
 ---
 
