@@ -742,3 +742,41 @@ trained NLAs. Completion condition sized to my resources, public artifact at the
 
   **Next: (1) AG's 150+30 blind grading — turns five provisional results into solid ones;
   (2) the matcher (verifier-pass design) — unblocks H2/H3; (3) start the write-up.**
+
+- **2026-08-25 (later) — JUDGE VALIDATED, MATCHER FIXED, H2 ANSWERED. Zero GPU spend.**
+  Full detail in `mats_2027/experiments.md` → JUDGE-02, MATCH-02, NOISE-03, H2-01.
+  - **JUDGE-02 — AG graded 150 blind + 30 retests in 33.6 min.** Self-consistency **96.7%**
+    (the paper's own hand-validation standard was 97% by two authors). Agreement with Haiku
+    **88.7%** on the binary scale. **The S/C/N three-way scale was my design error** — Stage 3
+    phrases claims as "The text mentions X", a META-claim, for which CONTRADICTED is
+    structurally almost unreachable (Haiku used it on 1.9% of claims). 10 of 27 disagreements
+    were pure C-vs-N confusion. **All analysis now uses binary SUPPORTED/FALSE**, as the paper
+    does.
+  - **Adjudicating all 27 disagreements found two error modes on DIFFERENT claim types:**
+    AG is too generous on `quote` claims (Haiku right); Haiku is too strict on `format`/`genre`
+    claims (AG right — third independent sighting of that Haiku bug). **They sit at opposite
+    ends of the specificity axis, so both COMPRESS the gradient — the true THEME→DETAIL gap is
+    probably larger than either measured.** The specificity replication survives and likely
+    understates.
+  - **AG's Bradman observation validated and extended into a characterised failure mode.**
+    "Bradman" IS in the Dravid prefix — as the *Bradman Oration* Dravid delivered. The AV
+    re-binds Dravid's records to Bradman and blends in Bradman's real 99.94 average from
+    parametric memory. **21 claims across 5 positions**, including "The text is about Don
+    Bradman". This is **entity-role misbinding seeded by a name genuinely in the prefix** —
+    the machinery behind the paper's unexplained "related rather than fabricated wholesale".
+    It took cricket knowledge to spot; the corpus choice paid off.
+  - **MATCH-02 — the matcher works.** Fix was a **second pass** (audit each group in
+    isolation), not a better prompt. 115 groups with ≥3 resamples vs 22 by regex (5.2×).
+  - **NOISE-03 — H2's kill condition NOT met, and the condition was mis-specified by me.**
+    The noise is **stochastic**: spread(K)²=signal²+noise²/K fitted on K=1,4 predicts K=2,3
+    out-of-sample to 3%, and two independent noise estimates agree. The slope is −0.273 not
+    −0.50 because there is a **signal floor at 55% of the K=1 spread** — which is what we want.
+    **Also: NOISE-01's 1.41× and NOISE-02's 0.12× used the MEDIAN within-group sd, the wrong
+    statistic for a variance decomposition. Do not quote them.** RMS-based: 0.5–1.4×.
+  - **H2-01 — the AR's per-claim AUC is 0.535 [0.510, 0.559]**, which quantifies the paper's
+    unquantified "weak per-claim verifier". K-averaging → 0.615 but the CI includes chance.
+    **H2 partially supported**; bottleneck is recurrence (115 of 2065 claims), not noise.
+
+  **Next: (1) the write-up — this is now the binding constraint; (2) optional: AG spot-checks
+  ~20 matcher groups, the only independent check that component has; (3) optional: more
+  resamples per activation would decide H2, but that is a pod session.**

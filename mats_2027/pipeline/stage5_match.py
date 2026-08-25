@@ -143,7 +143,112 @@ def match_one(client, rows, tries=3):
             else:
                 return [(grp["label"], grp["claim_ids"]) for grp in g], r.model
         print(f"      retry {attempt}/{tries}: {last}", flush=True)
-    raise RuntimeError(f"matcher failed on all {tries} attempts ({last})")
+    # REPAIR rather than lose the activation. The analysis needs a valid partition, nothing
+    # more. Duplicates keep their first occurrence; claims the model dropped become
+    # singletons - the conservative direction, consistent with "when in doubt, SPLIT".
+    print(f"      repairing after {tries} failed attempts ({last})", flush=True)
+    seen, fixed = set(), []
+    for grp in g:
+        keep = [c for c in grp["claim_ids"] if c in want and c not in seen]
+        seen.update(keep)
+        if keep: fixed.append((grp["label"], keep))
+    for cid in want - seen:
+        fixed.append(("", [cid]))
+    return fixed, r.model
+
+
+# ---------------------------------------------------------------- pass 2: the verifier
+# Pilots 1 and 2 both OVER-MERGED: the model wrote a disqualifying label ("<GENRE-A> or
+# <STRUCTURE-B>") and merged anyway, i.e. it would not apply the label rule to itself while
+# clustering 32 claims in one shot. Auditing ONE small group in isolation is a far easier
+# task, and guard-and-retry has worked everywhere else in this pipeline.
+VERIFY_PROMPT = """These claims were grouped together on the grounds that they all assert the \
+SAME thing about a text. Check that.
+
+<group>
+{claims}
+</group>
+
+Two claims assert the same thing if removing either one would take the same information out \
+of the description.
+
+SAME: verb synonyms; articles, punctuation, tense; a partial vs full name for one referent; \
+a dropped or added ADJECTIVE on the same head noun.
+
+DIFFERENT:
+- one adds an ENTITY, DATE or NUMBER the other does not
+- different PREDICATE TYPE: something appearing in the text vs the text being ABOUT it
+- different PROPERTY. Genre, structure, tone, register and subject matter are DIFFERENT \
+properties. A claim about the genre is not a claim about the tone, and neither is a claim \
+about what the text is about.
+- quote claims, unless the quoted string is materially the same
+
+If every claim here asserts the same thing, return the group unchanged as a single subgroup.
+Otherwise SPLIT it into subgroups, each holding only claims that do assert the same thing. A \
+claim that matches nothing else in the group becomes a subgroup of one.
+
+Each subgroup needs a label that is ONE assertion every member of it makes. If a label would \
+need an "or" to cover its members, that subgroup must be split further.
+
+Every claim_id given must appear in exactly one subgroup. Do not invent ids.
+
+Return JSON matching the provided schema."""
+
+VERIFY_SCHEMA = {
+    "type": "object",
+    "properties": {
+        "subgroups": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "label": {"type": "string"},
+                    "claim_ids": {"type": "array", "items": {"type": "string"}},
+                },
+                "required": ["label", "claim_ids"],
+                "additionalProperties": False,
+            },
+        }
+    },
+    "required": ["subgroups"],
+    "additionalProperties": False,
+}
+
+def verify_group(client, rows, tries=3):
+    """Audit ONE proposed group. Returns [(label, [claim_id,...]), ...] - possibly split."""
+    if len(rows) < 2:
+        return [("", [r["claim_id"] for r in rows])]
+    block = "\n".join(f'<claim id="{r["claim_id"]}">{r["text"]}</claim>' for r in rows)
+    want = {r["claim_id"] for r in rows}
+    last = None
+    for attempt in range(1, tries + 1):
+        r = client.messages.create(
+            model=MODEL, max_tokens=2000,
+            output_config={"format": {"type": "json_schema", "schema": VERIFY_SCHEMA}},
+            messages=[{"role": "user", "content": VERIFY_PROMPT.format(claims=block)}])
+        if r.stop_reason == "max_tokens":
+            last = "truncated"
+        else:
+            g = json.loads(next(b.text for b in r.content if b.type == "text"))["subgroups"]
+            got = [cid for sg in g for cid in sg["claim_ids"]]
+            if len(got) != len(set(got)):
+                last = "a claim_id appears in more than one subgroup"
+            elif set(got) != want:
+                last = f"not a partition: {len(want-set(got))} missing, {len(set(got)-want)} invented"
+            elif any(" or " in sg["label"].lower() for sg in g) and attempt < tries:
+                # The label rule, ENFORCED rather than requested - pilot 2 showed the model
+                # writes the disqualifying label and merges anyway. But only retry on it:
+                # the PARTITION is what the analysis uses; the label is a heuristic. Throwing
+                # away a sound partition over label wording costs sample size for nothing.
+                last = "a subgroup label still contains 'or'"
+            else:
+                return [(sg["label"], sg["claim_ids"]) for sg in g]
+        print(f"      verify retry {attempt}/{tries}: {last}", flush=True)
+    # after retries, fall back to MAXIMAL SPLIT rather than accept a bad merge: over-merging
+    # inflates measured noise and would kill H2 falsely; under-merging only costs sample size.
+    print(f"      verify failed ({last}) - falling back to singletons", flush=True)
+    return [("", [r["claim_id"]]) for r in rows]
+
 
 def main():
     ap = argparse.ArgumentParser()
@@ -151,6 +256,8 @@ def main():
     ap.add_argument("--out", required=True)
     ap.add_argument("--workers", type=int, default=8)
     ap.add_argument("--limit", type=int, default=None, help="first N activations only (smoke)")
+    ap.add_argument("--no-verify", action="store_true",
+                    help="skip pass 2 (the verifier) - for comparing against the pilots")
     a = ap.parse_args()
 
     import anthropic
@@ -167,6 +274,12 @@ def main():
     def work(key):
         try:
             groups, m = match_one(client, by_act[key])
+            if not a.no_verify:
+                by_id = {r["claim_id"]: r for r in by_act[key]}
+                out = []
+                for label, cids in groups:
+                    out += verify_group(client, [by_id[c] for c in cids])
+                groups = [(lbl or label, cids) for lbl, cids in out]
             return key, groups, m, None
         except Exception as e:
             return key, None, None, f"{type(e).__name__}: {e}"

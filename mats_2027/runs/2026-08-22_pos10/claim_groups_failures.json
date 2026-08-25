@@ -1,0 +1,22 @@
+[
+ {
+  "doc_id": "CRICKET::Eden Gardens",
+  "pos": 92,
+  "error": "RuntimeError: matcher failed on all 3 attempts (not a partition: 1 missing, 0 invented)"
+ },
+ {
+  "doc_id": "CRICKET::Eden Gardens",
+  "pos": 93,
+  "error": "RuntimeError: matcher failed on all 3 attempts (not a partition: 2 missing, 0 invented)"
+ },
+ {
+  "doc_id": "CRICKET::Sachin Tendulkar",
+  "pos": 174,
+  "error": "RuntimeError: matcher failed on all 3 attempts (a claim_id appears in more than one group)"
+ },
+ {
+  "doc_id": "CRICKET::Test cricket",
+  "pos": 112,
+  "error": "RuntimeError: matcher failed on all 3 attempts (a claim_id appears in more than one group)"
+ }
+]

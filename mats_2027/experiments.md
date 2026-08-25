@@ -1097,6 +1097,234 @@ finds a planted mixture 76-100% of the time. **It found nothing in the real data
 
 ---
 
+### JUDGE-02 - the judge validated by blind human grading   `2026-08-25`
+
+**P1 · Question.** Every result so far rests on `claude-haiku-4-5-20251001` verdicts that
+nobody had checked. Does the judge agree with a human, and - the number that actually matters
+- **does its error rate differ BY CLAIM LEVEL?** The specificity result is a gradient across
+levels; if judge error is also level-dependent, signal and label share a common cause.
+
+**Setup.** AG graded 150 stratified claims blind (50 per level, 15 per position offset,
+passages unbalanced and reported), plus **30 retests** re-presented under fresh ids at the end.
+The grading file contained ONLY claim_id / claim / prefix - no level, no position, no passage,
+no Haiku verdict. 180 items, 33.6 min, median 7 s, zero lookups.
+
+**R1 · AG is a reliable instrument.** Self-consistency **29/30 = 96.7%**. For calibration the
+paper's own hand-validation of its eval-awareness grader was 2 authors at 97% on 186 items -
+AG matches that standard alone. The single flip was a `quote` claim, the boundary he
+identified himself during the warm-up.
+
+**R2 · Agreement, and the reason the three-way scale was a mistake.**
+```
+AG vs HAIKU   three-way (S/C/N)          123/150 = 82.0%   CI [75, 87]
+              collapsed (S / FALSE)      133/150 = 88.7%   CI [83, 93]
+              -> 10 of 27 disagreements were PURELY C-vs-N confusion
+
+AG vs AG      three-way  29/30 = 97%
+              collapsed  29/30 = 97%     <- UNCHANGED
+```
+**AG's self-consistency does not move when C and N are merged**, so he applied his own C/N
+boundary consistently - he and Haiku simply used different boundaries.
+
+**Root cause is a design error of mine.** Stage 3 phrases nearly every claim as a META-claim
+about the text ("The text mentions X"), not a content claim ("X happened"). For a meta-claim
+the truth-maker is only whether X occurs; the passage never asserts "X is absent". So
+CONTRADICTED is structurally almost unreachable - Haiku used it on **39 of 2065 claims
+(1.9%)**. AG was asked to police a category that barely exists.
+**DECISION: all analysis uses the binary SUPPORTED / FALSE**, which is also what the paper's
+shipped verdicts use. The S/C/N split is retained in the data (collapsing is one-way) but is
+not used.
+
+**R3 · THE CONFOUND CHECK.** Agreement by level, collapsed:
+```
+  THEME    41/50 = 82.0%  CI[69,90]    AG supported 82.0%   Haiku 64.0%
+  ENTITY   48/50 = 96.0%  CI[87,99]    AG           36.0%   Haiku 36.0%
+  DETAIL   44/50 = 88.0%  CI[76,94]    AG           36.0%   Haiku 24.0%
+```
+Agreement DOES vary by level, and the disagreement is DIRECTIONAL: 16 of 27 are
+*AG SUPPORTED / Haiku NOT_IN_TEXT*; the reverse cell is **zero**. Haiku is systematically
+stricter, and stricter on THEME and DETAIL but not on ENTITY.
+
+**R4 · Adjudication of all 27 disagreements** (by Claude, applying AG's frozen conventions;
+NOT neutral - same model family as Haiku, so agreement with Haiku is weak evidence and
+agreement with AG against Haiku is stronger). Forced calls: **AG 11, Haiku 16.** The tally is
+the least useful output; the patterns are:
+- **AG is too generous on `quote` claims - Haiku is right.** 5 cases where the quoted string
+  is genuinely absent ("considered by many as one of the" vs the passage's "regarded as one of
+  the"). This is the rule AG added mid-warm-up, applied inconsistently. Strongest evidence it
+  is drift: the ONE retest flip was one of these, and his second answer agreed with Haiku.
+- **Haiku is too strict on `format` / `genre` claims - AG is right.** 6 cases where a vague
+  but correct description was marked absent, e.g. "provides a causal explanation for why an
+  alternative ball is needed during night play" against a passage reading "These matches start
+  later in the day ... necessitating the use of a pink ball to aid visibility". AG's rule
+  "vague is not false" is correct and Haiku ignores it. **THIRD independent sighting of Haiku
+  mishandling genre/format claims** (see REL-01 R4, MATCH-01 pilot 1).
+- **AG uses C where his own rule says N** (3 cases) - the unresolved boundary above, not an
+  error by either.
+- **Domain knowledge is AG's alone** (2 cases): "mentions the Border-Gavaskar Trophy" for the
+  2001 India-Australia series (correct under the alias rule); "Indian batsman Don Bradman"
+  caught as contradicted.
+
+**R5 · WHAT THIS DOES TO THE SPECIFICITY RESULT - it survives, and probably understates.**
+```
+                THEME    ENTITY   DETAIL
+  Haiku          64%       36%      24%     <- paper reported 64 / 28 / 24
+  AG             82%       36%      36%
+```
+The ORDERING (THEME > ENTITY >= DETAIL) holds on human labels. And the two real biases sit at
+OPPOSITE ends: Haiku under-credits THEME (pushing it down), AG over-credits DETAIL via quote
+claims (pushing it up). **Both compress the gradient**, so the true THEME-to-DETAIL gap is
+probably LARGER than either measured - Haiku 40pp, AG 46pp, truth plausibly more.
+Also note Haiku's 64/36/24 against the paper's 64/28/24: our judge closely reproduces theirs,
+consistent with both being the same model with the same bias.
+
+**R6 · A CHARACTERISED CONFABULATION MECHANISM (AG's observation, validated against the
+data).** AG noticed the AV writing "Don Bradman is the highest Test batting average ...
+longest time spent batting" about a **Rahul Dravid** passage. Checking the data:
+- **"Bradman" IS in the prefix** - as "the first non-Australian cricketer to deliver the
+  **Bradman Oration** in Canberra". He appears as the eponym of a lecture.
+- The prefix then says "**He** holds the records for the most balls faced in Test cricket and
+  the longest time [spent batting]" - "he" being Dravid.
+- The AV re-binds Dravid's records to Bradman, and blends in Bradman's REAL record (the 99.94
+  average) which is nowhere in the passage.
+- **21 claims mention Bradman**, across positions 142-146 and multiple resamples, including
+  "The text is about Don Bradman" - complete subject substitution on a Dravid biography.
+
+So: **entity-role misbinding, seeded by a name genuinely present in the prefix, then
+embellished from parametric memory.** Not fabrication from nothing. The paper states that
+false claims are "usually somewhat related to the context rather than fabricated wholesale"
+and never characterises the machinery; this is a concrete instance of it, and it required
+domain knowledge to spot - which is the corpus choice paying off.
+
+**R7 · What could still be wrong.** n=50 per level, so per-level CIs span ~20pp. The
+adjudication is by a model from Haiku's own family. AG's labels are the best available
+standard, not ground truth. The C/N design error means the three-way numbers should not be
+quoted anywhere.
+
+**Script:** `harness/agreement.py`. Cost: 33.6 min of AG's time, no API, no GPU.
+
+---
+
+### MATCH-02 - semantic claim matcher, working   `2026-08-25`
+
+**Fixes MATCH-01**, which over-merged in two pilots and was parked. The fix was NOT a better
+prompt - it was a **second pass**. Pass 1 proposes groups; pass 2 audits each group IN
+ISOLATION ("here are N claims said to assert the same thing; do they? if not, split"). Judging
+one small group is far easier than clustering 32 claims in one shot, and guard-and-retry is
+the shape that has worked everywhere else in this pipeline.
+
+**Enforced mechanically rather than requested:** pilot 2 showed the model writing a
+disqualifying label ("<GENRE-A> or <STRUCTURE-B>") and merging anyway. Pass 2 RETRIES on an
+"or" in a label - but only on early attempts, because the PARTITION is what the analysis
+consumes and the label is a heuristic; discarding a sound partition over label wording costs
+sample size for nothing.
+
+**Partition repair.** 4 of 60 activations failed pass 1 after 3 retries (claims dropped or
+duplicated). Rather than lose them: duplicates keep their first occurrence, dropped claims
+become singletons - the conservative direction, consistent with "when in doubt, SPLIT".
+Coverage after repair: **2065/2065 claims, 0 missing.**
+
+**R1 · RESULT.** `runs/2026-08-22_pos10/claim_groups.parquet` - 2065 claims in 1550 groups,
+241 s, ~$1.
+```
+group size          1x1198  2x237  3x80  4x25  5x8  6x1  7x1
+groups >=3 members      115      vs 22 with exact-string matching   (5.2x)
+groups >=4 members       35      vs  5                              (7.0x)
+```
+Over-merging is gone. Same activation, before and after pass 2:
+```
+pilot 2:  "structured/formatted as factual/informational prose"  size 7
+          - mixed GENRE + TONE + SUBJECT claims in one group
+MATCH-02: "structured as an informational/factual article format"  size 4
+          - k=0,1,2,3, all four genuinely asserting the same thing
+```
+
+**Not verified:** that the groups are correct, beyond hand-inspected examples. AG's proposed
+spot-check (eyeball ~20 groups, mark correct/incorrect) has NOT been run and is the only
+independent check this component would have. The paper's own matcher visibly erred on its
+published example (SOURCE-01 R5).
+
+---
+
+### NOISE-03 - paired-Delta noise, and H2's kill condition   `2026-08-25`
+
+**Unblocked by MATCH-02.** NOISE-02 could not run the 1/sqrt(K) test at all (5 complete
+groups). Now 31.
+
+**R1 · A STATISTICS ERROR IN NOISE-01 AND NOISE-02, now corrected.** Both reported
+noise/effect using the **MEDIAN** within-group sd. That distribution is heavily skewed -
+median 0.00041, p90 0.00347, max 0.00963 - so the median hides exactly the groups carrying the
+variance. **Median is the wrong statistic for a variance decomposition.**
+```
+                      median-based   RMS-based (correct)
+  110 groups (>=3)        0.09x            0.49x
+   31 groups (>=4)        0.35x            1.35x
+```
+**NOISE-01's 1.41x, NOISE-02's 0.12x and the 0.09x above are all on the wrong statistic and
+must not be quoted.** Defensible figure: noise/effect ~0.5-1.4x depending on subset.
+
+**R2 · H2's KILL CONDITION IS NOT MET - and the condition as written was MIS-SPECIFIED.**
+AG's condition (2026-08-19): "if variance does NOT fall as ~1/sqrt(K), the noise is systematic
+rather than stochastic, averaging cannot rescue it, and the approach is dead."
+Observed log-log slope **-0.273**, not -0.50. Read literally that is a partial kill. It is
+not, and the reason is a flaw in the condition: **the spread of claim MEANS can never fall to
+zero** - it converges on the real between-claim variation. spread(K)^2 = signal^2 + noise^2/K,
+so the slope is only -0.5 when noise swamps signal. The floor is the thing we WANT to exist.
+Claude wrote the condition without noticing this.
+
+**The correct test, run instead:** fit that model on K=1 and K=4 ONLY, then PREDICT K=2 and
+K=3 out of sample.
+```
+  K   observed   predicted    error
+  1   0.00227    0.00227      +0.0%   fitted
+  2   0.00177    0.00183      -3.2%   OUT-OF-SAMPLE
+  3   0.00166    0.00166      -0.1%   OUT-OF-SAMPLE
+  4   0.00157    0.00157      +0.0%   fitted
+
+  noise sd  0.00189  (from the K-sweep)
+            0.00212  (independent: within-group RMS sd)  <- separate computations agree
+  signal sd 0.00125  = 55% of the K=1 spread (the floor)
+```
+The noise divides by K to within 3% out of sample. **It is stochastic.** If it were systematic
+the spread would sit flat at 0.00227. noise/signal 1.51x at K=1 -> 0.76x at K=4.
+**H2's premise survives: averaging works as it assumed.**
+
+---
+
+### H2-01 - per-claim AUC, H2's target metric   `2026-08-25`
+
+**R1 · The AR is a weak per-claim verifier, and here is the number.**
+```
+  unaveraged, all claims   n = 1068 true vs 995 false
+      AUC = 0.535   95% bootstrap CI over claims [0.510, 0.559]   above chance
+```
+The paper states the AR is "only a weak per-claim verifier" and never quantifies it.
+**0.535 is what "weak" means** - real, and barely above the 0.500 chance line.
+
+**R2 · K-averaging moves it the right way but CANNOT be established at this sample size.**
+```
+  K-averaged, 91 matched groups with a consistent verdict (63 true, 28 false)
+      AUC = 0.615   95% bootstrap CI over claims [0.488, 0.736]   INCLUDES CHANCE
+      P(AUC > 0.5) across bootstrap = 0.961
+```
+Point estimate rises 0.535 -> 0.615 as H2 predicts, 96% of bootstrap draws above chance -
+**suggestive, not established.**
+CAUTION LOGGED: an earlier interval [0.585, 0.622] was computed over RESAMPLE DRAWS, not over
+claims, and was wrongly narrow. The bootstrap above is over claims.
+
+**R3 · VERDICT: H2 PARTIALLY SUPPORTED.** Premise right, mechanism verified (NOISE-03 R2),
+payoff underpowered. **The bottleneck is RECURRENCE, not noise.** Only 115 of 2065 claims
+recur in >=3 of the 4 resamples, and only 91 of those carry a consistent verdict. At K=4 there
+are not enough repeated claims to average over. Deciding this needs more resamples per
+activation - a pod session, not an analysis. Shortfall roughly 10x in sample size.
+
+**R4 · What could still be wrong.** Verdicts come from a judge validated at 88.7% (JUDGE-02),
+so ~11% of the labels under this AUC are wrong, which biases AUC toward 0.5. Groups come from
+an unspot-checked matcher (MATCH-02). Delta rests on the rewrite ablation, whose fidelity is
+still unverified (ABLATE-01 R3).
+
+---
+
 ## Running index
 
 | # | title | date | verdict |
@@ -1116,6 +1344,10 @@ finds a planted mixture 76-100% of the time. **It found nothing in the real data
 | MATCH-01 | semantic claim matcher | 2026-08-23 | ⏸️ PARKED — 2 pilots, still over-merges; verifier-pass fix designed, not built |
 | REL-01 | relatedness of the 995 false claims | 2026-08-25 | ✅ **98% RELATED**; H1 cell = 975; paper's related-vs-unrelated contrast NOT reproducible here |
 | H1-01 | H1 bimodality test on 975 related-false claims | 2026-08-25 | ❌ **H1 NOT SUPPORTED** (exploratory) — dip p=0.992 with 76–100% power; ΔBIC verdict was 100% skew artefact |
+| JUDGE-02 | blind human validation of the judge | 2026-08-25 | ✅ **88.7% agreement** (binary), AG self-consistency 96.7%; specificity result survives and likely understates |
+| MATCH-02 | semantic matcher with a verifier pass | 2026-08-25 | ✅ 115 groups ≥3 resamples vs 22 by regex (5.2×); over-merging fixed |
+| NOISE-03 | paired-Δ noise + H2 kill condition | 2026-08-25 | ✅ noise is **stochastic** (predicts K=2,3 out-of-sample to 3%); earlier median-based ratios were the wrong statistic |
+| H2-01 | per-claim AUC | 2026-08-25 | ⚠️ **AUC 0.535** [0.510,0.559] unaveraged — quantifies the paper's “weak verifier”; K-averaging → 0.615 but CI includes chance |
 
 ---
 

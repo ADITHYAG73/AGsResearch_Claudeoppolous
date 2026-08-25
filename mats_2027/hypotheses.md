@@ -92,6 +92,29 @@ suspicion. **Run R3 first.**
 not an absence of signal. Averaging Δ over K paraphrases / resamples raises per-claim
 AUC substantially.
 
+**Status:** `PARTIALLY SUPPORTED` — tested 2026-08-25 (NOISE-03, H2-01).
+
+> **Premise right, mechanism verified, payoff underpowered.**
+>
+> The noise IS stochastic: spread(K)^2 = signal^2 + noise^2/K, fitted on K=1 and K=4 only,
+> predicts K=2 and K=3 **out of sample to within 3%**. Two independent estimates of the noise
+> agree (0.00189 from the K-sweep, 0.00212 from within-group RMS sd). If it were systematic
+> the spread would sit flat. noise/signal 1.51x at K=1 -> 0.76x at K=4.
+>
+> **The kill condition below was MIS-SPECIFIED and is retained only as a record.** The
+> observed log-log slope is -0.273, not -0.50 — but the spread of claim MEANS can never fall
+> to zero; it converges on the real between-claim variation (the floor is at 55% of the K=1
+> spread). A slope of -0.5 only occurs when noise swamps signal. Claude wrote the condition
+> without noticing the floor.
+>
+> **Target metric, per-claim AUC:** 0.535 [0.510, 0.559] unaveraged on 2063 claims — which
+> quantifies the paper's unquantified "weak per-claim verifier". K-averaging on 91 matched
+> groups gives 0.615 but CI [0.488, 0.736] includes chance (P(AUC>0.5) = 0.961).
+>
+> **Bottleneck is RECURRENCE, not noise:** only 115 of 2065 claims recur in >=3 of 4
+> resamples. Deciding this needs ~10x the sample — more resamples per activation, i.e. a pod
+> session, not an analysis.
+
 **Sizing (order-of-magnitude, NOT a measurement).** From the 11 embedded fennec claims,
 converting Δmse% → FVE points via `ΔFVE ≈ Δmse% × (1−FVE)` with FVE assumed 0.78:
 per-claim spread ≈ 4.7× the ~0.17pp effect; **d ≈ 0.71 → per-claim AUC ≈ 0.69** (chance 0.50).
