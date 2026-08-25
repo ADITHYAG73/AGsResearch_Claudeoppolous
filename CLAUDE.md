@@ -706,3 +706,39 @@ trained NLAs. Completion condition sized to my resources, public artifact at the
   **Next: (1) Stage 5 relatedness (~$1, no GPU) — unblocks H1; (2) settle the parked detector
   decision BEFORE looking at related-false Δ; (3) AG's 150+30 blind grading to validate the
   judge; (4) `noise_analysis.py` walkthrough — still unverified by AG.**
+
+- **2026-08-25 — H1 TESTED AND KILLED. Relatedness done. Zero GPU spend.**
+  Full detail in `mats_2027/experiments.md` → REL-01, H1-01. Balance unchanged at $7.98.
+  - **REL-01: 98% of false claims are RELATED** (975 of 995), 2% unrelated, ~$1, no GPU.
+    This **quantifies a claim the paper asserts twice without a number** ("even false claims
+    are usually somewhat related to the context rather than fabricated wholesale"). Given a
+    cricket activation, the AV confabulates cricket.
+    → **Consequence: the paper's related-vs-unrelated Δ contrast is NOT reproducible on this
+    corpus** — 20 unrelated claims, ~6 of them mislabelled. State it as a limitation.
+    → Simplified to binary after a 3-way pilot failed (returned ADJACENT 20/22 including
+    cases AG ruled DIRECT, and was self-inconsistent on the same claim across resamples).
+    The deciding argument: **H1 never needed the split.**
+    → Negative control run BEFORE spending: 7 synthetic out-of-domain claims → 7/7 UNRELATED.
+  - **H1-01: H1 is NOT SUPPORTED.** Related-false Δ (n=975, K=1) is unimodal, dip p=0.992,
+    with **76–100% power** across H1's own predicted 26–42% mixture range. AG's kill condition
+    from Aug 19 met exactly.
+  - **The ΔBIC rule AG signed the same morning turned out to be broken, and it was Claude's
+    error.** It fired (+843.4) — but a single skewed hump matched to the real data produces
+    dBIC>10 in **200/200** draws, median +846.5. The real value sits BELOW the null's median.
+    Internal control: TRUE claims, which H1 says nothing about, score +2467. **SIM-02's
+    skewed null used skew ≈1.0; the real data is 2.63 (related-false) and 5.63 (true).**
+    Re-run at the real skew the rule false-positives at 99–100% for every affordable K.
+    Hartigan's dip — the detector Claude argued to DROP — has 0% false positives throughout
+    and was right all along.
+  - **H1's verdict is EXPLORATORY, not confirmatory**, because the rule had to be revised
+    after the real distribution was seen. That is the pre-registration's own clause applying
+    to Claude's mistake.
+  - **H3 (redundancy, AG's) is now the live alternative** — it would produce exactly this null
+    whether or not a mixture exists. A dead H1 does not show the AR treats these claims alike,
+    only that their measured Δ does not separate.
+  - Still parked: **MATCH-01** (semantic matcher, 2 pilots, over-merges; verifier-pass fix
+    designed not built). It blocks H2's kill condition, ablation-fidelity verification, and
+    H3's redundancy score.
+
+  **Next: (1) AG's 150+30 blind grading — turns five provisional results into solid ones;
+  (2) the matcher (verifier-pass design) — unblocks H2/H3; (3) start the write-up.**

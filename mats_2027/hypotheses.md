@@ -49,7 +49,24 @@ varied surface conditions (paraphrases, AV resamples, shuffled bullets), *then* 
 Note the two averagings are opposite in effect: averaging ACROSS claims destroys the shape
 (what the paper did); averaging WITHIN a claim, across replays, sharpens it.
 
-**Status:** `open` — no experiment run.
+**Status:** `KILLED` — tested 2026-08-25 (H1-01), NOT SUPPORTED, exploratory.
+
+> Related-false Delta (n=975, K=1) is **unimodal**: Hartigan dip p = **0.992**. The dip test
+> has a 0% false-positive rate and **76-100% power** across H1's own predicted mixture range
+> of 26-42%, measured at the observed noise. It found nothing.
+>
+> The frozen dBIC rule DID fire (+843.4) but that was a **skew artefact**: a single skewed
+> hump matched to the real data produces dBIC>10 in **200/200** draws, median +846.5 - the
+> real value sits BELOW the null's median. The internal control is that TRUE claims, which
+> H1 says nothing about, score dBIC +2467, higher still.
+>
+> Downgraded to exploratory because the rule had to be revised after the real distribution
+> was seen - Claude's SIM-02 skewed null used skew ~1.0 against a reality of 2.63-5.63.
+>
+> **Bounded:** a mixture below ~20% would have been missed (power 29% at p=0.20). H1 is dead
+> in its STATED form, not in every conceivable form. And a dead H1 does NOT show the AR
+> treats these claims alike - only that their measured Delta does not separate. See
+> [[H3]], which would produce exactly this null whether or not a mixture exists.
 
 **TODO (mine, before the form):** rewrite the Statement above in my own prose. The current
 wording is Claude's. Neel reads the form answers first and flags LLM-sounding prose as a
@@ -174,27 +191,47 @@ control.
 
 ---
 
-## OPEN DECISION (parked 2026-08-22) - which H1 detector counts
+## H1 DETECTOR RULE - DECIDED AND PRE-REGISTERED 2026-08-25 (AG)
 
-SIM-02 showed the frozen rule in `pipeline/analysis.py:120` - `dBIC>10 AND dip_p<0.05` -
-scores 0/40 at the measured noise, i.e. it makes H1 untestable. `dBIC>10` ALONE scores 40/40
-with 0/40 false positives on both a Gaussian and a skewed unimodal null, at K=4, n=2065.
+**THE RULE, frozen:**
+> H1 verdict = **dBIC(2 vs 1) > 10** on per-claim Delta averaged over K=4, computed on the
+> RELATED-FALSE claims only. Hartigan's dip statistic is reported alongside as a DESCRIPTIVE
+> number, **not** as a gate.
 
-**Proposed change (NOT yet accepted by AG):** H1 verdict = dBIC(2v1) > 10 on K=4-averaged
-per-claim Delta for the related-false category; Hartigan's dip reported as a descriptive
-statistic, not as a gate.
+**What it replaces.** `pipeline/analysis.py:120` froze the rule as `dBIC>10 AND dip_p<0.05`.
+SIM-02 (2026-08-22) showed that conjunction scores **0/40** at the plausible noise level: the
+dip test requires a visible VALLEY in the density, which is a strictly stronger claim than
+"two populations under one label". Under the frozen rule H1 could not return a positive
+result no matter what is true.
 
-**Why this is a decision and not a detail.** Changing a decision rule after seeing results is
-how people talk themselves into findings. The defence available here is that the change is
-made on PLANTED data, before any real Delta exists, with explicit false-positive control.
-That defence only holds if the change is recorded BEFORE real Delta is looked at.
+**Evidence for the replacement** (SIM-02, 40 seeds, n=2065, K=4, planted worlds):
+```
+                       detects planted   false alarm      false alarm
+                       mixture           on Gaussian null on SKEWED null
+  dBIC>10 AND dip       0/40                 0/40             0/40
+  dBIC>10 alone        40/40                 0/40             0/40
+```
+The skewed null exists because dBIC's real failure mode is fitting two Gaussians to a single
+LOPSIDED hump - a plain Gaussian null cannot expose that, and real Delta is right-skewed
+(NOISE-01: 81% positive; SCORE-01: 70% positive). At the operating point it was never fooled.
 
-**Status: PARKED.** AG has not accepted it. He asked for another pass on the statistics first.
+**Also established by SIM-02, and it constrains K:** more averaging can make dBIC WORSE. At
+lower noise the skew stops being masked and dBIC reads it as bimodality - 37/40 false alarms
+on the skewed null at K=8, ratio 1.0. K=4 is both what the data has and inside the safe band.
 
-**Nothing downstream is blocked.** Delta is computed identically either way; K=4 is fixed by
-the POS-01 data, not chosen; the AR session is needed for H2 regardless. The decision only
-governs how the resulting Delta distribution is read.
+**WHY THIS IS LEGITIMATE AND NOT GOALPOST-MOVING.** Changing a decision rule after seeing
+results is how people talk themselves into findings. Three things make this defensible, and
+all three must be stated in the write-up:
+  1. the change was decided on PLANTED data, never on real Delta;
+  2. it was decided BEFORE the real related-false Delta distribution was inspected - verifiably,
+     since relatedness labels did not exist until REL-01 on 2026-08-25 and the related-false
+     Delta distribution has not been computed as of this decision;
+  3. it carries explicit false-alarm control against a realistic (skewed) null, not just a
+     convenient one.
 
-**Constraint to honour:** decide this BEFORE looking at the real related-false Delta
-distribution. If real Delta has already been inspected when the decision is made, say so in
-the write-up and treat the H1 verdict as exploratory rather than confirmatory.
+**If the constraint is ever broken** - i.e. if real related-false Delta has been looked at
+before a rule change - say so in the write-up and downgrade the H1 verdict from confirmatory
+to exploratory. That is not optional.
+
+---
+

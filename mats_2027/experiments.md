@@ -1005,6 +1005,98 @@ decision, which must be settled BEFORE the real related-false Delta distribution
 
 ---
 
+### H1-01 - H1 tested and NOT SUPPORTED (exploratory)   `2026-08-25`
+
+**VERDICT: H1 is not supported. The test had 76-100% power across H1's own predicted range
+and found nothing.** Labelled EXPLORATORY, not confirmatory, for the reason in R3.
+
+**P1 · Question.** H1: the related-false cell is two populations under one label - some claims
+are faithful readouts the text-judge marks false ("Bhaskar" claims), the rest are genuine
+confabulations. Signature: the per-claim Delta distribution for related-false claims is
+BIMODAL, not one hump.
+
+**Setup.** 975 related-false claims (REL-01) joined to their Delta (SCORE-01). K=1: every
+claim INSTANCE is its own data point, because averaging over K=4 needs the semantic matcher,
+which is parked (MATCH-01). K=1 carries the full resample noise, so it is the harder test.
+
+**R1 · The frozen rule fired - and it was a FALSE POSITIVE.**
+```
+category            n     mean Delta   dBIC(2v1)   dip_p    rule says
+true             1068     +0.00115      +2467.6    0.992    "TWO LUMPS"
+related_false     975     +0.00060       +843.4    0.992    "TWO LUMPS"
+unrelated_false    20     +0.00019         +8.4    0.792    one lump
+```
+**The internal control is the `true` row.** True claims are the one category H1 says nothing
+about, and they score dBIC +2467 - three times higher than related-false. A rule that fires
+hardest on the category that should NOT be bimodal is not detecting bimodality.
+
+**R2 · Measured, not inferred: the rule fires on SKEW.** A single skewed hump matched to the
+real data's mean / sd / skew, n=975, 200 draws, nothing bimodal planted:
+```
+  dBIC>10 fired        200/200 = 100% FALSE POSITIVE
+  dip p<0.05             0/200 =   0%
+  median dBIC on the null  +846.5      max +1072.3
+  dBIC on the REAL data    +843.4      <- BELOW the null's median
+```
+The real value is indistinguishable from - slightly below - a pure single-skewed-hump null.
+The 2-component fit is diagnostic too: means [0.0002, 0.0019], sds [0.0005, 0.0026] - a narrow
+bell inside a wide bell, which is how two Gaussians fit a SKEWED distribution, not how they
+fit two separated populations.
+
+**R3 · MY ERROR, and it breaks the pre-registration.** SIM-02's skewed-null control - the
+evidence that justified the rule AG signed the same day - used a gamma with **skew ~1.0**.
+The real data:
+```
+  related-false  skew +2.63
+  true claims    skew +5.63
+```
+**The rule was validated against a null 2-5x less skewed than reality.** Re-run at the real
+skew, it is unsalvageable at every affordable K:
+```
+single skewed hump, nothing planted - dBIC>10 false-positive rate
+  skew 1.00 (SIM-02's null)   K=1 100%   K=4  74%   K=8  14%   K=16   1%
+  skew 2.63 (REAL rel-false)  K=1 100%   K=4 100%   K=8 100%   K=16  99%
+  skew 5.63 (REAL true)       K=1 100%   K=4 100%   K=8 100%   K=16 100%
+  dip test false positives:   0% everywhere
+```
+Because the rule had to be revised AFTER the real related-false Delta was inspected, the
+pre-registration's own clause applies: **the H1 verdict is downgraded from confirmatory to
+exploratory.** This is Claude's error in constructing the control, not a decision AG made.
+
+**R4 · The detector that works, and its POWER.** Hartigan's dip: 0% false positives at every
+skew and K tested. On the real related-false data it returns **p = 0.992** - emphatically one
+hump. Power to detect a mixture at the geometry H1 actually implies (a fraction p sitting at
+the TRUE-claim mean +0.00115, the rest lower so the overall mean stays at the observed
++0.00060), n=975, K=1, observed noise:
+```
+     p    low mode   high mode   gap/sd    dip finds    dBIC finds
+  0.20    +0.00046    +0.00115     0.44      23/80        80/80
+  0.26    +0.00041    +0.00115     0.48      61/80  76%   80/80
+  0.35    +0.00030    +0.00115     0.55      80/80 100%   80/80
+  0.42    +0.00020    +0.00115     0.61      80/80 100%   80/80
+```
+H1's stated prediction (hypotheses.md) is **p ~ 26-42%**. Across that whole range the dip test
+finds a planted mixture 76-100% of the time. **It found nothing in the real data.**
+
+**R5 · What could still be wrong.**
+- **A mixture below ~20% would have been missed** (power 29% at p=0.20). H1 is dead in its
+  STATED form (26-42%), not in every conceivable form.
+- K=1, not the pre-registered K=4. The power numbers above were measured AT the observed
+  noise, so they already account for it - but K=4 averaging would raise power further and is
+  still worth doing once the matcher exists.
+- Verdicts (JUDGE-01) and relatedness (REL-01) are from an UNVALIDATED judge. AG's 150+30
+  blind grading remains the check that turns this from provisional to solid.
+- Ablation fidelity is unverified (ABLATE-01 R3) - that exactly one claim leaves the
+  explanation still needs the matcher.
+- **H3 is the live alternative.** If redundancy flattens Delta toward zero regardless of truth
+  (AG, 2026-08-22), that would explain the absence of any mixture whether or not one exists.
+  H1 being dead does NOT establish that the AR treats these claims alike - only that their
+  measured Delta does not separate.
+
+**Script:** `pipeline/h1_probe.py`. Cost: zero - no GPU, no API.
+
+---
+
 ## Running index
 
 | # | title | date | verdict |
@@ -1023,6 +1115,7 @@ decision, which must be settled BEFORE the real related-false Delta distribution
 | NOISE-02 | paired-Δ noise on the full data | 2026-08-23 | ⚠️ **unmeasurable with exact-string matching** — 1796/1916 singletons; H2 kill condition could not run |
 | MATCH-01 | semantic claim matcher | 2026-08-23 | ⏸️ PARKED — 2 pilots, still over-merges; verifier-pass fix designed, not built |
 | REL-01 | relatedness of the 995 false claims | 2026-08-25 | ✅ **98% RELATED**; H1 cell = 975; paper's related-vs-unrelated contrast NOT reproducible here |
+| H1-01 | H1 bimodality test on 975 related-false claims | 2026-08-25 | ❌ **H1 NOT SUPPORTED** (exploratory) — dip p=0.992 with 76–100% power; ΔBIC verdict was 100% skew artefact |
 
 ---
 
