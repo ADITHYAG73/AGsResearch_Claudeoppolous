@@ -17,6 +17,20 @@ Rule: **if it isn't in this file, it didn't happen.** Sessions evaporate; this d
   State numbers where possible — a prediction with no number is hard to be wrong about.
 **P3 · Kill condition.** What result makes me abandon or revise this?
 
+**INFRA BLOCK (mandatory for every GPU run, from 2026-08-27).** Record ALL of these. The
+image tag caused a ~$0.25 / one-hour failure on 2026-08-23 because it was written down
+TRUNCATED, so "the known-good recipe" was only half known. Copy the full string.
+```
+Pod id        · GPU + VRAM · cloud (SECURE/COMMUNITY) · datacenter · $/hr
+Image         · FULL tag, no abbreviation
+Disk          · container GB (+ network volume if any)
+Setup         · script path + git SHA it ran at
+Versions      · torch / transformers / torchvision / sglang  (torchvision matters: see pod_setup.sh header)
+Wall clock    · setup / model download / run, separately - they hide different problems
+Cost          · balance before -> after, and the delta
+Failures      · anything retried, and why
+```
+
 **Setup.** Model + checkpoint + layer · data + n · what exactly was ablated/varied ·
   metric and its definition · seeds · anything held fixed.
 
@@ -1325,6 +1339,165 @@ still unverified (ABLATE-01 R3).
 
 ---
 
+### PATCH-01 - does the confabulation follow the name?  DATA COLLECTED   `2026-08-26/27`
+
+**Origin.** JUDGE-02 R6 characterised a failure mode from AG's observation: the AV re-binds
+Dravid's records to "Bradman", a name genuinely present in the prefix as the *Bradman Oration*
+Dravid delivered. 21 claims across 5 positions, including "The text is about Don Bradman".
+That is a correlation. This experiment makes it causal.
+
+**Design.** Edit ONLY the proper noun in the upstream sentence; sample the SAME last 10
+positions. "Bradman" sits at char 293 of 584 - 50% through, upstream of every sampled
+position (138-147, covering "...and the longest time spent batting in Tests."). Sampling from
+the END keeps offsets aligned even when the edit changes token count.
+```
+1. ORIGINAL   "...to deliver the Bradman Oration in Canberra."      baseline / replication
+2. FAMOUS     "...to deliver the Gavaskar Oration in Canberra."     famous batsman WITH records
+3. REAL       "...to deliver the Umrigar Oration in Canberra."      real, far less famous
+4. INVENTED   "...to deliver the Thangavelu Oration in Canberra."   a name the model cannot know
+5. NEUTRAL    "...he was honoured at a ceremony in Canberra."       no proper noun, length kept
+6. DELETE     sentence removed entirely                             necessity test
+```
+Conditions 2-4 differ from 1 by exactly ONE WORD. 5 controls for "a name was there at all";
+6 controls for the sentence existing.
+
+**What each contrast decides.**
+- **6 vs 1** - does the misattribution vanish with the name? NECESSITY.
+- **2 vs 1** - does it follow the swapped name? SUFFICIENCY.
+- **4 vs 2** - THE DISCRIMINATING ONE. Misattribution to an INVENTED name means the mechanism
+  is pure TOKEN COPYING (grab a nearby proper noun). Only misattributing to KNOWN names means
+  it needs PARAMETRIC KNOWLEDGE - the model must believe that entity is record-holder-shaped.
+- **3 vs 2** - does fame matter, or only realness?
+- **5 vs 6** - is it the name specifically, or just having a sentence there?
+
+**AG's PREDICTIONS, recorded before any data exists (2026-08-26):**
+- **6 (DELETE): the misattribution DISAPPEARS.** Stated as his claim.
+- **2 (FAMOUS): misattribution happens, but in the REVERSE DIRECTION** - he expects
+  *Gavaskar's* record attributed to *Dravid*, not Dravid's to Gavaskar as with Bradman.
+  Reasoning: Gavaskar is a world-famous former India captain and batter, so more confusable
+  with Dravid. **This differs from Claude's expectation** (mirror of Bradman), which is what
+  makes the contrast informative. **The analysis must detect BOTH directions.**
+- **3 (REAL/Umrigar): "some sort of effect"** - weaker than 2.
+- **4 (INVENTED/Thangavelu): NO effect** - "the name does not strike a chord... I don't expect
+  the model to be pushed." Caveat he added himself: "expect the unexpected has been the norm."
+
+**Cost.** 6 conditions x 10 positions x K=4 = 240 explanations. One pod session, well under
+$1 (balance $57.98 as of 2026-08-26). Same scale as POS-01.
+
+**Status: PRE-REGISTERED 2026-08-26. DATA COLLECTED 2026-08-27. Not yet analysed.**
+
+**INFRA BLOCK**
+```
+Pod id      wzvu6zyqaamh7g
+GPU         NVIDIA A40 48 GB · SECURE · CA-MTL-1 · $0.44/hr · driver 570.211.01 · CUDA 12.8
+            Intel Xeon Gold 6342 · container RAM ceiling 46.57 GiB
+Image       runpod/pytorch:1.0.2-cu1281-torch280-ubuntu2404      (FULL tag)
+Disk        100 GB container, no network volume  (peak 56 GB used)
+Setup       mats_2027/pipeline/pod/pod_setup.sh - UNCHANGED, sglang included
+Versions    torch 2.9.1+cu128 · transformers 5.3.0 · torchvision 0.24.1+cu128 · sglang 0.5.10.post1
+Wall clock  setup 164s · extract incl. 24 GB base download 290s · AV server load ~500s
+            · decode 2104s (280 explanations, 7.50 s each) · total uptime 1h 1m
+Cost        $57.98 -> $57.49  =  $0.49
+Failures    orchestration script HUNG on an inline background-ssh (setsid nohup ... & inside
+            the ssh command: the server inherited the connection's fds so ssh never returned;
+            the script never reached its own health check, which had a 15-min cap - with no
+            timeout on that line it would have hung INDEFINITELY). ~8 min idle GPU, ~$0.06.
+            Caught only because AG watched the console and asked why utilisation was 0%.
+            -> `pipeline/pod_watchdog.sh` written in response, and it must be started
+               alongside every future pod. Its own first version was ALSO broken (macOS has
+               no GNU `timeout`, so every poll returned empty and it emitted 61 false
+               UNREACHABLE alarms); now it detects the timeout mechanism and SELF-TESTS,
+               refusing to run rather than crying wolf.
+```
+
+**GATES, both passed before spending further**
+- **Env gate** (before any model download): torch/transformers/torchvision/sglang printed, plus
+  the two imports that aborted the interpreter on 2026-08-23. `GATE_PASS`.
+- **Regression gate** (before decode): `PATCH::ORIGINAL` is byte-identical to the POS-01 Dravid
+  passage, so its activations must reproduce. **cos = 1.000000 on all ten positions** - exact,
+  on a different pod, five days later. Same positions 138-147.
+
+**R1 · DATA COLLECTED.** `runs/2026-08-27_patch/` - `activations.parquet` (70),
+`explanations.parquet` (280), plus setup/extract/generate/av_server logs and the corpus that
+actually ran.
+```
+70 activations · 280 explanations · 7 conditions x 10 positions x K=4, all complete
+had_tags 100%  ·  CJK 0  ·  no-tag 0  ·  mean 658 chars, 7.50 s per explanation
+corpus that RAN == corpus we sent : True   (byte-diffed, not assumed)
+tokens: DELETE 122 · NEUTRAL 139 · COHERENT 143 · ORIGINAL 148 · FAMOUS 148 · REAL 149 · INVENTED 150
+        - every condition's last-10 positions clear the official _MIN_POSITION=50 floor
+```
+
+**Not yet analysed.** Next: Stage 3 decompose on the 280 explanations, then measure - per AG's
+prediction - BOTH directions of misattribution (swapped name gets Dravid's records; Dravid
+gets the swapped name's records).
+
+---
+
+### PARKED OPTION - more resamples to decide H2   `2026-08-27`
+
+**Why.** H2-01 left H2 partially supported: mechanism verified, point estimate moving the
+right way (AUC 0.535 -> 0.615), but only **115 of 2065 claims recur in >=3 of the 4
+resamples**, so the CI spans chance. **The bottleneck is RECURRENCE, and recurrence is a
+direct function of K.** Going K=4 -> K=12 multiplies the pool twice over: more claims per
+activation, and far more chances for any one claim to appear >=3 times.
+
+**Cost.** 60 positions x 8 extra resamples = 480 explanations, ~1 hour of AV decode, ~$0.44.
+Doing it inside an already-running AV session saves setup + the 24 GB base download - about
+8 minutes and **$0.06**. That saving is NOT a reason to rush the decision.
+
+**Argument against:** not money, time. The write-up has not started and the deadline is
+2026-09-04. A decided H2 is a stronger result; an undecided H2 with a stated bottleneck is
+still honest and publishable.
+
+**Status: PARKED at AG's call, 2026-08-27** - deliberately, to avoid holding two experiments
+in mind at once. Revisit after PATCH-01 is analysed.
+
+---
+
+### PARKED - infra: persistent model cache (network volume)   `2026-08-27`
+
+**Problem.** Every pod session re-pays ~10 min of overhead: pip installs (~165 s) plus
+re-downloading the models (base Gemma ~24 GB, AV ~24 GB, AR ~16 GB). With a 100 GB CONTAINER
+disk and no volume, all of it is thrown away on terminate.
+
+**RunPod storage, from the official docs (docs.runpod.io/pods/storage/types):**
+```
+Container disk   $0.10/GB/mo   CLEARED when the pod stops          <- what we use
+Volume disk      $0.10/GB/mo running, $0.20 stopped; DELETED on terminate
+Network volume   $0.07/GB/mo   independent, survives terminate, reattachable
+```
+
+**Why NOT now.** Two reasons, in order of importance:
+1. **Network volumes are DATACENTER-LOCKED.** Official docs: "Attaching a single network
+   volume constrains worker deployments to that volume's datacenter, which may limit GPU
+   availability"; "Select a GPU type (available options depend on volume location)." We have
+   been alternating CA-MTL-1 / EU-SE-1 precisely because A40 availability moves. Pinning to
+   one DC trades a certain 10 minutes for an uncertain "no GPU today".
+2. **Economics over a 9-day horizon.** ~80 GB cached = $5.60/mo = $0.19/day. Saves ~10 min
+   per session ~= $0.07 of GPU each. Over the remaining project it LOSES money. It wins on
+   waiting time, not cost.
+
+**Why it becomes RIGHT later.** AG intends to continue mech-interp work past MATS. On a
+multi-month horizon this is clearly correct - 64 GB cached permanently for ~$4.50/month, cold
+start in minutes. This is exactly CLAUDE.md section 8b, which has never been implemented.
+Mitigation for the DC lock, from the docs: attach volumes in more than one datacenter and
+sync manually ("Data does not sync automatically between volumes").
+
+**Do instead, both free:**
+- **Save a RunPod template** - locks image / disk / ports / env as a named config. Does not
+  save download time, but it makes the FULL image tag unmistypeable, which is the exact
+  failure that cost ~$0.25 and an hour on 2026-08-23.
+- **Batch aggressively.** The ~10 min overhead is per SESSION, not per task. Three large
+  sessions cost 30 min of overhead; ten small ones cost 100.
+
+**Not worth it:** a custom Docker image. Saves the 165 s of pip installs at the price of
+building and pushing ~15 GB.
+
+**Status: PARKED 2026-08-27**, to revisit when the project outlives the MATS deadline.
+
+---
+
 ## Running index
 
 | # | title | date | verdict |
@@ -1348,6 +1521,7 @@ still unverified (ABLATE-01 R3).
 | MATCH-02 | semantic matcher with a verifier pass | 2026-08-25 | ✅ 115 groups ≥3 resamples vs 22 by regex (5.2×); over-merging fixed |
 | NOISE-03 | paired-Δ noise + H2 kill condition | 2026-08-25 | ✅ noise is **stochastic** (predicts K=2,3 out-of-sample to 3%); earlier median-based ratios were the wrong statistic |
 | H2-01 | per-claim AUC | 2026-08-25 | ⚠️ **AUC 0.535** [0.510,0.559] unaveraged — quantifies the paper's “weak verifier”; K-averaging → 0.615 but CI includes chance |
+| PATCH-01 | causal test: does the confabulation follow the name? | 2026-08-27 | 📊 DATA COLLECTED — 70 activations, 280 explanations, $0.49; regression gate cos=1.000000; not yet analysed |
 
 ---
 

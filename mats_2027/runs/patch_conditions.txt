@@ -1,0 +1,75 @@
+==============================================================================================
+[ORIGINAL]   584 chars   (+0 vs ORIGINAL)
+==============================================================================================
+Dravid was named one of the Wisden Cricketers of the Year by Wisden Cricketers' Almanack in
+2000 and received the Player of the Year and the Test Player of the Year awards at the
+inaugural ICC awards ceremony in 2004. In December 2011, he was the first non-Australian
+cricketer to deliver the Bradman Oration in Canberra. As of May 2026, he is the fifth-
+highest run scorer in Test cricket, and was the first player to score a century in all ten
+Test-playing countries (now 12). He holds the records for the most balls faced in Test
+cricket and the longest time spent batting in Tests.
+
+==============================================================================================
+[FAMOUS]   585 chars   (+1 vs ORIGINAL)
+==============================================================================================
+Dravid was named one of the Wisden Cricketers of the Year by Wisden Cricketers' Almanack in
+2000 and received the Player of the Year and the Test Player of the Year awards at the
+inaugural ICC awards ceremony in 2004. In December 2011, he was the first non-Australian
+cricketer to deliver the Gavaskar Oration in Canberra. As of May 2026, he is the fifth-
+highest run scorer in Test cricket, and was the first player to score a century in all ten
+Test-playing countries (now 12). He holds the records for the most balls faced in Test
+cricket and the longest time spent batting in Tests.
+
+==============================================================================================
+[REAL]   584 chars   (+0 vs ORIGINAL)
+==============================================================================================
+Dravid was named one of the Wisden Cricketers of the Year by Wisden Cricketers' Almanack in
+2000 and received the Player of the Year and the Test Player of the Year awards at the
+inaugural ICC awards ceremony in 2004. In December 2011, he was the first non-Australian
+cricketer to deliver the Umrigar Oration in Canberra. As of May 2026, he is the fifth-
+highest run scorer in Test cricket, and was the first player to score a century in all ten
+Test-playing countries (now 12). He holds the records for the most balls faced in Test
+cricket and the longest time spent batting in Tests.
+
+==============================================================================================
+[INVENTED]   587 chars   (+3 vs ORIGINAL)
+==============================================================================================
+Dravid was named one of the Wisden Cricketers of the Year by Wisden Cricketers' Almanack in
+2000 and received the Player of the Year and the Test Player of the Year awards at the
+inaugural ICC awards ceremony in 2004. In December 2011, he was the first non-Australian
+cricketer to deliver the Thangavelu Oration in Canberra. As of May 2026, he is the fifth-
+highest run scorer in Test cricket, and was the first player to score a century in all ten
+Test-playing countries (now 12). He holds the records for the most balls faced in Test
+cricket and the longest time spent batting in Tests.
+
+==============================================================================================
+[NEUTRAL]   541 chars   (-43 vs ORIGINAL)
+==============================================================================================
+Dravid was named one of the Wisden Cricketers of the Year by Wisden Cricketers' Almanack in
+2000 and received the Player of the Year and the Test Player of the Year awards at the
+inaugural ICC awards ceremony in 2004. In December 2011, he was honoured at a ceremony in
+Canberra. As of May 2026, he is the fifth-highest run scorer in Test cricket, and was the
+first player to score a century in all ten Test-playing countries (now 12). He holds the
+records for the most balls faced in Test cricket and the longest time spent batting in
+Tests.
+
+==============================================================================================
+[DELETE]   480 chars   (-104 vs ORIGINAL)
+==============================================================================================
+Dravid was named one of the Wisden Cricketers of the Year by Wisden Cricketers' Almanack in
+2000 and received the Player of the Year and the Test Player of the Year awards at the
+inaugural ICC awards ceremony in 2004. As of May 2026, he is the fifth-highest run scorer in
+Test cricket, and was the first player to score a century in all ten Test-playing countries
+(now 12). He holds the records for the most balls faced in Test cricket and the longest time
+spent batting in Tests.
+
+==============================================================================================
+[COHERENT]   579 chars   (-5 vs ORIGINAL)
+==============================================================================================
+Dravid was named one of the Wisden Cricketers of the Year by Wisden Cricketers' Almanack in
+2000 and received the Player of the Year and the Test Player of the Year awards at the
+inaugural ICC awards ceremony in 2004. In December 2011, he was the first non-Indian
+cricketer to deliver the Gavaskar Oration in Mumbai. As of May 2026, he is the fifth-highest
+run scorer in Test cricket, and was the first player to score a century in all ten Test-
+playing countries (now 12). He holds the records for the most balls faced in Test cricket
+and the longest time spent batting in Tests.

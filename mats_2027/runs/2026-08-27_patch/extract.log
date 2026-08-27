@@ -1,0 +1,76 @@
+7 passages · last 10 positions · K=4 · T=1.0
+[1/3] base model → activations
+Fetching 5 files:   0%|          | 0/5 [00:00<?, ?it/s]Fetching 5 files:  20%|██        | 1/5 [02:40<10:42, 160.70s/it]Fetching 5 files:  40%|████      | 2/5 [03:50<05:21, 107.20s/it]Fetching 5 files:  60%|██████    | 3/5 [03:50<01:56, 58.43s/it] Fetching 5 files:  80%|████████  | 4/5 [04:17<00:45, 45.87s/it]Fetching 5 files: 100%|██████████| 5/5 [04:28<00:00, 33.37s/it]Fetching 5 files: 100%|██████████| 5/5 [04:28<00:00, 53.73s/it]
+Loading weights:   0%|          | 0/1065 [00:00<?, ?it/s]Loading weights:  23%|██▎       | 240/1065 [00:00<00:00, 2368.17it/s]Loading weights:  45%|████▍     | 477/1065 [00:00<00:00, 1922.91it/s]Loading weights:  63%|██████▎   | 675/1065 [00:00<00:00, 1554.75it/s]Loading weights:  80%|████████  | 853/1065 [00:00<00:00, 1625.36it/s]Loading weights:  96%|█████████▌| 1022/1065 [00:00<00:00, 1461.68it/s]Loading weights: 100%|██████████| 1065/1065 [00:00<00:00, 1619.77it/s]
+      70 activations in 277s → activations.parquet
+      PATCH::ORIGINAL                pos= 138 T= 139 ||h||=  55805.2
+      PATCH::ORIGINAL                pos= 139 T= 140 ||h||=  64778.8
+      PATCH::ORIGINAL                pos= 140 T= 141 ||h||=  64800.6
+      PATCH::ORIGINAL                pos= 141 T= 142 ||h||=  73296.7
+      PATCH::ORIGINAL                pos= 142 T= 143 ||h||=  73264.4
+      PATCH::ORIGINAL                pos= 143 T= 144 ||h||=  74242.9
+      PATCH::ORIGINAL                pos= 144 T= 145 ||h||=  62339.5
+      PATCH::ORIGINAL                pos= 145 T= 146 ||h||=  66138.0
+      PATCH::ORIGINAL                pos= 146 T= 147 ||h||=  54475.0
+      PATCH::ORIGINAL                pos= 147 T= 148 ||h||=  64516.3
+      PATCH::FAMOUS                  pos= 138 T= 139 ||h||=  55798.4
+      PATCH::FAMOUS                  pos= 139 T= 140 ||h||=  65032.5
+      PATCH::FAMOUS                  pos= 140 T= 141 ||h||=  65052.7
+      PATCH::FAMOUS                  pos= 141 T= 142 ||h||=  72799.5
+      PATCH::FAMOUS                  pos= 142 T= 143 ||h||=  73258.7
+      PATCH::FAMOUS                  pos= 143 T= 144 ||h||=  74252.8
+      PATCH::FAMOUS                  pos= 144 T= 145 ||h||=  62586.9
+      PATCH::FAMOUS                  pos= 145 T= 146 ||h||=  66165.2
+      PATCH::FAMOUS                  pos= 146 T= 147 ||h||=  54475.6
+      PATCH::FAMOUS                  pos= 147 T= 148 ||h||=  64242.2
+      PATCH::REAL                    pos= 139 T= 140 ||h||=  56042.6
+      PATCH::REAL                    pos= 140 T= 141 ||h||=  65256.6
+      PATCH::REAL                    pos= 141 T= 142 ||h||=  65279.2
+      PATCH::REAL                    pos= 142 T= 143 ||h||=  72795.7
+      PATCH::REAL                    pos= 143 T= 144 ||h||=  73760.9
+      PATCH::REAL                    pos= 144 T= 145 ||h||=  74258.5
+      PATCH::REAL                    pos= 145 T= 146 ||h||=  62829.4
+      PATCH::REAL                    pos= 146 T= 147 ||h||=  66141.6
+      PATCH::REAL                    pos= 147 T= 148 ||h||=  54968.5
+      PATCH::REAL                    pos= 148 T= 149 ||h||=  65009.7
+      PATCH::INVENTED                pos= 140 T= 141 ||h||=  56046.1
+      PATCH::INVENTED                pos= 141 T= 142 ||h||=  65007.9
+      PATCH::INVENTED                pos= 142 T= 143 ||h||=  65294.6
+      PATCH::INVENTED                pos= 143 T= 144 ||h||=  73299.1
+      PATCH::INVENTED                pos= 144 T= 145 ||h||=  73250.7
+      PATCH::INVENTED                pos= 145 T= 146 ||h||=  74238.3
+      PATCH::INVENTED                pos= 146 T= 147 ||h||=  62346.7
+      PATCH::INVENTED                pos= 147 T= 148 ||h||=  66151.0
+      PATCH::INVENTED                pos= 148 T= 149 ||h||=  54723.7
+      PATCH::INVENTED                pos= 149 T= 150 ||h||=  64491.4
+      PATCH::NEUTRAL                 pos= 129 T= 130 ||h||=  55785.1
+      PATCH::NEUTRAL                 pos= 130 T= 131 ||h||=  64760.0
+      PATCH::NEUTRAL                 pos= 131 T= 132 ||h||=  64784.7
+      PATCH::NEUTRAL                 pos= 132 T= 133 ||h||=  72793.4
+      PATCH::NEUTRAL                 pos= 133 T= 134 ||h||=  73744.3
+      PATCH::NEUTRAL                 pos= 134 T= 135 ||h||=  74269.1
+      PATCH::NEUTRAL                 pos= 135 T= 136 ||h||=  62349.0
+      PATCH::NEUTRAL                 pos= 136 T= 137 ||h||=  66162.0
+      PATCH::NEUTRAL                 pos= 137 T= 138 ||h||=  54474.3
+      PATCH::NEUTRAL                 pos= 138 T= 139 ||h||=  62959.0
+      PATCH::DELETE                  pos= 112 T= 113 ||h||=  55805.1
+      PATCH::DELETE                  pos= 113 T= 114 ||h||=  64491.9
+      PATCH::DELETE                  pos= 114 T= 115 ||h||=  64521.6
+      PATCH::DELETE                  pos= 115 T= 116 ||h||=  72802.6
+      PATCH::DELETE                  pos= 116 T= 117 ||h||=  73255.3
+      PATCH::DELETE                  pos= 117 T= 118 ||h||=  74776.1
+      PATCH::DELETE                  pos= 118 T= 119 ||h||=  61863.6
+      PATCH::DELETE                  pos= 119 T= 120 ||h||=  65159.8
+      PATCH::DELETE                  pos= 120 T= 121 ||h||=  54733.9
+      PATCH::DELETE                  pos= 121 T= 122 ||h||=  64753.8
+      PATCH::COHERENT                pos= 133 T= 134 ||h||=  55813.4
+      PATCH::COHERENT                pos= 134 T= 135 ||h||=  65292.9
+      PATCH::COHERENT                pos= 135 T= 136 ||h||=  65054.3
+      PATCH::COHERENT                pos= 136 T= 137 ||h||=  72802.1
+      PATCH::COHERENT                pos= 137 T= 138 ||h||=  73243.6
+      PATCH::COHERENT                pos= 138 T= 139 ||h||=  74780.8
+      PATCH::COHERENT                pos= 139 T= 140 ||h||=  62093.9
+      PATCH::COHERENT                pos= 140 T= 141 ||h||=  65651.9
+      PATCH::COHERENT                pos= 141 T= 142 ||h||=  54473.0
+      PATCH::COHERENT                pos= 142 T= 143 ||h||=  63482.8
+      --extract-only: done.
