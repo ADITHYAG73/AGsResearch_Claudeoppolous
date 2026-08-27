@@ -1,0 +1,105 @@
+PATCH-01 — same relative position (offset -4 from the end), k=0, all seven conditions
+every condition's text at this position is IDENTICAL; only the upstream context differs
+
+============================================================================================
+[ORIGINAL]   pos=143   616 chars
+============================================================================================
+Structured article format with factual cricket statistics, following a standard template
+of biographical/statistical descriptions for Test cricket teams.
+
+The phrase "Most runs scored by Rahul Dravid. The longest time spent" establishes a list
+of cricket statistics, with "duration of his innings" as a final statistic.
+
+Final token "spent" ends a standard cricket statistic phrase ("38 hours...the longest time
+spent"), requiring a noun phrase — likely "at the crease" or "playing in a match" or "by a
+batsman" or "on averaging a score" — or "in scoring" to complete the statistic about Sir
+Donald Bradman's record.
+
+============================================================================================
+[FAMOUS]   pos=143   654 chars
+============================================================================================
+Structured article format with informational snippets about cricket statistics, following
+a factual, encyclopedia-style template for Test cricket records.
+
+The phrase "highest time spent" statistic is being introduced, listing a batsman's
+longevity record — "38 hours, 26 minutes" suggests a cricket statistical fact about Sir
+Donald Bradman.
+
+Final token "spent" ends a noun phrase ("38 hours spent...the longest time spent"),
+requiring a completion like "at the crease" or "playing cricket" — a specific cricket
+statistical category. Possibly "by a batsman" or "at the crease without being dismissed"
+or "averaging..." in the context of match duration.
+
+============================================================================================
+[REAL]   pos=144   697 chars
+============================================================================================
+Structured article format with factual cricket data: biographical snippets about Test
+cricket statistics, following a standard sports news template.
+
+The phrase "Ricky Ponting holds the record for the longest time spent" introduces a list
+of statistical achievements for the Australian batsman, with "longest time spent" implying
+a specific statistic about batting duration or innings.
+
+Final token "spent" ends a noun phrase ("the longest time spent..."), requiring a noun
+phrase completing the statistic — likely "at the crease" or "playing cricket" — or "by a
+batsman without scoring" or "at the crease without scoring." or "in analysing a match" — a
+specific cricket metric about the duration.
+
+============================================================================================
+[INVENTED]   pos=145   617 chars
+============================================================================================
+Structured factual article format with biographical/cricket statistics for a sports quiz
+template, following standard cricket reference style.
+
+The phrase "Most runs scored by Rahul Dravid" introduces a list of statistical records,
+with "Longest time spent" implying a final cricket statistic about the batsman.
+
+Final token "spent" ends a noun phrase ("36,771 balls spent...the longest time spent"),
+requiring a completion — likely "at the crease" or "playing...by a batsman" or "on
+averaging a match/score" or "at the crease without getting out." or "in analyzing a match"
+— a statistic about the duration or field.
+
+============================================================================================
+[COHERENT]   pos=138   636 chars
+============================================================================================
+Structured article format with factual cricket statistics, following a list of cricket
+records and biographical details for Sir Donald Bradman.
+
+The phrase "Most runs scored by Sachin Tendulkar, the longest time spent" signals a
+standard biographical template describing a cricket statistic, likely including batting
+duration or statistical category.
+
+Final token "spent" ends a phrase ("38 hours spent...the longest time spent"), requiring a
+noun phrase like "at the crease" or "playing cricket" — likely "at the crease" or "in
+scoring a century" or "by a team." or "on analysing the match." or "at the crease without
+being dismissed."
+
+============================================================================================
+[NEUTRAL]   pos=134   581 chars
+============================================================================================
+Structured article format with factual cricket statistics, following a list of cricket
+facts about Don Bradman.
+
+The phrase "The highest Test batsman, with 9,999 runs and the longest time spent" sets up
+a standard biographical fact about Bradman, implying a statistic about batting time or
+longevity.
+
+Final token "spent" ends a noun phrase ("the longest time spent"), requiring a noun phrase
+completion — likely "at the crease" or "playing cricket" — followed by a statistic about
+Bradman or the match. Then, likely "by a batsman" or "fielding at the crease." or "on
+averaging..."
+
+============================================================================================
+[DELETE]   pos=117   661 chars
+============================================================================================
+Structured article format with factual cricket statistics, following a standard
+biographical/sports data template for Test cricket records.
+
+The phrase "Most runs scored by Sachin Tendulkar, the highest duration spent" introduces a
+list of cricket statistics about the Australian Test batsman, establishing a factual
+completion about batting statistics.
+
+Final token "spent" ends a phrase ("the maximum time spent"), requiring a noun phrase —
+likely "at the crease" or "playing" — to complete the statistic about Brian Lara's
+longevity. Also likely "on averaging a match" or "fielding at the crease without
+interruption" or "by a batsman" to name the statistic.
