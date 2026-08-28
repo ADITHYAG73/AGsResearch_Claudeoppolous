@@ -1511,7 +1511,39 @@ must intervene on the ACTIVATION, not on the text** - i.e. actual activation pat
 hooks at the position where "Bradman" is encoded, or sampling positions much closer to the
 Bradman sentence. Text-level intervention 250 characters upstream cannot reach it.
 
-**R7 · Cost of the analysis.** ~$1 of Haiku for Stage 3; the rest is local and free.
+**R7 · CORRECTION TO R5, same day - I over-corrected.** R5 says "the seeding hypothesis is
+UNTESTED, not refuted" and "we tested nothing". AG pushed on that and he was right: it is
+too strong in the other direction. The activation barely moved, but the INPUT unambiguously
+changed - in DELETE the word "Bradman" was removed from the text the model read. That is a
+valid causal manipulation regardless of how far the activation moved, and its result is
+unambiguous:
+```
+ORIGINAL (Bradman in the text)      9/40  22.5%
+NEUTRAL  (name removed)            12/40  30.0%
+DELETE   (sentence removed)        10/40  25.0%
+ORIGINAL vs DELETE: +2.5 pp, z = +0.26 - no detectable difference
+If DELETE's true rate were 5% (near-abolished): P(>=10/40) = 2e-5
+```
+And the claim that cannot have been copied: in DELETE the AV wrote *"the text mentions his
+highest batting average in Tests as 99.94"*. Neither "Bradman" nor "99.94" is in that text
+(verified by string search). It came from the model's own knowledge.
+
+**So, precisely:**
+- **ESTABLISHED: at these positions the prefix token is NOT NECESSARY** (deleting it does
+  nothing) **and a planted name is NOT SUFFICIENT** (0/40 for Gavaskar, Umrigar, Thangavelu).
+  The JUDGE-02 R6 seeding story is **refuted at these positions**, not merely untested.
+- **What the tiny activation shift adds** is the EXPLANATION: the representation 250
+  characters downstream does not carry the name, so the AV has nothing to read.
+- **Still UNTESTED, and narrower than R5 claimed:** whether at positions NEAR the name, where
+  the activation surely does encode it, the AV reads it out. That is the redesign - sample
+  positions immediately after the edited sentence.
+
+**Why two contradictory statements ended up on disk within an hour:** I nearly reported a
+false discovery from the raw counts (R3), the activation control (R4) caught it, and I then
+overcompensated to "tested nothing". AG's question forced the middle. Both errors are mine;
+both are left in the record because the sequence is more useful than a clean version.
+
+**R8 · Cost of the analysis.** ~$1 of Haiku for Stage 3; the rest is local and free.
 Scripts: `pipeline/stage3_decompose.py` (unchanged), analysis ad hoc.
 
 ---
@@ -1606,7 +1638,7 @@ building and pushing ~15 GB.
 | MATCH-02 | semantic matcher with a verifier pass | 2026-08-25 | ✅ 115 groups ≥3 resamples vs 22 by regex (5.2×); over-merging fixed |
 | NOISE-03 | paired-Δ noise + H2 kill condition | 2026-08-25 | ✅ noise is **stochastic** (predicts K=2,3 out-of-sample to 3%); earlier median-based ratios were the wrong statistic |
 | H2-01 | per-claim AUC | 2026-08-25 | ⚠️ **AUC 0.535** [0.510,0.559] unaveraged — quantifies the paper's “weak verifier”; K-averaging → 0.615 but CI includes chance |
-| PATCH-01 | causal test: does the confabulation follow the name? | 2026-08-28 | ⚠️ **INTERVENTION NEVER REACHED THE REPRESENTATION** — text edit 250 chars upstream moves the activation <1% as far as one token step. Behavioural null is UNINFORMATIVE; seeding hypothesis UNTESTED, not refuted |
+| PATCH-01 | causal test: does the confabulation follow the name? | 2026-08-28 | ❌ **prefix token NOT necessary, planted name NOT sufficient** (at these positions). DELETE keeps Bradman at 25% incl. his real 99.94 avg; Gavaskar planted → 0/40. Activation barely moved (<1% of one token step) — that is the *why*. Untested: positions near the name |
 
 ---
 
