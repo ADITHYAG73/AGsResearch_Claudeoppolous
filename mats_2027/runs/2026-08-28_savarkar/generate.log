@@ -1,0 +1,15 @@
+8 passages · last 10 positions · K=4 · T=1.0
+[1/3] loaded 80 activations from activations.parquet (skip-extract)
+[2/3] AV → explanations
+Fetching 18 files:   0%|          | 0/18 [00:00<?, ?it/s]Fetching 18 files:  94%|█████████▍| 17/18 [00:00<00:00, 124.01it/s]Fetching 18 files: 100%|██████████| 18/18 [00:00<00:00, 28.84it/s] 
+[NLAClient] 7aec22599e8a9cd533564868999b443fcc963cf4: d_model=3840 inj_scale=80000.0 embed_scale=61.97 inj_char='㈜'(id=246566)
+      50/320  no-tag so far 0  (382s)
+      100/320  no-tag so far 0  (762s)
+      150/320  no-tag so far 0  (1143s)
+      200/320  no-tag so far 0  (1525s)
+      250/320  no-tag so far 0  (1907s)
+      300/320  no-tag so far 0  (2285s)
+      320 explanations in 2436s · no-tag 0 (0.0%)
+[3/3] summary
+      CJK-containing explanations: 0  (should be ~0; >0 ⇒ check injection)
+      mean chars 679  mean gen 7.60s

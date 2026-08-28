@@ -31,3 +31,15 @@ venv/
 # Full local copy of transformer-circuits.pub/2026/nla/. Keep locally; re-fetch, don't mirror.
 mats_2027/sources/nla_paper_*.raw.html
 mats_2027/sources/nla_paper_*.txt
+
+# ---- copyrighted book PDFs: research use locally, NEVER publish ----
+# Vikram Sampath, "Savarkar: Echoes from a Forgotten Past" (Viking, 2019)
+*.pdf
+mats_2027/sources/books/
+mats_2027/runs/savarkar_run_corpus.jsonl
+
+# ---- SAVARKAR-01 run: files that carry the copyrighted passage text ----
+# activations.parquet embeds the full prefix per position; the corpus copy is verbatim text.
+# claims/verdicts/explanations quote fragments only, and are kept (fair-use research use).
+mats_2027/runs/2026-08-28_savarkar/savarkar_run_corpus.jsonl
+mats_2027/runs/2026-08-28_savarkar/activations.parquet

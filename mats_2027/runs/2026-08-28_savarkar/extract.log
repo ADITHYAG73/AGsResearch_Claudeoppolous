@@ -1,0 +1,86 @@
+8 passages · last 10 positions · K=4 · T=1.0
+[1/3] base model → activations
+Fetching 5 files:   0%|          | 0/5 [00:00<?, ?it/s]Fetching 5 files:  20%|██        | 1/5 [02:37<10:30, 157.65s/it]Fetching 5 files:  40%|████      | 2/5 [02:49<03:36, 72.02s/it] Fetching 5 files:  60%|██████    | 3/5 [03:02<01:29, 44.99s/it]Fetching 5 files:  80%|████████  | 4/5 [03:09<00:29, 29.89s/it]Fetching 5 files: 100%|██████████| 5/5 [03:13<00:00, 20.61s/it]Fetching 5 files: 100%|██████████| 5/5 [03:13<00:00, 38.69s/it]
+Loading weights:   0%|          | 0/1065 [00:00<?, ?it/s]Loading weights:  27%|██▋       | 292/1065 [00:00<00:00, 2909.16it/s]Loading weights:  55%|█████▍    | 583/1065 [00:00<00:00, 2670.62it/s]Loading weights:  80%|████████  | 852/1065 [00:00<00:00, 2400.59it/s]Loading weights: 100%|██████████| 1065/1065 [00:00<00:00, 2672.10it/s]
+      80 activations in 203s → activations.parquet
+      SAVARKAR::p55                  pos= 138 T= 139 ||h||=  66187.1
+      SAVARKAR::p55                  pos= 139 T= 140 ||h||=  61535.4
+      SAVARKAR::p55                  pos= 140 T= 141 ||h||=  71672.1
+      SAVARKAR::p55                  pos= 141 T= 142 ||h||=  64758.4
+      SAVARKAR::p55                  pos= 142 T= 143 ||h||=  46606.9
+      SAVARKAR::p55                  pos= 143 T= 144 ||h||=  60104.7
+      SAVARKAR::p55                  pos= 144 T= 145 ||h||=  62882.7
+      SAVARKAR::p55                  pos= 145 T= 146 ||h||=  47201.4
+      SAVARKAR::p55                  pos= 146 T= 147 ||h||=  60525.2
+      SAVARKAR::p55                  pos= 147 T= 148 ||h||=  75164.3
+      SAVARKAR::p61                  pos= 128 T= 129 ||h||=  67603.5
+      SAVARKAR::p61                  pos= 129 T= 130 ||h||=  55787.6
+      SAVARKAR::p61                  pos= 130 T= 131 ||h||=  64832.0
+      SAVARKAR::p61                  pos= 131 T= 132 ||h||=  52200.5
+      SAVARKAR::p61                  pos= 132 T= 133 ||h||=  59706.9
+      SAVARKAR::p61                  pos= 133 T= 134 ||h||=  62950.4
+      SAVARKAR::p61                  pos= 134 T= 135 ||h||=  59794.5
+      SAVARKAR::p61                  pos= 135 T= 136 ||h||=  85939.0
+      SAVARKAR::p61                  pos= 136 T= 137 ||h||=  69845.9
+      SAVARKAR::p61                  pos= 137 T= 138 ||h||=  70861.8
+      SAVARKAR::p69                  pos= 146 T= 147 ||h||=  73967.2
+      SAVARKAR::p69                  pos= 147 T= 148 ||h||=  62680.2
+      SAVARKAR::p69                  pos= 148 T= 149 ||h||=  73426.1
+      SAVARKAR::p69                  pos= 149 T= 150 ||h||=  78405.4
+      SAVARKAR::p69                  pos= 150 T= 151 ||h||=  83556.1
+      SAVARKAR::p69                  pos= 151 T= 152 ||h||=  78281.8
+      SAVARKAR::p69                  pos= 152 T= 153 ||h||=  60911.5
+      SAVARKAR::p69                  pos= 153 T= 154 ||h||=  66583.5
+      SAVARKAR::p69                  pos= 154 T= 155 ||h||=  53351.8
+      SAVARKAR::p69                  pos= 155 T= 156 ||h||=  60271.0
+      SAVARKAR::p91                  pos= 153 T= 154 ||h||=  85916.2
+      SAVARKAR::p91                  pos= 154 T= 155 ||h||=  76663.5
+      SAVARKAR::p91                  pos= 155 T= 156 ||h||=  76044.2
+      SAVARKAR::p91                  pos= 156 T= 157 ||h||=  63412.4
+      SAVARKAR::p91                  pos= 157 T= 158 ||h||=  58908.4
+      SAVARKAR::p91                  pos= 158 T= 159 ||h||=  57716.8
+      SAVARKAR::p91                  pos= 159 T= 160 ||h||=  68171.5
+      SAVARKAR::p91                  pos= 160 T= 161 ||h||=  59853.4
+      SAVARKAR::p91                  pos= 161 T= 162 ||h||=  70402.5
+      SAVARKAR::p91                  pos= 162 T= 163 ||h||=  80951.1
+      SAVARKAR::p98                  pos= 128 T= 129 ||h||=  78605.4
+      SAVARKAR::p98                  pos= 129 T= 130 ||h||=  76455.7
+      SAVARKAR::p98                  pos= 130 T= 131 ||h||=  66641.3
+      SAVARKAR::p98                  pos= 131 T= 132 ||h||=  55824.6
+      SAVARKAR::p98                  pos= 132 T= 133 ||h||=  81082.4
+      SAVARKAR::p98                  pos= 133 T= 134 ||h||=  93377.0
+      SAVARKAR::p98                  pos= 134 T= 135 ||h||=  89082.6
+      SAVARKAR::p98                  pos= 135 T= 136 ||h||=  85919.4
+      SAVARKAR::p98                  pos= 136 T= 137 ||h||=  68146.9
+      SAVARKAR::p98                  pos= 137 T= 138 ||h||=  70296.1
+      SAVARKAR::p174                 pos= 115 T= 116 ||h||=  55580.6
+      SAVARKAR::p174                 pos= 116 T= 117 ||h||=  73741.1
+      SAVARKAR::p174                 pos= 117 T= 118 ||h||=  82059.7
+      SAVARKAR::p174                 pos= 118 T= 119 ||h||=  76240.7
+      SAVARKAR::p174                 pos= 119 T= 120 ||h||=  70946.0
+      SAVARKAR::p174                 pos= 120 T= 121 ||h||=  74567.4
+      SAVARKAR::p174                 pos= 121 T= 122 ||h||=  71609.2
+      SAVARKAR::p174                 pos= 122 T= 123 ||h||=  57383.0
+      SAVARKAR::p174                 pos= 123 T= 124 ||h||=  68194.3
+      SAVARKAR::p174                 pos= 124 T= 125 ||h||=  70576.7
+      SAVARKAR::p449                 pos= 124 T= 125 ||h||=  58746.5
+      SAVARKAR::p449                 pos= 125 T= 126 ||h||=  68290.1
+      SAVARKAR::p449                 pos= 126 T= 127 ||h||=  83228.4
+      SAVARKAR::p449                 pos= 127 T= 128 ||h||=  72707.3
+      SAVARKAR::p449                 pos= 128 T= 129 ||h||=  68460.8
+      SAVARKAR::p449                 pos= 129 T= 130 ||h||=  70635.6
+      SAVARKAR::p449                 pos= 130 T= 131 ||h||=  79726.3
+      SAVARKAR::p449                 pos= 131 T= 132 ||h||=  75995.5
+      SAVARKAR::p449                 pos= 132 T= 133 ||h||=  68609.7
+      SAVARKAR::p449                 pos= 133 T= 134 ||h||=  72540.4
+      GATE::Rahul Dravid             pos= 138 T= 139 ||h||=  55805.2
+      GATE::Rahul Dravid             pos= 139 T= 140 ||h||=  64778.8
+      GATE::Rahul Dravid             pos= 140 T= 141 ||h||=  64800.6
+      GATE::Rahul Dravid             pos= 141 T= 142 ||h||=  73296.7
+      GATE::Rahul Dravid             pos= 142 T= 143 ||h||=  73264.4
+      GATE::Rahul Dravid             pos= 143 T= 144 ||h||=  74242.9
+      GATE::Rahul Dravid             pos= 144 T= 145 ||h||=  62339.5
+      GATE::Rahul Dravid             pos= 145 T= 146 ||h||=  66138.0
+      GATE::Rahul Dravid             pos= 146 T= 147 ||h||=  54475.0
+      GATE::Rahul Dravid             pos= 147 T= 148 ||h||=  64516.3
+      --extract-only: done.

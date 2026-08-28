@@ -1615,6 +1615,153 @@ building and pushing ~15 GB.
 
 ---
 
+### SAVARKAR-01 (PRE-REGISTERED, running) - does the confabulation pattern survive a change of domain?   `2026-08-28`
+
+**Why.** Every result so far is on cricket Wikipedia. Wikipedia is in every pretraining set,
+so when the AV writes "Bradman 99.94" about a Dravid passage we cannot tell "reading the
+activation" from "reciting Wikipedia". A 2019 Penguin biography (Vikram Sampath, *Savarkar:
+Echoes from a Forgotten Past*) is far less certain to be memorised - not zero, but a
+genuinely different regime. It is also a domain where AG has NO expert knowledge, which
+controls for "did cricket expertise inflate the effect?".
+
+**Corpus.** 7 random pages from the narrative range (27-640), seed 20260829, reject-and-
+redraw on junk, each trimmed to a sentence-bounded ~600-char tail (length-matched to
+cricket's ~600 median). Dates PRESERVED (an earlier footnote-stripper ate day numbers -
+caught and fixed). Two draws replaced from the same RNG stream: p84 (over-cut) and p376
+(first-person quoted memoir). Final: **p55, p61, p69, p91, p98, p174, p449.** Plus the POS-01
+Dravid passage as a **regression canary** (`GATE::Rahul Dravid`), excluded from analysis.
+Corpus files are gitignored (copyrighted text).
+
+**PREDICTIONS, recorded before any data exists.**
+- **AG (2026-08-28, before the run):** "I expect confabulations to be lesser in this case -
+  but am prepared to be amazed." And, after reading all seven, a prediction about p449
+  (Babarao at Sabarmati, Hasrat Mohani, the Gandhi-Amanullah rumour).
+  **SHARPENED 2026-08-28 ~22:50 IST, while decode was still running.** The first version -
+  "confabulations involving Gandhi" - was unfalsifiable, since Gandhi IS in the passage and
+  a SUPPORTED "the text mentions Gandhi" would have counted. Claude recorded it without
+  asking for a failure condition; that was Claude's error. AG's actual prediction, stated
+  when asked: **RE-BINDING - the AV will attribute Babarao's or Mohani's situation to Gandhi
+  (e.g. "Gandhi was imprisoned at Sabarmati").** That is the Bradman shape: a famous name
+  present in the prefix acquires the passage's predicates.
+  **Fails if:** Gandhi appears only in SUPPORTED claims (the pact rumour, correctly
+  reported) or only in invented-fact claims (a Gandhi date/quote not in the text) with no
+  re-binding of Babarao's or Mohani's predicates to him.
+  AG also flagged, unprompted: the last-10 window is "Afghanistan, calling upon the latter
+  to invade India." - Gandhi is ~17 tokens upstream of it - so **Afghanistan-centred claims
+  are plausible**, and earlier positions may look different. Open-minded on rate.
+- **Claude (2026-08-27):** if confabulation is driven by parametric recall, Savarkar passages
+  should produce FEWER and LESS SPECIFIC invented entities than cricket did. If rates match
+  cricket, confabulation is a property of the AV itself and memorisation is not the driver -
+  the more surprising outcome.
+- Both predict the same direction on rate, so a cricket-matching result refutes both at once.
+
+**INFRA BLOCK**
+```
+Pod id      jnb4md43lul9ky
+GPU         NVIDIA A40 46068 MiB · SECURE · CA-MTL-1 · $0.44/hr · driver 570.195.03
+            Intel Xeon Gold 6342
+Image       runpod/pytorch:1.0.2-cu1281-torch280-ubuntu2404
+Disk        100 GB container, no volume
+Setup       mats_2027/pipeline/pod/pod_setup.sh - UNCHANGED
+Versions    torch 2.9.1+cu128 · transformers 5.3.0 · torchvision 0.24.1+cu128 · sglang 0.5.10.post1
+            (env gate passed; the two imports that aborted on 2026-08-23 succeeded)
+Wall clock  setup ~3 min · extract incl. 24 GB download ~4 min · AV load 387 s
+            · decode 320 explanations ~43 min (7.60 s each) · total ~58 min
+Cost        $57.49 -> $57.04  =  $0.45
+Failures    NONE on the pod. The launcher fix (standalone script, all fds redirected) worked:
+            "launched pid 2400" printed, ssh returned, health polled from a separate
+            connection, AV up in 387 s, decode started immediately. Watchdog self-tested OK
+            and correctly flagged only the 2-min AV-load idle. One local nit: my end-of-decode
+            poll grepped for a string the log did not print, so the pull was done by hand.
+            Dashboard "695 processes" MEASURED: 56 real processes, 700 threads - it counts
+            threads. Host RAM 15.6/46.6 GiB vs PATCH-01's 41.6 - last night's reading had the
+            base model still resident alongside the AV; tonight it was released cleanly.
+Watchdog    pod_watchdog.sh running alongside; self-test passed ("first reading: 0 %")
+```
+Launcher fix vs PATCH-01: the AV server is started by a standalone script with all fds
+redirected, and health is polled from a separate connection, so ssh returns and the
+orchestration cannot hang on that line.
+
+**R1 · DATA COLLECTED.** `runs/2026-08-28_savarkar/` - 80 activations, 320 explanations,
+had_tags 100%, CJK 0, no-tag 0, 8 docs x 10 positions x K=4 complete, corpus that ran
+byte-identical to sent. Regression canary: `GATE::Rahul Dravid` reproduces POS-01 at
+**cos = 1.000000 on all ten positions**.
+
+**R2 · Stage 3 + Stage 4.** 3202 claims from 320 explanations (0 parse problems, 150 s);
+3202 verdicts (0 failures, 423 s). Same pinned judge, same frozen prompt as cricket.
+Dravid canary excluded from every number below (2730 Savarkar claims remain).
+
+**R3 · BOTH PREDICTIONS REFUTED - the AV confabulates MORE on the biography, not less.**
+```
+SUPPORTED rate (binary)   Savarkar              cricket               diff
+THEME                  49.2% [46,52] n=1330   70.0% [67,73] n= 707   -20.8pp
+ENTITY                 21.7% [19,25] n= 695   39.3% [34,45] n= 333   -17.6pp
+DETAIL                 28.1% [25,32] n= 705   34.6% [31,38] n= 628    -6.5pp
+ALL                    36.7% [35,39] n=2730   50.5% [48,53] n=1668   -13.8pp
+```
+Same judge, same prompt, length-matched passages; the ALL-level CIs do not touch. **63% of
+claims false on the biography vs 50% on cricket.** AG predicted fewer; Claude predicted fewer
+and less specific. Both wrong in the same direction, which is why both were recorded.
+Also: the specificity ORDERING changes shape - cricket THEME > ENTITY > DETAIL; Savarkar
+THEME > DETAIL > ENTITY. ENTITY claims are the worst category here (78% false).
+
+**R4 · THE MECHANISM, and it is the opposite of the memorisation story.** For every FALSE
+ENTITY/person claim, is the named person anywhere in the passage?
+```
+                 false person-claims   person IS in passage    person NOT in passage
+                                       (wrong predicate)       (IMPORTED from knowledge)
+  Savarkar              233                 15  ( 6.4%)             218  (93.6%)
+  cricket                60                  1  ( 1.7%)              59  (98.3%)
+```
+**In both domains, >90% of false person-claims name someone who is not in the text at all.**
+Re-binding a present name to a wrong predicate - the Bradman story, AG's prediction (b) -
+is the RARE case in both corpora. The dominant failure is IMPORTING a plausible person from
+parametric knowledge. Most-imported on Savarkar: Gandhi, Agarkar, Birsa Munda, Bhagat Singh,
+Tilak. On cricket: Tendulkar, Dravid, Bradman, Lara, Ponting.
+
+**Why more confabulation on the LESS-memorised corpus - the reading that fits all of it:**
+the AV is a full LLM with a fixed budget of specificity. When the activation carries a
+rich, well-grounded representation (cricket Wikipedia - text it has seen many times), the
+specifics it writes are more often RIGHT. When the activation is thinner (a 2019 biography of
+provincial 1890s Maharashtra), it fills the same budget with the nearest famous entities it
+knows - Gandhi, Bhagat Singh, Tilak - which are WRONG. **Parametric knowledge is not the
+source of the errors; it is the source of the correct specifics. Its absence is what
+produces confabulation.** This inverts both pre-registered predictions and is consistent with
+PATCH-01 (names appear regardless of whether the token is in the prefix) and REL-01 (98% of
+false claims stay in-domain - the imports are domain-appropriate, just wrong).
+This is an interpretation, not a test; the test would be a corpus at a third level of
+familiarity.
+
+**R5 · AG's p449 prediction: right entity, wrong mechanism.** Gandhi appears in 17/364 p449
+claims, 13 false. But **none re-binds Babarao's or Mohani's imprisonment to him** (his
+prediction (b)). Instead the AV INVENTS Gandhi facts: "the Gandhi-Nehru pact", "the Mahatma
+Gandhi Revolutionary Association", "Gandhi called for a revolt against the British" - route
+(a). Per the stated failure condition, the prediction FAILS. His unprompted second guess -
+that the last-10 window ("Afghanistan, calling upon the latter to invade India.") would
+pull Afghanistan-adjacent content - held: "Mohammad Nadir Khan", "the Kabul uprising",
+"Hindu Taliban conspiracy" all appear, none in the text.
+
+**R6 · Position: flat again.** False rate by offset -9..0 ranges 58.6-66.7% on Savarkar,
+42.0-54.5% on cricket, no trend in either. Second corpus, same null for the position idea.
+
+**R7 · What could still be wrong.**
+- Judge validated only on cricket (JUDGE-02, 88.7%). Its error on a domain AG cannot
+  adjudicate is unknown; if it is harsher on unfamiliar names, part of the -13.8pp is judge,
+  not AV. A blind grading sample on Savarkar would settle it - AG has no domain knowledge
+  here, which is the point, so it would be a lower-quality standard than cricket's.
+- n=7 passages, one book, one author's prose style. Register differs from Wikipedia.
+- The R4 "IS in passage" test is a string match on capitalised terms; aliases and partial
+  names are counted as absent. Both corpora are treated identically, so the CONTRAST stands
+  even if the absolute split shifts.
+- Two Savarkar passages (p69, p174) partly quote period newspapers/reports; the register is
+  not uniformly narrative.
+
+**Cost.** Pod $0.45 + ~$2 Haiku. Scripts: stage3/stage4 unchanged; analysis ad hoc.
+
+**Status: ANALYSED.**
+
+---
+
 ## Running index
 
 | # | title | date | verdict |
@@ -1639,6 +1786,7 @@ building and pushing ~15 GB.
 | NOISE-03 | paired-Δ noise + H2 kill condition | 2026-08-25 | ✅ noise is **stochastic** (predicts K=2,3 out-of-sample to 3%); earlier median-based ratios were the wrong statistic |
 | H2-01 | per-claim AUC | 2026-08-25 | ⚠️ **AUC 0.535** [0.510,0.559] unaveraged — quantifies the paper's “weak verifier”; K-averaging → 0.615 but CI includes chance |
 | PATCH-01 | causal test: does the confabulation follow the name? | 2026-08-28 | ❌ **prefix token NOT necessary, planted name NOT sufficient** (at these positions). DELETE keeps Bradman at 25% incl. his real 99.94 avg; Gavaskar planted → 0/40. Activation barely moved (<1% of one token step) — that is the *why*. Untested: positions near the name |
+| SAVARKAR-01 | domain transfer: 2019 biography vs cricket Wikipedia | 2026-08-28 | ❌ **both predictions refuted: MORE confabulation** (63% vs 50% false); >90% of false person-claims IMPORT a name absent from the text, in both domains |
 
 ---
 

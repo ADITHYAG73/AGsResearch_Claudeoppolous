@@ -811,3 +811,24 @@ trained NLAs. Completion condition sized to my resources, public artifact at the
   **Next: (1) the write-up — 7 days to Sept 4 and it has not started; (2) optional: activation
   patching, which would be the first hooks AG writes himself; (3) parked: more resamples to
   decide H2.**
+
+- **2026-08-28 (later) — SAVARKAR-01: domain transfer. Both predictions refuted. $0.45 + ~$2.**
+  Full detail in `mats_2027/experiments.md` → SAVARKAR-01. 7 random pages of a 2019 Penguin
+  biography, length-matched to cricket, Dravid canary at cos=1.000000, watchdog clean.
+  - **The AV confabulates MORE on the biography: 63% false vs 50% on cricket** (ALL-level
+    CIs disjoint). AG and I both predicted fewer. **Parametric knowledge is the source of the
+    correct specifics, not of the errors** — where the activation is thinner the AV fills the
+    same specificity budget with the nearest famous entities it knows (Gandhi, Bhagat Singh,
+    Tilak), which are wrong. Interpretation, not a test.
+  - **>90% of false person-claims name someone absent from the passage, in BOTH domains**
+    (Savarkar 93.6%, cricket 98.3%). Re-binding a present name — the Bradman story — is the
+    rare case. The dominant failure is IMPORT. Coheres with PATCH-01 and REL-01.
+  - AG's p449 prediction: right entity (Gandhi, 13 false claims), wrong mechanism (invented
+    Gandhi facts, no re-binding). Fails by its own stated condition. His Afghanistan-window
+    guess held.
+  - Position flat on a second corpus.
+  - Caveat: judge validated only on cricket; part of the gap could be judge harshness on
+    unfamiliar names. AG has no domain knowledge here — the point of the design, but it means
+    a blind sample would be a weaker standard.
+
+  **Next: WRITE. 7 days to Sept 4. Nothing else goes near a GPU.**
