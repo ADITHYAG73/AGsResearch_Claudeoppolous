@@ -1756,7 +1756,13 @@ pull Afghanistan-adjacent content - held: "Mohammad Nadir Khan", "the Kabul upri
 - Two Savarkar passages (p69, p174) partly quote period newspapers/reports; the register is
   not uniformly narrative.
 
-**Cost.** Pod $0.45 + ~$2 Haiku. Scripts: stage3/stage4 unchanged; analysis ad hoc.
+**Cost.** Pod $0.45 (measured). **Haiku: $4.00 (AG read it off the Anthropic console).**
+My "~$2" was a guess and was wrong by 2x. **No pipeline stage records API token usage** - each
+reads `response.usage` only to detect truncation and discards it - so every Haiku figure in
+this file before this line is an estimate, not a measurement. Fix: record
+`usage.input_tokens` / `usage.output_tokens` per call in every stage, and note the console
+balance before/after alongside the RunPod one in the infra block. Not yet done.
+Scripts: stage3/stage4 unchanged; analysis ad hoc.
 
 **Status: ANALYSED.**
 
