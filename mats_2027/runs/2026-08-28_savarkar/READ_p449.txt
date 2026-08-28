@@ -1,0 +1,111 @@
+==============================================================================================
+p449  offset -4  (pos 129)   prefix ends: ...'’, between Gandhi and the Amir of Afghanistan, calling upon the latter'
+==============================================================================================
+
+--- k=0  (659 chars) ---
+Structured news report with factual Indian history, continuing grammatical analysis of a
+reported colonial letter from the Gujarat Congress.
+
+The sentence "He had appealed to the king of Afghanistan, urging the latter" sets up a
+clause about the invasion plot — the king of Tamil Nadu was asked to attack, implying a
+specific mission or demand.
+
+Final token "latter" ends a subordinate clause ("urging the latter...appealed to the king,
+urging the latter"), requiring a verb phrase — likely "to invade" or "to launch a military
+action" or "to take over the territory," or "to dispatch troops or accept the conformity."
+referencing the king's requested action.
+
+--- k=1  (686 chars) ---
+Historical-political narrative structure: structured report on Indian colonial tensions,
+with ongoing reporting of a specific provincial dispute involving post-independence Indian
+state.
+
+The sentence "he had appealed to the king of Afghanistan asking the latter" is building a
+clause explaining the king's intended demand — a military invasion or attack on Gujarat by
+neighboring Sindh.
+
+Final token "latter" ends a relative clause ("appealed to the king, urging the latter"),
+requiring a verb phrase — likely "to invade" or "to launch a military campaign" or "to annex
+the region." or "to ignore the Buddhist population to invade" or "to undertake the act
+of..." matching the request.
+
+--- k=2  (651 chars) ---
+News article structure: formal report on Indian Raj Cabinet resolution, with factual
+exposition of a colonial-era dispute narrative.
+
+The sentence "He had appealed to the king of the neighbouring country, urging the latter" is
+explaining a conspiracy in which the Maratha ruler, earlier warned by the Buddhist
+scripture, sought military help.
+
+Final token "latter" ends a relative clause ("appealed to the king, urging the latter"),
+requiring a verb phrase — most likely "to invade/attack" or "to launch a military
+expedition," or "to invade Gujarat to capture the territory." or "to refrain from
+attacking." or "to occupy the kingdom as a conqueror."
+
+--- k=3  (658 chars) ---
+Structured Indian historical-political article with formal narrative flow, presenting a
+detailed account of the Quit India Movement and the Anglo-Indian dispute.
+
+The sentence "He had appealed to the king of the neighbouring kingdom, urging the latter" is
+building a clause explaining the plot by Emperor Ashoka to invade, or to demand military
+assistance from the Chola kingdom.
+
+Final token "latter" ends a relative clause ("appealed to the king, urging the latter"),
+requiring a verb phrase — likely "to invade" or "to launch a military action" or "to capture
+Sindh." or "to invade/to accept..." completing the demand letter's purpose against the
+kingdom.
+
+==============================================================================================
+p449  offset +0  (pos 133)   prefix ends: ...' and the Amir of Afghanistan, calling upon the latter to invade India.'
+==============================================================================================
+
+--- k=0  (667 chars) ---
+Literary-historical narrative structure: the passage is recounting a biographical/political
+episode, with analytical exposition on Indian independence conspiracy literature.
+
+The sentence "There was a rumour propagated about the Anglo-Indian Conspiracy treaty" sets
+up an elaboration of the fabricated claim or the author's reaction to it.
+
+Final sentence "He had heard of the secret plan being floated about the Hindu Taliban
+conspiracy" ends a contextual clause — it expects a reaction or debunking statement like
+"Gandhi was horrified" or "This fuelled the investigation." or "Bara was skeptical" or "Such
+claims were dismissed, but..." or "Bara's view on this..."
+
+--- k=1  (723 chars) ---
+Historical narrative structure: analytical piece recounting the Indian Independence
+conspiracy, with literary-academic tone presenting a puzzling episode.
+
+The sentence "There had been rumours that the Anglo-Indian Conspiracy...the fabricated
+British scheme to suppress the Hindu Rashtra's propaganda" sets up a point of clarification
+or investigation into the baseless rumour.
+
+Final sentence "He had heard about the forged letter, which was being propagated to explain
+the excesses." concludes a thematic observation — expects elaboration like "Gandhi dismissed
+these" or "This alarmed Gandhi" or "Bhaswati found this allegation absurd" or "Bhaswati
+investigated this, finding…" or "Such claims became a topic of debate."
+
+--- k=2  (721 chars) ---
+Historical narrative structure: analytical article on Indian Independence, with literary-
+political context establishing the mysterious pamphlet episode.
+
+The sentence "there were rumours about the Anglo-Indian Conspiracy to forge a fake alliance
+letter" sets up a consequence or resolution — the allegation about the fabricated plot
+against the Home Rule movement.
+
+Final sentence "there were rumours about the Anglo-Indian Conspiracy...which linked the news
+of the forged scheme" concludes a clause — expects elaboration like "Gandhi dismissed this"
+or "This alarmed him" or "Bose investigated these claims." or "Such an idea was absurd." or
+"Laurance was taken aback by this interpretation." linking the debunked rumor.
+
+--- k=3  (691 chars) ---
+Literary narrative structure: the text is a historical Indian English account, narrating a
+controversial colonial episode involving a conspiracy theory about the Lahore Conspiracy.
+
+The sentence "There were rumours of the Anglo-Indian pact...He attributed the forged
+document to the British Press" sets up a resolution or elaboration of Nehru's reaction to
+the alarming news.
+
+Final sentence "there was a rumour linking the secret organization to the Partition Plan"
+ends a clause introducing the disinformation — expects elaboration like "This rumour was
+refuted" or "Gandhi was deeply agitated" or "Bhadra examined these..." or "This alarmed
+him..." or "Bhadra dismissed such claims as..."
