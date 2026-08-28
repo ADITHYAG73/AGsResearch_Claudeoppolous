@@ -780,3 +780,34 @@ trained NLAs. Completion condition sized to my resources, public artifact at the
   **Next: (1) the write-up — this is now the binding constraint; (2) optional: AG spot-checks
   ~20 matcher groups, the only independent check that component has; (3) optional: more
   resamples per activation would decide H2, but that is a pod session.**
+
+- **2026-08-28 — PATCH-01 analysed. The intervention never reached the representation.**
+  Full detail in `mats_2027/experiments.md` → PATCH-01 R2–R7. ~$1 (Haiku); no GPU today.
+  - **Stage 3: 2603 claims from 280 explanations, 0 parse problems.** (First attempt died
+    280/280 on HTTP 401 — the Anthropic key had expired. Nothing charged, nothing partial
+    written; AG rotated the key.)
+  - **Behavioural result: the confabulation does NOT follow the planted name.** Planting
+    Gavaskar/Umrigar/Thangavelu produced **0/40** uses of each. Deleting Bradman did not
+    reduce Bradman (25% vs 22.5%). Cricket legends absent from every prefix appear in ~45% of
+    explanations in **every** condition.
+  - **BUT THE CONTROL FAILED, AND THAT IS THE REAL RESULT.** On mean-centred activations, the
+    edit moves the representation by 0.997–0.9995 cosine, against **0.42 for a single token
+    step** and **0.01 for a different passage.** Deleting 26 tokens ~250 characters upstream
+    changes the layer-32 activation **less than 1% as much as moving one position.**
+  - **So the seeding hypothesis is UNTESTED, not refuted** — AG's predictions, mine, and the
+    JUDGE-02 R6 mechanism story all remain unexamined. I was about to report them falsified;
+    the control is the only reason that did not happen. JUDGE-02 R6 has been corrected in
+    place.
+  - **What IS established:** at layer 32, at these positions, the residual stream barely
+    encodes context from ~250 characters back. Consequence: **the AV cannot be reading
+    "Bradman" out of the activation** — the name must come from parametric knowledge. That
+    coheres with REL-01's 98% RELATED: confabulations stay in-domain because they are drawn
+    from domain knowledge, not copied from context.
+  - **Why the design could not have worked:** the edit was placed upstream deliberately so it
+    would not change the sampled tokens — which is exactly why it had no effect. **A causal
+    test needs activation patching with hooks**, or sampling positions adjacent to the edit.
+    Text-level intervention at that distance cannot reach the representation.
+
+  **Next: (1) the write-up — 7 days to Sept 4 and it has not started; (2) optional: activation
+  patching, which would be the first hooks AG writes himself; (3) parked: more resamples to
+  decide H2.**

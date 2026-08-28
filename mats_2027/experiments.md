@@ -1205,7 +1205,17 @@ longest time spent batting" about a **Rahul Dravid** passage. Checking the data:
   "The text is about Don Bradman" - complete subject substitution on a Dravid biography.
 
 So: **entity-role misbinding, seeded by a name genuinely present in the prefix, then
-embellished from parametric memory.** Not fabrication from nothing. The paper states that
+embellished from parametric memory.** Not fabrication from nothing.
+
+**[CORRECTION added 2026-08-28, after PATCH-01.]** The "seeded by a name genuinely present in
+the prefix" half of that sentence was **INFERENCE FROM A CORRELATION, and is not established.**
+PATCH-01 attempted to test it causally and could not: a text edit ~250 characters upstream
+moves the layer-32 representation less than 1% as far as a single token step, so the
+intervention never reached the activation. Worse for the seeding story, PATCH-01 also found
+that cricket legends absent from EVERY prefix (Tendulkar, Ponting, Lara, Kohli) appear in ~45%
+of explanations in every condition - so a prefix token is demonstrably not required for a
+confabulated name to appear. **The observation (21 Bradman claims on a Dravid passage) stands.
+The mechanism does not.** Testing it needs activation patching with hooks, not a text edit. The paper states that
 false claims are "usually somewhat related to the context rather than fabricated wholesale"
 and never characterises the machinery; this is a concrete instance of it, and it required
 domain knowledge to spot - which is the corpus choice paying off.
@@ -1428,9 +1438,84 @@ tokens: DELETE 122 · NEUTRAL 139 · COHERENT 143 · ORIGINAL 148 · FAMOUS 148 
         - every condition's last-10 positions clear the official _MIN_POSITION=50 floor
 ```
 
-**Not yet analysed.** Next: Stage 3 decompose on the 280 explanations, then measure - per AG's
-prediction - BOTH directions of misattribution (swapped name gets Dravid's records; Dravid
-gets the swapped name's records).
+**R2 · STAGE 3.** 2603 claims from 280 explanations, 0 parse problems, 129 s, ~$1.
+(First attempt failed 280/280 with HTTP 401 - the Anthropic key had expired. Nothing was
+charged and nothing partial written; the per-item failure handling added on 2026-08-22
+collected all 280 instead of dying on the first. AG rotated the key and it re-ran clean.)
+
+**R3 · BEHAVIOURAL RESULT: the confabulation does NOT follow the planted name.**
+Unit is the EXPLANATION (40 per condition, independent) - claims cluster within explanations,
+so counting claims would overstate n. Wilson 95% CIs.
+```
+condition   planted      PLANTED name appears     BRADMAN appears
+ORIGINAL    bradman       9/40  22.5%              9/40  22.5%
+FAMOUS      gavaskar      0/40   0.0% [0,9]       16/40  40.0%   <- Bradman UP after removal
+REAL        umrigar       0/40   0.0% [0,9]       10/40  25.0%
+INVENTED    thangavelu    0/40   0.0% [0,9]       10/40  25.0%
+COHERENT    gavaskar      2/40   5.0%             13/40  32.5%
+NEUTRAL     (none)          n/a                   12/40  30.0%   <- name deleted, Bradman stays
+DELETE      (none)          n/a                   10/40  25.0%   <- sentence gone, Bradman stays
+
+cricketer names NOT in that prefix: 42.5-47.5% in EVERY condition, all CIs overlapping
+(Tendulkar, Laxman, Ponting, Lara, Kohli - none appears in any of the seven prefixes)
+```
+Planting a name produced 0/40 uses of it. Deleting Bradman did not reduce Bradman.
+
+**R4 · CONTROL FAILED - AND THIS IS THE ACTUAL RESULT. THE INTERVENTION NEVER REACHED THE
+REPRESENTATION.** Before reading R3 as evidence about mechanism, check whether the upstream
+edit changed the activation the AV actually receives. It did not.
+
+Raw cosine vs ORIGINAL at the sampled positions: 0.9997-1.0000, versus 1.0000 for the SAME
+text re-run on a different pod. But raw cosine is a blunt instrument here - the residual
+stream is highly anisotropic, and even a French Revolution passage sits at 0.963 against
+cricket. Repeating on MEAN-CENTRED vectors (mean estimated from the 6 POS-01 passages, so it
+is not fitted to these 7):
+```
+CENTRED cosine
+  same text, different pod          1.0000
+  ORIGINAL vs FAMOUS                0.9995
+  ORIGINAL vs INVENTED              0.9993
+  ORIGINAL vs REAL                  0.9989
+  ORIGINAL vs COHERENT              0.9979
+  ORIGINAL vs NEUTRAL               0.9970
+  ORIGINAL vs DELETE                0.9968
+  --------------------------------------------
+  ADJACENT POSITION, same passage   0.4221   <- ONE token step
+  different passage (Laxman)        0.0144   <- essentially orthogonal
+  French Revolution                -0.0121
+  two random 3840-d vectors          0.0008  (raw)
+```
+**Deleting 104 characters / 26 tokens of context ~250 characters upstream moves the
+representation less than 1% as far as moving a single token position.**
+
+**R5 · WHAT IS AND IS NOT ESTABLISHED.**
+- **NOT established:** anything about the seeding mechanism. AG's predictions, Claude's
+  opposite prediction, and the JUDGE-02 R6 story ("entity-role misbinding **seeded by a name
+  genuinely in the prefix**") are all **UNTESTED, not refuted.** Claude was about to report
+  them as falsified; the control is the only reason that did not happen. The AV received the
+  same vector in every condition and behaved the same - exactly as it should.
+- **ESTABLISHED, and it is a sharp result:** at layer 32, at these token positions, the
+  residual stream barely encodes whether a name appeared ~250 characters earlier.
+- **CONSEQUENCE for the project:** if the activation does not carry that information, **the AV
+  cannot be reading "Bradman" out of it.** The name must come from elsewhere, and parametric
+  knowledge is the obvious candidate - consistent with R3, where cricket legends absent from
+  every prefix appear in ~45% of explanations regardless of condition, and with REL-01's 98%
+  RELATED (confabulations stay in-domain because they are drawn from domain knowledge, not
+  copied from context).
+
+**R6 · WHY THE DESIGN COULD NOT HAVE WORKED, in hindsight.** The edit was placed upstream ON
+PURPOSE, so it would not change the sampled tokens. That is what made it a clean controlled
+comparison - and it is also exactly why it had no effect: at this layer and these positions
+the representation is dominated by local content. **A causal test of the seeding hypothesis
+must intervene on the ACTIVATION, not on the text** - i.e. actual activation patching with
+hooks at the position where "Bradman" is encoded, or sampling positions much closer to the
+Bradman sentence. Text-level intervention 250 characters upstream cannot reach it.
+
+**R7 · Cost of the analysis.** ~$1 of Haiku for Stage 3; the rest is local and free.
+Scripts: `pipeline/stage3_decompose.py` (unchanged), analysis ad hoc.
+
+---
+
 
 ---
 
@@ -1521,7 +1606,7 @@ building and pushing ~15 GB.
 | MATCH-02 | semantic matcher with a verifier pass | 2026-08-25 | ✅ 115 groups ≥3 resamples vs 22 by regex (5.2×); over-merging fixed |
 | NOISE-03 | paired-Δ noise + H2 kill condition | 2026-08-25 | ✅ noise is **stochastic** (predicts K=2,3 out-of-sample to 3%); earlier median-based ratios were the wrong statistic |
 | H2-01 | per-claim AUC | 2026-08-25 | ⚠️ **AUC 0.535** [0.510,0.559] unaveraged — quantifies the paper's “weak verifier”; K-averaging → 0.615 but CI includes chance |
-| PATCH-01 | causal test: does the confabulation follow the name? | 2026-08-27 | 📊 DATA COLLECTED — 70 activations, 280 explanations, $0.49; regression gate cos=1.000000; not yet analysed |
+| PATCH-01 | causal test: does the confabulation follow the name? | 2026-08-28 | ⚠️ **INTERVENTION NEVER REACHED THE REPRESENTATION** — text edit 250 chars upstream moves the activation <1% as far as one token step. Behavioural null is UNINFORMATIVE; seeding hypothesis UNTESTED, not refuted |
 
 ---
 
