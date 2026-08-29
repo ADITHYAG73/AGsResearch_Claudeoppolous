@@ -24,6 +24,7 @@ Write B first — it is the thing you know best and it warms you up. Write A LAS
 | 3 | D. Results | [ ] | ~800 words, six subsections |
 | 4 | E. What I verified myself | [ ] | ~150 words. **AG only.** |
 | 5 | F. Limitations | [ ] | 5 bullets, ~100 words |
+| 5b | F2. Reflections | [ ] | ~150 words: implications + what you'd do next (hooks go here) |
 | 6 | G. Figures | [ ] | 3–4. Claude produces, AG verifies every number |
 | 7 | A. Executive summary | [ ] | ≤600 words. LAST. |
 | 8 | Form answers (Q1–Q8) | [ ] | separate from the doc; Q8 bans citing this project |
@@ -148,5 +149,35 @@ Prompts for yourself, not text:
 
 ---
 
+## What the two accepted write-ups do (structure only — read on 28/29 Aug)
+
+|                        | write-up 1 (reasoning direction) | write-up 2 (backtracking) |
+|---|---|---|
+| total length           | ~2,100 words                     | ~4,000 words + 8 figures  |
+| exec summary           | ~300 w, opens with the QUESTION  | ~550 w, opens with the PROBLEM, RQ1–3 framing |
+| takeaways              | 5 bullets                        | 3 numbered, each with a metric |
+| negative results       | "Initial Approach Failed" as a heading | one whole experiment framed as unsuccessful |
+| limitations            | 5-point list, ~100 w             | dedicated subsection: scale, validation gaps, dataset, compute |
+| figures                | 2 graphs + example outputs       | 8, captioned, referenced from prose |
+| what author did vs LLM | not stated                       | one line (Claude generated phrase examples) |
+| reflections section    | no                               | yes — interprets implications, admits time/resource limits |
+
+**What this changes for us:**
+- Length is NOT the signal. Both got in; one is half the other. Target ~2,500–3,000 words +
+  4–6 figures. Do not pad.
+- Both open the summary with the QUESTION/PROBLEM. Ours does too.
+- Both have a FRAMED negative result. We have four. Give H1 its own heading, as they did.
+- Write-up 2 has a **Reflections** section — implications + "what I'd do with more time". Add it:
+  short, honest, and it is where the hooks/white-box gap gets stated as the next step, not hidden.
+- Write-up 2 numbers its research questions (RQ1–3) and its results (R1–R4) and maps one to the
+  other. Do that — it makes the exec summary trivial to write from.
+- Neither has a real "what I verified myself" section. **Ours will, and it is a differentiator**
+  — Neel's admissions doc weights it above everything else.
+- Captions carry information in write-up 2. Every figure of ours gets a caption that states the
+  finding, not just the axes.
+
+---
+
 ## Log
 - 2026-08-29 — checklist created. Nothing written yet. 6 days to deadline.
+- 2026-08-29 — second accepted write-up read (backtracking, ~4k words, 8 figs). Added F2 Reflections; RQ→R numbering; caption rule.
