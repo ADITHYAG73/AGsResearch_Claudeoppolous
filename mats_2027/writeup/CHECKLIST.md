@@ -25,7 +25,7 @@ Write B first — it is the thing you know best and it warms you up. Write A LAS
 | 4 | E. What I verified myself | [ ] | ~150 words. **AG only.** |
 | 5 | F. Limitations | [ ] | 5 bullets, ~100 words |
 | 5b | F2. Reflections | [ ] | ~150 words: implications + what you'd do next (hooks go here) |
-| 6 | G. Figures | [ ] | 3–4. Claude produces, AG verifies every number |
+| 6 | G. Figures | [~] | 5 drafts rendered in writeup/figures/ (PNG+SVG+caption); AG to verify each number |
 | 7 | A. Executive summary | [ ] | ≤600 words. LAST. |
 | 8 | Form answers (Q1–Q8) | [ ] | separate from the doc; Q8 bans citing this project |
 | 9 | Google Doc, anyone-with-link, exec summary first 1–3 pages | [ ] | |
@@ -133,11 +133,11 @@ Prompts for yourself, not text:
 - [ ] Related-vs-unrelated contrast not reproducible here (no unrelated cell)
 
 ## G. Figures — Claude produces, AG verifies every number against experiments.md
-- [ ] G1. Specificity: ours vs paper, by level, with CIs (and your labels vs Haiku's)
-- [ ] G2. Δ distribution for related-false claims — the H1 null, with the skewed-null overlay
-- [ ] G3. Dip-test power curve across mixture fraction — why the null means something
-- [ ] G4. spread(K) with fitted curve and the two out-of-sample points — H2's mechanism
-- [ ] G5. Savarkar vs cricket false rate by level, CIs
+- [~] G1. Specificity — drafted, rendered clean
+- [~] G2. Related-false Δ — drafted. Synthetic overlay DROPPED (neither gamma nor skew-normal fits skew 2.63 honestly); true-claim histogram shown for scale instead
+- [~] G3. Dip power — drafted, seed pinned (3); caption reads its own numbers (90–100% at 26–42%)
+- [~] G4. spread(K) — drafted, rendered clean
+- [~] G5. Savarkar vs cricket — drafted, rendered clean
 - [ ] (optional) G6. Import-vs-misbinding split, both domains
 
 ## Form answers — separate from the doc
@@ -181,4 +181,5 @@ Prompts for yourself, not text:
 ## Log
 - 2026-08-29 — checklist created. Nothing written yet. 6 days to deadline.
 - 2026-08-29 — **secB written by AG, accuracy verified.** D2 draft exists (moved from first B attempt). Evidence files: C, D2, D6.
+- 2026-08-29 — figures G1–G5 drafted from data (make_figures.py). G3 power at p=0.26 varies 76–90% by seed at 60 draws — experiments.md says 76%; figure says 90%. Reconcile before final: bump draws to 400.
 - 2026-08-29 — second accepted write-up read (backtracking, ~4k words, 8 figs). Added F2 Reflections; RQ→R numbering; caption rule.

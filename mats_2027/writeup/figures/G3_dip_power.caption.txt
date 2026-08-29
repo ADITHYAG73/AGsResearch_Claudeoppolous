@@ -1,0 +1,1 @@
+Planted mixtures at the geometry H1 implies (n=975, observed noise, K=1, 60 draws per point, seed 3). Across H1's own predicted 26–42% range the dip test detects them 90–100% of the time. At 20% it drops to 20% — a mixture below that would have been missed. H1 is dead in its stated form, not in every form.

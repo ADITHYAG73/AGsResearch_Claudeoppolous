@@ -1,0 +1,1 @@
+Same judge, same prompt, length-matched passages. Both pre-registered predictions expected fewer confabulations on a 2019 biography than on cricket Wikipedia; the opposite happened (63% vs 50% false, CIs disjoint). In both domains >90% of false person-claims name someone absent from the passage — the dominant failure is importing a plausible entity, not misbinding a present one.
