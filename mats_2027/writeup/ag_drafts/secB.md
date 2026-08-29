@@ -3,11 +3,6 @@ The paper says "AR is only a weak per-claim verifier".
 i wanted to investigate if its because of the singal being absent  or buried...(<am i fair in assuming that if we say buried , like it means or refers noise??>)
 
 
-######## ignore this slop .. #########
-also i would like to myselg be able to elaborate this coz signal being absetn , when we say..what signal do we mean?? is it delta of mse ?? is that what it is??
-
-i understand the fact that AV only sees the injected residual vector and is asked to describe..so AV never sees the text but it being a language model is asked to describe the injection in the form of an explanation..am sry i am just writing non-sense here..coz i have not fully internalised the magnitude or the implication of the statement -> "It matters because the AV never sees the text, so a text judge can't tell invention from faithful readout — only the AR is checked against the activation."
-######### fable tutored me ########## so now am gonna write #######
 
 the signal being the delta(mse). in particular i hypothesise that observed delta of a claim is a sum of underlying delta and noise. by underlying delta i mean, the delta of the claim that we cud calculate in an ideal scenario with 100 percent accracy. 
 
@@ -32,6 +27,6 @@ case 2
 <same as case 1>
 
 
-so. in essence a text judge is primarily blind to residual activation and AV model thought process. the text judge in our case (Haiku 4.5) only receives the passage uptill the position (the prefix) and the claim..and its given 3 choices -> Supported, Contradicted or Not in TExt. 
+so. in essence a text judge is primarily blind to residual activation and AV model thought process. the text judge in our case (Haiku 4.5) only receives the passage uptill the position (the prefix) and the claim..and its given 3 choices -> Supported,  or Not in TExt. 
 
-The residual stream activation which served as the bedrock for generation of explanation using AV is available to  only AR for reconstruction in the whole system ..oh hang on this is non-sense..what am i even trying to finish..i am really struggling
+The residual stream activation which served as the bedrock for generation of explanation using AV is available to  only AR for reconstruction in the whole system, so its in. prinicple the only instruemnt that cud tell case 1 from case 2 .

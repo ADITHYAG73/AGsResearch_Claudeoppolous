@@ -19,7 +19,7 @@ Write B first — it is the thing you know best and it warms you up. Write A LAS
 
 | step | section | status | notes |
 |---|---|---|---|
-| 1 | B. Question and why | [ ] | ~150 words |
+| 1 | B. Question and why | [x] AG+C | written 29 Aug, accuracy checked; 3 leftover placeholders for final pass |
 | 2 | C. Setup | [ ] | ~300 words, facts liftable from experiments.md |
 | 3 | D. Results | [ ] | ~800 words, six subsections |
 | 4 | E. What I verified myself | [ ] | ~150 words. **AG only.** |
@@ -180,4 +180,5 @@ Prompts for yourself, not text:
 
 ## Log
 - 2026-08-29 — checklist created. Nothing written yet. 6 days to deadline.
+- 2026-08-29 — **secB written by AG, accuracy verified.** D2 draft exists (moved from first B attempt). Evidence files: C, D2, D6.
 - 2026-08-29 — second accepted write-up read (backtracking, ~4k words, 8 figs). Added F2 Reflections; RQ→R numbering; caption rule.
