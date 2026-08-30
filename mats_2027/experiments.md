@@ -1364,6 +1364,39 @@ still unverified (ABLATE-01 R3).
 
 ---
 
+### SCORE-01b - final-token control on the Delta gradient   `2026-08-30`  (write-up phase)
+
+**Origin.** Writing D5, the largest Delta in the whole dataset (+0.04175, Eden Gardens pos 93 k2)
+turned out to be the claim *"The text contains the token '184'"* - and "184" is the FINAL TOKEN of
+that prefix. The AR reconstructs the final-token activation, so a claim naming that token is
+load-bearing for a reason that has nothing to do with specificity or with H3's redundancy story.
+If such claims concentrate in DETAIL they could manufacture the 4.5x gradient.
+
+**Method.** `pipeline/final_token_control.py`. Flag = the prefix's last content word (>=3 chars,
+not a stopword) appears on a word boundary in the claim. 368 of 2063 claims (17.8%). Stopwords
+excluded because 22 of the 60 prefixes end in one, where the flag could fire on any claim.
+
+**R1 · The gradient shrinks from 4.5x to 2.7x.**
+```
+                 THEME              ENTITY             DETAIL          DETAIL/THEME
+  all       +0.00032 (886)     +0.00105 (426)     +0.00145 (751)          4.5x
+  flagged   +0.00066  (23)     +0.00311  (45)     +0.00237 (300)          3.6x
+  unflagged +0.00031 (863)     +0.00080 (381)     +0.00084 (451)          2.7x
+```
+**Among unflagged claims ENTITY and DETAIL are indistinguishable** (+0.00080 +-0.00020 vs
++0.00084 +-0.00021). The THEME-to-specific step is real; the ENTITY-to-DETAIL step is not, once
+final-token claims are removed.
+
+**R2 · What survives.** D5's headline (30.0% of removals improve reconstruction) is untouched -
+this control only concerns the by-level breakdown. The redundancy reading (H3) is still
+*consistent with* the THEME result and still untested.
+
+**R3 · Limits.** A word-match heuristic, not a labelled category; cannot separate "names the final
+token" from "reuses that word coincidentally"; cannot fire at all on the 22 prefixes ending in a
+stopword. A rival ruled DOWN, not out. **Never quote the 4.5x without the 2.7x.**
+
+---
+
 ### PATCH-01 - does the confabulation follow the name?  DATA COLLECTED   `2026-08-26/27`
 
 **Origin.** JUDGE-02 R6 characterised a failure mode from AG's observation: the AV re-binds
@@ -1807,6 +1840,7 @@ Scripts: stage3/stage4 unchanged; analysis ad hoc.
 | NOISE-03 | paired-Δ noise + H2 kill condition | 2026-08-25 | ✅ noise is **stochastic** (predicts K=2,3 out-of-sample to 3%); earlier median-based ratios were the wrong statistic |
 | H2-01 | per-claim AUC | 2026-08-25 | ⚠️ **AUC 0.535** [0.510,0.559] unaveraged — quantifies the paper's “weak verifier”; K-averaging → 0.615 but CI includes chance |
 | PATCH-01 | causal test: does the confabulation follow the name? | 2026-08-28 | ❌ **prefix token NOT necessary, planted name NOT sufficient** (at these positions). DELETE keeps Bradman at 25% incl. his real 99.94 avg; Gavaskar planted → 0/40. Activation barely moved (<1% of one token step) — that is the *why*. Untested: positions near the name |
+| SCORE-01b | final-token control on the Delta-by-level gradient | 2026-08-30 | ⚠️ **gradient shrinks 4.5x -> 2.7x**; ENTITY vs DETAIL indistinguishable once final-token-naming claims are removed |
 | SAVARKAR-01 | domain transfer: 2019 biography vs cricket Wikipedia | 2026-08-28 | ❌ **both predictions refuted: MORE confabulation** (63% vs 50% false); >90% of false person-claims IMPORT a name absent from the text, in both domains |
 
 ---
