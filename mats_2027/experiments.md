@@ -1160,7 +1160,11 @@ not used.
   DETAIL   44/50 = 88.0%  CI[76,94]    AG           36.0%   Haiku 24.0%
 ```
 Agreement DOES vary by level, and the disagreement is DIRECTIONAL: 16 of 27 are
-*AG SUPPORTED / Haiku NOT_IN_TEXT*; the reverse cell is **zero**. Haiku is systematically
+*AG SUPPORTED / Haiku NOT_IN_TEXT*; the reverse cell (*AG NOT_IN_TEXT / Haiku SUPPORTED*) is
+**zero**. [Clarified 30 Aug, recomputed from the labels: in BINARY terms there are 17
+disagreements, 16 one way and **one** the other - the single reverse case is
+*AG CONTRADICTED / Haiku SUPPORTED*, which only exists once C and N are merged. Full 3x3:
+S/S 61, N/N 61, S/N 16, C/N 6, N/C 4, C/S 1, C/C 1.] Haiku is systematically
 stricter, and stricter on THEME and DETAIL but not on ENTITY.
 
 **R4 · Adjudication of all 27 disagreements** (by Claude, applying AG's frozen conventions;
