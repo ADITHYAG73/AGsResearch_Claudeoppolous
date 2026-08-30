@@ -1177,9 +1177,16 @@ the least useful output; the patterns are:
   is drift: the ONE retest flip was one of these, and his second answer agreed with Haiku.
 - **Haiku is too strict on `format` / `genre` claims - AG is right.** 6 cases where a vague
   but correct description was marked absent, e.g. "provides a causal explanation for why an
-  alternative ball is needed during night play" against a passage reading "These matches start
-  later in the day ... necessitating the use of a pink ball to aid visibility". AG's rule
-  "vague is not false" is correct and Haiku ignores it. **THIRD independent sighting of Haiku
+  alternative ball is needed during night play" (Test cricket, pos 107).
+  **[CORRECTED 30 Aug - the passage text quoted here was WRONG.]** This note originally quoted
+  the prefix as "...necessitating the use of a pink ball to aid visibility". That is the prefix
+  at **pos 114/115**, not at pos 107. The prefix the grader actually saw ends
+  **"...necessitating the use"** - the pink ball is truncated away. The verdict still stands
+  (the prefix opens "Traditionally, Test matches had always been played with a red ball during
+  daylight hours" and gives the full causal chain, so "an alternative ball is needed" is
+  supported under "vague is not false"), but it is a BORDERLINE call, not the easy one the old
+  quote implied. Lesson: quote the prefix at the claim's own position, never the passage.
+  AG's rule "vague is not false" is correct and Haiku ignores it. **THIRD independent sighting of Haiku
   mishandling genre/format claims** (see REL-01 R4, MATCH-01 pilot 1).
 - **AG uses C where his own rule says N** (3 cases) - the unresolved boundary above, not an
   error by either.

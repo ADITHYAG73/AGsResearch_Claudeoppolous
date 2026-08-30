@@ -32,3 +32,19 @@ keep vague THEME claims). CONTRADICTED: 39/2065 = 1.9%.
   retest flip was a quote). **Both compress the gradient → the true THEME-to-DETAIL gap is larger
   than either measured** (Haiku 40pp, AG 46pp).
 - Haiku's 64/36/24 vs the paper's 64/28/24: our judge closely reproduces theirs — same model, same bias
+
+## Table D1.3 — two verified disagreement examples (added 30 Aug; strings checked against the data)
+
+Chosen one in each direction on purpose. Both prefixes are quoted at the claim's OWN position.
+
+| | Haiku is right, AG too generous | AG is right, and it took cricket knowledge |
+|---|---|---|
+| claim | `The text contains the phrase "considered by many as one of the"` | `The text mentions the Border-Gavaskar Trophy.` |
+| id | `CRICKET::Sachin Tendulkar:173:k1:c5` (DETAIL / quote) | `CRICKET::VVS Laxman:248:k2:c6` (ENTITY / event) |
+| the prefix ends | `...This series is regarded as one of the` | `...also found a spot in the team for the home series against Australia in` |
+| AG / Haiku | SUPPORTED / NOT_IN_TEXT | SUPPORTED / NOT_IN_TEXT |
+| adjudication | Haiku. "considered by many" is not "regarded as" — a near-miss paraphrase, and the quote rule says the string must be present. AG's ONE retest flip was a claim of this type, and on the second pass he agreed with Haiku. | AG. Neither word is in the prefix, but the 2001 India–Australia home series IS the Border–Gavaskar Trophy. A text judge cannot make this call; it is the alias rule plus domain knowledge. **AG to confirm the cricket fact.** |
+
+Both are the honest version of the story: the quote case is drift on a rule AG added mid-warm-up,
+the trophy case is knowledge Haiku does not have. They pull the specificity gradient in opposite
+directions, which is the point.
