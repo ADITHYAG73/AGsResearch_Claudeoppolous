@@ -11,10 +11,16 @@
   Magnitude of the activation is invisible to the whole pipeline.
 
 ## Corpus and sampling
-- 6 pilot passages: 5 cricket Wikipedia paragraphs + 1 French Revolution reference passage
-  (theirs; excluded from the cricket analysis)
-- **Last 10 contiguous token positions** of each passage → 60 activations. All ≥ the official
-  `_MIN_POSITION = 50` (nla/datagen/stage0_extract.py:35)
+- 6 pilot passages: 5 cricket Wikipedia paragraphs + 1 French Revolution passage — the
+  **maintainers' own example** (`doc_id = THEIR_EXAMPLE`), kept as the in-distribution reference.
+  **It is INCLUDED in every number** (397 of the 2065 claims). Cricket-only the levels read
+  THEME 70.0 / ENTITY 39.3 / DETAIL 34.6 (n=707/333/628) vs 69.1 / 43.8 / 36.0 for all six —
+  the ordering is unchanged either way. [CORRECTED 30 Aug: this file previously said "excluded".]
+- **Last 10 contiguous token positions** of each passage → 60 activations. The constraint is on
+  the POSITION INDEX, not on passage length: every sampled index ≥ the official
+  `_MIN_POSITION = 50` (nla/datagen/stage0_extract.py:35). Realised ranges: Eden Gardens 86–95,
+  Test cricket 106–115, Dravid 138–147, Tendulkar 170–179, Laxman 245–254, THEIR_EXAMPLE 79–88
+  — minimum sampled index is 79.
 - **K = 4 resamples** per activation at T = 1 → 240 explanations
 - Why cricket: a domain the author can adjudicate claim-vs-text in under 30 s; and
   in-distribution — AV→AR round-trip cos 0.996 on cricket vs 0.997 on their own example (SMOKE-01)
@@ -42,8 +48,10 @@
    resamples; 115 groups with ≥3 resamples (vs 22 by exact-string match)
 
 ## Judge validation
-- 150 stratified claims (50/level, 15/offset) graded BLIND by the author + 30 retests; harness
-  exposes only claim_id / claim / prefix. Self-consistency 96.7%. Agreement with Haiku 88.7%.
+- 150 stratified claims (50/level, balanced across the 10 position offsets) graded BLIND by the
+  author + 30 retests = 180 items in 33.6 min. The sample was drawn by `harness/sample_stratified.py`,
+  a SEEDED script (seed 20260822) — not chosen by a model. Harness exposes only
+  claim_id / claim / prefix. Self-consistency 29/30 = 96.7%. Agreement with Haiku 133/150 = 88.7%.
 - The paper reports NO validation for its confabulation judge.
 
 ## What was frozen when (so it can be checked)
@@ -65,4 +73,7 @@
 ## Infra (for the record, not the prose)
 - RunPod A40 48 GB, SECURE, image `runpod/pytorch:1.0.2-cu1281-torch280-ubuntu2404`,
   torch 2.9.1+cu128 · transformers 5.3.0 · torchvision 0.24.1 · sglang 0.5.10.post1
-- Total GPU spend for the project ≈ $3.5; total API spend not measured (see SAVARKAR-01 note)
+- Total GPU spend across the six pod sessions = **$3.99** (1.23 + 1.08 + 0.40 + 0.34 + 0.49 + 0.45).
+  [CORRECTED 30 Aug from "≈$3.5" — that figure was never summed.]
+- API spend measured ONCE: $4.00 of Haiku on 28 Aug (SAVARKAR-01, read off the console). No stage
+  records token usage, so every other Haiku figure in the project is an estimate, not a measurement.
