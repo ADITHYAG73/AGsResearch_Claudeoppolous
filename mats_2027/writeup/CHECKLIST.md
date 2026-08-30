@@ -81,7 +81,7 @@ Write B first — it is the thing you know best and it warms you up. Write A LAS
 ### D3. H1 (mislabelled mixture) — dead, with power
 - [ ] Statement: related-false = two populations under one label → bimodal Δ
 - [ ] Related-false cell = 975 of 995 false claims (98% related — REL-01)
-- [ ] Dip test p = 0.992; power 76–100% across H1's own predicted 26–42% mixture range
+- [ ] Dip test p = 0.992; power 86–100% across H1's own predicted 26–42% mixture range
 - [ ] HONESTY: the pre-registered ΔBIC rule FIRED (+843) and was a skew artefact — a single
       skewed hump matched to the data gives ΔBIC>10 in 200/200 draws. Rule revised after seeing
       data → verdict is EXPLORATORY. Say this; it is a strength, not a weakness.
@@ -135,7 +135,7 @@ Prompts for yourself, not text:
 ## G. Figures — Claude produces, AG verifies every number against experiments.md
 - [~] G1. Specificity — drafted, rendered clean
 - [~] G2. Related-false Δ — drafted. Synthetic overlay DROPPED (neither gamma nor skew-normal fits skew 2.63 honestly); true-claim histogram shown for scale instead
-- [~] G3. Dip power — drafted, seed pinned (3); caption reads its own numbers (90–100% at 26–42%)
+- [x] G3. Dip power — settled at 400 draws/point: 86–100% across 26–42%, 26% at 20%. experiments.md, D3 and the caption now agree.
 - [~] G4. spread(K) — drafted, rendered clean
 - [~] G5. Savarkar vs cricket — drafted, rendered clean
 - [ ] (optional) G6. Import-vs-misbinding split, both domains
@@ -181,5 +181,6 @@ Prompts for yourself, not text:
 ## Log
 - 2026-08-29 — checklist created. Nothing written yet. 6 days to deadline.
 - 2026-08-29 — **secB written by AG, accuracy verified.** D2 draft exists (moved from first B attempt). Evidence files: C, D2, D6.
-- 2026-08-29 — figures G1–G5 drafted from data (make_figures.py). G3 power at p=0.26 varies 76–90% by seed at 60 draws — experiments.md says 76%; figure says 90%. Reconcile before final: bump draws to 400.
+- 2026-08-29 — figures G1–G5 drafted from data (make_figures.py). G3 power disagreed with experiments.md (90% vs 76% at p=0.26).
+- 2026-08-30 — **G3 reconciled at 400 draws/point**: 26% / 86% / 98% / 100% / 100% at p = .20/.26/.30/.35/.42. The 76% (80 draws) and 86% (400) differ by z=1.8, p=0.07 — sampling error, not a disagreement. experiments.md R4, D3_h1.md and the caption all updated to the 400-draw values.
 - 2026-08-29 — second accepted write-up read (backtracking, ~4k words, 8 figs). Added F2 Reflections; RQ→R numbering; caption rule.

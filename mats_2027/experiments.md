@@ -1021,7 +1021,7 @@ decision, which must be settled BEFORE the real related-false Delta distribution
 
 ### H1-01 - H1 tested and NOT SUPPORTED (exploratory)   `2026-08-25`
 
-**VERDICT: H1 is not supported. The test had 76-100% power across H1's own predicted range
+**VERDICT: H1 is not supported. The test had 86-100% power across H1's own predicted range
 and found nothing.** Labelled EXPLORATORY, not confirmatory, for the reason in R3.
 
 **P1 · Question.** H1: the related-false cell is two populations under one label - some claims
@@ -1083,17 +1083,21 @@ hump. Power to detect a mixture at the geometry H1 actually implies (a fraction 
 the TRUE-claim mean +0.00115, the rest lower so the overall mean stays at the observed
 +0.00060), n=975, K=1, observed noise:
 ```
-     p    low mode   high mode   gap/sd    dip finds    dBIC finds
-  0.20    +0.00046    +0.00115     0.44      23/80        80/80
-  0.26    +0.00041    +0.00115     0.48      61/80  76%   80/80
-  0.35    +0.00030    +0.00115     0.55      80/80 100%   80/80
-  0.42    +0.00020    +0.00115     0.61      80/80 100%   80/80
+     p    low mode   high mode   gap/sd    dip finds (400 draws)   dip (80 draws, 25 Aug)
+  0.20    +0.00046    +0.00115     0.44      104/400  26.0%             23/80   29%
+  0.26    +0.00041    +0.00115     0.48      342/400  85.5%             61/80   76%
+  0.30    +0.00036    +0.00115     0.51      390/400  97.5%             -
+  0.35    +0.00030    +0.00115     0.55      400/400 100.0%             80/80  100%
+  0.42    +0.00020    +0.00115     0.61      400/400 100.0%             80/80  100%
 ```
+**Re-run at 400 draws/point on 2026-08-30** because 80 draws gave +-9pp and the figure and this
+file disagreed (90% vs 76% at p=0.26). The two estimates are the same quantity measured too few
+times: 61/80 vs 342/400, z=1.8, p=0.07 - not a real disagreement. Quote the 400-draw values.
 H1's stated prediction (hypotheses.md) is **p ~ 26-42%**. Across that whole range the dip test
-finds a planted mixture 76-100% of the time. **It found nothing in the real data.**
+finds a planted mixture **86-100%** of the time. **It found nothing in the real data.**
 
 **R5 · What could still be wrong.**
-- **A mixture below ~20% would have been missed** (power 29% at p=0.20). H1 is dead in its
+- **A mixture below ~20% would have been missed** (power 26% at p=0.20, 400 draws). H1 is dead in its
   STATED form (26-42%), not in every conceivable form.
 - K=1, not the pre-registered K=4. The power numbers above were measured AT the observed
   noise, so they already account for it - but K=4 averaging would raise power further and is
@@ -1786,7 +1790,7 @@ Scripts: stage3/stage4 unchanged; analysis ad hoc.
 | NOISE-02 | paired-Δ noise on the full data | 2026-08-23 | ⚠️ **unmeasurable with exact-string matching** — 1796/1916 singletons; H2 kill condition could not run |
 | MATCH-01 | semantic claim matcher | 2026-08-23 | ⏸️ PARKED — 2 pilots, still over-merges; verifier-pass fix designed, not built |
 | REL-01 | relatedness of the 995 false claims | 2026-08-25 | ✅ **98% RELATED**; H1 cell = 975; paper's related-vs-unrelated contrast NOT reproducible here |
-| H1-01 | H1 bimodality test on 975 related-false claims | 2026-08-25 | ❌ **H1 NOT SUPPORTED** (exploratory) — dip p=0.992 with 76–100% power; ΔBIC verdict was 100% skew artefact |
+| H1-01 | H1 bimodality test on 975 related-false claims | 2026-08-25 | ❌ **H1 NOT SUPPORTED** (exploratory) — dip p=0.992 with 86–100% power; ΔBIC verdict was 100% skew artefact |
 | JUDGE-02 | blind human validation of the judge | 2026-08-25 | ✅ **88.7% agreement** (binary), AG self-consistency 96.7%; specificity result survives and likely understates |
 | MATCH-02 | semantic matcher with a verifier pass | 2026-08-25 | ✅ 115 groups ≥3 resamples vs 22 by regex (5.2×); over-merging fixed |
 | NOISE-03 | paired-Δ noise + H2 kill condition | 2026-08-25 | ✅ noise is **stochastic** (predicts K=2,3 out-of-sample to 3%); earlier median-based ratios were the wrong statistic |

@@ -70,9 +70,9 @@ def skewed(n, mean, sd, sk, rng): kk = max(0.05, (2.0/sk)**2); gg = rng.gamma(kk
 rng = np.random.default_rng(3); ps = [0.10, 0.15, 0.20, 0.26, 0.30, 0.35, 0.42, 0.50]; pw = []
 for p in ps:
     lo_m = (MEAN-p*TM)/(1-p); hits = 0
-    for _ in range(60):
+    for _ in range(400):
         nh = int(N*p); x = np.concatenate([skewed(N-nh, lo_m, SD, SK, rng), skewed(nh, TM, SD, SK, rng)]); hits += dip_pvalue(x)[1] < 0.05
-    pw.append(100*hits/60)
+    pw.append(100*hits/400)
 fig, ax = plt.subplots(figsize=(7.2, 3.4))
 ax.axvspan(0.26, 0.42, color=ORANGE, alpha=0.12, lw=0); ax.text(0.34, 8, "H1's predicted\nmixture range", ha="center", fontsize=8, color=ORANGE)
 ax.plot(ps, pw, color=BLUE, lw=2, marker="o", ms=6)
@@ -81,7 +81,7 @@ ax.axhline(80, color=GRAY, lw=1, ls="--"); ax.text(0.505, 82, "80%", fontsize=8,
 ax.set_xlabel("fraction of related-false claims that behave like true claims (planted)"); ax.set_ylabel("% of planted mixtures the dip test detects"); ax.set_ylim(0, 110)
 ax.set_title("G3  Power: the null in G2 means something", fontsize=10, loc="left")
 pw26, pw42, pw20 = pw[ps.index(0.26)], pw[ps.index(0.42)], pw[ps.index(0.20)]
-save(fig, "G3_dip_power", f"Planted mixtures at the geometry H1 implies (n=975, observed noise, K=1, 60 draws per point, seed 3). Across H1's own predicted 26–42% range the dip test detects them {pw26:.0f}–{pw42:.0f}% of the time. At 20% it drops to {pw20:.0f}% — a mixture below that would have been missed. H1 is dead in its stated form, not in every form.")
+save(fig, "G3_dip_power", f"Planted mixtures at the geometry H1 implies (n=975, observed noise, K=1, 400 draws per point, seed 3). Across H1's own predicted 26–42% range the dip test detects them {pw26:.0f}–{pw42:.0f}% of the time. At 20% it drops to {pw20:.0f}% — a mixture below that would have been missed. H1 is dead in its stated form, not in every form.")
 
 # ---------------- G4 spread vs K with fit + out-of-sample ----------------
 K = [1, 2, 3, 4]; obs = [0.00227, 0.00177, 0.00166, 0.00157]
