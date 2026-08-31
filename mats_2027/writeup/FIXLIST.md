@@ -4,7 +4,7 @@ Rule: Claude fills numbers, corrections, examples, tables, figures. Claude does 
 connective prose between AG's paragraphs — anything needing AG's voice is flagged, not written.
 
 ## Global
-- [ ] Strip every scaffold header (`# D_ SCAFFOLD — Claude's prose...`) — currently in secD5
+- [x] Scaffold headers stripped (secD5 done 31 Aug; none remain)
 - [ ] Strip Claude provenance NOTE blocks (bottom of secD2, bottom of secC's FACTS list)
 - [ ] Strip all remaining `<< >>` and `< >` author notes
 - [ ] [AG] typo pass — Claude has deliberately NOT corrected AG's typos anywhere
@@ -43,8 +43,8 @@ connective prose between AG's paragraphs — anything needing AG's voice is flag
 ## D4 — not started
 
 ## D5
-- [ ] **4.5× must not stand alone** — SCORE-01b: falls to 2.7× with the final-token control, and
-      ENTITY vs DETAIL becomes indistinguishable. Rewrite that clause.
+- [x] 4.5× no longer stands alone — SCORE-01b control inserted after it (31 Aug, Claude).
+      [AG] read it: it is 4 sentences of Claude's prose inside your paragraph, condense to your voice.
 - [ ] [AG] decide whether to keep "dead weight or worse" (Claude's phrase, interpretive)
 - [ ] [AG] check "the part I least expected" is actually true of you
 - [ ] Optional: add the Δ<0 fractions (THEME 35.8% / ENTITY 28.6% / DETAIL 23.8%) — they run the
