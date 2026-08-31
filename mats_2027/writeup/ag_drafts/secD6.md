@@ -14,19 +14,29 @@ Neither happened. Deleting the sentence entirely left Bradman in 25% of the expl
 
 
 Before reading anything into that, I checked whether the edit had done anything at all to the
-thing the AV actually sees. It had not. Comparing the layer-32 activations between conditions,
-the edited and unedited versions sit at a mean-centred cosine of 0.997 to 0.9995 of each other.
-For scale: moving one token position along the same passage gives 0.42, and a different passage
-altogether gives 0.01. Deleting twenty-six tokens about 250 characters upstream changed the
-representation by less than one percent of what a single token step does.
+thing the AV actually sees. It had not. When comparing the layer-32 activations between conditions, i observed the edited and unedited versions sit at a mean-centred cosine of 0.997 to 0.9995 of each other.
+
+For scale, on the same axis: moving one token position along the same passage gives 0.422 on
+average, and a different passage sits at roughly zero. Per condition, aligned by offset from the
+end of the passage (the edits change token counts, so absolute positions are not comparable):
+
+| what was changed in the text | mean centred cosine vs the original | worst of the 10 positions |
+|---|---:|---:|
+| Gavaskar substituted for Bradman (one word) | 0.9995 | 0.9989 |
+| Umrigar substituted (one word) | 0.9989 | 0.9965 |
+| Thangavelu substituted (one word) | 0.9993 | 0.9986 |
+| proper noun removed, length kept | 0.9970 | 0.9796 |
+| **whole sentence deleted (104 characters, 26 tokens)** | **0.9968** | 0.9875 |
+| sentence rewritten coherently | 0.9979 | 0.9916 |
+| *one token step along the same passage* | *0.422* | — |
+| *a different passage entirely* | *−0.04* | — |
+
+Deleting the sentence outright moved the activation **0.7% as far as a single token step does**,
+and 3.5% even at the worst of the ten positions. (Cosines are mean-centred on the 60 activations
+from the main run, deliberately not on the patch data itself; the raw residual stream is so
+anisotropic that everything sits above 0.96 against everything else.)
 
 So the honest reading is not "planting a name does nothing". It is that **at these token
-positions the intervention never reached the representation**, and the question I set out to ask
-is untested rather than answered. The design could not have worked: I deliberately placed the
-edit far enough upstream that it would not change the sampled tokens, which is exactly why it had
-no effect on them. A real causal test needs activation patching with hooks, or sampling positions
-adjacent to the edit.
+positions the intervention never reached the representation**, and the question I set out to ask is untested rather than answered. The design could not have worked: I deliberately placed the edit far enough upstream that it would not change the sampled tokens, which is exactly why it had no effect on them. A real causal test needs activation patching with hooks, or sampling positions adjacent to the edit.
 
-What the control does establish is worth keeping. At layer 32, at these positions, the residual
-stream barely encodes context from 250 characters back. So the AV cannot be reading "Bradman" out
-of the activation — the name has to be coming from the model's own knowledge.
+What the control does establish is worth keeping. At layer 32, at these positions, the residual stream barely encodes context from 250 characters back. So the AV cannot be reading "Bradman" out of the activation — i believe the name has to be coming from the model's own knowledge.
