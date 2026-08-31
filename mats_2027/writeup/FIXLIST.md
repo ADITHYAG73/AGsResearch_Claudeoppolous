@@ -58,7 +58,13 @@ connective prose between AG's paragraphs — anything needing AG's voice is flag
       opposite way to the means and strengthen the redundancy reading
 - [ ] Optional: the "184" example, framed as illustrating the CONTROL, not redundancy
 
-## D6 — not started
+## D6 — IN PROGRESS 31 Aug (beats 1-3 written; beat 4 Savarkar, beat 5 synthesis remain)
+- [ ] [AG] confirm beat 2's account of YOUR predictions: DELETE -> Bradman disappears;
+      FAMOUS -> reversal, Gavaskar's records onto Dravid; REAL -> some effect; INVENTED -> none
+- [ ] [AG] "I designed an experiment" — you proposed the 7-condition structure and asked to read
+      the passages first; the conditions were built jointly. Keep the verb or soften it.
+- [ ] Beats 1-3 are Claude's prose lightly edited — revoice pass needed
+- [ ] The 99.94 correction must NOT reappear anywhere (was in experiments.md + CLAUDE.md)
 
 ## E — [AG] ALONE. Claude does not touch this section.
 - [ ] [AG] BEFORE writing E: the verification log in experiments.md has exactly ONE entry
