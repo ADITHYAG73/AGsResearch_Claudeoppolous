@@ -33,3 +33,25 @@ Source: runs/2026-08-22_pos10/claims.parquet + verdicts.parquet, Rahul Dravid pa
 - plant Gavaskar / Umrigar / Thangavelu instead → 0/40 uses of each
 - so at these positions the prefix token is NOT necessary and a planted name is NOT sufficient
 - the activation 250 chars downstream barely encodes the name: centred cosine 0.997 vs 0.42 for one token step
+
+
+## CORRECTION 2026-08-31 (AG asked where the 99.94 was attached — it wasn't)
+- **99.94 does not occur anywhere in the Dravid data.** All 343 claims searched. The invented
+  averages are **95.99 attributed to Brian Lara** (pos140 k2) and **51.37 attributed to Kevin
+  Pietersen** (pos147 k0). 99.94 occurs twice in the whole project, both in the PATCH-01 run.
+  The earlier note claiming the AV blended in Bradman's real average was a cross-run conflation.
+- **Bradman is not the special case.** Name mentions in claims on the Dravid passage:
+
+  | Dravid | Bradman | Tendulkar | Lara | Richards | Pietersen | Gavaskar | Hobbs |
+  |---:|---:|---:|---:|---:|---:|---:|---:|
+  | 27 | 21 | 20 | 6 | 3 | 2 | 2 | 1 |
+
+  **Tendulkar is absent from the passage and imported 20 times.** Bradman only looked special
+  because he is the one imported name that IS in the prefix.
+- **Better framing for D6:** the Dravid case and SAVARKAR-01 are the SAME finding — import from
+  parametric knowledge (>90% of false person-claims name someone absent, in both domains).
+  Re-binding a present name is the rare variant. This also explains PATCH-01: deleting "Bradman"
+  changed nothing because the prefix name was never the mechanism.
+- Other names the AV asserts on this passage, all absent: "W.J. Hobbs", "Vivian Richards",
+  "Kevin Pietersen", and it twice describes Bradman as Indian ("Indian batsman Don Bradman",
+  "an Indian cricketer named Don Bradman").

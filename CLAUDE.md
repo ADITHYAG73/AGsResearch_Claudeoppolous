@@ -760,11 +760,17 @@ trained NLAs. Completion condition sized to my resources, public artifact at the
     understates.
   - **AG's Bradman observation validated and extended into a characterised failure mode.**
     "Bradman" IS in the Dravid prefix — as the *Bradman Oration* Dravid delivered. The AV
-    re-binds Dravid's records to Bradman and blends in Bradman's real 99.94 average from
-    parametric memory. **21 claims across 5 positions**, including "The text is about Don
-    Bradman". This is **entity-role misbinding seeded by a name genuinely in the prefix** —
-    the machinery behind the paper's unexplained "related rather than fabricated wholesale".
-    It took cricket knowledge to spot; the corpus choice paid off.
+    re-binds Dravid's records to Bradman. **21 claims across 4 positions**, including "The text
+    is about Don Bradman". It took cricket knowledge to spot; the corpus choice paid off.
+    **[CORRECTED 2026-08-31, after AG asked where the 99.94 was attached.]** Two errors here,
+    both Claude's: (a) "blends in Bradman's real 99.94 average" is a CROSS-RUN CONFLATION — 99.94
+    never occurs in this data; the invented averages are 95.99 → Brian Lara and 51.37 → Kevin
+    Pietersen. 99.94 occurs twice in the project, both in PATCH-01. (b) Bradman is NOT special:
+    on the Dravid passage the AV names Dravid 27, **Bradman 21, Tendulkar 20**, Lara 6, Richards
+    3, Pietersen 2, Gavaskar 2, Hobbs 1 — and Tendulkar is absent from the passage entirely.
+    So this is **IMPORT from parametric knowledge**, the same failure SAVARKAR-01 measured;
+    re-binding a name that IS present is the rare special case, and that is also why PATCH-01's
+    DELETE condition changed nothing — the prefix name was never the mechanism.
   - **MATCH-02 — the matcher works.** Fix was a **second pass** (audit each group in
     isolation), not a better prompt. 115 groups with ≥3 resamples vs 22 by regex (5.2×).
   - **NOISE-03 — H2's kill condition NOT met, and the condition was mis-specified by me.**

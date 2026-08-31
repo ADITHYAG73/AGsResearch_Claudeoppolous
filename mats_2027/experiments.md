@@ -1214,10 +1214,25 @@ longest time spent batting" about a **Rahul Dravid** passage. Checking the data:
   **Bradman Oration** in Canberra". He appears as the eponym of a lecture.
 - The prefix then says "**He** holds the records for the most balls faced in Test cricket and
   the longest time [spent batting]" - "he" being Dravid.
-- The AV re-binds Dravid's records to Bradman, and blends in Bradman's REAL record (the 99.94
-  average) which is nowhere in the passage.
+- The AV re-binds Dravid's records to Bradman.
 - **21 claims mention Bradman**, across positions 142-146 and multiple resamples, including
   "The text is about Don Bradman" - complete subject substitution on a Dravid biography.
+
+**[CORRECTED 2026-08-31, prompted by AG asking where the 99.94 was attached.]**
+- **"blends in Bradman's REAL 99.94 average" is NOT true of this data.** Searched all 343 claims
+  on the Dravid passage: 99.94 does not occur. The invented averages here are **95.99 attributed
+  to Brian Lara** and **51.37 attributed to Kevin Pietersen**. The 99.94 occurs exactly twice in
+  the whole project, and both are in the **PATCH-01** run (2026-08-27), not here. Claude
+  conflated two runs when writing this entry, and it propagated to CLAUDE.md.
+- **Bradman is not special, which is the bigger correction.** Name mentions in claims on the
+  Dravid passage: Dravid 27, **Bradman 21, Tendulkar 20**, Lara 6, Richards 3, Pietersen 2,
+  Gavaskar 2, Hobbs 1. Tendulkar is imported nearly as often as Bradman and is **absent from the
+  passage entirely**. Bradman only looked special because he is the one imported name that IS in
+  the prefix, so he alone fit a re-binding story.
+- Consequence: the dominant phenomenon here is **import of famous batsmen from parametric
+  knowledge**, the same failure SAVARKAR-01 measured (>90% of false person-claims name someone
+  absent). Re-binding a present name is the rare special case - which is also why PATCH-01's
+  DELETE condition changed nothing: the name was never the mechanism.
 
 So: **entity-role misbinding, seeded by a name genuinely present in the prefix, then
 embellished from parametric memory.** Not fabrication from nothing.
@@ -1839,7 +1854,7 @@ Scripts: stage3/stage4 unchanged; analysis ad hoc.
 | MATCH-02 | semantic matcher with a verifier pass | 2026-08-25 | ✅ 115 groups ≥3 resamples vs 22 by regex (5.2×); over-merging fixed |
 | NOISE-03 | paired-Δ noise + H2 kill condition | 2026-08-25 | ✅ noise is **stochastic** (predicts K=2,3 out-of-sample to 3%); earlier median-based ratios were the wrong statistic |
 | H2-01 | per-claim AUC | 2026-08-25 | ⚠️ **AUC 0.535** [0.510,0.559] unaveraged — quantifies the paper's “weak verifier”; K-averaging → 0.615 but CI includes chance |
-| PATCH-01 | causal test: does the confabulation follow the name? | 2026-08-28 | ❌ **prefix token NOT necessary, planted name NOT sufficient** (at these positions). DELETE keeps Bradman at 25% incl. his real 99.94 avg; Gavaskar planted → 0/40. Activation barely moved (<1% of one token step) — that is the *why*. Untested: positions near the name |
+| PATCH-01 | causal test: does the confabulation follow the name? | 2026-08-28 | ❌ **prefix token NOT necessary, planted name NOT sufficient** (at these positions). DELETE keeps Bradman at 25%; Gavaskar planted → 0/40. Activation barely moved (<1% of one token step) — that is the *why*. Untested: positions near the name |
 | SCORE-01b | final-token control on the Delta-by-level gradient | 2026-08-30 | ⚠️ **gradient shrinks 4.5x -> 2.7x**; ENTITY vs DETAIL indistinguishable once final-token-naming claims are removed |
 | SAVARKAR-01 | domain transfer: 2019 biography vs cricket Wikipedia | 2026-08-28 | ❌ **both predictions refuted: MORE confabulation** (63% vs 50% false); >90% of false person-claims IMPORT a name absent from the text, in both domains |
 
