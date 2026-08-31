@@ -40,7 +40,14 @@ connective prose between AG's paragraphs — anything needing AG's voice is flag
 - [ ] Category 2 example: "The text is about Don Bradman" on the Dravid passage
 - [ ] Figures G2 (histogram) and G3 (power curve) referenced from the prose
 
-## D4 — not started
+## D4 — WRITTEN 31 Aug, 521 words. All numbers verified against pipeline/noise_fit.py.
+- [ ] Item 9 is still passive — name who mis-specified the kill condition. Honest form:
+      the agent drafted it, AG adopted it, neither noticed no dataset with signal could pass it,
+      the agent flagged it when the result came in. AG did NOT catch this one.
+- [ ] Add the median-vs-RMS correction: 1.41x (NOISE-01) and 0.12x (NOISE-02) used the median
+      within-claim sd, the wrong statistic for a variance decomposition. Superseded.
+- [ ] "The spread shrunk toward a floor..." is Claude's sentence copied verbatim — revoice.
+- [ ] Trim (target ~150-200 for a D subsection)
 
 ## D5
 - [x] 4.5× no longer stands alone — SCORE-01b control inserted after it (31 Aug, Claude).
@@ -54,6 +61,15 @@ connective prose between AG's paragraphs — anything needing AG's voice is flag
 ## D6 — not started
 
 ## E — [AG] ALONE. Claude does not touch this section.
+- [ ] [AG] BEFORE writing E: the verification log in experiments.md has exactly ONE entry
+      (the sqrt(d_model) check, 19 Aug). Go through what you actually checked and add the real
+      entries, then write E from the log rather than from memory.
+- [ ] What the record supports as AG's: the 150+30 blind grading; the Bradman observation;
+      killing the position hypothesis by eye; finding the relatedness labels did not exist;
+      reading the Laxman explanations before any numbers; insisting on advance kill conditions.
+- [ ] What the record shows CLAUDE caught (do not claim these): the dBIC skew artefact; the H2
+      kill-condition flaw; median-vs-RMS; the 115/110 conflation; the pink-ball quote from the
+      wrong position; the final-token confound.
 
 ## F — 428 words, long for a limitations list
 - [ ] Trim to ~150–200
@@ -65,8 +81,16 @@ connective prose between AG's paragraphs — anything needing AG's voice is flag
 
 ## A — written last
 
+## Optional deliverable (not submitted)
+- [ ] One-page DEFENCE NOTES: variance split, dip test, AUC, power — three lines each: what it
+      asks, why it was chosen, what would have falsified it. For interview prep only.
+
 ## Figures
 - [ ] G0 pipeline, G1 specificity, G2 H1 null, G3 dip power, G4 spread(K), G5 Savarkar
 - [ ] T1 (binning) and T2 (two bells) were built for teaching — decide whether either earns a
       place in the write-up or an appendix. T2's left panel is a strong argument for D3.
 - [ ] [AG] verify every number on every figure against experiments.md
+
+## Length budget (checked 31 Aug)
+Drafts total ~4,100 words against a ~2,500-3,000 target. C (978) and F (432) are the two furthest
+over. Trim at compile, not during drafting.

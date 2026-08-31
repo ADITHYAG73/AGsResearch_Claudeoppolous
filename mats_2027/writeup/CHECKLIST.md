@@ -21,7 +21,7 @@ Write B first — it is the thing you know best and it warms you up. Write A LAS
 |---|---|---|---|
 | 1 | B. Question and why | [x] AG+C | written 29 Aug, accuracy checked; 3 leftover placeholders for final pass |
 | 2 | C. Setup | [x] AG+C | written 30 Aug, 978 w — trim at compile |
-| 3 | D. Results | [~] | D1 D2 D3 D5 written 30-31 Aug; D4 D6 pending |
+| 3 | D. Results | [~] | D1 D2 D3 D4 D5 written 30-31 Aug, numbers verified; **D6 pending** |
 | 4 | E. What I verified myself | [ ] | ~150 words. **AG only.** |
 | 5 | F. Limitations | [x] AG+C | written 31 Aug, 428 w — trim at compile |
 | 5b | F2. Reflections | [ ] | ~150 words: implications + what you'd do next (hooks go here) |
