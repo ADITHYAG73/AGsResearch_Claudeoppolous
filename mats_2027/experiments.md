@@ -1352,7 +1352,7 @@ CAUTION LOGGED: an earlier interval [0.585, 0.622] was computed over RESAMPLE DR
 claims, and was wrongly narrow. The bootstrap above is over claims.
 
 **R3 · VERDICT: H2 PARTIALLY SUPPORTED.** Premise right, mechanism verified (NOISE-03 R2),
-payoff underpowered. **The bottleneck is RECURRENCE, not noise.** Only 115 of 2065 claims
+payoff underpowered. **The bottleneck is RECURRENCE, not noise.** Only 110 claim-groups [CORRECTED 31 Aug: was "115 of 2065 claims" - 115 is groups with >=3 MEMBER CLAIMS; 110 is groups spanning >=3 distinct RESAMPLES, which is the quantity H2 needs]
 recur in >=3 of the 4 resamples, and only 91 of those carry a consistent verdict. At K=4 there
 are not enough repeated claims to average over. Deciding this needs more resamples per
 activation - a pod session, not an analysis. Shortfall roughly 10x in sample size.
@@ -1602,7 +1602,7 @@ Scripts: `pipeline/stage3_decompose.py` (unchanged), analysis ad hoc.
 ### PARKED OPTION - more resamples to decide H2   `2026-08-27`
 
 **Why.** H2-01 left H2 partially supported: mechanism verified, point estimate moving the
-right way (AUC 0.535 -> 0.615), but only **115 of 2065 claims recur in >=3 of the 4
+right way (AUC 0.535 -> 0.615), but only **110 claim-groups span >=3 of the 4
 resamples**, so the CI spans chance. **The bottleneck is RECURRENCE, and recurrence is a
 direct function of K.** Going K=4 -> K=12 multiplies the pool twice over: more claims per
 activation, and far more chances for any one claim to appear >=3 times.

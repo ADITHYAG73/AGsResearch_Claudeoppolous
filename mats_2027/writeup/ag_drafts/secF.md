@@ -4,9 +4,9 @@ Limitations
 
 2. Judge valiadtion on cricket data (88.7%). The same was not done for the "Savarkar corpus" partly because I have not read the book completely and also due to time crunch.
 
-3. The semantic matcher was never checked by a human. It is an LLM that decides which claims, across the four resamples of the same activation, are "the same claim". Those groups are the entire basis of the K-averaging result in D4 — 115 groups out of 2065 claims — and nobody has ever read a group and confirmed it is one claim rather than two.
+3. The semantic matcher was never checked by a human. It is an LLM that decides which claims, across the four resamples of the same activation, are "the same claim". Those groups are the entire basis of the K-averaging result in D4 — 110 groups spanning at least 3 of the 4 resamples — and nobody has ever read a group and confirmed it is one claim rather than two.
 
-4. The two hypothesis results are weaker than they look. H2's payoff could only be measured on the 115 claims that recur in at least 3 of 4 resamples, so the bottleneck is recurrence, not noise, and the K-averaged AUC's confidence interval still includes chance. H1's verdict is exploratory rather than confirmatory, because the detector rule I pre-registered turned out to be broken and had to be revised after I had already seen the real distribution.
+4. The two hypothesis results are weaker than they look. H2's payoff could only be measured on the 110 claim-groups that span at least 3 of the 4 resamples, so the bottleneck is recurrence, not noise, and the K-averaged AUC's confidence interval still includes chance. H1's verdict is exploratory rather than confirmatory, because the detector rule I pre-registered turned out to be broken and had to be revised after I had already seen the real distribution.
 
 5. I did not fully finish the Savarkar experiment to report the final delta. I took it as far as explanations, claim decomposition and verdicts — enough to compare confabulation rates across the two domains — but never ran the ablation or the AR scoring on it, so there is no Δ on a second domain.
 
