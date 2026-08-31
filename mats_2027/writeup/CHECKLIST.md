@@ -20,10 +20,10 @@ Write B first — it is the thing you know best and it warms you up. Write A LAS
 | step | section | status | notes |
 |---|---|---|---|
 | 1 | B. Question and why | [x] AG+C | written 29 Aug, accuracy checked; 3 leftover placeholders for final pass |
-| 2 | C. Setup | [ ] | ~300 words, facts liftable from experiments.md |
-| 3 | D. Results | [ ] | ~800 words, six subsections |
+| 2 | C. Setup | [x] AG+C | written 30 Aug, 978 w — trim at compile |
+| 3 | D. Results | [~] | D1 D2 D3 D5 written 30-31 Aug; D4 D6 pending |
 | 4 | E. What I verified myself | [ ] | ~150 words. **AG only.** |
-| 5 | F. Limitations | [ ] | 5 bullets, ~100 words |
+| 5 | F. Limitations | [x] AG+C | written 31 Aug, 428 w — trim at compile |
 | 5b | F2. Reflections | [ ] | ~150 words: implications + what you'd do next (hooks go here) |
 | 6 | G. Figures | [~] | 5 drafts rendered in writeup/figures/ (PNG+SVG+caption); AG to verify each number |
 | 7 | A. Executive summary | [ ] | ≤600 words. LAST. |

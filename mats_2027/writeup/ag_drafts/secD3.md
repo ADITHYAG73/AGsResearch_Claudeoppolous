@@ -27,3 +27,4 @@ To check that, I generated data that was ONE group by construction, lopsided by 
 
 Because the rule had to be revised post me seeing the data, H1's verdict is exploratory and not confirmatory. When i was brainstorming with my thinking and experimenting partner (Claude) we did not account for a lopsy enough distribution.
 
+killing H1 does not mean AR treats category 1(activation-true, text-flase) and category 2(genuine confabulations) claims alike. it merely shows that their measured delta does not split into two groups. This measurement can't tell them apart at this size.

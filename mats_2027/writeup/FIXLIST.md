@@ -26,9 +26,15 @@ connective prose between AG's paragraphs — anything needing AG's voice is flag
 
 ## D2 — done, needs only the global strips
 
-## D3 (in progress)
-- [ ] 975 = RELATED-false, not all false (995). Add the 98% figure from REL-01
-- [ ] Say the kill condition was written in advance (19 Aug) — pre-registration, not hindsight
+## D3 — WRITTEN 31 Aug, 409 words (target ~150-200, trim at compile). All numbers verified.
+- [ ] 975 = RELATED-false, not all false (995). Draft still says "975 (false) claims" — add the
+      98% figure from REL-01. STILL OUTSTANDING.
+- [ ] Say the kill condition was written in advance (19 Aug) — pre-registration, not hindsight.
+      STILL OUTSTANDING.
+- [ ] Precision: at a 20% mixture power is 26%, so "at or below a fifth would likely be missed"
+      is the honest phrasing; the draft says "below 20 percent the test goes blind"
+- [ ] Stray word "wrote" pasted at the end of the beat-2 sentence
+- [ ] Typo "micture"; "Category" missing its 2
 - [ ] Category 1 example: 'By summer 1789' (Δ=+0.00910) — label as MOTIVATION, not evidence,
       because H1 died and no verified Category 1 instance exists
 - [ ] Category 2 example: "The text is about Don Bradman" on the Dravid passage
