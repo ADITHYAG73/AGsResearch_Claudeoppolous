@@ -43,14 +43,9 @@ What the control does establish is worth keeping. At layer 32, at these position
 
 
 If the names are coming from the model's own knowledge rather than from the passage, then the
-amount of confabulation should depend on how well the model knows the material. Cricket Wikipedia
-is about as well-trodden as text gets. So I ran the same pipeline on something it has almost
-certainly seen far less of: seven random pages from a 2019 biography of V. D. Savarkar, matched
-to the cricket passages for length, with the Dravid passage re-run in the same batch as a
-regression check (it came back at cosine 1.000000).
+amount of confabulation i thought, should depend on how well the model knows the material. Cricket Wikipedia is about as battered a text as it gets. So I ran the same pipeline on something what i believed ,it may have almost certainly seen far less of: seven random pages from a 2019 biography of V. D. Savarkar, matched to the cricket passages for length, with the Dravid passage re-run in the same batch as a regression check (it came back at cosine 1.000000).
 
-Both of us predicted fewer confabulations there — my reasoning being that with less to recall,
-the AV would have less to invent. We were both wrong, and in the same direction.
+Both of us(me and opus5) predicted fewer confabulations there — my reasoning being that with less to recall, the AV would have less to invent. We were both wrong, and in the same direction.
 
 | level | Savarkar | cricket | difference |
 |---|---:|---:|---:|
@@ -59,18 +54,36 @@ the AV would have less to invent. We were both wrong, and in the same direction.
 | DETAIL | 28.1% (n=705) | 34.6% (n=628) | −6.5 pp |
 | **ALL** | **36.7%** (n=2730) | **50.5%** (n=1668) | **−13.8 pp** |
 
-63% of the claims on the biography are false, against 50% on cricket, and the overall confidence
-intervals do not overlap. The unfamiliar text produced *more* confabulation, not less.
+63% of the claims on the biography are false, against 50% on cricket, and the overall confidence intervals did not overlap. The unfamiliar text produced *more* confabulation, not less.
 
-The two corpora agree on the mechanism, though. Taking every false claim that names a person, and
-asking whether that person appears in the passage at all:
+The two corpora agree on the mechanism, though. Taking every false claim that names a person, and asking whether that person appears in the passage at all:
 
 | corpus | false person-claims | person is in the passage | person is absent (imported) |
 |---|---:|---:|---:|
 | Savarkar | 233 | 15 (6.4%) | 218 (93.6%) |
 | cricket | 60 | 1 (1.7%) | 59 (98.3%) |
 
-In both domains, **more than nine in ten false person-claims name somebody who is not in the text
-at all.** On the biography the imported names are Gandhi, Bhagat Singh, Tilak; on cricket they are
-Tendulkar, Dravid, Bradman. Re-binding a name that is genuinely present — the Bradman story I
-started from — is the rare case, not the common one.
+In both domains, **more than nine in ten false person-claims name somebody who is not in the text at all.** On the biography the imported names are Gandhi, Bhagat Singh, Tilak; on cricket they are Tendulkar, Dravid, Bradman. Re-binding a name that is genuinely present — the Bradman story I started from — is the rare case, not the common one.
+
+
+One more measurement belongs here. The paper says twice, without a number, that false claims tend
+to be related to the context rather than fabricated wholesale. I labelled all 995 false claims for
+relatedness and **975 of them — 98% — are related to the passage.** Given a cricket activation the
+AV confabulates cricket; given a passage about 1900s Maharashtra it confabulates Indian
+nationalist history. Only 20 claims were off-topic, and several of those look mislabelled. That
+number also costs me the paper's related-versus-unrelated comparison: with an unrelated cell that
+small, I cannot reproduce it on this corpus.
+
+Putting the three together — the names are imported, the imports stay in-domain, and there are
+more of them on unfamiliar text — the reading I find most plausible is that **the model's own
+knowledge is the source of the specifics the AV gets right, not the source of its errors.** The AV
+appears to write to a fixed level of specificity whatever it is given. Where the activation is
+well-grounded, in text the model has seen many times, the specifics it reaches for are more often
+the correct ones. Where the activation is thinner, it fills the same specificity budget with the
+nearest famous things it knows — Gandhi, Bhagat Singh, Tilak — and those are wrong.
+
+I want to be clear that this is an interpretation of three results, not a test of anything. It is
+consistent with all three and I cannot separate it from alternatives with the data I have. The
+experiment that would test it is a third corpus at a third level of familiarity, with the
+prediction stated in advance: confabulation should track familiarity monotonically, and the
+specificity of the claims should not change across corpora even as their accuracy does.
