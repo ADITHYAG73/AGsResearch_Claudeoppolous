@@ -40,3 +40,37 @@ So the honest reading is not "planting a name does nothing". It is that **at the
 positions the intervention never reached the representation**, and the question I set out to ask is untested rather than answered. The design could not have worked: I deliberately placed the edit far enough upstream that it would not change the sampled tokens, which is exactly why it had no effect on them. A real causal test needs activation patching with hooks, or sampling positions adjacent to the edit.
 
 What the control does establish is worth keeping. At layer 32, at these positions, the residual stream barely encodes context from 250 characters back. So the AV cannot be reading "Bradman" out of the activation — i believe the name has to be coming from the model's own knowledge.
+
+
+If the names are coming from the model's own knowledge rather than from the passage, then the
+amount of confabulation should depend on how well the model knows the material. Cricket Wikipedia
+is about as well-trodden as text gets. So I ran the same pipeline on something it has almost
+certainly seen far less of: seven random pages from a 2019 biography of V. D. Savarkar, matched
+to the cricket passages for length, with the Dravid passage re-run in the same batch as a
+regression check (it came back at cosine 1.000000).
+
+Both of us predicted fewer confabulations there — my reasoning being that with less to recall,
+the AV would have less to invent. We were both wrong, and in the same direction.
+
+| level | Savarkar | cricket | difference |
+|---|---:|---:|---:|
+| THEME | 49.2% supported (n=1330) | 70.0% (n=707) | −20.8 pp |
+| ENTITY | 21.7% (n=695) | 39.3% (n=333) | −17.6 pp |
+| DETAIL | 28.1% (n=705) | 34.6% (n=628) | −6.5 pp |
+| **ALL** | **36.7%** (n=2730) | **50.5%** (n=1668) | **−13.8 pp** |
+
+63% of the claims on the biography are false, against 50% on cricket, and the overall confidence
+intervals do not overlap. The unfamiliar text produced *more* confabulation, not less.
+
+The two corpora agree on the mechanism, though. Taking every false claim that names a person, and
+asking whether that person appears in the passage at all:
+
+| corpus | false person-claims | person is in the passage | person is absent (imported) |
+|---|---:|---:|---:|
+| Savarkar | 233 | 15 (6.4%) | 218 (93.6%) |
+| cricket | 60 | 1 (1.7%) | 59 (98.3%) |
+
+In both domains, **more than nine in ten false person-claims name somebody who is not in the text
+at all.** On the biography the imported names are Gandhi, Bhagat Singh, Tilak; on cricket they are
+Tendulkar, Dravid, Bradman. Re-binding a name that is genuinely present — the Bradman story I
+started from — is the rare case, not the common one.
