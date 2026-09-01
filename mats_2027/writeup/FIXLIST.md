@@ -5,8 +5,8 @@ connective prose between AG's paragraphs — anything needing AG's voice is flag
 
 ## Global
 - [x] Scaffold headers stripped (secD5 done 31 Aug; none remain)
-- [ ] Strip Claude provenance NOTE blocks (bottom of secD2, bottom of secC's FACTS list)
-- [ ] Strip all remaining `<< >>` and `< >` author notes
+- [x] Provenance blocks + author notes now stripped automatically by writeup/compile.py
+- [x] `<< >>` / `< >` notes stripped by compile.py (source files keep them; DRAFT.md does not)
 - [ ] [AG] typo pass — Claude has deliberately NOT corrected AG's typos anywhere
 - [ ] Renumber figures once the final set is fixed; check every in-text figure reference resolves
 
@@ -85,7 +85,10 @@ connective prose between AG's paragraphs — anything needing AG's voice is flag
 
 ## F2 — not started
 
-## A — written last
+## A — DRAFTED 1 Sep by Claude, 582 words (limit 600). [AG] must revoice.
+- [ ] [AG] read it first — it is the only thing Neel is guaranteed to read
+- [ ] [AG] the "What I checked myself" paragraph names three failures; confirm you are happy
+      naming them, and that the third (the 99.94) is described accurately
 
 ## Optional deliverable (not submitted)
 - [ ] One-page DEFENCE NOTES: variance split, dip test, AUC, power — three lines each: what it
@@ -100,3 +103,10 @@ connective prose between AG's paragraphs — anything needing AG's voice is flag
 ## Length budget (checked 31 Aug)
 Drafts total ~4,100 words against a ~2,500-3,000 target. C (978) and F (432) are the two furthest
 over. Trim at compile, not during drafting.
+
+## Compile (1 Sep)
+- writeup/compile.py assembles ag_drafts/ -> writeup/DRAFT.md, deterministic and re-runnable.
+- Current total **6,009 words** against a 2,500-3,000 target. Over by ~2x.
+  Worst offenders: D6 1,460 · C 777 · D2 686 · D4 518 · F 432.
+- Figures placed: G0 in C, G1 in D1, G2+G3 in D3, G4 in D4, G5 in D6.
+- STILL MISSING: section E (AG), and the trim pass.
