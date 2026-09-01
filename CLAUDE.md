@@ -838,3 +838,39 @@ trained NLAs. Completion condition sized to my resources, public artifact at the
     a blind sample would be a weaker standard.
 
   **Next: WRITE. 7 days to Sept 4. Nothing else goes near a GPU.**
+
+- **2026-09-01 — ALL ELEVEN SECTIONS DRAFTED. Write-up assembled. Zero GPU spend.**
+  `mats_2027/writeup/DRAFT.md` (6,525 words) built by `writeup/compile.py` — deterministic,
+  re-runnable, strips Claude provenance blocks and AG's `<notes to self>`, places G0–G5.
+  - **Written 30 Aug–1 Sep:** B, C, D1–D6, E, F, F2, A. E is AG's alone. A is Claude's draft
+    (582 w, under the 600 limit) and still needs AG's voice — it is the section Neel reads first.
+  - **Three corrections found by AG asking, not by review:** (a) the **99.94** batting average
+    never existed in the data — a cross-run conflation that had propagated into experiments.md,
+    CLAUDE.md and D6; the real invented averages are 95.99→Lara and 51.37→Pietersen. (b) **Bradman
+    is not special** — on the Dravid passage the AV names Bradman 21, **Tendulkar 20** (absent from
+    the passage entirely), Lara 6, Richards 3; so the phenomenon is IMPORT, not re-binding, which
+    also explains why PATCH-01's DELETE condition did nothing. (c) E claimed AG adjudicated the 27
+    judge disagreements — **Claude did that**; corrected.
+  - **Two numbers were not reproducible and now are.** `pipeline/noise_fit.py` rebuilds H2's
+    variance decomposition (the out-of-sample fit existed only as an in-session calculation):
+    spread 0.00225→0.00181→0.00164→0.00157, fit on K=1,4 predicts K=2,3 to **0.8%**, noise 0.00185
+    vs 0.00212 from within-claim RMS, signal floor **56%**. `pipeline/patch_control.py` rebuilds
+    PATCH-01's control and reproduces the recorded 0.4221 — it also documents the two traps:
+    align by **offset from the end** (absolute pos is not comparable across edits) and centre on
+    the 60 POS-01 activations (pooling all 130 moves the token-step reference 0.42→0.25).
+  - **115 vs 110 was a conflation:** 115 groups have ≥3 member CLAIMS; **110 span ≥3 distinct
+    RESAMPLES**, which is the quantity H2 needs. Corrected in D4, F and experiments.md.
+  - **New finding, SCORE-01b:** the DETAIL/THEME Δ gradient falls **4.5× → 2.7×** once claims
+    naming the passage's final token are removed, and ENTITY vs DETAIL becomes indistinguishable.
+    Script `pipeline/final_token_control.py`. Never quote the 4.5× alone.
+  - **G3 power settled at 400 draws:** 86–100% across H1's 26–42% range (the 76% was 80 draws).
+  - **The paper's Future Work names AG's next step:** "best-of-N NLA explanation against AR
+    reconstruction" — inference-time, whole-explanation, needs no recurrence matching, and the
+    resamples + scorer already exist. Their legibility section also independently reports that
+    NLAs "often repeat the same content on multiple bullet points", which corroborates H3.
+  - Figures: G0 pipeline flowchart + G1–G5, plus teaching figures T1 (binning) and T2 (two bells).
+
+  **Next: (1) TRIM — 6,525 words against a 2,500–3,000 target, mostly D6 (1,460), C (777),
+  D2 (686); (2) AG's voice pass, especially A, D5, D6, F2 which are Claude's prose; (3) typo pass
+  — Claude has deliberately not touched AG's typos; (4) Google Doc, anyone-with-link;
+  (5) THEN the application form questions (Q8 cannot cite this project).**

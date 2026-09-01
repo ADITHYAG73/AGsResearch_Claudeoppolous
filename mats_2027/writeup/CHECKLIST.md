@@ -21,12 +21,12 @@ Write B first — it is the thing you know best and it warms you up. Write A LAS
 |---|---|---|---|
 | 1 | B. Question and why | [x] AG+C | written 29 Aug, accuracy checked; 3 leftover placeholders for final pass |
 | 2 | C. Setup | [x] AG+C | written 30 Aug, 978 w — trim at compile |
-| 3 | D. Results | [~] | D1 D2 D3 D4 D5 written 30-31 Aug, numbers verified; **D6 pending** |
-| 4 | E. What I verified myself | [ ] | ~150 words. **AG only.** |
+| 3 | D. Results | [x] AG+C | D1–D6 all written, numbers verified |
+| 4 | E. What I verified myself | [x] AG | written 1 Sep; adjudication claim corrected |
 | 5 | F. Limitations | [x] AG+C | written 31 Aug, 428 w — trim at compile |
-| 5b | F2. Reflections | [ ] | ~150 words: implications + what you'd do next (hooks go here) |
+| 5b | F2. Reflections | [x] AG+C | 1 Sep; leads with best-of-N (the paper's own named next step) |
 | 6 | G. Figures | [~] | 5 drafts rendered in writeup/figures/ (PNG+SVG+caption); AG to verify each number |
-| 7 | A. Executive summary | [ ] | ≤600 words. LAST. |
+| 7 | A. Executive summary | [~] | Claude draft 582 w, 1 Sep — **AG voice pass required** |
 | 8 | Form answers (Q1–Q8) | [ ] | separate from the doc; Q8 bans citing this project |
 | 9 | Google Doc, anyone-with-link, exec summary first 1–3 pages | [ ] | |
 
