@@ -12,10 +12,18 @@ import a name the passage never mentions, then checking descriptions against the
 wrong shape of defence, because the AV never saw the context. Checking named entities against
 what the activation can actually support looks more promising, and cheaper.
 
-With more time, in order: activation patching with hooks, which is the causal test my text-level
-intervention could not perform; K=12 resamples to decide H2 properly; and a third corpus at a
-third level of familiarity to test whether confabulation really does track how well the model
-knows the material.
+With more time, the first thing I would run is one the paper names and did not do. Under
+inference-time methods it notes that the pipeline "mostly uses AV outputs and discards the AR",
+and that a simple extension is taking a best-of-N explanation scored against AR reconstruction. I
+have the resamples and the scoring already. That asks a whole-explanation question rather than a
+per-claim one, which sidesteps the recurrence bottleneck entirely — no claim matching is needed to
+ask whether the best-reconstructing of four explanations contains fewer false claims than a
+randomly chosen one.
+
+After that, in order: whether the AV's confabulated name depends causally on the activation at
+that position, which needs patching rather than a text edit; K=12 resamples to decide H2; and a
+third corpus at a third level of familiarity to test whether confabulation tracks how well the
+model knows the material.
 
 The honest gap is that none of this touched the model's internals. Everything here treats the NLA
 as a black box, and the one intervention I attempted never reached the representation. That is

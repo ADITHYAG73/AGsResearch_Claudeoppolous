@@ -21,6 +21,6 @@ indistinguishable** (±0.00020 and ±0.00021). So the THEME-to-specific step is 
 ENTITY-to-DETAIL step is an artefact of claims that name the final token. If truth were what drove Δ this should run the other way, since THEME claims are
 supported 69% of the time and DETAIL claims only 36%. My reading is redundancy: a theme is
 restated throughout an explanation, so removing one statement of it costs the reconstruction
-almost nothing, while a specific detail appears once and its removal is felt. (shud we show an example here as well??) **That is
+almost nothing, while a specific detail appears once and its removal is felt. (shud we show an example here as well??) The paper's own future-work section reports the same thing from the other side: NLA explanations "often repeat the same content on multiple bullet points", and the authors propose reconstructing each bullet independently with a similarity penalty to fix it. So the repetition my reading depends on is something they observed too. **That is
 consistent with the data, not tested by it** — two rivals survive, that DETAIL claims are simply
 longer, and that specific claims genuinely constrain the activation more than vague ones do.

@@ -326,7 +326,7 @@ indistinguishable** (±0.00020 and ±0.00021). So the THEME-to-specific step is 
 ENTITY-to-DETAIL step is an artefact of claims that name the final token. If truth were what drove Δ this should run the other way, since THEME claims are
 supported 69% of the time and DETAIL claims only 36%. My reading is redundancy: a theme is
 restated throughout an explanation, so removing one statement of it costs the reconstruction
-almost nothing, while a specific detail appears once and its removal is felt.  **That is
+almost nothing, while a specific detail appears once and its removal is felt.  The paper's own future-work section reports the same thing from the other side: NLA explanations "often repeat the same content on multiple bullet points", and the authors propose reconstructing each bullet independently with a similarity penalty to fix it. So the repetition my reading depends on is something they observed too. **That is
 consistent with the data, not tested by it** — two rivals survive, that DETAIL claims are simply
 longer, and that specific claims genuinely constrain the activation more than vague ones do.
 
@@ -428,7 +428,17 @@ specificity of the claims should not change across corpora even as their accurac
 
 ## E. What I verified myself
 
-*[E. What I verified myself — not yet written]*
+The things that were my contributions:
+
+1. I  graded 150 claims blind plus 30 retests, 180 items in 33.6 minutes, seeing only the claim and the prefix. 96.7% self-consistent, 88.7% agreement with the judge. A human validation for my dataset.
+2. I froze the grading conventions the adjudication was then judged against, and the 27 disagreements my blind grading produced turned out to split into two error modes at opposite ends of the specificity scale — I am too generous on quoted strings, the judge is too strict on vague-but-correct descriptions. (The adjudication itself was done by my agent, applying my conventions; it is the same model family as the judge, so it is not a neutral referee.)
+3. I  spotted the Bradman substitution — it needed cricket knowledge , which is my forte.
+4. I had an hypothesis that confabulations tend to be more towards the ending positions of sentences. But later i found out it was not the case.
+5. I found the relatedness labels didn't exist, by checking my own mental model against the data — that blocked H1 until it was fixed.
+6. I asked where a number in my own notes came from — the 99.94 batting average my agent said the model had blended in — and it was nowhere in the data. It had been carried over from a different run and had propagated into three files. The averages the model actually invented were 95.99 and 51.37, attributed to two batsmen who appear nowhere in the passage.
+
+What I did not do and would like to explore :
+no hooks, no internal probing. Black box throughout ..(here u know i wonder what is the natural next step in natural language autoencoders..like the official authors what direction did they mention in their original research paper/article worth pursuing.. i would be interested to know that, coz i have forgotten it, and given neel is drifting away from traditional methods like activation patching or something, need to read what his current interests are..we know for sure NLA is his current interest..but which direction moving fwd..what do anthroopic say..that can also in effect determine my next stes right..instead of me writing hooks and internal probing)
 
 ---
 
@@ -466,10 +476,18 @@ import a name the passage never mentions, then checking descriptions against the
 wrong shape of defence, because the AV never saw the context. Checking named entities against
 what the activation can actually support looks more promising, and cheaper.
 
-With more time, in order: activation patching with hooks, which is the causal test my text-level
-intervention could not perform; K=12 resamples to decide H2 properly; and a third corpus at a
-third level of familiarity to test whether confabulation really does track how well the model
-knows the material.
+With more time, the first thing I would run is one the paper names and did not do. Under
+inference-time methods it notes that the pipeline "mostly uses AV outputs and discards the AR",
+and that a simple extension is taking a best-of-N explanation scored against AR reconstruction. I
+have the resamples and the scoring already. That asks a whole-explanation question rather than a
+per-claim one, which sidesteps the recurrence bottleneck entirely — no claim matching is needed to
+ask whether the best-reconstructing of four explanations contains fewer false claims than a
+randomly chosen one.
+
+After that, in order: whether the AV's confabulated name depends causally on the activation at
+that position, which needs patching rather than a text edit; K=12 resamples to decide H2; and a
+third corpus at a third level of familiarity to test whether confabulation tracks how well the
+model knows the material.
 
 The honest gap is that none of this touched the model's internals. Everything here treats the NLA
 as a black box, and the one intervention I attempted never reached the representation. That is
