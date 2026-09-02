@@ -1,6 +1,6 @@
 ## D5. Removing a claim improves reconstruction 30% of the time
 
-Neel Nanda's suggestion in the MATS 12.0 admissions doc — Recommended Research Problems tab, section "Improved Interpretability Methods" (https://docs.google.com/document/d/1p-ggQV3vVWIQuCccXEl1fD0thJOgXimlbBpGk6FI32I/edit?tab=t.knytn7x826kv) — was to look for claims that can be removed to *improve* reconstruction. Although the paper says false claims hurt reconstruction *less* than true ones, it never reports how often removal actually helps. 
+Neel Nanda's suggestion in the MATS 12.0 admissions doc — [Recommended Research Problems tab](https://docs.google.com/document/d/1p-ggQV3vVWIQuCccXEl1fD0thJOgXimlbBpGk6FI32I/edit?tab=t.knytn7x826kv), section "Improved Interpretability Methods" — was to look for claims that can be removed to *improve* reconstruction. Although the paper says false claims hurt reconstruction *less* than true ones, it never reports how often removal actually helps. 
 
 On my data it helps often:
 **30.0% of 2063 single-claim ablations have Δ < 0** (mean Δ = +0.00088, sd 0.00264). By the AR's own measure, then, nearly a third of the claims in these explanations are carrying no weight — though at a mean Δ this small, some of that will be scatter around zero rather than genuine harm.

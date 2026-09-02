@@ -124,7 +124,7 @@ If Δ is positive, removing the claim worsened the reconstruction, so the claim 
 
 I set out to verify that "claim" — pun unintended. Simple as the statement sounds, it took me a while to register what it actually means. The original question I set out to answer, along with my favourite knowledge partner in crime (Opus 5 / Fable 5), was this: does removing false claims improve reconstruction?
 
-(The question is taken from Neel Nanda's MATS 12.0 admissions doc — Recommended Research Problems tab, section "Improved Interpretability Methods", the natural language autoencoders bullet: https://docs.google.com/document/d/1p-ggQV3vVWIQuCccXEl1fD0thJOgXimlbBpGk6FI32I/edit?tab=t.knytn7x826kv — where he says he is "particularly interested in using the activation reconstructor to measure the quality of a description, e.g. figuring out which claims can be removed and improve reconstruction accuracy to help reduce hallucinations".)
+(The question is taken from Neel Nanda's MATS 12.0 admissions doc — [Recommended Research Problems tab](https://docs.google.com/document/d/1p-ggQV3vVWIQuCccXEl1fD0thJOgXimlbBpGk6FI32I/edit?tab=t.knytn7x826kv), section "Improved Interpretability Methods", the natural language autoencoders bullet — where he says he is "particularly interested in using the activation reconstructor to measure the quality of a description, e.g. figuring out which claims can be removed and improve reconstruction accuracy to help reduce hallucinations".)
 
 And in the process, this is what I found.
 
@@ -241,7 +241,7 @@ H2 is therefore partially supported. The premise was right, the noise is real an
 
 ## D5. Removal improves reconstruction 30% of the time
 
-Neel Nanda's suggestion in the MATS 12.0 admissions doc — Recommended Research Problems tab, section "Improved Interpretability Methods" (https://docs.google.com/document/d/1p-ggQV3vVWIQuCccXEl1fD0thJOgXimlbBpGk6FI32I/edit?tab=t.knytn7x826kv) — was to look for claims that can be removed to *improve* reconstruction. Although the paper says false claims hurt reconstruction *less* than true ones, it never reports how often removal actually helps. 
+Neel Nanda's suggestion in the MATS 12.0 admissions doc — [Recommended Research Problems tab](https://docs.google.com/document/d/1p-ggQV3vVWIQuCccXEl1fD0thJOgXimlbBpGk6FI32I/edit?tab=t.knytn7x826kv), section "Improved Interpretability Methods" — was to look for claims that can be removed to *improve* reconstruction. Although the paper says false claims hurt reconstruction *less* than true ones, it never reports how often removal actually helps. 
 
 On my data it helps often:
 **30.0% of 2063 single-claim ablations have Δ < 0** (mean Δ = +0.00088, sd 0.00264). By the AR's own measure, then, nearly a third of the claims in these explanations are carrying no weight — though at a mean Δ this small, some of that will be scatter around zero rather than genuine harm.
