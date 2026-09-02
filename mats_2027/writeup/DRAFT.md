@@ -72,10 +72,6 @@ sources of confabulation :
 1. residual activation vector genuinely encodes it and the AV faithfully read it.
 2. AV being a LM in itself made it up.
 
-case 1
-
-case 2
-
 so. in essence a text judge is primarily blind to residual activation and AV model thought process. the text judge in our case (Haiku 4.5) only receives the passage uptill the position (the prefix) and the claim..and its given 3 choices -> Supported,  or Not in TExt. 
 
 The residual stream activation which served as the bedrock for generation of explanation using AV is available to  only AR for reconstruction in the whole system, so its in. prinicple the only instruemnt that cud tell case 1 from case 2 .
@@ -135,6 +131,8 @@ binary verdicts differ, 16 are cases where I said supported and Haiku said the t
 contain it; exactly one runs the other way.  I observed little more thoroughly, Haiku was right about quoted strings and I was too generous. I was right about vague-but-correct THEME claims and Haiku was too strict.Those two mistakes sit at opposite ends of the specificity axis, so i believe they flatten the gradient.
 **The real THEME-to-DETAIL gap is probably wider than either of us measured** (my labels give
 46 points, Haiku's 40).
+
+Two examples, one in each direction. Where Haiku was right: I marked supported the claim *"The text contains the phrase 'considered by many as one of the'"*, where the prefix actually ends `...This series is regarded as one of the` — a near-miss paraphrase, and my single retest flip was a claim of exactly this type, where my second answer agreed with Haiku. Where I was right: *"The text mentions the Border-Gavaskar Trophy"*, on a prefix ending `...home series against Australia in`. Neither word appears, but the 2001 India–Australia home series is the Border–Gavaskar Trophy. A text judge structurally cannot make that call.
 
 **Figure G1.** Claims about the passage's theme are supported far more often than claims about specific details, on a different NLA, base model, corpus and judge from the paper. AG's blind labels (orange) give a steeper gradient than the Haiku judge (blue): the two graders err at opposite ends, so the true gap is likely larger than either measured.
 
@@ -206,15 +204,15 @@ My hypothesis H1 : Claims that are marked false are efectively a combination of 
 
 Category 1 : AV had a faithful readout of the activation but the text judge marked it false because of absence of the words in passage
 
-Category : Genuine confabulations
+Category 2 : Genuine confabulations
 
-So based on H1, I predicted two bumps in the histogram of delta of the 975 (false) claims. if the test returned 1 bump then H1 is effectively ruled out.
+So based on H1, I predicted two bumps in the histogram of delta of the 975 related-false claims. if the test returned 1 bump then H1 is effectively ruled out. (That kill condition was written down on 19 August, before any of this data existed.)wrote
 
 Dip test found out that there is no valley between two bumps ; it returned p = 0.992 on the 975 claims, ruling out H1.
 
 So a null result means either the test is blind or data genuinely is not representative of the hypothesis. To test the effectiveness of the test, I had planted fake data that genuinely had two groups at H1's predicted mixture size and noise level. 
 
-The dip test caught them 26 % at 20 % mixture, 86% of the time at 26% micture , 100 % at 35 % and above. so below 20 percent the test goes blind.
+The dip test caught them 26 % at 20 % mixture, 86% of the time at 26% mixture, 100 % at 35 % and above. so at or below a fifth the test goes blind.
 
 So the test would have found what H1 described, although a smaller mixture  (less than a fifth size) would have slipped past.
 
@@ -248,7 +246,7 @@ observed_delta = underlying_delta + noise
 
 if the noise is random, averaging over multiple resamples should neutralise it, otherwise it shall have no effect (in case of systematic noise)
 
-my kill condition : if the spread doesn't shrink upon averaging the noise is systematic  and averaging can't rescue it.
+my kill condition (written 19 August, before the data) : if the spread doesn't shrink upon averaging the noise is systematic  and averaging can't rescue it.
 
 methodology:
 
@@ -265,9 +263,11 @@ The spread shrunk toward a floor at 0.00127 — 56% of where it started — and 
 
 8. I observed the slope to be  −0.262, which on the face of it reads as a partial fail.
 
-9. But the condition itself was mis-specified,  A slope of −0.5 only happens if the spread can fall all the way to zero — i.e. if there were nothing but noise. But because there is a real signal floor, the spread flattens onto it, and the slope is necessarily shallower than −0.5. 
+9. But the condition itself was mis-specified,  A slope of −0.5 only happens if the spread can fall all the way to zero — i.e. if there were nothing but noise. But because there is a real signal floor, the spread flattens onto it, and the slope is necessarily shallower than −0.5. The condition was drafted by my agent and I adopted it; neither of us noticed at the time that no dataset with real signal could pass it. 
 
 10. so the right test wasn't the slope, but whether the variance model predicts data it wasn't fitted on — which it does, to 0.8%.
+
+Two earlier noise ratios in my notes (1.41× and 0.12×) used the median within-claim spread, which is the wrong statistic for splitting variance because that distribution is badly skewed. They are superseded by the numbers above.
 
 Conclusion:
 
@@ -401,7 +401,7 @@ The things that were my contributions:
 6. I asked where a number in my own notes came from — the 99.94 batting average my agent said the model had blended in — and it was nowhere in the data. It had been carried over from a different run and had propagated into three files. The averages the model actually invented were 95.99 and 51.37, attributed to two batsmen who appear nowhere in the passage.
 
 What I did not do and would like to explore :
-no hooks, no internal probing. Black box throughout ..(here u know i wonder what is the natural next step in natural language autoencoders..like the official authors what direction did they mention in their original research paper/article worth pursuing.. i would be interested to know that, coz i have forgotten it, and given neel is drifting away from traditional methods like activation patching or something, need to read what his current interests are..we know for sure NLA is his current interest..but which direction moving fwd..what do anthroopic say..that can also in effect determine my next stes right..instead of me writing hooks and internal probing)
+no hooks, no internal probing. Black box throughout ..
 
 ---
 

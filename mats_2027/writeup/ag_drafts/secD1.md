@@ -18,3 +18,5 @@ binary verdicts differ, 16 are cases where I said supported and Haiku said the t
 contain it; exactly one runs the other way.  I observed little more thoroughly, Haiku was right about quoted strings and I was too generous. I was right about vague-but-correct THEME claims and Haiku was too strict.Those two mistakes sit at opposite ends of the specificity axis, so i believe they flatten the gradient.
 **The real THEME-to-DETAIL gap is probably wider than either of us measured** (my labels give
 46 points, Haiku's 40).
+
+Two examples, one in each direction. Where Haiku was right: I marked supported the claim *"The text contains the phrase 'considered by many as one of the'"*, where the prefix actually ends `...This series is regarded as one of the` — a near-miss paraphrase, and my single retest flip was a claim of exactly this type, where my second answer agreed with Haiku. Where I was right: *"The text mentions the Border-Gavaskar Trophy"*, on a prefix ending `...home series against Australia in`. Neither word appears, but the 2001 India–Australia home series is the Border–Gavaskar Trophy. A text judge structurally cannot make that call.

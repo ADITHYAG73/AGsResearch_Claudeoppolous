@@ -6,7 +6,7 @@ observed_delta = underlying_delta + noise
 
 if the noise is random, averaging over multiple resamples should neutralise it, otherwise it shall have no effect (in case of systematic noise)
 
-my kill condition : if the spread doesn't shrink upon averaging the noise is systematic  and averaging can't rescue it.
+my kill condition (written 19 August, before the data) : if the spread doesn't shrink upon averaging the noise is systematic  and averaging can't rescue it.
 
 methodology:
 
@@ -23,9 +23,11 @@ The spread shrunk toward a floor at 0.00127 — 56% of where it started — and 
 
 8. I observed the slope to be  −0.262, which on the face of it reads as a partial fail.
 
-9. But the condition itself was mis-specified,  A slope of −0.5 only happens if the spread can fall all the way to zero — i.e. if there were nothing but noise. But because there is a real signal floor, the spread flattens onto it, and the slope is necessarily shallower than −0.5. 
+9. But the condition itself was mis-specified,  A slope of −0.5 only happens if the spread can fall all the way to zero — i.e. if there were nothing but noise. But because there is a real signal floor, the spread flattens onto it, and the slope is necessarily shallower than −0.5. The condition was drafted by my agent and I adopted it; neither of us noticed at the time that no dataset with real signal could pass it. 
 
 10. so the right test wasn't the slope, but whether the variance model predicts data it wasn't fitted on — which it does, to 0.8%.
+
+Two earlier noise ratios in my notes (1.41× and 0.12×) used the median within-claim spread, which is the wrong statistic for splitting variance because that distribution is badly skewed. They are superseded by the numbers above.
 
 Conclusion:
 

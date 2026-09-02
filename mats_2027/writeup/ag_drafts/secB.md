@@ -18,14 +18,6 @@ sources of confabulation :
 1. residual activation vector genuinely encodes it and the AV faithfully read it.
 2. AV being a LM in itself made it up.
 
-case 1
-
-<we will need an example here to emphasise the point only based on the example, which comes in here (if there is any) i can write a commentary below>
-
-case 2
-
-<same as case 1>
-
 
 so. in essence a text judge is primarily blind to residual activation and AV model thought process. the text judge in our case (Haiku 4.5) only receives the passage uptill the position (the prefix) and the claim..and its given 3 choices -> Supported,  or Not in TExt. 
 

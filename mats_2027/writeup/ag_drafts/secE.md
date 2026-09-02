@@ -9,4 +9,4 @@ The things that were my contributions:
 
 
 What I did not do and would like to explore :
-no hooks, no internal probing. Black box throughout ..(here u know i wonder what is the natural next step in natural language autoencoders..like the official authors what direction did they mention in their original research paper/article worth pursuing.. i would be interested to know that, coz i have forgotten it, and given neel is drifting away from traditional methods like activation patching or something, need to read what his current interests are..we know for sure NLA is his current interest..but which direction moving fwd..what do anthroopic say..that can also in effect determine my next stes right..instead of me writing hooks and internal probing)
+no hooks, no internal probing. Black box throughout ..
