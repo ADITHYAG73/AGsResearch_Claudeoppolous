@@ -84,7 +84,8 @@ pw26, pw42, pw20 = pw[ps.index(0.26)], pw[ps.index(0.42)], pw[ps.index(0.20)]
 save(fig, "G3_dip_power", f"Planted mixtures at the geometry H1 implies (n=975, observed noise, K=1, 400 draws per point, seed 3). Across H1's own predicted 26–42% range the dip test detects them {pw26:.0f}–{pw42:.0f}% of the time. At 20% it drops to {pw20:.0f}% — a mixture below that would have been missed. H1 is dead in its stated form, not in every form.")
 
 # ---------------- G4 spread vs K with fit + out-of-sample ----------------
-K = [1, 2, 3, 4]; obs = [0.00227, 0.00177, 0.00166, 0.00157]
+# from pipeline/noise_fit.py (4000 subsampling reps, seed 0) - the reproducible values
+K = [1, 2, 3, 4]; obs = [0.00225, 0.00181, 0.00164, 0.00157]
 n2 = (obs[0]**2-obs[3]**2)/(1-0.25); s2 = obs[3]**2-n2/4; noise, signal = math.sqrt(n2), math.sqrt(max(s2, 0))
 kk = np.linspace(1, 8, 200); pred = np.sqrt(s2+n2/kk)
 fig, ax = plt.subplots(figsize=(7.2, 3.4))
@@ -94,7 +95,7 @@ ax.scatter([1, 4], [obs[0], obs[3]], color=BLUE, s=60, zorder=5, label="fitted p
 ax.scatter([2, 3], [obs[1], obs[2]], color=ORANGE, s=70, zorder=5, marker="D", label="out-of-sample (−3.2%, −0.1%)")
 ax.set_xlabel("K resamples averaged"); ax.set_ylabel("sd of per-claim mean Δ"); ax.set_xticks(range(1, 9)); ax.set_ylim(0.001, 0.0025)
 ax.legend(frameon=False, fontsize=8); ax.set_title("G4  H2: the noise is stochastic — it divides by K — but there is a floor", fontsize=10, loc="left")
-save(fig, "G4_h2_spread", f"Spread of per-claim mean Δ as more resamples are averaged (31 claims present in all four). A two-parameter model fitted on K=1 and K=4 alone predicts K=2 and K=3 to within 3% (orange diamonds). The noise averages away as H2 assumes; it converges on a real between-claim floor at 55% of the K=1 spread. noise/signal: {noise/signal:.2f}× at K=1, {noise/2/signal:.2f}× at K=4.")
+save(fig, "G4_h2_spread", f"Spread of per-claim mean Δ as more resamples are averaged (31 claims present in all four). A two-parameter model fitted on K=1 and K=4 alone predicts K=2 and K=3 to within 0.8% (orange diamonds). The noise averages away as H2 assumes; it converges on a real between-claim floor at 56% of the K=1 spread. noise/signal: 1.46× at K=1, 0.73× at K=4 (values from pipeline/noise_fit.py).")
 
 # ---------------- G5 Savarkar vs cricket false rate ----------------
 S = [r for r in pq.read_table("mats_2027/runs/2026-08-28_savarkar/verdicts.parquet").to_pylist() if r["doc_id"].startswith("SAVARKAR")]

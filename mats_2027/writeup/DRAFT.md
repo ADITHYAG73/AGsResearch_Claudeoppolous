@@ -76,8 +76,6 @@ case 1
 
 case 2
 
-<same as case 1>
-
 so. in essence a text judge is primarily blind to residual activation and AV model thought process. the text judge in our case (Haiku 4.5) only receives the passage uptill the position (the prefix) and the claim..and its given 3 choices -> Supported,  or Not in TExt. 
 
 The residual stream activation which served as the bedrock for generation of explanation using AV is available to  only AR for reconstruction in the whole system, so its in. prinicple the only instruemnt that cud tell case 1 from case 2 .
@@ -88,41 +86,29 @@ The residual stream activation which served as the bedrock for generation of exp
 
 Model details
 
-I have used the official anthropic nla kitft/nla-gemma3-12b-L32-av` (AV) + `kitft/nla-gemma3-12b-L32-ar` (AR), Apache-2.0 . The base model that i used for this experiment was "google/gemma-3-12b-it" . ACtivations taken from layer 32 of 48 , dimension d of the vector is 3840.
+I have used the official anthropic nla `kitft/nla-gemma3-12b-L32-av` (AV) + `kitft/nla-gemma3-12b-L32-ar` (AR), Apache-2.0. The base model that i used for this experiment was `google/gemma-3-12b-it`. Activations taken from layer 32 of 48, dimension d of the vector is 3840.
 
-The avativation verbaliser model (AV) is of same architecture as the base . The activation is injected as a single token embedding into a fixed prompt with injection_scale 80000 (available from the sidecar). I perform decoding at sampling temperature of  T = 1 (verify if my decoding terminology usage is right)
+The activation verbaliser model (AV) is of same architecture as the base. The activation is injected as a single token embedding into a fixed prompt with injection_scale 80000 (available from the sidecar), sampled at temperature T = 1. The activation reconstructor (AR) is the base model truncated to 33 blocks plus a learned linear head on the final token.
 
-ACtivation Reconstructor model (AR) is the base model truncated to 33 blocks + a learned linear head on the final token
-
-MSE is **direction-only**: both vectors L2-normalised to mse_scale = √3840 = 61.97 before comparison, so MSE = 2(1 − cos).
+MSE is **direction-only**: both vectors L2-normalised to mse_scale = √3840 = 61.97 before comparison, so MSE = 2(1 − cos). Magnitude is invisible to the whole pipeline.
 
 Corpus and sampling
 
-I chose 6 passages for my experiment . 5 cricket Wikipedia paragraphs and 1 on the French Revolution — the latter is the NLA maintainers' own example passage (doc_id THEIR_EXAMPLE), which I kept as an in-distribution reference point rather than replacing it. It is included in every number I report (397 of the 2065 claims); cricket-only the levels read THEME 70.0 / ENTITY 39.3 / DETAIL 34.6 against 69.1 / 43.8 / 36.0 for all six, so the ordering is the same either way
+I chose 6 passages: 5 cricket Wikipedia paragraphs and 1 on the French Revolution — the latter is the NLA maintainers' own example passage, which I kept as an in-distribution reference point. It is included in every number I report (397 of the 2065 claims); cricket-only the levels read THEME 70.0 / ENTITY 39.3 / DETAIL 34.6 against 69.1 / 43.8 / 36.0 for all six, so the ordering is the same either way.
 
-Every position I sampled sits at token index 50 or later — that is the official pipeline's `_MIN_POSITION = 50` (`nla/datagen/stage0_extract.py:35`), a constraint on the position, not on the length of the passage. My lowest sampled index is 79. I had sampled on last 10 contiguous poistions of each passage with K=4. so in total i had 6 x 10 x 4 = 240 explanations.
+I sampled the last 10 contiguous positions of each passage with K = 4 resamples, so 6 × 10 × 4 = 240 explanations. Every position sits at token index 50 or later — the official pipeline's `_MIN_POSITION = 50` (`nla/datagen/stage0_extract.py:35`), a constraint on the position, not on the length of the passage; my lowest sampled index is 79. Cricket is in distribution for this NLA, measured rather than assumed: the AV→AR round trip returns cosine 0.996 on my passages against 0.997 on the maintainers' own example.
 
-K is the resampling per activation at T = 1.
+I chose cricket because its a familiar topic for me, one that i can grade quickly.
 
-I chose cricket because its a familiar topic for me one than i can grade quickly . 
+I also took samples from a 2019 biography of the indian freedom fighter V. D. Savarkar (by Vikram Sampath). Wikipedia is in almost every pretrained model's knowledge; this book, i reasoned, would be far less represented in the training distribution, which would let me see what the AV does when the activation is thinner.
 
-I also took samples from a 2019 biography of great indian freedpom fighter Shri . Veer Savarkar (by Dr. Vikram Sampath) since i believed wikipedia is in almost every pretrained model's knowledge. although this is a dated biography in llm standards, i wondered if it would be FAR LESS represented in the model's training distribution than wikipedia cricket passages are, which would let me see what the AV does when the activation is thinner — and hence i chose it out of instinct and also my lvoe for the book.  
+Figure G0 shows the pipeline end to end. In short: extract the residual activation, verbalise it with the AV, decompose the explanation into atomic claims, judge each claim against the exact prefix the model had read, rewrite one claim out at a time, and re-score every variant with the AR. **Δ = mse(claim rewritten out) − mse(intact)**, on the same explanation and the same activation. Δ > 0 means removing the claim hurt reconstruction; Δ < 0 means removal helped. The ablation is a rewrite with the prose reflowed rather than a deletion, which is the paper's own method and is what keeps prose damage out of Δ.
 
-Steps i did 
+The judge is `claude-haiku-4-5-20251001`. It sees only the prefix and the claim, and returns supported / contradicted / not-in-text; all analysis collapses that to binary supported-or-not, as the paper does. I validated it against my own blind grading — the numbers are in D1. To the best of my knowledge the paper reports no validation for its own confabulation judge.
 
-In order to measure my agreement with the k=haiku judge i was using throughout the above processes, i validated it on one particular task.. i mean , i measured the agreement in labeling between me and haiku4.5 . for that process, i took 150 stratified claims — 50 per level, spread evenly across the 10 position offsets — drawn by a seeded script (`harness/sample_stratified.py`, seed 20260822) rather than chosen by a model, and I prepared an interfact (simple HTML page) that exposed me to the prefix (passage uptil the position) and the claim and i had 3 options in front of me (S/C/N) . I also undertook 30 retests to measure my own agreement rate and consistency . My self consistency rounded at 96.7 % . <he may ask or think why u did not agree with u 100 percent, do u think its better to show what and where and how much i erred so we can show it here>. my agreement with haiku was 88.7 % . here are a few samples were the two of su disagreed <may be do u think we wshud add them here a few may be>
+I reconstructed the SHAPE of their pipeline (decompose / verify / vibe / match) from the grader outputs shipped inside the paper's own HTML, and wrote my own prompts to match that output format — their prompts are not published. I checked this two ways: the HTML carries `decompose_response`, `verify_response`, `vibe_response` and `match_response` with no corresponding `*_prompt` keys, and the official repo has no confabulation-analysis code in it at all.
 
-to the best of my knowlwedge , the paper does not report any valiation for its confabulation detector judge models.
-
-I reconstructed the SHAPE of their pipeline (decompose/verify/vibe/match) from the grader outputs shipped inside the paper's own HTML, and wrote my own prompts to match that output format — their prompts are not published. I checked this two ways: the HTML carries `decompose_response`, `verify_response`, `vibe_response` and `match_response` with no corresponding `*_prompt` keys (only four unrelated widgets ship prompts), and the official repo has no confabulation-analysis code in it at all.
-
-The infrastructure that i used for these experiments :
-
-Pod : RunPod A40 48 GB, SECURE, image `runpod/pytorch:1.0.2-cu1281-torch280-ubuntu2404`
-
-Dependencies : torch 2.9.1+cu128 · transformers 5.3.0 · torchvision 0.24.1 · sglang 0.5.10.post1
-
-Total GPU spend for the project = $3.99 across six pod sessions ($1.23 + $1.08 + $0.40 + $0.34 + $0.49 + $0.45). API spend was measured only once — $4.00 of Haiku on 28 Aug, read off the console; no stage records token usage, so every other API figure I have is an estimate.
+Infrastructure: a RunPod A40 48 GB, image `runpod/pytorch:1.0.2-cu1281-torch280-ubuntu2404`, torch 2.9.1+cu128 · transformers 5.3.0 · sglang 0.5.10.post1. Total GPU spend for the project was **$3.99** across six pod sessions. API spend was measured only once — $4.00 of Haiku on 28 Aug — because no stage records token usage, so every other API figure I have is an estimate.
 
 **Figure G0.** The measurement pipeline. Colour marks where each stage ran: blue on a rented A40, orange as Haiku 4.5 API calls, gray on the laptop. Steps 3-5 reproduce the paper's confabulation analysis, whose prompts were never published and whose shape was recovered from the grader outputs shipped in the paper's HTML; the ablation is a rewrite, not a deletion. The judge in step 4 is the only stage validated against a human (1070 supported / 995 false overall; 150 claims graded blind, 88.7% agreement). Every count shown is read from the run artifacts, not transcribed.
 
@@ -168,7 +154,7 @@ if delta(mse) < 0 => removed claim helped in reconstruction -> claim is not load
 
 I set out to verify this "claim" (pun unintended) . in fact , as much as this might be a simple sounding statement, it took me a while to register it.The original question that I set out to finad an answer along with my favourite knowledge partner in crime (claude) was this -> does removing the false claims help in reconstruction better?
 
-(Note this question was directly refered and taken from Neel Nanda's MATS 12.0 admissions doc, "Recommended Research Problems" tab, under *Improved Interpretability Methods* → natural language autoencoders, where he says he is particularly interested in using the activation reconstructor to measure the quality of a description — "which claims can be removed and improve reconstruction accuracy" — to help reduce hallucinations.)
+(The question is taken from Neel Nanda's MATS 12.0 admissions doc, under *Improved Interpretability Methods*: using the activation reconstructor to measure description quality by finding "which claims can be removed and improve reconstruction accuracy".)
 
 and in the process this is what i found.
 
@@ -187,7 +173,6 @@ about 27% of true claims do contribute to a negative delta but they are not nece
 |---:|---|---|
 | −0.00083 | THEME / format | The text is a sports/cricket article format. |
 | −0.00056 | THEME / format | The text is structured as a biographical article listing cricket statistics |
-| −0.00052 | THEME / format | The text is structured as a sports article format |
 
 All three are true, all three are vague, and all three say something the rest of the same
 explanation already says. Removing one costs the reconstruction nothing, and slightly helps.
@@ -198,7 +183,6 @@ about 67% of false claims do contribute to a positive delta but they are not nec
 |---:|---|---|
 | +0.00927 | DETAIL / quote | The text contains the final token "Garden Gardens" |
 | +0.00910 | DETAIL / date  | The text contains the phrase 'By summer 1789' |
-| +0.00407 | DETAIL / quote | The text contains the phrase 'During the series against South Africa, the home team, against a touring Indian team, against the series ahead'. |
 
 These are specific, wrong, and load-bearing. Note what they have in common: each one is pointing
 at the right place in the passage and getting the content wrong. Across all false claims, the ones
@@ -224,9 +208,7 @@ Category 1 : AV had a faithful readout of the activation but the text judge mark
 
 Category : Genuine confabulations
 
-<examples??>
-
-So based on H1, I predicted two bumps in the histogram of delta of the 975 (false) claims. if the test returned 1 bump then H1 is effectively ruled out.wrote
+So based on H1, I predicted two bumps in the histogram of delta of the 975 (false) claims. if the test returned 1 bump then H1 is effectively ruled out.
 
 Dip test found out that there is no valley between two bumps ; it returned p = 0.992 on the 975 claims, ruling out H1.
 
@@ -297,7 +279,7 @@ The overall objective or kind of an expected outcome or more desirable outcome i
 
   H2 is partially supported. the premise was right (i.e) the noise was real and random. Averaging did shrink it predicatably. the payoff was underpowered . one that i could not establish at the sample size.
 
-**Figure G4.** Spread of per-claim mean Δ as more resamples are averaged (31 claims present in all four). A two-parameter model fitted on K=1 and K=4 alone predicts K=2 and K=3 to within 3% (orange diamonds). The noise averages away as H2 assumes; it converges on a real between-claim floor at 55% of the K=1 spread. noise/signal: 1.51× at K=1, 0.76× at K=4.
+**Figure G4.** Spread of per-claim mean Δ as more resamples are averaged (31 claims present in all four). A two-parameter model fitted on K=1 and K=4 alone predicts K=2 and K=3 to within 0.8% (orange diamonds). The noise averages away as H2 assumes; it converges on a real between-claim floor at 56% of the K=1 spread. noise/signal: 1.46× at K=1, 0.73× at K=4 (values from pipeline/noise_fit.py).
 
 ![G4_h2_spread](mats_2027/writeup/figures/G4_h2_spread.png)
 
@@ -305,7 +287,7 @@ The overall objective or kind of an expected outcome or more desirable outcome i
 
 ## D5. Removal improves reconstruction 30% of the time
 
-Your suggestion (link to neel's doc the specific part of the doc where he makes the statement we need to put it here in the final draft) was to look for claims that can be removed to *improve* reconstruction. Although the paper says false claims hurt reconstruction *less* than true ones ,it never reports how often removal actually helps. 
+Neel Nanda's suggestion in the MATS 12.0 admissions doc, under *Improved Interpretability Methods*, was to look for claims that can be removed to *improve* reconstruction. Although the paper says false claims hurt reconstruction *less* than true ones ,it never reports how often removal actually helps. 
 
 On my data it helps often:
 **30.0% of 2063 single-claim ablations have Δ < 0** (mean Δ = +0.00088, sd 0.00264). Nearly a
@@ -334,91 +316,72 @@ longer, and that specific claims genuinely constrain the activation more than va
 
 ## D6. The AV imports names it knows
 
-The AV imports famous names it knows
+While reading the explanations for Rahul Dravid's Wikipedia biography, I noticed the AV kept
+writing about Don Bradman. Bradman is in that passage exactly once, and not as its subject: "In
+December 2011, he was the first non-Australian cricketer to deliver the Bradman Oration in
+Canberra." The records in the passage — most balls faced in Tests, longest time spent batting —
+are Dravid's. The AV attached them to Bradman instead, in 21 claims across four token positions,
+including the flat assertion "The text is about Don Bradman" and, twice, describing him as Indian.
 
-while reading the explanations for Rahul Dravid's Wikipedia biography, I noticed the AV kept writing about Don Bradman. Bradman is in that passage exactly once, and not as its subject: "In December 2011, he was the first non-Australian cricketer to deliver the Bradman Oration in Canberra." The records in the passage — most balls faced in Tests, longest time spent batting — are Dravid's. The AV attached them to Bradman instead, 21 claims across four token positions, including the flat assertion "The text is about Don Bradman" and, twice, describing him as Indian — "The text discusses Indian batsman Don Bradman" and "The text is about an Indian cricketer named Don Bradman".
+But Bradman isn't the interesting part here. Across the claims on that passage the AV names
+Dravid 27 times, Bradman 21, **Tendulkar 20**, Lara 6, Richards 3, Pietersen 2, Gavaskar 2,
+Hobbs 1 — and only Bradman appears in the passage at all. He looked special because he is the one
+imported name that happened also to be in the text, so he alone fit a story about misreading what
+was there. The rest are simply famous batsmen the model knows, written onto a passage that never
+mentions them.
 
-But Bradman isn't the interesting part here. Across the claims on that passage the AV names Dravid 27 times, Bradman 21, Tendulkar 20, Lara 6, Richards 3,Pietersen 2, Gavaskar 2, Hobbs 1. Tendulkar does not appear in the passage at all. Neither do Lara, Richards, Pietersen, Gavaskar or Hobbs. Bradman only looked special because he is the one imported name that happened to also be in the text — so he alone fit a story about misreading
-what was there. The rest are simply famous batsmen the model knows, written onto a passage that never mentions them.
+To test whether the confabulation follows the name, I edited that one proper noun and left
+everything else untouched: seven conditions — the original, Gavaskar (famous, holds records),
+Umrigar (real, far less famous), Thangavelu (a name the model cannot know), a version with no
+proper noun, the sentence deleted, and a coherent rewrite — at forty explanations each. Both of us
+had written predictions down first; I expected Bradman to vanish when the sentence was deleted and
+the Gavaskar condition to reverse the direction. Neither happened. **Deleting the sentence left
+Bradman in 25% of explanations against 22.5% in the original, and planting Gavaskar, Umrigar or
+Thangavelu produced zero uses of each.**
 
-I then designed an experiment to test whether the confabulation actually follows the name in the text. If the AV was picking up "Bradman" from the passage, then removing that name should remove Bradman from the explanations, and putting a different famous batsman there should pull the confabulation onto him instead. I edited one proper noun in that sentence and left everything else untouched, giving seven conditions: the original; Gavaskar (famous, holds records); Umrigar (real, far less famous); Thangavelu (a name the model cannot know); a version with no proper noun at all; the sentence deleted; and a rewritten-coherent version. Forty explanations per condition, sampled at the same ten token positions.
+Before reading anything into that, I checked whether the edit had changed what the AV actually
+sees. It had not.
 
-Both of us(me and opus5) had written predictions down beforehand. I expected Bradman to disappear when the sentence was deleted, and expected the Gavaskar condition to reverse the direction — Gavaskar's records attached to Dravid. Claude predicted the same direction with a weaker effect.
-
-Neither happened. Deleting the sentence entirely left Bradman in 25% of the explanations, against 22.5% in the original. Planting Gavaskar, Umrigar or Thangavelu produced zero uses of each name in forty explanations. The name in the text was neither necessary nor sufficient.
-
-Before reading anything into that, I checked whether the edit had done anything at all to the
-thing the AV actually sees. It had not. When comparing the layer-32 activations between conditions, i observed the edited and unedited versions sit at a mean-centred cosine of 0.997 to 0.9995 of each other.
-
-For scale, on the same axis: moving one token position along the same passage gives 0.422 on
-average, and a different passage sits at roughly zero. Per condition, aligned by offset from the
-end of the passage (the edits change token counts, so absolute positions are not comparable):
-
-| what was changed in the text | mean centred cosine vs the original | worst of the 10 positions |
+| what was changed in the text | mean centred cosine vs original | worst of 10 positions |
 |---|---:|---:|
-| Gavaskar substituted for Bradman (one word) | 0.9995 | 0.9989 |
-| Umrigar substituted (one word) | 0.9989 | 0.9965 |
-| Thangavelu substituted (one word) | 0.9993 | 0.9986 |
+| one proper noun substituted (3 conditions) | 0.9989–0.9995 | 0.9965 |
 | proper noun removed, length kept | 0.9970 | 0.9796 |
-| **whole sentence deleted (104 characters, 26 tokens)** | **0.9968** | 0.9875 |
-| sentence rewritten coherently | 0.9979 | 0.9916 |
+| **whole sentence deleted (104 chars, 26 tokens)** | **0.9968** | 0.9875 |
 | *one token step along the same passage* | *0.422* | — |
 | *a different passage entirely* | *−0.04* | — |
 
-Deleting the sentence outright moved the activation **0.7% as far as a single token step does**,
-and 3.5% even at the worst of the ten positions. (Cosines are mean-centred on the 60 activations
-from the main run, deliberately not on the patch data itself; the raw residual stream is so
-anisotropic that everything sits above 0.96 against everything else.)
+Deleting the sentence moved the activation **0.7% as far as a single token step does**. So the
+honest reading is not "planting a name does nothing" — it is that **the intervention never reached
+the representation**, and the question is untested rather than answered. The design could not have
+worked: I placed the edit far enough upstream that it would not disturb the sampled tokens, which
+is exactly why it did not reach them. What the failed control does establish is that at layer 32,
+at these positions, the residual stream barely encodes context from 250 characters back — so the
+AV cannot be reading "Bradman" out of the activation at all.
 
-So the honest reading is not "planting a name does nothing". It is that **at these token
-positions the intervention never reached the representation**, and the question I set out to ask is untested rather than answered. The design could not have worked: I deliberately placed the edit far enough upstream that it would not change the sampled tokens, which is exactly why it had no effect on them. A real causal test needs activation patching with hooks, or sampling positions adjacent to the edit.
+If the names come from the model's own knowledge, the amount of confabulation should depend on how
+well it knows the material. So I ran the same pipeline on seven random pages of a 2019 biography
+of V. D. Savarkar, length-matched, with the Dravid passage re-run as a regression check (cosine
+1.000000). Both of us predicted fewer confabulations. **We were both wrong: 63% of claims on the
+biography are false against 50% on cricket** (36.7% supported, n=2730, vs 50.5%, n=1668;
+intervals disjoint; the gap holds at every claim level).
 
-What the control does establish is worth keeping. At layer 32, at these positions, the residual stream barely encodes context from 250 characters back. So the AV cannot be reading "Bradman" out of the activation — i believe the name has to be coming from the model's own knowledge.
+The two corpora agree on the mechanism. Of the false claims that name a person, **93.6% on
+Savarkar and 98.3% on cricket name someone absent from the passage entirely** — Gandhi, Bhagat
+Singh and Tilak on the biography; Tendulkar, Dravid and Bradman on cricket. Re-binding a name that
+is genuinely present, the Bradman story I started from, is the rare case.
 
-If the names are coming from the model's own knowledge rather than from the passage, then the
-amount of confabulation i thought, should depend on how well the model knows the material. Cricket Wikipedia is about as battered a text as it gets. So I ran the same pipeline on something what i believed ,it may have almost certainly seen far less of: seven random pages from a 2019 biography of V. D. Savarkar, matched to the cricket passages for length, with the Dravid passage re-run in the same batch as a regression check (it came back at cosine 1.000000).
+I also labelled all 995 false claims for relatedness, a thing the paper asserts twice without a
+number: **975 of them, 98%, are related to the passage.** Given a cricket activation the AV
+confabulates cricket. That also costs me the paper's related-versus-unrelated comparison — with 20
+unrelated claims, several of them apparently mislabelled, I cannot reproduce it here.
 
-Both of us(me and opus5) predicted fewer confabulations there — my reasoning being that with less to recall, the AV would have less to invent. We were both wrong, and in the same direction.
-
-| level | Savarkar | cricket | difference |
-|---|---:|---:|---:|
-| THEME | 49.2% supported (n=1330) | 70.0% (n=707) | −20.8 pp |
-| ENTITY | 21.7% (n=695) | 39.3% (n=333) | −17.6 pp |
-| DETAIL | 28.1% (n=705) | 34.6% (n=628) | −6.5 pp |
-| **ALL** | **36.7%** (n=2730) | **50.5%** (n=1668) | **−13.8 pp** |
-
-63% of the claims on the biography are false, against 50% on cricket, and the overall confidence intervals did not overlap. The unfamiliar text produced *more* confabulation, not less.
-
-The two corpora agree on the mechanism, though. Taking every false claim that names a person, and asking whether that person appears in the passage at all:
-
-| corpus | false person-claims | person is in the passage | person is absent (imported) |
-|---|---:|---:|---:|
-| Savarkar | 233 | 15 (6.4%) | 218 (93.6%) |
-| cricket | 60 | 1 (1.7%) | 59 (98.3%) |
-
-In both domains, **more than nine in ten false person-claims name somebody who is not in the text at all.** On the biography the imported names are Gandhi, Bhagat Singh, Tilak; on cricket they are Tendulkar, Dravid, Bradman. Re-binding a name that is genuinely present — the Bradman story I started from — is the rare case, not the common one.
-
-One more measurement belongs here. The paper says twice, without a number, that false claims tend
-to be related to the context rather than fabricated wholesale. I labelled all 995 false claims for
-relatedness and **975 of them — 98% — are related to the passage.** Given a cricket activation the
-AV confabulates cricket; given a passage about 1900s Maharashtra it confabulates Indian
-nationalist history. Only 20 claims were off-topic, and several of those look mislabelled. That
-number also costs me the paper's related-versus-unrelated comparison: with an unrelated cell that
-small, I cannot reproduce it on this corpus.
-
-Putting the three together — the names are imported, the imports stay in-domain, and there are
-more of them on unfamiliar text — the reading I find most plausible is that **the model's own
-knowledge is the source of the specifics the AV gets right, not the source of its errors.** The AV
-appears to write to a fixed level of specificity whatever it is given. Where the activation is
-well-grounded, in text the model has seen many times, the specifics it reaches for are more often
-the correct ones. Where the activation is thinner, it fills the same specificity budget with the
-nearest famous things it knows — Gandhi, Bhagat Singh, Tilak — and those are wrong.
-
-I want to be clear that this is an interpretation of three results, not a test of anything. It is
-consistent with all three and I cannot separate it from alternatives with the data I have. The
-experiment that would test it is a third corpus at a third level of familiarity, with the
-prediction stated in advance: confabulation should track familiarity monotonically, and the
-specificity of the claims should not change across corpora even as their accuracy does.
+Putting those together — names imported, imports staying in-domain, more of them on unfamiliar
+text — the reading I find most plausible is that **the model's own knowledge is the source of the
+specifics the AV gets right, not the source of its errors**: it writes to a fixed level of
+specificity whatever it is given, and where the activation is thin it fills that budget with the
+nearest famous things it knows. This is an interpretation of three results, not a test. The
+experiment that would test it is a third corpus at a third level of familiarity, predicting in
+advance that confabulation tracks familiarity while the specificity of the claims does not change.
 
 **Figure G5.** Same judge, same prompt, length-matched passages. Both pre-registered predictions expected fewer confabulations on a 2019 biography than on cricket Wikipedia; the opposite happened (63% vs 50% false, CIs disjoint). In both domains >90% of false person-claims name someone absent from the passage — the dominant failure is importing a plausible entity, not misbinding a present one.
 
@@ -446,19 +409,19 @@ no hooks, no internal probing. Black box throughout ..(here u know i wonder what
 
 Limitations
 
-1. NLA as a black box. I used no hooks, no internal probing. Throughout this study, I treated the NLA as a black box. I tried to modulate the input to observe a causal effect on the explanations, but my control showed the edit never reached the representation — deleting a sentence ~250 characters upstream moved the layer-32 activation by less than 1% of what moving a single token position does (centred cosine 0.997 vs 0.42). So the intervention was not causal evidence, and I still don't know why the AV does what it does.
+1. **NLA as a black box.** No hooks, no internal probing. I tried to modulate the input to observe a causal effect, but my own control showed the edit never reached the representation — deleting a sentence 250 characters upstream moved the layer-32 activation less than 1% as far as moving a single token position does. That intervention is not causal evidence, and I still don't know why the AV does what it does.
 
-2. Judge valiadtion on cricket data (88.7%). The same was not done for the "Savarkar corpus" partly because I have not read the book completely and also due to time crunch.
+2. **The judge was validated on cricket only** (88.7% agreement with my blind grading). I did not repeat that for the Savarkar corpus, partly because I have not read the book fully and partly for time — so some of the 13.8-point gap between corpora could be the judge being harsher on unfamiliar Indian names rather than the AV confabulating more.
 
-3. The semantic matcher was never checked by a human. It is an LLM that decides which claims, across the four resamples of the same activation, are "the same claim". Those groups are the entire basis of the K-averaging result in D4 — 110 groups spanning at least 3 of the 4 resamples — and nobody has ever read a group and confirmed it is one claim rather than two.
+3. **The semantic matcher was never checked by a human.** An LLM decides which claims across the four resamples are "the same claim", and those 110 groups are the entire basis of the K-averaging result in D4. Nobody has read a group and confirmed it is one claim rather than two.
 
-4. The two hypothesis results are weaker than they look. H2's payoff could only be measured on the 110 claim-groups that span at least 3 of the 4 resamples, so the bottleneck is recurrence, not noise, and the K-averaged AUC's confidence interval still includes chance. H1's verdict is exploratory rather than confirmatory, because the detector rule I pre-registered turned out to be broken and had to be revised after I had already seen the real distribution.
+4. **Both hypothesis results are weaker than they look.** H2's payoff could only be measured on the 110 groups spanning at least 3 of 4 resamples, so the bottleneck is recurrence rather than noise, and the K-averaged AUC's interval still includes chance. H1's verdict is exploratory rather than confirmatory, because the detector rule I pre-registered turned out to be broken and had to be revised after I had seen the real distribution.
 
-5. I did not fully finish the Savarkar experiment to report the final delta. I took it as far as explanations, claim decomposition and verdicts — enough to compare confabulation rates across the two domains — but never ran the ablation or the AR scoring on it, so there is no Δ on a second domain.
+5. **Savarkar stopped at verdicts.** I took it as far as explanations, decomposition and judging — enough to compare confabulation rates across domains — but never ran the ablation or the AR scoring, so there is no Δ on a second domain.
 
-6. The paper's related-vs-unrelated comparison cannot be reproduced on my data. 975 of the 995 false claims are RELATED to the passage, leaving about 20 unrelated ones, several of which look mislabelled. There is effectively no unrelated cell to compare against.
+6. **No unrelated cell.** 975 of the 995 false claims are related to the passage, leaving about 20 unrelated ones, several of which look mislabelled. The paper's related-versus-unrelated comparison cannot be reproduced here.
 
-7. The final-token control is a heuristic, not a labelled category. It flags a claim when the last content word of the prefix appears in it, which cannot separate "names the final token" from "happens to reuse that word", and cannot fire at all on the 22 of 60 prefixes that end in a stopword. It rules that rival down, not out.
+7. **The final-token control is a heuristic**, not a labelled category: it flags a claim when the passage's last content word appears in it, so it cannot separate "quotes the final token" from "happens to reuse that word", and it never fires on the 22 of 60 passages ending in a stopword. It rules that rival down, not out.
 
 ---
 

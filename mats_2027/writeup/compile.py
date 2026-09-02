@@ -42,6 +42,11 @@ def clean(t):
     t = re.sub(r"<<[^>]*>>", "", t)                                # <<AG: ...>> markers
     t = re.sub(r"^\s*<[^>\n]{15,}>\s*$", "", t, flags=re.M)        # standalone <notes to self>
     t = re.sub(r"\([^)]*\?\?[^)]*\)", "", t)                       # (question to claude??)
+    t = re.sub(r"<[^>\n]*\?\?[^>\n]*>", "", t)                       # <examples??>
+    t = re.sub(r"<same as [^>\n]*>", "", t)                          # <same as case 1>
+    t = re.sub(r"\(link to neel[^)]*\)", "", t, flags=re.I)          # unresolved link note
+    t = re.sub(r"\bruled out\.wrote\b", "ruled out.", t)
+    t = re.sub(r"\.wrote\b", ".", t)                                 # stray paste artefact
     t = re.sub(r"\n{3,}", "\n\n", t)
     return t.strip()
 
