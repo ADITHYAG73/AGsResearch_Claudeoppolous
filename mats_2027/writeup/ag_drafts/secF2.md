@@ -3,14 +3,11 @@
 The practical implication is narrow but usable: **you cannot filter an NLA description
 claim-by-claim with the reconstructor as it stands.** An AUC of 0.535 is not a tool. But the
 reason it fails is now specific rather than mysterious. The noise is stochastic, so averaging
-does help; the limit is that only 110 claim-groups recurred often enough to average over. That is
-a sampling problem with a known price — more resamples per activation — not a dead end. Someone
-with a GPU budget could settle it in a day.
+does help; the limit is that only 110 claim-groups recurred often enough to average over. That is a sampling problem with a price on it — more resamples per activation — and not a dead end. With GPU budget I think this gets settled in a day.
 
 The confabulation results point somewhere different from where I started. If most false claims
 import a name the passage never mentions, then checking descriptions against the *context* is the
-wrong shape of defence, because the AV never saw the context. Checking named entities against
-what the activation can actually support looks more promising, and cheaper.
+wrong shape of defence, because the AV never saw the context. Checking the named entities against what the activation can actually support looks more promising to me, and cheaper.
 
 With more time, the first thing I would run is one the paper names and did not do. Under
 inference-time methods it notes that the pipeline "mostly uses AV outputs and discards the AR",

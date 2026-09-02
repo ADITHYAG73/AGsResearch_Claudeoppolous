@@ -4,7 +4,7 @@ The paper calls the AR "only a weak per-claim verifier". The main quantity is
 
 If Δ is positive, removing the claim worsened the reconstruction, so the claim is load-bearing. If Δ is negative, removing the claim helped, so the claim is not load-bearing.
 
-I set out to verify that "claim" — pun unintended. Simple as the statement sounds, it took me a while to register what it actually means. The original question I set out to answer, along with my favourite knowledge partner in crime, was this: does removing false claims improve reconstruction?
+I set out to verify that "claim" — pun unintended. Simple as the statement sounds, it took me a while to register what it actually means. The original question I set out to answer, along with my favourite knowledge partner in crime (Opus 5), was this: does removing false claims improve reconstruction?
 
 (The question is taken from Neel Nanda's MATS 12.0 admissions doc, under Improved Interpretability Methods: using the activation reconstructor to measure the quality of a description by finding "which claims can be removed and improve reconstruction accuracy".)
 
@@ -17,7 +17,7 @@ And in the process, this is what I found.
 
 That is 2063 ablations: every one of the 2065 claims except two, which could not be rewritten out of their explanation without changing something else. Verdicts are binary, supported against not supported.
 
-A detector that simply says "positive Δ means the claim is true" is right 53.8% of the time, against 51.8% for always guessing "true".
+A detector that simply says "positive Δ means the claim is true" is right **53.8%** of the time. That is 780 true claims with a positive Δ plus 330 false claims with a negative Δ, over 2063. Always guessing "true" gets **51.8%**, so the whole of Δ buys me about two points.
 
 About 27% of true claims have a negative Δ, and they are not thereby false claims.
 
@@ -35,7 +35,7 @@ About 67% of false claims have a positive Δ, and they are not thereby true clai
 | +0.00927 | DETAIL / quote | The text contains the final token "Garden Gardens" |
 | +0.00910 | DETAIL / date | The text contains the phrase 'By summer 1789' |
 
-These are specific, wrong, and load-bearing. Note what they have in common: each is pointing at the right place in the passage and getting the content wrong. Across all false claims, the ones that name the final token of the prefix carry a mean Δ of +0.00141 against +0.00038 for the rest — nearly four times as much — and 25.3% of the load-bearing false claims name it, against 11.5% of the ones whose removal helped.
+These are specific, they are wrong, and the AR still needs them. What I notice about all three is that each one is pointing at the right place in the passage and then getting the content wrong. Across all false claims, the ones that name the final token of the prefix carry a mean Δ of +0.00141 against +0.00038 for the rest — nearly four times as much — and 25.3% of the load-bearing false claims name it, against 11.5% of the ones whose removal helped.
 
 The explanation is written by the AV, which is a language model in its own right. The reconstruction signal is available only to the AR, never to the AV. The AV is handed an activation at a chosen position so that we can get a readout at that position, but it is still a language model doing what language models do.
 

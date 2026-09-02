@@ -23,6 +23,7 @@ ORDER = [
     ("E. What I verified myself",         "secE.md"),
     ("F. Limitations",                    "secF.md"),
     ("F2. Reflections",                   "secF2.md"),
+    ("Appendix. One activation, end to end", "secAPP.md"),
 ]
 
 # figure -> the section it should sit in

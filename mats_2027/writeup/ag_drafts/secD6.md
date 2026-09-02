@@ -28,7 +28,7 @@ sees. It had not.
 |---|---:|---:|
 | one proper noun substituted (3 conditions) | 0.9989–0.9995 | 0.9965 |
 | proper noun removed, length kept | 0.9970 | 0.9796 |
-| **whole sentence deleted (104 chars, 26 tokens)** | **0.9968** | 0.9875 |
+| **whole sentence deleted (104 chars, 26 tokens, 218–263 characters upstream of the sampled positions)** | **0.9968** | 0.9875 |
 | *one token step along the same passage* | *0.422* | — |
 | *a different passage entirely* | *−0.04* | — |
 
@@ -37,7 +37,7 @@ honest reading is not "planting a name does nothing" — it is that **the interv
 the representation**, and the question is untested rather than answered. The design could not have
 worked: I placed the edit far enough upstream that it would not disturb the sampled tokens, which
 is exactly why it did not reach them. What the failed control does establish is that at layer 32,
-at these positions, the residual stream barely encodes context from 250 characters back — so the
+at these positions, the residual stream barely encodes context from roughly 250 characters back — so the
 AV cannot be reading "Bradman" out of the activation at all.
 
 If the names come from the model's own knowledge, the amount of confabulation should depend on how
@@ -52,10 +52,7 @@ Savarkar and 98.3% on cricket name someone absent from the passage entirely** �
 Singh and Tilak on the biography; Tendulkar, Dravid and Bradman on cricket. Re-binding a name that
 is genuinely present, the Bradman story I started from, is the rare case.
 
-I also labelled all 995 false claims for relatedness, a thing the paper asserts twice without a
-number: **975 of them, 98%, are related to the passage.** Given a cricket activation the AV
-confabulates cricket. That also costs me the paper's related-versus-unrelated comparison — with 20
-unrelated claims, several of them apparently mislabelled, I cannot reproduce it here.
+I also labelled all 995 false claims for relatedness. **975 of them, 98%, are related to the passage.** Given a cricket activation the AV confabulates cricket. Their own figure gives the same split for their corpus and it comes out around **80% related** (83% for theme claims, 70% for entity, 91% for detail), so mine is noticeably higher. I think that is the corpus: theirs is mixed pretraining text and there is somewhere else to wander off to, mine is one narrow domain and there is not. The cost is that with only 20 unrelated claims, several of which look mislabelled to me, I cannot run their related-versus-unrelated Δ contrast at all.
 
 Putting those together — names imported, imports staying in-domain, more of them on unfamiliar
 text — the reading I find most plausible is that **the model's own knowledge is the source of the

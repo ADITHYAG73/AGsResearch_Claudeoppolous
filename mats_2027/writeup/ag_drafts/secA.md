@@ -1,14 +1,20 @@
 The NLA paper says the activation reconstructor is "only a weak per-claim verifier" of the descriptions its verbaliser writes. That sentence is where this project started. I wanted to know which kind of weak: is there no per-claim signal in the reconstruction error, or is there one buried under noise? If buried, it is a sampling problem someone with GPU budget can fix. If absent, the direction is finished.
 
-What I did: the official Gemma-3-12B NLA at layer 32. Six passages, last 10 token positions, four resamples each — **240 explanations, 2,065 claims**. Every claim is rewritten out of its explanation and scored again against the same activation; the difference is Δ. Then a second corpus, seven pages of a 2019 biography, to see whether any of it travels to text the model has seen less of.
+What I did: the official Gemma-3-12B NLA at layer 32. Six passages, last 10 token positions, four resamples each — **240 explanations, 2,065 claims**. Every claim is rewritten out of its explanation and scored again against the same activation, and the difference is
+
+    Δ = mse(claim rewritten out) − mse(intact) Then a second corpus, seven pages of a 2019 biography, to see whether any of it travels to text the model has seen less of.
 
 **What I found**
 
 - **The signal is there, it is weak, and now it has a number: per-claim AUC 0.535 [0.510, 0.559].** The paper never says how weak. Averaging pushes it to **0.615**, but that interval [0.488, 0.736] still contains chance, so I am not claiming it.
-- **The noise is random, not systematic**, which is what makes averaging the right lever. I fitted spread(K)² = signal² + noise²/K on K=1 and K=4 only, then asked it to predict K=2 and K=3; it got both **within 0.8%**. There is a floor at **56%** of the K=1 spread, which is the real signal. What stops me is not noise but recurrence: **only 110 claim-groups** recur in 3 or more of the 4 resamples.
+- **The noise is random, not systematic**, which is what makes averaging the right lever. I fitted
+
+    spread(K)² = signal² + noise²/K
+
+on K=1 and K=4 only, then asked it to predict K=2 and K=3; it got both **within 0.8%**. There is a floor at **56%** of the K=1 spread, which is the real signal. What stops me is not noise but recurrence: **only 110 claim-groups** recur in 3 or more of the 4 resamples.
 - **My main hypothesis is dead, and I can say how dead.** I predicted the false claims were two populations under one label, so their Δ would show two bumps. It is one hump, **dip test p = 0.992**. I planted fake mixtures at the sizes I predicted and the test caught them **86–100%** of the time, so it was not blind. Below a fifth it would have missed.
 - **Removing a claim improves reconstruction 30% of the time**, and the paper never reports that rate. Thematic claims carry about **2.7×** less weight than specific ones — but only after controlling for claims that quote the passage's final token. Uncontrolled it looks 4.5×, and I would have reported the wrong number.
-- **Specificity replicates**: **THEME 69.1% / ENTITY 43.8% / DETAIL 36.0%** supported against their 64 / 28 / 24, on a different NLA and corpus.
+- **Specificity replicates**: **THEME 69.1% / ENTITY 43.8% / DETAIL 36.0%** supported against their 64 / 28 / 24, on a different NLA and corpus. (Their three numbers are printed inside their figure, not in their text.)
 - **Confabulation is import, not misreading.** In both corpora **over 90%** of false claims naming a person name somebody absent from the passage. And the less familiar corpus produced **more** confabulation, not less — **63% false against 50%** — the opposite of what Opus 5 and I wrote down beforehand.
 
 **What I checked myself.** I hand-graded **150 claims blind plus 30 retests**: **96.7% self-consistent**, **88.7% agreement** with the judge. The paper reports no validation of its own judge. And three things I was about to report did not survive checking: a detector rule I pre-registered fired on skew alone, a kill condition no dataset with real signal could pass, and a number I had repeated for days — a batting average of 99.94 — that does not exist anywhere in my data.

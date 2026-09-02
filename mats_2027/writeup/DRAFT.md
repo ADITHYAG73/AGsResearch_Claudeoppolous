@@ -6,38 +6,28 @@
 
 ## A. Executive summary
 
-The NLA paper reports that the activation reconstructor is "only a weak per-claim verifier" of the descriptions its verbalizer produces. I wanted to know which kind of weak: is there no per-claim signal in reconstruction error at all, or is there one buried in noise? The difference matters — a buried signal is a sampling problem someone can pay to fix, an absent one is a dead end.
+The NLA paper says the activation reconstructor is "only a weak per-claim verifier" of the descriptions its verbaliser writes. That sentence is where this project started. I wanted to know which kind of weak: is there no per-claim signal in the reconstruction error, or is there one buried under noise? If buried, it is a sampling problem someone with GPU budget can fix. If absent, the direction is finished.
 
-Setup: the official Gemma-3-12B NLA, layer 32, on 6 passages sampled at their last 10 token positions with 4 resamples each — 240 explanations, 2,065 claims, each rewritten out of its explanation and re-scored against the same activation. Δ = mse(claim removed) − mse(intact). A second corpus of 7 biography pages tested transfer.
+What I did: the official Gemma-3-12B NLA at layer 32. Six passages, last 10 token positions, four resamples each — **240 explanations, 2,065 claims**. Every claim is rewritten out of its explanation and scored again against the same activation, and the difference is
+
+    Δ = mse(claim rewritten out) − mse(intact) Then a second corpus, seven pages of a 2019 biography, to see whether any of it travels to text the model has seen less of.
 
 **What I found**
 
-- **The signal exists and it is weak, now with a number: per-claim AUC 0.535 [0.510, 0.559].**
-  The paper never quantifies "weak". Averaging over resamples moves it to 0.615, but that
-  interval [0.488, 0.736] still includes chance.
-- **The noise is random, not systematic — so averaging is the right lever.** Fitting
-  spread(K)² = signal² + noise²/K on K=1 and K=4 predicts K=2 and K=3 to within 0.8%, and two
-  independent noise estimates agree. There is a signal floor at 56% of the K=1 spread. **The bottleneck is not noise but recurrence**: only 110 claim-groups appear in at least 3 of 4 resamples, so more resamples would settle this in a day of GPU time.
-- **My main hypothesis is dead, and I can say how dead.** I predicted that "false" claims are two populations — faithful readouts the judge mislabels, plus real confabulations — which would make their Δ bimodal. It is one hump (dip test p = 0.992), and planted mixtures at the sizes I predicted are caught 86–100% of the time. A mixture below a fifth would have been missed.
-- **Removing a claim improves reconstruction 30% of the time.** The paper never reports this rate.
-  Thematic claims carry ~2.7× less reconstruction weight than specific ones — but only after
-  controlling for claims that quote the passage's final token; uncontrolled the gap looks 4.5×.
-- **Specificity replicates** on a different NLA, corpus and judge: THEME 69.1% / ENTITY 43.8% / DETAIL 36.0% supported, against the paper's 64 / 28 / 24.
-- **Confabulation is import, not misreading.** In both corpora, over 90% of false claims naming a
-  person name someone absent from the passage entirely. 98% of false claims stay on-topic. And the
-  less familiar corpus produced **more** confabulation, not less (63% false vs 50%) — refuting
-  predictions I and my agent both wrote down in advance.
+- **The signal is there, it is weak, and now it has a number: per-claim AUC 0.535 [0.510, 0.559].** The paper never says how weak. Averaging pushes it to **0.615**, but that interval [0.488, 0.736] still contains chance, so I am not claiming it.
+- **The noise is random, not systematic**, which is what makes averaging the right lever. I fitted
 
-**What I checked myself.** I hand-graded 150 claims blind plus 30 retests (96.7% self-consistent, 88.7% agreement with the judge); the paper reports no validation of its own confabulation judge. Several load-bearing claims failed when I checked them: a pre-registered detector rule that
-turned out to fire on skew alone, a kill condition no dataset with real signal could have passed,
-and a widely-repeated detail in my own notes that did not exist in the data.
+    spread(K)² = signal² + noise²/K
 
-**What this is not.** Everything here is black-box. The one causal intervention I attempted never
-reached the representation — a control I ran afterwards showed the text edit moved the activation
-0.7% as far as a single token step does — so that question is untested rather than answered. The
-next step I would take is the paper's own unrun suggestion, best-of-N explanations scored against
-the reconstructor, which my existing resamples already support; the causal question needs
-activation patching, and that is the first white-box thing I would do.
+on K=1 and K=4 only, then asked it to predict K=2 and K=3; it got both **within 0.8%**. There is a floor at **56%** of the K=1 spread, which is the real signal. What stops me is not noise but recurrence: **only 110 claim-groups** recur in 3 or more of the 4 resamples.
+- **My main hypothesis is dead, and I can say how dead.** I predicted the false claims were two populations under one label, so their Δ would show two bumps. It is one hump, **dip test p = 0.992**. I planted fake mixtures at the sizes I predicted and the test caught them **86–100%** of the time, so it was not blind. Below a fifth it would have missed.
+- **Removing a claim improves reconstruction 30% of the time**, and the paper never reports that rate. Thematic claims carry about **2.7×** less weight than specific ones — but only after controlling for claims that quote the passage's final token. Uncontrolled it looks 4.5×, and I would have reported the wrong number.
+- **Specificity replicates**: **THEME 69.1% / ENTITY 43.8% / DETAIL 36.0%** supported against their 64 / 28 / 24, on a different NLA and corpus. (Their three numbers are printed inside their figure, not in their text.)
+- **Confabulation is import, not misreading.** In both corpora **over 90%** of false claims naming a person name somebody absent from the passage. And the less familiar corpus produced **more** confabulation, not less — **63% false against 50%** — the opposite of what Opus 5 and I wrote down beforehand.
+
+**What I checked myself.** I hand-graded **150 claims blind plus 30 retests**: **96.7% self-consistent**, **88.7% agreement** with the judge. The paper reports no validation of its own judge. And three things I was about to report did not survive checking: a detector rule I pre-registered fired on skew alone, a kill condition no dataset with real signal could pass, and a number I had repeated for days — a batting average of 99.94 — that does not exist anywhere in my data.
+
+**What this is not.** All of this is black box; I never put a hook into the model. The one intervention I tried never reached the representation — my text edit moved the activation **0.7%** as far as one token position does — so that question is untested, not answered. What I would run next is the paper's own unrun suggestion: best-of-N explanations scored against the reconstructor.
 
 ---
 
@@ -87,7 +77,7 @@ I also took samples from a 2019 biography of the indian freedom fighter V. D. Sa
 
 Figure G0 shows the pipeline end to end. In short: extract the residual activation, verbalise it with the AV, decompose the explanation into atomic claims, judge each claim against the exact prefix the model had read, rewrite one claim out at a time, and re-score every variant with the AR. **Δ = mse(claim rewritten out) − mse(intact)**, on the same explanation and the same activation. Δ > 0 means removing the claim hurt reconstruction; Δ < 0 means removal helped. The ablation is a rewrite with the prose reflowed rather than a deletion, which is the paper's own method and is what keeps prose damage out of Δ.
 
-The judge is `claude-haiku-4-5-20251001`. It sees only the prefix and the claim, and returns supported / contradicted / not-in-text; all analysis collapses that to binary supported-or-not, as the paper does. I validated it against my own blind grading — the numbers are in D1. To the best of my knowledge the paper reports no validation for its own confabulation judge.
+The judge is `claude-haiku-4-5-20251001`. It sees only the prefix and the claim, and returns supported / contradicted / not-in-text; all analysis collapses that to binary supported-or-not, as the paper does. I validated it against my own blind grading; the numbers are in D1.
 
 I reconstructed the SHAPE of their pipeline (decompose / verify / vibe / match) from the grader outputs shipped inside the paper's own HTML, and wrote my own prompts to match that output format — their prompts are not published. I checked this two ways: the HTML carries `decompose_response`, `verify_response`, `vibe_response` and `match_response` with no corresponding `*_prompt` keys, and the official repo has no confabulation-analysis code in it at all.
 
@@ -134,7 +124,7 @@ The paper calls the AR "only a weak per-claim verifier". The main quantity is
 
 If Δ is positive, removing the claim worsened the reconstruction, so the claim is load-bearing. If Δ is negative, removing the claim helped, so the claim is not load-bearing.
 
-I set out to verify that "claim" — pun unintended. Simple as the statement sounds, it took me a while to register what it actually means. The original question I set out to answer, along with my favourite knowledge partner in crime, was this: does removing false claims improve reconstruction?
+I set out to verify that "claim" — pun unintended. Simple as the statement sounds, it took me a while to register what it actually means. The original question I set out to answer, along with my favourite knowledge partner in crime (Opus 5), was this: does removing false claims improve reconstruction?
 
 (The question is taken from Neel Nanda's MATS 12.0 admissions doc, under Improved Interpretability Methods: using the activation reconstructor to measure the quality of a description by finding "which claims can be removed and improve reconstruction accuracy".)
 
@@ -147,7 +137,7 @@ And in the process, this is what I found.
 
 That is 2063 ablations: every one of the 2065 claims except two, which could not be rewritten out of their explanation without changing something else. Verdicts are binary, supported against not supported.
 
-A detector that simply says "positive Δ means the claim is true" is right 53.8% of the time, against 51.8% for always guessing "true".
+A detector that simply says "positive Δ means the claim is true" is right **53.8%** of the time. That is 780 true claims with a positive Δ plus 330 false claims with a negative Δ, over 2063. Always guessing "true" gets **51.8%**, so the whole of Δ buys me about two points.
 
 About 27% of true claims have a negative Δ, and they are not thereby false claims.
 
@@ -165,7 +155,7 @@ About 67% of false claims have a positive Δ, and they are not thereby true clai
 | +0.00927 | DETAIL / quote | The text contains the final token "Garden Gardens" |
 | +0.00910 | DETAIL / date | The text contains the phrase 'By summer 1789' |
 
-These are specific, wrong, and load-bearing. Note what they have in common: each is pointing at the right place in the passage and getting the content wrong. Across all false claims, the ones that name the final token of the prefix carry a mean Δ of +0.00141 against +0.00038 for the rest — nearly four times as much — and 25.3% of the load-bearing false claims name it, against 11.5% of the ones whose removal helped.
+These are specific, they are wrong, and the AR still needs them. What I notice about all three is that each one is pointing at the right place in the passage and then getting the content wrong. Across all false claims, the ones that name the final token of the prefix carry a mean Δ of +0.00141 against +0.00038 for the rest — nearly four times as much — and 25.3% of the load-bearing false claims name it, against 11.5% of the ones whose removal helped.
 
 The explanation is written by the AV, which is a language model in its own right. The reconstruction signal is available only to the AR, never to the AV. The AV is handed an activation at a chosen position so that we can get a readout at that position, but it is still a language model doing what language models do.
 
@@ -227,17 +217,17 @@ My kill condition, written 19 August before the data: if the spread does not shr
 2. For each claim, I averaged its Δ over K = 1, 2, 3 and 4 of its resamples. Then I measured the spread: the standard deviation, across those 31 claims, of the per-claim averages. One number per K. It says how far apart the claims sit from each other, not how much any single claim wobbles.
 3. The spread shrank: 0.00225, 0.00181, 0.00164, 0.00157 at K = 1, 2, 3, 4.
 4. I fitted the model spread(K)² = signal² + noise²/K on K = 1 and K = 4 only, then made it predict K = 2 and K = 3 — values it had never been shown. Both predictions came within 0.8% of what was observed.
-5. The noise estimated from that fit is 0.00185; the noise estimated directly from within-claim variation is 0.00212. Two independent routes agreeing to 13%.
+5. The noise estimated from that fit is **0.00185**. I also estimated the noise a completely different way, straight from how much a single claim moves between resamples, and got **0.00212**. Two different routes, 13% apart, which is close enough that I believe the model.
 6. I concluded that the noise is random and not systematic. The spread shrank toward a floor at 0.00127 — 56% of where it started — and that floor is the genuine between-claim signal, which is the thing I wanted to exist.
 
 **The kill condition was mis-specified, and I want to be explicit about that.**
 
-7. The condition required the spread to fall as one over the square root of K, which on a log-log plot means a slope of −0.50.
+7. The condition required the spread to fall as one over the square root of K. On a log-log plot that is a straight line whose slope is the exponent, so 1/√K means a slope of **−0.50**.
 8. I observed a slope of −0.262, which on the face of it reads as a partial fail.
-9. But a slope of −0.5 only happens if the spread can fall all the way to zero, which is to say if there were nothing but noise. Because there is a real signal floor, the spread flattens onto it and the slope is necessarily shallower than −0.5. The condition was drafted by my agent and I adopted it; neither of us noticed at the time that no dataset containing real signal could ever pass it.
+9. But a slope of −0.5 only happens if the spread can fall all the way to zero, which is to say if there were nothing but noise. Because there is a real signal floor, the spread flattens onto it and the slope is necessarily shallower than −0.5. The condition was drafted by Opus 5 and I adopted it; neither of us noticed at the time that no dataset containing real signal could ever pass it.
 10. So the right test was not the slope. It is whether the variance model predicts data it was not fitted on, which it does, to 0.8%.
 
-Two earlier noise ratios in my notes, 1.41× and 0.12×, used the median within-claim spread. That is the wrong statistic for splitting variance, because the distribution of within-claim spreads is badly skewed. They are superseded by the numbers above.
+Two earlier noise ratios from my lab notebook, 1.41× and 0.12× (they are not quoted anywhere in this write-up), used the median within-claim spread. That is the wrong statistic for splitting variance, because the distribution of within-claim spreads is badly skewed. They are superseded by the numbers above.
 
 **Conclusion.** The outcome I was hoping for was a rise in AUC. The unaveraged per-claim AUC was 0.535, with a 95% interval of 0.510 to 0.559 — barely above chance. K-averaged over the matched groups it is 0.615, interval 0.488 to 0.736. It moves the right way, but the interval includes chance, so it is not established.
 
@@ -253,7 +243,7 @@ H2 is therefore partially supported. The premise was right, the noise is real an
 
 ## D5. Removal improves reconstruction 30% of the time
 
-Neel Nanda's suggestion in the MATS 12.0 admissions doc, under *Improved Interpretability Methods*, was to look for claims that can be removed to *improve* reconstruction. Although the paper says false claims hurt reconstruction *less* than true ones, it never reports how often removal actually helps. 
+Neel Nanda's suggestion in the MATS 12.0 admissions doc (Recommended Research Problems → Improved Interpretability Methods → natural language autoencoders) was to look for claims that can be removed to *improve* reconstruction. Although the paper says false claims hurt reconstruction *less* than true ones, it never reports how often removal actually helps. 
 
 On my data it helps often:
 **30.0% of 2063 single-claim ablations have Δ < 0** (mean Δ = +0.00088, sd 0.00264). By the AR's own measure, then, nearly a third of the claims in these explanations are carrying no weight — though at a mean Δ this small, some of that will be scatter around zero rather than genuine harm.
@@ -312,7 +302,7 @@ sees. It had not.
 |---|---:|---:|
 | one proper noun substituted (3 conditions) | 0.9989–0.9995 | 0.9965 |
 | proper noun removed, length kept | 0.9970 | 0.9796 |
-| **whole sentence deleted (104 chars, 26 tokens)** | **0.9968** | 0.9875 |
+| **whole sentence deleted (104 chars, 26 tokens, 218–263 characters upstream of the sampled positions)** | **0.9968** | 0.9875 |
 | *one token step along the same passage* | *0.422* | — |
 | *a different passage entirely* | *−0.04* | — |
 
@@ -321,7 +311,7 @@ honest reading is not "planting a name does nothing" — it is that **the interv
 the representation**, and the question is untested rather than answered. The design could not have
 worked: I placed the edit far enough upstream that it would not disturb the sampled tokens, which
 is exactly why it did not reach them. What the failed control does establish is that at layer 32,
-at these positions, the residual stream barely encodes context from 250 characters back — so the
+at these positions, the residual stream barely encodes context from roughly 250 characters back — so the
 AV cannot be reading "Bradman" out of the activation at all.
 
 If the names come from the model's own knowledge, the amount of confabulation should depend on how
@@ -336,10 +326,7 @@ Savarkar and 98.3% on cricket name someone absent from the passage entirely** �
 Singh and Tilak on the biography; Tendulkar, Dravid and Bradman on cricket. Re-binding a name that
 is genuinely present, the Bradman story I started from, is the rare case.
 
-I also labelled all 995 false claims for relatedness, a thing the paper asserts twice without a
-number: **975 of them, 98%, are related to the passage.** Given a cricket activation the AV
-confabulates cricket. That also costs me the paper's related-versus-unrelated comparison — with 20
-unrelated claims, several of them apparently mislabelled, I cannot reproduce it here.
+I also labelled all 995 false claims for relatedness. **975 of them, 98%, are related to the passage.** Given a cricket activation the AV confabulates cricket. Their own figure gives the same split for their corpus and it comes out around **80% related** (83% for theme claims, 70% for entity, 91% for detail), so mine is noticeably higher. I think that is the corpus: theirs is mixed pretraining text and there is somewhere else to wander off to, mine is one narrow domain and there is not. The cost is that with only 20 unrelated claims, several of which look mislabelled to me, I cannot run their related-versus-unrelated Δ contrast at all.
 
 Putting those together — names imported, imports staying in-domain, more of them on unfamiliar
 text — the reading I find most plausible is that **the model's own knowledge is the source of the
@@ -372,11 +359,11 @@ What I did not do, and would like to explore: no hooks, no internal probing. Thi
 
 ## F. Limitations
 
-1. **NLA as a black box.** No hooks, no internal probing. I tried to modulate the input to observe a causal effect, but my own control showed the edit never reached the representation — deleting a sentence 250 characters upstream moved the layer-32 activation less than 1% as far as moving a single token position does. That intervention is not causal evidence, and I still don't know why the AV does what it does.
+1. **NLA as a black box.** No hooks, no internal probing. I tried to modulate the input to observe a causal effect, but my own control showed the edit never reached the representation — deleting a sentence 218 to 263 characters upstream moved the layer-32 activation less than 1% as far as moving a single token position does. That intervention is not causal evidence, and I still don't know why the AV does what it does.
 
 2. **The judge was validated on cricket only** (88.7% agreement with my blind grading). I did not repeat that for the Savarkar corpus, partly because I have not read the book fully and partly for time — so some of the 13.8-point gap between corpora could be the judge being harsher on unfamiliar Indian names rather than the AV confabulating more.
 
-3. **The semantic matcher was never checked by a human.** An LLM decides which claims across the four resamples are "the same claim", and those 110 groups are the entire basis of the K-averaging result in D4. Nobody has read a group and confirmed it is one claim rather than two.
+3. **The semantic matcher was never checked by a human.** An LLM decides which claims across the four resamples count as "the same claim", and those 110 groups are the entire basis of the K-averaging result in D4. I never sat down and read a group to confirm it really is one claim and not two.
 
 4. **Both hypothesis results are weaker than they look.** H2's payoff could only be measured on the 110 groups spanning at least 3 of 4 resamples, so the bottleneck is recurrence rather than noise, and the K-averaged AUC's interval still includes chance. H1's verdict is exploratory rather than confirmatory, because the detector rule I pre-registered turned out to be broken and had to be revised after I had seen the real distribution.
 
@@ -393,14 +380,11 @@ What I did not do, and would like to explore: no hooks, no internal probing. Thi
 The practical implication is narrow but usable: **you cannot filter an NLA description
 claim-by-claim with the reconstructor as it stands.** An AUC of 0.535 is not a tool. But the
 reason it fails is now specific rather than mysterious. The noise is stochastic, so averaging
-does help; the limit is that only 110 claim-groups recurred often enough to average over. That is
-a sampling problem with a known price — more resamples per activation — not a dead end. Someone
-with a GPU budget could settle it in a day.
+does help; the limit is that only 110 claim-groups recurred often enough to average over. That is a sampling problem with a price on it — more resamples per activation — and not a dead end. With GPU budget I think this gets settled in a day.
 
 The confabulation results point somewhere different from where I started. If most false claims
 import a name the passage never mentions, then checking descriptions against the *context* is the
-wrong shape of defence, because the AV never saw the context. Checking named entities against
-what the activation can actually support looks more promising, and cheaper.
+wrong shape of defence, because the AV never saw the context. Checking the named entities against what the activation can actually support looks more promising to me, and cheaper.
 
 With more time, the first thing I would run is one the paper names and did not do. Under
 inference-time methods it notes that the pipeline "mostly uses AV outputs and discards the AR",
@@ -418,3 +402,36 @@ model knows the material.
 The honest gap is that none of this touched the model's internals. Everything here treats the NLA
 as a black box, and the one intervention I attempted never reached the representation. That is
 the first thing I would fix.
+
+---
+
+## Appendix. One activation, end to end
+
+Everything in this write-up comes out of the pipeline in Figure G0. Rather than describe it again, here is one activation carried all the way through, so that the tables in D2 and D5 can be read properly.
+
+**The passage.** Eden Gardens, Wikipedia. The activation is taken at token position 87, and the prefix — which is all the judge ever sees — ends mid-quote:
+
+> The stadium was established in 1864. The origins of its name are uncertain. According to some, the stadium is named after the Eden Gardens park where it is located, itself named after the Eden sisters, Emily and Fanny, of Lord Auckland, the Governor-General of India (1836–1842). Initially named the 'Auckland Circus Gardens', the park was renamed to the **'Eden Gardens**
+
+**The explanation.** This is what the AV wrote from that single activation vector. It never sees the passage.
+
+> Structured factual/historical article format, with a descriptive entry about a British colonial residence in Kolkata — factual, informative tone.
+>
+> The sentence "The garden was named 'Elphinstone Gardens', which was later renamed to 'Elphinstone Gardens" sets up a factual conclusion about the name's origin or etymology.
+>
+> Final token "Gardens" closes a quoted phrase ("was renamed to the 'Elphinstone Gardens"), requiring immediate completion — likely "in the 1800s" or "name by..." or "after the name of..." or "in the estate in 1885," referencing the original naming source.
+
+Look at what it got right and what it got wrong. It knows it is at the end of a quoted park name that is being renamed. It knows the register, the century, the colonial Kolkata setting. And then it fills the name in as **Elphinstone Gardens**, which is not in the passage at all. Right slot, wrong content. This is the failure mode D6 is about, in one line.
+
+**The claims, the verdicts, and Δ.** Stage 3 breaks the explanation into atomic claims, the judge marks each one against the prefix above, and then each claim is rewritten out and the explanation re-scored.
+
+| Δ | level | verdict | claim |
+|---:|---|---|---|
+| **+0.00849** | ENTITY | false | The text mentions 'Elphinstone Gardens' as a name. |
+| +0.00220 | DETAIL | false | The text contains a quoted phrase "was renamed to the 'Elphinstone Gardens". |
+| +0.00108 | DETAIL | false | The text contains the sentence "The garden was named 'Elphinstone Gardens'…" |
+| +0.00006 | THEME | **true** | The text has a factual, informative tone. |
+| −0.00010 | ENTITY | false | The text describes a British colonial residence in Kolkata. |
+| −0.00011 | THEME | **true** | The text is in a structured factual/historical article format. |
+
+This one activation shows the whole problem in miniature. **The most load-bearing claim in the explanation is false** — take "Elphinstone Gardens" out and the reconstruction gets substantially worse, because that invented name is carrying the AR's information about where in the sentence the model was. Meanwhile both true claims sit at effectively zero, and one of them is slightly *better* off removed. If you tried to use the sign of Δ as a truth signal here, you would get four out of six wrong.
