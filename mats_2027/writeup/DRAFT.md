@@ -10,16 +10,14 @@ The NLA paper says the activation reconstructor is "only a weak per-claim verifi
 
 What I did: the official Gemma-3-12B NLA at layer 32. Six passages, last 10 token positions, four resamples each — **240 explanations, 2,065 claims**. Every claim is then rewritten out of its explanation and scored again against the same activation:
 
-    Δ = mse(claim rewritten out) − mse(intact) Then a second corpus, seven pages of a 2019 biography, to see whether any of it travels to text the model has seen less of.
+    Δ = mse(claim rewritten out) − mse(intact)
+
+Then a second corpus, seven pages of a 2019 biography, to see whether any of it travels to text the model has seen less of.
 
 **What I found**
 
 - **The signal is there, it is weak, and now it has a number: per-claim AUC 0.535 [0.510, 0.559].** The paper never says how weak. Averaging pushes it to **0.615**, but that interval [0.488, 0.736] contains chance, so I am not claiming it.
-- **The noise is random, not systematic**, which is what makes averaging the right lever. I fitted
-
-    spread(K)² = signal² + noise²/K
-
-on K=1 and K=4 only, then asked it to predict K=2 and K=3; it got both **within 0.8%**. There is a floor at **56%** of the K=1 spread, which is the real signal. What stops me is not noise but recurrence: **only 110 claim-groups** recur in 3 or more resamples.
+- **The noise is random, not systematic**, which is what makes averaging the right lever. I fitted spread(K)² = signal² + noise²/K on K=1 and K=4 only, then asked it to predict K=2 and K=3; it got both **within 0.8%**. There is a floor at **56%** of the K=1 spread, which is the real signal. What stops me is not noise but recurrence: **only 110 claim-groups** recur in 3 or more resamples.
 - **My main hypothesis is dead, and I can say how dead.** I predicted the false claims were two populations under one label, so their Δ would show two bumps. It is one hump, **dip test p = 0.992**. I planted fake mixtures at the sizes I predicted and the test caught them **86–100%** of the time, so it was not blind. Below a fifth it would have missed them.
 - **Removing a claim improves reconstruction 30% of the time**, and the paper never reports that rate. Thematic claims carry about **2.7×** less weight than specific ones, but only after controlling for claims that quote the passage's final token. Uncontrolled it looks 4.5× and I would have reported the wrong number.
 - **Specificity replicates**: **THEME 69.1% / ENTITY 43.8% / DETAIL 36.0%** supported against their 64 / 28 / 24 (their three numbers come from their figure, not their text).
@@ -155,7 +153,7 @@ About 67% of false claims have a positive Δ, and they are not thereby true clai
 | +0.00927 | DETAIL / quote | The text contains the final token "Garden Gardens" |
 | +0.00910 | DETAIL / date | The text contains the phrase 'By summer 1789' |
 
-These are specific, they are wrong, and the AR still needs them. What I notice about all three is that each one is pointing at the right place in the passage and then getting the content wrong. Across all false claims, the ones that name the final token of the prefix carry a mean Δ of +0.00141 against +0.00038 for the rest — nearly four times as much — and 25.3% of the load-bearing false claims name it, against 11.5% of the ones whose removal helped.
+These are specific, they are wrong, and the AR still needs them. What I notice about both is that each one is pointing at the right place in the passage and then getting the content wrong. Across all false claims, the ones that name the final token of the prefix carry a mean Δ of +0.00141 against +0.00038 for the rest — nearly four times as much — and 25.3% of the load-bearing false claims name it, against 11.5% of the ones whose removal helped.
 
 The explanation is written by the AV, which is a language model in its own right. The reconstruction signal is available only to the AR, never to the AV. The AV is handed an activation at a chosen position so that we can get a readout at that position, but it is still a language model doing what language models do.
 
@@ -187,7 +185,7 @@ On my data the two bell curves did fit, at +843.4. But my Δ distribution is lop
 
 To check that, I generated data that was one group by construction, lopsided by exactly the same 2.63, and ran the rule on it 200 times. It reported "two populations" in 200 of 200 runs, with a median score of +846.5 — higher than the +843.4 my real data scored. My evidence for two populations was weaker than what a single population typically produces.
 
-Because the rule had to be revised after I had seen the data, H1's verdict is exploratory and not confirmatory. When I was brainstorming with my thinking and experimenting partner (Claude), we did not account for a distribution this lopsided.
+Because the rule had to be revised after I had seen the data, H1's verdict is exploratory and not confirmatory. When I was brainstorming with my thinking and experimenting partner (Opus 5), we did not account for a distribution this lopsided.
 
 Killing H1 does not mean the AR treats Category 1 (activation-true, text-false) and Category 2 (genuine confabulation) claims alike. It shows only that their measured Δ does not split into two groups. This measurement cannot tell them apart at this sample size.
 
@@ -347,11 +345,11 @@ advance that confabulation tracks familiarity while the specificity of the claim
 The things that were my contributions:
 
 1. I graded 150 claims blind plus 30 retests, 180 items in 33.6 minutes, seeing only the claim and the prefix. 96.7% self-consistent, 88.7% agreement with the judge. That is the human validation for my dataset.
-2. I froze the grading conventions the adjudication was then judged against, and the 27 disagreements my blind grading produced turned out to split into two error modes at opposite ends of the specificity scale — I am too generous on quoted strings, the judge is too strict on vague-but-correct descriptions. (The adjudication itself was done by my agent, applying my conventions; it is the same model family as the judge, so it is not a neutral referee.)
+2. I froze the grading conventions the adjudication was then judged against, and the 27 disagreements my blind grading produced turned out to split into two error modes at opposite ends of the specificity scale — I am too generous on quoted strings, the judge is too strict on vague-but-correct descriptions. (The adjudication itself was done by Opus 5, applying my conventions; it is the same model family as the judge, so it is not a neutral referee.)
 3. I spotted the Bradman substitution. It needed cricket knowledge, which is my forte, and it is the reason I chose cricket as the corpus.
 4. I had a hypothesis that confabulation would increase towards the later token positions of a passage. I read the explanations by eye before any of the data existed and concluded it was not there; the measurement later agreed, at +2.4 percentage points early versus late against a pooled standard error of 2.9, with the sign opposite to my prediction.
 5. I found that the relatedness labels did not exist at all, by checking my own mental model of the pipeline against the data. That blocked H1 until it was fixed.
-6. I asked where a number in my own notes came from — the 99.94 batting average my agent said the model had blended in — and it was nowhere in the data. It had been carried over from a different run and had propagated into three files. The averages the model actually invented were 95.99 and 51.37, attributed to two batsmen who appear nowhere in the passage.
+6. I asked where a number in my own notes came from — the 99.94 batting average Opus 5 said the model had blended in — and it was nowhere in the data. It had been carried over from a different run and had propagated into three files. The averages the model actually invented were 95.99 and 51.37, attributed to two batsmen who appear nowhere in the passage.
 
 What I did not do, and would like to explore: no hooks, no internal probing. This was a black box throughout.
 

@@ -35,7 +35,7 @@ About 67% of false claims have a positive Δ, and they are not thereby true clai
 | +0.00927 | DETAIL / quote | The text contains the final token "Garden Gardens" |
 | +0.00910 | DETAIL / date | The text contains the phrase 'By summer 1789' |
 
-These are specific, they are wrong, and the AR still needs them. What I notice about all three is that each one is pointing at the right place in the passage and then getting the content wrong. Across all false claims, the ones that name the final token of the prefix carry a mean Δ of +0.00141 against +0.00038 for the rest — nearly four times as much — and 25.3% of the load-bearing false claims name it, against 11.5% of the ones whose removal helped.
+These are specific, they are wrong, and the AR still needs them. What I notice about both is that each one is pointing at the right place in the passage and then getting the content wrong. Across all false claims, the ones that name the final token of the prefix carry a mean Δ of +0.00141 against +0.00038 for the rest — nearly four times as much — and 25.3% of the load-bearing false claims name it, against 11.5% of the ones whose removal helped.
 
 The explanation is written by the AV, which is a language model in its own right. The reconstruction signal is available only to the AR, never to the AV. The AV is handed an activation at a chosen position so that we can get a readout at that position, but it is still a language model doing what language models do.
 

@@ -2,16 +2,14 @@ The NLA paper says the activation reconstructor is "only a weak per-claim verifi
 
 What I did: the official Gemma-3-12B NLA at layer 32. Six passages, last 10 token positions, four resamples each — **240 explanations, 2,065 claims**. Every claim is then rewritten out of its explanation and scored again against the same activation:
 
-    Δ = mse(claim rewritten out) − mse(intact) Then a second corpus, seven pages of a 2019 biography, to see whether any of it travels to text the model has seen less of.
+    Δ = mse(claim rewritten out) − mse(intact)
+
+Then a second corpus, seven pages of a 2019 biography, to see whether any of it travels to text the model has seen less of.
 
 **What I found**
 
 - **The signal is there, it is weak, and now it has a number: per-claim AUC 0.535 [0.510, 0.559].** The paper never says how weak. Averaging pushes it to **0.615**, but that interval [0.488, 0.736] contains chance, so I am not claiming it.
-- **The noise is random, not systematic**, which is what makes averaging the right lever. I fitted
-
-    spread(K)² = signal² + noise²/K
-
-on K=1 and K=4 only, then asked it to predict K=2 and K=3; it got both **within 0.8%**. There is a floor at **56%** of the K=1 spread, which is the real signal. What stops me is not noise but recurrence: **only 110 claim-groups** recur in 3 or more resamples.
+- **The noise is random, not systematic**, which is what makes averaging the right lever. I fitted spread(K)² = signal² + noise²/K on K=1 and K=4 only, then asked it to predict K=2 and K=3; it got both **within 0.8%**. There is a floor at **56%** of the K=1 spread, which is the real signal. What stops me is not noise but recurrence: **only 110 claim-groups** recur in 3 or more resamples.
 - **My main hypothesis is dead, and I can say how dead.** I predicted the false claims were two populations under one label, so their Δ would show two bumps. It is one hump, **dip test p = 0.992**. I planted fake mixtures at the sizes I predicted and the test caught them **86–100%** of the time, so it was not blind. Below a fifth it would have missed them.
 - **Removing a claim improves reconstruction 30% of the time**, and the paper never reports that rate. Thematic claims carry about **2.7×** less weight than specific ones, but only after controlling for claims that quote the passage's final token. Uncontrolled it looks 4.5× and I would have reported the wrong number.
 - **Specificity replicates**: **THEME 69.1% / ENTITY 43.8% / DETAIL 36.0%** supported against their 64 / 28 / 24 (their three numbers come from their figure, not their text).

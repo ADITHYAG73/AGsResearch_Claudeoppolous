@@ -45,7 +45,7 @@ def main(src="mats_2027/writeup/DRAFT.md", dst="/tmp/DRAFT_docs.md"):
     blocks, joined = s.split("\n\n"), []
     for b in blocks:
         lines = b.split("\n")
-        if (len(lines) > 1 and not b.lstrip().startswith(("|", "#", "- ", "* "))
+        if (len(lines) > 1 and not b.lstrip().startswith(("|", "#", "- ", "* ", ">"))
                 and not any(re.match(r"\s*\d+\.\s", l) for l in lines)):
             b = " ".join(l.strip() for l in lines)
         joined.append(b)
