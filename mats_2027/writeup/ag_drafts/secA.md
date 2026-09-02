@@ -1,32 +1,16 @@
-The NLA paper reports that the activation reconstructor is "only a weak per-claim verifier" of the descriptions its verbalizer produces. I wanted to know which kind of weak: is there no per-claim signal in reconstruction error at all, or is there one buried in noise? The difference matters — a buried signal is a sampling problem someone can pay to fix, an absent one is a dead end.
+The NLA paper says the activation reconstructor is "only a weak per-claim verifier" of the descriptions its verbaliser writes. That sentence is where this project started. I wanted to know which kind of weak: is there no per-claim signal in the reconstruction error, or is there one buried under noise? If buried, it is a sampling problem someone with GPU budget can fix. If absent, the direction is finished.
 
-Setup: the official Gemma-3-12B NLA, layer 32, on 6 passages sampled at their last 10 token positions with 4 resamples each — 240 explanations, 2,065 claims, each rewritten out of its explanation and re-scored against the same activation. Δ = mse(claim removed) − mse(intact). A second corpus of 7 biography pages tested transfer.
+What I did: the official Gemma-3-12B NLA at layer 32. Six passages, last 10 token positions, four resamples each — **240 explanations, 2,065 claims**. Every claim is rewritten out of its explanation and scored again against the same activation; the difference is Δ. Then a second corpus, seven pages of a 2019 biography, to see whether any of it travels to text the model has seen less of.
 
 **What I found**
 
-- **The signal exists and it is weak, now with a number: per-claim AUC 0.535 [0.510, 0.559].**
-  The paper never quantifies "weak". Averaging over resamples moves it to 0.615, but that
-  interval [0.488, 0.736] still includes chance.
-- **The noise is random, not systematic — so averaging is the right lever.** Fitting
-  spread(K)² = signal² + noise²/K on K=1 and K=4 predicts K=2 and K=3 to within 0.8%, and two
-  independent noise estimates agree. There is a signal floor at 56% of the K=1 spread. **The bottleneck is not noise but recurrence**: only 110 claim-groups appear in at least 3 of 4 resamples, so more resamples would settle this in a day of GPU time.
-- **My main hypothesis is dead, and I can say how dead.** I predicted that "false" claims are two populations — faithful readouts the judge mislabels, plus real confabulations — which would make their Δ bimodal. It is one hump (dip test p = 0.992), and planted mixtures at the sizes I predicted are caught 86–100% of the time. A mixture below a fifth would have been missed.
-- **Removing a claim improves reconstruction 30% of the time.** The paper never reports this rate.
-  Thematic claims carry ~2.7× less reconstruction weight than specific ones — but only after
-  controlling for claims that quote the passage's final token; uncontrolled the gap looks 4.5×.
-- **Specificity replicates** on a different NLA, corpus and judge: THEME 69.1% / ENTITY 43.8% / DETAIL 36.0% supported, against the paper's 64 / 28 / 24.
-- **Confabulation is import, not misreading.** In both corpora, over 90% of false claims naming a
-  person name someone absent from the passage entirely. 98% of false claims stay on-topic. And the
-  less familiar corpus produced **more** confabulation, not less (63% false vs 50%) — refuting
-  predictions I and my agent both wrote down in advance.
+- **The signal is there, it is weak, and now it has a number: per-claim AUC 0.535 [0.510, 0.559].** The paper never says how weak. Averaging pushes it to **0.615**, but that interval [0.488, 0.736] still contains chance, so I am not claiming it.
+- **The noise is random, not systematic**, which is what makes averaging the right lever. I fitted spread(K)² = signal² + noise²/K on K=1 and K=4 only, then asked it to predict K=2 and K=3; it got both **within 0.8%**. There is a floor at **56%** of the K=1 spread, which is the real signal. What stops me is not noise but recurrence: **only 110 claim-groups** recur in 3 or more of the 4 resamples.
+- **My main hypothesis is dead, and I can say how dead.** I predicted the false claims were two populations under one label, so their Δ would show two bumps. It is one hump, **dip test p = 0.992**. I planted fake mixtures at the sizes I predicted and the test caught them **86–100%** of the time, so it was not blind. Below a fifth it would have missed.
+- **Removing a claim improves reconstruction 30% of the time**, and the paper never reports that rate. Thematic claims carry about **2.7×** less weight than specific ones — but only after controlling for claims that quote the passage's final token. Uncontrolled it looks 4.5×, and I would have reported the wrong number.
+- **Specificity replicates**: **THEME 69.1% / ENTITY 43.8% / DETAIL 36.0%** supported against their 64 / 28 / 24, on a different NLA and corpus.
+- **Confabulation is import, not misreading.** In both corpora **over 90%** of false claims naming a person name somebody absent from the passage. And the less familiar corpus produced **more** confabulation, not less — **63% false against 50%** — the opposite of what Opus 5 and I wrote down beforehand.
 
-**What I checked myself.** I hand-graded 150 claims blind plus 30 retests (96.7% self-consistent, 88.7% agreement with the judge); the paper reports no validation of its own confabulation judge. Several load-bearing claims failed when I checked them: a pre-registered detector rule that
-turned out to fire on skew alone, a kill condition no dataset with real signal could have passed,
-and a widely-repeated detail in my own notes that did not exist in the data.
+**What I checked myself.** I hand-graded **150 claims blind plus 30 retests**: **96.7% self-consistent**, **88.7% agreement** with the judge. The paper reports no validation of its own judge. And three things I was about to report did not survive checking: a detector rule I pre-registered fired on skew alone, a kill condition no dataset with real signal could pass, and a number I had repeated for days — a batting average of 99.94 — that does not exist anywhere in my data.
 
-**What this is not.** Everything here is black-box. The one causal intervention I attempted never
-reached the representation — a control I ran afterwards showed the text edit moved the activation
-0.7% as far as a single token step does — so that question is untested rather than answered. The
-next step I would take is the paper's own unrun suggestion, best-of-N explanations scored against
-the reconstructor, which my existing resamples already support; the causal question needs
-activation patching, and that is the first white-box thing I would do.
+**What this is not.** All of this is black box; I never put a hook into the model. The one intervention I tried never reached the representation — my text edit moved the activation **0.7%** as far as one token position does — so that question is untested, not answered. What I would run next is the paper's own unrun suggestion: best-of-N explanations scored against the reconstructor.
