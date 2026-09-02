@@ -1,24 +1,23 @@
-The paper says "AR is only a weak per-claim verifier".
+The paper says the AR "is only a weak per-claim verifier".
 
-i wanted to investigate if its because of the singal being absent  or buried...(<am i fair in assuming that if we say buried , like it means or refers noise??>)
+I wanted to investigate whether that is because the signal is absent, or because it is buried in noise.
 
+The signal here is Δ(mse). In particular I hypothesise that the observed Δ of a claim is the sum of an underlying Δ and noise:
 
+Δ(observed) = Δ(underlying) + ε
 
-the signal being the delta(mse). in particular i hypothesise that observed delta of a claim is a sum of underlying delta and noise. by underlying delta i mean, the delta of the claim that we cud calculate in an ideal scenario with 100 percent accracy. 
+By underlying Δ I mean the Δ of the claim that we could calculate in an ideal scenario, with 100 percent accuracy. ε is everything else: the run-to-run variation that comes from the prose around the claim changing between resamples.
 
-<i think the equation notation would do better here coz how will someone who is brand new reading this able to understand..although neel is experienced researcher, if i don't convey proper, then there is no point>
+Now either one of two cases is possible.
 
-now either one of the 2 cases is possible.
+1. The distribution of underlying Δ is the same for true and false claims, which means they are indistinguishable and no amount of measurement will separate them.
+2. The distributions differ, but the accompanying noise is overwhelming — possibly because of the surrounding prose variation across resamples.
 
-1. that the distribution in delta of the underlying for true and false claims is same. -> means they are indistinushable.
-2. distribution may be different but the accompanying noise is overwhelming, may be due to the surrounding prose variation across resamples.
+There are also two sources of confabulation, and telling them apart is what makes this hard:
 
-sources of confabulation :
+1. The residual activation vector genuinely encodes the thing, and the AV faithfully read it out.
+2. The AV, being a language model in its own right, made it up.
 
-1. residual activation vector genuinely encodes it and the AV faithfully read it.
-2. AV being a LM in itself made it up.
+In essence, a text judge is blind to both the residual activation and the AV's process. The judge in our case (Haiku 4.5) receives only the passage up to the sampled position — the prefix — and the claim, and returns supported, contradicted, or not in text. It can see whether the words are in the passage. It cannot see what the activation contained.
 
-
-so. in essence a text judge is primarily blind to residual activation and AV model thought process. the text judge in our case (Haiku 4.5) only receives the passage uptill the position (the prefix) and the claim..and its given 3 choices -> Supported,  or Not in TExt. 
-
-The residual stream activation which served as the bedrock for generation of explanation using AV is available to  only AR for reconstruction in the whole system, so its in. prinicple the only instruemnt that cud tell case 1 from case 2 .
+The residual stream activation that was the basis for the AV's explanation is available, in the whole system, only to the AR. So the AR is in principle the only instrument that could tell case 1 from case 2.

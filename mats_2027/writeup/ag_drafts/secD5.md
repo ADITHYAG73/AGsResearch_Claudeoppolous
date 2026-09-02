@@ -3,13 +3,12 @@
 Neel Nanda's suggestion in the MATS 12.0 admissions doc, under *Improved Interpretability Methods*, was to look for claims that can be removed to *improve* reconstruction. Although the paper says false claims hurt reconstruction *less* than true ones ,it never reports how often removal actually helps. 
 
 On my data it helps often:
-**30.0% of 2063 single-claim ablations have Δ < 0** (mean Δ = +0.00088, sd 0.00264). Nearly a
-third of the claims in these explanations are worse or **not useful** as per the AR.
+**30.0% of 2063 single-claim ablations have Δ < 0** (mean Δ = +0.00088, sd 0.00264). By the AR's own measure, then, nearly a third of the claims in these explanations are carrying no weight — though at a mean Δ this small, some of that will be scatter around zero rather than genuine harm.
 
 One of my earlier pilots had this at 18.8%, but that run used a different ablation method.
 In that run I had  the carrier sentence deleted rather than rewriting the claim out and also it was at  different set of token positions, so the two numbers measure different things and I am not treating the gap as a result.
 
-The breakdown by claim level is the part I least expected (Table D5.1). Mean Δ rises from
+The breakdown by claim level is the part I least expected. Mean Δ rises from
 **+0.00032 for THEME to +0.00105 for ENTITY to +0.00145 for DETAIL** — specific claims carry
 4.5× the reconstruction weight of thematic ones, with confidence intervals nowhere near
 overlapping. That headline does not survive a control, though. The AR rebuilds the activation at

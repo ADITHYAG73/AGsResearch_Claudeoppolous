@@ -12,10 +12,7 @@ per-claim signal in reconstruction error at all, or is there one that is buried 
 difference matters, because a buried signal is a sampling problem someone can pay to fix, and an
 absent one is a dead end.
 
-Setup: the official Gemma-3-12B NLA, layer 32, on 6 passages sampled at their last 10 token
-positions with 4 resamples each — 240 explanations, 2,065 claims, each rewritten out of its
-explanation and re-scored against the same activation. Δ = mse(claim removed) − mse(intact).
-A second corpus, 7 pages of a 2019 biography, tested whether any of it transfers.
+Setup: the official Gemma-3-12B NLA, layer 32, on 6 passages sampled at their last 10 token positions with 4 resamples each — 240 explanations, 2,065 claims, each rewritten out of its explanation and re-scored against the same activation. Δ = mse(claim removed) − mse(intact). A second corpus of 7 biography pages tested transfer.
 
 **What I found**
 
@@ -24,57 +21,55 @@ A second corpus, 7 pages of a 2019 biography, tested whether any of it transfers
   interval [0.488, 0.736] still includes chance.
 - **The noise is random, not systematic — so averaging is the right lever.** Fitting
   spread(K)² = signal² + noise²/K on K=1 and K=4 predicts K=2 and K=3 to within 0.8%, and two
-  independent noise estimates agree. There is a signal floor at 56% of the K=1 spread. **The
-  bottleneck is not noise but recurrence**: only 110 claim-groups appear in ≥3 of 4 resamples.
-  More resamples per activation would settle this in a day of GPU time.
-- **My main hypothesis is dead, and I can say how dead.** I predicted that "false" claims are two
-  populations — faithful readouts the text judge mislabels, plus real confabulations — which would
-  make their Δ bimodal. It is one hump (dip test p = 0.992), and planted mixtures at the sizes I
-  predicted are detected 86–100% of the time. A mixture below a fifth would still have been missed.
+  independent noise estimates agree. There is a signal floor at 56% of the K=1 spread. **The bottleneck is not noise but recurrence**: only 110 claim-groups appear in at least 3 of 4 resamples, so more resamples would settle this in a day of GPU time.
+- **My main hypothesis is dead, and I can say how dead.** I predicted that "false" claims are two populations — faithful readouts the judge mislabels, plus real confabulations — which would make their Δ bimodal. It is one hump (dip test p = 0.992), and planted mixtures at the sizes I predicted are caught 86–100% of the time. A mixture below a fifth would have been missed.
 - **Removing a claim improves reconstruction 30% of the time.** The paper never reports this rate.
   Thematic claims carry ~2.7× less reconstruction weight than specific ones — but only after
   controlling for claims that quote the passage's final token; uncontrolled the gap looks 4.5×.
-- **Specificity replicates on a different NLA, corpus and judge**: THEME 69.1% / ENTITY 43.8% /
-  DETAIL 36.0% supported, against the paper's 64 / 28 / 24.
+- **Specificity replicates** on a different NLA, corpus and judge: THEME 69.1% / ENTITY 43.8% / DETAIL 36.0% supported, against the paper's 64 / 28 / 24.
 - **Confabulation is import, not misreading.** In both corpora, over 90% of false claims naming a
   person name someone absent from the passage entirely. 98% of false claims stay on-topic. And the
   less familiar corpus produced **more** confabulation, not less (63% false vs 50%) — refuting
   predictions I and my agent both wrote down in advance.
 
-**What I checked myself.** I hand-graded 150 claims blind plus 30 retests (96.7% self-consistent,
-88.7% agreement with the LLM judge) — the paper reports no validation of its own confabulation
-judge. Several load-bearing claims failed when I checked them: a pre-registered detector rule that
+**What I checked myself.** I hand-graded 150 claims blind plus 30 retests (96.7% self-consistent, 88.7% agreement with the judge); the paper reports no validation of its own confabulation judge. Several load-bearing claims failed when I checked them: a pre-registered detector rule that
 turned out to fire on skew alone, a kill condition no dataset with real signal could have passed,
 and a widely-repeated detail in my own notes that did not exist in the data.
 
 **What this is not.** Everything here is black-box. The one causal intervention I attempted never
 reached the representation — a control I ran afterwards showed the text edit moved the activation
-0.7% as far as a single token step does — so that question is untested rather than answered.
-Activation patching with hooks is the first thing I would do next.
+0.7% as far as a single token step does — so that question is untested rather than answered. The
+next step I would take is the paper's own unrun suggestion, best-of-N explanations scored against
+the reconstructor, which my existing resamples already support; the causal question needs
+activation patching, and that is the first white-box thing I would do.
 
 ---
 
 ## B. The question, and why it matters
 
-The paper says "AR is only a weak per-claim verifier".
+The paper says the AR "is only a weak per-claim verifier".
 
-i wanted to investigate if its because of the singal being absent  or buried...
+I wanted to investigate whether that is because the signal is absent, or because it is buried in noise.
 
-the signal being the delta(mse). in particular i hypothesise that observed delta of a claim is a sum of underlying delta and noise. by underlying delta i mean, the delta of the claim that we cud calculate in an ideal scenario with 100 percent accracy. 
+The signal here is Δ(mse). In particular I hypothesise that the observed Δ of a claim is the sum of an underlying Δ and noise:
 
-now either one of the 2 cases is possible.
+Δ(observed) = Δ(underlying) + ε
 
-1. that the distribution in delta of the underlying for true and false claims is same. -> means they are indistinushable.
-2. distribution may be different but the accompanying noise is overwhelming, may be due to the surrounding prose variation across resamples.
+By underlying Δ I mean the Δ of the claim that we could calculate in an ideal scenario, with 100 percent accuracy. ε is everything else: the run-to-run variation that comes from the prose around the claim changing between resamples.
 
-sources of confabulation :
+Now either one of two cases is possible.
 
-1. residual activation vector genuinely encodes it and the AV faithfully read it.
-2. AV being a LM in itself made it up.
+1. The distribution of underlying Δ is the same for true and false claims, which means they are indistinguishable and no amount of measurement will separate them.
+2. The distributions differ, but the accompanying noise is overwhelming — possibly because of the surrounding prose variation across resamples.
 
-so. in essence a text judge is primarily blind to residual activation and AV model thought process. the text judge in our case (Haiku 4.5) only receives the passage uptill the position (the prefix) and the claim..and its given 3 choices -> Supported,  or Not in TExt. 
+There are also two sources of confabulation, and telling them apart is what makes this hard:
 
-The residual stream activation which served as the bedrock for generation of explanation using AV is available to  only AR for reconstruction in the whole system, so its in. prinicple the only instruemnt that cud tell case 1 from case 2 .
+1. The residual activation vector genuinely encodes the thing, and the AV faithfully read it out.
+2. The AV, being a language model in its own right, made it up.
+
+In essence, a text judge is blind to both the residual activation and the AV's process. The judge in our case (Haiku 4.5) receives only the passage up to the sampled position — the prefix — and the claim, and returns supported, contradicted, or not in text. It can see whether the words are in the passage. It cannot see what the activation contained.
+
+The residual stream activation that was the basis for the AV's explanation is available, in the whole system, only to the AR. So the AR is in principle the only instrument that could tell case 1 from case 2.
 
 ---
 
@@ -82,7 +77,7 @@ The residual stream activation which served as the bedrock for generation of exp
 
 Model details
 
-I have used the official anthropic nla `kitft/nla-gemma3-12b-L32-av` (AV) + `kitft/nla-gemma3-12b-L32-ar` (AR), Apache-2.0. The base model that i used for this experiment was `google/gemma-3-12b-it`. Activations taken from layer 32 of 48, dimension d of the vector is 3840.
+I used the official Anthropic NLA release, `kitft/nla-gemma3-12b-L32-av` (AV) + `kitft/nla-gemma3-12b-L32-ar` (AR), Apache-2.0. The base model I used for this experiment was `google/gemma-3-12b-it`. Activations taken from layer 32 of 48, dimension d of the vector is 3840.
 
 The activation verbaliser model (AV) is of same architecture as the base. The activation is injected as a single token embedding into a fixed prompt with injection_scale 80000 (available from the sidecar), sampled at temperature T = 1. The activation reconstructor (AR) is the base model truncated to 33 blocks plus a learned linear head on the final token.
 
@@ -94,9 +89,9 @@ I chose 6 passages: 5 cricket Wikipedia paragraphs and 1 on the French Revolutio
 
 I sampled the last 10 contiguous positions of each passage with K = 4 resamples, so 6 × 10 × 4 = 240 explanations. Every position sits at token index 50 or later — the official pipeline's `_MIN_POSITION = 50` (`nla/datagen/stage0_extract.py:35`), a constraint on the position, not on the length of the passage; my lowest sampled index is 79. Cricket is in distribution for this NLA, measured rather than assumed: the AV→AR round trip returns cosine 0.996 on my passages against 0.997 on the maintainers' own example.
 
-I chose cricket because its a familiar topic for me, one that i can grade quickly.
+I chose cricket because it is a familiar topic for me, one I can grade quickly.
 
-I also took samples from a 2019 biography of the indian freedom fighter V. D. Savarkar (by Vikram Sampath). Wikipedia is in almost every pretrained model's knowledge; this book, i reasoned, would be far less represented in the training distribution, which would let me see what the AV does when the activation is thinner.
+I also took samples from a 2019 biography of the indian freedom fighter V. D. Savarkar (by Vikram Sampath). Wikipedia is in almost every pretrained model's knowledge; this book, I reasoned, would be far less represented in the training distribution, which would let me see what the AV does when the activation is thinner.
 
 Figure G0 shows the pipeline end to end. In short: extract the residual activation, verbalise it with the AV, decompose the explanation into atomic claims, judge each claim against the exact prefix the model had read, rewrite one claim out at a time, and re-score every variant with the AR. **Δ = mse(claim rewritten out) − mse(intact)**, on the same explanation and the same activation. Δ > 0 means removing the claim hurt reconstruction; Δ < 0 means removal helped. The ablation is a rewrite with the prose reflowed rather than a deletion, which is the paper's own method and is what keeps prose damage out of Δ.
 
@@ -123,12 +118,11 @@ the ordering is identical, and the ordering is my claim.
 
 I then checked the instrument. I graded 150 stratified claims blind, with 30 re-presented
 under fresh ids, seeing only the claim and the prefix the model had actually read. I agreed
-with myself on 29 of 30 and with Haiku on 133 of 150 (88.7%). The paper reports no validation
-of its confabulation judge. Although the same paper validates a different grader at 97% on 186 items. The standard exists there but was not applied here.
+with myself on 29 of 30 and with Haiku on 133 of 150 (88.7%). The paper reports no validation of its confabulation judge, although the same paper validates a different grader at 97% on 186 items. The standard exists there; it was not applied here.
 
 The disagreements are the interesting part. Of the 17 claims where our
 binary verdicts differ, 16 are cases where I said supported and Haiku said the text does not
-contain it; exactly one runs the other way.  I observed little more thoroughly, Haiku was right about quoted strings and I was too generous. I was right about vague-but-correct THEME claims and Haiku was too strict.Those two mistakes sit at opposite ends of the specificity axis, so i believe they flatten the gradient.
+contain it; exactly one runs the other way.  Looking at them more closely: Haiku was right about quoted strings and I was too generous; I was right about vague-but-correct THEME claims and Haiku was too strict. Those two mistakes sit at opposite ends of the specificity axis, so I believe they flatten the gradient.
 **The real THEME-to-DETAIL gap is probably wider than either of us measured** (my labels give
 46 points, Haiku's 40).
 
@@ -142,89 +136,78 @@ Two examples, one in each direction. Where Haiku was right: I marked supported t
 
 ## D2. What Δ does and does not tell you
 
-"AR is only a weak per claim verifier"
+The paper calls the AR "only a weak per-claim verifier". The main quantity is
 
-main equation -> delta(mse) = mse(abalated explanation) - mse(original explanation)
+Δ(mse) = mse(ablated explanation) − mse(original explanation)
 
-if delta(mse) > 0 => removed claim worsened the recosntruction on ablated explanation -> claim is load bearing for reconstruction
+If Δ is positive, removing the claim worsened the reconstruction, so the claim is load-bearing. If Δ is negative, removing the claim helped, so the claim is not load-bearing.
 
-if delta(mse) < 0 => removed claim helped in reconstruction -> claim is not load bearing for reconstruction
+I set out to verify that "claim" — pun unintended. Simple as the statement sounds, it took me a while to register what it actually means. The original question I set out to answer, along with my favourite knowledge partner in crime, was this: does removing false claims improve reconstruction?
 
-I set out to verify this "claim" (pun unintended) . in fact , as much as this might be a simple sounding statement, it took me a while to register it.The original question that I set out to finad an answer along with my favourite knowledge partner in crime (claude) was this -> does removing the false claims help in reconstruction better?
+(The question is taken from Neel Nanda's MATS 12.0 admissions doc, under Improved Interpretability Methods: using the activation reconstructor to measure the quality of a description by finding "which claims can be removed and improve reconstruction accuracy".)
 
-(The question is taken from Neel Nanda's MATS 12.0 admissions doc, under *Improved Interpretability Methods*: using the activation reconstructor to measure description quality by finding "which claims can be removed and improve reconstruction accuracy".)
+And in the process, this is what I found.
 
-and in the process this is what i found.
+| verdict | Δ positive (load-bearing) | Δ negative (removal helped) | total |
+| --- | --- | --- | --- |
+| TRUE claims | 780 (73%) | 288 (27%) | 1068 |
+| FALSE claims | 665 (67%) | 330 (33%) | 995 |
 
-|                  | Δ > 0 (load-bearing) | Δ < 0 (removal helped) | total |
-|------------------|---------------------:|-----------------------:|------:|
-| **TRUE claims**  | 780 (73%)            | 288 (27%)              | 1068  |
-| **FALSE claims** | 665 (67%)            | 330 (33%)              | 995   |
+That is 2063 ablations: every one of the 2065 claims except two, which could not be rewritten out of their explanation without changing something else. Verdicts are binary, supported against not supported.
 
-n = 2063 valid ablations, cricket, K = 1, verdicts binary (SUPPORTED vs not).
-A detector that simply says "Δ > 0 means the claim is true" is right **53.8%** of the time,
-against 51.8% for always guessing "true".
+A detector that simply says "positive Δ means the claim is true" is right 53.8% of the time, against 51.8% for always guessing "true".
 
-about 27% of true claims do contribute to a negative delta but they are not necessariyl false claims .
+About 27% of true claims have a negative Δ, and they are not thereby false claims.
 
 | Δ | level / subtype | claim |
-|---:|---|---|
+| --- | --- | --- |
 | −0.00083 | THEME / format | The text is a sports/cricket article format. |
 | −0.00056 | THEME / format | The text is structured as a biographical article listing cricket statistics |
 
-All three are true, all three are vague, and all three say something the rest of the same
-explanation already says. Removing one costs the reconstruction nothing, and slightly helps.
+Both are true, both are vague, and both say something the rest of the same explanation already says. Removing one costs the reconstruction nothing, and slightly helps it.
 
-about 67% of false claims do contribute to a positive delta but they are not necessarily true claims either.
+About 67% of false claims have a positive Δ, and they are not thereby true claims either.
 
 | Δ | level / subtype | claim |
-|---:|---|---|
+| --- | --- | --- |
 | +0.00927 | DETAIL / quote | The text contains the final token "Garden Gardens" |
-| +0.00910 | DETAIL / date  | The text contains the phrase 'By summer 1789' |
+| +0.00910 | DETAIL / date | The text contains the phrase 'By summer 1789' |
 
-These are specific, wrong, and load-bearing. Note what they have in common: each one is pointing
-at the right place in the passage and getting the content wrong. Across all false claims, the ones
-that name the final token of the prefix carry a mean Δ of +0.00141 against +0.00038 for the rest —
-nearly 4×, and 25.3% of the load-bearing false claims name it against 11.5% of the ones whose
-removal helped.
+These are specific, wrong, and load-bearing. Note what they have in common: each is pointing at the right place in the passage and getting the content wrong. Across all false claims, the ones that name the final token of the prefix carry a mean Δ of +0.00141 against +0.00038 for the rest — nearly four times as much — and 25.3% of the load-bearing false claims name it, against 11.5% of the ones whose removal helped.
 
-so thinking about this , as mentioned in the oriignial paper also , the expalantions are made by AV which is a language model. the only ever signal for reconstruction is avaialble only for AR and not AV. AV although is injected with a desired position activation in order for us to get a model read out or explaantion at that position, its alanguage model
+The explanation is written by the AV, which is a language model in its own right. The reconstruction signal is available only to the AR, never to the AV. The AV is handed an activation at a chosen position so that we can get a readout at that position, but it is still a language model doing what language models do.
 
-and that is the whole problem with reading Δ as a truth signal. Δ measures whether the AR needed
-those words to rebuild the activation, not whether they were true. A vague true claim that the
-explanation states three times is not needed even once; a confidently wrong claim that pins down
-where in the passage the model was reading is needed badly. The two questions come apart, and the
-53.8% is what that looks like as a number.
+And that is the whole problem with reading Δ as a truth signal. Δ measures whether the AR needed those words to rebuild the activation, not whether they were true. A vague true claim that the explanation already states three times is not needed even once; a confidently wrong claim that pins down where in the passage the model was reading is needed badly. The two questions come apart, and 53.8% is what that looks like as a number.
 
 ---
 
 ## D3. H1 — one population, not two
 
-My hypothesis H1 : Claims that are marked false are efectively a combination of two different categories. 
+My hypothesis H1: claims that are marked false are effectively a combination of two different categories.
 
-Category 1 : AV had a faithful readout of the activation but the text judge marked it false because of absence of the words in passage
+**Category 1.** The AV had a faithful readout of the activation, but the text judge marked it false because the words are absent from the passage. The kind of claim I had in mind is the one on the French Revolution passage — "The text contains the phrase 'By summer 1789'" — where the phrase is not in the prefix but the period almost certainly is in the activation.
 
-Category 2 : Genuine confabulations
+**Category 2.** Genuine confabulations, such as "The text is about Don Bradman" on a passage about Rahul Dravid.
 
-So based on H1, I predicted two bumps in the histogram of delta of the 975 related-false claims. if the test returned 1 bump then H1 is effectively ruled out. (That kill condition was written down on 19 August, before any of this data existed.)wrote
+Based on H1, I predicted two bumps in the histogram of Δ for the 975 related-false claims. If the test returned one bump, H1 is effectively ruled out. That kill condition was written down on 19 August, before any of this data existed.
 
-Dip test found out that there is no valley between two bumps ; it returned p = 0.992 on the 975 claims, ruling out H1.
+The dip test found no valley between two bumps: it returned p = 0.992 on the 975 claims, ruling out H1.
 
-So a null result means either the test is blind or data genuinely is not representative of the hypothesis. To test the effectiveness of the test, I had planted fake data that genuinely had two groups at H1's predicted mixture size and noise level. 
+A null result, though, means either the test is blind or the data genuinely does not carry the hypothesised structure. To check that the test was not blind, I planted fake data that genuinely had two groups, at H1's own predicted mixture size and at the noise level I had measured.
 
-The dip test caught them 26 % at 20 % mixture, 86% of the time at 26% mixture, 100 % at 35 % and above. so at or below a fifth the test goes blind.
+The dip test caught them 26% of the time at a 20% mixture, 86% at a 26% mixture, and 100% at 35% and above. So at or below a fifth the test goes blind.
 
-So the test would have found what H1 described, although a smaller mixture  (less than a fifth size) would have slipped past.
+The test would therefore have found what H1 described. A smaller mixture, below about a fifth, would have slipped past.
 
-The rule i had pre-registered was not actually dip test. It was delta bic > 10 - "do two bellcurves fit better than one?"
+The rule I had pre-registered was not actually the dip test. It was ΔBIC greater than 10 — "do two bell curves fit better than one?"
 
-And on my data (claims delta) the two bell curves did fit (+843.4) but my delta distibution was lop sided (skew of 2.63) and a lopsided single hill was fitted better by two bells.
+On my data the two bell curves did fit, at +843.4. But my Δ distribution is lopsided (skew 2.63), and a lopsided single hill is fitted better by two bells than by one, whether or not there are two populations underneath.
 
-To check that, I generated data that was ONE group by construction, lopsided by exactly the same 2.63, and ran the rule on it 200 times. It reported "two populations" in 200 of 200 runs, with a median score of +846.5 — higher than the +843.4 my real data scored. My evidence for two populations was weaker than what a single population typically produces.
+To check that, I generated data that was one group by construction, lopsided by exactly the same 2.63, and ran the rule on it 200 times. It reported "two populations" in 200 of 200 runs, with a median score of +846.5 — higher than the +843.4 my real data scored. My evidence for two populations was weaker than what a single population typically produces.
 
-Because the rule had to be revised post me seeing the data, H1's verdict is exploratory and not confirmatory. When i was brainstorming with my thinking and experimenting partner (Claude) we did not account for a lopsy enough distribution.
+Because the rule had to be revised after I had seen the data, H1's verdict is exploratory and not confirmatory. When I was brainstorming with my thinking and experimenting partner (Claude), we did not account for a distribution this lopsided.
 
-killing H1 does not mean AR treats category 1(activation-true, text-flase) and category 2(genuine confabulations) claims alike. it merely shows that their measured delta does not split into two groups. This measurement can't tell them apart at this size.
+Killing H1 does not mean the AR treats Category 1 (activation-true, text-false) and Category 2 (genuine confabulation) claims alike. It shows only that their measured Δ does not split into two groups. This measurement cannot tell them apart at this sample size.
 
 **Figure G2.** If related-false claims were two populations — faithful readouts the text judge mislabels, plus genuine confabulations — their Δ would be bimodal. It is a single right-skewed hump (dip p = 0.992). The ΔBIC rule that was pre-registered DID fire (+843), but a single skewed hump matched to this data fires it in 200/200 draws, so it is disqualified; the dip test, which has the power shown in G3, is the detector that counts. True claims (gray) are shown for scale: the same shape, shifted right.
 
@@ -238,46 +221,37 @@ killing H1 does not mean AR treats category 1(activation-true, text-flase) and c
 
 ## D4. H2 — the noise is real and random
 
-My hypothesis H2 : signal is there but its buried in noise 
+My hypothesis H2: the signal is there, but it is buried in noise. Expressed as an equation,
 
-to express it in the form of an equation,
+Δ(observed) = Δ(underlying) + ε
 
-observed_delta = underlying_delta + noise
+If ε is random, averaging over multiple resamples should neutralise it. If it is systematic, averaging has no effect at all.
 
-if the noise is random, averaging over multiple resamples should neutralise it, otherwise it shall have no effect (in case of systematic noise)
+My kill condition, written 19 August before the data: if the spread does not shrink when I average, the noise is systematic and averaging cannot rescue it.
 
-my kill condition (written 19 August, before the data) : if the spread doesn't shrink upon averaging the noise is systematic  and averaging can't rescue it.
+**Method**
 
-methodology:
+1. I took the claims that appeared in all four resamples — 31 of them.
+2. For each claim, I averaged its Δ over K = 1, 2, 3 and 4 of its resamples. Then I measured the spread: the standard deviation, across those 31 claims, of the per-claim averages. One number per K. It says how far apart the claims sit from each other, not how much any single claim wobbles.
+3. The spread shrank: 0.00225, 0.00181, 0.00164, 0.00157 at K = 1, 2, 3, 4.
+4. I fitted the model spread(K)² = signal² + noise²/K on K = 1 and K = 4 only, then made it predict K = 2 and K = 3 — values it had never been shown. Both predictions came within 0.8% of what was observed.
+5. The noise estimated from that fit is 0.00185; the noise estimated directly from within-claim variation is 0.00212. Two independent routes agreeing to 13%.
+6. I concluded that the noise is random and not systematic. The spread shrank toward a floor at 0.00127 — 56% of where it started — and that floor is the genuine between-claim signal, which is the thing I wanted to exist.
 
-1. firstly i took the claims that appeared in all 4 resamples. 
-2. for each claim, average its delta over K = 1, 2, 3 and 4 of its resamples. Then measure the SPREAD: the standard deviation, across the 31 claims, of those per-claim averages. One number per K. It says how far apart the claims sit from each other — not how much any single claim wobbles.
-3. the spread shrank : 0.00225 → 0.00181 → 0.00164 → 0.00157 (K = 1, 2, 3, 4). These are overall numbers, one per K, across all 31 claims.
-4. fit the model spread(K)² = signal² + noise²/K on only K=1 and K=4, then made it predict K=2 and K=3 — values it had never been shown. Both predictions came within 0.8% of what was observed.
-5. the noise estimated from that fit is 0.00185; the noise estimated directly from within-claim variation is 0.00212 — two independent routes agreeing to 13%.
+**The kill condition was mis-specified, and I want to be explicit about that.**
 
-6. I concluded that the noise is random and not systematic.
-The spread shrunk toward a floor at 0.00127 — 56% of where it started — and that floor is the genuine between-claim signal.
+7. The condition required the spread to fall as one over the square root of K, which on a log-log plot means a slope of −0.50.
+8. I observed a slope of −0.262, which on the face of it reads as a partial fail.
+9. But a slope of −0.5 only happens if the spread can fall all the way to zero, which is to say if there were nothing but noise. Because there is a real signal floor, the spread flattens onto it and the slope is necessarily shallower than −0.5. The condition was drafted by my agent and I adopted it; neither of us noticed at the time that no dataset containing real signal could ever pass it.
+10. So the right test was not the slope. It is whether the variance model predicts data it was not fitted on, which it does, to 0.8%.
 
-7. the kill conidition required the spread to fall as 1/√K, which on a log-log plot means a slope of −0.50.
+Two earlier noise ratios in my notes, 1.41× and 0.12×, used the median within-claim spread. That is the wrong statistic for splitting variance, because the distribution of within-claim spreads is badly skewed. They are superseded by the numbers above.
 
-8. I observed the slope to be  −0.262, which on the face of it reads as a partial fail.
+**Conclusion.** The outcome I was hoping for was a rise in AUC. The unaveraged per-claim AUC was 0.535, with a 95% interval of 0.510 to 0.559 — barely above chance. K-averaged over the matched groups it is 0.615, interval 0.488 to 0.736. It moves the right way, but the interval includes chance, so it is not established.
 
-9. But the condition itself was mis-specified,  A slope of −0.5 only happens if the spread can fall all the way to zero — i.e. if there were nothing but noise. But because there is a real signal floor, the spread flattens onto it, and the slope is necessarily shallower than −0.5. The condition was drafted by my agent and I adopted it; neither of us noticed at the time that no dataset with real signal could pass it. 
+The reason it is underpowered is not noise. It is recurrence: only 110 claim-groups span at least 3 of the 4 resamples, so there are only 110 claims whose Δ can be averaged at all. A decisive test needs roughly ten times more, which means more resamples per activation — a GPU session I did not run.
 
-10. so the right test wasn't the slope, but whether the variance model predicts data it wasn't fitted on — which it does, to 0.8%.
-
-Two earlier noise ratios in my notes (1.41× and 0.12×) used the median within-claim spread, which is the wrong statistic for splitting variance because that distribution is badly skewed. They are superseded by the numbers above.
-
-Conclusion:
-
-The overall objective or kind of an expected outcome or more desirable outcome if i may was to observe a raise in AUC. The unaveraged , per-claim AUC was 0.535[0.510, 0.559] barely above chance.
-
- The K-averaged on the matched groups: 0.615 [0.488, 0.736]. Moves the right way, but the interval includes chance, so it isn't established.
-
-  The reason it's underpowered isn't noise — it's recurrence. only  110 claim-groups span more than or equal 3 of the 4 resamples. A decisive test needs roughly ten times more data , which means more resamples per activation - GPU session that i did not run.
-
-  H2 is partially supported. the premise was right (i.e) the noise was real and random. Averaging did shrink it predicatably. the payoff was underpowered . one that i could not establish at the sample size.
+H2 is therefore partially supported. The premise was right, the noise is real and random, and averaging shrinks it predictably. The payoff is underpowered, and I could not establish it at this sample size.
 
 **Figure G4.** Spread of per-claim mean Δ as more resamples are averaged (31 claims present in all four). A two-parameter model fitted on K=1 and K=4 alone predicts K=2 and K=3 to within 0.8% (orange diamonds). The noise averages away as H2 assumes; it converges on a real between-claim floor at 56% of the K=1 spread. noise/signal: 1.46× at K=1, 0.73× at K=4 (values from pipeline/noise_fit.py).
 
@@ -290,13 +264,12 @@ The overall objective or kind of an expected outcome or more desirable outcome i
 Neel Nanda's suggestion in the MATS 12.0 admissions doc, under *Improved Interpretability Methods*, was to look for claims that can be removed to *improve* reconstruction. Although the paper says false claims hurt reconstruction *less* than true ones ,it never reports how often removal actually helps. 
 
 On my data it helps often:
-**30.0% of 2063 single-claim ablations have Δ < 0** (mean Δ = +0.00088, sd 0.00264). Nearly a
-third of the claims in these explanations are worse or **not useful** as per the AR.
+**30.0% of 2063 single-claim ablations have Δ < 0** (mean Δ = +0.00088, sd 0.00264). By the AR's own measure, then, nearly a third of the claims in these explanations are carrying no weight — though at a mean Δ this small, some of that will be scatter around zero rather than genuine harm.
 
 One of my earlier pilots had this at 18.8%, but that run used a different ablation method.
 In that run I had  the carrier sentence deleted rather than rewriting the claim out and also it was at  different set of token positions, so the two numbers measure different things and I am not treating the gap as a result.
 
-The breakdown by claim level is the part I least expected (Table D5.1). Mean Δ rises from
+The breakdown by claim level is the part I least expected. Mean Δ rises from
 **+0.00032 for THEME to +0.00105 for ENTITY to +0.00145 for DETAIL** — specific claims carry
 4.5× the reconstruction weight of thematic ones, with confidence intervals nowhere near
 overlapping. That headline does not survive a control, though. The AR rebuilds the activation at
@@ -393,15 +366,14 @@ advance that confabulation tracks familiarity while the specificity of the claim
 
 The things that were my contributions:
 
-1. I  graded 150 claims blind plus 30 retests, 180 items in 33.6 minutes, seeing only the claim and the prefix. 96.7% self-consistent, 88.7% agreement with the judge. A human validation for my dataset.
+1. I graded 150 claims blind plus 30 retests, 180 items in 33.6 minutes, seeing only the claim and the prefix. 96.7% self-consistent, 88.7% agreement with the judge. That is the human validation for my dataset.
 2. I froze the grading conventions the adjudication was then judged against, and the 27 disagreements my blind grading produced turned out to split into two error modes at opposite ends of the specificity scale — I am too generous on quoted strings, the judge is too strict on vague-but-correct descriptions. (The adjudication itself was done by my agent, applying my conventions; it is the same model family as the judge, so it is not a neutral referee.)
-3. I  spotted the Bradman substitution — it needed cricket knowledge , which is my forte.
-4. I had an hypothesis that confabulations tend to be more towards the ending positions of sentences. But later i found out it was not the case.
-5. I found the relatedness labels didn't exist, by checking my own mental model against the data — that blocked H1 until it was fixed.
+3. I spotted the Bradman substitution. It needed cricket knowledge, which is my forte, and it is the reason I chose cricket as the corpus.
+4. I had a hypothesis that confabulation would increase towards the later token positions of a passage. I read the explanations by eye before any of the data existed and concluded it was not there; the measurement later agreed, at +2.4 percentage points early versus late against a pooled standard error of 2.9, with the sign opposite to my prediction.
+5. I found that the relatedness labels did not exist at all, by checking my own mental model of the pipeline against the data. That blocked H1 until it was fixed.
 6. I asked where a number in my own notes came from — the 99.94 batting average my agent said the model had blended in — and it was nowhere in the data. It had been carried over from a different run and had propagated into three files. The averages the model actually invented were 95.99 and 51.37, attributed to two batsmen who appear nowhere in the passage.
 
-What I did not do and would like to explore :
-no hooks, no internal probing. Black box throughout ..
+What I did not do, and would like to explore: no hooks, no internal probing. This was a black box throughout.
 
 ---
 
