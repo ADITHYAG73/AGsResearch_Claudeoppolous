@@ -45,11 +45,21 @@ def main(src="mats_2027/writeup/DRAFT.md", dst="/tmp/DRAFT_docs.md"):
     blocks, joined = s.split("\n\n"), []
     for b in blocks:
         lines = b.split("\n")
-        if (len(lines) > 1 and not b.lstrip().startswith(("|", "#", "-", "*"))
+        if (len(lines) > 1 and not b.lstrip().startswith(("|", "#", "- ", "* "))
                 and not any(re.match(r"\s*\d+\.\s", l) for l in lines)):
             b = " ".join(l.strip() for l in lines)
         joined.append(b)
     s = "\n\n".join(joined)
+    # unwrap list items too: a line that does not start a new item continues the previous one
+    fixed = []
+    for line in s.split("\n"):
+        starts_item = re.match(r"\s*(?:[-*]\s|\d+\.\s)", line)
+        if (fixed and line.strip() and not starts_item and not line.startswith(("|", "#"))
+                and re.match(r"\s*(?:[-*]\s|\d+\.\s)", fixed[-1] or "")):
+            fixed[-1] = fixed[-1].rstrip() + " " + line.strip()
+        else:
+            fixed.append(line)
+    s = "\n".join(fixed)
     s = re.sub(r"[ ]{2,}", " ", s)
     left = [w for w in re.findall(r"\S*_\S*", s)]
     assert not left, f"underscores still present: {left[:8]}"
