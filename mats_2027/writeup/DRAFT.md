@@ -21,7 +21,7 @@ Then a second corpus, seven pages of a 2019 biography, to see whether any of it 
 - **My main hypothesis is dead, and I can say how dead.** I predicted the false claims were two populations under one label, so their Δ would show two bumps. It is one hump, **dip test p = 0.992**. I planted fake mixtures at the sizes I predicted and the test caught them **86–100%** of the time, so it was not blind. Below a fifth it would have missed them.
 - **Removing a claim improves reconstruction 30% of the time**, and the paper never reports that rate. Thematic claims carry about **2.7×** less weight than specific ones, but only after controlling for claims that quote the passage's final token. Uncontrolled it looks 4.5× and I would have reported the wrong number.
 - **Specificity replicates**: **THEME 69.1% / ENTITY 43.8% / DETAIL 36.0%** supported against their 64 / 28 / 24 (their three numbers come from their figure, not their text).
-- **Confabulation is import, not misreading.** In both corpora **over 90%** of false claims naming a person name somebody absent from the passage. And the less familiar corpus produced **more** confabulation, not less — **63% false against 50%** — the opposite of what Opus 5 and I wrote down beforehand.
+- **Confabulation is import, not misreading.** In both corpora **over 90%** of false claims naming a person name somebody absent from the passage. And the less familiar corpus produced **more** confabulation, not less — **63% false against 50%** — the opposite of what Opus 5 / Fable 5 and I wrote down beforehand.
 
 **What I checked myself.** I hand-graded **150 claims blind plus 30 retests**: **96.7% self-consistent**, **88.7% agreement** with the judge. The paper reports no validation of its own judge. And three things I was about to report did not survive checking: a detector rule I pre-registered fired on skew alone, a kill condition no dataset with real signal could pass, and a number I had repeated for days — a batting average of 99.94 — that does not exist anywhere in my data.
 
@@ -122,9 +122,9 @@ The paper calls the AR "only a weak per-claim verifier". The main quantity is
 
 If Δ is positive, removing the claim worsened the reconstruction, so the claim is load-bearing. If Δ is negative, removing the claim helped, so the claim is not load-bearing.
 
-I set out to verify that "claim" — pun unintended. Simple as the statement sounds, it took me a while to register what it actually means. The original question I set out to answer, along with my favourite knowledge partner in crime (Opus 5), was this: does removing false claims improve reconstruction?
+I set out to verify that "claim" — pun unintended. Simple as the statement sounds, it took me a while to register what it actually means. The original question I set out to answer, along with my favourite knowledge partner in crime (Opus 5 / Fable 5), was this: does removing false claims improve reconstruction?
 
-(The question is taken from Neel Nanda's MATS 12.0 admissions doc, under Improved Interpretability Methods: using the activation reconstructor to measure the quality of a description by finding "which claims can be removed and improve reconstruction accuracy".)
+(The question is taken from Neel Nanda's MATS 12.0 admissions doc — Recommended Research Problems tab, section "Improved Interpretability Methods", the natural language autoencoders bullet: https://docs.google.com/document/d/1p-ggQV3vVWIQuCccXEl1fD0thJOgXimlbBpGk6FI32I/edit?tab=t.knytn7x826kv — where he says he is "particularly interested in using the activation reconstructor to measure the quality of a description, e.g. figuring out which claims can be removed and improve reconstruction accuracy to help reduce hallucinations".)
 
 And in the process, this is what I found.
 
@@ -185,7 +185,7 @@ On my data the two bell curves did fit, at +843.4. But my Δ distribution is lop
 
 To check that, I generated data that was one group by construction, lopsided by exactly the same 2.63, and ran the rule on it 200 times. It reported "two populations" in 200 of 200 runs, with a median score of +846.5 — higher than the +843.4 my real data scored. My evidence for two populations was weaker than what a single population typically produces.
 
-Because the rule had to be revised after I had seen the data, H1's verdict is exploratory and not confirmatory. When I was brainstorming with my thinking and experimenting partner (Opus 5), we did not account for a distribution this lopsided.
+Because the rule had to be revised after I had seen the data, H1's verdict is exploratory and not confirmatory. When I was brainstorming with my thinking and experimenting partner (Opus 5 / Fable 5), we did not account for a distribution this lopsided.
 
 Killing H1 does not mean the AR treats Category 1 (activation-true, text-false) and Category 2 (genuine confabulation) claims alike. It shows only that their measured Δ does not split into two groups. This measurement cannot tell them apart at this sample size.
 
@@ -222,7 +222,7 @@ My kill condition, written 19 August before the data: if the spread does not shr
 
 7. The condition required the spread to fall as one over the square root of K. On a log-log plot that is a straight line whose slope is the exponent, so 1/√K means a slope of **−0.50**.
 8. I observed a slope of −0.262, which on the face of it reads as a partial fail.
-9. But a slope of −0.5 only happens if the spread can fall all the way to zero, which is to say if there were nothing but noise. Because there is a real signal floor, the spread flattens onto it and the slope is necessarily shallower than −0.5. The condition was drafted by Opus 5 and I adopted it; neither of us noticed at the time that no dataset containing real signal could ever pass it.
+9. But a slope of −0.5 only happens if the spread can fall all the way to zero, which is to say if there were nothing but noise. Because there is a real signal floor, the spread flattens onto it and the slope is necessarily shallower than −0.5. The condition was drafted by Opus 5 / Fable 5 and I adopted it; neither of us noticed at the time that no dataset containing real signal could ever pass it.
 10. So the right test was not the slope. It is whether the variance model predicts data it was not fitted on, which it does, to 0.8%.
 
 Two earlier noise ratios from my lab notebook, 1.41× and 0.12× (they are not quoted anywhere in this write-up), used the median within-claim spread. That is the wrong statistic for splitting variance, because the distribution of within-claim spreads is badly skewed. They are superseded by the numbers above.
@@ -241,7 +241,7 @@ H2 is therefore partially supported. The premise was right, the noise is real an
 
 ## D5. Removal improves reconstruction 30% of the time
 
-Neel Nanda's suggestion in the MATS 12.0 admissions doc (Recommended Research Problems → Improved Interpretability Methods → natural language autoencoders) was to look for claims that can be removed to *improve* reconstruction. Although the paper says false claims hurt reconstruction *less* than true ones, it never reports how often removal actually helps. 
+Neel Nanda's suggestion in the MATS 12.0 admissions doc — Recommended Research Problems tab, section "Improved Interpretability Methods" (https://docs.google.com/document/d/1p-ggQV3vVWIQuCccXEl1fD0thJOgXimlbBpGk6FI32I/edit?tab=t.knytn7x826kv) — was to look for claims that can be removed to *improve* reconstruction. Although the paper says false claims hurt reconstruction *less* than true ones, it never reports how often removal actually helps. 
 
 On my data it helps often:
 **30.0% of 2063 single-claim ablations have Δ < 0** (mean Δ = +0.00088, sd 0.00264). By the AR's own measure, then, nearly a third of the claims in these explanations are carrying no weight — though at a mean Δ this small, some of that will be scatter around zero rather than genuine harm.
@@ -345,11 +345,11 @@ advance that confabulation tracks familiarity while the specificity of the claim
 The things that were my contributions:
 
 1. I graded 150 claims blind plus 30 retests, 180 items in 33.6 minutes, seeing only the claim and the prefix. 96.7% self-consistent, 88.7% agreement with the judge. That is the human validation for my dataset.
-2. I froze the grading conventions the adjudication was then judged against, and the 27 disagreements my blind grading produced turned out to split into two error modes at opposite ends of the specificity scale — I am too generous on quoted strings, the judge is too strict on vague-but-correct descriptions. (The adjudication itself was done by Opus 5, applying my conventions; it is the same model family as the judge, so it is not a neutral referee.)
+2. I froze the grading conventions the adjudication was then judged against, and the 27 disagreements my blind grading produced turned out to split into two error modes at opposite ends of the specificity scale — I am too generous on quoted strings, the judge is too strict on vague-but-correct descriptions. (The adjudication itself was done by Opus 5 / Fable 5, applying my conventions; it is the same model family as the judge, so it is not a neutral referee.)
 3. I spotted the Bradman substitution. It needed cricket knowledge, which is my forte, and it is the reason I chose cricket as the corpus.
 4. I had a hypothesis that confabulation would increase towards the later token positions of a passage. I read the explanations by eye before any of the data existed and concluded it was not there; the measurement later agreed, at +2.4 percentage points early versus late against a pooled standard error of 2.9, with the sign opposite to my prediction.
 5. I found that the relatedness labels did not exist at all, by checking my own mental model of the pipeline against the data. That blocked H1 until it was fixed.
-6. I asked where a number in my own notes came from — the 99.94 batting average Opus 5 said the model had blended in — and it was nowhere in the data. It had been carried over from a different run and had propagated into three files. The averages the model actually invented were 95.99 and 51.37, attributed to two batsmen who appear nowhere in the passage.
+6. I asked where a number in my own notes came from — the 99.94 batting average Opus 5 / Fable 5 said the model had blended in — and it was nowhere in the data. It had been carried over from a different run and had propagated into three files. The averages the model actually invented were 95.99 and 51.37, attributed to two batsmen who appear nowhere in the passage.
 
 What I did not do, and would like to explore: no hooks, no internal probing. This was a black box throughout.
 

@@ -4,9 +4,9 @@ The paper calls the AR "only a weak per-claim verifier". The main quantity is
 
 If Δ is positive, removing the claim worsened the reconstruction, so the claim is load-bearing. If Δ is negative, removing the claim helped, so the claim is not load-bearing.
 
-I set out to verify that "claim" — pun unintended. Simple as the statement sounds, it took me a while to register what it actually means. The original question I set out to answer, along with my favourite knowledge partner in crime (Opus 5), was this: does removing false claims improve reconstruction?
+I set out to verify that "claim" — pun unintended. Simple as the statement sounds, it took me a while to register what it actually means. The original question I set out to answer, along with my favourite knowledge partner in crime (Opus 5 / Fable 5), was this: does removing false claims improve reconstruction?
 
-(The question is taken from Neel Nanda's MATS 12.0 admissions doc, under Improved Interpretability Methods: using the activation reconstructor to measure the quality of a description by finding "which claims can be removed and improve reconstruction accuracy".)
+(The question is taken from Neel Nanda's MATS 12.0 admissions doc — Recommended Research Problems tab, section "Improved Interpretability Methods", the natural language autoencoders bullet: https://docs.google.com/document/d/1p-ggQV3vVWIQuCccXEl1fD0thJOgXimlbBpGk6FI32I/edit?tab=t.knytn7x826kv — where he says he is "particularly interested in using the activation reconstructor to measure the quality of a description, e.g. figuring out which claims can be removed and improve reconstruction accuracy to help reduce hallucinations".)
 
 And in the process, this is what I found.
 

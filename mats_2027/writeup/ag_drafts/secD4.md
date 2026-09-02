@@ -19,7 +19,7 @@ My kill condition, written 19 August before the data: if the spread does not shr
 
 7. The condition required the spread to fall as one over the square root of K. On a log-log plot that is a straight line whose slope is the exponent, so 1/√K means a slope of **−0.50**.
 8. I observed a slope of −0.262, which on the face of it reads as a partial fail.
-9. But a slope of −0.5 only happens if the spread can fall all the way to zero, which is to say if there were nothing but noise. Because there is a real signal floor, the spread flattens onto it and the slope is necessarily shallower than −0.5. The condition was drafted by Opus 5 and I adopted it; neither of us noticed at the time that no dataset containing real signal could ever pass it.
+9. But a slope of −0.5 only happens if the spread can fall all the way to zero, which is to say if there were nothing but noise. Because there is a real signal floor, the spread flattens onto it and the slope is necessarily shallower than −0.5. The condition was drafted by Opus 5 / Fable 5 and I adopted it; neither of us noticed at the time that no dataset containing real signal could ever pass it.
 10. So the right test was not the slope. It is whether the variance model predicts data it was not fitted on, which it does, to 0.8%.
 
 Two earlier noise ratios from my lab notebook, 1.41× and 0.12× (they are not quoted anywhere in this write-up), used the median within-claim spread. That is the wrong statistic for splitting variance, because the distribution of within-claim spreads is badly skewed. They are superseded by the numbers above.
