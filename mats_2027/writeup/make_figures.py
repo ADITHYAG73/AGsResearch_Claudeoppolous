@@ -37,7 +37,7 @@ for lv in levels:
 fig, ax = plt.subplots(figsize=(7.2, 3.6)); x = np.arange(3); w = 0.26
 ax.bar(x-w, [paper[l] for l in levels], w, color=GRAY, label="paper (Opus 4.6 NLA, Common Pile)")
 ax.bar(x,   ours, w, color=BLUE, yerr=[lo, hi], capsize=3, ecolor=INK, label="ours, Haiku judge (n=2065)")
-ax.bar(x+w, ag,   w, color=ORANGE, label="ours, AG blind labels (n=150)")
+ax.bar(x+w, ag,   w, color=ORANGE, label="ours, my blind labels (n=150)")
 for i in range(3):
     ax.text(x[i]-w, paper[levels[i]]+1.5, f"{paper[levels[i]]}", ha="center", fontsize=8, color=MUTED)
     ax.text(x[i], ours[i]+hi[i]+1.5, f"{ours[i]:.0f}", ha="center", fontsize=8, color=INK)
@@ -85,14 +85,14 @@ save(fig, "G3_dip_power", f"Planted mixtures at the geometry H1 implies (n=975, 
 
 # ---------------- G4 spread vs K with fit + out-of-sample ----------------
 # from pipeline/noise_fit.py (4000 subsampling reps, seed 0) - the reproducible values
-K = [1, 2, 3, 4]; obs = [0.00225, 0.00181, 0.00164, 0.00157]
+K = [1, 2, 3, 4]; obs = [0.0022451, 0.0018090, 0.0016448, 0.0015696]  # full precision from noise_fit.py
 n2 = (obs[0]**2-obs[3]**2)/(1-0.25); s2 = obs[3]**2-n2/4; noise, signal = math.sqrt(n2), math.sqrt(max(s2, 0))
 kk = np.linspace(1, 8, 200); pred = np.sqrt(s2+n2/kk)
 fig, ax = plt.subplots(figsize=(7.2, 3.4))
 ax.plot(kk, pred, color=BLUE, lw=2, label="spread(K)² = signal² + noise²/K   (fitted on K=1, 4)")
-ax.axhline(signal, color=ORANGE, lw=1.5, ls="--"); ax.text(7.9, signal+0.00004, f"signal floor {signal:.5f}  (55% of K=1)", ha="right", fontsize=8, color=ORANGE)
+ax.axhline(signal, color=ORANGE, lw=1.5, ls="--"); ax.text(7.9, signal+0.00004, f"signal floor {signal:.5f}  ({100*signal/obs[0]:.0f}% of K=1)", ha="right", fontsize=8, color=ORANGE)
 ax.scatter([1, 4], [obs[0], obs[3]], color=BLUE, s=60, zorder=5, label="fitted points")
-ax.scatter([2, 3], [obs[1], obs[2]], color=ORANGE, s=70, zorder=5, marker="D", label="out-of-sample (−3.2%, −0.1%)")
+ax.scatter([2, 3], [obs[1], obs[2]], color=ORANGE, s=70, zorder=5, marker="D", label=f"out-of-sample ({100*(obs[1]-math.sqrt(s2+n2/2))/math.sqrt(s2+n2/2):+.1f}%, {100*(obs[2]-math.sqrt(s2+n2/3))/math.sqrt(s2+n2/3):+.1f}%)")
 ax.set_xlabel("K resamples averaged"); ax.set_ylabel("sd of per-claim mean Δ"); ax.set_xticks(range(1, 9)); ax.set_ylim(0.001, 0.0025)
 ax.legend(frameon=False, fontsize=8); ax.set_title("G4  H2: the noise is stochastic — it divides by K — but there is a floor", fontsize=10, loc="left")
 save(fig, "G4_h2_spread", f"Spread of per-claim mean Δ as more resamples are averaged (31 claims present in all four). A two-parameter model fitted on K=1 and K=4 alone predicts K=2 and K=3 to within 0.8% (orange diamonds). The noise averages away as H2 assumes; it converges on a real between-claim floor at 56% of the K=1 spread. noise/signal: 1.46× at K=1, 0.73× at K=4 (values from pipeline/noise_fit.py).")
