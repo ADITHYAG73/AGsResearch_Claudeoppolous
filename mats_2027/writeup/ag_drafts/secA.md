@@ -1,8 +1,4 @@
-The NLA paper reports that the activation reconstructor is "only a weak per-claim verifier" of
-the descriptions its verbalizer produces. I wanted to know which kind of weak: is there no
-per-claim signal in reconstruction error at all, or is there one that is buried in noise? The
-difference matters, because a buried signal is a sampling problem someone can pay to fix, and an
-absent one is a dead end.
+The NLA paper reports that the activation reconstructor is "only a weak per-claim verifier" of the descriptions its verbalizer produces. I wanted to know which kind of weak: is there no per-claim signal in reconstruction error at all, or is there one buried in noise? The difference matters — a buried signal is a sampling problem someone can pay to fix, an absent one is a dead end.
 
 Setup: the official Gemma-3-12B NLA, layer 32, on 6 passages sampled at their last 10 token positions with 4 resamples each — 240 explanations, 2,065 claims, each rewritten out of its explanation and re-scored against the same activation. Δ = mse(claim removed) − mse(intact). A second corpus of 7 biography pages tested transfer.
 
