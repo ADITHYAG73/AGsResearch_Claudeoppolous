@@ -132,3 +132,25 @@ Doc: https://docs.google.com/document/d/1JejK0cEeWmXyvSlCxHypom1rxiluO-ZH1R9wt5q
 - [ ] [AG] final read: typos in YOUR voice were corrected this pass; check none changed your meaning
 - [ ] [AG] share settings: anyone-with-link
 - [ ] Two earlier Google Docs exist from failed publishes; ask Claude to trash them
+
+
+## 2 Sep, final pass — all 52 Doc comments addressed
+FINAL DOC: https://docs.google.com/document/d/1H8bNinfS9vIK_NFSSVyHKUttA20XIlQoPZatC4rhdhU/edit
+- [x] VOICE: A rewritten in AG's register (598->602 words, under the 600 cap). D2, D4, F, F2 audit-speak
+      removed ("two independent routes agreeing to 13%", "Note what they have in common",
+      "Someone with a GPU budget could settle it in a day").
+- [x] PAPER SCRUTINY: all 11 claims about the paper verified in the browser against the live article.
+      Two findings: (a) 64/28/24 is real but printed in their FIGURE, not their text — now stated;
+      (b) our claim that they never quantify the related/unrelated split was WRONG — their figure
+      gives it (83/70/91% of false claims related, ~80% overall). D6 rewritten to compare, not claim a gap.
+- [x] Opus 5 named wherever the agent is referred to (A, D2, D3, D4, E).
+- [x] EQUATIONS on their own lines (A, B, C, D2, D4); no underscores anywhere (export asserts zero).
+- [x] AG's factual questions answered in the text: 53.8% shown as 780+330 over 2063; the −0.50 slope
+      explained as the exponent on a log-log plot; "250 characters" corrected to the measured 218–263.
+- [x] REPETITION: judge-validation claim cut from C (kept in D1); Δ definition no longer stated 3×.
+- [x] APPENDIX added: one activation end to end — prefix, explanation, claims, verdicts, Δ.
+      Eden Gardens pos 87: the AV invents 'Elphinstone Gardens' and that false claim is the most
+      load-bearing in the explanation (+0.00849). Answers "what was the prefix / explanation / claim".
+- [x] Six figures re-inserted at full PNG quality; 0 markers remain.
+- [x] Superseded Docs trashed; this is the only one.
+- [ ] [AG] final read + set sharing to anyone-with-link.
