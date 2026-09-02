@@ -1,5 +1,3 @@
-Limitations
-
 1. **NLA as a black box.** No hooks, no internal probing. I tried to modulate the input to observe a causal effect, but my own control showed the edit never reached the representation — deleting a sentence 250 characters upstream moved the layer-32 activation less than 1% as far as moving a single token position does. That intervention is not causal evidence, and I still don't know why the AV does what it does.
 
 2. **The judge was validated on cricket only** (88.7% agreement with my blind grading). I did not repeat that for the Savarkar corpus, partly because I have not read the book fully and partly for time — so some of the 13.8-point gap between corpora could be the judge being harsher on unfamiliar Indian names rather than the AV confabulating more.

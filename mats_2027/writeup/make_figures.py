@@ -44,7 +44,7 @@ for i in range(3):
     ax.text(x[i]+w, ag[i]+1.5, f"{ag[i]:.0f}", ha="center", fontsize=8, color=INK)
 ax.set_xticks(x); ax.set_xticklabels(levels); ax.set_ylabel("% of claims supported by the passage"); ax.set_ylim(0, 100)
 ax.legend(frameon=False, fontsize=8, loc="upper right"); ax.set_title("G1  Specificity ordering replicates — and the human labels say it understates", fontsize=10, loc="left")
-save(fig, "G1_specificity", "Claims about the passage's theme are supported far more often than claims about specific details, on a different NLA, base model, corpus and judge from the paper. AG's blind labels (orange) give a steeper gradient than the Haiku judge (blue): the two graders err at opposite ends, so the true gap is likely larger than either measured.")
+save(fig, "G1_specificity", "Claims about the passage's theme are supported far more often than claims about specific details, on a different NLA, base model, corpus and judge from the paper. My blind labels (orange) give a steeper gradient than the Haiku judge (blue): the two graders err at opposite ends, so the true gap is likely larger than either measured.")
 
 # ---------------- G2 related-false Δ: one hump. No synthetic overlay — neither a gamma (no left
 # tail) nor a skew-normal (max skew 0.99 vs data 2.63) honestly matches this shape, and an overlay

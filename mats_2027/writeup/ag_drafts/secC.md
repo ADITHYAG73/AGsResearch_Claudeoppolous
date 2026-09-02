@@ -1,14 +1,10 @@
-Model details
-
-I used the official Anthropic NLA release, `kitft/nla-gemma3-12b-L32-av` (AV) + `kitft/nla-gemma3-12b-L32-ar` (AR), Apache-2.0. The base model I used for this experiment was `google/gemma-3-12b-it`. Activations taken from layer 32 of 48, dimension d of the vector is 3840.
+**Model details.** I used the official Anthropic NLA release, `kitft/nla-gemma3-12b-L32-av` (AV) + `kitft/nla-gemma3-12b-L32-ar` (AR), Apache-2.0. The base model I used for this experiment was `google/gemma-3-12b-it`. Activations taken from layer 32 of 48, dimension d of the vector is 3840.
 
 The activation verbaliser model (AV) is of same architecture as the base. The activation is injected as a single token embedding into a fixed prompt with injection_scale 80000 (available from the sidecar), sampled at temperature T = 1. The activation reconstructor (AR) is the base model truncated to 33 blocks plus a learned linear head on the final token.
 
 MSE is **direction-only**: both vectors L2-normalised to mse_scale = √3840 = 61.97 before comparison, so MSE = 2(1 − cos). Magnitude is invisible to the whole pipeline.
 
-Corpus and sampling
-
-I chose 6 passages: 5 cricket Wikipedia paragraphs and 1 on the French Revolution — the latter is the NLA maintainers' own example passage, which I kept as an in-distribution reference point. It is included in every number I report (397 of the 2065 claims); cricket-only the levels read THEME 70.0 / ENTITY 39.3 / DETAIL 34.6 against 69.1 / 43.8 / 36.0 for all six, so the ordering is the same either way.
+**Corpus and sampling.** I chose 6 passages: 5 cricket Wikipedia paragraphs and 1 on the French Revolution — the latter is the NLA maintainers' own example passage, which I kept as an in-distribution reference point. It is included in every number I report (397 of the 2065 claims); cricket-only the levels read THEME 70.0 / ENTITY 39.3 / DETAIL 34.6 against 69.1 / 43.8 / 36.0 for all six, so the ordering is the same either way.
 
 I sampled the last 10 contiguous positions of each passage with K = 4 resamples, so 6 × 10 × 4 = 240 explanations. Every position sits at token index 50 or later — the official pipeline's `_MIN_POSITION = 50` (`nla/datagen/stage0_extract.py:35`), a constraint on the position, not on the length of the passage; my lowest sampled index is 79. Cricket is in distribution for this NLA, measured rather than assumed: the AV→AR round trip returns cosine 0.996 on my passages against 0.997 on the maintainers' own example.
 

@@ -71,17 +71,13 @@ The residual stream activation that was the basis for the AV's explanation is av
 
 ## C. Setup
 
-Model details
-
-I used the official Anthropic NLA release, `kitft/nla-gemma3-12b-L32-av` (AV) + `kitft/nla-gemma3-12b-L32-ar` (AR), Apache-2.0. The base model I used for this experiment was `google/gemma-3-12b-it`. Activations taken from layer 32 of 48, dimension d of the vector is 3840.
+**Model details.** I used the official Anthropic NLA release, `kitft/nla-gemma3-12b-L32-av` (AV) + `kitft/nla-gemma3-12b-L32-ar` (AR), Apache-2.0. The base model I used for this experiment was `google/gemma-3-12b-it`. Activations taken from layer 32 of 48, dimension d of the vector is 3840.
 
 The activation verbaliser model (AV) is of same architecture as the base. The activation is injected as a single token embedding into a fixed prompt with injection_scale 80000 (available from the sidecar), sampled at temperature T = 1. The activation reconstructor (AR) is the base model truncated to 33 blocks plus a learned linear head on the final token.
 
 MSE is **direction-only**: both vectors L2-normalised to mse_scale = √3840 = 61.97 before comparison, so MSE = 2(1 − cos). Magnitude is invisible to the whole pipeline.
 
-Corpus and sampling
-
-I chose 6 passages: 5 cricket Wikipedia paragraphs and 1 on the French Revolution — the latter is the NLA maintainers' own example passage, which I kept as an in-distribution reference point. It is included in every number I report (397 of the 2065 claims); cricket-only the levels read THEME 70.0 / ENTITY 39.3 / DETAIL 34.6 against 69.1 / 43.8 / 36.0 for all six, so the ordering is the same either way.
+**Corpus and sampling.** I chose 6 passages: 5 cricket Wikipedia paragraphs and 1 on the French Revolution — the latter is the NLA maintainers' own example passage, which I kept as an in-distribution reference point. It is included in every number I report (397 of the 2065 claims); cricket-only the levels read THEME 70.0 / ENTITY 39.3 / DETAIL 34.6 against 69.1 / 43.8 / 36.0 for all six, so the ordering is the same either way.
 
 I sampled the last 10 contiguous positions of each passage with K = 4 resamples, so 6 × 10 × 4 = 240 explanations. Every position sits at token index 50 or later — the official pipeline's `_MIN_POSITION = 50` (`nla/datagen/stage0_extract.py:35`), a constraint on the position, not on the length of the passage; my lowest sampled index is 79. Cricket is in distribution for this NLA, measured rather than assumed: the AV→AR round trip returns cosine 0.996 on my passages against 0.997 on the maintainers' own example.
 
@@ -124,7 +120,7 @@ contain it; exactly one runs the other way.  Looking at them more closely: Haiku
 
 Two examples, one in each direction. Where Haiku was right: I marked supported the claim *"The text contains the phrase 'considered by many as one of the'"*, where the prefix actually ends `...This series is regarded as one of the` — a near-miss paraphrase, and my single retest flip was a claim of exactly this type, where my second answer agreed with Haiku. Where I was right: *"The text mentions the Border-Gavaskar Trophy"*, on a prefix ending `...home series against Australia in`. Neither word appears, but the 2001 India–Australia home series is the Border–Gavaskar Trophy. A text judge structurally cannot make that call.
 
-**Figure G1.** Claims about the passage's theme are supported far more often than claims about specific details, on a different NLA, base model, corpus and judge from the paper. AG's blind labels (orange) give a steeper gradient than the Haiku judge (blue): the two graders err at opposite ends, so the true gap is likely larger than either measured.
+**Figure G1.** Claims about the passage's theme are supported far more often than claims about specific details, on a different NLA, base model, corpus and judge from the paper. My blind labels (orange) give a steeper gradient than the Haiku judge (blue): the two graders err at opposite ends, so the true gap is likely larger than either measured.
 
 ![G1_specificity](mats_2027/writeup/figures/G1_specificity.png)
 
@@ -257,13 +253,13 @@ H2 is therefore partially supported. The premise was right, the noise is real an
 
 ## D5. Removal improves reconstruction 30% of the time
 
-Neel Nanda's suggestion in the MATS 12.0 admissions doc, under *Improved Interpretability Methods*, was to look for claims that can be removed to *improve* reconstruction. Although the paper says false claims hurt reconstruction *less* than true ones ,it never reports how often removal actually helps. 
+Neel Nanda's suggestion in the MATS 12.0 admissions doc, under *Improved Interpretability Methods*, was to look for claims that can be removed to *improve* reconstruction. Although the paper says false claims hurt reconstruction *less* than true ones, it never reports how often removal actually helps. 
 
 On my data it helps often:
 **30.0% of 2063 single-claim ablations have Δ < 0** (mean Δ = +0.00088, sd 0.00264). By the AR's own measure, then, nearly a third of the claims in these explanations are carrying no weight — though at a mean Δ this small, some of that will be scatter around zero rather than genuine harm.
 
 One of my earlier pilots had this at 18.8%, but that run used a different ablation method.
-In that run I had  the carrier sentence deleted rather than rewriting the claim out and also it was at  different set of token positions, so the two numbers measure different things and I am not treating the gap as a result.
+In that run I had  the carrier sentence deleted rather than rewriting the claim out and also it was at a different set of token positions, so the two numbers measure different things and I am not treating the gap as a result.
 
 The breakdown by claim level is the part I least expected. Mean Δ rises from
 **+0.00032 for THEME to +0.00105 for ENTITY to +0.00145 for DETAIL** — specific claims carry
@@ -277,8 +273,9 @@ indistinguishable** (±0.00020 and ±0.00021). So the THEME-to-specific step is 
 ENTITY-to-DETAIL step is an artefact of claims that name the final token. If truth were what drove Δ this should run the other way, since THEME claims are
 supported 69% of the time and DETAIL claims only 36%. My reading is redundancy: a theme is
 restated throughout an explanation, so removing one statement of it costs the reconstruction
-almost nothing, while a specific detail appears once and its removal is felt.  The paper's own future-work section reports the same thing from the other side: NLA explanations "often repeat the same content on multiple bullet points", and the authors propose reconstructing each bullet independently with a similarity penalty to fix it. So the repetition my reading depends on is something they observed too. **That is
-consistent with the data, not tested by it** — two rivals survive, that DETAIL claims are simply
+almost nothing, while a specific detail appears once and its removal is felt.  The paper's own future-work section reports the same thing from the other side: NLA explanations "often repeat the same content on multiple bullet points", and the authors propose reconstructing each bullet independently with a similarity penalty to fix it. So the repetition my reading depends on is something they observed too.
+
+**That is consistent with the data, not tested by it** — two rivals survive, that DETAIL claims are simply
 longer, and that specific claims genuinely constrain the activation more than vague ones do.
 
 ---
@@ -374,8 +371,6 @@ What I did not do, and would like to explore: no hooks, no internal probing. Thi
 ---
 
 ## F. Limitations
-
-Limitations
 
 1. **NLA as a black box.** No hooks, no internal probing. I tried to modulate the input to observe a causal effect, but my own control showed the edit never reached the representation — deleting a sentence 250 characters upstream moved the layer-32 activation less than 1% as far as moving a single token position does. That intervention is not causal evidence, and I still don't know why the AV does what it does.
 
