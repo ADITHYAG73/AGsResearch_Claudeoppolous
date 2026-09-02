@@ -110,3 +110,25 @@ over. Trim at compile, not during drafting.
   Worst offenders: D6 1,460 · C 777 · D2 686 · D4 518 · F 432.
 - Figures placed: G0 in C, G1 in D1, G2+G3 in D3, G4 in D4, G5 in D6.
 - STILL MISSING: section E (AG), and the trim pass.
+
+## 2 Sep — editorial pass + Google Doc published WITH figures
+Doc: https://docs.google.com/document/d/1JejK0cEeWmXyvSlCxHypom1rxiluO-ZH1R9wt5qUY-g/edit
+- [x] Copy-edit of B, C, D1, D2, D3, D4, D5, E (spelling, capitalisation, chat abbreviations)
+- [x] CONTENT CONFLICT resolved: A said activation patching was the next step, F2 said best-of-N.
+      A now matches F2 (best-of-N first, patching as the first white-box step).
+- [x] B said the judge had "3 choices" and listed two — now names supported / contradicted / not-in-text
+- [x] E item 4 said "ending positions of sentences" — the hypothesis was about token positions in a
+      PASSAGE, and the result is now stated (+2.4pp, pooled SE 2.9, sign opposite to prediction)
+- [x] D2 now states the 2065-vs-2063 gap (two claims could not be rewritten out)
+- [x] Equations: every underscore identifier rewritten for the Doc (markdown import escapes them as
+      `injection\_scale`). writeup/export_for_docs.py does this and asserts zero underscores.
+- [x] Spacing: export unwraps hard-wrapped paragraphs, list items and bold-led paragraphs
+- [x] Tables: inline markdown stripped from cells (Docs renders header bold itself)
+- [x] All six figures pasted at full PNG quality via the clipboard; 0 markers remain ("0 of 0")
+- [x] FIGURE-INTERNAL ERRORS CAUGHT WHILE INSERTING:
+      G1's legend said "AG blind labels" (third person in a first-person doc) -> "my blind labels"
+      G4's legend had HARDCODED stale numbers (-3.2%, -0.1%, "55%") while its caption said 0.8%/56%.
+      Now computed from full-precision noise_fit values: -0.8%, -0.8%, 56%.
+- [ ] [AG] final read: typos in YOUR voice were corrected this pass; check none changed your meaning
+- [ ] [AG] share settings: anyone-with-link
+- [ ] Two earlier Google Docs exist from failed publishes; ask Claude to trash them
