@@ -43,3 +43,6 @@ mats_2027/runs/savarkar_run_corpus.jsonl
 # claims/verdicts/explanations quote fragments only, and are kept (fair-use research use).
 mats_2027/runs/2026-08-28_savarkar/savarkar_run_corpus.jsonl
 mats_2027/runs/2026-08-28_savarkar/activations.parquet
+
+# MATS application form answers (personal)
+mats_2027/app_answers.md

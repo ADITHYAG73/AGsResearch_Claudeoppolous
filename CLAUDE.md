@@ -915,3 +915,20 @@ trained NLAs. Completion condition sized to my resources, public artifact at the
   **Next: the application form Qs — Neel reads these FIRST and uses them as a preliminary
   filter. 20+2h accounting to be answered honestly (the clock was never formally started).
   Q8 cannot cite this project: use the two live blog posts (free norm, flash attention).**
+
+- **2026-09-03 — APPLICATION SUBMITTED. Zero GPU spend.**
+  - Neel's format re-checked against the admissions doc: graphs in the exec summary are expected,
+    and randomly selected examples must follow it. G4 and G5 now also sit in A; a "Randomly
+    selected examples" section (6 claims, seed 20260903, `pipeline/random_examples.py`) follows
+    A; the appendix discloses that its Eden Gardens example was chosen, not drawn.
+  - All 12 Airtable questions captured in `writeup/FORM.md` with the source material for each.
+    AG wrote the answers himself in the form (Q2 used a Claude draft as-is, after the
+    LLM-prose risk was flagged once). Q8 cites only the two live blog posts (both 200).
+  - Doc `1H8bNinfS9vIK_NFSSVyHKUttA20XIlQoPZatC4rhdhU` confirmed to open with no Google login;
+    sharing set to anyone-with-link, Commenter. Submitted with giridharanadithya@gmail.com.
+  - `mats_2027/app_answers.md` is gitignored (personal).
+
+  **Next: nothing owed to the application. Open items, in order of value: (1) HF token rotation
+  (leaked into a log 2026-08-22, still not rotated); (2) matcher spot-check of ~20 groups — the
+  one component with no independent check; (3) Objective 2, the Gemma per-layer-embedding
+  write-up; (4) Savarkar Δ / more resamples if a pod session is ever justified.**
