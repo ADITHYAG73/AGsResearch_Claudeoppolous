@@ -874,3 +874,44 @@ trained NLAs. Completion condition sized to my resources, public artifact at the
   D2 (686); (2) AG's voice pass, especially A, D5, D6, F2 which are Claude's prose; (3) typo pass
   — Claude has deliberately not touched AG's typos; (4) Google Doc, anyone-with-link;
   (5) THEN the application form questions (Q8 cannot cite this project).**
+
+- **2026-09-02 — WRITE-UP FINISHED, PUBLISHED, SHARED. Paper scrutiny found two errors. Zero GPU.**
+  **FINAL DOC (anyone-with-link, Viewer):**
+  https://docs.google.com/document/d/1H8bNinfS9vIK_NFSSVyHKUttA20XIlQoPZatC4rhdhU/edit
+  - **AG read the whole draft twice and left 52 comments.** All addressed. The biggest theme
+    (~9 comments) was VOICE — he could tell exactly which sections Claude wrote, and flagged
+    only those (A, D2, D4, F, F2), never the ones he wrote. A was rewritten in his register
+    (602 words, under the 600 cap); audit-report phrasing removed throughout.
+  - **PAPER SCRUTINY (he asked for it; done in the browser against the live article).** All 11
+    claims we make about the paper verified. `writeup/evidence/PAPER_SCRUTINY.md`. Two findings:
+    (a) **64/28/24 is real but printed inside their FIGURE** (`png/img_18fcfc16e92031e0.png`) —
+    it appears **0 times** in their prose. Now stated as such.
+    (b) **WE WERE WRONG:** our claim that the paper asserts the related/unrelated split "without
+    a number" is false. The same figure gives it — of FALSE claims, related share is
+    **83% theme / 70% entity / 91% detail, ≈80% overall.** D6 now compares our 98% against
+    their ~80% (corpus breadth explains the gap) instead of claiming we filled a gap.
+  - **APPENDIX added — one activation end to end**, which answers his "what was the prefix,
+    what was the explanation, what was the claim". Eden Gardens pos 87: prefix ends
+    `...renamed to the 'Eden Gardens`; the AV writes **'Elphinstone Gardens'** — right slot,
+    wrong name — and that false claim is the single most load-bearing in the explanation
+    (Δ=+0.00849) while both true claims sit at ~0. Four of six wrong if Δ is read as truth.
+  - **His three factual challenges, all checked:** 53.8% = 780 true with Δ>0 + 330 false with
+    Δ<0, over 2063 (shown as arithmetic now); the −0.50 slope is the exponent on a log-log
+    plot; and **"250 characters" was a rounded midpoint — the measured range is 218–263**,
+    now stated. He was right to challenge it.
+  - **Both models credited: "Opus 5 / Fable 5"** (6 places). Neel's doc is cited as a real
+    **hyperlink on the anchor text** to the Recommended Research Problems tab
+    (`?tab=t.knytn7x826kv`), not a pasted raw URL — he rejected the first attempt, correctly.
+  - Repetition cut (judge-validation claim was in A, C and D1 — now D1 only). Equations on
+    their own lines. All underscores stripped for the Docs import (`writeup/export_for_docs.py`
+    asserts zero, because markdown import mangles `injection_scale` into `injection\_scale`).
+  - Six figures re-inserted at full PNG quality via clipboard paste; 0 markers remain.
+    Superseded Docs trashed. Outline sidebar on. **Sharing set to anyone-with-link.**
+  - **Process note worth keeping:** patching the live Doc through the browser was the wrong
+    tool and failed on an encoding bug in front of AG. Fixing the SOURCE and republishing is
+    the reliable path; the browser is only for what the API cannot do (inserting images,
+    setting link-sharing, making hyperlinks).
+
+  **Next: the application form Qs — Neel reads these FIRST and uses them as a preliminary
+  filter. 20+2h accounting to be answered honestly (the clock was never formally started).
+  Q8 cannot cite this project: use the two live blog posts (free norm, flash attention).**
