@@ -27,6 +27,46 @@ Then a second corpus, seven pages of a 2019 biography, to see whether any of it 
 
 **What this is not.** All of this is black box; I never put a hook into the model. The one intervention I tried never reached the representation — my text edit moved the activation **0.7%** as far as one token position does — so that question is untested, not answered. What I would run next is the paper's own unrun suggestion: best-of-N explanations scored against the reconstructor.
 
+**Figure G4.** Spread of per-claim mean Δ as more resamples are averaged (31 claims present in all four). A two-parameter model fitted on K=1 and K=4 alone predicts K=2 and K=3 to within 0.8% (orange diamonds). The noise averages away as H2 assumes; it converges on a real between-claim floor at 56% of the K=1 spread. noise/signal: 1.46× at K=1, 0.73× at K=4 (values from pipeline/noise_fit.py).
+
+![G4_h2_spread](mats_2027/writeup/figures/G4_h2_spread.png)
+
+**Figure G5.** Same judge, same prompt, length-matched passages. Both pre-registered predictions expected fewer confabulations on a 2019 biography than on cricket Wikipedia; the opposite happened (63% vs 50% false, CIs disjoint). In both domains >90% of false person-claims name someone absent from the passage — the dominant failure is importing a plausible entity, not misbinding a present one.
+
+![G5_savarkar](mats_2027/writeup/figures/G5_savarkar.png)
+
+---
+
+## Randomly selected examples
+
+Everything downstream of the judge depends on the judge, so here are six claims drawn **uniformly at random** from all 2,063 graded ablations (`pipeline/random_examples.py`, seed 20260903, no filtering of any kind — whatever came out is what is printed). Judge my labels for yourself.
+
+**1. Eden Gardens, position 88** — prefix ends `...the park was renamed to the 'Eden Gardens'`
+Claim (DETAIL/quote): *"The text contains the sentence 'The garden was renamed to the Victoria Gardens but the name was later changed to the Victoria Gardens...'"* — judge: **CONTRADICTED**, Δ = +0.00044.
+The AV has the slot right and the name wrong, and invents a quotation around it.
+
+**2. Rahul Dravid, position 138** — prefix ends `...the most balls faced in Test cricket`
+Claim (DETAIL/number): *"The text mentions 805 dismissals"* — judge: **NOT_IN_TEXT**, Δ = +0.00189.
+A number that appears nowhere, and one of the more load-bearing claims in the whole set.
+
+**3. Rahul Dravid, position 139** — prefix ends `...most balls faced in Test cricket and`
+Claim (DETAIL/statistic): *"The text establishes that Dravid holds the record for most Test catches"* — judge: **NOT_IN_TEXT**, Δ = −0.00052.
+True of Dravid in the world, absent from this prefix, and its removal *helped* reconstruction.
+
+**4. Rahul Dravid, position 143** — prefix ends `...and the longest time spent`
+Claim (ENTITY/person): *"The text mentions Sir Vivian Richards"* — judge: **NOT_IN_TEXT**, Δ = +0.00023.
+Another famous batsman who is not in the passage. This is the import failure in D6, caught at random.
+
+**5. Rahul Dravid, position 147** — prefix ends `...the longest time spent batting in Tests.`
+Claim (THEME/content): *"The text contains a factual summary of a cricketer with biographical details and statistics"* — judge: **SUPPORTED**, Δ = +0.00008.
+True, vague, and worth essentially nothing to the reconstruction — the pattern D5 is about.
+
+**6. French Revolution (the maintainers' example), position 86** — prefix ends `...the National Assembly had abolished feudal privileges across`
+Claim (DETAIL/content): *"The text describes a decree eliminating feudal privileges."* — judge: **SUPPORTED**, Δ = −0.00031.
+True, clearly supported, and removing it made the reconstruction slightly better.
+
+Five of these six are false, against an overall false rate of 48% — that is small-sample noise, not a second finding. What I would draw your attention to instead is that **the two true claims here sit at +0.00008 and −0.00031, while the two most load-bearing claims are both false.** Six random claims, and the sign of Δ gets four of them wrong.
+
 ---
 
 ## B. The question, and why it matters
@@ -405,7 +445,7 @@ the first thing I would fix.
 
 ## Appendix. One activation, end to end
 
-Everything in this write-up comes out of the pipeline in Figure G0. Rather than describe it again, here is one activation carried all the way through, so that the tables in D2 and D5 can be read properly.
+Everything in this write-up comes out of the pipeline in Figure G0. Rather than describe it again, here is one activation carried all the way through, so that the tables in D2 and D5 can be read properly. **This one is chosen, not random** — I looked for an activation with a readable explanation and a mix of true and false claims, because it has to serve as the worked example. The randomly drawn claims are the ones right after the executive summary.
 
 **The passage.** Eden Gardens, Wikipedia. The activation is taken at token position 87, and the prefix — which is all the judge ever sees — ends mid-quote:
 

@@ -1,4 +1,4 @@
-Everything in this write-up comes out of the pipeline in Figure G0. Rather than describe it again, here is one activation carried all the way through, so that the tables in D2 and D5 can be read properly.
+Everything in this write-up comes out of the pipeline in Figure G0. Rather than describe it again, here is one activation carried all the way through, so that the tables in D2 and D5 can be read properly. **This one is chosen, not random** — I looked for an activation with a readable explanation and a mix of true and false claims, because it has to serve as the worked example. The randomly drawn claims are the ones right after the executive summary.
 
 **The passage.** Eden Gardens, Wikipedia. The activation is taken at token position 87, and the prefix — which is all the judge ever sees — ends mid-quote:
 

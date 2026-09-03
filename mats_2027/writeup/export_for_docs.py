@@ -23,6 +23,8 @@ UNDERSCORED = {
     "observed_delta": "Δ(observed)",
     "underlying_delta": "Δ(underlying)",
     "mats_2027/writeup/figures/": "mats-2027/writeup/figures/",
+    "random_examples.py": "random-examples.py",
+    "NOT_IN_TEXT": "NOT IN TEXT",
     "noise_fit.py": "noise-fit.py",
     "final_token_control.py": "final-token-control.py",
     "patch_control.py": "patch-control.py",

@@ -12,6 +12,7 @@ FIG = "mats_2027/writeup/figures/"
 
 ORDER = [
     ("A. Executive summary",              "secA.md"),
+    ("Randomly selected examples",        "secEX.md"),
     ("B. The question, and why it matters","secB.md"),
     ("C. Setup",                          "secC.md"),
     ("D1. Specificity replicates",        "secD1.md"),
@@ -28,6 +29,7 @@ ORDER = [
 
 # figure -> the section it should sit in
 FIGS = {
+    "secA.md":  ["G4_h2_spread", "G5_savarkar"],
     "secC.md":  ["G0_pipeline"],
     "secD1.md": ["G1_specificity"],
     "secD3.md": ["G2_h1_null", "G3_dip_power"],
