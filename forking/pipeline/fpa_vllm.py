@@ -41,6 +41,7 @@ def main():
     ap.add_argument("--cont-max-tokens", type=int, default=400)
     ap.add_argument("--stride", type=int, default=1, help="consider positions t %% stride == 0 only")
     ap.add_argument("--only-forks", action="store_true")
+    ap.add_argument("--positions", default=None, help="comma list; keep only branches at these positions (t=0 dropped unless listed)")
     ap.add_argument("--max-branches", type=int, default=None, help="smoke: cap number of branches")
     ap.add_argument("--chunk", type=int, default=8, help="branches per generate() call / checkpoint")
     ap.add_argument("--gpu-mem", type=float, default=0.90)
@@ -135,6 +136,9 @@ def main():
         base_text = tok.decode(gen)
         LOG(f"row {rid}: base path {len(gen)} tokens, finish={fin}, {time.time()-t0:.1f}s; think tag present: {'<think>' in base_text}")
         branches = enumerate_branches(prompt_ids, gen, topk)
+        if args.positions:
+            keep = {int(x) for x in args.positions.split(",")}
+            branches = [b for b in branches if b["t"] in keep]
         if args.max_branches: branches = branches[:args.max_branches]
         n_pos = len({b['t'] for b in branches})
         est_tokens = sum((args.S0 if b["t"] == 0 else args.S) for b in branches) * args.cont_max_tokens

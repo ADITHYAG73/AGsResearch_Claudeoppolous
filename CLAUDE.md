@@ -1045,3 +1045,15 @@ trained NLAs. Completion condition sized to my resources, public artifact at the
   balance $52.89. Day total $1.37.
   **Next: full stride-4 run on row 41 (~$0.25) — the real second test of the hypothesis on an
   item Qwen is torn on. Then write up SWAP-01 + QWEN-02 + (row 41).**
+- **2026-09-15 (night) — QWEN-03: Qwen3.5-9B FORKS on a torn item (row 41). $0.79.**
+  Row 41 (moral_scenarios, o_0 = 30A/20C): 159 branches at 55 positions, S=50, then S=200
+  at the 5 hit positions. **6 swaps significant at p<0.01 (chance ≈1), all six confirmed at
+  S=200 (p ≤ .001).** Strongest: t=164 "It"→"However", A 88% → 53/47 (TVD 0.35). Clean
+  verdict flip that holds at S=200: t=52 "Offering"→"The", C 72% → A 55%. TVD ≥0.5 still
+  not reached (max 0.35), so the strict sentence fails while the per-token claim holds.
+  Contrast set is now complete: Llama row 80 (0.96 fork) · Qwen row 80 (none) · Qwen row 41
+  (six, two verdict flips). Infra lessons: pin `allowedCudaVersions=["13.0"]` (a driver-570
+  host killed a pod); `--positions` was missing from fpa_vllm.py (added). Zero pods, balance
+  $52.10. Day total $2.16.
+  **Next: WRITE. SWAP-01 + QWEN-02 + QWEN-03 + SCREEN-01 is a complete story with figures
+  to make. AG's one-sentence claim first, in his words. Then LessWrong.**

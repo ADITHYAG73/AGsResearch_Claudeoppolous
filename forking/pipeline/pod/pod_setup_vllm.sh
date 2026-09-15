@@ -1,5 +1,8 @@
 #!/bin/bash
-# QWEN-02 pod setup: vLLM in a FRESH venv (vLLM docs: the wheel bundles its own torch and
+# QWEN-02 pod setup: vLLM in a FRESH venv.
+# HOST REQUIREMENT: create the pod with gpu.allowedCudaVersions=["13.0"]. vllm 0.29.0 pins
+# torch 2.13.0+cu130; a host on driver 570 / CUDA 12.8 fails with "NVIDIA driver too old"
+# (2026-09-15, QWEN-03 first pod). Both working pods that day were driver 580 / CUDA 13.0. (vLLM docs: the wheel bundles its own torch and
 # "it is recommended to install vLLM with a fresh new environment"). Image torch is untouched.
 # Verdict lines at every step; ends with a 5-token generate through vLLM so a broken stack
 # fails here.

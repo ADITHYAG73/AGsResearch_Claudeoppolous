@@ -435,3 +435,98 @@ Then, optionally, one full stride-4 run on the most split item ≈ $0.60 (separa
 **Recommended next full run (AG's call):** row 41 first — 50/50 at t=0, clean finishes,
 short answer (480 tok → cheap, ~$0.25 at stride 4/S=50), correct greedily so a fork would be
 "right answer → wrong answer". Then row 91 (torn AND wrong, 3-way). Row 60 third.
+
+---
+
+## QWEN-03 · 2026-09-15 · row 41 — full stride-4 run on a TORN item
+
+**Question.** SCREEN-01 found row 41 split 5 A / 5 C at t=0 (greedy A, correct, 480 tokens,
+no truncation). Does forcing a probable alternative token at some position flip Qwen3.5-9B
+between A and C? Same falsifiable sentence as QWEN-02 (TVD ≥0.5 on some branch pair), now
+on an item where the answer distribution is not already collapsed.
+**Settings.** Identical to QWEN-02: stride 4, S=50, S0=50, budgets 1500/1500, model_len
+4096, only-forks, chunk 8. Same script (`fpa_vllm.py`), same extraction rule.
+**Four answers.** Unchanged from QWEN-02 (progress per chunk, per-branch jsonl, bounded
+memory, resumable).
+**Cost line.** Base ~480 tok → ~120 stride-4 positions, maybe ~35 forking → ~90 branches ×
+50 × ~300 tok ≈ 1.4M tokens ≈ 10–15 min; + setup/download ~12 min. **≈ 25 min, ≈ $0.22.**
+**Opening balance: $52.89.**
+- 17:36 UTC **GO (AG).** Pod `an7l3guifqyciz` "forking-qwen03-row41", A40 SECURE, EU-SE-1,
+  host CUDA 12.8. Row 41 = moral_scenarios (two scenarios, Wrong/Not wrong; correct A).
+  Chain: SSH → copy → watchdog → setup (fixed script, guarded generate test) → run.
+- 17:41 setup FAILED on `an7l3guifqyciz`: **host driver 570.195 (CUDA 12.8)**; vllm 0.29.0's
+  torch 2.13.0+cu130 → "The NVIDIA driver on your system is too old (found version 12080)".
+  Today's two working pods were driver 580 / CUDA 13.0 — I did not pin it. Pod terminated
+  (~5 min, ~$0.04). New pod created with `gpu.allowedCudaVersions=["13.0"]`; setup script
+  header now records the host requirement.
+- 17:41 pod `ob972k9bimdbcw` "forking-qwen03-row41b", A40 SECURE, CA-MTL-1, host CUDA 13.0
+  (pinned). Chain relaunched. Opening balance for QWEN-03 remains $52.89; the failed pod's
+  ~$0.04 is charged to this experiment.
+- 17:48 generate test OK (405 s incl. download). **QWEN-03 run launched**, pid 3150,
+  stride 4, S=50, budgets 1500, log /root/out/main.log, checkpoints /root/out/main/. Live
+  monitor attached.
+- 18:40 **QWEN-03 DONE: 159 branches at 55 positions, 3.59M tokens, 45.2 min.** Bundle
+  `runs/2026-09-15_qwen03_row41/qwen03_main.tgz` (md5 4fbe907d…, verified), extracted to
+  `out/main/` (base json, 159-line jsonl, log). Pod kept up pending S=200 decision.
+
+**RESULT — QWEN-03 (row 41, moral_scenarios, correct A).**
+| | |
+|---|---|
+| Continuations | 7,950; 91.4% stop; 98.6% explicit "answer is"; 1.4% fallback; 0 Other |
+| Answers | A 6,655 · C 1,276 · B 15 · D 4 |
+| o_0 (t=0, S0=50) | A 30 / C 20 |
+| Alternatives tested | 104 at 55 positions (462-token answer, stride 4) |
+| **p<0.01 swaps** | **6** (chance ≈1); p<0.05: 10 |
+| **Verdict flips** (modal answer changes) | **3**: t=164, 76, 52 |
+| Largest | t=164 " It"→" However": A42/C8 → A23/C27, TVD 0.38, p=0.0003 |
+| Base-branch A share by 80-token window | 0.47 · 0.62 · 0.90 · 0.94 · 0.96 · 0.98 |
+
+**Verdict.** Qwen3.5-9B DOES fork on an item it is torn on. Three positions flip the modal
+answer between A and C at S=50; the strongest is a discourse token ("However" vs "It" at
+t=164) — the 2024 paper's "unexpected forking tokens" class. The pooled curve shows the
+answer being decided gradually between t≈80 and t≈200 (A share 0.47→0.90), with these
+sharp per-token effects inside that window. **Hypothesis sentence (TVD ≥0.5): not met at
+S=50 (max 0.38); the weaker per-token claim (beyond noise, verdict-flipping) IS met.**
+Contrast with QWEN-02 (row 80): 0 of 125 vs 6 of 104. The screen's o_0 predicted which.
+
+**Caveats.** S=50 per branch; the 6 p-values are per-swap, no multiple-comparison
+correction (6 vs ~1 expected is the honest comparison). Stride 4 → true forks between
+sampled positions unseen. One item. `swap_effects_row041.json` holds all 104.
+
+**Proposed S=200 confirmation pass (same pod, model loaded):** positions 52, 76, 136, 164,
+184 — every branch there (≈13), S=200 → ≈2,600 continuations × ~300 tok ≈ 0.8M tokens ≈
+8 min ≈ $0.07. Separate output dir `out/s200`. Awaiting AG's go.
+- 18:46 **GO (AG) for the S=200 pass**: `--positions 52,76,136,164,184 --S 200 --S0 200`,
+  out /root/out/s200, log s200.log. Same base path (greedy, deterministic), so positions map 1:1.
+- 18:48 first S=200 launch died at argparse: `--positions` existed only in the HF adapter,
+  not in fpa_vllm.py. Added (filters enumerated branches to the listed positions), dry-run
+  on fake vLLM OK, relaunched. ~3 min idle pod.
+- 19:14 **S=200 pass DONE: 17 branches at 5 positions, 3,400 continuations, 2.22M tokens,
+  23.1 min** (my 8-min line was low: 52 and 76 had more candidates than assumed, and 800
+  sequences/chunk). Bundle `qwen03_s200.tgz` (md5 00c94195…, verified) → `out/s200/`.
+- 19:15 pod `ob972k9bimdbcw` terminated (204), `list-pods` → []. **Balance $52.10** (opening
+  $52.89) → **QWEN-03 cost $0.79** incl. the bad-host pod (~$0.04) and the flag miss (~$0.03).
+
+**S=200 CONFIRMATION (row 41).** All six S=50 hits stay significant at S=200 (p ≤ 0.001);
+effect sizes shrink toward the truth as noise halves; 2 of the 3 verdict flips survive.
+| t | base → alt | S=50 TVD (p) | S=200 TVD (p) | S=200 tallies | flip @200 |
+|---|---|---|---|---|---|
+| 164 | It → However | 0.38 (.0003) | **0.35 (<.0001)** | A175/C25 → A105/C92 | no — 53/47, a coin flip |
+| 52 | Offering → The | 0.28 (.007) | **0.27 (<.0001)** | C144/A56 → A109/C91 | **yes** |
+| 76 | is → can | 0.30 (.004) | 0.17 (.001) | C110/A90 → A123/C76 | **yes** |
+| 136 | at → " | 0.26 (.004) | 0.16 (<.0001) | A140/C59 → A172/C28 | no |
+| 184 | this → under | 0.24 (.004) | 0.12 (.001) | A183/C17 → A158/C38 | no |
+| 164 | It → Therefore | 0.16 (.006) | 0.09 (.0003) | A175/C25 → A194/C6 | no |
+Also newly significant at S=200 only at p<0.05: 76 → in (0.12, p=.02), 76 → to (0.12, p=.03).
+Non-hits stayed non-hits (136 → a, 76 → itself, 184 → it, 136 → rude).
+
+**Reading.** t=164 is the strongest effect in the project on a current model: after "It"
+the answer is A 88%; after "However" it is 53/47. That is not a verdict flip but a return
+to full uncertainty from near-certainty, triggered by one discourse token at p=0.36.
+t=52 is a clean verdict flip that holds at S=200: "Offering" (restating scenario 1 as an
+action) → C 72%; "The" → A 55%. **Hypothesis sentence (TVD ≥0.5): still not met (max 0.35
+at S=200). The per-token claim — probable alternative tokens move the final-answer
+distribution far beyond sampling noise, and can flip the verdict — is met on this item.**
+
+**Independent check owed (AG).** `out/s200/row041_branches.jsonl`, the two lines at t=164:
+count A/C in the 200 `conts[*].text` endings by hand; expect 175/25 and 105/92.

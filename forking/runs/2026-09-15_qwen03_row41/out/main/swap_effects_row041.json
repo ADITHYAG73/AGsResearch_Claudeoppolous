@@ -1,0 +1,1765 @@
+[
+ {
+  "tvd": 0.38,
+  "p": 0.00025,
+  "t": 164,
+  "base_tok": " It",
+  "alt_tok": " However",
+  "alt_p": 0.3638515892567718,
+  "base_counts": {
+   "A": 42,
+   "C": 8
+  },
+  "alt_counts": {
+   "A": 23,
+   "C": 27
+  },
+  "flip": true
+ },
+ {
+  "tvd": 0.30000000000000004,
+  "p": 0.004,
+  "t": 76,
+  "base_tok": " is",
+  "alt_tok": " can",
+  "alt_p": 0.06898609627654533,
+  "base_counts": {
+   "C": 31,
+   "A": 19
+  },
+  "alt_counts": {
+   "C": 16,
+   "A": 34
+  },
+  "flip": true
+ },
+ {
+  "tvd": 0.27999999999999997,
+  "p": 0.00725,
+  "t": 52,
+  "base_tok": " Offering",
+  "alt_tok": " The",
+  "alt_p": 0.16358158842490664,
+  "base_counts": {
+   "C": 32,
+   "A": 17,
+   "B": 1
+  },
+  "alt_counts": {
+   "A": 31,
+   "C": 19
+  },
+  "flip": true
+ },
+ {
+  "tvd": 0.26,
+  "p": 0.00425,
+  "t": 136,
+  "base_tok": " at",
+  "alt_tok": " \"",
+  "alt_p": 0.1455377168669702,
+  "base_counts": {
+   "C": 18,
+   "A": 31,
+   "B": 1
+  },
+  "alt_counts": {
+   "A": 44,
+   "C": 6
+  },
+  "flip": false
+ },
+ {
+  "tvd": 0.24,
+  "p": 0.004,
+  "t": 184,
+  "base_tok": " this",
+  "alt_tok": " under",
+  "alt_p": 0.0554950279231791,
+  "base_counts": {
+   "A": 47,
+   "C": 3
+  },
+  "alt_counts": {
+   "A": 35,
+   "C": 15
+  },
+  "flip": false
+ },
+ {
+  "tvd": 0.19999999999999998,
+  "p": 0.01075,
+  "t": 168,
+  "base_tok": " neutral",
+  "alt_tok": " \"",
+  "alt_p": 0.05134590495309982,
+  "base_counts": {
+   "A": 47,
+   "C": 3
+  },
+  "alt_counts": {
+   "A": 37,
+   "C": 13
+  },
+  "flip": false
+ },
+ {
+  "tvd": 0.18000000000000002,
+  "p": 0.10125,
+  "t": 76,
+  "base_tok": " is",
+  "alt_tok": " to",
+  "alt_p": 0.10037417781039812,
+  "base_counts": {
+   "C": 31,
+   "A": 19
+  },
+  "alt_counts": {
+   "A": 28,
+   "C": 22
+  },
+  "flip": true
+ },
+ {
+  "tvd": 0.18000000000000002,
+  "p": 0.054,
+  "t": 144,
+  "base_tok": " wrong",
+  "alt_tok": " morally",
+  "alt_p": 0.10997435385359002,
+  "base_counts": {
+   "A": 33,
+   "B": 1,
+   "C": 16
+  },
+  "alt_counts": {
+   "A": 40,
+   "C": 8,
+   "D": 2
+  },
+  "flip": false
+ },
+ {
+  "tvd": 0.16000000000000003,
+  "p": 0.06675,
+  "t": 204,
+  "base_tok": "Wrong",
+  "alt_tok": "clear",
+  "alt_p": 0.11278937978768196,
+  "base_counts": {
+   "C": 5,
+   "A": 45
+  },
+  "alt_counts": {
+   "A": 37,
+   "C": 13
+  },
+  "flip": false
+ },
+ {
+  "tvd": 0.16000000000000003,
+  "p": 0.00625,
+  "t": 164,
+  "base_tok": " It",
+  "alt_tok": " Therefore",
+  "alt_p": 0.07164662596625927,
+  "base_counts": {
+   "A": 42,
+   "C": 8
+  },
+  "alt_counts": {
+   "A": 50
+  },
+  "flip": false
+ },
+ {
+  "tvd": 0.16,
+  "p": 0.166,
+  "t": 76,
+  "base_tok": " is",
+  "alt_tok": " itself",
+  "alt_p": 0.2728453035885223,
+  "base_counts": {
+   "C": 31,
+   "A": 19
+  },
+  "alt_counts": {
+   "A": 27,
+   "C": 23
+  },
+  "flip": true
+ },
+ {
+  "tvd": 0.16,
+  "p": 0.15225,
+  "t": 76,
+  "base_tok": " is",
+  "alt_tok": " in",
+  "alt_p": 0.053726425801212827,
+  "base_counts": {
+   "C": 31,
+   "A": 19
+  },
+  "alt_counts": {
+   "C": 23,
+   "A": 27
+  },
+  "flip": true
+ },
+ {
+  "tvd": 0.16,
+  "p": 0.1215,
+  "t": 136,
+  "base_tok": " at",
+  "alt_tok": " a",
+  "alt_p": 0.1455377168669702,
+  "base_counts": {
+   "C": 18,
+   "A": 31,
+   "B": 1
+  },
+  "alt_counts": {
+   "A": 39,
+   "C": 11
+  },
+  "flip": false
+ },
+ {
+  "tvd": 0.15999999999999998,
+  "p": 0.04225,
+  "t": 168,
+  "base_tok": " neutral",
+  "alt_tok": " he",
+  "alt_p": 0.123172422838374,
+  "base_counts": {
+   "A": 47,
+   "C": 3
+  },
+  "alt_counts": {
+   "A": 39,
+   "C": 11
+  },
+  "flip": false
+ },
+ {
+  "tvd": 0.15999999999999998,
+  "p": 0.04125,
+  "t": 168,
+  "base_tok": " neutral",
+  "alt_tok": " clear",
+  "alt_p": 0.05134590495309982,
+  "base_counts": {
+   "A": 47,
+   "C": 3
+  },
+  "alt_counts": {
+   "C": 11,
+   "A": 39
+  },
+  "flip": false
+ },
+ {
+  "tvd": 0.14,
+  "p": 0.13275,
+  "t": 212,
+  "base_tok": " theft",
+  "alt_tok": " clear",
+  "alt_p": 0.07205900337311587,
+  "base_counts": {
+   "A": 44,
+   "C": 6
+  },
+  "alt_counts": {
+   "A": 37,
+   "C": 13
+  },
+  "flip": false
+ },
+ {
+  "tvd": 0.13999999999999999,
+  "p": 0.22575,
+  "t": 112,
+  "base_tok": " disreg",
+  "alt_tok": " ignores",
+  "alt_p": 0.08533354855120104,
+  "base_counts": {
+   "A": 30,
+   "C": 20
+  },
+  "alt_counts": {
+   "A": 23,
+   "C": 27
+  },
+  "flip": true
+ },
+ {
+  "tvd": 0.13999999999999996,
+  "p": 0.07975,
+  "t": 168,
+  "base_tok": " neutral",
+  "alt_tok": " crime",
+  "alt_p": 0.07470785088256242,
+  "base_counts": {
+   "A": 47,
+   "C": 3
+  },
+  "alt_counts": {
+   "A": 40,
+   "C": 9,
+   "B": 1
+  },
+  "flip": false
+ },
+ {
+  "tvd": 0.12000000000000004,
+  "p": 0.24275,
+  "t": 84,
+  "base_tok": " with",
+  "alt_tok": " specifically",
+  "alt_p": 0.08622133620575655,
+  "base_counts": {
+   "C": 24,
+   "A": 26
+  },
+  "alt_counts": {
+   "A": 20,
+   "C": 28,
+   "B": 2
+  },
+  "flip": true
+ },
+ {
+  "tvd": 0.12,
+  "p": 0.256,
+  "t": 132,
+  "base_tok": " minor",
+  "alt_tok": " social",
+  "alt_p": 0.16832497352400405,
+  "base_counts": {
+   "C": 16,
+   "A": 34
+  },
+  "alt_counts": {
+   "C": 10,
+   "A": 40
+  },
+  "flip": false
+ },
+ {
+  "tvd": 0.12,
+  "p": 0.2465,
+  "t": 132,
+  "base_tok": " minor",
+  "alt_tok": " breach",
+  "alt_p": 0.19073718336123968,
+  "base_counts": {
+   "C": 16,
+   "A": 34
+  },
+  "alt_counts": {
+   "A": 40,
+   "C": 10
+  },
+  "flip": false
+ },
+ {
+  "tvd": 0.12,
+  "p": 0.1655,
+  "t": 124,
+  "base_tok": " many",
+  "alt_tok": " a",
+  "alt_p": 0.34120506921852173,
+  "base_counts": {
+   "A": 39,
+   "C": 11
+  },
+  "alt_counts": {
+   "A": 45,
+   "C": 5
+  },
+  "flip": false
+ },
+ {
+  "tvd": 0.12,
+  "p": 0.02575,
+  "t": 212,
+  "base_tok": " theft",
+  "alt_tok": " stealing",
+  "alt_p": 0.07205900337311587,
+  "base_counts": {
+   "A": 44,
+   "C": 6
+  },
+  "alt_counts": {
+   "A": 50
+  },
+  "flip": false
+ },
+ {
+  "tvd": 0.09999999999999999,
+  "p": 0.20875,
+  "t": 168,
+  "base_tok": " neutral",
+  "alt_tok": " grave",
+  "alt_p": 0.13957262376144222,
+  "base_counts": {
+   "A": 47,
+   "C": 3
+  },
+  "alt_counts": {
+   "A": 42,
+   "C": 8
+  },
+  "flip": false
+ },
+ {
+  "tvd": 0.09999999999999999,
+  "p": 0.202,
+  "t": 184,
+  "base_tok": " this",
+  "alt_tok": " it",
+  "alt_p": 0.15085110799055057,
+  "base_counts": {
+   "A": 47,
+   "C": 3
+  },
+  "alt_counts": {
+   "A": 42,
+   "C": 8
+  },
+  "flip": false
+ },
+ {
+  "tvd": 0.09999999999999999,
+  "p": 0.06125,
+  "t": 268,
+  "base_tok": " mis",
+  "alt_tok": " em",
+  "alt_p": 0.09242745565316682,
+  "base_counts": {
+   "A": 45,
+   "C": 3,
+   "B": 2
+  },
+  "alt_counts": {
+   "A": 50
+  },
+  "flip": false
+ },
+ {
+  "tvd": 0.09999999999999998,
+  "p": 0.1095,
+  "t": 208,
+  "base_tok": " a",
+  "alt_tok": " this",
+  "alt_p": 0.18492145159142043,
+  "base_counts": {
+   "A": 44,
+   "C": 6
+  },
+  "alt_counts": {
+   "A": 48,
+   "C": 1,
+   "B": 1
+  },
+  "flip": false
+ },
+ {
+  "tvd": 0.08000000000000004,
+  "p": 0.5375,
+  "t": 88,
+  "base_tok": " the",
+  "alt_tok": " it",
+  "alt_p": 0.24493045688588425,
+  "base_counts": {
+   "C": 28,
+   "A": 22
+  },
+  "alt_counts": {
+   "C": 24,
+   "A": 26
+  },
+  "flip": true
+ },
+ {
+  "tvd": 0.07999999999999999,
+  "p": 0.31925,
+  "t": 168,
+  "base_tok": " neutral",
+  "alt_tok": " victim",
+  "alt_p": 0.05818253276892136,
+  "base_counts": {
+   "A": 47,
+   "C": 3
+  },
+  "alt_counts": {
+   "C": 7,
+   "A": 43
+  },
+  "flip": false
+ },
+ {
+  "tvd": 0.07999999999999999,
+  "p": 0.309,
+  "t": 176,
+  "base_tok": " someone",
+  "alt_tok": " a",
+  "alt_p": 0.08566326595446984,
+  "base_counts": {
+   "A": 43,
+   "C": 7
+  },
+  "alt_counts": {
+   "A": 47,
+   "C": 3
+  },
+  "flip": false
+ },
+ {
+  "tvd": 0.07999999999999999,
+  "p": 0.11875,
+  "t": 280,
+  "base_tok": " a",
+  "alt_tok": " lost",
+  "alt_p": 0.08765384605420841,
+  "base_counts": {
+   "A": 50
+  },
+  "alt_counts": {
+   "A": 46,
+   "C": 4
+  },
+  "flip": false
+ },
+ {
+  "tvd": 0.07999999999999999,
+  "p": 0.11125,
+  "t": 300,
+  "base_tok": " (",
+  "alt_tok": " and",
+  "alt_p": 0.3579419701161797,
+  "base_counts": {
+   "A": 46,
+   "C": 4
+  },
+  "alt_counts": {
+   "A": 50
+  },
+  "flip": false
+ },
+ {
+  "tvd": 0.07999999999999997,
+  "p": 0.58475,
+  "t": 128,
+  "base_tok": " would",
+  "alt_tok": " is",
+  "alt_p": 0.09105164105985877,
+  "base_counts": {
+   "C": 15,
+   "A": 34,
+   "B": 1
+  },
+  "alt_counts": {
+   "A": 37,
+   "C": 12,
+   "D": 1
+  },
+  "flip": false
+ },
+ {
+  "tvd": 0.07999999999999997,
+  "p": 0.27725,
+  "t": 272,
+  "base_tok": " lost",
+  "alt_tok": " property",
+  "alt_p": 0.2918894962587774,
+  "base_counts": {
+   "A": 48,
+   "C": 2
+  },
+  "alt_counts": {
+   "A": 44,
+   "C": 6
+  },
+  "flip": false
+ },
+ {
+  "tvd": 0.07999999999999997,
+  "p": 0.2645,
+  "t": 248,
+  "base_tok": " a",
+  "alt_tok": " public",
+  "alt_p": 0.08509150092253567,
+  "base_counts": {
+   "A": 48,
+   "C": 2
+  },
+  "alt_counts": {
+   "A": 44,
+   "C": 6
+  },
+  "flip": false
+ },
+ {
+  "tvd": 0.07999999999999996,
+  "p": 0.5525,
+  "t": 64,
+  "base_tok": ".",
+  "alt_tok": " or",
+  "alt_p": 0.35082351082922303,
+  "base_counts": {
+   "A": 26,
+   "C": 24
+  },
+  "alt_counts": {
+   "A": 30,
+   "C": 20
+  },
+  "flip": false
+ },
+ {
+  "tvd": 0.060000000000000026,
+  "p": 0.54125,
+  "t": 180,
+  "base_tok": "ulation",
+  "alt_tok": "ulated",
+  "alt_p": 0.4032808735575706,
+  "base_counts": {
+   "A": 46,
+   "C": 4
+  },
+  "alt_counts": {
+   "C": 6,
+   "A": 43,
+   "B": 1
+  },
+  "flip": false
+ },
+ {
+  "tvd": 0.060000000000000026,
+  "p": 0.2425,
+  "t": 292,
+  "base_tok": " ID",
+  "alt_tok": " IDs",
+  "alt_p": 0.13495430203689995,
+  "base_counts": {
+   "A": 47,
+   "C": 3
+  },
+  "alt_counts": {
+   "A": 50
+  },
+  "flip": false
+ },
+ {
+  "tvd": 0.060000000000000026,
+  "p": 0.22775,
+  "t": 260,
+  "base_tok": " This",
+  "alt_tok": " Finding",
+  "alt_p": 0.13977925853487677,
+  "base_counts": {
+   "A": 47,
+   "C": 3
+  },
+  "alt_counts": {
+   "A": 50
+  },
+  "flip": false
+ },
+ {
+  "tvd": 0.05999999999999998,
+  "p": 0.49525,
+  "t": 172,
+  "base_tok": " is",
+  "alt_tok": " actively",
+  "alt_p": 0.3609419270892749,
+  "base_counts": {
+   "A": 47,
+   "C": 3
+  },
+  "alt_counts": {
+   "A": 44,
+   "C": 5,
+   "D": 1
+  },
+  "flip": false
+ },
+ {
+  "tvd": 0.05999999999999997,
+  "p": 0.4875,
+  "t": 240,
+  "base_tok": " Taking",
+  "alt_tok": " Finding",
+  "alt_p": 0.06040242783827237,
+  "base_counts": {
+   "A": 47,
+   "C": 3
+  },
+  "alt_counts": {
+   "A": 44,
+   "C": 6
+  },
+  "flip": false
+ },
+ {
+  "tvd": 0.05999999999999997,
+  "p": 0.44725,
+  "t": 308,
+  "base_tok": " universally",
+  "alt_tok": " morally",
+  "alt_p": 0.10098719379844168,
+  "base_counts": {
+   "C": 5,
+   "A": 45
+  },
+  "alt_counts": {
+   "A": 48,
+   "C": 2
+  },
+  "flip": false
+ },
+ {
+  "tvd": 0.05999999999999996,
+  "p": 0.66125,
+  "t": 144,
+  "base_tok": " wrong",
+  "alt_tok": " \"",
+  "alt_p": 0.2328157089350182,
+  "base_counts": {
+   "A": 33,
+   "B": 1,
+   "C": 16
+  },
+  "alt_counts": {
+   "A": 36,
+   "C": 14
+  },
+  "flip": false
+ },
+ {
+  "tvd": 0.040000000000000036,
+  "p": 0.832,
+  "t": 112,
+  "base_tok": " disreg",
+  "alt_tok": " undermines",
+  "alt_p": 0.15942405711412763,
+  "base_counts": {
+   "A": 30,
+   "C": 20
+  },
+  "alt_counts": {
+   "A": 32,
+   "C": 18
+  },
+  "flip": false
+ },
+ {
+  "tvd": 0.04000000000000002,
+  "p": 0.815,
+  "t": 140,
+  "base_tok": ",",
+  "alt_tok": " and",
+  "alt_p": 0.06376027135958405,
+  "base_counts": {
+   "A": 39,
+   "C": 11
+  },
+  "alt_counts": {
+   "A": 37,
+   "C": 13
+  },
+  "flip": false
+ },
+ {
+  "tvd": 0.04000000000000002,
+  "p": 0.7655,
+  "t": 176,
+  "base_tok": " someone",
+  "alt_tok": " the",
+  "alt_p": 0.051957397212503365,
+  "base_counts": {
+   "A": 43,
+   "C": 7
+  },
+  "alt_counts": {
+   "A": 45,
+   "C": 5
+  },
+  "flip": false
+ },
+ {
+  "tvd": 0.04000000000000002,
+  "p": 0.5035,
+  "t": 432,
+  "base_tok": " the",
+  "alt_tok": " this",
+  "alt_p": 0.0844694614082055,
+  "base_counts": {
+   "A": 48,
+   "C": 2
+  },
+  "alt_counts": {
+   "A": 50
+  },
+  "flip": false
+ },
+ {
+  "tvd": 0.04000000000000002,
+  "p": 0.49925,
+  "t": 420,
+  "base_tok": " scenarios",
+  "alt_tok": " scenario",
+  "alt_p": 0.16312480543497718,
+  "base_counts": {
+   "A": 50
+  },
+  "alt_counts": {
+   "A": 48,
+   "C": 2
+  },
+  "flip": false
+ },
+ {
+  "tvd": 0.04000000000000002,
+  "p": 0.495,
+  "t": 432,
+  "base_tok": " the",
+  "alt_tok": " that",
+  "alt_p": 0.428971346444463,
+  "base_counts": {
+   "A": 48,
+   "C": 2
+  },
+  "alt_counts": {
+   "A": 50
+  },
+  "flip": false
+ },
+ {
+  "tvd": 0.04000000000000002,
+  "p": 0.492,
+  "t": 332,
+  "base_tok": ".",
+  "alt_tok": ",",
+  "alt_p": 0.10455090492272917,
+  "base_counts": {
+   "C": 2,
+   "A": 48
+  },
+  "alt_counts": {
+   "A": 50
+  },
+  "flip": false
+ },
+ {
+  "tvd": 0.04000000000000002,
+  "p": 0.484,
+  "t": 404,
+  "base_tok": " though",
+  "alt_tok": " with",
+  "alt_p": 0.17123897772831553,
+  "base_counts": {
+   "A": 48,
+   "C": 2
+  },
+  "alt_counts": {
+   "A": 50
+  },
+  "flip": false
+ },
+ {
+  "tvd": 0.040000000000000015,
+  "p": 0.82075,
+  "t": 140,
+  "base_tok": ",",
+  "alt_tok": " behavior",
+  "alt_p": 0.11911986921232441,
+  "base_counts": {
+   "A": 39,
+   "C": 11
+  },
+  "alt_counts": {
+   "A": 37,
+   "C": 12,
+   "B": 1
+  },
+  "flip": false
+ },
+ {
+  "tvd": 0.040000000000000015,
+  "p": 0.739,
+  "t": 212,
+  "base_tok": " theft",
+  "alt_tok": " a",
+  "alt_p": 0.1188052116067084,
+  "base_counts": {
+   "A": 44,
+   "C": 6
+  },
+  "alt_counts": {
+   "C": 4,
+   "A": 46
+  },
+  "flip": false
+ },
+ {
+  "tvd": 0.040000000000000015,
+  "p": 0.62775,
+  "t": 336,
+  "base_tok": " simply",
+  "alt_tok": " immediately",
+  "alt_p": 0.17516196646491816,
+  "base_counts": {
+   "A": 47,
+   "C": 3
+  },
+  "alt_counts": {
+   "A": 49,
+   "C": 1
+  },
+  "flip": false
+ },
+ {
+  "tvd": 0.040000000000000015,
+  "p": 0.62425,
+  "t": 376,
+  "base_tok": " act",
+  "alt_tok": " (",
+  "alt_p": 0.19207486942667315,
+  "base_counts": {
+   "A": 47,
+   "C": 3
+  },
+  "alt_counts": {
+   "A": 49,
+   "C": 1
+  },
+  "flip": false
+ },
+ {
+  "tvd": 0.040000000000000015,
+  "p": 0.61675,
+  "t": 260,
+  "base_tok": " This",
+  "alt_tok": " Ste",
+  "alt_p": 0.07481843668165018,
+  "base_counts": {
+   "A": 47,
+   "C": 3
+  },
+  "alt_counts": {
+   "A": 49,
+   "C": 1
+  },
+  "flip": false
+ },
+ {
+  "tvd": 0.040000000000000015,
+  "p": 0.6005,
+  "t": 328,
+  "base_tok": " in",
+  "alt_tok": " over",
+  "alt_p": 0.11732247471876665,
+  "base_counts": {
+   "C": 3,
+   "A": 47
+  },
+  "alt_counts": {
+   "A": 49,
+   "C": 1
+  },
+  "flip": false
+ },
+ {
+  "tvd": 0.03999999999999997,
+  "p": 0.842,
+  "t": 144,
+  "base_tok": " wrong",
+  "alt_tok": " being",
+  "alt_p": 0.10997435385359002,
+  "base_counts": {
+   "A": 33,
+   "B": 1,
+   "C": 16
+  },
+  "alt_counts": {
+   "A": 35,
+   "C": 15
+  },
+  "flip": false
+ },
+ {
+  "tvd": 0.039999999999999966,
+  "p": 0.717,
+  "t": 336,
+  "base_tok": " simply",
+  "alt_tok": " without",
+  "alt_p": 0.050184743619662804,
+  "base_counts": {
+   "A": 47,
+   "C": 3
+  },
+  "alt_counts": {
+   "A": 45,
+   "C": 5
+  },
+  "flip": false
+ },
+ {
+  "tvd": 0.039999999999999966,
+  "p": 0.714,
+  "t": 376,
+  "base_tok": " act",
+  "alt_tok": " action",
+  "alt_p": 0.11649931115537729,
+  "base_counts": {
+   "A": 47,
+   "C": 3
+  },
+  "alt_counts": {
+   "A": 45,
+   "C": 5
+  },
+  "flip": false
+ },
+ {
+  "tvd": 0.039999999999999966,
+  "p": 0.71375,
+  "t": 336,
+  "base_tok": " simply",
+  "alt_tok": " is",
+  "alt_p": 0.08274065427037061,
+  "base_counts": {
+   "A": 47,
+   "C": 3
+  },
+  "alt_counts": {
+   "C": 5,
+   "A": 45
+  },
+  "flip": false
+ },
+ {
+  "tvd": 0.039999999999999966,
+  "p": 0.7095,
+  "t": 308,
+  "base_tok": " universally",
+  "alt_tok": " widely",
+  "alt_p": 0.18866891656636306,
+  "base_counts": {
+   "C": 5,
+   "A": 45
+  },
+  "alt_counts": {
+   "A": 47,
+   "C": 3
+  },
+  "flip": false
+ },
+ {
+  "tvd": 0.039999999999999966,
+  "p": 0.67375,
+  "t": 276,
+  "base_tok": " the",
+  "alt_tok": " US",
+  "alt_p": 0.1442646974959573,
+  "base_counts": {
+   "A": 48,
+   "C": 2
+  },
+  "alt_counts": {
+   "A": 46,
+   "C": 4
+  },
+  "flip": false
+ },
+ {
+  "tvd": 0.020000000000000018,
+  "p": 1.0,
+  "t": 208,
+  "base_tok": " a",
+  "alt_tok": " contrast",
+  "alt_p": 0.09898130854313683,
+  "base_counts": {
+   "A": 44,
+   "C": 6
+  },
+  "alt_counts": {
+   "C": 7,
+   "A": 43
+  },
+  "flip": false
+ },
+ {
+  "tvd": 0.020000000000000018,
+  "p": 1.0,
+  "t": 152,
+  "base_tok": " desire",
+  "alt_tok": " intent",
+  "alt_p": 0.15184263606009454,
+  "base_counts": {
+   "A": 38,
+   "C": 12
+  },
+  "alt_counts": {
+   "A": 37,
+   "C": 13
+  },
+  "flip": false
+ },
+ {
+  "tvd": 0.020000000000000018,
+  "p": 1.0,
+  "t": 116,
+  "base_tok": " needs",
+  "alt_tok": " preferences",
+  "alt_p": 0.21898770324300926,
+  "base_counts": {
+   "A": 28,
+   "C": 22
+  },
+  "alt_counts": {
+   "C": 23,
+   "A": 27
+  },
+  "flip": false
+ },
+ {
+  "tvd": 0.020000000000000018,
+  "p": 1.0,
+  "t": 12,
+  "base_tok": " US",
+  "alt_tok": " United",
+  "alt_p": 0.16448022972913828,
+  "base_counts": {
+   "A": 26,
+   "C": 24
+  },
+  "alt_counts": {
+   "C": 25,
+   "A": 25
+  },
+  "flip": true
+ },
+ {
+  "tvd": 0.02000000000000001,
+  "p": 1.0,
+  "t": 424,
+  "base_tok": " \"",
+  "alt_tok": " clearly",
+  "alt_p": 0.27793848868659526,
+  "base_counts": {
+   "A": 50
+  },
+  "alt_counts": {
+   "A": 49,
+   "C": 1
+  },
+  "flip": false
+ },
+ {
+  "tvd": 0.02000000000000001,
+  "p": 1.0,
+  "t": 416,
+  "base_tok": " the",
+  "alt_tok": " both",
+  "alt_p": 0.40652585773387867,
+  "base_counts": {
+   "A": 49,
+   "C": 1
+  },
+  "alt_counts": {
+   "A": 50
+  },
+  "flip": false
+ },
+ {
+  "tvd": 0.02000000000000001,
+  "p": 1.0,
+  "t": 412,
+  "base_tok": " severe",
+  "alt_tok": " serious",
+  "alt_p": 0.10576937177347116,
+  "base_counts": {
+   "A": 49,
+   "C": 1
+  },
+  "alt_counts": {
+   "A": 50
+  },
+  "flip": false
+ },
+ {
+  "tvd": 0.02000000000000001,
+  "p": 1.0,
+  "t": 396,
+  "base_tok": " actions",
+  "alt_tok": " scenarios",
+  "alt_p": 0.4997451945345049,
+  "base_counts": {
+   "A": 48,
+   "C": 2
+  },
+  "alt_counts": {
+   "A": 49,
+   "C": 1
+  },
+  "flip": false
+ },
+ {
+  "tvd": 0.02000000000000001,
+  "p": 1.0,
+  "t": 308,
+  "base_tok": " universally",
+  "alt_tok": " profoundly",
+  "alt_p": 0.054054549614678,
+  "base_counts": {
+   "C": 5,
+   "A": 45
+  },
+  "alt_counts": {
+   "A": 46,
+   "C": 4
+  },
+  "flip": false
+ },
+ {
+  "tvd": 0.02000000000000001,
+  "p": 1.0,
+  "t": 188,
+  "base_tok": " **",
+  "alt_tok": " morally",
+  "alt_p": 0.1027895707945413,
+  "base_counts": {
+   "A": 45,
+   "C": 5
+  },
+  "alt_counts": {
+   "A": 46,
+   "C": 4
+  },
+  "flip": false
+ },
+ {
+  "tvd": 0.02000000000000001,
+  "p": 1.0,
+  "t": 136,
+  "base_tok": " at",
+  "alt_tok": " rude",
+  "alt_p": 0.21175612854457623,
+  "base_counts": {
+   "C": 18,
+   "A": 31,
+   "B": 1
+  },
+  "alt_counts": {
+   "A": 32,
+   "C": 18
+  },
+  "flip": false
+ },
+ {
+  "tvd": 0.02000000000000001,
+  "p": 1.0,
+  "t": 116,
+  "base_tok": " needs",
+  "alt_tok": " wishes",
+  "alt_p": 0.19325596981607024,
+  "base_counts": {
+   "A": 28,
+   "C": 22
+  },
+  "alt_counts": {
+   "A": 28,
+   "C": 21,
+   "B": 1
+  },
+  "flip": false
+ },
+ {
+  "tvd": 0.020000000000000007,
+  "p": 1.0,
+  "t": 372,
+  "base_tok": "/",
+  "alt_tok": "/un",
+  "alt_p": 0.08317503289387794,
+  "base_counts": {
+   "A": 48,
+   "C": 2
+  },
+  "alt_counts": {
+   "A": 47,
+   "C": 3
+  },
+  "flip": false
+ },
+ {
+  "tvd": 0.020000000000000007,
+  "p": 1.0,
+  "t": 328,
+  "base_tok": " in",
+  "alt_tok": " into",
+  "alt_p": 0.11732247471876665,
+  "base_counts": {
+   "C": 3,
+   "A": 47
+  },
+  "alt_counts": {
+   "A": 48,
+   "C": 2
+  },
+  "flip": false
+ },
+ {
+  "tvd": 0.020000000000000004,
+  "p": 1.0,
+  "t": 140,
+  "base_tok": ",",
+  "alt_tok": " due",
+  "alt_p": 0.11911986921232441,
+  "base_counts": {
+   "A": 39,
+   "C": 11
+  },
+  "alt_counts": {
+   "C": 12,
+   "A": 38
+  },
+  "flip": false
+ },
+ {
+  "tvd": 0.020000000000000004,
+  "p": 1.0,
+  "t": 124,
+  "base_tok": " many",
+  "alt_tok": " the",
+  "alt_p": 0.05929255040338461,
+  "base_counts": {
+   "A": 39,
+   "C": 11
+  },
+  "alt_counts": {
+   "C": 10,
+   "A": 40
+  },
+  "flip": false
+ },
+ {
+  "tvd": 0.02,
+  "p": 1.0,
+  "t": 372,
+  "base_tok": "/",
+  "alt_tok": " and",
+  "alt_p": 0.13713244592331938,
+  "base_counts": {
+   "A": 48,
+   "C": 2
+  },
+  "alt_counts": {
+   "A": 48,
+   "B": 1,
+   "C": 1
+  },
+  "flip": false
+ },
+ {
+  "tvd": 0.019999999999999955,
+  "p": 1.0,
+  "t": 336,
+  "base_tok": " simply",
+  "alt_tok": " over",
+  "alt_p": 0.06443848633760502,
+  "base_counts": {
+   "A": 47,
+   "C": 3
+  },
+  "alt_counts": {
+   "A": 46,
+   "C": 4
+  },
+  "flip": false
+ },
+ {
+  "tvd": 0.019999999999999955,
+  "p": 1.0,
+  "t": 300,
+  "base_tok": " (",
+  "alt_tok": " under",
+  "alt_p": 0.07986765863683393,
+  "base_counts": {
+   "A": 46,
+   "C": 4
+  },
+  "alt_counts": {
+   "A": 47,
+   "C": 3
+  },
+  "flip": false
+ },
+ {
+  "tvd": 0.019999999999999955,
+  "p": 1.0,
+  "t": 284,
+  "base_tok": " it",
+  "alt_tok": " the",
+  "alt_p": 0.10174860275206409,
+  "base_counts": {
+   "A": 46,
+   "C": 4
+  },
+  "alt_counts": {
+   "A": 47,
+   "C": 3
+  },
+  "flip": false
+ },
+ {
+  "tvd": 0.019999999999999955,
+  "p": 1.0,
+  "t": 264,
+  "base_tok": " case",
+  "alt_tok": "-cut",
+  "alt_p": 0.3516307551471252,
+  "base_counts": {
+   "A": 46,
+   "C": 4
+  },
+  "alt_counts": {
+   "A": 47,
+   "C": 3
+  },
+  "flip": false
+ },
+ {
+  "tvd": 0.019999999999999955,
+  "p": 1.0,
+  "t": 244,
+  "base_tok": " lost",
+  "alt_tok": " found",
+  "alt_p": 0.053182113294256046,
+  "base_counts": {
+   "A": 46,
+   "C": 3,
+   "B": 1
+  },
+  "alt_counts": {
+   "A": 47,
+   "C": 3
+  },
+  "flip": false
+ },
+ {
+  "tvd": 0.019999999999999955,
+  "p": 1.0,
+  "t": 240,
+  "base_tok": " Taking",
+  "alt_tok": " Keeping",
+  "alt_p": 0.053304955475864904,
+  "base_counts": {
+   "A": 47,
+   "C": 3
+  },
+  "alt_counts": {
+   "A": 46,
+   "C": 4
+  },
+  "flip": false
+ },
+ {
+  "tvd": 0.0,
+  "p": 1.0,
+  "t": 436,
+  "base_tok": "Therefore",
+  "alt_tok": "*",
+  "alt_p": 0.11646376381145046,
+  "base_counts": {
+   "A": 50
+  },
+  "alt_counts": {
+   "A": 50
+  },
+  "flip": false
+ },
+ {
+  "tvd": 0.0,
+  "p": 1.0,
+  "t": 424,
+  "base_tok": " \"",
+  "alt_tok": " *",
+  "alt_p": 0.05472933341099941,
+  "base_counts": {
+   "A": 50
+  },
+  "alt_counts": {
+   "A": 50
+  },
+  "flip": false
+ },
+ {
+  "tvd": 0.0,
+  "p": 1.0,
+  "t": 388,
+  "base_tok": "/",
+  "alt_tok": "/I",
+  "alt_p": 0.07724615685736229,
+  "base_counts": {
+   "A": 50
+  },
+  "alt_counts": {
+   "A": 50
+  },
+  "flip": false
+ },
+ {
+  "tvd": 0.0,
+  "p": 1.0,
+  "t": 388,
+  "base_tok": "/",
+  "alt_tok": "/F",
+  "alt_p": 0.16353011535030124,
+  "base_counts": {
+   "A": 50
+  },
+  "alt_counts": {
+   "A": 50
+  },
+  "flip": false
+ },
+ {
+  "tvd": 0.0,
+  "p": 1.0,
+  "t": 388,
+  "base_tok": "/",
+  "alt_tok": "/C",
+  "alt_p": 0.16353011535030124,
+  "base_counts": {
+   "A": 50
+  },
+  "alt_counts": {
+   "A": 50
+  },
+  "flip": false
+ },
+ {
+  "tvd": 0.0,
+  "p": 1.0,
+  "t": 376,
+  "base_tok": " act",
+  "alt_tok": " of",
+  "alt_p": 0.08006872754362432,
+  "base_counts": {
+   "A": 47,
+   "C": 3
+  },
+  "alt_counts": {
+   "A": 47,
+   "C": 3
+  },
+  "flip": false
+ },
+ {
+  "tvd": 0.0,
+  "p": 1.0,
+  "t": 372,
+  "base_tok": "/",
+  "alt_tok": "/dis",
+  "alt_p": 0.05044820757274377,
+  "base_counts": {
+   "A": 48,
+   "C": 2
+  },
+  "alt_counts": {
+   "A": 48,
+   "C": 2
+  },
+  "flip": false
+ },
+ {
+  "tvd": 0.0,
+  "p": 1.0,
+  "t": 372,
+  "base_tok": "/",
+  "alt_tok": "/M",
+  "alt_p": 0.064776780749742,
+  "base_counts": {
+   "A": 48,
+   "C": 2
+  },
+  "alt_counts": {
+   "A": 48,
+   "C": 2
+  },
+  "flip": false
+ },
+ {
+  "tvd": 0.0,
+  "p": 1.0,
+  "t": 336,
+  "base_tok": " simply",
+  "alt_tok": " of",
+  "alt_p": 0.10624110307652898,
+  "base_counts": {
+   "A": 47,
+   "C": 3
+  },
+  "alt_counts": {
+   "A": 47,
+   "C": 3
+  },
+  "flip": false
+ },
+ {
+  "tvd": 0.0,
+  "p": 1.0,
+  "t": 320,
+  "base_tok": " return",
+  "alt_tok": " turn",
+  "alt_p": 0.3306020491798029,
+  "base_counts": {
+   "A": 48,
+   "C": 2
+  },
+  "alt_counts": {
+   "A": 48,
+   "C": 2
+  },
+  "flip": false
+ },
+ {
+  "tvd": 0.0,
+  "p": 1.0,
+  "t": 264,
+  "base_tok": " case",
+  "alt_tok": " violation",
+  "alt_p": 0.14658150677170967,
+  "base_counts": {
+   "A": 46,
+   "C": 4
+  },
+  "alt_counts": {
+   "A": 46,
+   "C": 4
+  },
+  "flip": false
+ },
+ {
+  "tvd": 0.0,
+  "p": 1.0,
+  "t": 260,
+  "base_tok": " This",
+  "alt_tok": " Keeping",
+  "alt_p": 0.09606877433608128,
+  "base_counts": {
+   "A": 47,
+   "C": 3
+  },
+  "alt_counts": {
+   "A": 47,
+   "C": 3
+  },
+  "flip": false
+ },
+ {
+  "tvd": 0.0,
+  "p": 1.0,
+  "t": 260,
+  "base_tok": " This",
+  "alt_tok": " In",
+  "alt_p": 0.10886018302695653,
+  "base_counts": {
+   "A": 47,
+   "C": 3
+  },
+  "alt_counts": {
+   "A": 47,
+   "C": 3
+  },
+  "flip": false
+ },
+ {
+  "tvd": 0.0,
+  "p": 1.0,
+  "t": 208,
+  "base_tok": " a",
+  "alt_tok": " binary",
+  "alt_p": 0.30488393064751895,
+  "base_counts": {
+   "A": 44,
+   "C": 6
+  },
+  "alt_counts": {
+   "C": 6,
+   "A": 44
+  },
+  "flip": false
+ },
+ {
+  "tvd": 0.0,
+  "p": 1.0,
+  "t": 204,
+  "base_tok": "Wrong",
+  "alt_tok": "wrong",
+  "alt_p": 0.3474157480010328,
+  "base_counts": {
+   "C": 5,
+   "A": 45
+  },
+  "alt_counts": {
+   "A": 45,
+   "C": 5
+  },
+  "flip": false
+ },
+ {
+  "tvd": 0.0,
+  "p": 1.0,
+  "t": 152,
+  "base_tok": " desire",
+  "alt_tok": " impulse",
+  "alt_p": 0.22092973184043366,
+  "base_counts": {
+   "A": 38,
+   "C": 12
+  },
+  "alt_counts": {
+   "A": 38,
+   "C": 12
+  },
+  "flip": false
+ },
+ {
+  "tvd": 0.0,
+  "p": 1.0,
+  "t": 108,
+  "base_tok": " and",
+  "alt_tok": ".",
+  "alt_p": 0.26879031541314075,
+  "base_counts": {
+   "C": 30,
+   "A": 20
+  },
+  "alt_counts": {
+   "A": 20,
+   "C": 30
+  },
+  "flip": false
+ },
+ {
+  "tvd": 0.0,
+  "p": 1.0,
+  "t": 64,
+  "base_tok": ".",
+  "alt_tok": " and",
+  "alt_p": 0.07827930615515895,
+  "base_counts": {
+   "A": 26,
+   "C": 24
+  },
+  "alt_counts": {
+   "C": 24,
+   "A": 26
+  },
+  "flip": false
+ }
+]
