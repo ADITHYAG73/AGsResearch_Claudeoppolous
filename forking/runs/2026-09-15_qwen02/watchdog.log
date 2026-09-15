@@ -1,0 +1,77 @@
+[watchdog] 63.141.33.115:22019  alarm after 8 min idle (16 polls of 30s)
+[watchdog] timeout mechanism: ssh keepalives (no timeout binary found)
+[watchdog] self-test OK, first reading: 0 %
+[watchdog 11:39:58] idle 0m (mem 0 MiB)
+[watchdog 11:40:32] idle 1m (mem 0 MiB)
+[watchdog 11:41:05] idle 1m (mem 0 MiB)
+[watchdog 11:41:39] idle 2m (mem 0 MiB)
+[watchdog 11:42:12] idle 2m (mem 0 MiB)
+[watchdog 11:42:46] idle 3m (mem 0 MiB)
+[watchdog 11:43:20] idle 3m (mem 0 MiB)
+[watchdog 11:43:54] idle 4m (mem 0 MiB)
+[watchdog 11:44:27] idle 4m (mem 0 MiB)
+[watchdog 11:45:01] idle 5m (mem 0 MiB)
+[watchdog 11:45:34] idle 5m (mem 3 MiB)
+[watchdog 11:46:08] idle 6m (mem 0 MiB)
+[watchdog 11:46:42] idle 6m (mem 0 MiB)
+[watchdog 11:47:15] idle 7m (mem 0 MiB)
+[watchdog 11:47:50] idle 7m (mem 0 MiB)
+[watchdog 11:48:23] *** GPU IDLE 8 MIN (mem 3 MiB) — $0.059 burned. SOMETHING IS STUCK. ***
+[watchdog 11:48:57] *** GPU IDLE 8 MIN (mem 18973 MiB) — $0.059 burned. SOMETHING IS STUCK. ***
+[watchdog 11:49:30] *** GPU IDLE 9 MIN (mem 18973 MiB) — $0.066 burned. SOMETHING IS STUCK. ***
+[watchdog 11:50:04] *** GPU IDLE 9 MIN (mem 18973 MiB) — $0.066 burned. SOMETHING IS STUCK. ***
+[watchdog 11:50:37] *** GPU IDLE 10 MIN (mem 18973 MiB) — $0.073 burned. SOMETHING IS STUCK. ***
+[watchdog 11:51:10] *** GPU IDLE 10 MIN (mem 18955 MiB) — $0.073 burned. SOMETHING IS STUCK. ***
+[watchdog 11:51:44] working again: 27% (was idle 21 polls)
+[watchdog 11:53:25] idle 0m (mem 40647 MiB)
+[watchdog 11:54:00] idle 1m (mem 40647 MiB)
+[watchdog 11:54:34] idle 1m (mem 40651 MiB)
+[watchdog 11:55:07] idle 2m (mem 3 MiB)
+[watchdog 11:55:40] idle 2m (mem 21807 MiB)
+[watchdog 11:56:13] idle 3m (mem 40649 MiB)
+[watchdog 11:56:47] working again: 100% (was idle 6 polls)
+[watchdog 11:57:21] idle 0m (mem 0 MiB)
+[watchdog 11:57:54] idle 1m (mem 0 MiB)
+[watchdog 11:58:28] idle 1m (mem 3 MiB)
+[watchdog 11:59:01] working again: 99% (was idle 3 polls)
+[watchdog 11:59:34] idle 0m (mem 40649 MiB)
+[watchdog 12:00:07] working again: 100% (was idle 1 polls)
+[watchdog 12:01:48] idle 0m (mem 0 MiB)
+[watchdog 12:02:21] idle 1m (mem 0 MiB)
+[watchdog 12:02:54] idle 1m (mem 3 MiB)
+[watchdog 12:03:28] working again: 97% (was idle 3 polls)
+[watchdog 12:04:01] idle 0m (mem 19727 MiB)
+[watchdog 12:04:34] idle 1m (mem 19731 MiB)
+[watchdog 12:05:08] idle 1m (mem 39111 MiB)
+[watchdog 12:05:41] idle 2m (mem 40651 MiB)
+[watchdog 12:06:14] working again: 100% (was idle 4 polls)
+[watchdog 12:08:28] idle 0m (mem 0 MiB)
+[watchdog 12:09:01] idle 1m (mem 0 MiB)
+[watchdog 12:09:35] idle 1m (mem 0 MiB)
+[watchdog 12:10:10] idle 2m (mem 0 MiB)
+[watchdog 12:10:44] idle 2m (mem 0 MiB)
+[watchdog 12:11:17] idle 3m (mem 0 MiB)
+[watchdog 12:11:51] idle 3m (mem 0 MiB)
+[watchdog 12:12:24] idle 4m (mem 0 MiB)
+[watchdog 12:12:57] idle 4m (mem 0 MiB)
+[watchdog 12:13:30] idle 5m (mem 0 MiB)
+[watchdog 12:14:04] idle 5m (mem 0 MiB)
+[watchdog 12:14:37] idle 6m (mem 0 MiB)
+[watchdog 12:15:11] idle 6m (mem 0 MiB)
+[watchdog 12:15:44] idle 7m (mem 0 MiB)
+[watchdog 12:16:17] idle 7m (mem 0 MiB)
+[watchdog 12:16:51] *** GPU IDLE 8 MIN (mem 0 MiB) — $0.059 burned. SOMETHING IS STUCK. ***
+[watchdog 12:17:26] *** GPU IDLE 8 MIN (mem 0 MiB) — $0.059 burned. SOMETHING IS STUCK. ***
+[watchdog 12:17:59] *** GPU IDLE 9 MIN (mem 0 MiB) — $0.066 burned. SOMETHING IS STUCK. ***
+[watchdog 12:18:33] *** GPU IDLE 9 MIN (mem 0 MiB) — $0.066 burned. SOMETHING IS STUCK. ***
+[watchdog 12:19:06] *** GPU IDLE 10 MIN (mem 0 MiB) — $0.073 burned. SOMETHING IS STUCK. ***
+[watchdog 12:19:41] *** GPU IDLE 10 MIN (mem 0 MiB) — $0.073 burned. SOMETHING IS STUCK. ***
+[watchdog 12:20:15] *** GPU IDLE 11 MIN (mem 0 MiB) — $0.081 burned. SOMETHING IS STUCK. ***
+[watchdog 12:20:48] *** GPU IDLE 11 MIN (mem 0 MiB) — $0.081 burned. SOMETHING IS STUCK. ***
+[watchdog 12:21:22] *** GPU IDLE 12 MIN (mem 0 MiB) — $0.088 burned. SOMETHING IS STUCK. ***
+[watchdog 12:21:55] *** GPU IDLE 12 MIN (mem 0 MiB) — $0.088 burned. SOMETHING IS STUCK. ***
+[watchdog 12:22:28] *** GPU IDLE 13 MIN (mem 3 MiB) — $0.095 burned. SOMETHING IS STUCK. ***
+[watchdog 12:23:02] working again: 100% (was idle 26 polls)
+[watchdog 12:23:35] idle 0m (mem 40649 MiB)
+[watchdog 12:24:08] working again: 100% (was idle 1 polls)
+[watchdog 13:43:23] idle 0m (mem 0 MiB)

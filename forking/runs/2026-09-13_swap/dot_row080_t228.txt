@@ -1,0 +1,42 @@
+QUESTION (tinyMMLU row 80)
+Select the best translation into predicate logic. Some firefighters rescue victims from danger. (Dx: x is danger; Fx: x is a firefighter; Vx: x is a victim; Rxyz: x rescues y from z)
+
+  A) (∃x){Fx • (∀y)[Dy ⊃ (∃z)(Vz • Rxyz)]}
+  B) (∃x){Fx • (∃y)[Vy • (∃z)(Dz • Rxyz)]}
+  C) (∃x){Fx • (∃y)(∃z)[(Vy • Dz) • Rxzy]}
+  D) (∀x){Fx ⊃ (∃y)[Vy . (∃z)(Dz • Rxyz)]}
+
+CORRECT: B
+
+WHAT LLAMA-3-8B WROTE, GREEDILY, UP TO THE FREEZE (tokens 0..227):
+
+Let's break down the sentence "Some firefighters rescue victims from danger" step by step:
+
+* "Some firefighters" means that there exists at least one firefighter (Fx).
+* "rescue victims" means that for each victim, there exists a danger from which they are rescued (Rxyz).
+* "from danger" means that the danger is the thing from which the victims are rescued (Dz).
+
+Using the given predicate symbols, we can translate the sentence as follows:
+
+* "Some firefighters" becomes (∃x)Fx, meaning "there exists at least one x such that x is a firefighter".
+* "rescue victims" becomes (∃y)(Vy • (∃z)(Dz • Rxyz)), meaning "for each y, y is a victim and there exists a z such that z is a danger and x rescues y from z".
+* "from danger" becomes (∃z)(Dz • Rxyz), meaning "there exists a z such that z is a danger and x rescues y from z".
+
+Combining these parts, we get:
+
+(∃x)Fx • (∃y
+
+<<< FROZEN HERE. Token 228 is next. >>>
+
+Token it wrote:        ')('   probability 0.94
+Token it nearly wrote: ')['   probability 0.05
+
+HOW THE ORIGINAL ANSWER CONTINUED AFTER THE ROUND BRACKET (tokens 228..end):
+
+)(Vy • (∃z)(Dz • Rxyz))
+
+This is option C.
+
+OUTCOMES OF 200 FRESH CONTINUATIONS FROM THE FREEZE, PER TOKEN:
+  after ')(': {'A': 1, 'B': 3, 'C': 196}
+  after ')[': {'A': 169, 'B': 27, 'C': 4}

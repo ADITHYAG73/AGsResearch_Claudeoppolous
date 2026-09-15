@@ -932,3 +932,116 @@ trained NLAs. Completion condition sized to my resources, public artifact at the
   (leaked into a log 2026-08-22, still not rotated); (2) matcher spot-check of ~20 groups — the
   one component with no independent check; (3) Objective 2, the Gemma per-layer-embedding
   write-up; (4) Savarkar Δ / more resamples if a pod session is ever justified.**
+
+- **2026-09-06 — NEW DIRECTION SCOPED: Forking Paths. Zero GPU spend. Nothing committed.**
+  Read both papers in full: Bigelow et al. 2024 (arXiv 2412.07961, GPT-3.5, S=30) and
+  Goodfire's "Forking Fast" 2026 (arXiv 2608.19611, Llama-3-8B + R1-distill, S=200/1000).
+  - 2024 asks *do forking tokens exist*; 2026 asks *how cheaply can the curve be measured*.
+    2026's own result — noise is exactly multinomial, jaggedness at S=30 is largely dice —
+    partly undercuts 2024's odd-token forks, and nobody has re-examined them at high S.
+  - **Open-ended outcomes are named by both papers and run by neither.** That is AG's
+    two-year-old question. Both S/N and the open question are recorded in
+    `forking/ROADMAP.md` (six open items, three sized projects, free pre-GPU work).
+  - AG forked `ericb-goodfire/forking-fast` → `IamAGP/forking-fast`; cloned to
+    `reference_repos/forking-fast` (gitignored). Sampler is plain transformers with a
+    model-path flag; outcome extraction is one regex (`answers.py`). **No LICENSE file.**
+    2026 paper's Appendix H: research and draft produced by their agent Silico.
+  - The 2024 code exists after all: `github.com/ebigelow/forking-paths` (cited in the
+    fork's config) — not yet opened. Claude had said it was only promised; wrong.
+  - Teaching artifact for Figure 1 (bars → area chart, S slider):
+    https://claude.ai/code/artifact/e0d185c3-1ba3-4c87-b4bd-4a7592c847e7
+  - Claude's recommendation: project B (high-S replication of odd-token forks on Qwen 3.5 9B)
+    first, then A (open-ended forks). **AG has not chosen yet** — reading the plan first.
+    No email to authors before a finished result (AG's call, stated).
+
+  **Next: AG internalises ROADMAP.md and asks questions; then the free CPU work — reproduce
+  the §3.3 noise slope from `data/s1000`, open the dashboard, open the 2024 repo.**
+
+- **2026-09-07/08 — COMPASS WRITTEN. FIRST RESULT: 2026 NOISE LAW REPRODUCED. Zero GPU.**
+  - `forking/COMPASS.md`: 6 established claims, 10 gaps with sources, 6 pointed questions
+    (falsifiable sentence, yes/no meaning, cheapest test, model, cost). Current models verified
+    on HF 2026-09-07: Qwen3.8-27B (Aug 2026, dense, Apache 2.0), Qwen3.6-27B, Gemma-4-31B/12B.
+    **Recommended order changed:** Q3 first (per-token swap effects o_{t,w} from the shipped
+    2026 stores, zero GPU — the quantity 2026 dropped and 2024 cared about), then Q1/Q2 with
+    activations cached, then Q4 (probe predicts forks). AG excited by Q4, holding back by choice.
+  - 2024 authors' code cloned: `reference_repos/forking-paths` (GPL-3, ~1.9k lines, OpenAI API,
+    S=30). Has an open-ended StoryCloze path drafted and never run — strengthens G1.
+  - **NOISE-LAW-01 (`forking/experiments.md`):** row 39, S=1000, 344 positions, independent
+    code. Slope −0.483 (paper −0.490, theory −0.5); ratio to multinomial null 0.99–1.02 through
+    S=250. **Reproduced.** AG's independent hand-check still owed.
+  - Found in passing: position 268 branches "(" vs "√" give clearly different final-answer
+    distributions on 1000 rolls each — a live per-token swap effect (Q3 material).
+  - Goodfire: Anthropic put $1M into a $50M Series A, not a sponsor; not in Series B.
+  - Artifacts: comparison table https://claude.ai/code/artifact/a0541af0-962e-4eb8-ac02-716543c6d4bf ;
+    15-step noise-law derivation https://claude.ai/code/artifact/e0d72b51-56e9-4d6d-a883-52e292fe046c
+  - **Process note:** AG skimmed the 15-step page and got lost. Wrong dose, Claude's error.
+    Agreed method: **one step per sitting, hand calculation on paper, then stop.** Steps 1–3 next.
+  - Nothing committed. `forking/` (COMPASS, ROADMAP, experiments.md, pipeline/, runs/) and
+    CLAUDE.md are uncommitted.
+
+  **Next: AG does steps 1–3 of the derivation page by hand. Then Q3 on the shipped stores.**
+
+- **2026-09-13/14 — SWAP-01 DONE (zero GPU); QWEN-01 KILLED with no output. $1.13 spent.**
+  Full detail `forking/experiments.md`.
+  - **SWAP-01 (compass Q3), on the shipped 2026 stores, Llama track:** 13,149 non-letter token
+    swaps; **7.2% significant at p<0.01** (chance 1%); **83 swaps with effect ≥0.2 sit where
+    the pooled curve is flat, in 41 of 100 questions** — per-token forks the 2026 charts cannot
+    show. Row 80 t=228 ")(" vs ")[" flips C↔A (196/200 vs 169/200), effect 0.96, pooled change
+    0.04. Odd tokens fork slightly more than words (punct 8.5%, digits 12%, words 6.9%).
+  - **DeepSeek track is unusable for per-token answer swaps: 46.9% of outcomes are "Other"**
+    (1536-token cap, thinking never finishes; answered_rate ≈0.12). Their Fig 10 caption
+    acknowledges it. Usable for what THEY measured (noise law, smoothing); not for ours.
+  - **QWEN-01:** Qwen3.5-9B (newest dense <27B; 3.6/3.8 ship 27B only), thinking off, row 80,
+    S=200, only-forks → **108 forking positions, 280 branches**. Laptop smoke on 0.8B passed
+    (checkpoint deleted after, per AG). A40 $0.49/hr, EU-SE-1. Kernel install needed the
+    official setup.py recipe (CUDA_HOME + --no-build-isolation). HF `generate` ran 2 h 07 min
+    without finishing; their code logs nothing inside a question and writes once at the end;
+    ptrace blocked so no stack dump. **AG chose kill, no rerun.** Nothing survived.
+  - **Rule adopted (AG, now global ~/.claude/CLAUDE.md §7 + memory `gpu-run-preflight`):**
+    before ANY billed run, answer in the journal from reading the code: progress logs?
+    incremental checkpoints? memory trajectory? what survives a kill? plus a cost line
+    (tokens × rate → hours → $). Claude read run.py before launch and flagged none of it.
+  - Parked rerun plan (AG's call): vLLM/SGLang, S=50 stride 4 first, per-branch log +
+    checkpoint (adapter patched for the log), gen_batch ≤100; est. <20 min.
+  - Goodfire authors checked: credible (Geiger, McGrath, Lubana, Bigelow); resampling-based
+    CoT interp is a live cluster incl. Neel's Thought Anchors / Thought Branches. Behavioural,
+    not mech interp — activations-predict-forks (Q4) is the bridge and nobody has done it.
+  - Still uncommitted: `forking/` and CLAUDE.md. HF token still not rotated.
+
+  **Next: AG's call. Options on the table: write up SWAP-01 (real result, zero GPU, ready);
+  or the rerun with visibility. Nothing owed tonight.**
+
+- **2026-09-15 — QWEN-02 DONE. Clean negative on a current model. $1.03.**
+  Full detail `forking/experiments.md` → QWEN-02.
+  - **Docs-first, per AG:** vLLM API from source (SamplingParams, LLM.generate/chat,
+    TokensPrompt, prefix caching, install page), Qwen3.5 support confirmed in vLLM 0.29.0
+    (`models/qwen3_5.py` + registry). Sampler rewritten on vLLM as OUR code with the paper's
+    semantics (`forking/pipeline/fpa_vllm.py`): per-chunk progress lines, per-branch jsonl
+    checkpoints, `--resume`, cost line printed before generation. Laptop dry-run on a fake
+    vLLM passed, incl. resume. Pre-launch checklist (rule 7) answered in the journal first.
+  - **Three of my mistakes caught by smokes, not by the run:** torchaudio CUDA mismatch from
+    an extra pip index (fix: let vLLM's wheel pick torch); vLLM engine spawn needs
+    `if __name__ == "__main__"` (the official example had it; I dropped it); the paper's
+    400-token budgets truncate Qwen mid-answer and their `option X` regex then reads running
+    commentary as the verdict (97/97 in smoke2). Probe: Qwen's greedy answer = 1,111 tokens.
+  - **Main run:** stride 4, S=50, budgets 1,500, 206 branches at 81 positions, 7.03M tokens,
+    78.6 min at ~1,500 tok/s. 94.6% explicit answers, 0 "Other".
+  - **RESULT: no fork.** 125 alternative tokens, largest swap effect TVD 0.040, below the
+    S=50 noise floor (0.06–0.08). B (correct) ≥96% everywhere. Llama flipped C↔A at 0.96 on
+    the same item. Hypothesis NOT met. Open readings: easy item / sub-5% forks / MMLU
+    contamination. Cheap next: greedy pass over all 100 tinyMMLU, pick Qwen's wrong ones.
+  - Pod terminated, zero pods, balance $53.23. Still uncommitted: `forking/`, CLAUDE.md,
+    global rule 7. HF token still not rotated.
+
+  **Next (AG's call): (1) write up SWAP-01 + QWEN-02 together — the contrast IS the result;
+  (2) or first the 100-item greedy pass (~$0.10) to find items Qwen is uncertain on.**
+- **2026-09-15 (later) — SCREEN-01: Qwen3.5-9B on all 100 tinyMMLU items. $0.34.**
+  Greedy accuracy **86/100** (not saturated). **17 items torn at t=0** (top answer ≤80% of 10
+  samples), 7 of them also wrong; 7 further items confidently wrong. Cleanest fork candidate:
+  **row 41** (A5/C5, no truncation, 480-token answer); then row 91 (A4/B3/C3, wrong), row 60.
+  Two more infra lessons journaled: serial per-question vLLM calls are 5× slower than
+  chunked batches; killing a vLLM parent leaves the EngineCore holding the GPU — kill the
+  pids nvidia-smi lists and confirm 0 MiB before relaunch. Pod terminated, zero pods,
+  balance $52.89. Day total $1.37.
+  **Next: full stride-4 run on row 41 (~$0.25) — the real second test of the hypothesis on an
+  item Qwen is torn on. Then write up SWAP-01 + QWEN-02 + (row 41).**

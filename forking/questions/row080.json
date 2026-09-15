@@ -1,0 +1,13 @@
+[
+ {
+  "row_id": 80,
+  "question": "Select the best translation into predicate logic. Some firefighters rescue victims from danger. (Dx: x is danger; Fx: x is a firefighter; Vx: x is a victim; Rxyz: x rescues y from z)",
+  "choices": [
+   "(∃x){Fx • (∀y)[Dy ⊃ (∃z)(Vz • Rxyz)]}",
+   "(∃x){Fx • (∃y)[Vy • (∃z)(Dz • Rxyz)]}",
+   "(∃x){Fx • (∃y)(∃z)[(Vy • Dz) • Rxzy]}",
+   "(∀x){Fx ⊃ (∃y)[Vy . (∃z)(Dz • Rxyz)]}"
+  ],
+  "answer_letter": "B"
+ }
+]

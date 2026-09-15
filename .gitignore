@@ -46,3 +46,7 @@ mats_2027/runs/2026-08-28_savarkar/activations.parquet
 
 # MATS application form answers (personal)
 mats_2027/app_answers.md
+
+# ---- forking runs: keep the data, not the transport bundles or the raw >50 MB jsonl ----
+forking/runs/**/*.tgz
+forking/runs/2026-09-15_qwen02/out/main/row080_branches.jsonl
