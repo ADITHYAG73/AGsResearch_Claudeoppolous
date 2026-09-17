@@ -107,6 +107,25 @@ the token is emitted.
 **Design rule: cache activations during any sampling run**, so Q4 costs nothing extra later.
 *Depends on:* Q1 or Q2.
 
+*Status 2026-09-18 (after QWEN-02/03, SCREEN-01):*
+- **Labels exist.** Row 41: 55 sampled positions with a measured swap effect each, 6
+  significant at p<0.01 (confirmed at S=200). Row 80: 81 positions, 0 significant. Label =
+  "any alternative at t with p<0.01" (or the max TVD at t as a continuous target).
+- **Features do not.** The residual stream at those positions was never saved (the vLLM runs
+  had no hook). Recoverable: one greedy forward pass per item with a hook at a middle layer
+  (Qwen3.5-9B has 32 layers; start ~L16–20), seconds of GPU. The rule above was not followed
+  in QWEN-02/03 — fix `fpa_vllm.py` or add a separate HF-hooks pass before any next run.
+- **Size problem.** Two items ≈ 136 positions, 6 positives — far too few for a probe; an
+  honest attempt says so. Minimum worth trying: the 17 torn items from SCREEN-01 at stride 4
+  → a few hundred positions, ~50 positives (extrapolating row 41's 6/55). Cost ≈ 17 × $0.6
+  ≈ **$12** at today's rates, plus one hooks pass.
+- **Confound to design for:** forks cluster in the decision window (row 41: A share 0.47→0.90
+  between t≈80 and t≈200). A probe may learn "position in the answer", not "fork". Control:
+  a probe on the position index alone; the residual probe must beat it. Second control: a
+  probe on the base-path next-token entropy at t, which is free from the logprobs already
+  saved — if entropy predicts forks, no activations are needed.
+- Parked until the LessWrong post is out (AG's sequencing, 2026-09-18).
+
 ### Q5 — Are forks causal control points? (G6)
 *Sentence:* Steering or patching at a detected fork changes the final-answer distribution
 more than the same intervention at a matched non-fork position.
