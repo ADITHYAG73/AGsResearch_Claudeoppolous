@@ -166,3 +166,17 @@ EXCLUDED by AG, deliberately: the largest-effect point (TVD 0.35 vs the 0.5 bar)
 does not yet understand it and will not write what he cannot explain. Not content.
 
 Still to dictate: one or two lines on what comes next.
+
+### Section 4, added limitation — effect size (AG, verbatim, after TVD was explained)
+"We set out a bar of 50% for TVD, but Qwen's maximum fork ended up at 35%, about one third
+of the time, and far below the paper's reported bracket fork on a Llama-3-8B parameter model."
+
+Claude's checks for the prose pass:
+- Numbers right: bar 0.5 (set in the QWEN-02 hypothesis sentence before the run); max 0.35
+  at t=164 "It" -> "However", S=200.
+- "about one third of the time" -> TVD is a share of ANSWERS that moved, not a share of
+  time. Accurate: "about a third of the answers moved".
+- "the paper's reported bracket fork" -> the paper does NOT report it. The ")(" vs ")["
+  fork at row 80 t=228 (TVD 0.96) is from OUR analysis of their released data (SWAP-01).
+  Same issue as the Section 3 note. Accurate: "the bracket fork I found in the authors'
+  released Llama-3-8B data".
