@@ -145,3 +145,24 @@ Two wording checks for the prose pass (AG's call on both):
    answers beyond sampling noise". The majority answer itself flips at 2 of the 5 positions
    at S=200; at t=164 it goes from 88% to a coin flip. Say which you mean, since a reader
    will take "changed the outcome" as "flipped the answer" all six times.
+
+## Section 4 — What this does not show (AG, verbatim, 2026-09-19)
+"There are a few caveats in the experiment that I did, a few limitations that I see.
+Firstly, I have run only two questions in full. Definitely there isn't much to look at;
+the evidence needs more data. It is not that the evidence is not already there — the
+paper's original authors did do that — but for the model I chose to replicate on, and
+considering I have experimented forking on only one row, it needs more data and more rows.
+Moreover, the stride length I adopted was four, so forks that may exist between the sampled
+positions — the experiment is blind to those. Also to be noted is the 5% cutoff: tokens
+rarer than that threshold never get a chance in the forking experiment. And of course I have
+tested only one model, with thinking turned off, so that deserves more models, and thinking
+on versus off could be an interesting scenario."
+
+CUT by AG, not content: a sentence that models with thinking on "invariably tend to land on
+the correct answer more often than not". (Claude: right to cut — unsupported. Our only
+thinking-on data point is the row 80 probe, which ran 3,000 tokens without finishing.)
+
+EXCLUDED by AG, deliberately: the largest-effect point (TVD 0.35 vs the 0.5 bar), because he
+does not yet understand it and will not write what he cannot explain. Not content.
+
+Still to dictate: one or two lines on what comes next.
