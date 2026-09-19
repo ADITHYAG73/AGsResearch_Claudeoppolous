@@ -180,3 +180,18 @@ Claude's checks for the prose pass:
   fork at row 80 t=228 (TVD 0.96) is from OUR analysis of their released data (SWAP-01).
   Same issue as the Section 3 note. Accurate: "the bracket fork I found in the authors'
   released Llama-3-8B data".
+
+## What comes next (AG, verbatim, 2026-09-19)
+"As a future work, I would like to address some of the limitations that I've noticed myself,
+such as addressing the stride gap, expanding the question set, and of course the number of
+other models that I can test for. In addition to that, I would want to answer one more
+question regarding the usability of residual stream activations to predict the fork. So these
+are few items that I wish to explore and I'm currently exploring and will subsequently share
+in the next versions."
+
+Claude's checks:
+- "I'm currently exploring" -> nothing on Q4 has been run; it is parked in COMPASS.md with a
+  status block. Draft uses "wish to explore" only. AG's call if any of it has started since.
+- Added one sourced sentence: the 2024 paper's Discussion says "it might even be possible to
+  avoid sampling altogether if hidden activations can be used to predict forking" (read in
+  full 2026-09-07). Credits the idea where it came from. AG to keep or cut.

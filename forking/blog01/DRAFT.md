@@ -68,7 +68,12 @@ data, where 96% moved.
 
 ## What comes next
 
-[AG TO DICTATE]
+As future work I would like to address some of the limitations I noticed myself: closing the
+stride gap, expanding the question set, and testing other models. In addition, I want to
+answer one more question: whether residual stream activations can be used to predict a fork.
+The 2024 paper itself raises this, suggesting it might be possible to avoid sampling
+altogether if hidden activations can predict forking. These are the items I wish to explore,
+and I will share what I find in later posts.
 
 ---
 Code, data and the experiment journal: github.com/ADITHYAG73/AGsResearch_Claudeoppolous,
