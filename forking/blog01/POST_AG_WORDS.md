@@ -27,8 +27,9 @@ I chose a fairly recent model for the experiment, Qwen3.5-9B. The reason was sim
 curious to know if the forking still replicated in newer models. My thought process was that
 the newer models, open or closed, should have fairly aced the benchmark datasets.
 
-[ROW 80 — AG TO SAY IN HIS WORDS WHY HE PICKED IT. He dictated "a random question"; that is
-not what happened. See FACTS_FOR_AG.md item 1.]
+I started with row 80 of tinyMMLU. In the Llama data the 2026 authors released, row 80, upon
+analysis, had the clearest fork: a round bracket against a square bracket changed the answer
+from C to A.
 When I tested this question with Qwen3.5-9B it gave the right answer, and it turned out that
 the Qwen model did not fork for that question. Although I had predicted that newer models
 should not fork and probably answer correctly, I was still a little disappointed with the
@@ -60,8 +61,10 @@ fork in action. So, as I said, the screening experiment got me 17 probable quest
 from those I chose row 41. I could clearly see the forking at S = 50. I scaled it out to
 S = 200 and it still persisted. For that question I found [55] positions which qualified as
 forking candidates and [159] branches in total across those positions. In essence, for that
-row, I found six alternate tokens [AG: "changed the final outcome" — see FACTS item 2],
-sitting across five different positions.
+row, I found six alternate tokens sitting across five different positions. All six alternate
+tokens moved the mix of final answers beyond the sampling noise. However, the majority answer
+flipped at two positions, tokens 52 and 76. At token 164, sampling the alternate token
+"However" instead of "It" took option A's chances from 88% to a coin flip.
 
 [FIGURE 1]  [FIGURE 2]
 
@@ -74,9 +77,9 @@ noted is the 5% cutoff: tokens rarer than that threshold never get a chance in t
 experiment. And of course I have tested only one model, with thinking turned off, so that
 deserves more models, and thinking on versus off could be an interesting scenario.
 
-We set out a bar of 50% for TVD, but Qwen's maximum fork ended up at 35% [AG: "about one
-third of the time" — see FACTS item 3], far below [the bracket fork — see FACTS item 1] on a
-Llama-3-8B model.
+The predefined threshold I had for the bar was 0.5, whereas Qwen's largest fork was observed
+at 0.35. So only about a third of the answers moved, as opposed to 96% for the bracket fork in
+the Llama data.
 
 ## What comes next
 
