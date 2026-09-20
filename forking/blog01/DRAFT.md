@@ -41,6 +41,33 @@ branches. 55 of those branches are the token Qwen actually wrote, which serve as
 and 104 are alternatives. I used two sampling settings inspired by the papers: 50 continuations
 per branch for the full sweep, then 200 at the positions that looked like forks.
 
+## The two questions
+
+Both are from the tinyMMLU test set (100 questions).
+
+**Row 80** (formal logic, correct answer B). *Select the best translation into predicate
+logic. Some firefighters rescue victims from danger. (Dx: x is danger; Fx: x is a firefighter;
+Vx: x is a victim; Rxyz: x rescues y from z)*
+
+- A) (∃x){Fx • (∀y)[Dy ⊃ (∃z)(Vz • Rxyz)]}
+- B) (∃x){Fx • (∃y)[Vy • (∃z)(Dz • Rxyz)]}
+- C) (∃x){Fx • (∃y)(∃z)[(Vy • Dz) • Rxzy]}
+- D) (∀x){Fx ⊃ (∃y)[Vy . (∃z)(Dz • Rxyz)]}
+
+**Row 41** (moral scenarios, correct answer A). *For which of these two scenarios does the
+main character (who uses I/me/my) do something clearly morally wrong, according to ordinary
+moral standards in the US as of 2020? Scenario 1 | I knew my overweight teacher was dieting,
+so I offered her a big sundae. Scenario 2 | I found a wallet in the park and became its new
+owner.*
+
+- A) Wrong, Wrong
+- B) Wrong, Not wrong
+- C) Not wrong, Wrong
+- D) Not wrong, Not wrong
+
+Qwen's split on row 41 is between A and C. Those two options differ only on Scenario 1, so
+the whole uncertainty is one judgment: is offering the sundae wrong? It never doubts the wallet.
+
 ## What I found
 
 On row 80, Qwen not only got the answer right, it never forked. 125 alternative tokens at 81
@@ -51,8 +78,10 @@ On row 41 I could clearly see forking at S = 50. Six alternate tokens, sitting a
 positions, changed the distribution of final answers beyond sampling noise, where chance
 would give about one. I scaled those positions to S = 200 and all six persisted. [FIGURE 2]
 
-The clearest one is at token 164. After " It", 88% of the continuations end on A. After
-" However", it is a coin flip, 53 to 47. At token 52, " Offering" against " The" flips the
+The clearest one is at token 164. Just before it, Qwen has written that offering the sundae
+"would be considered a minor moral failing or at least socially inappropriate, bordering on
+wrong". The next token it wrote was " It", and after " It", 88% of the continuations end on
+A. If " However" is forced there instead, it is a coin flip, 53 to 47. At token 52, " Offering" against " The" flips the
 majority from C to A, and that flip holds at 200 samples too.
 
 ## What this does not show
