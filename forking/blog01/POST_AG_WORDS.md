@@ -51,17 +51,12 @@ a stride length of 4 and swept across the generation: at every fourth token I in
 forced alternate tokens at those positions. By alternate tokens I mean tokens which have
 [at least] a 5% chance in the final softmax layer. For that question I found [55] positions,
 totalling [159] branches, and I had two sampling settings inspired by the paper, 50 and 200.
-The results which persisted at 50 resamples did transfer to 200.
 
 ## What I found
 
-Initially I experimented on row 80. I ran it on my Qwen model. Not only did Qwen get the
-answer right, it never forked. It turned out to be a negative result. But I wanted to see
-fork in action. So, as I said, the screening experiment got me 17 probable questions, and
-from those I chose row 41. I could clearly see the forking at S = 50. I scaled it out to
-S = 200 and it still persisted. For that question I found [55] positions which qualified as
-forking candidates and [159] branches in total across those positions. In essence, for that
-row, I found six alternate tokens sitting across five different positions. All six alternate
+On row 41, I could clearly see the forking at S = 50. I scaled it out to
+S = 200 and it still persisted. In essence, for that row, I found six alternate tokens
+sitting across five different positions. All six alternate
 tokens moved the mix of final answers beyond the sampling noise. However, the majority answer
 flipped at two positions, tokens 52 and 76. At token 164, sampling the alternate token
 "However" instead of "It" took option A's chances from 88% to a coin flip.
