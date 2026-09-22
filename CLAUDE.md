@@ -1318,3 +1318,35 @@ trained NLAs. Completion condition sized to my resources, public artifact at the
   real calculator" is the thread nobody has pulled; (2) the probe on the cached activations (free,
   CPU) asks whether the answer digit is present BEFORE generation; (3) still queued: PARABOLA-02,
   e^x, Qwen3-8B-vs-Qwen3.5-9B; (4) HF token STILL not rotated.**
+
+- **2026-09-22/23 (night) — dashboard published; TRIG-02 started and STOPPED by me for a clean
+  morning restart. Pod terminated, zero pods confirmed.**
+  - **Dashboard (all 2,736 asks, model vs calculator vs error, filterable):**
+    https://claude.ai/artifact/9gFKBqkC8Je2b55pukMdpb — source in `mathematics/dashboard/`.
+    Artifacts cannot offer file downloads (sandbox blocks them), so there is no Excel export;
+    raw JSONL is in `mathematics/runs/2026-09-22_trig/`.
+  - **My question, answered: it is NOT a calculator.** Thinking off, ~1 answer in 3 is wrong, and
+    it fails in a way arithmetic never does — sin(361°) returns sin(39°) exactly.
+  - **TRIG-02 (does the scratchpad fix it) reached 24/345 and was stopped.** Early signal only,
+    too small to quote: thinking got `dec2` angles right where thinking-off scored 3.0%, but ran
+    to the 2048-token cap in 4 of the first 6, and `sin(4.14°)` came back **2.56** — outside
+    sine's range. **Non-termination is a distinct failure mode from being wrong**, and the morning
+    design separates them.
+  - **MORNING PLAN (in `mathematics/experiments.md`): full 1° sweep, thinking ON, TWO passes** —
+    pass 1 all 1080 at a 512-token cap; pass 2 re-asks only the truncated rows at 4096 in their
+    own batches. Pairs within-angle against condition A already on disk, and the tabulation
+    gradient under thinking falls out of the same data for free. ~50 min ≈ $1.30 (treat as a
+    floor). Keep the variants question for a separate session — it is the expensive half.
+  - **Three of Claude's errors tonight, all journaled:** (a) the "preflight memory estimate wrong
+    by 23 GB" self-criticism was ITSELF wrong — KV at batch 24×2048 is **1.61 GB**, the original
+    estimate; 80.4 GB was `nvidia-smi` **reserved**, and the same run with
+    `expandable_segments:True` sits at **52 GB**, measured. (b) `pkill -f run2.sh` over SSH killed
+    its own shell silently (the pattern matched the ssh command line), leaving an orphan and
+    losing the script that held the remaining stages — diagnose by PID. (c) cost estimate wrong in
+    the same direction twice: a generation-time estimate must be anchored to the HARDEST inputs,
+    and a batch costs as much as its slowest member.
+  - `mathematics/` is committed (`a5c6bac`); activation tensors stay gitignored (718 MB > GitHub's
+    100 MB limit, regenerable in ~90 s).
+
+  **Next (morning): the two-pass full thinking sweep, then the extensive discussion I asked for.
+  HF token STILL not rotated.**

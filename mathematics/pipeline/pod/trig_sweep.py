@@ -55,14 +55,20 @@ def main():
     ap.add_argument("--out", default="/root/out/trig")
     ap.add_argument("--cond", default="off", choices=["off", "on"])
     ap.add_argument("--step", type=int, default=1)
+    ap.add_argument("--degrees", default=None,
+                    help="explicit comma-separated angle list, overrides --step. Used for the "
+                         "stratified tabulation sample (equal numbers of mult-15 / mult-5 / even "
+                         "/ odd angles) so the tabulation gradient can be measured under thinking "
+                         "without paying for a full 1-degree sweep.")
     ap.add_argument("--batch", type=int, default=48)
     ap.add_argument("--max-new-tokens", type=int, default=24)
     ap.add_argument("--acts", action="store_true", help="cache the residual stream at all depths")
+    ap.add_argument("--tag", default=None, help="name for a --degrees run")
     ap.add_argument("--dtype", default="bfloat16")
     ap.add_argument("--device", default="cuda" if torch.cuda.is_available() else "cpu")
     a = ap.parse_args()
     os.makedirs(a.out, exist_ok=True)
-    tag = f"{a.cond}_step{a.step}"
+    tag = f"{a.cond}_step{a.step}" if not a.degrees else f"{a.cond}_{a.tag or 'degs'}"
     jsonl = os.path.join(a.out, f"results_{tag}.jsonl")
     done = set()
     if os.path.exists(jsonl):                      # resume: never redo paid work
@@ -71,8 +77,9 @@ def main():
             except Exception: pass
         log(f"resuming: {len(done)} already on disk")
 
-    tasks = [(fn, d) for d in range(0, 360, a.step) for fn in ("sin", "cos", "tan")
-             if (fn, d) not in done]
+    degs = ([int(x) for x in a.degrees.split(",") if x.strip()] if a.degrees
+            else list(range(0, 360, a.step)))
+    tasks = [(fn, d) for d in degs for fn in ("sin", "cos", "tan") if (fn, d) not in done]
     log(f"{len(tasks)} asks to do, condition '{a.cond}', step {a.step} deg")
 
     from transformers import AutoTokenizer, AutoConfig
@@ -154,7 +161,8 @@ def main():
                   open(os.path.join(a.out, f"acts_index_{tag}_{k}.json"), "w"))
         log(f"ACTS saved {A.shape} -> acts_{tag}_{k}.npy (rows align with acts_index_{tag}_{k}.json)")
     log(f"DONE {tag} in {(time.time()-t_start)/60:.1f} min"
-        + (f", peak VRAM {torch.cuda.max_memory_allocated()/1e9:.1f} GB" if a.device == "cuda" else ""))
+        + (f", peak ALLOCATED {torch.cuda.max_memory_allocated()/1e9:.1f} GB"
+           f" / reserved {torch.cuda.max_memory_reserved()/1e9:.1f} GB" if a.device == "cuda" else ""))
 
 if __name__ == "__main__":
     main()

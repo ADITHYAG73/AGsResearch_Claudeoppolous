@@ -751,6 +751,24 @@ safety net held where the estimate failed. Had the run written once at the end �
 `2 × layers × kv_heads × head_dim × seq × batch × dtype_bytes`, do not eyeball it, and on a hybrid
 count only the full-attention layers' growth.
 
+> **[CORRECTED 2026-09-23, and the correction is the point.] The explanation above is WRONG, and
+> it was written from plausibility rather than measurement — the exact failure the standing rules
+> forbid.** Doing the arithmetic from this project's own `arch.txt` (64 layers, kv_heads **4**,
+> head_dim 128, full attention on every 4th layer = **16 of 64**):
+> `2 × 4 × 128 × 2 B = 2 KB` per token per full-attention layer → **32 KB/token** → at batch 24 ×
+> 2048 tokens = **1.61 GB**. That is essentially the ~1.5 GB the preflight originally guessed.
+> **The KV estimate was right all along.**
+> The 80.4 GB came from `nvidia-smi`, which reports **reserved** memory — PyTorch's caching
+> allocator holding freed blocks — not allocated memory. The one *allocated* figure this run
+> actually recorded is `peak VRAM 54.0 GB` (`torch.cuda.max_memory_allocated`, batch-1 control),
+> i.e. about the 53.8 GB of weights and little else. The batch-24 figure was lost because the
+> double-launch mangled `trig.log`.
+> **So the real preflight lessons are:** (a) `nvidia-smi` is not the memory a preflight should be
+> scored against — instrument `torch.cuda.max_memory_allocated`; (b) on a 248k-vocab model the
+> non-KV term worth counting is the prefill logits, `[batch, seq, vocab]`, ≈ **1.8 GB** at batch 24;
+> (c) when reserved memory approaches the card, pass
+> `PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True` — the OOM message says so itself.
+
 ### CONDITION B — thinking on. The traces show the mechanism, and it is not one mechanism.
 **~99% exact to 5 dp** against condition A's 68.9% (final n pending; the paired same-angle
 comparison is the number to quote, not these two marginals, because B ran a 5° grid).
@@ -941,3 +959,133 @@ understates the bar. The tenths digit is NOT uniform — digit 9 takes 222 of 10
 These activations were captured inside batches of 48. The accuracy trend across depth is very
 unlikely to be an artifact of that, but any number here should be re-measured at `--batch 1`
 (~90 s of A100) before it is load-bearing in a write-up.
+
+---
+
+## TRIG-02 — does the scratchpad actually make it a calculator?
+**Why this run exists.** TRIG-01's condition B scored 213/213 and Claude reported it as "thinking
+on: 100%". That number is close to meaningless on its own: **condition B ran a 5° grid, i.e.
+multiples of 5 — the single most heavily tabulated set of angles there is.** The tabulation
+gradient measured afterwards (94.3% mult-15 → 60.9% odd) says that grid is the easy end of the
+distribution. So the 100% may be the scratchpad computing, or it may be the same retrieval that
+already gets multiples of 5 right 87.9% of the time without any scratchpad at all.
+**Thinking was never tested on a single input where thinking-off failed.** That is the gap.
+
+**Two parts, both thinking ON, both paired against data already on disk:**
+1. **Variants** — `int/half/dec2/over360/neg`, base angles 0..89 stride 4 (23 bases), 345 asks.
+   Directly paired with TRIG-01b's thinking-off numbers (95.9 / 70.7 / 3.0 / 4.4 / 98.5).
+   The RNG is drawn for every base angle regardless of stride, so each base's `dec2` offset is
+   **identical** to the stride-1 run — same question, same angle, both conditions.
+2. **Tabulation** — 48 angles across the full cycle, **12 from each tabulation class**
+   (mult-15 / mult-5 / even / odd), 144 asks, seed 20260923. Paired against condition A's
+   94.3 / 84.7 / 67.6 / 60.9.
+
+**What each outcome would mean, written before the run:**
+- `dec2` rises from 3.0% toward the control → the scratchpad supplies precision the forward pass
+  lacks; the model has a real calculator it can only use serially.
+- `dec2` stays near 3.0% → chain of thought does not add precision; five decimals on an
+  untabulated angle is simply beyond it, with or without a scratchpad.
+- `over360` rises from 4.4% → the reduction step exists but needs to be written down.
+- **The tabulation gradient FLATTENS → the scratchpad substitutes computation for recall.** This
+  is the sharpest of the four, because the gradient is the strongest evidence for retrieval.
+- The gradient **persists** → even with a scratchpad, the answer still comes from memory.
+
+### Rule-7 preflight (second pass — the first one's memory answer was wrong; see the correction above)
+1. **Progress lines?** Yes — per batch, count + rate + ETA, in both scripts.
+2. **Incremental checkpoints?** Yes — one JSON line per ask, flushed per batch, and both scripts
+   skip `(fn, variant, asked)` / `(fn, deg)` pairs already on disk, so a kill costs one batch.
+3. **Memory, computed not eyeballed this time.** From this project's `arch.txt`: 64 layers,
+   kv_heads 4, head_dim 128, full attention on 16 of 64 layers.
+   KV `= 2 × 4 × 128 × 2 B = 2 KB` per token per full-attn layer → **32 KB/token** →
+   batch 24 × 2048 tok = **1.61 GB**. Weights **53.8 GB**. Prefill logits
+   `[24, ~74, 248320]` fp32 ≈ **1.8 GB**. **Expected peak allocated ≈ 58 GB of 79.3.**
+   `nvidia-smi` will read far higher because it reports *reserved*; the scripts now log
+   `max_memory_allocated` **and** `max_memory_reserved` so the next preflight can be scored
+   against the right number. `PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True` is set, as the
+   earlier OOM message itself recommended.
+4. **Killed at 80%?** Every answer up to the last flush survives and the run resumes from them.
+   No activations this time, so there is no write-once artifact to lose.
+
+**Cost line.** 489 asks × up to 2048 new tokens. TRIG-01's condition B ran 216 thinking asks in
+~15 min ⇒ **0.24 asks/s** measured, so 489 ⇒ **~34 min**, plus ~10 min for pod create and the
+52 GB download (110 MB/s measured in US-MO-1, half the 212 MB/s the journal records for EU-RO-1).
+**~45 min at the pod's real $1.59/hr ⇒ ~$1.20.** Opening balance **$49.55**.
+
+### TRIG-02 in flight — two things worth recording before the numbers land
+**Memory correction CONFIRMED by measurement, not argument.** Same model, same batch 24, same
+2048-token budget as TRIG-01's condition B, with `PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True`
+exported inside the run script: **52.4 GB** where the previous pod read **80.4 GB**. That settles
+it — the earlier figure was PyTorch's caching allocator holding freed blocks, reported by
+`nvidia-smi` as reserved. The KV cache really is ~1.6 GB and the original preflight estimate was
+right. (Also noted: an env var set in the RunPod create call does NOT reach a non-login SSH shell —
+`alloc_conf=None` when checked that way. Export it inside the script.)
+
+**A design problem that is also a finding.** On `dec2` (untabulated angles) thinking runs to the
+**full 2048-token budget** in most cases — 4 of the first 6. The failures are not near-misses:
+`sin(4.14°)` came back **2.56**, which is outside sine's range entirely. So the model launches a
+long serial numerical method and frequently fails to terminate. Consequences:
+- Truncated rows are excluded from accuracy (they are not answers), so the **truncation rate is
+  itself a headline number**: how often its own method fails to finish inside a generous budget.
+- **The cost estimate was wrong again, in the same direction.** Measured ETA for Part 1 alone is
+  **53 min** against the ~34 min budgeted for both parts. The rate was taken from condition B
+  where median generation was 190 tokens; these inputs run an order of magnitude longer.
+  Realistic total **$2.0–2.5** against the **$1.20** preflight. **Lesson: a generation-time
+  estimate must be anchored to the HARDEST inputs in the run, not the median of a previous run on
+  easier ones.** Decision taken: let it run rather than cut n, because the early signal on the
+  most interesting variant is large and a thin sample would waste the whole run.
+
+**Early signal (n tiny, do not quote):** thinking is getting `dec2` right where thinking-off
+scored 3.0% — sin(0.93°), cos(0.93°), cos(4.14°) all exact to 5 dp. If that holds, the reading
+is the first of the four pre-registered ones: **a real calculator exists and has to be run
+serially.**
+
+### Two infra lessons from the TRIG-02 restructure (both Claude's errors)
+**1. `pkill -f <pattern>` run over SSH can kill its own shell, silently.** The command
+`pkill -f run2.sh; pkill -f trig_variants.py; <relaunch>` returned **no output at all** and
+changed nothing. Cause: the SSH session's own `bash -c` carries the whole command string in its
+`/proc/<pid>/cmdline`, so `-f` matched it and pkill killed the shell before the relaunch line ran.
+The target process survived, orphaned to PPID 1, and its parent script — which held the remaining
+two stages — was gone, so those stages would never have run. **Diagnose by PID
+(`ps -eo pid,ppid,etimes,args`) and `kill -9 <pid>`; never `pkill -f` a pattern that appears in
+the command you are typing.** The empty output was the only symptom.
+
+**2. In a batched generation run, a batch costs as much as its SLOWEST member.** Part 1 mixed
+`dec2` (runs to the 2048-token cap) with `int`/`half`/`over360`/`neg` (70–300 tokens). Every batch
+therefore ran the full 2048 decode steps, dragging 276 fast asks to the slow variant's speed:
+measured **4 min/batch, ETA 53 min**. Splitting the run into a fast pass (4 variants) and an
+isolated `dec2` pass costs the same tokens but should cut wall-clock by roughly 3×.
+**Generalises: group work by expected generation length, not by logical grouping.** The resume
+logic made the restructure free — the 24 rows already paid for were kept and skipped.
+
+### TRIG-02 STOPPED BY AG — restart clean in the morning as a FULL thinking sweep
+AG called it at 24/345 (~01:06 IST): *"can we do this from scratch in the morning… we will repeat
+this thinking one full sweep like we will start over again."* Pod `yxvt7orso7heyd` terminated,
+**zero pods confirmed**, watchdog and all local poll loops killed. The 24 rows are kept in
+`mathematics/runs/2026-09-22_trig02_partial/` (not analysed — n is far too small to read, and the
+restructure means they came from a mixed-variant batching that the morning run will not use).
+
+**What tonight established that the morning design should keep:**
+- Batch cost = the SLOWEST member. Separate work by expected generation length.
+- `expandable_segments:True` holds batch-24 × 2048 at **52 GB**, not 80 GB.
+- Never `pkill -f` a pattern contained in the command being typed.
+- A generation-time estimate must be anchored to the HARDEST inputs, not a previous run's median.
+
+**DESIGN FOR THE MORNING — full 1° sweep, thinking ON, as a TWO-PASS run.** This is the fix for
+the cost blow-up, and it is better science as well as cheaper:
+- **Pass 1** — all 1080 asks at a **512-token cap**, batch 32. Condition B's median was 190
+  tokens, so most terminate. Rows that hit the cap are recorded as truncated, not as answers.
+- **Pass 2** — re-ask ONLY the truncated rows at a **4096-token cap**, in their own batches, so
+  the long ones no longer drag the short ones. Resume logic already skips completed rows, so
+  pass 2 needs no new code beyond a `--only-truncated` selector.
+- **Why this is better than one big pass:** it measures the thing tonight could not — *how many
+  angles the model cannot finish reasoning about at all*, separately from *how many it finishes
+  and gets wrong*. Tonight's `sin(4.14°) → 2.56` (outside sine's range) says non-termination is a
+  real and distinct failure mode, not a budget nuisance.
+- **Estimate, anchored to tonight's MEASURED rates:** pass 1 ≈ 34 batches × ~35 s ≈ 20 min;
+  pass 2 ≈ 20 min if ~10% truncate; setup ~10 min ⇒ **~50 min ≈ $1.30**. Treat as a floor, since
+  tonight's estimate was wrong in this direction twice.
+- **Pair it against:** condition A's full 1° sweep (1080 asks, thinking off, already on disk), so
+  every angle is compared within-angle. The tabulation gradient under thinking then comes free
+  from the same data — no separate stratified sample needed, which was tonight's Part 2.
+- Keep the variants question (`dec2` / `over360` under thinking) as a SECOND, separate session —
+  tonight showed it is the expensive half, and mixing the two is what blew the budget.

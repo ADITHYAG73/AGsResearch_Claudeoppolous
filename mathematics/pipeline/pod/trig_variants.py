@@ -63,6 +63,11 @@ def main():
     ap.add_argument("--model", default="/root/models/Qwen3.8-27B")
     ap.add_argument("--out", default="/root/out/trig")
     ap.add_argument("--max-deg", type=int, default=90, help="base angles 0..max-deg-1 (Q1)")
+    ap.add_argument("--base-stride", type=int, default=1,
+                    help="subsample base angles; the RNG is still keyed to the full 0..max-deg "
+                         "sequence so dec2 offsets match a stride-1 run exactly (paired design)")
+    ap.add_argument("--variants", default="int,half,dec2,over360,neg")
+    ap.add_argument("--thinking", default="off", choices=["off", "on"])
     ap.add_argument("--batch", type=int, default=48)
     ap.add_argument("--max-new-tokens", type=int, default=24)
     ap.add_argument("--seed", type=int, default=20260922)
@@ -83,13 +88,22 @@ def main():
             except Exception: pass
         log(f"resuming: {len(done)} already on disk")
 
+    want = [v.strip() for v in a.variants.split(",") if v.strip()]
     tasks = []
+    n_base = 0
     for d in range(a.max_deg):
-        for name, asked, equiv in variants(d, rng):
+        # draw for EVERY d so the dec2 offset for a given base angle is identical whatever the
+        # stride - a strided run is then exactly paired with the stride-1 run already on disk
+        vs = variants(d, rng)
+        if d % a.base_stride: continue
+        n_base += 1
+        for name, asked, equiv in vs:
+            if name not in want: continue
             for fn in ("sin", "cos", "tan"):
                 if (fn, name, asked) not in done:
                     tasks.append((fn, name, asked, equiv, d))
-    log(f"{len(tasks)} asks to do ({a.max_deg} base angles x 5 variants x 3 functions)")
+    log(f"{len(tasks)} asks to do ({n_base} base angles x {len(want)} variants x 3 functions), "
+        f"thinking={a.thinking}")
 
     from transformers import AutoTokenizer
     tok = AutoTokenizer.from_pretrained(a.model); tok.padding_side = "left"
@@ -103,7 +117,8 @@ def main():
     for b0 in range(0, len(tasks), a.batch):
         chunk = tasks[b0:b0 + a.batch]
         texts = [tok.apply_chat_template([{"role": "user", "content": prompt_for(fn, asked)}],
-                 add_generation_prompt=True, tokenize=False, enable_thinking=False)
+                 add_generation_prompt=True, tokenize=False,
+                 enable_thinking=(a.thinking == "on"))
                  for fn, _, asked, _, _ in chunk]
         enc = tok(texts, return_tensors="pt", padding=True).to(a.device)
         with torch.no_grad():
@@ -118,7 +133,9 @@ def main():
                 "fn": fn, "variant": name, "asked": asked, "equiv": equiv, "base_deg": base,
                 "raw": raw, "value": val, "decimals": dp, "truth": tv, "pole": tv is None,
                 "abs_err": (abs(val - tv) if (val is not None and tv is not None) else None),
-                "format_ok": dp == 5}) + "\n")
+                "format_ok": dp == 5, "thinking": a.thinking,
+                "n_gen_tokens": int((row != tok.pad_token_id).sum()),
+                "text": text[:4000] if a.thinking == "on" else None}) + "\n")
         f.flush(); n += len(chunk)
         r = n / max(1e-9, time.time() - t_start)
         log(f"  {n}/{len(tasks)} done · {r:.1f} asks/s · eta {(len(tasks)-n)/max(r,1e-9)/60:.1f} min")

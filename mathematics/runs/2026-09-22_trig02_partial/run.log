@@ -1,0 +1,11 @@
+19:28:31 weights ready; alloc_conf=expandable_segments:True
+=== PART 1: variants, THINKING ON (345 asks, paired with thinking-off on disk) ===
+19:28:33 345 asks to do (23 base angles x 5 variants x 3 functions), thinking=on
+Loading weights:   0%|          | 0/851 [00:00<?, ?it/s]Loading weights:  90%|████████▉ | 764/851 [00:00<00:00, 7625.23it/s]Loading weights: 100%|██████████| 851/851 [00:00<00:00, 7761.27it/s]
+19:28:51 LOAD OK in 11s
+19:32:50   24/345 done · 0.1 asks/s · eta 53.1 min
+19:35:46 === FAST variants (int,half,over360,neg) — these terminate in <300 tokens ===
+19:35:48 resuming: 24 already on disk
+19:35:48 258 asks to do (23 base angles x 4 variants x 3 functions), thinking=on
+Loading weights:   0%|          | 0/851 [00:00<?, ?it/s]Loading weights:  95%|█████████▌| 809/851 [00:00<00:00, 8077.14it/s]Loading weights: 100%|██████████| 851/851 [00:00<00:00, 8125.94it/s]
+19:36:06 LOAD OK in 11s

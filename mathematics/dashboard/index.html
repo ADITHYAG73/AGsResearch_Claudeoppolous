@@ -1,0 +1,569 @@
+<title>Trig Against the Calculator</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Sans+Condensed:wght@600&display=swap">
+<style>
+:root{
+  --ground:#f5f6f4; --surface:#ffffff; --surface2:#eef0ed;
+  --ink:#1a2025; --muted:#5f6b73; --line:#dce0dc; --line2:#c6ccc6;
+  --accent:#3f5e8c; --accent-soft:#e6ebf3;
+  --exact:#157f4a; --exact-bg:#e4f2e9;
+  --close:#a87813; --close-bg:#f7efdc;
+  --wrong:#b0413a; --wrong-bg:#f8e6e4;
+  --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+  --sans:"IBM Plex Sans",system-ui,-apple-system,sans-serif;
+  --cond:"IBM Plex Sans Condensed","IBM Plex Sans",system-ui,sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --ground:#11161a; --surface:#1a2126; --surface2:#222b31;
+  --ink:#e6ebee; --muted:#93a1a9; --line:#2a333a; --line2:#3a454d;
+  --accent:#7fa3d6; --accent-soft:#1e2a3a;
+  --exact:#4cc38a; --exact-bg:#16301f;
+  --close:#e3b04b; --close-bg:#33280f;
+  --wrong:#f07a72; --wrong-bg:#3a1c19;
+}}
+:root[data-theme="dark"]{
+  --ground:#11161a; --surface:#1a2126; --surface2:#222b31;
+  --ink:#e6ebee; --muted:#93a1a9; --line:#2a333a; --line2:#3a454d;
+  --accent:#7fa3d6; --accent-soft:#1e2a3a;
+  --exact:#4cc38a; --exact-bg:#16301f;
+  --close:#e3b04b; --close-bg:#33280f;
+  --wrong:#f07a72; --wrong-bg:#3a1c19;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--sans);
+     font-size:14px;line-height:1.5;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1180px;margin:0 auto;padding-inline:16px;padding-block:28px 64px}
+h1{font-family:var(--cond);font-size:clamp(26px,4.4vw,40px);line-height:1.08;margin:0 0 6px;
+   letter-spacing:-.015em;text-wrap:balance}
+.sub{color:var(--muted);max-width:66ch;margin:0 0 18px}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:26px}
+.chip{font-family:var(--mono);font-size:11px;padding:3px 8px;border:1px solid var(--line);
+      border-radius:3px;color:var(--muted);background:var(--surface)}
+
+/* verdict band */
+.verdict{background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--wrong);
+         border-radius:4px;padding:18px 20px;margin-bottom:26px}
+.verdict .q{font-size:12px;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);
+            font-weight:600;margin-bottom:6px}
+.verdict .a{font-size:clamp(17px,2.4vw,21px);font-weight:600;line-height:1.35;text-wrap:balance}
+.verdict p{margin:10px 0 0;color:var(--muted);max-width:74ch}
+.verdict b{color:var(--ink);font-family:var(--mono);font-weight:600}
+
+/* tiles */
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;
+       background:var(--line);border:1px solid var(--line);border-radius:4px;overflow:hidden;
+       margin-bottom:30px}
+.tile{background:var(--surface);padding:14px 16px}
+.tile .k{font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);
+         font-weight:600;margin-bottom:7px}
+.tile .v{font-family:var(--mono);font-size:25px;font-weight:600;font-variant-numeric:tabular-nums;
+         line-height:1}
+.tile .n{font-size:11.5px;color:var(--muted);margin-top:5px;font-family:var(--mono)}
+
+h2{font-family:var(--cond);font-size:20px;margin:0 0 4px;letter-spacing:-.01em}
+.note{color:var(--muted);font-size:13px;margin:0 0 14px;max-width:72ch}
+section{margin-bottom:34px}
+
+/* tabs */
+.tabs{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:14px;border-bottom:1px solid var(--line)}
+.tab{appearance:none;background:none;border:none;border-bottom:2px solid transparent;
+     font:600 13px/1 var(--sans);color:var(--muted);padding:9px 12px;cursor:pointer}
+.tab[aria-selected="true"]{color:var(--accent);border-bottom-color:var(--accent)}
+.tab:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:3px}
+
+/* controls */
+.ctrls{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:12px}
+.seg{display:flex;border:1px solid var(--line2);border-radius:4px;overflow:hidden}
+.seg button{appearance:none;background:var(--surface);border:none;border-right:1px solid var(--line);
+  font:500 12px/1 var(--mono);color:var(--muted);padding:7px 11px;cursor:pointer}
+.seg button:last-child{border-right:none}
+.seg button[aria-pressed="true"]{background:var(--accent);color:#fff}
+.seg button:focus-visible{outline:2px solid var(--accent);outline-offset:-2px}
+input[type=search]{font:400 13px var(--sans);padding:7px 10px;border:1px solid var(--line2);
+  border-radius:4px;background:var(--surface);color:var(--ink);min-width:150px}
+input[type=search]:focus-visible{outline:2px solid var(--accent);outline-offset:-1px}
+.count{font-family:var(--mono);font-size:12px;color:var(--muted);margin-left:auto}
+
+/* table */
+.tbox{border:1px solid var(--line);border-radius:4px;overflow:auto;max-height:560px;
+      background:var(--surface)}
+table{border-collapse:collapse;width:100%;font-size:13px}
+thead th{position:sticky;top:0;background:var(--surface2);text-align:left;font-weight:600;
+  font-size:11px;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);
+  padding:9px 12px;border-bottom:1px solid var(--line2);white-space:nowrap;cursor:pointer;z-index:2}
+thead th:focus-visible{outline:2px solid var(--accent);outline-offset:-2px}
+thead th .ar{opacity:.45;font-size:9px}
+td{padding:7px 12px;border-bottom:1px solid var(--line);white-space:nowrap}
+tbody tr:last-child td{border-bottom:none}
+tbody tr:hover td{background:var(--surface2)}
+.num{font-family:var(--mono);font-variant-numeric:tabular-nums;text-align:right}
+.fn{font-family:var(--mono);font-weight:600;color:var(--accent)}
+.pill{display:inline-block;font:600 10.5px/1 var(--mono);padding:3px 7px;border-radius:3px;
+      letter-spacing:.03em}
+.p-exact{background:var(--exact-bg);color:var(--exact)}
+.p-close{background:var(--close-bg);color:var(--close)}
+.p-wrong{background:var(--wrong-bg);color:var(--wrong)}
+.p-note{background:var(--surface2);color:var(--muted)}
+.diffmark{color:var(--wrong);font-weight:600}
+.empty{padding:26px;text-align:center;color:var(--muted);font-size:13px}
+
+/* charts */
+.chartbox{border:1px solid var(--line);border-radius:4px;background:var(--surface);padding:14px}
+canvas{display:block;width:100%;height:auto;max-width:100%}
+.legend{display:flex;flex-wrap:wrap;gap:14px;margin-top:10px;font-size:12px;color:var(--muted)}
+.legend i{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:5px;
+          vertical-align:middle}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(310px,1fr));gap:18px}
+
+/* bars */
+.bars{display:flex;flex-direction:column;gap:9px}
+.bar{display:grid;grid-template-columns:132px 1fr 54px;gap:10px;align-items:center;font-size:12.5px}
+.bar .lab{color:var(--muted);text-align:right}
+.bar .track{background:var(--surface2);border-radius:2px;height:19px;position:relative;
+            overflow:hidden;border:1px solid var(--line)}
+.bar .fill{height:100%;border-radius:1px}
+.bar .pct{font-family:var(--mono);font-variant-numeric:tabular-nums;font-weight:600;font-size:12px}
+
+.flag{border:1px solid var(--line);border-left:3px solid var(--close);background:var(--surface);
+      border-radius:4px;padding:12px 14px;margin-top:14px;font-size:13px;color:var(--muted)}
+.flag b{color:var(--ink)}
+footer{border-top:1px solid var(--line);padding-top:16px;color:var(--muted);font-size:12px;
+       margin-top:40px}
+footer code{font-family:var(--mono);font-size:11.5px;background:var(--surface2);padding:1px 5px;
+            border-radius:3px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+
+<div class="wrap">
+  <h1>Trig Against the Calculator</h1>
+  <p class="sub">Qwen3.8-27B was asked for sin, cos and tan across a full cycle in degrees, to
+  exactly five decimal places, and every answer scored against Python's <code>math</code> in
+  double precision. Mathematics is verifiable rewards.</p>
+  <div class="chips" id="chips"></div>
+
+  <div class="verdict">
+    <div class="q">Is it accurate like a scientific calculator?</div>
+    <div class="a">No. One answer in three is wrong with no scratchpad, and the way it fails is
+    not how arithmetic fails.</div>
+    <p>Ask for <b>sin(361°)</b> and it returns <b>0.62932</b> — which is <b>sin(39°)</b>, exactly.
+    A wrong calculation lands on an arbitrary number near the right one; this lands on a crisp
+    table entry for the wrong angle. Ask for an angle no table covers, <b>sin(37.87°)</b>, and it
+    gets three decimals right and the fourth wrong. Retrieval supplies the fifth decimal; its own
+    arithmetic is worth about three.</p>
+  </div>
+
+  <div class="tiles" id="tiles"></div>
+
+  <section>
+    <h2>Model answer vs calculator answer</h2>
+    <p class="note">Every ask, side by side with the true value and the absolute error. Sort any
+    column; filter to just the failures. <b>Exact</b> means correct to the fifth decimal, which is
+    what the prompt demanded.</p>
+    <div class="tabs" role="tablist" id="tabs"></div>
+    <div class="ctrls">
+      <div class="seg" id="fnseg"></div>
+      <div class="seg" id="vseg"></div>
+      <input type="search" id="q" placeholder="angle, e.g. 37" aria-label="filter by angle">
+      <span class="count" id="count"></span>
+    </div>
+    <div class="tbox"><table><thead id="thead"></thead><tbody id="tbody"></tbody></table>
+      <div class="empty" id="empty" hidden>Nothing matches these filters.</div>
+    </div>
+    <div class="flag" id="tabnote"></div>
+  </section>
+
+  <section>
+    <h2>Error across the cycle</h2>
+    <p class="note">Absolute error per angle, thinking off, log scale. The dashed line is the
+    five-decimal tolerance — anything below it counts as exact. Accuracy falls away through the
+    later quadrants, and tan breaks down worst near its poles at 90° and 270°.</p>
+    <div class="chartbox">
+      <canvas id="scatter" width="1120" height="380"></canvas>
+      <div class="legend">
+        <span><i style="background:var(--exact)"></i>sin</span>
+        <span><i style="background:var(--close)"></i>cos</span>
+        <span><i style="background:var(--wrong)"></i>tan</span>
+        <span>— — 5-decimal tolerance</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="grid2">
+    <section>
+      <h2>Accuracy tracks the trig table</h2>
+      <p class="note">Thinking off, split by how often an angle appears in a printed table. No
+      account in which the model <em>computes</em> makes sin(35°) easier than sin(34°) — the
+      arithmetic is identical. An account in which it <em>remembers</em> predicts exactly this.</p>
+      <div class="chartbox"><div class="bars" id="tabbars"></div></div>
+    </section>
+    <section>
+      <h2>Two different failures</h2>
+      <p class="note">Of the answers that are wrong, how many are still an <em>exact</em>
+      five-decimal value of that function at some <em>other</em> angle? A broken lookup returns a
+      crisp entry for the wrong key. A broken computation does not.</p>
+      <div class="chartbox"><div class="bars" id="dissbars"></div></div>
+    </section>
+  </div>
+
+  <section>
+    <h2>Where the answer lives inside the model</h2>
+    <p class="note">A linear probe reading the first decimal digit of the answer off the residual
+    stream at the <em>last prompt token</em> — before a single character is generated. Baseline is
+    20.6%, the majority-class rate, not 10%: the digit 9 is over-represented because |sin| and
+    |cos| pile up near 1.0.</p>
+    <div class="chartbox">
+      <canvas id="probe" width="1120" height="300"></canvas>
+      <div class="legend">
+        <span><i style="background:var(--accent)"></i>digit the model went on to say</span>
+        <span><i style="background:var(--muted)"></i>shuffled-label control</span>
+        <span>— — majority-class baseline 20.6%</span>
+      </div>
+    </div>
+    <div class="flag"><b>What this does not show:</b> that it knew better than it said. The true
+    and said digits agree on 80.3% of rows, so the probe cannot separate those two, and the
+    wrong-only subset is too small to train on. These activations also came from batches of 48,
+    and the last-token residual is not invariant to batch padding.</div>
+  </section>
+
+  <footer id="foot"></footer>
+</div>
+
+<script src="data.js"></script>
+<script>
+(function(){
+  var D = window.TRIG, M = D.meta;
+  var TOL = 5e-6, CLOSE = 1e-3;
+  var $ = function(id){ return document.getElementById(id); };
+  var css = function(n){ return getComputedStyle(document.documentElement).getPropertyValue(n).trim(); };
+
+  /* ---------- header chips ---------- */
+  $('chips').innerHTML = [
+    M.model, M.gpu, M.date, '1080 + 216 + 1350 asks',
+    'activations ' + M.acts, '$' + M.cost.toFixed(2)
+  ].map(function(t){ return '<span class="chip">'+t+'</span>'; }).join('');
+
+  /* ---------- helpers ---------- */
+  function finite(rows){ return rows.filter(function(r){ return !r.p && r.m !== null && r.c !== null; }); }
+  function rate(rows, tol){
+    var f = finite(rows); if(!f.length) return 0;
+    var k = f.filter(function(r){ return r.e <= tol; }).length;
+    return 100*k/f.length;
+  }
+  function fmt(v, dp){
+    if(v === null || v === undefined) return '—';
+    return Number(v).toFixed(dp === undefined ? 5 : dp);
+  }
+  function verdict(r){
+    if(r.p) return ['p-note','pole'];
+    if(r.m === null) return ['p-note','no number'];
+    if(r.t) return ['p-note','truncated'];
+    if(r.e <= TOL) return ['p-exact','exact'];
+    if(r.e <= CLOSE) return ['p-close','close'];
+    return ['p-wrong','wrong'];
+  }
+
+  /* ---------- tiles ---------- */
+  var Afin = finite(D.A);
+  var Bfin = finite(D.B).filter(function(r){ return !r.t; });
+  var tanA = Afin.filter(function(r){ return r.f === 'tan'; });
+  var dec2 = finite(D.V).filter(function(r){ return r.v === 'dec2'; });
+  var o360 = finite(D.V).filter(function(r){ return r.v === 'over360'; });
+  var tiles = [
+    ['Exact to 5 dp, no scratchpad', rate(D.A,TOL).toFixed(1)+'%', Afin.length+' asks, full 1° sweep'],
+    ['tan alone', rate(tanA,TOL).toFixed(1)+'%', 'the hardest of the three'],
+    ['With thinking on', rate(Bfin,TOL).toFixed(1)+'%', Bfin.length+' asks — but a 5° grid'],
+    ['Untabulated angle, e.g. 37.87°', rate(dec2,TOL).toFixed(1)+'%',
+       rate(dec2,CLOSE).toFixed(1)+'% correct to 3 dp'],
+    ['Shifted past 360°', rate(o360,TOL).toFixed(1)+'%', 'same answer as the control']
+  ];
+  $('tiles').innerHTML = tiles.map(function(t){
+    return '<div class="tile"><div class="k">'+t[0]+'</div><div class="v">'+t[1]+
+           '</div><div class="n">'+t[2]+'</div></div>';
+  }).join('');
+
+  /* ---------- table ---------- */
+  var TABS = [
+    {id:'A', label:'1° sweep — thinking off',
+     note:'<b>The headline run.</b> 1,080 asks, one forward pass each, no scratchpad. Two poles (tan 90°, tan 270°) have no finite value and are marked as such.'},
+    {id:'B', label:'Thinking on',
+     note:'<b>Read this one carefully.</b> 213 of 213 exact — but this ran on a 5° grid, i.e. multiples of 5, the most heavily tabulated angles there are. Thinking was never tested at 1° steps, on fractional degrees, or past 360°. One row is excluded as truncated: tan(95°) reasoned correctly to −11.430052 and then hit the 2048-token budget.'},
+    {id:'V', label:'Recall vs computation',
+     note:'<b>The discriminating run.</b> Each base angle asked five ways. <code>over360</code> and <code>neg</code> have the <em>same correct answer</em> as the control, so a drop there isolates the reduction step rather than the function. The <b>matches</b> column names the angle whose exact value the model returned instead.'},
+    {id:'CTRL', label:'Batching control',
+     note:'<b>Does batching change the answers?</b> The same 90 asks run alone and inside a batch of 48. 87 of 90 are identical, and the three that differ are all tan values the model already had wrong. Accuracy is 77.8% either way.'}
+  ];
+  var COLS = {
+    A:[['f','function','fn'],['d','angle','num'],['raw','model said','num'],
+       ['c','calculator','num'],['e','abs error','num'],['v','verdict','']],
+    V:[['f','function','fn'],['v','variant',''],['a','asked','num'],['raw','model said','num'],
+       ['c','calculator','num'],['e','abs error','num'],['k','matches','num'],['vd','verdict','']],
+    CTRL:[['f','function','fn'],['d','angle','num'],['b1','alone','num'],
+          ['b48','in a batch of 48','num'],['c','calculator','num'],['same','identical','']]
+  };
+  COLS.B = COLS.A;
+
+  var state = {tab:'A', fn:'all', vr:'all', q:'', sort:null, dir:1};
+
+  $('tabs').innerHTML = TABS.map(function(t){
+    return '<button class="tab" role="tab" data-t="'+t.id+'" aria-selected="'+(t.id===state.tab)+'">'+
+           t.label+'</button>';
+  }).join('');
+  $('tabs').addEventListener('click', function(e){
+    var b = e.target.closest('.tab'); if(!b) return;
+    state.tab = b.dataset.t; state.sort = null; state.q = ''; $('q').value='';
+    state.fn='all'; state.vr='all';
+    Array.prototype.forEach.call($('tabs').children, function(c){
+      c.setAttribute('aria-selected', String(c.dataset.t === state.tab));
+    });
+    build();
+  });
+
+  function segHTML(id, items, cur){
+    return items.map(function(v){
+      return '<button data-'+id+'="'+v[0]+'" aria-pressed="'+(v[0]===cur)+'">'+v[1]+'</button>';
+    }).join('');
+  }
+  $('fnseg').addEventListener('click', function(e){
+    var b = e.target.closest('button'); if(!b) return; state.fn = b.dataset.fn; build();
+  });
+  $('vseg').addEventListener('click', function(e){
+    var b = e.target.closest('button'); if(!b) return; state.vr = b.dataset.vr; build();
+  });
+  $('q').addEventListener('input', function(e){ state.q = e.target.value.trim(); build(); });
+
+  function rowsFor(tab){
+    var rows = D[tab].slice();
+    if(state.fn !== 'all') rows = rows.filter(function(r){ return r.f === state.fn; });
+    if(state.vr !== 'all'){
+      if(tab === 'V') rows = rows.filter(function(r){ return r.v === state.vr; });
+      else if(state.vr === 'wrong') rows = rows.filter(function(r){ return !r.p && r.m!==null && r.e > TOL; });
+      else if(state.vr === 'exact') rows = rows.filter(function(r){ return !r.p && r.m!==null && r.e <= TOL; });
+      else if(state.vr === 'diff')  rows = rows.filter(function(r){ return r.same === 0; });
+    }
+    if(state.q){
+      var q = state.q;
+      rows = rows.filter(function(r){ return String(r.d !== undefined ? r.d : r.a).indexOf(q) === 0; });
+    }
+    if(state.sort){
+      var k = state.sort, d = state.dir;
+      rows.sort(function(x,y){
+        var a = x[k], b = y[k];
+        if(a === null || a === undefined) return 1;
+        if(b === null || b === undefined) return -1;
+        if(typeof a === 'string') return d * a.localeCompare(b);
+        return d * (a - b);
+      });
+    }
+    return rows;
+  }
+
+  function build(){
+    var tab = state.tab, cols = COLS[tab], t = TABS.filter(function(x){return x.id===tab;})[0];
+    $('tabnote').innerHTML = t.note;
+
+    // segmented controls
+    var fns = [['all','all'],['sin','sin'],['cos','cos'],['tan','tan']];
+    $('fnseg').innerHTML = segHTML('fn', fns, state.fn);
+    var vopts;
+    if(tab === 'V') vopts = [['all','all'],['int','int'],['half','+0.5'],['dec2','+0.ab'],
+                             ['over360','+360'],['neg','−d']];
+    else if(tab === 'CTRL') vopts = [['all','all'],['diff','differs']];
+    else vopts = [['all','all'],['exact','exact'],['wrong','wrong']];
+    $('vseg').innerHTML = segHTML('vr', vopts, state.vr);
+
+    $('thead').innerHTML = '<tr>' + cols.map(function(c){
+      var ar = state.sort === c[0] ? (state.dir>0?' ▲':' ▼') : '';
+      return '<th tabindex="0" data-k="'+c[0]+'" class="'+(c[2]==='num'?'num':'')+'">'+c[1]+
+             '<span class="ar">'+ar+'</span></th>';
+    }).join('') + '</tr>';
+
+    var rows = rowsFor(tab);
+    $('count').textContent = rows.length + ' rows';
+    $('empty').hidden = rows.length > 0;
+
+    var html = rows.slice(0, 1400).map(function(r){
+      var cells = cols.map(function(c){
+        var k = c[0], cls = c[2] === 'num' ? 'num' : (c[2] === 'fn' ? 'fn' : '');
+        var val;
+        if(k === 'v' && tab !== 'V'){ var vd = verdict(r); return '<td><span class="pill '+vd[0]+'">'+vd[1]+'</span></td>'; }
+        if(k === 'vd'){ var v2 = verdict(r); return '<td><span class="pill '+v2[0]+'">'+v2[1]+'</span></td>'; }
+        if(k === 'same'){ return '<td>'+(r.same ? '<span class="pill p-exact">identical</span>'
+                                                : '<span class="pill p-wrong">differs</span>')+'</td>'; }
+        if(k === 'c'){ val = r.p ? 'undefined' : fmt(r.c); }
+        else if(k === 'e'){ val = (r.p || r.m === null) ? '—' : (r.e < 1e-6 ? '0.000000' : Number(r.e).toPrecision(3)); }
+        else if(k === 'k'){ val = r.k === null || r.k === undefined ? '' : r.f+'('+r.k+'°)'; cls = 'num diffmark'; }
+        else if(k === 'raw' || k === 'b1' || k === 'b48'){
+          val = r[k] === null || r[k] === undefined ? '—' : String(r[k]);
+          if(val.length > 16) val = val.slice(0,16)+'…';
+        }
+        else if(k === 'd' || k === 'a'){ val = r[k] + '°'; }
+        else val = r[k];
+        return '<td class="'+cls+'">'+val+'</td>';
+      }).join('');
+      return '<tr>'+cells+'</tr>';
+    }).join('');
+    $('tbody').innerHTML = html;
+    if(rows.length > 1400){
+      $('count').textContent = rows.length + ' rows (showing first 1400)';
+    }
+  }
+
+  $('thead').addEventListener('click', sortClick);
+  $('thead').addEventListener('keydown', function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); sortClick(e); } });
+  function sortClick(e){
+    var th = e.target.closest('th'); if(!th) return;
+    var k = th.dataset.k;
+    if(k === 'v' || k === 'vd') return;
+    if(state.sort === k) state.dir = -state.dir; else { state.sort = k; state.dir = 1; }
+    build();
+  }
+
+  build();
+
+  /* ---------- scatter: error vs angle ---------- */
+  function drawScatter(){
+    var cv = $('scatter'), ctx = cv.getContext('2d');
+    var W = cv.width, H = cv.height, L = 62, R = 16, T = 16, B = 40;
+    ctx.clearRect(0,0,W,H);
+    var inkC = css('--ink'), mutedC = css('--muted'), lineC = css('--line');
+    var colors = {sin:css('--exact'), cos:css('--close'), tan:css('--wrong')};
+    var lo = -7, hi = 2;                       // log10 error range
+    function X(d){ return L + (d/360)*(W-L-R); }
+    function Y(e){
+      var v = Math.log10(Math.max(e, 1e-7));
+      return T + (1 - (v-lo)/(hi-lo)) * (H-T-B);
+    }
+    // grid + y labels
+    ctx.font = '11px ' + '"IBM Plex Mono", monospace';
+    ctx.textAlign = 'right'; ctx.textBaseline = 'middle';
+    for(var p = lo; p <= hi; p++){
+      var y = Y(Math.pow(10,p));
+      ctx.strokeStyle = lineC; ctx.lineWidth = 1;
+      ctx.beginPath(); ctx.moveTo(L, y+.5); ctx.lineTo(W-R, y+.5); ctx.stroke();
+      ctx.fillStyle = mutedC;
+      ctx.fillText(p <= -1 ? '1e'+p : String(Math.pow(10,p)), L-8, y);
+    }
+    // x labels / quadrant ticks
+    ctx.textAlign = 'center'; ctx.textBaseline = 'top';
+    [0,90,180,270,360].forEach(function(d){
+      var x = X(d);
+      ctx.strokeStyle = lineC; ctx.beginPath(); ctx.moveTo(x+.5,T); ctx.lineTo(x+.5,H-B); ctx.stroke();
+      ctx.fillStyle = mutedC; ctx.fillText(d+'°', x, H-B+8);
+    });
+    // tolerance line
+    var yt = Y(5e-6);
+    ctx.save(); ctx.setLineDash([5,4]); ctx.strokeStyle = inkC; ctx.lineWidth = 1.2;
+    ctx.beginPath(); ctx.moveTo(L, yt+.5); ctx.lineTo(W-R, yt+.5); ctx.stroke(); ctx.restore();
+    // points
+    finite(D.A).forEach(function(r){
+      ctx.fillStyle = colors[r.f];
+      ctx.globalAlpha = .72;
+      var e = Math.max(r.e, 1e-7);
+      ctx.beginPath(); ctx.arc(X(r.d), Y(e), 2.4, 0, 6.2832); ctx.fill();
+    });
+    ctx.globalAlpha = 1;
+    ctx.fillStyle = mutedC; ctx.textAlign = 'left'; ctx.textBaseline = 'bottom';
+    ctx.fillText('absolute error', L, T + 10);
+  }
+
+  /* ---------- bar helpers ---------- */
+  function bars(el, items, colorFn, maxv){
+    var mx = maxv || Math.max.apply(null, items.map(function(i){return i[1];}));
+    el.innerHTML = items.map(function(i){
+      var pct = (i[1]/mx)*100;
+      return '<div class="bar"><span class="lab">'+i[0]+'</span>'+
+             '<span class="track"><span class="fill" style="width:'+pct.toFixed(1)+
+             '%;background:'+colorFn(i)+'"></span></span>'+
+             '<span class="pct">'+i[1].toFixed(1)+'%</span></div>';
+    }).join('');
+  }
+
+  /* tabulation gradient */
+  (function(){
+    var f = finite(D.A);
+    function grp(test){ var g = f.filter(function(r){ return test(r.d); });
+      return g.length ? 100*g.filter(function(r){return r.e<=TOL;}).length/g.length : 0; }
+    var items = [
+      ['multiple of 15', grp(function(d){ return d%15===0; })],
+      ['multiple of 5',  grp(function(d){ return d%5===0 && d%15!==0; })],
+      ['even',           grp(function(d){ return d%2===0 && d%5!==0; })],
+      ['odd',            grp(function(d){ return d%2===1 && d%5!==0; })]
+    ];
+    bars($('tabbars'), items, function(i){
+      return i[1] >= 90 ? css('--exact') : i[1] >= 75 ? css('--close') : css('--wrong');
+    }, 100);
+  })();
+
+  /* dissociation */
+  (function(){
+    var v = D.V;
+    function share(name){
+      var w = v.filter(function(r){ return r.v===name && !r.p && r.m!==null && r.e>TOL; });
+      if(!w.length) return 0;
+      return 100*w.filter(function(r){ return r.k !== null && r.k !== undefined; }).length/w.length;
+    }
+    var items = [
+      ['+360 (wrong key)', share('over360')],
+      ['+0.5', share('half')],
+      ['+0.ab (computed)', share('dec2')],
+      ['−d', share('neg')]
+    ];
+    bars($('dissbars'), items, function(i){
+      return i[1] >= 50 ? css('--wrong') : css('--accent');
+    }, 100);
+  })();
+
+  /* ---------- probe chart ---------- */
+  function drawProbe(){
+    var cv = $('probe'), ctx = cv.getContext('2d');
+    var W = cv.width, H = cv.height, L = 52, R = 16, T = 18, B = 38;
+    ctx.clearRect(0,0,W,H);
+    var mutedC = css('--muted'), lineC = css('--line'), accentC = css('--accent'), inkC = css('--ink');
+    var ks = Object.keys(D.probe).map(Number).sort(function(a,b){return a-b;});
+    var maxD = 64;
+    function X(d){ return L + (d/maxD)*(W-L-R); }
+    function Y(p){ return T + (1 - p/70) * (H-T-B); }
+    ctx.font = '11px "IBM Plex Mono", monospace';
+    ctx.textAlign='right'; ctx.textBaseline='middle';
+    [0,20,40,60].forEach(function(p){
+      var y = Y(p);
+      ctx.strokeStyle=lineC; ctx.beginPath(); ctx.moveTo(L,y+.5); ctx.lineTo(W-R,y+.5); ctx.stroke();
+      ctx.fillStyle=mutedC; ctx.fillText(p+'%', L-8, y);
+    });
+    ctx.textAlign='center'; ctx.textBaseline='top';
+    [0,16,32,48,64].forEach(function(d){
+      ctx.fillStyle=mutedC; ctx.fillText(String(d), X(d), H-B+8);
+    });
+    ctx.fillText('depth (transformer block)', (L+W-R)/2, H-B+22);
+    // baseline
+    var yb = Y(20.6);
+    ctx.save(); ctx.setLineDash([5,4]); ctx.strokeStyle=inkC; ctx.lineWidth=1.2;
+    ctx.beginPath(); ctx.moveTo(L,yb+.5); ctx.lineTo(W-R,yb+.5); ctx.stroke(); ctx.restore();
+    function line(key, color, wdt){
+      ctx.strokeStyle=color; ctx.lineWidth=wdt; ctx.beginPath();
+      ks.forEach(function(d,i){
+        var p = D.probe[String(d)][key]; var x=X(d), y=Y(p);
+        if(i===0) ctx.moveTo(x,y); else ctx.lineTo(x,y);
+      });
+      ctx.stroke();
+      ctx.fillStyle=color;
+      ks.forEach(function(d){ var p=D.probe[String(d)][key];
+        ctx.beginPath(); ctx.arc(X(d),Y(p),2.6,0,6.2832); ctx.fill(); });
+    }
+    line('shuf', mutedC, 1.4);
+    line('said', accentC, 2.2);
+  }
+
+  drawScatter(); drawProbe();
+  var mq = window.matchMedia('(prefers-color-scheme: dark)');
+  if(mq.addEventListener) mq.addEventListener('change', function(){ drawScatter(); drawProbe(); });
+
+  /* ---------- footer ---------- */
+  $('foot').innerHTML =
+    'Run 2026-09-22 on a single '+M.gpu+', '+M.model+', greedy decoding, ground truth from Python '+
+    '<code>math</code> in double precision. Residual stream cached at all 65 depths for the 1° sweep, '+
+    '<code>'+M.acts+'</code>. Total GPU cost $'+M.cost.toFixed(2)+'. '+
+    'Known limitations: thinking-on also carries an unrequested "reasoning effort xhigh" system '+
+    'message, so it is chain-of-thought plus an instruction to be careful; and the cached '+
+    'activations are not invariant to batch padding.';
+})();
+</script>
