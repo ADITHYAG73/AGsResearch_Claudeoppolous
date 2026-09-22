@@ -1057,3 +1057,211 @@ trained NLAs. Completion condition sized to my resources, public artifact at the
   $52.10. Day total $2.16.
   **Next: WRITE. SWAP-01 + QWEN-02 + QWEN-03 + SCREEN-01 is a complete story with figures
   to make. AG's one-sentence claim first, in his words. Then LessWrong.**
+
+- **2026-09-17→19 — MATHEMATICS thread opened (AG's curiosity, his direction). Zero GPU spend.**
+  Session "MATHEMATICS". Full detail `mathematics/experiments.md`; memory `mathematics-curiosity-thread`.
+  - **Two process failures by Claude, both called out by AG:** (1) first answer on LLM arithmetic
+    given from recall, no tools, no citations, one arXiv ID wrong (helix paper is **2502.00873**,
+    not 2502.00817), and it asked AG to verify a claim it could verify itself; (2) the RunPod
+    skill (plugin 1.2.0, Aug 19) was trusted over the live docs and **missed Global Volumes
+    (beta, launched 2026-09-14)** — AG found it in the console. Rule: for RunPod features,
+    search docs.runpod.io; the skill lags by weeks.
+  - **Verified (tools, primary sources):** FrontierMath is Epoch AI's; its harness gives the
+    model a Python sandbox, so Astra's 97.6% on Tier 4 (**43 problems** after the June 2026
+    update) is agentic. IMO gold 2025 was tool-free (Noam Brown, Dwarkesh 2026-09-17). OpenAI's
+    Navier–Stokes claim (2026-09-08) is Lean-certified per OpenAI, disputed on priority by
+    Buckmaster, and confirmed by no independent mathematician as of the coverage read.
+    Mechanism papers stop at two-operand arithmetic on ≤8B models (Nanda 2301.05217, Zhong
+    2306.17844, Stolfo 2305.15054, Nikankin 2410.21272, Levy–Geva 2410.11781, Kantamneni–Tegmark
+    2502.00873, Biology paper addition section). **Nothing mechanistic exists on olympiad or
+    proof-level math on any model.**
+  - **Reframe that landed:** three mechanisms get conflated — (1) arithmetic inside one forward
+    pass (what interp studies; weak past a few digits), (2) chain of thought as scratchpad (the
+    text is the calculator; this is the IMO result), (3) external tools (FrontierMath). AG's
+    "what is in its brain" is (1); the capability jump he is amazed by is (2).
+  - **Candidate question (Claude's, not yet AG's):** does the Kantamneni–Tegmark helix survive
+    in a 2026 RL-trained model? Replication code exists (`subhashk01/LLM-addition`).
+  - **Serverless assessed and parked:** a custom worker CAN run hooks (flash class Endpoint,
+    load once per worker, activations to a volume, ~10 MB payload cap), but it is ~1.7× the
+    pod rate per working second and every wake reloads 55 GB on the meter. Right tool for
+    sampling runs; wrong tool for interactive interp. Two-track design recorded in the session.
+  - **Model facts (HF config):** Qwen3.8-27B = `Qwen3_5ForConditionalGeneration`, 64 layers,
+    hidden 5120, 3 linear-attention : 1 full-attention, Apache 2.0, not gated. Official
+    transformers doc: load text-only with `Qwen3_5ForCausalLM`; `fla` + `causal_conv1d`
+    required or the DeltaNet layers silently fall back to slow PyTorch. Gemma 4 31B/12B are
+    the second base model (Apache 2.0, not gated).
+  - **MATH-SMOKE-01 written and dry-run PASSED on the laptop** (Qwen3.5-0.8B, exit 0, 278 s):
+    `mathematics/pipeline/pod/{pod_setup_q38.sh,smoke_q38.py,run_smoke.sh}` — arch dump, one
+    GSM8K question thinking-on, residual stream at 5 layers via hooks, four files written
+    incrementally. Rule-7 preflight + cost line (~$0.70–0.95, A100) in `experiments.md`.
+    Weights to go on a **Global Volume** (`/workspace-global`, $0.09/GB/mo, ~$5/mo for 27B),
+    venv in the container. Stock was "Low" everywhere on the 19th; A100 SXM still deployable.
+  - Hub banner "Qwen3.8-27B is live on Runpod Serverless": not in the public-endpoints API
+    catalog (only Qwen3-32B-AWQ, Kimi K3, Granite there) — so probably a Hub serverless repo
+    (a prebuilt worker to deploy in your own account), not a pay-per-token endpoint. Unverified;
+    AG to click it.
+  - Nothing committed. `mathematics/` untracked. Zero pods, zero volumes, balance $52.08.
+
+  **Next (AG's call, tomorrow): read the two scripts; decide global volume yes/no, the question,
+  the layers; say go → MATH-SMOKE-01 (~30 min, ~$1). Then read Kantamneni–Tegmark and write the
+  one-sentence question. HF token STILL not rotated.**
+
+- **2026-09-19 (evening IST) — MATH-SMOKE-01 DONE. Qwen3.8-27B looked at on a GPU. $0.39.**
+  Full detail `mathematics/experiments.md` → MATH-SMOKE-01 run log. Balance $52.08 → **$51.69**.
+  - AG chose **pod + global volume** over serverless. Checked first: serverless cannot mount a
+    global volume (docs: container disk / network volume / S3 only), and the Hub banner
+    "Qwen3.8-27B live on Serverless" is a **llama.cpp Q8_0 worker** — quantized, no hooks.
+    The RunPod API cannot create or attach a global volume, so **AG deploys in the console,
+    Claude drives over SSH.** AG also created an S3 API key (in `.env`); it covers network
+    volumes only and is unused.
+  - **Result:** A100 PCIe, EU-RO-1. 8 min from deploy to results. Download 52 GB in 245 s
+    (**212 MB/s from HF**), load 11 s (page cache), smoke 48 s, peak VRAM 54 GB. Loaded with
+    `Qwen3_5ForCausalLM`; 26.9 B params, 64 layers at `model.layers`, 3 linear : 1 full attention.
+    GSM8K item 0 answered correctly (18) in 161 tokens — **too easy to elicit a long chain.**
+    Residual stream cached at layers 0/15/31/47/63, [278, 5120], mean ‖h‖ 14 → 401.
+    Artifacts: `mathematics/runs/2026-09-19_smoke/` (16 MB, incl. `pip_freeze.txt`).
+  - **Global volume measured:** mounts at `/workspace-global` as `fuse.geesefs` (object storage
+    behind FUSE — never put an HF cache or a venv on it). Write 244 MB/s; **read-back 141 MB/s,
+    byte-identical** — slower than HF. 52 GB of weights now sit on `like_aquamarine_bandicoot`
+    (~$4.70/mo) with a `DONE` marker; next session's setup restores from it and prints the real
+    speed. Delete it if it loses again. Its real use: gated/private weights, fine-tunes, cached
+    activations.
+  - **Claude's errors tonight:** (1) copied the QWEN-01 setup without the causal-conv1d fix its
+    own journal records (`CUDA_HOME` + `--no-build-isolation`); fla shared the pip line and died
+    with it. Repaired in parallel with the download, now folded into `pod_setup_q38.sh`.
+    (2) Did not record the opening balance; AG supplied it.
+  - **What AG actually wants, in his words:** the barrier to research should not be infra;
+    pod → weights → server every time is the frustration. Tonight's timings say weights are not
+    the slow part (4 min); installs, kernel builds and servers are. **Fix = baked Docker image
+    + saved template + one launcher taking a model name.** None of it needs a pod.
+  - Nothing committed. `mathematics/` untracked, CLAUDE.md modified. Zero pods.
+
+  **Next (no GPU): Dockerfile + GitHub Actions amd64 build → public image → template via API →
+  launcher. Then a harder math item than GSM8K-0, and AG's one-sentence question after reading
+  Kantamneni–Tegmark (2502.00873). HF token STILL not rotated.**
+
+- **2026-09-19 (night) → 09-20 — INFRA FINISHED; FIRST STEPS ON THE ACTUAL QUESTION. $0.39 for the night.**
+  Full detail `mathematics/experiments.md` → IMAGE-TEST-01, TRACE-01, TRACE-02, PARABOLA-01.
+  Balance $51.63 → **$51.24** (settled; RunPod posts a pod's last minutes ~5 min late — never quote
+  a closing balance straight after terminate). Zero pods.
+  - **AG's objective, in his words, and it does not change:** understand how models do mathematics
+    with NO tools / sandbox / agentic setup — "that was, that is, and that will always be" the goal.
+  - **Infra, done and proven:** custom image `ghcr.io/adithyag73/interp-pod:torch28-tf5170`
+    (repo **github.com/ADITHYAG73/interp-pod-image**, GitHub Actions build, `verify.py` gates
+    versions + model classes for Qwen3.5/Qwen2/Gemma3/Gemma4/Olmo3). **One image DOES cover all
+    these families for hooks work** — Claude's earlier "No" was stale journal evidence, corrected
+    by a live check. Templates: `8miemycg5h` interp custom image (**default; create → results in
+    3 min 58 s, zero installs, activations bit-identical to the stock-image run**), `31hq5fjfvy`
+    stock-image fallback, `mf96kxlalr` vLLM server (**never deployed, untested**). Claude creates
+    pods from templates via the API; the console is only needed for the global volume.
+  - **Global volume `like_aquamarine_bandicoot`** still holds 52 GB. HF download was 50–245 s
+    depending on data centre; volume read-back was 141 MB/s. Balance drifted a few cents with no
+    pod; the API cannot show global-volume billing. **Check console Billing; likely delete.**
+  - **UserPromptSubmit hook installed** (`~/.claude/hooks/epistemic_reminder.sh`): injects AG's
+    standing rules on prompt 1 and every 5th. Confirmed firing. AG asked for it because he is
+    tired of retyping "don't be a sycophant / don't hallucinate".
+  - **TRACE-01/02 (free, Neuronpedia Circuit Tracer via API, key in `.env`):** graphs for
+    36+59 on qwen3-4b and gemma-2-2b. Paper's `calc:` format gives Qwen only 25% on the right
+    digit; `Question: … Answer: ` gives 81% (Gemma 87.5%). Both models: late-layer "say 9"
+    output features visible; **no lookup / magnitude / carry feature found; ~24% of Qwen's graph
+    is unexplained error.** We can see the model DECIDE, not HOW. Tools in `mathematics/pipeline/`.
+    Circuit Tracer only exists for gemma-2-2b, gemma-3-4b-it, qwen3-4b, qwen3-1.7b (needs
+    per-model transcoders) — that is why Qwen3-4B, not a retreat from Qwen3.8.
+  - **PARABOLA-01 — AG's first own prompt, verbatim, Qwen3.8-27B, $0.25:** the model caught BOTH
+    ambiguities unprompted (vertex direction; scale), wrote h²+k²=4 in thinking then dropped it,
+    used the (y−k)²=4p(x−h) template with **p** not AG's **y²=4ax**, reconstructed "y²=4x" as
+    what AG imagined, answered y²=−4(x−2) and y²=−4(x+2). 951 tokens, [1035, 5120] at 5 layers on
+    disk, unexamined. **The five layers (0/15/31/47/63) were Claude's placeholder default, not a
+    research choice — AG called that out.** All 64 is ~680 MB and trivial.
+  - **Candidate experiment for AG's "does it visualise" question (Claude's proposal, his call):**
+    Qwen3.8 is natively vision-language — compare internal state for the WORDS "parabola opening
+    rightwards" vs an IMAGE of one, vs left-opening controls.
+  - **Is addition solved? No** (checked): helix/Clock (2502.00873) vs bag of heuristics
+    (2410.21272) vs Anthropic's lookup+magnitude vs "The Shape of Addition" (2606.03645, found,
+    unread) — unreconciled, all ≤8B or one closed model, two operands 0–99, one forward pass.
+    The Biology paper gives NO reason for choosing 36+59; it ran all 10,000 pairs.
+  - **THE REAL PROBLEM, stated by AG twice tonight: "I still do not understand even one bit."**
+    Claude explained results from a field whose basic objects (feature, layer, attribution) were
+    never established with him — the Sept-7 "wrong dose" error again. **Agreed fix: read
+    Kantamneni–Tegmark together, one piece per sitting, by hand, his pace. First sitting =
+    Figure 1; first exercise = do 36+59 on the T=10 clock on paper.** He said "not now".
+  - **Claude's errors tonight (all journaled):** answered a Neuronpedia question from the
+    screenshot instead of the question; invented "a question you wrote down years ago" (AG never
+    said years — conflated with the forking-paths note); zsh word-splitting sent host+port as one
+    argument (watchdog self-test caught it); `--answer "-4a"` parsed as a flag and the completion
+    grep missed the lowercase `error:` (a 1-second local parse check now runs first); quoted a
+    closing balance before billing settled.
+  - Nothing committed in this repo: `mathematics/` untracked, CLAUDE.md modified. HF token STILL
+    not rotated.
+
+  **Next: AG rests. Then, his call and in this order of value: (1) the paper, Figure 1, by hand;
+  (2) his one-sentence question; (3) look at the parabola/GSM8K activations already on disk —
+  free; (4) console Billing check → delete the global volume if it is the leak.**
+
+- **2026-09-20 — MATHEMATICS: instrument built, AG driving it himself, prior work found. $0.44 for the day.**
+  Full detail `mathematics/experiments.md` → NUMBERS-01, PROBE-01, and the **"WHERE THIS STANDS"**
+  section at the end, written for a cold pickup. Balance $51.24 → **$50.86** (settled). Zero pods.
+  - **AG's backward-learning principle RECOVERED** from the 2026-09-13 transcript and saved as
+    memory `backward-learning`: concrete runnable thing first, then walk back from what he cannot
+    explain. Claude had just written an 8-sitting forward reading plan for Kantamneni–Tegmark —
+    the THIRD forward reading plan in two weeks, wrong every time. Method now: he looks, he asks,
+    Claude answers one level down and stops. **It worked.** He went from "I still do not understand
+    even one bit" in the morning to deriving, from a +1.00 he read off a plot, that tokenisation
+    must precede the embedding lookup — and then demanding evidence for it before accepting it.
+  - **Two artifacts he can drive:** model anatomy https://claude.ai/artifact/Uki6ToP96u5h6mjRrubyyQ
+    (built from `arch.txt` + the official `modeling_qwen3_5.py`); the number instrument
+    https://claude.ai/artifact/H7du5JUmGXjGpmGbemmo1k (90 numbers × 65 depths, pin a pair, per-pair
+    depth curve). He found two real bugs in it: hovering was destroyed by moving to the slider, and
+    "read in 36+" read as if 36 were fixed. Both fixed.
+  - **NUMBERS-01 ($0.19, 7 min, no bugs):** 90 numbers 10–99, read at the SECOND digit token, all 65
+    depths, two contexts. **PROBE-01 (free):** first digit is at chance (11.1%) at the embedding and
+    **100% from block 1** — a linear-attention block, three before any full attention. AG predicted
+    "linear" in advance. **Claude will not let that stand as support:** 100% at the very first block
+    is the signature of the width-4 `conv1d` copying, not of assembly. Presence ≠ assembly ≠ use.
+  - **Claude discarded its own first probe run in front of him** — its sanity control read 0.0% at
+    every depth (impossible; split held out the test classes). Re-ran with a control that can pass,
+    a shuffled control, and 8 splits. Right call, and he saw it made.
+  - **CLAUDE WAS WRONG about novelty and corrected itself the same day.** Told AG "nobody has looked
+    at digit-tokenised models", then on his instruction checked and found TWO papers that cover it:
+    **arXiv 2510.26285** (ACL 2026, §4.1 is our exact question, 99% at offset −1, MIT code at
+    `prompteus/numllama`) and **arXiv 2606.03645** (ICML 2026, carry geometry on Qwen3-4B/8B).
+    **Verified from config.json:** every model in both is standard attention; the hybrid begins at
+    Qwen3.5. So the gap is real but narrow — a transfer test, not a discovery.
+  - **Probe caveat:** Claude wrote its own linear probe, NOT the paper's sinusoidal one, so our
+    numbers are not comparable to their 99%. Use theirs (MIT repo) if comparability matters.
+  - AG's own words on leaving: *"research is a rat hole… I'm not knowing where we are going."* Half
+    justified — a day produced an instrument, real understanding, a confirmed-but-uninformative
+    transfer, and one sharp question. Not a result yet.
+
+  **Next, one decision: Qwen3-8B (standard) vs Qwen3.5-9B (hybrid), same probe, every block. If the
+  standard model also hits ~100% at block 1, the linear-attention reading is dead — which is why it
+  is the test worth running. ~$0.50. Queued behind it: PARABOLA-02 (words vs image) and e^x.
+  HF token STILL not rotated.**
+
+- **2026-09-20→22 — FIRST BLOG POST PUBLISHED. Rejected by LessWrong; shipped on my own site.
+  Zero GPU spend.** Full detail `forking/experiments.md` → BLOG-01.
+  **Live: https://adithyag73.github.io/first_principles/forking-tokens/** — third article on
+  `first_principles`, after flash-attention and free-normalization. Commit `442e045`.
+  - **The post is SWAP-01 + QWEN-02 + SCREEN-01 + QWEN-03 as one claim:** on a question
+    Qwen3.5-9B is confident about nothing moves; on one it is torn about, six alternate tokens
+    move the final answer and two flip the verdict. Dictated by me; Claude proofread only. All
+    six claims about the two papers verified against live arXiv HTML (`blog01/PAPER_CHECK.md`).
+  - **A Claude fact was wrong and the paper check caught it:** row 80 is *one of* the clearest
+    forks in the Llama data, not the clearest — row 50 t=236 "false"→"true" is 0.990 vs 0.960.
+    Row 80 is the largest among positions where the *pooled* curve is flat. Fixed everywhere.
+  - **LessWrong rejected it with a template** (verified: 8,108 rejected posts carry the same
+    text at lesswrong.com/moderation). Its one real point is Claude's error, not mine: the post
+    never says why forking matters. Claude proposed the four-section shape and omitted the
+    motivation section. **Still not written** — it needs my words, between "What the papers
+    claimed" and "The two questions".
+  - **Infra:** the active `gh` account on this machine is `IamAGP` (the forking-fast fork) and
+    it 403s on `ADITHYAG73/first_principles`. `gh auth switch --user ADITHYAG73`, push, switch
+    back. Both accounts are in the keyring.
+  - Editor lesson: LessWrong's editor pastes markdown literally and drops list items; retyping
+    as plain paragraphs and verifying character-for-character against the dataset was the only
+    reliable path.
+
+  **Next: (1) the motivation paragraph, in my words, then re-publish; (2) my hand check at
+  t=164 (`out/s200/row041_branches.jsonl`, expect 175/25 and 105/92) — the only load-bearing
+  number in the post I have not verified myself; (3) MATH-SMOKE-01 is still queued and read;
+  (4) HF token STILL not rotated.**

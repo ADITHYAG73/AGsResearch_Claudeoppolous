@@ -530,3 +530,44 @@ distribution far beyond sampling noise, and can flip the verdict — is met on t
 
 **Independent check owed (AG).** `out/s200/row041_branches.jsonl`, the two lines at t=164:
 count A/C in the 200 `conts[*].text` endings by hand; expect 175/25 and 105/92.
+
+---
+
+## BLOG-01 — first post written, rejected by LessWrong, published on AG's own site
+**2026-09-20 → 2026-09-22. Zero GPU spend.**
+
+**Live:** https://adithyag73.github.io/first_principles/forking-tokens/
+
+**What it says.** SWAP-01 + QWEN-02 + SCREEN-01 + QWEN-03 as one claim: on a question
+Qwen3.5-9B is confident about, no alternative token moves the final answer; on a question it
+is torn about, six do, and two flip the verdict. Two figures, both measured. Text is AG's
+dictation; Claude fixed spelling, tense and numbers and did not rewrite the voice.
+
+**Process rule that held.** AG dictated; Claude proofread. Every claim about the two papers
+was checked against the live arXiv HTML before publishing (`blog01/PAPER_CHECK.md`, 6/6).
+One of Claude's own facts was wrong and was caught by that check: row 80 is **one of** the
+clearest forks in the Llama data, not the clearest — row 50 t=236 "false"→"true" is larger
+(0.990 vs 0.960). Row 80's distinction is that it is the largest among positions where the
+*pooled* curve is flat. Corrected in `FACTS_FOR_AG.md` and in the post.
+
+**LessWrong: rejected, 2026-09-20.** The message is a template — confirmed by reading
+lesswrong.com/moderation, where 8,108 rejected posts carry the same text. The one
+substantive line in it is right and is Claude's error, not AG's: the post never says why
+forking matters. Claude proposed the four-section structure and left the motivation section
+out of it. **Still not addressed** — it needs AG's own words and he has not dictated them.
+
+**Published instead on AG's own GitHub Pages site**, third article after flash-attention and
+free-normalization. House layout, TOC and CSS copied from the existing two; figures served
+from `forking-tokens/figures/`, not hotlinked. Commit `442e045`.
+
+**Infra note for next time.** The machine's active `gh` account is `IamAGP` (the forking-fast
+fork) and it gets 403 on `ADITHYAG73/first_principles`. Push with
+`gh auth switch --user ADITHYAG73`, then switch back. Both are in the keyring.
+
+**Editor lesson (LessWrong, but general).** Their editor pastes markdown literally — `**bold**`
+survived as asterisks, wrapped lines became separate paragraphs, and list options were
+dropped. Retyping as plain paragraphs and verifying character-for-character against
+`forking/questions/tinymmlu_100.json` was the only reliable path. Images inserted twice on
+both attempts; duplicates deleted manually.
+
+**Still owed.** AG's hand check at t=164 (above), and the motivation paragraph.
