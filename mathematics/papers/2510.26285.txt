@@ -1,0 +1,1048 @@
+Language Models Learn Universal Representations of Numbersand Here’s Why You Should Care
+
+ Title:
+
+ Content selection saved. Describe the issue below:
+
+ Description:
+
+ arXiv is now an independent nonprofit!
+ Learn more
+ ×
+
+ License: CC BY 4.0
+
+arXiv:2510.26285v2 [cs.CL] 22 Apr 2026
+
+## Language Models Learn Universal Representations of Numbers
+and Here’s Why You Should Care
+
+Michal Štefánik Timothee Mickus Marek Kadlčík
+
+Affiliation: R&D Centre for Large Language Models, National Institute of Informatics, Japan
+
+Affiliation: University of Helsinki TransformersClub @ Faculty of Informatics, Masaryk University
+
+Bertram Højer Michal Spiegel Raúl Vázquez Aman Sinha
+
+Affiliation: University of Helsinki TransformersClub @ Faculty of Informatics, Masaryk University
+
+Affiliation: IT University of Copenhagen Kempelen Instutite of Information Technology
+
+Affiliation: IECL-ATILF, Université de Lorraine - ICANS Strasbourg
+
+Josef Kuchař Philipp Mondorf Pontus Stenetorp
+
+Affiliation: R&D Centre for Large Language Models, National Institute of Informatics, Japan
+
+Affiliation: University of Helsinki TransformersClub @ Faculty of Informatics, Masaryk University
+
+Affiliation: MaiNLP, Center for Information and Language Processing, LMU Munich
+
+Affiliation: Munich Center for Machine Learning (MCML) University College London*Equal contributors
+
+## Abstract
+
+Prior work has shown that large language models (LLMs) often converge to accurate input embedding for numbers, based on sinusoidal representations.
+In this work, we quantify that these representations are in fact strikingly systematic, to the point of being almost perfectly universal: different LLM families develop equivalent sinusoidal structures, and number representations are broadly interchangeable in a large swathe of experimental setups. We show that properly factoring in this characteristic is crucial when it comes to assessing how accurately LLMs encode numeric and other ordinal information, and that mechanistically enhancing this sinusoidality can also lead to reductions of LLMs’ arithmetic errors.
+
+## 1 Introduction
+
+Mathematical problems provide an ideal playground in which to assess the current ability of large language models (LLMs) to manipulate precise information. While attempts to foster and improve mathematical reasoning in LLMs have been met with genuine empirical successes, e.g., as an aid to solving mathematical problems
+(Li et al., 2025), this field is still rife with challenges, particularly in ensuring that LLMs tackling mathematical problems remain robust and reliable.
+This calls for a deeper understanding of how robust the internal mechanisms of LLMs really are in operating over mathematical information.
+
+Towards this goal, prior work identified that number representations stand out in terms of their sinusoidal structure (Nanda et al., 2023; Zhou et al., 2024; Levy and Geva, 2025; Kadlčík et al., 2025), accuracy of input embeddings (Kadlčík et al., 2025), and systematicity of internal mechanisms in addition (Kantamneni and Tegmark, 2025; Zhou et al., 2024).
+While these works have provided pivotal insights as to how LLMs represent and manipulate numbers, their scope is limited: Kadlčík et al.’s findings only pertain to input embeddings; Zhou et al. find similarity of representations across models but do not quantify their alignment; Levy and Geva focus only on decimals as one particular aspect of representations. Crucially, no prior work considers natural language contexts, which strongly curtails the generalizability and practical usefulness of their findings, needed for the development of tools able to interpret – and verify – LLMs in practice.
+
+To address these gaps and create a holistic picture of how language models handle numbers, this paper presents two main findings.
+First, we quantify that sinusoidal structures are almost perfectly universal across LLMs: models of different sizes and families converge to sinusoidal representations that are universal across models (§3.1) and layers (§3.3) while remaining highly systematic and accurate throughout the model’s internal processing (§3.2) – showing it is possible to track the processing of numeric information throughout models.
+
+Second, we demonstrate the necessity of suitable explainability tools to make sense of how LLMs process numbers: we show how accounting for the sinusoidal nature of representations allows us to unravel the mechanism of manipulating large, multi-token numbers (§4.1) as well as other ordinal data (§4.3) in LLMs, and we mechanistically prove that a precision of sinusoidality in the model’s internal representation determines its output accuracy across arithmetic tasks (§4.2).
+
+In summary, our main contributions are:
+
+1. 
+
+We develop a new, more accurate probe of numeric values that generalizes well across different tasks and models
+
+2. 
+
+We quantify that numeric representations of numbers are sinusoidal and highly accurate throughout the model, beyond the input embedding representations;
+
+3. 
+
+We are the first to analyze the LLMs’ numeric processing in natural-language settings and show that training numeric probes with real-world data is crucial for creating generalizing, practically useful probes;
+
+4. 
+
+We investigate mechanisms of numeric manipulations beyond addition and provide a mechanistic evidence that sinusoidality is crucial for models’ accuracy.
+
+We make the new probe, with all our methods and analyses publicly available for any use.11
+ 1
+
+ https://github.com/prompteus/numllama
+
+## 2 Related work
+
+## Mathematical capabilities of LLMs
+
+The seminal findings of Brown et al. (2020) on remarkable arithmetical abilities of LLMs have ushered in a large body of work aimed at evaluating more complex mathematical capabilities of LLMs (Hendrycks et al., 2021; Cobbe et al., 2021; Sun et al., 2024; Yu et al., 2024) or lack thereof (Nikankin et al., 2025).
+This in turn has encouraged a focus on how to bolster the capabilities of LLMs or interpret how LLMs perform computations (Zhang et al., 2024; Stolfo et al., 2023). Most relevant to ours, some of the previous work focuses specifically on how numbers should be represented in principle.
+For instance, Charton (2022) assesses an impact on models performance in linear algebra problems when employing different encoding schemes based on scientific notation on linear algebra problems.
+Golkar et al. (2023) propose to encode numeric values by incorporating a scaled, learned control token <NUM>.
+Feng et al. (2024) remark that the precision of the numeric representation type impacts performance on arithmetic tasks, and argue to use the logarithmic-precision architecture of Feng et al. (2023).
+
+## Numeric representations in LLMs
+
+The increased focus on evaluating LLM performance in verifiable domains such as math problems has also led to increased interest in the mechanisms by which LLMs compute arithmetic functions.
+Nanda et al. (2023) demonstrate how a model trained from scratch on modular addition relies on trigonometric operation: it maps inputs onto a unit circle, corresponding to a specific rotation, and then learns to combine the two rotations to derive a valid solution.
+Kantamneni and Tegmark (2025) apply circuit analysis to understand how general pretrained models perform addition, and report that representations are mapped onto a helix that can be manipulated using trigonometric operations.
+Zhou et al. (2024) refine these observations in qualitative analysis of Fourier components in LLMs’ representations (note that Fourier transformations map arbitrary functions into combinations of periodic trigonometric functions), and highlight the distinct role of attention and feedforward sublayers.
+Focusing more narrowly on representations rather than processing, Zhu et al. (2025) argue that non-linear probes do not provide a better fit than linear probes.
+Levy and Geva (2025) remark that it is possible to retrieve the digit (value mod 10) of numeric inputs with high accuracy.
+Our work builds upon Kadlčík et al. (2025) that propose a probe architecture that factors in the sinusoidal nature of representations, and show that they can retrieve numeric values from input embeddings with much higher accuracy.
+
+## 3 Universality of Sinusoidal Representations of Numbers
+
+## 3.1 Different Models Learn Equivalent Representations of Numbers
+
+The first point we address is the distinctiveness of LLMs’ representations of numbers.
+Results from Kadlčík et al. (2025) and Zhu et al. (2025) suggest that different models converge to the same type of number representations, but they do not provide a direct assessment of how closely the representations match across models – which could evidence that a shared representation is a causal consequence of architectural bias and optimization process rather than a coincidental artifact.
+Following Kadlčík et al., we focus on the input embeddings from eight LLMs of diverse sizes and families with open-sourced, pre-trained checkpoints: OLMo 2 (OLMo et al., 2025), Llama 3 (Grattafiori et al., 2024) and Phi 4 (Abdin et al., 2024).
+
+((a)) 
+
+((b)) 
+
+Figure 1: RSA scores for input embeddings of LLMs
+
+To quantify whether models converge to similar embeddings, we start by conducting a simple Representational Similarity Analysis (RSA; Kriegeskorte et al., 2008) across the input embeddings for number word-pieces in paired models. As a baseline, we compute RSA scores for a random sample of 1000 pieces present in the vocabularies of all the models under consideration.
+Results of the analysis are displayed in Figure 1. Across all pairs of models, we find that number embeddings systematically yield consistently higher RSA scores than a random sample of word pieces. While some models (especially in the Phi family) are not as well aligned with other models, we do observe high scores both within and across families, demonstrating that models converge to embedding spaces with equivalent similarity structure.
+
+((a)) 
+
+((b)) 
+
+((c)) 
+
+Figure 2: Intersection-over-union of top k=63 Fourier base frequencies
+
+Another approach to quantifying the similarity of number representations is to inspect their base frequencies through Fourier decompositions (Kadlčík et al., 2025; Zhou et al., 2024).
+Applying a PCA transformation followed by a Fourier transform allows us to quantify the magnitude of individual frequencies ().
+Subsequently, we determine whether two models agree as to how they rank frequencies by computing a simple intersection-over-union (IoU) of the top k frequencies.
+We repeat this process for every pair of models, using the input embeddings of number pieces () as well as that of random pieces ().
+When considering the top k=63 frequencies, we find perfect agreement across all models for numbers. This provides a quantitative basis for some of Zhou et al.’s (2024; §C.1) qualitative observations.22
+ 2
+
+ See our Section A.1 for technical details, including how the value of k is set.
+
+In summary, our analyses show that the LLMs from different families learn to represent numbers in the same topology and trigonometric features using the same dominant frequencies.
+This is specific to numbers: we do not reproduce these observations with other word pieces shared across models.
+
+## 3.2 Number Representations are Always Sinusoidal
+
+In Section 3.1, we presented evidence that the input embeddings of numbers across different LLMs are highly consistent. We now focus on whether the sinusoidal mechanism of representations is maintained and employed throughout the model.
+
+For qualitative assessment, we visualize the PCA and its Fourier transform of internal activations of numerical tokens in Section A.4. Besides the apparent wave-like pattern, the representations have a sparse Fourier transform, confirming the sinusoidal character.
+For quantitative analysis, we look at the model’s internal representations through the lens of the sinusoidal probe proposed by Kadlčík et al. (2025). This probe was designed to map input embeddings of LLMs into an integer, thus classifying embeddings into predefined range of numeric values. It is defined as:
+
+fsin​(𝐱)=(𝐖out​𝐒)T​(𝐖in​𝐱)𝐒i​j={sin⁡(i​ej​1000/h)​if​j≡0mod2cos⁡(i​ej+1​1000/h)​if​j≡1mod2 
+
+(1)
+
+where 𝐖in:h×d and 𝐖out:h×d are learned parameters, and 𝐒:h×1000 injects an inductive bias in the classifier towards sinusoidality.33
+ 3
+
+ Unless otherwise stated, we use d=100 ; h corresponds to the inner dimensionality of the LLM at hand.
+
+While Kadlčík et al. demonstrate that such a probe properly benefits from the expected sinusoidal inductive bias and greatly bolster accuracy for number representations, their approach does not enforce a strict sinusoidal structure and may fail to generalize due to redundancy in a model’s representation. As an alternative, we design a new probe which assigns a single sine wave to each latent feature and directly optimize the frequency, phase-shift, and amplitude of each sine wave:
+
+fparam–sin(𝐱) 
+=𝐒T​(𝐖in​𝐱) 
+
+(2)
+
+𝐒 
+=𝐰a​sin⁡(𝐰ϕ+𝐰f​𝐫T) 
+
+where 𝐫 are constant label values (0​…​999 for all models we analyze), and 𝐰f,𝐰a,𝐰ϕ∈ℝd are three vectors of learnable parameters modeling the frequencies, amplitudes and the phase-shifts of the sine waves.
+This architecture strictly constrains the classification matrix 𝐒 to take the form of d sine waves sampled at n evenly-spaced points. The configuration of initialization and hyperparameters is provided in Appendix B.
+
+We first assess whether sinusoidal probes are the most suitable, i.e., an accurate choice for decoding the internal representations of the model.
+To contextualize the accuracy in terms of sinusoidal quality of the representation, we also evaluate other types of probes used to decode numbers in previous work Feng et al. (2023); Zhu et al. (2025); Kadlčík et al. (2025) as baselines.
+We fit separate probes for activations from every layer across six different language models from three families.
+Contrary to previous work, we assess the representations of numbers in natural-language contexts, rather than as single tokens or synthetic arithmetical commands.
+Our contexts cover four domains (temporal, arithmetic, medical and culinary) covering numerical contexts including quantities, measurements or timestamps (detailed in Appendix A.2).
+To assess generalization rather than memorization capacity, we split the prompts and corresponding representations into training, validation and test sets containing distinct extracted numbers (x2 ).
+
+((a)) 
+
+((b)) 
+
+Figure 3: Accuracy of decoding numbers from internal activations of language models
+
+ shows the accuracy of different probes extracting the value of input numbers from representations of each model’s layer, evaluated across six different models.
+As we can see, both sinusoidal probes reach over 80% of accuracy in all but two cases and over 90% of accuracy for a majority of probing scenarios.
+Here, the superior accuracy of both sinusoidal probes provides an indicator of both (i) the sinusoidal character, and (ii) the accuracy of input number representation across layers — the best probe results present a lower bar of the accuracy of numeric representation on a given layer.
+
+ disentangles the accuracies of the param-sin probe from by the model, covering six LLMs of different sizes and three different families.
+While the probing is slightly less accurate on some particular layers of particular models, for none of the analyzed models does the sinusoidal probe systematically underperform.
+If we take into account that our probes need not be perfect and reflect a lower bound of real accuracy of numeric representations, these results taken together show that a sinusoidal representation is a decisively dominant scheme of numeric representations in language models, corroborating and extending the observations of Kantamneni and Tegmark (2025).
+
+A vast majority of cases performing lower than 80% occurs in probing the models’ first and a last layer; in Section A.6, we analyze these cases in detail through the lens of probes learned representations and find the substantial qualitative difference in the sparsity of representations of numbers.
+While the middle layers of all models resort to a ‘dense’ representation decomposed into a small set of features bearing full numeric information, the initial and final layers scatter the numeric information across most of the latent features.
+As the scattered features share the information with natural language, a robust recovery in a realistic setting of natural contexts becomes more difficult.
+
+## Generalization across contexts
+
+We can see that sinusoidal probes trained with natural-language contexts can provide highly accurate estimates of LLMs’ numerical states across models.
+However, favoring simplicity, all of the previous work (§2) investigated numerical representations in synthetic mathematical contexts.
+To assess whether such a simplification comes for a price in practical applicability of resulting probes, we explore whether the choice of training contexts affects generalization of resulting probes.
+
+Figure 4: Generalization of probes fitted on representations in natural language (yellow), and synthetic, mathematical contexts (blue), evaluated on natural-language (solid) and math contexts (dashed). Llama 3.2 1B.
+
+In Figure 4, we compare the performance of probes trained on natural-language contexts (yellow) and synthetically-constructed math contexts (blue), evaluated on natural-language inputs (solid lines) and synthetic inputs (dashed lines).
+We can see that probes fitted with natural-language contexts are much more robust in application across both math and natural-language context.
+While both probes generalize well within their training context type, only the natural-language probes generalize across evaluation settings, robust to the context’s distribution shift.
+This observation has two important implications. First, it informs future work aiming to explain models’ internal computations in practical applications to favor probes trained in natural-language settings. Second, it restrains future work in interpretability and explainability from drawing general conclusions on models’ mechanics from fully-synthetic settings, evidencing that such conclusions may not generalize to real-world applications.
+
+In summary, our results underscore that the same type of sinusoidal representation of numbers holds in general across different model types.
+Numbers are represented in a similar, systematic fashion, regardless of which layer or type of context we consider.
+While we can expect this to be in part due to the residual stream across layers, we note that there is no a priori reason for an LLM to preserve sinusoidality across layers, and previous work shows that input tokens tend to have a negligible impact on upper layer representations (Mickus et al., 2022).
+
+## 3.3 Different Layers use Interchangeable Numeric Representations
+
+Having found the remarkable degree to which the embeddings for numbers align across different models and the noteworthy universality of sinusoidal representations in varied contexts, as a final step, we turn to assess whether the models utilize the identical representation throughout its computation.
+To investigate that, we employ the probes from Section 3.2 trained separately for each separate model layer (Li ) and measure the accuracy of each probe on representations derived for every other layer Lj≠Li .
+
+While informative, this approach still comes with the caveat that probes trained for a given layer Li may pick up on idiosyncrasies inherent to a specific layer — i.e., the probes might not disentangle what is specific to numbers as opposed to what is specific to Li . To address this point, we also fit probes using all but one layer (L1,L2,…​Li−1,Li+1,…​Ln ), and evaluate performance on representations from the held out layer Li .
+As before, we hold out 100 numbers for assessing generalization in validation and test conditions.
+
+((a)) 
+
+((b)) 
+
+Figure 5: Transferability of representations: Accuracy of param-sin probe evaluated on unseen layers
+
+Results of probes’ cross-layer generalization for Llama 1B are displayed in Figure 5.
+We observe that probes fitted on a concrete layer’s representations () generalize outstandingly well to both close-by and more distant layers, with the exception of the first and the last layer.
+This trend reveals that language models operate in a consistent representation of numbers that is universal throughout their computation, undergoing only minor shifts across layers.
+This trend is also corroborated by multi-layer probes evaluated in heldout-layer fashion (), reaching a close-to 100% accuracy across all intermediate layers and six models of diverse sizes and families.
+This result has practical implications for future work in numeric interpretability — showing that we can train universal, yet highly accurate probes for intermediate layers of a broad set of language models.
+
+To summarize, we find that the same key, i.e. probe can be used to interpret numeric information at different layers of the same language model. Added to our previous observations in Sections 3.1 and 3.2, we can therefore stress that models learn input embeddings for numbers that are strikingly similar, regardless of which model they come from. These embeddings are processed into sinusoidal representations that are systematic and consistent regardless of context or hidden layer, with the source of this consistency maintained primarily by the residual stream across layers (cf. Section A.7).
+
+## 4 How to Study Numbers in LLMs
+
+We have established that models universally converge to sinusoidal number representations. This characteristic is not shared with other word pieces. This questions the appropriateness of existing interpretability tools when it comes to numbers and other ordinal data types.
+
+Figure 6: Accuracy of extracting pieces of multi-token numbers from the last token representations.
+
+## 4.1 Multi-token Numbers
+
+As a case study for observing how the choice of interpretability toolset affects our findings, we analyse whether our conclusions about the remarkable accuracy of numeric representations also hold for large, multi-token numbers.
+
+First, we use our sinusoidal probes to retrieve the values of all parts of multi-token numbers from a single, i.e. last token’s representation.
+For this experiment, we adapt the methodology utilizing natural-language contexts (see Figure 4), with a substitution of original numeric values with values spanning two to six numeric tokens, i.e. in a numeric range between 103−1018 .
+We use a subset of BBC data that was published after the cutoff or release date of our LLMs (Li et al., 2024).
+
+As a point of comparison, we consider the general-purpose TunedLens tool (Belrose et al., 2025),
+an early-exit interpretability method which aims to explain the contents of intermediate representations by learning to translate them into logits.
+For each layer Li , TunedLens distills the computations done in the subsequent layers Li+1,…​Ln into a simple affine transformation 𝐖i , such that applying this transformation 𝐖i to a hidden state at Li followed by the unembedding matrix closely matches the logits that the LLM would eventually produce.
+TunedLens was applied to number representations in previous work (Zhou et al., 2024) and also represents the line of work arguing for a linear representations of numeric values in LLMs (Zhu et al., 2025).
+To maximize comparability and align the number and distribution of target categories, we narrow down the space of probed tokens to 1,000 tokens ranked as 2,000–3,000th most-common tokens in our dataset (matching the number of classes and their distribution for our number probes).
+Crucially, we also report previous-token recovery rates using TunedLens for number tokens, using the same configuration as for natural-language tokens.
+
+Results for Llama 1B and different probing methods are presented in Figure 6.
+Results of sin probes show that multi-token numbers are indeed systematically and highly accurately superposed in the latest numeric representation – reaching an accuracy of 99% for the immediately-preceding number piece (offset -1).
+However, the accuracy and/or systematicity of the superposition mechanism quickly drops for numbers longer than three tokens (i.e. ≥109 ), reaching close to zero for the 5th preceding token.
+
+We notice that TunedLens gives a conflicting account.
+While it shows that previous non-number tokens are also superposed, i.e. can be decoded as far as five time-steps later with non-zero probability, it suggests that this is not the case for number tokens – these cannot be retrieved past two time-steps, and even then, only with 50% accuracy.
+However, a comparison with the sin probe shows that this trend is merely a result of TunedLens’s inefficiency for numeric tokens; estimates derived from it provide an inaccurate representation of LLMs’ accuracy, underestimating the amount of contained information and overlooking the superposition mechanism uncovered by a more suitable probe.
+
+Llama 3.2 3B
+
+OLMO 2 7B
+
+Phi 4 15B
+
+Figure 7: Probing accuracy in extracting correct output from internal activations across layers; different probes.
+
+## 4.2 Output Tracking
+
+A reliable mechanism of numeric manipulations necessitates an accurate representation of inputs (evidenced in §3), but also the ability to construct systematic and accurate representations of outputs.
+Without the specialized tools to analyze numeric representations, prior work describes LLMs’ arithmetical mechanisms through qualitative assessments limited to the outputs of addition Kantamneni and Tegmark (2025); Zhou et al. (2024); Levy and Geva (2025).
+Therefore, having found the sinusoidal probes to be highly suitable for describing the representations of input numbers, we set off to investigate whether such probes can also better capture the mechanics of LLMs’ output representations, compared to other probe types.
+
+In this set of experiments, we prompt the language models with prompts of the form “The result of x1⊗x2 is ’’
+44
+ 4
+
+ Exact prompt formulations for each operation can be found in the supplementary material under /notebooks/output_probing.
+ and train probes to predict the correct result of x1⊗x2 , where ⊗∈{+,−,×,/} .
+
+Figure 7 shows the results for probes from prior work, including linear probes from Zhu et al. (2025); Zhou et al. (2024) and a sin probe proposed and applied by Kadlčík et al. (2025).
+We can see that the param-sin probe performs comparable or better than probes applied for numbers in previous work and newly allows the tracking of outputs with over 80% of accuracy in multiplication.
+The results for addition also push the known lower bounds of precision of the result emerging early in the model, conflicting with a hypothesis of “gradually refining predictions” from Zhou et al. (2024) based on LogitLens, but supporting the interpretation of arithmetics implementation in LLMs by Stolfo et al. (2023) through a combination in late layer(s).
+
+((a)) 
+
+((b)) 
+
+((c)) 
+
+((d)) 
+
+Figure 8: Probing accuracy in extracting correct output from Llama 3.2 3B’s internal activations separates model’s correct (blue) and incorrect (red) predictions.
+
+Figure 8 further details on a distinction between the cases where the model predicts a correct and incorrect response – suggesting that the extent to which the model maintains the sinusoidal representation may determine its accuracy.
+
+We evidence this by following qualitative and mechanistic evidence.
+In Section A.5, we observe the output embeddings of addition and multiplication – latter coupled with lower model’s accuracy – differ in the precision of the the observed sinusoidality; with the pattern being more prominent in the better-performing, addition embeddings.
+In Section A.8, we further analyze how, according to our probes, is the result refined via gradually minimizing the response error across layers, with particular layers deteriorating this refinement, suggesting a worse fit of the sinusoidal probe and thus, the sinusoidal pattern.
+We find that simply dropping the layers causing a divergence from the probe’s fitted pattern lead to an accuracy improvement in multiplication and division in 4 out of 6 cases.
+
+Finally, we evidence this point more directly by a mechanistic intervention – steering activations in prediction cases leading to incorrect prediction towards the expected sinusoidal pattern. Concretely, we (i) fit sinusoidal probes at each layer to predict the output of a given arithmetic operation; (ii) optimize a set of 1,000 randomly-initialized ‘patch’ embeddings 𝐞y to maximize the probability that the probes will map them onto the integer value y ; and (iii) steer activations towards the corresponding patch whenever the model is not producing the expected output. Steering is achieved by interpolating between the activation 𝐡i at layer Li and the patch 𝐞y for the target scalar y , α​𝐡i+(1−α)​𝐞y .
+We report results with respect to the optimal value of α per layer, operation and probe.
+
+((a)) 
+
+((b)) 
+
+((c)) 
+
+Figure 9: Error reduction after steering activations on incorrect predictions of multiplication and division. Optimal interpolation factor α per setup.
+
+Figure 9 displays the absolute difference in performance caused by the steering on previously erroneous cases in multiplication and division for three models. We target probes on upper layers which reach accuracy scores ≥10% .
+In short, depending on the layer, we can correct up to 30% of errors for multiplication, and up to 42% for division.
+Crucially, our probe almost always outperform the probe proposed by Kadlčík et al. (2025): Across all setups, we only observe four setups where the sin probe outperforms our sin-param probe.55
+ 5
+
+ Viz., division with OLMo at L22, L23, L24), multiplication with Phi at L37.
+The optimal setup per model and operation is always obtained with our probe.
+This underscores once again the importance of selecting the right explanatory tool, this time in the context of activation steering.
+
+In sum, factoring in the knowledge of the sinusoidal nature of number representations allowed us to understand and assess the lower bounds of accuracy of multi-token number representations. On a case study of Llama 3.2 3B, we further showed how more accurate probes allow pinpointing and eliminating sources of errors. Tools that are best suited to number representations allow us to enhance accuracy and perform more effective interventions.
+
+## 4.3 Ordinal Data Types
+
+Having established that sinusoidal mechanisms robustly encode numeric values and our specialized probe facilitates targeted interventions, we investigate how this tooling generalizes to ordinal data types – potentially represented in the same systematic fashion as numbers.
+A particular challenge here is a data scarcity – for instance, as there are only seven days in a week, to warrant held-out evaluation, we can only fit the probes on six examples.
+
+Prior work by Engels et al. (2025) demonstrates that LLMs internally represent temporal data – such as days of the week and months of the year in circular structures. Analytically, a centered circle is parameterized by the equations x⁡(θ)=r​sin⁡(θ+π/2) and y⁡(θ)=r​sin⁡(θ) , indicating that these temporal concepts are encoded using sinusoidal features. Assuming this structure, we fit our probe on the embedding representations of these concepts and compare it to a prior probe architecture of Kadlčík et al. (2025) in leave-one-out cross-validation setting. The best held-out validation accuracies of both architectures are reported in Table 1.
+
+Model
+sin
+param-sin
+
+Days of week (n=7)
+
+Olmo 2 1B
+4
+6
+
+Olmo 2 7B
+6
+6
+
+Olmo 2 13B
+5
+6
+
+Llama 3 1B
+5
+6
+
+Llama 3 3B
+7
+6
+
+Llama 3 8B
+3
+6
+
+Months (n=12)
+
+Olmo 2 1B
+6
+11
+
+Olmo 2 7B
+6
+11
+
+Olmo 2 13B
+5
+11
+
+Llama 3 1B
+9
+11
+
+Llama 3 3B
+10
+11
+
+Llama 3 8B
+6
+11
+
+Numerals: ‘one’ to ‘ten’ (n=10)
+
+Olmo 2 1B
+3
+6
+
+Olmo 2 7B
+4
+8
+
+Olmo 2 13B
+4
+8
+
+Llama 3 1B
+3
+5
+
+Llama 3 3B
+4
+6
+
+Llama 3 8B
+3
+9
+
+Table 1: Number of matches achieved by training param-sin and best-performing prior probe (sin) in decoding ordinal data with extremely small training sets from models’ internals. Held-one-out evaluations.
+
+Our results demonstrate high decoding accuracy for ordinal data across all evaluated models. This validates the probe’s utility beyond pure numbers, even under extreme data-scarcity. With our better generalizing architecture, we corroborate and extend the discovery by Engels et al. (2025) of circularity in LLMs’ representations to other ordinal data types.
+
+## 5 Conclusions
+
+In this paper, we have shown the number representations in LLMs are exceptional in two distinct but related ways.
+First, the regularity and systematicity of the sinusoidal structure that all LLMs converge is striking, to the point of being almost universal across all experimental setups we consider. We can view the same frequencies in Fourier being used by all models we survey (§3.1), we can train a probe on one layer and apply to another (§3.3). The one remarkable exception is the discrepancy between natural language contexts, which yield remarkably robust probes that generalize broadly, and synthetic probes derived from templated texts, which do not.
+
+Second, this exceptional sinusoidal regularity requires adapting the way we study number processing in LLMs. Using a general-purpose TunedLens method, applied for numbers in prior work, grossly underestimates how accurately previous timestep information can be retrieved, whereas sinusoidal probes such as the one we propose in eq. 2 may lead to substantially higher accuracies and contradictory conclusions (§4.1).
+Finally, we demonstrate that the sinusoidal probes are also well applicable for analyzing the emergence and manipulation of model’s own predictions and that the accuracy of representation in terms of sinusoidality is related to the prediction accuracy (§4.2).
+
+While we focus on numbers, our experiments showcase how important the appropriate interpretability toolset is for accurate interpretation of specialized data types.
+This naturally questions the common practice of designing general-purpose interpretability and explainability tools, motivating future work towards adapting our practices to the specifics of the type of data we want to explain.
+
+## Limitations
+
+Several practical factors limit the scope of our work.
+We focus our survey on three particular model families; moreover, we have excluded very large models (>30B parameters) due to practical hardware limitations.
+The rapid pace of modern NLP may entail that the set of models we have picked for this study will no longer be representative of contemporary frontier models in the future.
+
+Our work is also based on English-centric LLMs, but the number systems vary greatly across languages — e.g., Chinese and Japanese often employ myriad-based number systems and frequently use both Chinese and Arabic numerals. The extent to which our conclusions will hold for a Chinese-centric or Japanese-centric LLM remains a topic for future research.
+
+Lastly, we find that all errors in probing temporal concepts (days, months) are exactly in the first position (Monday, January), persisting even when the probed token list is reversed (Sunday, December). We suspect that zero value is a blind spot of the probe due to its parametrization, which needs to be addressed to achieve a perfect decoding rate.
+
+## Acknowledgments
+
+This work is supported by the Research Council of Finland through project No. 353164 “Green NLP – controlling the carbon footprint in sustainable language technology”.
+
+ ★
+
+ ★
+
+ ★
+
+ ★
+
+ ★
+
+ ★
+
+ ★
+
+ ★
+
+ ★
+
+ ★
+
+ ★
+
+ ★
+
+ This project has received funding from the European Union’s (EU) Horizon Europe research and innovation programme under Grant agreement No. 101070350. The work has also received funding from the Digital Europe Programme under grant agreement No 101195233 (OpenEuroLLM).
+The contents of this publication are the sole responsibility of its authors and do not necessarily reflect the opinion of the EU.
+
+## References
+
+Abdin et al. (2024)
+M. Abdin, J. Aneja, H. Behl, S. Bubeck, R. Eldan, S. Gunasekar, M. Harrison, R. J. Hewett, M. Javaheripi, P. Kauffmann, J. R. Lee, Y. T. Lee, Y. Li, W. Liu, C. C. T. Mendes, A. Nguyen, E. Price, G. de Rosa, O. Saarikivi, A. Salim, S. Shah, X. Wang, R. Ward, Y. Wu, D. Yu, C. Zhang, and Y. Zhang
+
+Phi-4 technical report.
+
+External Links: 2412.08905,
+Link
+
+Cited by: §3.1.
+
+Belrose et al. (2025)
+N. Belrose, I. Ostrovsky, L. McKinney, Z. Furman, L. Smith, D. Halawi, S. Biderman, and J. Steinhardt
+
+Eliciting latent predictions from transformers with the tuned lens.
+
+External Links: 2303.08112,
+Link
+
+Cited by: §4.1.
+
+Brown et al. (2020)
+T. B. Brown, B. Mann, N. Ryder, M. Subbiah, J. Kaplan, P. Dhariwal, A. Neelakantan, P. Shyam, G. Sastry, A. Askell, S. Agarwal, A. Herbert-Voss, G. Krueger, T. Henighan, R. Child, A. Ramesh, D. M. Ziegler, J. Wu, C. Winter, C. Hesse, M. Chen, E. Sigler, M. Litwin, S. Gray, B. Chess, J. Clark, C. Berner, S. McCandlish, A. Radford, I. Sutskever, and D. Amodei
+
+Language models are few-shot learners.
+
+External Links: 2005.14165,
+Link
+
+Cited by: §2.
+
+Charton (2022)
+F. Charton
+
+Linear algebra with transformers.
+
+Transactions on Machine Learning Research.
+
+Note: 
+
+External Links: ISSN 2835-8856,
+Link
+
+Cited by: §2.
+
+Cobbe et al. (2021)
+K. Cobbe, V. Kosaraju, M. Bavarian, M. Chen, H. Jun, L. Kaiser, M. Plappert, J. Tworek, J. Hilton, R. Nakano, C. Hesse, and J. Schulman
+
+Training verifiers to solve math word problems.
+
+External Links: 2110.14168,
+Link
+
+Cited by: §2.
+
+Engels et al. (2025)
+J. Engels, E. J. Michaud, I. Liao, W. Gurnee, and M. Tegmark
+
+Not all language model features are one-dimensionally linear.
+
+In The Thirteenth International Conference on Learning Representations,
+
+External Links: Link
+
+Cited by: §4.3,
+§4.3.
+
+Feng et al. (2024)
+G. Feng, K. Yang, Y. Gu, X. Ai, S. Luo, J. Sun, D. He, Z. Li, and L. Wang
+
+How numerical precision affects mathematical reasoning capabilities of llms.
+
+External Links: 2410.13857,
+Link
+
+Cited by: §2.
+
+Feng et al. (2023)
+G. Feng, B. Zhang, Y. Gu, H. Ye, D. He, and L. Wang
+
+Towards revealing the mystery behind chain of thought: a theoretical perspective.
+
+In Thirty-seventh Conference on Neural Information Processing Systems,
+
+External Links: Link
+
+Cited by: §2,
+§3.2.
+
+Golkar et al. (2023)
+S. Golkar, M. Pettee, M. Eickenberg, A. Bietti, M. Cranmer, G. Krawezik, F. Lanusse, M. McCabe, R. Ohana, L. Parker, B. R. Blancard, T. Tesileanu, K. Cho, and S. Ho
+
+XVal: a continuous number encoding for large language models.
+
+In NeurIPS 2023 AI for Science Workshop,
+
+External Links: Link
+
+Cited by: §2.
+
+Grattafiori et al. (2024)
+A. Grattafiori, A. Dubey, A. Jauhri, A. Pandey, A. Kadian, A. Al-Dahle, A. Letman, A. Mathur, A. Schelten, A. Vaughan, A. Yang, A. Fan, A. Goyal, A. Hartshorn, A. Yang, A. Mitra, A. Sravankumar, A. Korenev, A. Hinsvark, A. Rao, A. Zhang, A. Rodriguez, A. Gregerson, A. Spataru, B. Roziere, B. Biron, B. Tang, B. Chern, C. Caucheteux, C. Nayak, C. Bi, C. Marra, C. McConnell, C. Keller, C. Touret, C. Wu, C. Wong, C. C. Ferrer, C. Nikolaidis, D. Allonsius, D. Song, D. Pintz, D. Livshits, D. Wyatt, D. Esiobu, D. Choudhary, D. Mahajan, D. Garcia-Olano, D. Perino, D. Hupkes, E. Lakomkin, E. AlBadawy, E. Lobanova, E. Dinan, E. M. Smith, F. Radenovic, F. Guzmán, F. Zhang, G. Synnaeve, G. Lee, G. L. Anderson, G. Thattai, G. Nail, G. Mialon, G. Pang, G. Cucurell, H. Nguyen, H. Korevaar, H. Xu, H. Touvron, I. Zarov, I. A. Ibarra, I. Kloumann, I. Misra, I. Evtimov, J. Zhang, J. Copet, J. Lee, J. Geffert, J. Vranes, J. Park, J. Mahadeokar, J. Shah, J. van der Linde, J. Billock, J. Hong, J. Lee, J. Fu, J. Chi, J. Huang, J. Liu, J. Wang, J. Yu, J. Bitton, J. Spisak, J. Park, J. Rocca, J. Johnstun, J. Saxe, J. Jia, K. V. Alwala, K. Prasad, K. Upasani, K. Plawiak, K. Li, K. Heafield, K. Stone, K. El-Arini, K. Iyer, K. Malik, K. Chiu, K. Bhalla, K. Lakhotia, L. Rantala-Yeary, L. van der Maaten, L. Chen, L. Tan, L. Jenkins, L. Martin, L. Madaan, L. Malo, L. Blecher, L. Landzaat, L. de Oliveira, M. Muzzi, M. Pasupuleti, M. Singh, M. Paluri, M. Kardas, M. Tsimpoukelli, M. Oldham, M. Rita, M. Pavlova, M. Kambadur, M. Lewis, M. Si, M. K. Singh, M. Hassan, N. Goyal, N. Torabi, N. Bashlykov, N. Bogoychev, N. Chatterji, N. Zhang, O. Duchenne, O. Çelebi, P. Alrassy, P. Zhang, P. Li, P. Vasic, P. Weng, P. Bhargava, P. Dubal, P. Krishnan, P. S. Koura, P. Xu, Q. He, Q. Dong, R. Srinivasan, R. Ganapathy, R. Calderer, R. S. Cabral, R. Stojnic, R. Raileanu, R. Maheswari, R. Girdhar, R. Patel, R. Sauvestre, R. Polidoro, R. Sumbaly, R. Taylor, R. Silva, R. Hou, R. Wang, S. Hosseini, S. Chennabasappa, S. Singh, S. Bell, S. S. Kim, S. Edunov, S. Nie, S. Narang, S. Raparthy, S. Shen, S. Wan, S. Bhosale, S. Zhang, S. Vandenhende, S. Batra, S. Whitman, S. Sootla, S. Collot, S. Gururangan, S. Borodinsky, T. Herman, T. Fowler, T. Sheasha, T. Georgiou, T. Scialom, T. Speckbacher, T. Mihaylov, T. Xiao, U. Karn, V. Goswami, V. Gupta, V. Ramanathan, V. Kerkez, V. Gonguet, V. Do, V. Vogeti, V. Albiero, V. Petrovic, W. Chu, W. Xiong, W. Fu, W. Meers, X. Martinet, X. Wang, X. Wang, X. E. Tan, X. Xia, X. Xie, X. Jia, X. Wang, Y. Goldschlag, Y. Gaur, Y. Babaei, Y. Wen, Y. Song, Y. Zhang, Y. Li, Y. Mao, Z. D. Coudert, Z. Yan, Z. Chen, Z. Papakipos, A. Singh, A. Srivastava, A. Jain, A. Kelsey, A. Shajnfeld, A. Gangidi, A. Victoria, A. Goldstand, A. Menon, A. Sharma, A. Boesenberg, A. Baevski, A. Feinstein, A. Kallet, A. Sangani, A. Teo, A. Yunus, A. Lupu, A. Alvarado, A. Caples, A. Gu, A. Ho, A. Poulton, A. Ryan, A. Ramchandani, A. Dong, A. Franco, A. Goyal, A. Saraf, A. Chowdhury, A. Gabriel, A. Bharambe, A. Eisenman, A. Yazdan, B. James, B. Maurer, B. Leonhardi, B. Huang, B. Loyd, B. D. Paola, B. Paranjape, B. Liu, B. Wu, B. Ni, B. Hancock, B. Wasti, B. Spence, B. Stojkovic, B. Gamido, B. Montalvo, C. Parker, C. Burton, C. Mejia, C. Liu, C. Wang, C. Kim, C. Zhou, C. Hu, C. Chu, C. Cai, C. Tindal, C. Feichtenhofer, C. Gao, D. Civin, D. Beaty, D. Kreymer, D. Li, D. Adkins, D. Xu, D. Testuggine, D. David, D. Parikh, D. Liskovich, D. Foss, D. Wang, D. Le, D. Holland, E. Dowling, E. Jamil, E. Montgomery, E. Presani, E. Hahn, E. Wood, E. Le, E. Brinkman, E. Arcaute, E. Dunbar, E. Smothers, F. Sun, F. Kreuk, F. Tian, F. Kokkinos, F. Ozgenel, F. Caggioni, F. Kanayet, F. Seide, G. M. Florez, G. Schwarz, G. Badeer, G. Swee, G. Halpern, G. Herman, G. Sizov, Guangyi, Zhang, G. Lakshminarayanan, H. Inan, H. Shojanazeri, H. Zou, H. Wang, H. Zha, H. Habeeb, H. Rudolph, H. Suk, H. Aspegren, H. Goldman, H. Zhan, I. Damlaj, I. Molybog, I. Tufanov, I. Leontiadis, I. Veliche, I. Gat, J. Weissman, J. Geboski, J. Kohli, J. Lam, J. Asher, J. Gaya, J. Marcus, J. Tang, J. Chan, J. Zhen, J. Reizenstein, J. Teboul, J. Zhong, J. Jin, J. Yang, J. Cummings, J. Carvill, J. Shepard, J. McPhie, J. Torres, J. Ginsburg, J. Wang, K. Wu, K. H. U, K. Saxena, K. Khandelwal, K. Zand, K. Matosich, K. Veeraraghavan, K. Michelena, K. Li, K. Jagadeesh, K. Huang, K. Chawla, K. Huang, L. Chen, L. Garg, L. A, L. Silva, L. Bell, L. Zhang, L. Guo, L. Yu, L. Moshkovich, L. Wehrstedt, M. Khabsa, M. Avalani, M. Bhatt, M. Mankus, M. Hasson, M. Lennie, M. Reso, M. Groshev, M. Naumov, M. Lathi, M. Keneally, M. Liu, M. L. Seltzer, M. Valko, M. Restrepo, M. Patel, M. Vyatskov, M. Samvelyan, M. Clark, M. Macey, M. Wang, M. J. Hermoso, M. Metanat, M. Rastegari, M. Bansal, N. Santhanam, N. Parks, N. White, N. Bawa, N. Singhal, N. Egebo, N. Usunier, N. Mehta, N. P. Laptev, N. Dong, N. Cheng, O. Chernoguz, O. Hart, O. Salpekar, O. Kalinli, P. Kent, P. Parekh, P. Saab, P. Balaji, P. Rittner, P. Bontrager, P. Roux, P. Dollar, P. Zvyagina, P. Ratanchandani, P. Yuvraj, Q. Liang, R. Alao, R. Rodriguez, R. Ayub, R. Murthy, R. Nayani, R. Mitra, R. Parthasarathy, R. Li, R. Hogan, R. Battey, R. Wang, R. Howes, R. Rinott, S. Mehta, S. Siby, S. J. Bondu, S. Datta, S. Chugh, S. Hunt, S. Dhillon, S. Sidorov, S. Pan, S. Mahajan, S. Verma, S. Yamamoto, S. Ramaswamy, S. Lindsay, S. Lindsay, S. Feng, S. Lin, S. C. Zha, S. Patil, S. Shankar, S. Zhang, S. Zhang, S. Wang, S. Agarwal, S. Sajuyigbe, S. Chintala, S. Max, S. Chen, S. Kehoe, S. Satterfield, S. Govindaprasad, S. Gupta, S. Deng, S. Cho, S. Virk, S. Subramanian, S. Choudhury, S. Goldman, T. Remez, T. Glaser, T. Best, T. Koehler, T. Robinson, T. Li, T. Zhang, T. Matthews, T. Chou, T. Shaked, V. Vontimitta, V. Ajayi, V. Montanez, V. Mohan, V. S. Kumar, V. Mangla, V. Ionescu, V. Poenaru, V. T. Mihailescu, V. Ivanov, W. Li, W. Wang, W. Jiang, W. Bouaziz, W. Constable, X. Tang, X. Wu, X. Wang, X. Wu, X. Gao, Y. Kleinman, Y. Chen, Y. Hu, Y. Jia, Y. Qi, Y. Li, Y. Zhang, Y. Zhang, Y. Adi, Y. Nam, Yu, Wang, Y. Zhao, Y. Hao, Y. Qian, Y. Li, Y. He, Z. Rait, Z. DeVito, Z. Rosnbrick, Z. Wen, Z. Yang, Z. Zhao, and Z. Ma
+
+The llama 3 herd of models.
+
+External Links: 2407.21783,
+Link
+
+Cited by: §3.1.
+
+Hendrycks et al. (2021)
+D. Hendrycks, C. Burns, S. Kadavath, A. Arora, S. Basart, E. Tang, D. Song, and J. Steinhardt
+
+Measuring mathematical problem solving with the MATH dataset.
+
+In Thirty-fifth Conference on Neural Information Processing Systems Datasets and Benchmarks Track (Round 2),
+
+External Links: Link
+
+Cited by: §2.
+
+Kadlčík et al. (2025)
+M. Kadlčík, M. Štefánik, T. Mickus, J. Kuchař, and M. Spiegel
+
+Pre-trained language models learn remarkably accurate representations of numbers.
+
+In Proceedings of the 2025 Conference on Empirical Methods in Natural Language Processing, C. Christodoulopoulos, T. Chakraborty, C. Rose, and V. Peng (Eds.),
+
+Suzhou, China, pp. 26693–26702.
+
+External Links: Link,
+Document,
+ISBN 979-8-89176-332-6
+
+Cited by: §A.6,
+Appendix B,
+§1,
+§2,
+§3.1,
+§3.1,
+§3.2,
+§3.2,
+§3.2,
+§4.2,
+§4.2,
+§4.3.
+
+Kantamneni and Tegmark (2025)
+S. Kantamneni and M. Tegmark
+
+Language models use trigonometry to do addition.
+
+External Links: 2502.00873,
+Link
+
+Cited by: §1,
+§2,
+§3.2,
+§4.2.
+
+Kriegeskorte et al. (2008)
+N. Kriegeskorte, M. Mur, and P. Bandettini
+
+Representational similarity analysis - connecting the branches of systems neuroscience.
+
+Front. Syst. Neurosci. 2, pp. 4 (en).
+
+Cited by: §3.1.
+
+Levy and Geva (2025)
+A. A. Levy and M. Geva
+
+Language models encode numbers using digit representations in base 10.
+
+In Proceedings of the 2025 Conference of the Nations of the Americas Chapter of the Association for Computational Linguistics: Human Language Technologies (Volume 2: Short Papers), L. Chiruzzo, A. Ritter, and L. Wang (Eds.),
+
+Albuquerque, New Mexico, pp. 385–395.
+
+External Links: Link,
+Document,
+ISBN 979-8-89176-190-2
+
+Cited by: §1,
+§2,
+§4.2.
+
+Li et al. (2024)
+Y. Li, F. Guerin, and C. Lin
+
+LatestEval: addressing data contamination in language model evaluation through dynamic and time-sensitive test construction.
+
+Proceedings of the AAAI Conference on Artificial Intelligence 38 (17), pp. 18600–18607.
+
+External Links: Link,
+Document
+
+Cited by: Appendix B,
+§4.1.
+
+Li et al. (2025)
+Z. Li, Z. Li, W. Tang, X. Zhang, Y. Yao, X. Si, F. Yang, K. Yang, and X. Ma
+
+Proving olympiad inequalities by synergizing llms and symbolic reasoning.
+
+External Links: 2502.13834,
+Link
+
+Cited by: §1.
+
+Mickus et al. (2022)
+T. Mickus, D. Paperno, and M. Constant
+
+How to dissect a Muppet: the structure of transformer embedding spaces.
+
+Transactions of the Association for Computational Linguistics 10, pp. 981–996.
+
+External Links: Link,
+Document
+
+Cited by: §3.2.
+
+Nanda et al. (2023)
+N. Nanda, L. Chan, T. Lieberum, J. Smith, and J. Steinhardt
+
+Progress measures for grokking via mechanistic interpretability.
+
+In The Eleventh International Conference on Learning Representations,
+
+External Links: Link
+
+Cited by: §1,
+§2.
+
+Nikankin et al. (2025)
+Y. Nikankin, A. Reusch, A. Mueller, and Y. Belinkov
+
+Arithmetic without algorithms: language models solve math with a bag of heuristics.
+
+External Links: 2410.21272,
+Link
+
+Cited by: §2.
+
+OLMo et al. (2025)
+T. OLMo, P. Walsh, L. Soldaini, D. Groeneveld, K. Lo, S. Arora, A. Bhagia, Y. Gu, S. Huang, M. Jordan, N. Lambert, D. Schwenk, O. Tafjord, T. Anderson, D. Atkinson, F. Brahman, C. Clark, P. Dasigi, N. Dziri, M. Guerquin, H. Ivison, P. W. Koh, J. Liu, S. Malik, W. Merrill, L. J. V. Miranda, J. Morrison, T. Murray, C. Nam, V. Pyatkin, A. Rangapur, M. Schmitz, S. Skjonsberg, D. Wadden, C. Wilhelm, M. Wilson, L. Zettlemoyer, A. Farhadi, N. A. Smith, and H. Hajishirzi
+
+2 olmo 2 furious.
+
+External Links: 2501.00656,
+Link
+
+Cited by: §3.1.
+
+Stolfo et al. (2023)
+A. Stolfo, Y. Belinkov, and M. Sachan
+
+A mechanistic interpretation of arithmetic reasoning in language models using causal mediation analysis.
+
+In Proceedings of the 2023 Conference on Empirical Methods in Natural Language Processing, H. Bouamor, J. Pino, and K. Bali (Eds.),
+
+Singapore, pp. 7035–7052.
+
+External Links: Link,
+Document
+
+Cited by: §2,
+§4.2.
+
+Sun et al. (2024)
+Y. Sun, Z. Yin, Q. Guo, J. Wu, X. Qiu, and H. Zhao
+
+Benchmarking hallucination in large language models based on unanswerable math word problem.
+
+In Proceedings of the 2024 Joint International Conference on Computational Linguistics, Language Resources and Evaluation (LREC-COLING 2024), N. Calzolari, M. Kan, V. Hoste, A. Lenci, S. Sakti, and N. Xue (Eds.),
+
+Torino, Italia, pp. 2178–2188.
+
+External Links: Link
+
+Cited by: §2.
+
+Yu et al. (2024)
+L. Yu, W. Jiang, H. Shi, J. YU, Z. Liu, Y. Zhang, J. Kwok, Z. Li, A. Weller, and W. Liu
+
+MetaMath: bootstrap your own mathematical questions for large language models.
+
+In The Twelfth International Conference on Learning Representations,
+
+External Links: Link
+
+Cited by: §2.
+
+Zhang et al. (2024)
+W. Zhang, C. Wan, Y. Zhang, Y. Cheung, X. Tian, X. Shen, and J. Ye
+
+Interpreting and improving large language models in arithmetic calculation.
+
+External Links: 2409.01659,
+Link
+
+Cited by: §2.
+
+Zhou et al. (2024)
+T. Zhou, D. Fu, V. Sharan, and R. Jia
+
+Pre-trained large language models use fourier features to compute addition.
+
+In Advances in Neural Information Processing Systems, A. Globerson, L. Mackey, D. Belgrave, A. Fan, U. Paquet, J. Tomczak, and C. Zhang (Eds.),
+
+Vol. 37, pp. 25120–25151.
+
+External Links: Link
+
+Cited by: §1,
+§2,
+§3.1,
+§4.1,
+§4.2,
+§4.2.
+
+Zhu et al. (2025)
+F. Zhu, D. Dai, and Z. Sui
+
+Language models encode the value of numbers linearly.
+
+In Proceedings of the 31st International Conference on Computational Linguistics, O. Rambow, L. Wanner, M. Apidianaki, H. Al-Khalifa, B. D. Eugenio, and S. Schockaert (Eds.),
+
+Abu Dhabi, UAE, pp. 693–709.
+
+External Links: Link
+
+Cited by: §2,
+§3.1,
+§3.2,
+§4.1,
+§4.2.
+
+## Appendix A Supplementary results
+
+## A.1 Selecting the optimal number of Fourier components for comparison
+
+Figure 10: Minimum IoU across number of frequencies considered
+
+In Section 3.1, we discuss selecting the optimal number of Fourier components.
+As can be assessed from , from a certain frequency rank, Fourier decompositions resort to noise.
+Thus, our objective is to find the “cutoff” rank (k ) that disentangles oscillating information from the non-oscillating, presumably non-numeric information. This means finding an optimal, yet non-trivial (e.g. ≥10 ) cutoff for a number of components.
+In practice, we evaluate for each value of k what the minimum IoU agreement score across all models amounts to for numbers and random overlapping word-pieces.
+As displayed in Figure 10, we find such an optimal cutoff at k=63 as the highest value of k that leads to perfect agreement across models.
+
+A more thorough assessment of Figure 10 suggests a few interesting trends. Random word pieces also tend to favor a handful of Fourier basis components; which we conjecture is due to the sampling mechanism. By selecting overlapping pieces, our pieces must be frequent enough to be present in multiple distinct tokenizers, which in turns shapes the type of linguistic units represented in this random sample.
+Secondly, we also observe a ‘cross-over’ point around k≈250 , after which we find greater agreement in random pieces than numbers. Yet, we note that (i) a significant proportion of the mass is concentrated in a few frequency components for numbers, whereas random pieces lead to much more uniform distributions across frequency components (see Figure 11); and (ii) the results in Figure 10 still allow us to establish that the Fourier profile of number pieces is clearly distinct from what we observe for any other overlapping set of word pieces.
+
+Figure 11: Contributions of Fourier base frequencies for non-number pieces (Llama-3 1B, provided as an example)
+
+## A.2 Natural-language contexts for representations extraction
+
+Contrary to prior work, we use the contexts of natural language to extract the representations of numbers. We argue that such setting better corresponds to the practical applicability of probes – in monitoring models’ behavior and errors, or in tracking the faithfulness of reasoning chains.
+
+We choose the contexts with medium to high co-dependency on numerical contents covering four distinct domains and eight different datasets.
+The datasets categorized into these domains are presented in Table 3 and total in around 700 thousands natural-language contexts.
+
+## A.3 Generalization of probes to unseen layers
+
+Figure 12 shows how probes fitted on each layer generalize to all other layers in a model, using synthetic mathematical contexts. Strong cross-layer generalization indicates a high consistency of representations throughout the model.
+
+((a)) 
+
+((b)) 
+
+((c)) 
+
+((d)) 
+
+((e)) 
+
+((f)) 
+
+((g)) 
+
+Figure 12: Probe fitted on one layer evaluated on all layers, synthetic math contexts. Olmo 2 1B shows the weakest cross-layer generalization among all models. Llama models display a strong separation between input/output embedding representations and the hidden representations. 
+
+## A.4 Visualizations of internal activations
+
+We visualize the internal activations for a string template “x1 + x2 =” on the second numeric token (x2). Values for x2 are selected as a range 0-999 (all values present by the vocab), and values for x1 are sampled randomly from the same range. Then, we project the activations of the model’s middle layer to 64 dimensions with PCA and compute the Fourier transform.
+
+We visualize the first 16 PCA dimensions in Figure 13 and the maximal magnitudes of the frequencies in the Fourier transform in Figure 14. We visualize across model sizes and families.
+
+((a)) 
+
+((b)) 
+
+((c)) 
+
+Figure 13: PCA of models’ internal representations
+
+((a)) 
+
+((b)) 
+
+((c)) 
+
+Figure 14: Maximal magnitudes of frequencies in Fourier transform of PCA of models’ internal representations
+
+Add
+Sub
+Mul
+Div
+
+Accuracy
+100%
+99.8%
+90.4%
+5.9%
+
+P(Extracted | Incorrect)
+-
+56.8%
+26.3%
+94.4%
+
+P(Not extracted | Correct)
+1.4%
+0.03%
+26.1%
+5.9%
+
+Table 2: Probe accuracy in extracting the predicted result: Ratio of cases where the sin probe of some layer (top) retrieves a correct result when the model’s prediction is incorrect, and (bottom) can not retrieve a correct result when the model’s prediction is correct.
+
+## A.5 Qualitative assessment of output embeddings
+
+((a)) 
+
+((b)) 
+
+Figure 15: PCA of Llama 3 1B output representations for the operations of addition (recoverable with close-to 100% accuracy) and multiplication (recoverable with appx. 80% of accuracy)
+
+We visualize output representations of Llama 3 1B on addition and multiplication operations. For each expected result value y in the range 0-999, we sample a random pair (x​1 , x​2 ) from the same range, such that x​1+x​2=y (or x​1×x​2=y , respectively). We then predict the next token for prompts “x​1 plus x​2 is ” and “x​1 multiplied by x​2 is ” and collect the final output representations of the model before decoding. We then reduce the representations with PCA to 16 dimensions and visualize the result in Figure 15.
+
+## A.6 Probe sparsity
+
+Cross-layer evaluation indicates that models’ internal representations tend to differ from the input/output embeddings. We find a notable discrepancy in the sparsity of their representation;
+Whereas the input/output embeddings represent numbers in a more distributed fashion, hidden layers use a small number of consistently-ordered sin features.
+
+Figure 16: Difference in probe weights distribution (of Win ) across layers shows that the initial and last layers represent numbers in a systematically sparser fashion.
+
+This is visualized in Figure 16, showing that intermediate layers in Llama 1B lead to probes with very few weights with values >10−5 .
+
+We hypothesize that this discrepancy can be caused by the models’ computational and optimization mechanics. As cross-entropy loss is minimized by confident one-hot predictions, models can benefit from using more features to create higher dissimilarity (separability) of tokens. In contrast, internal representations are not subject to direct optimization pressure and might benefit from fewer but more informative features.
+
+Nevertheless, we note that this trend is pertinent across different models to a different extent: OLMo 7B and Phi 15B learn more distributed features also across the intermediate layers — which, in turn, also leads to a better generalization of universal probes (Figure 5b), but still causing an outstanding drop in held-out accuracy compared to other layers.
+Finally, we note that the models’ sparsity profile does not relate to reported performances on arithmetic tasks Kadlčík et al. (2025) and it also does not necessarily determine the accuracy of probes trained specifically for particular layer(s) (Figure 3).
+
+## A.7 Using probes for tracking representation consistency
+
+Figure 17: Accuracy of extracting input numbers from each component of the Transformer block using the sinusoidal probe.
+
+We explore the origin of the high consistency of representations across layers within the internal mechanism that each transformer layer implements.
+In Figure 17, we visualize the accuracy of probing input representations from each of the components present in transformer layers (Llama 3.2 1B for brevity).
+We find the accurate numeric representation is scattered across different components in the attention mechanism, with the attention output projection largely violating the sinusoidal representation, which is then, to a large extent, reconstructed in the subsequent fully-connected block.
+Nevertheless, the consistency of layers’ output representation is primarily maintained by residual streams across layers.
+
+## A.8 Incremental refinement of model predictions on arithmetic tasks
+
+((a)) 
+
+((b)) 
+
+((c)) 
+
+((d)) 
+
+Figure 18: Absolute error per layer: Absolute error of numeric values probed from different layers.
+
+We can use sinusoidal probes to estimate the absolute error per layer: the absolute difference between the predicted and target integer provides an estimate of how far off from the intended target a model is at any intermediate step of computation.
+Results aggregated per layer of Llama 3.2 3B are displayed in Figure 18.
+Across all operations, models tend to incrementally reduce the error towards the true answer value, gradually refining across layers.
+These results also suggest that there are particular layers responsible for an increase of errors in the model’s internal computation.
+
+((a)) 
+
+((b)) 
+
+((c)) 
+
+((d)) 
+
+Figure 19: Error aggregation per layer: Relative ratio of cases where each of the layers in Llama 3.2 3B breaks the correct result from the previous layer. 
+
+Figure 19 corroborates this hypothesis — showing that particular layers ‘break’ the correct result probed from the previous layer in large proportions of all predictions.
+For instance, in division, the 5th layer is responsible for breaking the correct result recoverable from the previous layer in over 10% of all cases.
+Further analyses, presented in Table 2, show that according to the probed representations, the models often achieve a correct result internally, even though it does not surface: this is the case of 56.8% of all surfaced (prediction) errors in subtraction, 26.3% in multiplication, and as much as 94.4% of all errors in division.
+
+Having used our probes to identify key layers that are likely responsible for errors, we can now turn to practical interventions that they make possible.
+In practice, we simply remove the suspected layers from the model. This extremely naive intervention strategy is justified by the universality of representations across layers (Section 3.3).
+We remove one of the three layers with the highest error aggregation, separately in multiplication and in division (having a potential for improvement of accuracy). We find that this enhances performance in four out of six cases — in one case (layer 4) in multiplication, causing a 26% error reduction (from 90.38% to 92.91% and in all cases in division, with error reduction between 27–64%.
+However, we note that the absolute number of correct predictions probed in the lower layers is negligible, which hinders the general applicability of this methodology.
+
+## Appendix B Experimental details
+
+The overview provided here is intended for informative purposes. For precise replication, we refer the reader to the companion codebase, which contains the exact hyperparameters for each experiment, available at https://github.com/prompteus/numllama.
+
+In our probe architecture param-sin, we initialize amplitude parameters 𝐰a with a constant of 0.01 , phase-shift parameters 𝐰ϕ randomly from uniform distribution between 0 and 2​π , and frequency parameters 𝐰f with a vector of values regularly-spaced between 0 and π4 , and the parameters of linear projection 𝐖in randomly from uniform distribution between −1/n and 1/n , where d is the input dimension (number of model features).
+
+We find that L1-regularization of the amplitude parameters 𝐰a improves generalization to held-out tokens by encouraging the probe to maintain small effective latent dimensionality even with a large actual dimension d . Similarly, we found similar benefits from regularization of the linear projection 𝐖in , although L2-regularization appears more robust. We find that an analogous configuration is also effective for the probe of Kadlčík et al., with L2-regularization of 𝐖in and L1-regularization of 𝐖out for inducing simplicity (sparsity) in the sinusoidal basis.
+
+The probes are fitted on a train set, with a checkpoint selected on the validation set, and then evaluated on the held-out test set. In most experiments, we use the Adam optimizer with a learning rate of 10−4 and apply regularization with a coefficient of either 10−3 or 10−2 .
+
+In multi-token decoding (Figure 6), we use a learning rate of 5⋅10−4 , 10,000 training steps, and early-stop training.
+
+When fitting probes on natural language contexts (Figure 4, ‘Nat. lang. → Nat. lang.’) and for cross-layer transfer (Figure 12), we use a hidden dimension of d=500 .
+
+In our steering experiments (Figure 9), for fsin , we optimize embeddings with respect to the probe using an SGD optimizer with a learning rate of 0.1 , optimize the embeddings for 200,000 steps, and decrease the learning rate by a factor of 100 over the first 100,000 steps.
+As for fparam​sin , we set regularization coefficient to 10−4 and use a hidden dimension of d=2000 .
+
+Domain
+Dataset
+Source
+Numerical Context
+Size
+
+Culinary
+Recipe NLG Lite
+m3hrdadfi/recipe_nlg_lite
+Quantities, measurements
+6118
+
+FoodRecipe-ImageCaptioning
+samsatp/FoodRecipe-ImageCaptioning
+Ingredient amounts
+719
+
+Temporal
+TimeLineExtraction
+irlabamsterdam/TimeLineExtraction…CASE
+Legal document dates
+50
+
+Arithmetic
+MetaMathQA
+meta-math/MetaMathQA
+Mathematical reasoning
+395K
+
+DROP
+ucinlp/drop
+Discrete reasoning
+77.4K
+
+AQuA-RAT
+deepmind/aqua_rat
+Algebraic word problems
+97.4K
+
+Medical
+ICD-10 Codes
+atta00/icd10-codes
+Diagnostic codes
+25.7K
+
+ICD-10-CM
+Gokul-waterlabs/ICD-10-CM
+Medical classifications
+74K
+
+Table 3: Dataset specifications for numerical embedding analysis across natural language contexts.
+
+We provide an overview of the datasets we use for natural language context experiments in Table 3.
+In Section 4.1, we use BBC data as processed by Li et al. (2024), which we retrieved from RealTimeData/bbc_news_alltime.
+
+In all cases, we trust the original creators of the datasets for handling private and sensitive information according to standard. As we do not redistribute the data, we take no specific steps towards verifying this point.
+
+## Appendix C Use of LLMs in writing and coding
+
+LLM-based technology was used to polish writing and jump-start coding. Authors take full responsibility for the contents of this paper.

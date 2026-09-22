@@ -1265,3 +1265,56 @@ trained NLAs. Completion condition sized to my resources, public artifact at the
   t=164 (`out/s200/row041_branches.jsonl`, expect 175/25 and 105/92) — the only load-bearing
   number in the post I have not verified myself; (3) MATH-SMOKE-01 is still queued and read;
   (4) HF token STILL not rotated.**
+
+- **2026-09-22/23 — TRIG-01: AG's own experiment. TWO MECHANISMS SEPARATED. ~$1.0–1.3.**
+  Full detail `mathematics/experiments.md` → TRIG-01, TRIG-01b. Balance $50.59 → **$49.63**
+  (provisional; RunPod posts the last minutes late). Pod terminated, **zero pods confirmed**.
+  **AG's design, his words:** sweep the whole cycle in degrees, answers to exactly five decimal
+  places, "let's use a calculator as well for the ground truth because mathematics is verifiable
+  rewards". His framing set the analysis: he can do 0/30/45/60/90 and ASTC from memory but
+  "can never do this in between things like 37 degree".
+  - **A (thinking off, 1080 asks, 51 s):** **68.9% exact to 5 dp** — sin 86.9 / cos 80.8 /
+    tan 38.8. **100%** on his memorised angles, **67.5%** on the in-between. Format 99.6%.
+    Clean **quadrant gradient** (sin 98.9→96.7→76.7→75.6; tan 92.2→39.3→6.7→16.9).
+  - **B (thinking on): 100.0% (213/213)**; paired on the same asks **87.8% → 100%**.
+    The traces show it **states** sin 35° = 0.573576436 and rounds (no derivation), but for
+    tan(95°) applies tan(90+x)=−cot(x), recalls tan 5°, inverts, and even starts a Taylor series.
+    **Confound, stated not fixed:** `enable_thinking=True` ALSO injects an unrequested
+    "Reasoning effort xhigh / think carefully" system message — B is CoT **plus** that.
+  - **TABULATION GRADIENT (free, from data already collected):** mult-of-15 **94.3%** >
+    mult-of-5 **84.7%** > even **67.6%** > odd **60.9%**; mult-of-5 vs not = 87.9 vs 64.2,
+    **z = 6.68**, tan gap **+37 pts**. No computation account makes sin(35°) easier than sin(34°).
+  - **TRIG-01b — the dissociation, and it CORRECTED Claude's own "it's mostly recall" reading:**
+    `neg` (−d) **98.5%** · `int` 95.9% · `half` 70.7% · `dec2` (d+0.ab) **3.0%** ·
+    `over360` (d+360) **4.4%**. But `dec2` is **75.6% at 1e-3** (computed, imprecise) while
+    `over360` is 4.4% at *every* tolerance (value simply wrong). **85.7% of `over360` errors are
+    an EXACT 5 dp entry for a DIFFERENT angle** (sin(361°)→sin(39°); tan(365°)→tan(45°)) vs
+    **5.0%** for `dec2`. → **Retrieval gives the 5th decimal; the model's own calculator is worth
+    ~3 decimals; `sin(−d)=−sin(d)` is applied perfectly; reduction mod 360 is absent.**
+  - **Four checks that earned their place.** (1) The activation hook was saving the **last
+    GENERATED** token, not the last prompt token (off by 3.08) — silent, caught only by an
+    independent prompt-only forward pass; fixed to prefill-only, re-verified at 0.001.
+    (2) Printing the two chat templates (not just asserting they differ) found the B confound.
+    (3) Truncation flagged and excluded — B's lone "error" was tan(95°) hitting the 2048 cap after
+    reaching −11.430052; A checked and **0/1080 truncated**. (4) **Pad control:** 87/90 identical
+    answers at batch 1 vs 48, accuracy 77.8% either way — the 3 differences are all tan, all
+    already wrong. Activations remain caveated (residual not padding-invariant, max 2.73).
+  - **Claude's errors:** double-launch (two runs; the duplicate OOMed and died, no data lost);
+    preflight memory estimate **wrong by 23 GB** (said ~57, actual 80.4 of 81.9) — the
+    incremental-checkpoint rule, not the estimate, is what made it harmless; a "right magnitude,
+    wrong quadrant sign" story generalised from the 8 largest errors that collapsed to **9.6%**
+    when tested; budgeting from the catalog $1.19/hr when the pod bills **$1.59/hr**.
+  - **PROBE-TRIG (free, CPU, on the cached activations):** the tenths digit of the answer is
+    readable from the LAST PROMPT TOKEN — **20.8% at depth 0 (= the majority-class rate, i.e. no
+    information) rising to 63.9% at depth 56**, against a **20.6%** majority baseline (NOT the
+    10% the script first printed — digit 9 is 222 of 1078). **So the value is largely fixed in
+    the forward pass before a character is emitted.** It does NOT show it "knew better than it
+    said": true and said digits agree on 80.3% of rows, and the wrong-only subset is too small to
+    train on. Caveat: these activations came from batches of 48 and the residual is not
+    padding-invariant — re-measure at `--batch 1` (~90 s) before quoting in a write-up.
+  - `.gitignore` now excludes `mathematics/runs/**/*.npy` (718 MB > GitHub's 100 MB limit).
+
+  **Next: (1) AG reads the dissociation and decides what it means — the `dec2` "~3 decimals of
+  real calculator" is the thread nobody has pulled; (2) the probe on the cached activations (free,
+  CPU) asks whether the answer digit is present BEFORE generation; (3) still queued: PARABOLA-02,
+  e^x, Qwen3-8B-vs-Qwen3.5-9B; (4) HF token STILL not rotated.**

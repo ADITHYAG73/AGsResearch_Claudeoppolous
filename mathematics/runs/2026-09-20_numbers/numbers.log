@@ -1,0 +1,21 @@
+=========== 05:55:24 VERIFY ===========
+   torch 2.8.0+cu128 cuda build 12.8 | cuda available: True
+OK  import fla
+OK  import causal_conv1d
+VERIFY PASSED
+=========== 05:55:34 DOWNLOAD ===========
+Fetching 29 files:   0%|          | 0/29 [00:00<?, ?it/s]Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Fetching 29 files:  14%|█▍        | 4/29 [00:00<00:00, 36.97it/s]Fetching 29 files:  17%|█▋        | 5/29 [00:20<00:00, 36.97it/s]Fetching 29 files:  21%|██        | 6/29 [01:04<05:09, 13.46s/it]Fetching 29 files:  24%|██▍       | 7/29 [01:06<03:58, 10.86s/it]Fetching 29 files:  31%|███       | 9/29 [01:12<02:33,  7.68s/it]Fetching 29 files:  34%|███▍      | 10/29 [01:27<02:56,  9.30s/it]Fetching 29 files:  38%|███▊      | 11/29 [01:29<02:14,  7.46s/it]Fetching 29 files:  41%|████▏     | 12/29 [01:29<01:36,  5.69s/it]Fetching 29 files:  45%|████▍     | 13/29 [01:33<01:25,  5.33s/it]Fetching 29 files:  48%|████▊     | 14/29 [02:00<02:47, 11.16s/it]Fetching 29 files:  52%|█████▏    | 15/29 [02:03<02:05,  8.97s/it]Fetching 29 files:  55%|█████▌    | 16/29 [02:31<03:07, 14.46s/it]Fetching 29 files:  62%|██████▏   | 18/29 [02:31<01:27,  7.96s/it]Fetching 29 files:  66%|██████▌   | 19/29 [02:34<01:06,  6.67s/it]Fetching 29 files:  76%|███████▌  | 22/29 [02:34<00:23,  3.31s/it]Fetching 29 files:  79%|███████▉  | 23/29 [02:36<00:18,  3.01s/it]Fetching 29 files:  83%|████████▎ | 24/29 [02:37<00:12,  2.52s/it]Fetching 29 files:  86%|████████▌ | 25/29 [02:44<00:14,  3.55s/it]Fetching 29 files:  90%|████████▉ | 26/29 [02:55<00:16,  5.56s/it]Fetching 29 files:  93%|█████████▎| 27/29 [02:57<00:08,  4.44s/it]Fetching 29 files:  97%|█████████▋| 28/29 [02:57<00:03,  3.33s/it]Fetching 29 files: 100%|██████████| 29/29 [02:57<00:00,  2.48s/it]Fetching 29 files: 100%|██████████| 29/29 [02:57<00:00,  6.13s/it]
+DOWNLOAD OK 178s
+=========== 05:58:32 PROBE ===========
+05:58:38 config ['Qwen3_5ForConditionalGeneration'] | transformers 5.17.0
+05:58:38 tokenisation of bare numbers: {"10": ["1", "0"], "36": ["3", "6"], "46": ["4", "6"], "99": ["9", "9"]}
+Loading weights:   0%|          | 0/851 [00:00<?, ?it/s]Loading weights:  96%|█████████▌| 819/851 [00:00<00:00, 8180.35it/s]Loading weights: 100%|██████████| 851/851 [00:00<00:00, 8286.44it/s]
+05:58:48 LOAD OK via Qwen3_5ForCausalLM in 7s | 64 layers
+05:58:48 [bare] 2 tokens/prompt, reading index 1; for 36 that token is '6'
+05:59:28 [bare] SAVED (90, 65, 5120) -> acts_bare.npy in 39.7s
+05:59:28 [arith] 9 tokens/prompt, reading index 7; for 36 that token is '6'
+05:59:28 [arith] SAVED (90, 65, 5120) -> acts_arith.npy in 0.5s
+05:59:28 DONE, peak VRAM 68.227481088 GB -> meta.json
+exit=0
+=========== 05:59:30 ALL DONE ===========

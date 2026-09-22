@@ -1,0 +1,10 @@
+[watchdog] 185.216.23.189:28887  alarm after 6 min idle (12 polls of 30s)
+[watchdog] timeout mechanism: ssh keepalives (no timeout binary found)
+[watchdog] self-test OK, first reading: 0 %
+[watchdog 17:24:51] idle 0m (mem 0 MiB)
+[watchdog 17:25:25] idle 1m (mem 0 MiB)
+[watchdog 17:25:59] idle 1m (mem 0 MiB)
+[watchdog 17:26:32] working again: 50% (was idle 3 polls)
+[watchdog 17:27:39] idle 0m (mem 0 MiB)
+[watchdog 17:28:12] idle 1m (mem 0 MiB)
+[watchdog 17:28:43] pod UNREACHABLE (1)

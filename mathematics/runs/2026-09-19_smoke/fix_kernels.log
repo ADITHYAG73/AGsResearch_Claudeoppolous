@@ -1,0 +1,17 @@
+16:16:08 fla
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+16:16:10 build deps
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+/usr/local/cuda
+/usr/local/cuda-12
+/usr/local/cuda-12.8
+Cuda compilation tools, release 12.8, V12.8.93
+Build cuda_12.8.r12.8/compiler.35583870_0
+16:16:11 causal-conv1d (compiles; MAX_JOBS=16)
+Installing collected packages: causal-conv1d
+Successfully installed causal-conv1d-1.7.0
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+16:16:21 verify
+fla OK 0.5.2
+causal_conv1d OK 1.7.0
+16:16:29 KERNEL FIX DONE

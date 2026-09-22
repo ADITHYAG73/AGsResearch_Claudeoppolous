@@ -1,0 +1,62 @@
+=========== 17:24:58 VERIFY ===========
+OK  torch                      want 2.8.0    got 2.8.0+cu128
+OK  transformers               want 5.17.0   got 5.17.0
+OK  flash-linear-attention     want 0.5.2    got 0.5.2
+OK  causal-conv1d              want 1.7.0    got 1.7.0
+   nnsight                    0.7.0
+OK  transformers.Qwen3_5ForCausalLM
+OK  transformers.Qwen2ForCausalLM
+OK  transformers.Gemma3ForCausalLM
+OK  transformers.Gemma4ForCausalLM
+OK  transformers.Olmo3ForCausalLM
+   torch 2.8.0+cu128 cuda build 12.8 | cuda available: True
+OK  import fla
+OK  import causal_conv1d
+VERIFY PASSED
+verify exit=0
+=========== 17:25:07 DOWNLOAD ===========
+Fetching 29 files:   0%|          | 0/29 [00:00<?, ?it/s]Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Fetching 29 files:   7%|▋         | 2/29 [00:00<00:01, 16.77it/s]Fetching 29 files:  21%|██        | 6/29 [00:13<00:57,  2.48s/it]Fetching 29 files:  24%|██▍       | 7/29 [00:14<00:47,  2.18s/it]Fetching 29 files:  28%|██▊       | 8/29 [00:18<00:55,  2.66s/it]Fetching 29 files:  31%|███       | 9/29 [00:20<00:47,  2.37s/it]Fetching 29 files:  34%|███▍      | 10/29 [00:20<00:34,  1.79s/it]Fetching 29 files:  38%|███▊      | 11/29 [00:21<00:28,  1.56s/it]Fetching 29 files:  41%|████▏     | 12/29 [00:22<00:27,  1.59s/it]Fetching 29 files:  45%|████▍     | 13/29 [00:33<01:07,  4.20s/it]Fetching 29 files:  48%|████▊     | 14/29 [00:34<00:46,  3.12s/it]Fetching 29 files:  52%|█████▏    | 15/29 [00:38<00:49,  3.55s/it]Fetching 29 files:  55%|█████▌    | 16/29 [00:41<00:41,  3.20s/it]Fetching 29 files:  59%|█████▊    | 17/29 [00:41<00:28,  2.35s/it]Fetching 29 files:  62%|██████▏   | 18/29 [00:41<00:19,  1.75s/it]Fetching 29 files:  69%|██████▉   | 20/29 [00:41<00:08,  1.03it/s]Fetching 29 files:  72%|███████▏  | 21/29 [00:42<00:06,  1.28it/s]Fetching 29 files:  76%|███████▌  | 22/29 [00:42<00:05,  1.36it/s]Fetching 29 files:  79%|███████▉  | 23/29 [00:43<00:05,  1.19it/s]Fetching 29 files:  83%|████████▎ | 24/29 [00:44<00:04,  1.17it/s]Fetching 29 files:  86%|████████▌ | 25/29 [00:45<00:03,  1.32it/s]Fetching 29 files:  90%|████████▉ | 26/29 [00:46<00:02,  1.04it/s]Fetching 29 files:  97%|█████████▋| 28/29 [00:48<00:01,  1.03s/it]Fetching 29 files: 100%|██████████| 29/29 [00:49<00:00,  1.11it/s]Fetching 29 files: 100%|██████████| 29/29 [00:49<00:00,  1.71s/it]
+DOWNLOAD OK /root/models/Qwen3.8-27B 50s
+SHARDS 18 (expect 18)
+=========== 17:25:59 SMOKE ===========
+17:26:04 config loaded: architectures=['Qwen3_5ForConditionalGeneration'] model_type=qwen3_5 transformers=5.17.0
+17:26:07 kernel fla: OK
+17:26:07 kernel causal_conv1d: OK
+Loading weights:   0%|          | 0/851 [00:00<?, ?it/s]Loading weights:  61%|██████    | 515/851 [00:00<00:00, 5148.91it/s]Loading weights: 100%|██████████| 851/851 [00:00<00:00, 6260.46it/s]
+17:26:25 LOAD OK via Qwen3_5ForCausalLM in 25s
+17:26:25 ARCH OK: 64 layers at model.layers, 26.90B params -> arch.txt
+17:27:12 TRACE OK: 161 tokens in 46.8s, finished=True, gold '18' in text=True -> trace.json
+----- first 600 chars -----
+We need answer simple arithmetic. Need final. Let's solve: ducks lay 16 eggs/day. She eats 3, bakes with 4, total used 7. Remainder 9. Sells at $2 each => $18. Need maybe phrase. Ensure no hidden trick: "bakes muffins for her friends every day with four" means uses 4 eggs. Yes.
+</think>
+
+Janet uses \(3 + 4 = 7\) eggs each day.
+
+She has \(16 - 7 = 9\) eggs left to sell.
+
+At \$2 per egg, she makes:
+
+\[
+9 \times 2 = 18
+\]
+
+**She makes \$18 every day at the farmers' market.**<|im_end|>
+----- last 300 chars -----
+no hidden trick: "bakes muffins for her friends every day with four" means uses 4 eggs. Yes.
+</think>
+
+Janet uses \(3 + 4 = 7\) eggs each day.
+
+She has \(16 - 7 = 9\) eggs left to sell.
+
+At \$2 per egg, she makes:
+
+\[
+9 \times 2 = 18
+\]
+
+**She makes \$18 every day at the farmers' market.**<|im_end|>
+17:27:12 ACTS OK: layers [0, 15, 31, 47, 63], shape [278, 5120], mean ||h|| per layer {"0": 14.4, "15": 60.8, "31": 80.3, "47": 113.1, "63": 401.2} in 0.2s -> acts/
+17:27:12 DONE in 71.5s, peak VRAM 54.129206272 GB -> done.json
+=========== 17:27:14 ALL DONE ===========

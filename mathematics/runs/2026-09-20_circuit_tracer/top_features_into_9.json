@@ -1,0 +1,194 @@
+[
+ {
+  "w": -1.555,
+  "layer": "35",
+  "idx": "10607",
+  "explanations": [
+   "Numbers and formulas"
+  ],
+  "boosts": [
+   "\u00d9\u0128\u00d9\u0127\u00d9\u012a\u00d8\u00b0",
+   "\u00d8\u00a5\u00d9\u0128\u00d8\u00b4",
+   " \u00d8\u00af\u00d9\u0127\u00d8\u00b4",
+   "\u00e3\u012a\u00af",
+   " \u00d8\u00b9\u00d9\u0126\u00d9\u012c\u00d9\u0128",
+   "?\";\n",
+   " \u00d8\u00a7\u00d9\u0126\u00d8\u00a5\u00d8\u00ab\u00d9\u0128",
+   "?\");\n"
+  ],
+  "top_acts": [
+   " leukocyte (K(i)=[2]",
+   "75\nProduct of -[8]",
+   "75\nProduct of -[8]",
+   "75\nProduct of -[8]"
+  ]
+ },
+ {
+  "w": 1.461,
+  "layer": "34",
+  "idx": "124769",
+  "explanations": [
+   "9"
+  ],
+  "boosts": [
+   "9",
+   " nine",
+   "\u00e4\u00b9\u013f",
+   " Ninth",
+   "-nine",
+   " Nine",
+   " ninth",
+   " ninety"
+  ],
+  "top_acts": [
+   " 1990 Directive[ ]",
+   " content=\"ISO-88[5]",
+   " content=\"ISO-88[5]",
+   " content=\"ISO-88[5]"
+  ]
+ },
+ {
+  "w": 1.164,
+  "layer": "33",
+  "idx": "47962",
+  "explanations": [
+   "say \"9\""
+  ],
+  "boosts": [
+   "\u00e4\u00b9\u013f",
+   " nine",
+   " Nine",
+   "-nine",
+   "Nine",
+   "9",
+   " ninth",
+   "nine"
+  ],
+  "top_acts": [
+   ".txt) Internet X.5[0]",
+   "' (John 1:[2]",
+   "sslutils.sslcontext.X5[0]",
+   " 05314[-]"
+  ]
+ },
+ {
+  "w": -0.824,
+  "layer": "35",
+  "idx": "154698",
+  "explanations": [
+   "period"
+  ],
+  "boosts": [
+   " extrad",
+   " obsess",
+   " strugg",
+   " sodom",
+   " dracon",
+   " dazz",
+   " sabot",
+   " inconsist"
+  ],
+  "top_acts": [
+   "*779 Stephen A[.]",
+   "*779 Stephen A[.]",
+   "*779 Stephen A[.]",
+   "*779 Stephen A[.]"
+  ]
+ },
+ {
+  "w": 0.746,
+  "layer": "35",
+  "idx": "50957",
+  "explanations": [
+   "single digit numbers"
+  ],
+  "boosts": [
+   "7",
+   "8",
+   "5",
+   "3",
+   "4",
+   "6",
+   "0",
+   "f\u00c3\u00a4"
+  ],
+  "top_acts": [
+   "344ce h1[:]",
+   "187\" secret=\"[5]",
+   "lea.hamradio.si/~s[5]",
+   "*779 Stephen A[.]"
+  ]
+ },
+ {
+  "w": 0.648,
+  "layer": "29",
+  "idx": "127104",
+  "explanations": [
+   "nine"
+  ],
+  "boosts": [
+   "\u00e4\u00b9\u013f",
+   " nine",
+   " Nine",
+   "Nine",
+   " ninth",
+   " Ninth",
+   "-nine",
+   "\u00e7\u00ac\u00ac\u00e4\u00b9\u013f"
+  ],
+  "top_acts": [
+   "\n^7\n^8[\n]",
+   "\n^7\n^8[\n]",
+   "io','A\u00c5\u0143gusto[',']",
+   "io','A\u00c5\u0143gusto[',']"
+  ]
+ },
+ {
+  "w": 0.494,
+  "layer": "35",
+  "idx": "123992",
+  "explanations": [
+   "unicode characters"
+  ],
+  "boosts": [
+   "\u00ef\u00bc\u012e",
+   "\u00e3\u0122\u0123",
+   "\u00e3\u0122\u0124",
+   " \u00e8",
+   "\u00ef\u00bc\u012a",
+   " \u00e5",
+   "\u00ef\u00bc\u013c",
+   " \u00e6"
+  ],
+  "top_acts": [
+   "user\nI'm glad you[ called]",
+   " team. Really i leaved[ it]",
+   "'t like leather seats so im[ good]",
+   "\nLet's get some fatt[ies]"
+  ]
+ },
+ {
+  "w": 0.43,
+  "layer": "35",
+  "idx": "1378",
+  "explanations": [
+   "/"
+  ],
+  "boosts": [
+   "\u00e2\u012a\u013c",
+   "\u00e2\u0124",
+   " sqrt",
+   "\u00cf\u0122",
+   " xy",
+   "\u00c2\u00b2",
+   " multiples",
+   " square"
+  ],
+  "top_acts": [
+   "41\n4*9[.]",
+   ".74 times 1[.]",
+   ".74 times 1[.]",
+   ".74 times 1[.]"
+  ]
+ }
+]

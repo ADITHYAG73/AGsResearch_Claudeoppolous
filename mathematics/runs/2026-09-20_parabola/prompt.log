@@ -1,0 +1,15 @@
+=========== 18:23:52 VERIFY ===========
+   torch 2.8.0+cu128 cuda build 12.8 | cuda available: True
+OK  import fla
+OK  import causal_conv1d
+VERIFY PASSED
+=========== 18:24:00 DOWNLOAD ===========
+Fetching 29 files:   0%|          | 0/29 [00:00<?, ?it/s]Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Fetching 29 files:   3%|▎         | 1/29 [00:00<00:03,  7.98it/s]Fetching 29 files:  21%|██        | 6/29 [00:48<03:14,  8.45s/it]Fetching 29 files:  24%|██▍       | 7/29 [00:58<03:14,  8.82s/it]Fetching 29 files:  28%|██▊       | 8/29 [01:02<02:44,  7.82s/it]Fetching 29 files:  31%|███       | 9/29 [01:18<03:14,  9.70s/it]Fetching 29 files:  34%|███▍      | 10/29 [01:28<03:05,  9.75s/it]Fetching 29 files:  38%|███▊      | 11/29 [01:33<02:31,  8.44s/it]Fetching 29 files:  45%|████▍     | 13/29 [01:37<01:31,  5.74s/it]Fetching 29 files:  48%|████▊     | 14/29 [01:46<01:36,  6.45s/it]Fetching 29 files:  52%|█████▏    | 15/29 [01:56<01:43,  7.42s/it]Fetching 29 files:  55%|█████▌    | 16/29 [02:33<03:18, 15.26s/it]Fetching 29 files:  59%|█████▊    | 17/29 [02:33<02:13, 11.12s/it]Fetching 29 files:  69%|██████▉   | 20/29 [02:33<00:46,  5.13s/it]Fetching 29 files:  76%|███████▌  | 22/29 [02:34<00:24,  3.45s/it]Fetching 29 files:  79%|███████▉  | 23/29 [02:36<00:19,  3.20s/it]Fetching 29 files:  83%|████████▎ | 24/29 [02:37<00:13,  2.60s/it]Fetching 29 files:  86%|████████▌ | 25/29 [02:45<00:16,  4.11s/it]Fetching 29 files:  90%|████████▉ | 26/29 [02:47<00:10,  3.57s/it]Fetching 29 files:  93%|█████████▎| 27/29 [02:55<00:09,  4.67s/it]Fetching 29 files: 100%|██████████| 29/29 [02:55<00:00,  2.73s/it]Fetching 29 files: 100%|██████████| 29/29 [02:55<00:00,  6.07s/it]
+DOWNLOAD OK 176s
+=========== 18:26:56 RUN ===========
+usage: smoke_q38.py [-h] [--model MODEL] [--out OUT] [--layers LAYERS]
+                    [--max-new-tokens MAX_NEW_TOKENS] [--question QUESTION]
+                    [--answer ANSWER] [--dtype DTYPE] [--device DEVICE]
+smoke_q38.py: error: argument --answer: expected one argument
+=========== 18:26:58 ALL DONE ===========

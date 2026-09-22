@@ -1,0 +1,437 @@
+<title>Three Papers on Number Machinery</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=Public+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --ground:#EDEFF2; --panel:#FFFFFF; --sunk:#E3E7EC; --ink:#131A22; --muted:#5A6874; --line:#C3CCD5; --hair:#DDE3E9;
+  --p1:#5B3E9B; --p1-soft:#E6E0F5; --p2:#0F6F63; --p2-soft:#D5EBE7; --p3:#A84A1E; --p3-soft:#F6E2D6;
+  --shown:#0F6F63; --claim:#8A6D0B; --admit:#A8341E;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --ground:#0E1419; --panel:#161E26; --sunk:#111920; --ink:#E6ECF2; --muted:#93A3B2; --line:#2A353F; --hair:#1F2830;
+  --p1:#A995E8; --p1-soft:#2A2145; --p2:#4FBCAC; --p2-soft:#0C3630; --p3:#E08A5A; --p3-soft:#402015;
+  --shown:#4FBCAC; --claim:#D9B44A; --admit:#E8705A;
+}}
+:root[data-theme="dark"]{
+  --ground:#0E1419; --panel:#161E26; --sunk:#111920; --ink:#E6ECF2; --muted:#93A3B2; --line:#2A353F; --hair:#1F2830;
+  --p1:#A995E8; --p1-soft:#2A2145; --p2:#4FBCAC; --p2-soft:#0C3630; --p3:#E08A5A; --p3-soft:#402015;
+  --shown:#4FBCAC; --claim:#D9B44A; --admit:#E8705A;
+}
+body{background:var(--ground);color:var(--ink);font-family:"Public Sans",system-ui,sans-serif;font-size:16px;line-height:1.6;padding-inline:20px;padding-block:28px 64px}
+.wrap{max-width:1040px;margin-inline:auto;display:flex;flex-direction:column;gap:38px}
+h1,h2,h3{font-family:Newsreader,Georgia,serif;font-weight:600;margin:0;text-wrap:balance}
+h1{font-size:clamp(30px,5vw,46px);line-height:1.06;letter-spacing:-.01em}
+h2{font-size:26px;line-height:1.2}
+h3{font-size:19px}
+p{margin:0;max-width:68ch}
+.eyebrow{font-family:"JetBrains Mono",monospace;font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.lede{font-size:18.5px;font-family:Newsreader,Georgia,serif}
+.muted{color:var(--muted)} .mono{font-family:"JetBrains Mono",monospace;font-size:.88em}
+section{display:flex;flex-direction:column;gap:16px}
+a{color:inherit;text-decoration-color:var(--line);text-underline-offset:3px}
+a:hover{text-decoration-color:currentColor}
+
+/* verdict tags */
+.tag{font-family:"JetBrains Mono",monospace;font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;padding:2px 6px;border:1px solid;white-space:nowrap;vertical-align:1px}
+.t-shown{color:var(--shown);border-color:var(--shown)} .t-claim{color:var(--claim);border-color:var(--claim)} .t-admit{color:var(--admit);border-color:var(--admit)}
+
+/* glance table */
+.tscroll{overflow-x:auto;border:1px solid var(--line);background:var(--panel)}
+table{border-collapse:collapse;width:100%;font-size:14.5px;min-width:720px}
+th,td{text-align:left;padding:10px 13px;border-bottom:1px solid var(--hair);vertical-align:top}
+thead th{font-family:Newsreader,serif;font-size:16px;font-weight:600;border-bottom:2px solid var(--line);position:sticky;top:0;background:var(--panel)}
+tbody th{font-weight:500;color:var(--muted);font-size:13.5px;width:150px;font-family:"Public Sans",sans-serif}
+th.c1{color:var(--p1)} th.c2{color:var(--p2)} th.c3{color:var(--p3)}
+td .mono{font-size:13px}
+
+/* tabs */
+.tabs{display:flex;gap:0;flex-wrap:wrap;border-bottom:2px solid var(--line)}
+.tab{appearance:none;background:none;border:0;border-bottom:3px solid transparent;margin-bottom:-2px;color:var(--muted);font:500 15px "Public Sans",sans-serif;padding:10px 16px;cursor:pointer;text-align:left}
+.tab:hover{color:var(--ink)}
+.tab[aria-selected="true"]{color:var(--ink);font-weight:600}
+.tab.c1[aria-selected="true"]{border-bottom-color:var(--p1)} .tab.c2[aria-selected="true"]{border-bottom-color:var(--p2)} .tab.c3[aria-selected="true"]{border-bottom-color:var(--p3)}
+.tab:focus-visible{outline:3px solid var(--p1);outline-offset:-3px}
+.tab small{display:block;font-weight:400;font-size:12px;color:var(--muted);font-family:"JetBrains Mono",monospace}
+
+.card{background:var(--panel);border:1px solid var(--line);border-top:4px solid var(--accent);padding:22px;display:flex;flex-direction:column;gap:20px}
+.card.c1{--accent:var(--p1)} .card.c2{--accent:var(--p2)} .card.c3{--accent:var(--p3)}
+.card h3{color:var(--accent)}
+.block{display:flex;flex-direction:column;gap:9px}
+.facts2{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1px;background:var(--line);border:1px solid var(--line)}
+.facts2 div{background:var(--sunk);padding:9px 11px;display:flex;flex-direction:column}
+.facts2 b{font-family:"JetBrains Mono",monospace;font-weight:500;font-size:15px}
+.facts2 span{font-size:12px;color:var(--muted)}
+pre{margin:0;background:var(--sunk);border:1px solid var(--line);border-left:4px solid var(--accent);padding:15px 17px;overflow-x:auto;font-family:"JetBrains Mono",monospace;font-size:13px;line-height:1.62;white-space:pre}
+pre .hl{background:var(--accent);color:var(--panel);padding:0 3px}
+ul{margin:0;padding-left:21px;display:flex;flex-direction:column;gap:8px;max-width:68ch}
+li::marker{color:var(--muted)}
+.numlist{list-style:none;padding:0;counter-reset:s;display:flex;flex-direction:column;gap:10px}
+.numlist li{counter-increment:s;display:grid;grid-template-columns:26px 1fr;gap:11px;align-items:start}
+.numlist li::before{content:counter(s);font-family:"JetBrains Mono",monospace;font-size:12px;color:var(--accent);border:1px solid var(--accent);width:22px;height:22px;display:grid;place-items:center;margin-top:2px}
+
+/* synthesis */
+figure{margin:0;display:flex;flex-direction:column;gap:9px}
+.figbox{background:var(--panel);border:1px solid var(--line);padding:16px;overflow-x:auto}
+svg{display:block;max-width:100%;height:auto;min-width:600px;color:var(--ink)}
+svg text{font-family:"Public Sans",sans-serif;font-size:12.5px;fill:currentColor}
+svg .m{font-family:"JetBrains Mono",monospace;font-size:11px}
+svg .dim{fill:var(--muted)}
+figcaption{font-size:13.5px;color:var(--muted)}
+
+.gap{background:var(--panel);border:1px solid var(--line);padding:16px 18px;display:flex;flex-direction:column;gap:7px}
+.gap h3{font-size:17px}
+.gap.ours{border-color:var(--p3);border-left:4px solid var(--p3);background:var(--p3-soft)}
+.method{counter-reset:m;display:flex;flex-direction:column;gap:14px}
+.mstep{display:grid;grid-template-columns:34px 1fr;gap:14px;align-items:start}
+.mstep .n{counter-increment:m;font-family:Newsreader,serif;font-size:24px;color:var(--muted);line-height:1}
+.mstep b{display:block;font-family:Newsreader,serif;font-size:17px;font-weight:600;margin-bottom:2px}
+.src{border-top:1px solid var(--line);padding-top:16px;font-size:13.5px;color:var(--muted);display:flex;flex-direction:column;gap:7px}
+</style>
+
+<div class="wrap">
+
+<header style="display:flex;flex-direction:column;gap:13px">
+  <div class="eyebrow">read in full · 21 September 2026 · main text and appendices</div>
+  <h1>Three Papers on Number Machinery</h1>
+  <p class="lede">What each one set out to do, what they actually ran, the mechanism each proposes written as steps you can execute by hand, and — kept separate on purpose — what each admits it could not show.</p>
+  <p>Every claim below carries a tag. <span class="tag t-shown">shown</span> means they measured it. <span class="tag t-claim">claimed</span> means they assert it on partial evidence. <span class="tag t-admit">admitted</span> means the authors themselves say they do not know. Learning to keep those three apart is most of what reading a paper well consists of.</p>
+</header>
+
+<section>
+  <h2>At a glance</h2>
+  <div class="tscroll"><table>
+    <thead><tr><th></th><th class="c1">Trigonometry</th><th class="c2">Universal</th><th class="c3">Shape of Addition</th></tr></thead>
+    <tbody>
+      <tr><th>Who, where</th><td>Kantamneni &amp; Tegmark, MIT<br><span class="mono">arXiv 2502.00873</span></td><td>Štefánik et al., 10 authors, EU<br><span class="mono">ACL 2026 · 2510.26285</span></td><td>Wen et al., China<br><span class="mono">ICML 2026 · 2606.03645</span></td></tr>
+      <tr><th>The question</th><td>How does a model compute <span class="mono">a+b</span>?</td><td>Is the number representation the same everywhere — and are our tools fit to read it?</td><td>Why does a model get <em>multi-digit</em> addition wrong?</td></tr>
+      <tr><th>Models</th><td>GPT-J 6B, Pythia 6.9B, Llama 3.1 8B</td><td>OLMo 2 (1/7/13B), Llama 3 (1/3/8B), Phi 4 15B</td><td>Qwen3-4B (main), Qwen3-8B, Gemma 3 4B</td></tr>
+      <tr><th>Data</th><td>all 10,000 sums, <span class="mono">a,b ∈ 0–99</span></td><td>numbers inside real sentences, 4 domains; plus multi-token numbers to 10<sup>18</sup></td><td>10,000 sums of three 10-digit integers</td></tr>
+      <tr><th>Main tool</th><td>activation patching</td><td>a purpose-built sinusoidal probe</td><td>UMAP + linear probes + steering</td></tr>
+      <tr><th>Core claim</th><td>numbers live on a helix; addition rotates it</td><td>the sinusoid is near-universal across families and layers</td><td>the carry is a <em>continuous</em> quantity, discretised with noise</td></tr>
+      <tr><th>Load-bearing number</th><td>helix beats a PCA baseline on <span class="mono">a+b</span>: 7.21 vs 6.13</td><td>99% recovery of the previous number-piece from the last token</td><td>error curve fits the noise model at <span class="mono">R²=0.80</span>, <span class="mono">σ≈0.05</span></td></tr>
+      <tr><th>Biggest admission</th><td>cannot isolate the step that actually adds</td><td>only 3 families; nothing above 30B</td><td>final layer, one column position</td></tr>
+      <tr><th>Tokenisation</th><td>whole number = 1 token</td><td>multi-token studied directly</td><td>digits generated one at a time</td></tr>
+      <tr><th>Code</th><td><span class="mono">subhashk01/LLM-addition</span><br><b>no licence</b></td><td><span class="mono">prompteus/numllama</span> MIT<br><span class="mono">prompteus/param-sin</span> <b>no licence</b></td><td><span class="mono">RL-MIND/Shape-of-Addition</span> MIT</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section>
+  <h2>One paper at a time</h2>
+  <div class="tabs" role="tablist">
+    <button class="tab c1" role="tab" id="t1" aria-selected="true" aria-controls="p1">Trigonometry<small>Kantamneni &amp; Tegmark</small></button>
+    <button class="tab c2" role="tab" id="t2" aria-selected="false" aria-controls="p2">Universal<small>Štefánik et al.</small></button>
+    <button class="tab c3" role="tab" id="t3" aria-selected="false" aria-controls="p3">Shape of Addition<small>Wen et al.</small></button>
+  </div>
+
+  <!-- ============ PAPER 1 ============ -->
+  <div class="card c1" id="p1" role="tabpanel" aria-labelledby="t1">
+    <h3>Language Models Use Trigonometry to Do Addition</h3>
+    <div class="facts2">
+      <div><b>GPT-J 6B</b><span>main subject, simple MLPs</span></div>
+      <div><b>80.5%</b><span>its accuracy on a+b</span></div>
+      <div><b>0–99</b><span>operand range, single tokens</span></div>
+      <div><b>T = 2, 5, 10, 100</b><span>the four periods</span></div>
+    </div>
+
+    <div class="block">
+      <h4 style="margin:0;font-size:15px">What they set out to do</h4>
+      <p>Not to test whether models can add — that was known. To reverse-engineer the machinery: find what a number <em>is</em> inside the model, then find which parts turn two of them into a third.</p>
+    </div>
+
+    <div class="block">
+      <h4 style="margin:0;font-size:15px">What they actually ran</h4>
+      <ol class="numlist">
+        <li>Fed the integers 0–360 and looked at the residual stream after block 0. A Fourier transform showed sharp peaks at periods 2, 5 and 10; a PCA showed a straight line in the value.</li>
+        <li>Proposed that both facts fit one shape — a helix — and fitted it by linear regression. Nine numbers per number.</li>
+        <li><b>Tested whether the model uses it</b>, by activation patching: run a clean prompt, run a corrupted one, paste the fitted helix in place of the real activation, and see if the right answer comes back. Compared against four baselines including PCA.</li>
+        <li>Ranked every attention head and every MLP by how much patching it restored, then kept the smallest set that recovered most of the behaviour.</li>
+        <li>Went down to individual neurons, fitted each one's firing pattern with a sum of the same four periods, and checked the fits by patching them back in.</li>
+      </ol>
+    </div>
+
+    <div class="block">
+      <h4 style="margin:0;font-size:15px">The mechanism, as steps you can run by hand</h4>
+<pre>THE CLOCK ALGORITHM          to compute   a + b =
+
+  1  REPRESENT     on a's own token, build nine numbers from a:
+                     [ a,
+                       cos(2πa/2),   sin(2πa/2),
+                       cos(2πa/5),   sin(2πa/5),
+                       cos(2πa/10),  sin(2πa/10),
+                       cos(2πa/100), sin(2πa/100) ]
+                   multiply by a fixed matrix C  ->  helix(a)
+                   same for b, on b's own token
+
+  2  TRANSPORT     attention heads in blocks 9-14 copy
+                   helix(a) and helix(b) onto the final "=" token
+
+  3  COMBINE       MLPs 14-18 turn helix(a), helix(b) into helix(a+b)
+                   <span class="hl">THIS IS THE ADDITION. MECHANISM NOT IDENTIFIED.</span>
+                   conjectured:  cos(a+b) = cos a cos b - sin a sin b
+
+  4  READ OUT      MLPs 19-27 read helix(a+b) and raise the logit
+                   of the answer token</pre>
+      <p class="muted" style="font-size:14px">Try step 1 by hand for <span class="mono">a=3</span> and <span class="mono">a=63</span>. On the period-10 circle both land in the same place; on the period-100 circle they do not. That is how four circles pin down one number.</p>
+    </div>
+
+    <div class="block">
+      <h4 style="margin:0;font-size:15px">What holds it up, and what does not</h4>
+      <ul>
+        <li><span class="tag t-shown">shown</span> Deleting the helix directions from the residual stream hurts the model about as much as deleting the whole layer.</li>
+        <li><span class="tag t-shown">shown</span> Nine fitted numbers beat a 27-dimensional PCA at reconstructing the last token's state.</li>
+        <li><span class="tag t-shown">shown</span> About 1% of neurons, with the rest averaged away, still solve 80% of problems.</li>
+        <li><span class="tag t-shown">shown</span> A helix fitted to a <em>shuffled</em> ordering of the numbers has no causal effect — so the shape is not merely flexible enough to fit anything.</li>
+        <li><span class="tag t-admit">admitted</span> <b>Step 3, the actual addition, was never isolated.</b> The trigonometric identity in the title is a hypothesis. The same gap defeated the original Clock paper in 2023.</li>
+        <li><span class="tag t-admit">admitted</span> The helix loses to a plain PCA baseline on three of their six tasks — so numbers carry structure the helix does not describe.</li>
+        <li><span class="tag t-admit">admitted</span> The fit is markedly weaker on Llama 3.1, which they suspect is its gated MLPs. "The Clock could be one method of an ensemble."</li>
+        <li><span class="tag t-admit">admitted</span> Models that split numbers into digits "must use additional algorithms to collate digit tokens." <em>This sentence is the door we walked through.</em></li>
+      </ul>
+    </div>
+
+    <div class="block">
+      <h4 style="margin:0;font-size:15px">A finding people skip, in Appendix F</h4>
+      <p>When GPT-J is wrong, it is wrong by exactly &minus;10 (45.7% of numeric errors) or +10 (27.9%). The obvious guess is a failed carry. They tested it with a chi-squared test and <b>ruled it out</b>. The cause is instead that the read-out from the helix is itself periodic with period 10, so neighbours ten apart are always half-promoted.</p>
+    </div>
+  </div>
+
+  <!-- ============ PAPER 2 ============ -->
+  <div class="card c2" id="p2" role="tabpanel" aria-labelledby="t2" hidden>
+    <h3>Language Models Learn Universal Representations of Numbers</h3>
+    <div class="facts2">
+      <div><b>8 models</b><span>3 families, none above 30B</span></div>
+      <div><b>top-63</b><span>frequencies: perfect agreement</span></div>
+      <div><b>99%</b><span>previous digit, from the last token</span></div>
+      <div><b>up to 42%</b><span>of division errors repaired</span></div>
+    </div>
+
+    <div class="block">
+      <h4 style="margin:0;font-size:15px">What they set out to do</h4>
+      <p>Two things, and the second is the one that gives the paper its title. First, test whether the sinusoidal number representation is a quirk of one model or a law across models. Second, argue that <b>general-purpose interpretability tools give wrong answers on numbers</b> — and that the tool you choose changes the conclusion you reach.</p>
+    </div>
+
+    <div class="block">
+      <h4 style="margin:0;font-size:15px">What they actually ran</h4>
+      <ol class="numlist">
+        <li>Compared the number embeddings of eight models against each other directly, and against a control of 1,000 ordinary word pieces.</li>
+        <li>Fourier-decomposed each model's number embeddings and asked whether different models <em>rank the same frequencies highest</em>. For the top 63, every pair of models agreed perfectly.</li>
+        <li>Built a new probe that forces a sinusoidal shape and learns a frequency, amplitude and phase per feature. Fitted it at every layer of six models.</li>
+        <li>Crucially, took the numbers from <b>real sentences</b> in four domains, not from synthetic sums — and showed probes trained on synthetic text fail to transfer, while probes trained on real text transfer both ways.</li>
+        <li>Trained the probe on one layer and tested it on every other layer. Near-perfect transfer for all the middle layers.</li>
+        <li>For multi-token numbers, read at the <b>last</b> token and asked the probe to recover the earlier pieces. Compared against TunedLens, an off-the-shelf tool.</li>
+        <li>Finally intervened: nudged activations toward the shape the probe expects, on cases the model was getting wrong.</li>
+      </ol>
+    </div>
+
+    <div class="block">
+      <h4 style="margin:0;font-size:15px">The method, as steps you can run by hand</h4>
+<pre>THE param-sin PROBE       read a number out of an activation
+
+     f(x)  =  Sᵀ · ( W_in · x )
+     S     =  w_a · sin( w_φ + w_f · r )        r = 0, 1, ... 999
+
+     learn per feature:   w_f  frequency
+                          w_a  amplitude
+                          w_φ  phase
+     the sine shape is IMPOSED, not discovered
+
+TO STUDY ANY MODEL
+
+  1  collect activations for numbers sitting in real sentences
+  2  fit one probe per layer;  hold out numbers it never sees
+  3  accuracy of read-back  =  how sinusoidal AND how precise
+  4  move the probe to another layer, or another model, unchanged
+  5  multi-token number?  read at the <span class="hl">LAST</span> token,
+                          ask it for the EARLIER pieces
+  6  to intervene:  h' = α·h + (1-α)·e_target
+                    where e_target is what the probe wants to see</pre>
+    </div>
+
+    <div class="block">
+      <h4 style="margin:0;font-size:15px">What holds it up, and what does not</h4>
+      <ul>
+        <li><span class="tag t-shown">shown</span> All eight models rank the same top-63 frequencies. The control word pieces do not behave this way, so it is specific to numbers.</li>
+        <li><span class="tag t-shown">shown</span> A probe trained on one layer reads another layer at close to 100% for the middle of the network.</li>
+        <li><span class="tag t-shown">shown</span> The preceding number piece is recoverable from the last token at 99%. Beyond three tokens it collapses toward zero.</li>
+        <li><span class="tag t-shown">shown</span> <b>TunedLens, the general-purpose tool, says the opposite</b> — that digits cannot be recovered past two steps. The sinusoidal probe shows that was the tool's failure, not the model's.</li>
+        <li><span class="tag t-shown">shown</span> Steering toward the expected shape repairs up to 30% of multiplication errors and 42% of division errors.</li>
+        <li><span class="tag t-claim">claimed</span> That how well the model maintains the sinusoid <em>determines</em> its accuracy. The steering result supports this; it is stronger than what a probe alone licenses.</li>
+        <li><span class="tag t-admit">admitted</span> Three families only, and nothing above 30B parameters, for want of hardware.</li>
+        <li><span class="tag t-admit">admitted</span> English-centric. Number systems differ in Chinese and Japanese; untested.</li>
+        <li><span class="tag t-admit">admitted</span> The probe has a blind spot: every error on days and months falls on the <em>first</em> item, and persists when the list is reversed.</li>
+      </ul>
+    </div>
+
+    <div class="block">
+      <h4 style="margin:0;font-size:15px">The transferable lesson</h4>
+      <p>Their §4.1 and our afternoon made the same point from opposite directions. A blunt instrument reports absence where a sharp one finds 99%. We saw it too: the cosine-similarity square made it look as though the first digit mattered more with depth, while a probe showed it was fully readable from block 1 the whole time. <b>A negative result is a statement about your instrument until you have shown otherwise.</b></p>
+    </div>
+  </div>
+
+  <!-- ============ PAPER 3 ============ -->
+  <div class="card c3" id="p3" role="tabpanel" aria-labelledby="t3" hidden>
+    <h3>The Shape of Addition: Geometric Structures of Arithmetic</h3>
+    <div class="facts2">
+      <div><b>3 × 10 digits</b><span>the sums they used</span></div>
+      <div><b>σ ≈ 0.05</b><span>the model's fitted noise level</span></div>
+      <div><b>R² = 0.80</b><span>fit of the error curve</span></div>
+      <div><b>86.3 → 89.6%</b><span>accuracy after their fix</span></div>
+    </div>
+
+    <div class="block">
+      <h4 style="margin:0;font-size:15px">What they set out to do</h4>
+      <p>Explain a specific failure rather than a capability. Big models do long addition and are reliably wrong by one. The question is why <em>that</em> error, and why it clusters where it does.</p>
+    </div>
+
+    <div class="block">
+      <h4 style="margin:0;font-size:15px">What they actually ran</h4>
+      <ol class="numlist">
+        <li>Ten thousand sums of three ten-digit numbers, greedy decoding, with a forced prefix so the model outputs digits and nothing else.</li>
+        <li><b>Stopped generation at the first wrong digit</b>, so every activation they study follows a fully correct history. That rules out errors caused by earlier errors — a control worth stealing.</li>
+        <li>Projected the final-layer activations at one column position into two dimensions, with the ten output digit vectors included as fixed landmarks.</li>
+        <li>Trained probes for six different quantities: the true digit, the model's digit, the column sum, the incoming carry, whether it was right, and a continuous quantity of their own devising.</li>
+        <li>Found a direction between two clusters and pushed activations along it to see whether the output digit flips — the causal test.</li>
+        <li>Built a corrector: read two quantities out of the activation and overrule the model when they disagree with what it said.</li>
+      </ol>
+    </div>
+
+    <div class="block">
+      <h4 style="margin:0;font-size:15px">The mechanism, as steps you can run by hand</h4>
+<pre>CARRY AS A NOISY MEASUREMENT      column p, units on the right
+
+  THE ARITHMETIC (what is true)
+      raw sum          r_p  = sum of the digits in this column
+      carry potential  Φ_p  = Σ  r_(p+j) / 10^j      for j = 1, 2, 3...
+                              <span class="hl">a CONTINUOUS number, not 0 or 1</span>
+      true carry       c_p  = floor(Φ_p)
+      correct digit    s_p  = (r_p + c_p) mod 10
+
+  WHAT THEY SAY THE MODEL DOES
+      perceived        Φ̂_p  = Φ_p + ε        ε ~ Normal(0, σ²),  σ ≈ 0.05
+      its carry        ĉ_p  = floor(Φ̂_p)
+      its digit        ŝ_p  = (r_p + ĉ_p) mod 10
+
+  WHEN IT GOES WRONG
+      only when Φ_p sits near a whole number, so a little noise
+      tips it over the floor boundary
+
+      P(error | Φ)  =  Q(δ/σ)  +  Q((1-δ)/σ)        δ = Φ mod 1
+
+      -> error rate is a BATHTUB:
+           worst   at Φ ≈ 1.0, 2.0, 3.0 ...
+           safest  at Φ ≈ 1.5, 2.5, 3.5 ...
+
+  WORKED EXAMPLE FROM THE PAPER
+      columns to the right give  Φ = 1.4 + 0.11 = 1.51
+      true carry = floor(1.51) = 1
+      1.51 is far from a boundary  ->  safe</pre>
+      <p class="muted" style="font-size:14px">This is the one to do on your whiteboard. Pick a three-number sum, compute <span class="mono">Φ</span> for each column, and mark which columns sit near a whole number. Those are the digits the paper predicts it gets wrong.</p>
+    </div>
+
+    <div class="block">
+      <h4 style="margin:0;font-size:15px">What holds it up, and what does not</h4>
+      <ul>
+        <li><span class="tag t-shown">shown</span> The predicted bathtub shape is there in the data, fitting at R²=0.80 and implying a noise level of about 0.05.</li>
+        <li><span class="tag t-shown">shown</span> Probe accuracies line up with the geometry: the model's own digit reads at 98.8%, the true digit only 94.9% — the gap is exactly the errors, where the activation has physically drifted to the wrong cluster.</li>
+        <li><span class="tag t-shown">shown</span> Pushing an activation along the carry direction flips the digit, and states near a boundary flip with a smaller push than stable ones.</li>
+        <li><span class="tag t-shown">shown</span> <b>The sharpest result in the paper is an ablation.</b> Give the model its own column sum but the <em>true</em> carry and accuracy jumps to 96.0%; give it the true column sum but its own carry and it only reaches 90.5%. The carry is the bottleneck, not the addition.</li>
+        <li><span class="tag t-claim">claimed</span> That the model literally holds a continuous carry and floors it. The evidence is a probe that recovers <span class="mono">Φ</span> at 92% plus a well-fitting error curve. Consistent with the story; not the only story consistent with it.</li>
+        <li><span class="tag t-admit">admitted</span> One column position, and mainly the final layer. Layer-by-layer work is pushed to an appendix.</li>
+        <li><span class="tag t-claim">claimed</span> The pictures come from UMAP, which is a non-linear projection. Distances in such a picture are not distances in the model. Their steering result is what rescues this, because it does not depend on the picture.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>How the three fit together</h2>
+  <figure>
+    <div class="figbox">
+    <svg viewBox="0 0 880 250" role="img" aria-label="Three papers in sequence: what a number is, whether that holds everywhere, and why multi-digit addition fails; with the untested gap shown below.">
+      <defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="currentColor"/></marker></defs>
+      <rect x="12" y="34" width="248" height="86" fill="var(--p1-soft)" stroke="var(--p1)" stroke-width="1.5"/>
+      <text x="136" y="58" text-anchor="middle" font-weight="600">Trigonometry · 2025</text>
+      <text x="136" y="78" text-anchor="middle" class="dim">what a number IS inside,</text>
+      <text x="136" y="95" text-anchor="middle" class="dim">and where addition happens</text>
+      <text x="136" y="112" text-anchor="middle" class="m dim">one model family, 1 token per number</text>
+
+      <path d="M260,77 H306" stroke="currentColor" stroke-width="1.4" fill="none" marker-end="url(#a)"/>
+      <text x="283" y="68" text-anchor="middle" class="dim" font-size="11">is it general?</text>
+
+      <rect x="308" y="34" width="248" height="86" fill="var(--p2-soft)" stroke="var(--p2)" stroke-width="1.5"/>
+      <text x="432" y="58" text-anchor="middle" font-weight="600">Universal · 2026</text>
+      <text x="432" y="78" text-anchor="middle" class="dim">yes — same frequencies,</text>
+      <text x="432" y="95" text-anchor="middle" class="dim">every family, every layer</text>
+      <text x="432" y="112" text-anchor="middle" class="m dim">and your tool decides your answer</text>
+
+      <path d="M556,77 H602" stroke="currentColor" stroke-width="1.4" fill="none" marker-end="url(#a)"/>
+      <text x="579" y="68" text-anchor="middle" class="dim" font-size="11">so why fail?</text>
+
+      <rect x="604" y="34" width="264" height="86" fill="var(--p3-soft)" stroke="var(--p3)" stroke-width="1.5"/>
+      <text x="736" y="58" text-anchor="middle" font-weight="600">Shape of Addition · 2026</text>
+      <text x="736" y="78" text-anchor="middle" class="dim">the carry is continuous,</text>
+      <text x="736" y="95" text-anchor="middle" class="dim">and rounding it is where it breaks</text>
+      <text x="736" y="112" text-anchor="middle" class="m dim">Qwen3, digits one at a time</text>
+
+      <line x1="12" y1="152" x2="868" y2="152" stroke="currentColor" stroke-width="1" opacity="0.25"/>
+      <text x="12" y="176" class="m dim">every model above:</text>
+      <rect x="12" y="188" width="856" height="46" fill="none" stroke="currentColor" stroke-width="1.5" stroke-dasharray="6 4" opacity="0.65"/>
+      <text x="440" y="207" text-anchor="middle" font-weight="600">classic attention, every block the same kind</text>
+      <text x="440" y="225" text-anchor="middle" class="dim">nothing here tests a hybrid, where three blocks in four use linear attention instead</text>
+    </svg>
+    </div>
+    <figcaption>Read left to right, each paper answers a question the previous one opened. The dashed box is what none of them covers.</figcaption>
+  </figure>
+</section>
+
+<section>
+  <h2>The gaps, and which one is ours</h2>
+  <div class="gap">
+    <h3>Open, and big</h3>
+    <p>Nobody has isolated the step that actually adds. Two papers, three years apart, both stop at the same wall. This is the real prize and it is not a weekend's work.</p>
+  </div>
+  <div class="gap">
+    <h3>Open, and awkward</h3>
+    <p>Does the helix survive in a model that never sees a whole number, only digits? Paper 1 says such models "must use additional algorithms" and leaves it. Paper 2 shows the pieces are recoverable but does not ask whether the four circles are still there. Nobody has fitted a helix to a digit-split model.</p>
+  </div>
+  <div class="gap ours">
+    <h3>Open, narrow, and within reach today</h3>
+    <p>Every model in all three papers uses classic attention in every block. Qwen3.5 and later run three linear-attention blocks for every one classic block — a different mechanism for the same job, verified from the config files and from the fact that the two model classes share no linear-attention code at all.</p>
+    <p>So: <b>does any of this transfer to a hybrid, and does the mixer type change where a number gets assembled?</b> The honest sizing is that this is a transfer test, not a discovery, and "yes, it transfers" would be a thin result. What makes it worth doing is that it is cheap, it is unclaimed, and the tools already exist.</p>
+  </div>
+</section>
+
+<section>
+  <h2>How to read one of these</h2>
+  <p>Not a general recipe. This is the order that actually worked on these three, reconstructed after the fact.</p>
+  <div class="method">
+    <div class="mstep"><div class="n">1</div><div><b>Find the question, not the title</b>Titles are advertisements. "Uses Trigonometry to Do Addition" describes the part they conjectured, not the part they demonstrated. Read the last paragraph of the introduction; the real question is usually there.</div></div>
+    <div class="mstep"><div class="n">2</div><div><b>Go straight to the setup section</b>Which models, how big, how much data, what prompt. Everything downstream is conditional on this and it is where the limits are decided. Two of these three could not run a model above 30B.</div></div>
+    <div class="mstep"><div class="n">3</div><div><b>Separate what was measured from what was proposed</b>Every paper mixes them, usually in the same paragraph. Tag each claim as shown, claimed or admitted. If you cannot tell which a sentence is, that is itself information.</div></div>
+    <div class="mstep"><div class="n">4</div><div><b>Hunt for the controls</b>The quality of a paper lives here. Kantamneni fitted a helix to shuffled numbers to prove the shape was not merely flexible. Wen stopped generation at the first error so no mistake could be blamed on an earlier one. A paper with no controls is a paper making a claim about its own instrument.</div></div>
+    <div class="mstep"><div class="n">5</div><div><b>Read the limitations section first, if you are short of time</b>It is where the authors tell you what they could not do, and it is almost always the most honest page. It is also where the next project is.</div></div>
+    <div class="mstep"><div class="n">6</div><div><b>Then read the appendices nobody reads</b>Appendix F of the first paper contains a dead hypothesis: the off-by-ten errors look exactly like a failed carry, and a statistical test rules that out. That negative result is more useful than several pages of the main text.</div></div>
+    <div class="mstep"><div class="n">7</div><div><b>Write the mechanism as steps before you believe it</b>If you cannot turn the claim into something you could execute on paper, you have not understood it yet, and you cannot tell whether the paper has either.</div></div>
+  </div>
+</section>
+
+<div class="src">
+  <div><b>Sources.</b> All three read in full from the arXiv HTML on 21 September 2026, main text and appendices, and saved locally under <span class="mono">mathematics/papers/</span>. Quotations and figures are paraphrased; the tags mark this reader's judgement, not the authors' words, except where the text says "admitted", which tracks statements the authors make explicitly.</div>
+  <div><b>Licences.</b> Two of the four code repositories carry no licence file, which under default copyright means they may be read but not copied into anything published. This matters before any of it is reused.</div>
+  <div><b>Not checked.</b> Whether the helix has ever been fitted to a digit-split model; the papers these three cite; anything published after today.</div>
+</div>
+
+</div>
+
+<script>
+(function(){
+  var tabs = [["t1","p1"],["t2","p2"],["t3","p3"]];
+  function pick(id){
+    tabs.forEach(function(t){
+      var on = t[0] === id;
+      document.getElementById(t[0]).setAttribute("aria-selected", on);
+      document.getElementById(t[1]).hidden = !on;
+    });
+  }
+  tabs.forEach(function(t){ document.getElementById(t[0]).addEventListener("click", function(){ pick(t[0]); }); });
+})();
+</script>

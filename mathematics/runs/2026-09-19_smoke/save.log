@@ -1,0 +1,33 @@
+Python 3.12.3
+PRETTY_NAME="Ubuntu 24.04.3 LTS"
+NAME="Ubuntu"
+16:20:55 saved chat_template.jinja 0 MB in 0 s
+16:20:55 saved config.json 0 MB in 0 s
+16:20:55 saved crc32.txt 0 MB in 0 s
+16:20:55 saved generation_config.json 0 MB in 0 s
+16:20:55 saved merges.txt 3 MB in 0 s
+16:21:12 saved model-00001-of-00018.safetensors 3782 MB in 17 s
+16:21:24 saved model-00002-of-00018.safetensors 2902 MB in 12 s
+16:21:32 saved model-00003-of-00018.safetensors 2425 MB in 8 s
+16:21:48 saved model-00004-of-00018.safetensors 3804 MB in 16 s
+16:21:54 saved model-00005-of-00018.safetensors 2002 MB in 6 s
+16:22:11 saved model-00006-of-00018.safetensors 3795 MB in 17 s
+16:22:17 saved model-00007-of-00018.safetensors 2011 MB in 6 s
+16:22:34 saved model-00008-of-00018.safetensors 3795 MB in 17 s
+16:22:40 saved model-00009-of-00018.safetensors 2011 MB in 6 s
+16:22:57 saved model-00010-of-00018.safetensors 3795 MB in 17 s
+16:23:03 saved model-00011-of-00018.safetensors 2011 MB in 6 s
+16:23:20 saved model-00012-of-00018.safetensors 3795 MB in 17 s
+16:23:27 saved model-00013-of-00018.safetensors 2011 MB in 7 s
+16:23:43 saved model-00014-of-00018.safetensors 3795 MB in 16 s
+16:23:50 saved model-00015-of-00018.safetensors 2011 MB in 7 s
+16:24:07 saved model-00016-of-00018.safetensors 3795 MB in 17 s
+16:24:13 saved model-00017-of-00018.safetensors 2011 MB in 6 s
+16:24:28 saved model-00018-of-00018.safetensors 3235 MB in 15 s
+16:24:28 saved model.safetensors.index.json 0 MB in 0 s
+16:24:29 saved preprocessor_config.json 0 MB in 1 s
+16:24:29 saved tokenizer.json 12 MB in 0 s
+16:24:30 saved tokenizer_config.json 0 MB in 1 s
+16:24:31 saved video_preprocessor_config.json 0 MB in 1 s
+16:24:31 saved vocab.json 6 MB in 0 s
+SAVE OK 53012 MB in 216 s = 244 MB/s

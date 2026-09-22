@@ -1,0 +1,170 @@
+[
+ {
+  "w": 7.531,
+  "type": "mlp reconstruction error",
+  "layer": "32",
+  "token": "=",
+  "label": "(reconstruction error — unexplained)",
+  "boosts": []
+ },
+ {
+  "w": 6.25,
+  "type": "cross layer transcoder",
+  "layer": "29",
+  "token": "=",
+  "label": "nine",
+  "boosts": [
+   "ä¹Ŀ",
+   " nine",
+   " Nine",
+   "Nine",
+   " ninth",
+   " Ninth"
+  ]
+ },
+ {
+  "w": 5.375,
+  "type": "mlp reconstruction error",
+  "layer": "30",
+  "token": "=",
+  "label": "(reconstruction error — unexplained)",
+  "boosts": []
+ },
+ {
+  "w": 5.375,
+  "type": "mlp reconstruction error",
+  "layer": "31",
+  "token": "=",
+  "label": "(reconstruction error — unexplained)",
+  "boosts": []
+ },
+ {
+  "w": 5.031,
+  "type": "mlp reconstruction error",
+  "layer": "24",
+  "token": "=",
+  "label": "(reconstruction error — unexplained)",
+  "boosts": []
+ },
+ {
+  "w": 2.953,
+  "type": "mlp reconstruction error",
+  "layer": "29",
+  "token": "=",
+  "label": "(reconstruction error — unexplained)",
+  "boosts": []
+ },
+ {
+  "w": 2.922,
+  "type": "cross layer transcoder",
+  "layer": "32",
+  "token": "=",
+  "label": "Dates, numbers, or codes",
+  "boosts": [
+   "-se",
+   " SE",
+   " Se",
+   "_SE",
+   "Se",
+   ".Se"
+  ]
+ },
+ {
+  "w": 2.781,
+  "type": "cross layer transcoder",
+  "layer": "30",
+  "token": "=",
+  "label": "mathematical expressions",
+  "boosts": [
+   "8",
+   "æīĳ",
+   "9",
+   " mod",
+   "ï¼ĺ",
+   "ï¼Ļ"
+  ]
+ },
+ {
+  "w": 2.453,
+  "type": "mlp reconstruction error",
+  "layer": "25",
+  "token": "=",
+  "label": "(reconstruction error — unexplained)",
+  "boosts": []
+ },
+ {
+  "w": -1.992,
+  "type": "cross layer transcoder",
+  "layer": "28",
+  "token": "=",
+  "label": "numbers",
+  "boosts": [
+   "7",
+   " ",
+   "1",
+   "6",
+   "0",
+   "3"
+  ]
+ },
+ {
+  "w": -1.773,
+  "type": "cross layer transcoder",
+  "layer": "24",
+  "token": "=",
+  "label": "Numeric comparisons and equations",
+  "boosts": [
+   " dat",
+   "eut",
+   "vier",
+   " Dat",
+   "_units",
+   "mdat"
+  ]
+ },
+ {
+  "w": 1.703,
+  "type": "cross layer transcoder",
+  "layer": "32",
+  "token": "=",
+  "label": "codes and numbers",
+  "boosts": [
+   "åįģæĿ¡",
+   "ToProps",
+   "ational",
+   "ught",
+   " tenth",
+   "åįģä¸ª"
+  ]
+ },
+ {
+  "w": -1.594,
+  "type": "cross layer transcoder",
+  "layer": "32",
+  "token": "=",
+  "label": "equals sign",
+  "boosts": [
+   " about",
+   " say",
+   "===============",
+   "about",
+   "========",
+   "=============="
+  ]
+ },
+ {
+  "w": 1.555,
+  "type": "cross layer transcoder",
+  "layer": "32",
+  "token": "=",
+  "label": "please",
+  "boosts": [
+   "è¯·",
+   " please",
+   " Please",
+   "è«ĭ",
+   "Please",
+   "please"
+  ]
+ }
+]

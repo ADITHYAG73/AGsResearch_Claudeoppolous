@@ -1,0 +1,39 @@
+16:19:59 config loaded: architectures=['Qwen3_5ForConditionalGeneration'] model_type=qwen3_5 transformers=5.17.0
+16:20:02 kernel fla: OK
+16:20:02 kernel causal_conv1d: OK
+Loading weights:   0%|          | 0/851 [00:00<?, ?it/s]Loading weights:  88%|████████▊ | 745/851 [00:00<00:00, 7446.95it/s]Loading weights: 100%|██████████| 851/851 [00:00<00:00, 7643.61it/s]
+16:20:08 LOAD OK via Qwen3_5ForCausalLM in 11s
+16:20:08 ARCH OK: 64 layers at model.layers, 26.90B params -> arch.txt
+16:20:45 TRACE OK: 161 tokens in 37.0s, finished=True, gold '18' in text=True -> trace.json
+----- first 600 chars -----
+We need answer simple arithmetic. Need final. Let's solve: ducks lay 16 eggs/day. She eats 3, bakes with 4, total used 7. Remainder 9. Sells at $2 each => $18. Need maybe phrase. Ensure no hidden trick: "bakes muffins for her friends every day with four" means uses 4 eggs. Yes.
+</think>
+
+Janet uses \(3 + 4 = 7\) eggs each day.
+
+She has \(16 - 7 = 9\) eggs left to sell.
+
+At \$2 per egg, she makes:
+
+\[
+9 \times 2 = 18
+\]
+
+**She makes \$18 every day at the farmers' market.**<|im_end|>
+----- last 300 chars -----
+no hidden trick: "bakes muffins for her friends every day with four" means uses 4 eggs. Yes.
+</think>
+
+Janet uses \(3 + 4 = 7\) eggs each day.
+
+She has \(16 - 7 = 9\) eggs left to sell.
+
+At \$2 per egg, she makes:
+
+\[
+9 \times 2 = 18
+\]
+
+**She makes \$18 every day at the farmers' market.**<|im_end|>
+16:20:45 ACTS OK: layers [0, 15, 31, 47, 63], shape [278, 5120], mean ||h|| per layer {"0": 14.4, "15": 60.8, "31": 80.3, "47": 113.1, "63": 401.2} in 0.2s -> acts/
+16:20:45 DONE in 48.1s, peak VRAM 54.129206272 GB -> done.json

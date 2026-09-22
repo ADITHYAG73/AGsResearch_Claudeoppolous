@@ -50,3 +50,9 @@ mats_2027/app_answers.md
 # ---- forking runs: keep the data, not the transport bundles or the raw >50 MB jsonl ----
 forking/runs/**/*.tgz
 forking/runs/2026-09-15_qwen02/out/main/row080_branches.jsonl
+
+# ---- cached activations: large, regenerable, and over GitHub's 100 MB file limit ----
+# TRIG-01's acts_off_step1_0.npy is 718 MB (1080 x 65 x 5120 float16). Keep it on disk,
+# keep the jsonl results and the index (both small and the actual evidence), never commit
+# the tensor. AG's operating principle (c) says cache activations - locally, not in git.
+mathematics/runs/**/*.npy

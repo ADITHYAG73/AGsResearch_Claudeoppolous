@@ -1,0 +1,37 @@
+{
+ "total_seconds": 277.9,
+ "peak_vram_gb": null,
+ "layers_path": "model.layers",
+ "layers_cached": [
+  0,
+  11,
+  23
+ ],
+ "act_shapes": {
+  "0": [
+   375,
+   1024
+  ],
+  "11": [
+   375,
+   1024
+  ],
+  "23": [
+   375,
+   1024
+  ]
+ },
+ "mean_norms": {
+  "0": 1.1014772653579712,
+  "11": 1.9874730110168457,
+  "23": 10.45439624786377
+ },
+ "files": [
+  "acts",
+  "arch.txt",
+  "trace.json",
+  "acts/L0.npy",
+  "acts/L11.npy",
+  "acts/L23.npy"
+ ]
+}

@@ -1,0 +1,30 @@
+[watchdog] 213.173.105.10:23746  alarm after 6 min idle (12 polls of 30s)
+[watchdog] timeout mechanism: ssh keepalives (no timeout binary found)
+[watchdog] self-test OK, first reading: 0 %
+[watchdog 16:14:24] idle 0m (mem 0 MiB)
+[watchdog 16:14:59] idle 1m (mem 0 MiB)
+[watchdog 16:15:32] idle 1m (mem 0 MiB)
+[watchdog 16:16:05] idle 2m (mem 0 MiB)
+[watchdog 16:16:38] idle 2m (mem 0 MiB)
+[watchdog 16:17:11] idle 3m (mem 0 MiB)
+[watchdog 16:17:44] idle 3m (mem 0 MiB)
+[watchdog 16:18:18] idle 4m (mem 0 MiB)
+[watchdog 16:18:51] idle 4m (mem 0 MiB)
+[watchdog 16:19:24] idle 5m (mem 0 MiB)
+[watchdog 16:19:58] idle 5m (mem 4 MiB)
+[watchdog 16:20:32] working again: 41% (was idle 11 polls)
+[watchdog 16:21:05] idle 0m (mem 0 MiB)
+[watchdog 16:21:40] idle 1m (mem 0 MiB)
+[watchdog 16:22:14] idle 1m (mem 0 MiB)
+[watchdog 16:22:47] idle 2m (mem 0 MiB)
+[watchdog 16:23:20] idle 2m (mem 0 MiB)
+[watchdog 16:23:53] idle 3m (mem 0 MiB)
+[watchdog 16:24:27] idle 3m (mem 0 MiB)
+[watchdog 16:25:01] idle 4m (mem 0 MiB)
+[watchdog 16:25:34] idle 4m (mem 0 MiB)
+[watchdog 16:26:08] idle 5m (mem 0 MiB)
+[watchdog 16:26:42] idle 5m (mem 0 MiB)
+[watchdog 16:27:15] *** GPU IDLE 6 MIN (mem 0 MiB) — $0.044 burned. SOMETHING IS STUCK. ***
+[watchdog 16:27:48] *** GPU IDLE 6 MIN (mem 0 MiB) — $0.044 burned. SOMETHING IS STUCK. ***
+[watchdog 16:28:22] *** GPU IDLE 7 MIN (mem 0 MiB) — $0.051 burned. SOMETHING IS STUCK. ***
+[watchdog 16:28:55] *** GPU IDLE 7 MIN (mem 0 MiB) — $0.051 burned. SOMETHING IS STUCK. ***

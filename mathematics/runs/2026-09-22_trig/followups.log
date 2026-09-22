@@ -1,0 +1,133 @@
+18:39:53 === B finished; starting follow-ups ===
+=== TRIG-01b: recall vs computation (5 input variants, Q1) ===
+18:39:55 1350 asks to do (90 base angles x 5 variants x 3 functions)
+Loading weights:   0%|          | 0/851 [00:00<?, ?it/s]Loading weights: 100%|██████████| 851/851 [00:00<00:00, 8701.09it/s]
+18:40:19 LOAD OK in 17s
+18:40:22   48/1350 done · 15.6 asks/s · eta 1.4 min
+18:40:23   96/1350 done · 21.3 asks/s · eta 1.0 min
+18:40:25   144/1350 done · 24.5 asks/s · eta 0.8 min
+18:40:26   192/1350 done · 26.4 asks/s · eta 0.7 min
+18:40:27   240/1350 done · 27.9 asks/s · eta 0.7 min
+18:40:29   288/1350 done · 28.8 asks/s · eta 0.6 min
+18:40:30   336/1350 done · 29.3 asks/s · eta 0.6 min
+18:40:32   384/1350 done · 30.0 asks/s · eta 0.5 min
+18:40:33   432/1350 done · 30.5 asks/s · eta 0.5 min
+18:40:34   480/1350 done · 30.7 asks/s · eta 0.5 min
+18:40:36   528/1350 done · 31.1 asks/s · eta 0.4 min
+18:40:37   576/1350 done · 31.2 asks/s · eta 0.4 min
+18:40:39   624/1350 done · 31.4 asks/s · eta 0.4 min
+18:40:40   672/1350 done · 31.6 asks/s · eta 0.4 min
+18:40:41   720/1350 done · 31.8 asks/s · eta 0.3 min
+18:40:43   768/1350 done · 31.9 asks/s · eta 0.3 min
+18:40:44   816/1350 done · 32.0 asks/s · eta 0.3 min
+18:40:46   864/1350 done · 32.2 asks/s · eta 0.3 min
+18:40:47   912/1350 done · 32.3 asks/s · eta 0.2 min
+18:40:48   960/1350 done · 32.4 asks/s · eta 0.2 min
+18:40:50   1008/1350 done · 32.5 asks/s · eta 0.2 min
+18:40:51   1056/1350 done · 32.6 asks/s · eta 0.2 min
+18:40:53   1104/1350 done · 32.6 asks/s · eta 0.1 min
+18:40:54   1152/1350 done · 32.7 asks/s · eta 0.1 min
+18:40:55   1200/1350 done · 32.8 asks/s · eta 0.1 min
+18:40:57   1248/1350 done · 32.8 asks/s · eta 0.1 min
+18:40:58   1296/1350 done · 32.8 asks/s · eta 0.0 min
+18:41:00   1344/1350 done · 32.8 asks/s · eta 0.0 min
+18:41:02   1350/1350 done · 31.3 asks/s · eta 0.0 min
+18:41:02 DONE variants in 0.7 min
+
+=== PAD CONTROL: same asks at batch=1, to test if batching changed the ANSWERS ===
+18:41:06 90 asks to do, condition 'off', step 12 deg
+18:41:10 transformers 5.17.0, tokenizer ok
+Loading weights:   0%|          | 0/851 [00:00<?, ?it/s]Loading weights:  69%|██████▉   | 588/851 [00:00<00:00, 5868.95it/s]Loading weights: 100%|██████████| 851/851 [00:00<00:00, 6746.52it/s]
+18:41:30 LOAD OK via Qwen3_5ForCausalLM in 17s | 64 layers
+18:41:33   1/90 done · 0.4 asks/s · eta 3.8 min
+18:41:34   2/90 done · 0.6 asks/s · eta 2.5 min
+18:41:35   3/90 done · 0.7 asks/s · eta 2.1 min
+18:41:35   4/90 done · 0.8 asks/s · eta 1.9 min
+18:41:36   5/90 done · 0.8 asks/s · eta 1.7 min
+18:41:37   6/90 done · 0.9 asks/s · eta 1.6 min
+18:41:38   7/90 done · 0.9 asks/s · eta 1.5 min
+18:41:39   8/90 done · 0.9 asks/s · eta 1.5 min
+18:41:40   9/90 done · 0.9 asks/s · eta 1.4 min
+18:41:41   10/90 done · 1.0 asks/s · eta 1.4 min
+18:41:42   11/90 done · 1.0 asks/s · eta 1.4 min
+18:41:42   12/90 done · 1.0 asks/s · eta 1.3 min
+18:41:43   13/90 done · 1.0 asks/s · eta 1.3 min
+18:41:44   14/90 done · 1.0 asks/s · eta 1.3 min
+18:41:45   15/90 done · 1.0 asks/s · eta 1.3 min
+18:41:46   16/90 done · 1.0 asks/s · eta 1.2 min
+18:41:47   17/90 done · 1.0 asks/s · eta 1.2 min
+18:41:48   18/90 done · 1.0 asks/s · eta 1.2 min
+18:41:49   19/90 done · 1.0 asks/s · eta 1.2 min
+18:41:50   20/90 done · 1.0 asks/s · eta 1.1 min
+18:41:51   21/90 done · 1.0 asks/s · eta 1.1 min
+18:41:52   22/90 done · 1.0 asks/s · eta 1.1 min
+18:41:52   23/90 done · 1.0 asks/s · eta 1.1 min
+18:41:53   24/90 done · 1.0 asks/s · eta 1.1 min
+18:41:54   25/90 done · 1.0 asks/s · eta 1.0 min
+18:41:55   26/90 done · 1.0 asks/s · eta 1.0 min
+18:41:56   27/90 done · 1.0 asks/s · eta 1.0 min
+18:41:57   28/90 done · 1.0 asks/s · eta 1.0 min
+18:41:58   29/90 done · 1.0 asks/s · eta 1.0 min
+18:41:59   30/90 done · 1.0 asks/s · eta 1.0 min
+18:42:00   31/90 done · 1.0 asks/s · eta 0.9 min
+18:42:01   32/90 done · 1.0 asks/s · eta 0.9 min
+18:42:02   33/90 done · 1.0 asks/s · eta 0.9 min
+18:42:03   34/90 done · 1.0 asks/s · eta 0.9 min
+18:42:04   35/90 done · 1.0 asks/s · eta 0.9 min
+18:42:05   36/90 done · 1.0 asks/s · eta 0.9 min
+18:42:05   37/90 done · 1.1 asks/s · eta 0.8 min
+18:42:06   38/90 done · 1.1 asks/s · eta 0.8 min
+18:42:07   39/90 done · 1.1 asks/s · eta 0.8 min
+18:42:08   40/90 done · 1.1 asks/s · eta 0.8 min
+18:42:09   41/90 done · 1.1 asks/s · eta 0.8 min
+18:42:10   42/90 done · 1.1 asks/s · eta 0.8 min
+18:42:11   43/90 done · 1.1 asks/s · eta 0.7 min
+18:42:12   44/90 done · 1.1 asks/s · eta 0.7 min
+18:42:13   45/90 done · 1.1 asks/s · eta 0.7 min
+18:42:14   46/90 done · 1.1 asks/s · eta 0.7 min
+18:42:15   47/90 done · 1.1 asks/s · eta 0.7 min
+18:42:16   48/90 done · 1.1 asks/s · eta 0.7 min
+18:42:16   49/90 done · 1.1 asks/s · eta 0.6 min
+18:42:17   50/90 done · 1.1 asks/s · eta 0.6 min
+18:42:18   51/90 done · 1.1 asks/s · eta 0.6 min
+18:42:19   52/90 done · 1.1 asks/s · eta 0.6 min
+18:42:20   53/90 done · 1.1 asks/s · eta 0.6 min
+18:42:21   54/90 done · 1.1 asks/s · eta 0.6 min
+18:42:22   55/90 done · 1.1 asks/s · eta 0.6 min
+18:42:23   56/90 done · 1.1 asks/s · eta 0.5 min
+18:42:24   57/90 done · 1.1 asks/s · eta 0.5 min
+18:42:25   58/90 done · 1.1 asks/s · eta 0.5 min
+18:42:26   59/90 done · 1.1 asks/s · eta 0.5 min
+18:42:27   60/90 done · 1.1 asks/s · eta 0.5 min
+18:42:28   61/90 done · 1.1 asks/s · eta 0.5 min
+18:42:29   62/90 done · 1.1 asks/s · eta 0.4 min
+18:42:30   63/90 done · 1.1 asks/s · eta 0.4 min
+18:42:31   64/90 done · 1.1 asks/s · eta 0.4 min
+18:42:32   65/90 done · 1.1 asks/s · eta 0.4 min
+18:42:32   66/90 done · 1.1 asks/s · eta 0.4 min
+18:42:33   67/90 done · 1.1 asks/s · eta 0.4 min
+18:42:34   68/90 done · 1.1 asks/s · eta 0.3 min
+18:42:35   69/90 done · 1.1 asks/s · eta 0.3 min
+18:42:36   70/90 done · 1.1 asks/s · eta 0.3 min
+18:42:37   71/90 done · 1.1 asks/s · eta 0.3 min
+18:42:38   72/90 done · 1.1 asks/s · eta 0.3 min
+18:42:39   73/90 done · 1.1 asks/s · eta 0.3 min
+18:42:40   74/90 done · 1.1 asks/s · eta 0.3 min
+18:42:41   75/90 done · 1.1 asks/s · eta 0.2 min
+18:42:42   76/90 done · 1.1 asks/s · eta 0.2 min
+18:42:43   77/90 done · 1.1 asks/s · eta 0.2 min
+18:42:44   78/90 done · 1.1 asks/s · eta 0.2 min
+18:42:45   79/90 done · 1.1 asks/s · eta 0.2 min
+18:42:46   80/90 done · 1.1 asks/s · eta 0.2 min
+18:42:47   81/90 done · 1.1 asks/s · eta 0.1 min
+18:42:48   82/90 done · 1.1 asks/s · eta 0.1 min
+18:42:49   83/90 done · 1.1 asks/s · eta 0.1 min
+18:42:50   84/90 done · 1.1 asks/s · eta 0.1 min
+18:42:51   85/90 done · 1.0 asks/s · eta 0.1 min
+18:42:52   86/90 done · 1.0 asks/s · eta 0.1 min
+18:42:54   87/90 done · 1.0 asks/s · eta 0.0 min
+18:42:55   88/90 done · 1.0 asks/s · eta 0.0 min
+18:42:56   89/90 done · 1.0 asks/s · eta 0.0 min
+18:42:57   90/90 done · 1.0 asks/s · eta 0.0 min
+18:42:57 DONE off_step12 in 1.4 min, peak VRAM 54.0 GB
+ALL FOLLOWUPS DONE

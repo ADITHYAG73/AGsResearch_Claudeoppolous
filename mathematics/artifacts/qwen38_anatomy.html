@@ -1,0 +1,364 @@
+<title>Qwen3.8-27B Anatomy</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Sans+Condensed:wght@500;600&display=swap">
+<style>
+:root{
+  --ground:#F2F4F6; --panel:#FFFFFF; --ink:#15202B; --muted:#56687A; --line:#C9D2DB;
+  --lin:#0B7F86; --lin-soft:#D6EEEF; --full:#B8600F; --full-soft:#F8E4CF;
+  --mlp:#4A4FA6; --mlp-soft:#E1E2F5; --norm:#6B7785; --norm-soft:#E6EAEE; --emb:#8A3B6B; --emb-soft:#F3DDE9;
+  --hook:#C62828;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --ground:#0F151B; --panel:#172029; --ink:#E7EDF3; --muted:#93A4B5; --line:#2C3946;
+  --lin:#4FC3CA; --lin-soft:#0F3A3E; --full:#F0A35A; --full-soft:#47300F;
+  --mlp:#A3A7F2; --mlp-soft:#25275A; --norm:#9AA7B5; --norm-soft:#222C36; --emb:#E08FBF; --emb-soft:#44203A;
+  --hook:#FF7A7A;
+}}
+:root[data-theme="dark"]{
+  --ground:#0F151B; --panel:#172029; --ink:#E7EDF3; --muted:#93A4B5; --line:#2C3946;
+  --lin:#4FC3CA; --lin-soft:#0F3A3E; --full:#F0A35A; --full-soft:#47300F;
+  --mlp:#A3A7F2; --mlp-soft:#25275A; --norm:#9AA7B5; --norm-soft:#222C36; --emb:#E08FBF; --emb-soft:#44203A;
+  --hook:#FF7A7A;
+}
+body{background:var(--ground);color:var(--ink);font-family:"IBM Plex Sans",system-ui,sans-serif;font-size:16px;line-height:1.55;padding-inline:20px;padding-block:28px 56px}
+.wrap{max-width:980px;margin-inline:auto;display:flex;flex-direction:column;gap:40px}
+h1,h2,h3{font-family:"IBM Plex Sans Condensed","IBM Plex Sans",system-ui,sans-serif;text-wrap:balance;margin:0;font-weight:600}
+h1{font-size:clamp(30px,5vw,44px);line-height:1.08;letter-spacing:-.01em}
+h2{font-size:24px;line-height:1.2}
+h3{font-size:17px}
+p{margin:0;max-width:66ch}
+.mono,code{font-family:"IBM Plex Mono",ui-monospace,Menlo,monospace;font-size:.88em}
+.eyebrow{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.lede{font-size:18px;color:var(--ink)}
+.muted{color:var(--muted)}
+section{display:flex;flex-direction:column;gap:16px}
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;background:var(--line);border:1px solid var(--line)}
+.facts div{background:var(--panel);padding:12px 14px;display:flex;flex-direction:column;gap:2px}
+.facts b{font-family:"IBM Plex Mono",monospace;font-weight:500;font-size:20px;font-variant-numeric:tabular-nums}
+.facts span{font-size:13px;color:var(--muted)}
+figure{margin:0;display:flex;flex-direction:column;gap:10px}
+.scroll{overflow-x:auto;background:var(--panel);border:1px solid var(--line);padding:12px}
+svg{display:block;max-width:100%;height:auto;min-width:640px;color:var(--ink)}
+figcaption{font-size:14px;color:var(--muted);max-width:70ch}
+svg text{font-family:"IBM Plex Sans",system-ui,sans-serif;font-size:12.5px;fill:currentColor}
+svg .m{font-family:"IBM Plex Mono",monospace;font-size:11.5px}
+svg .dim{fill:var(--muted)}
+.b-lin{fill:var(--lin-soft);stroke:var(--lin)} .b-full{fill:var(--full-soft);stroke:var(--full)}
+.b-mlp{fill:var(--mlp-soft);stroke:var(--mlp)} .b-norm{fill:var(--norm-soft);stroke:var(--norm)} .b-emb{fill:var(--emb-soft);stroke:var(--emb)}
+.b-plain{fill:var(--panel);stroke:currentColor}
+.wire{stroke:currentColor;stroke-width:1.4;fill:none} .stream{stroke:currentColor;stroke-width:5;fill:none;stroke-linecap:round}
+/* layer strip */
+.strip{display:grid;grid-template-columns:repeat(16,1fr);gap:4px}
+@media (max-width:620px){.strip{grid-template-columns:repeat(8,1fr)}}
+.cell{appearance:none;border:1.5px solid transparent;font:500 12px "IBM Plex Mono",monospace;padding:9px 0;cursor:pointer;color:var(--ink);position:relative;font-variant-numeric:tabular-nums}
+.cell.lin{background:var(--lin-soft);border-color:var(--lin)} .cell.full{background:var(--full-soft);border-color:var(--full)}
+.cell.hook::after{content:"";position:absolute;top:3px;right:3px;width:7px;height:7px;border-radius:50%;background:var(--hook)}
+.cell[aria-pressed="true"]{outline:3px solid var(--ink);outline-offset:1px}
+.cell:focus-visible{outline:3px solid var(--mlp);outline-offset:1px}
+.legend{display:flex;flex-wrap:wrap;gap:8px 20px;font-size:14px;color:var(--muted)}
+.sw{display:inline-block;width:12px;height:12px;vertical-align:-1px;margin-right:6px;border:1.5px solid}
+.sw.lin{background:var(--lin-soft);border-color:var(--lin)} .sw.full{background:var(--full-soft);border-color:var(--full)}
+.sw.mlp{background:var(--mlp-soft);border-color:var(--mlp)} .sw.emb{background:var(--emb-soft);border-color:var(--emb)}
+.dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--hook);margin-right:6px}
+.readout{background:var(--panel);border:1px solid var(--line);padding:14px 16px;font-size:15px;min-height:3.2em}
+/* tabs */
+.tabs{display:flex;gap:6px;flex-wrap:wrap}
+.tab{appearance:none;border:1.5px solid var(--line);background:var(--panel);color:var(--ink);font:500 14px "IBM Plex Sans",sans-serif;padding:8px 14px;cursor:pointer}
+.tab[aria-selected="true"].t-lin{border-color:var(--lin);background:var(--lin-soft)}
+.tab[aria-selected="true"].t-full{border-color:var(--full);background:var(--full-soft)}
+.tab:focus-visible{outline:3px solid var(--mlp);outline-offset:1px}
+/* matrices */
+.mats{display:flex;flex-wrap:wrap;gap:22px 26px;align-items:flex-end;background:var(--panel);border:1px solid var(--line);padding:18px}
+.mat{display:flex;flex-direction:column;gap:6px;max-width:190px}
+.rect{border:1.5px solid;min-width:3px;min-height:3px}
+.rect.lin{background:var(--lin-soft);border-color:var(--lin)} .rect.full{background:var(--full-soft);border-color:var(--full)}
+.rect.mlp{background:var(--mlp-soft);border-color:var(--mlp)} .rect.emb{background:var(--emb-soft);border-color:var(--emb)}
+.mat .n{font:500 13px "IBM Plex Mono",monospace} .mat .s{font:400 12px "IBM Plex Mono",monospace;color:var(--muted)} .mat .r{font-size:13px;color:var(--muted);line-height:1.4}
+.groupnote{font-size:14px;color:var(--muted)}
+/* budget */
+.bar{display:flex;height:34px;border:1px solid var(--line)}
+.bar div{display:flex;align-items:center;justify-content:center;font:500 12px "IBM Plex Mono",monospace;color:var(--ink);overflow:hidden;white-space:nowrap}
+table{border-collapse:collapse;width:100%;font-size:14px;font-variant-numeric:tabular-nums}
+th,td{text-align:left;padding:7px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-weight:500;color:var(--muted);font-size:13px}
+td.num{font-family:"IBM Plex Mono",monospace;text-align:right;white-space:nowrap} th.num{text-align:right}
+.tscroll{overflow-x:auto;background:var(--panel);border:1px solid var(--line)}
+.nbar{display:inline-block;height:9px;background:var(--mlp);vertical-align:middle;margin-right:8px}
+dl{display:grid;grid-template-columns:minmax(120px,190px) 1fr;gap:10px 20px;margin:0}
+@media (max-width:620px){dl{grid-template-columns:1fr;gap:2px 0} dd{margin-bottom:10px}}
+dt{font-family:"IBM Plex Sans Condensed",sans-serif;font-weight:600} dd{margin:0;color:var(--ink);max-width:62ch}
+.src{font-size:13.5px;color:var(--muted);border-top:1px solid var(--line);padding-top:16px;display:flex;flex-direction:column;gap:6px}
+</style>
+
+<div class="wrap">
+
+<header style="display:flex;flex-direction:column;gap:14px">
+  <div class="eyebrow">Printed from the loaded model · pod run of 19 Sept 2026</div>
+  <h1>Qwen3.8-27B, opened up</h1>
+  <p class="lede">One long column of 5,120 numbers travels through 64 blocks. Every block reads that column, computes something, and <em>adds</em> its result back. That is the whole machine; the rest is detail about what each block computes.</p>
+  <div class="facts">
+    <div><b>26.90 B</b><span>parameters, text model</span></div>
+    <div><b>64</b><span>blocks, stacked</span></div>
+    <div><b>5,120</b><span>numbers per token in the stream</span></div>
+    <div><b>48 + 16</b><span>linear-attention + full-attention blocks</span></div>
+    <div><b>248,320</b><span>tokens in the vocabulary</span></div>
+  </div>
+</header>
+
+<section>
+  <h2>The path of one token</h2>
+  <p>Text is cut into tokens. Each token is swapped for a row of the embedding table, which gives the first column of 5,120 numbers. That column is the <strong>residual stream</strong>. After 64 blocks it is normalised and multiplied by one last matrix that scores every possible next token.</p>
+  <figure>
+    <div class="scroll">
+    <svg viewBox="0 0 860 170" role="img" aria-label="Token ids become a 5120-number vector through the embedding table, pass through 64 blocks that each add to it, then a final norm and the output matrix produce 248,320 scores.">
+      <defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="currentColor"/></marker></defs>
+      <rect class="b-plain" x="10" y="60" width="92" height="50" stroke-width="1.4"/><text x="56" y="82" text-anchor="middle">token id</text><text class="m dim" x="56" y="99" text-anchor="middle">e.g. 18237</text>
+      <path class="wire" d="M102,85 H138" marker-end="url(#ah)"/><text class="dim" x="120" y="76" text-anchor="middle">row</text>
+      <rect class="b-emb" x="140" y="50" width="130" height="70" stroke-width="1.4"/><text x="205" y="80" text-anchor="middle">embedding table</text><text class="m dim" x="205" y="99" text-anchor="middle">248320 × 5120</text>
+      <path class="stream" d="M270,85 H330"/>
+      <rect class="b-lin" x="330" y="40" width="250" height="90" stroke-width="1.4"/><text x="455" y="70" text-anchor="middle" font-weight="600">64 blocks, in order</text><text class="dim" x="455" y="90" text-anchor="middle">each one reads the stream</text><text class="dim" x="455" y="107" text-anchor="middle">and adds its result back</text>
+      <path class="stream" d="M580,85 H624"/>
+      <rect class="b-norm" x="624" y="60" width="66" height="50" stroke-width="1.4"/><text x="657" y="89" text-anchor="middle">RMSNorm</text>
+      <path class="wire" d="M690,85 H712" marker-end="url(#ah)"/>
+      <rect class="b-emb" x="714" y="50" width="136" height="70" stroke-width="1.4"/><text x="782" y="80" text-anchor="middle">output matrix</text><text class="m dim" x="782" y="99" text-anchor="middle">5120 → 248320</text>
+      <text class="dim" x="455" y="158" text-anchor="middle">thick line = the residual stream: a vector of 5,120 numbers for every token position</text>
+    </svg>
+    </div>
+    <figcaption>The embedding table and the output matrix are separate matrices in this model (the config says they are not tied). Together they hold 2.54 billion parameters.</figcaption>
+  </figure>
+</section>
+
+<section>
+  <h2>The 64 blocks</h2>
+  <p>Blocks come in two kinds, in a fixed rhythm: three <strong>linear-attention</strong> blocks, then one <strong>full-attention</strong> block, repeated sixteen times. Select a block to see what it is.</p>
+  <div class="strip" id="strip" role="group" aria-label="The 64 blocks"></div>
+  <div class="legend">
+    <span><i class="sw lin"></i>linear attention (48)</span>
+    <span><i class="sw full"></i>full attention (16): blocks 3, 7, 11 … 63</span>
+    <span><i class="dot"></i>blocks where your runs saved the stream</span>
+  </div>
+  <div class="readout" id="readout" aria-live="polite"></div>
+</section>
+
+<section>
+  <h2>Inside one block</h2>
+  <p>Both kinds share the same skeleton. The stream is copied, normalised, passed through a <em>mixer</em> that lets tokens exchange information, and the result is added back. Then the same again with an <strong>MLP</strong>, which works on each token alone. Only the mixer differs between the two kinds.</p>
+  <figure>
+    <div class="scroll">
+    <svg viewBox="0 0 820 215" role="img" aria-label="Block skeleton: the residual stream is tapped, normalised, sent through a mixer and added back; then tapped again, normalised, sent through the MLP and added back.">
+      <path class="stream" d="M20,55 H800"/>
+      <text class="dim" x="20" y="34">stream in</text><text class="dim" x="800" y="34" text-anchor="end">stream out → next block</text>
+      <path class="wire" d="M70,55 V160 H100" marker-end="url(#ah)"/><text class="dim" x="76" y="112">copy</text>
+      <rect class="b-norm" x="102" y="138" width="86" height="44" stroke-width="1.4"/><text x="145" y="165" text-anchor="middle">RMSNorm</text>
+      <path class="wire" d="M188,160 H216" marker-end="url(#ah)"/>
+      <rect class="b-lin" x="218" y="130" width="146" height="60" stroke-width="1.4"/><text x="291" y="156" text-anchor="middle" font-weight="600">mixer</text><text class="dim" x="291" y="174" text-anchor="middle">tokens talk to each other</text>
+      <path class="wire" d="M364,160 H400 V70" marker-end="url(#ah)"/><text class="dim" x="408" y="112">add</text>
+      <circle cx="400" cy="55" r="11" class="b-plain" stroke-width="1.6"/><text x="400" y="60" text-anchor="middle" font-size="15">+</text>
+      <path class="wire" d="M450,55 V160 H480" marker-end="url(#ah)"/><text class="dim" x="456" y="112">copy</text>
+      <rect class="b-norm" x="482" y="138" width="86" height="44" stroke-width="1.4"/><text x="525" y="165" text-anchor="middle">RMSNorm</text>
+      <path class="wire" d="M568,160 H596" marker-end="url(#ah)"/>
+      <rect class="b-mlp" x="598" y="130" width="146" height="60" stroke-width="1.4"/><text x="671" y="156" text-anchor="middle" font-weight="600">MLP</text><text class="dim" x="671" y="174" text-anchor="middle">each token on its own</text>
+      <path class="wire" d="M744,160 H770 V70" marker-end="url(#ah)"/><text class="dim" x="778" y="112">add</text>
+      <circle cx="770" cy="55" r="11" class="b-plain" stroke-width="1.6"/><text x="770" y="60" text-anchor="middle" font-size="15">+</text>
+    </svg>
+    </div>
+    <figcaption>Nothing is ever overwritten. A block can only add to the stream, which is why the same 5,120-number vector can be inspected after any block and still mean something.</figcaption>
+  </figure>
+
+  <div class="tabs" role="tablist" aria-label="Mixer kind">
+    <button class="tab t-lin" role="tab" id="tab-lin" aria-selected="true" aria-controls="pane-lin">Linear-attention mixer · 48 blocks</button>
+    <button class="tab t-full" role="tab" id="tab-full" aria-selected="false" aria-controls="pane-full">Full-attention mixer · 16 blocks</button>
+  </div>
+
+  <div id="pane-lin" role="tabpanel" aria-labelledby="tab-lin">
+    <figure>
+      <div class="scroll">
+      <svg viewBox="0 0 860 300" role="img" aria-label="Linear-attention mixer: the input is projected to queries, keys and values, passed through a short convolution, and used to update a fixed-size memory matrix with a write strength and a forgetting rate; the read-out is gated and projected back to 5120.">
+        <text class="m" x="10" y="150">x</text><text class="m dim" x="10" y="166">5120</text>
+        <path class="wire" d="M40,146 H70"/><path class="wire" d="M70,40 V262"/>
+        <path class="wire" d="M70,40 H98" marker-end="url(#ah)"/><rect class="b-lin" x="100" y="22" width="130" height="36" stroke-width="1.4"/><text class="m" x="165" y="45" text-anchor="middle">in_proj_qkv →10240</text>
+        <path class="wire" d="M230,40 H258" marker-end="url(#ah)"/><rect class="b-lin" x="260" y="22" width="104" height="36" stroke-width="1.4"/><text x="312" y="45" text-anchor="middle">conv, width 4</text>
+        <path class="wire" d="M364,40 H392" marker-end="url(#ah)"/><rect class="b-plain" x="394" y="12" width="150" height="56" stroke-width="1.2"/><text class="m" x="469" y="30" text-anchor="middle">q 16×128  k 16×128</text><text class="m" x="469" y="47" text-anchor="middle">v 48×128</text><text class="dim" x="469" y="62" text-anchor="middle" font-size="11">split</text>
+        <path class="wire" d="M70,114 H98" marker-end="url(#ah)"/><rect class="b-lin" x="100" y="96" width="130" height="36" stroke-width="1.4"/><text class="m" x="165" y="119" text-anchor="middle">in_proj_b →48</text>
+        <path class="wire" d="M230,114 H392" marker-end="url(#ah)"/><text class="dim" x="310" y="106" text-anchor="middle">sigmoid</text>
+        <rect class="b-plain" x="394" y="96" width="150" height="36" stroke-width="1.2"/><text x="469" y="119" text-anchor="middle">β · write strength</text>
+        <path class="wire" d="M70,178 H98" marker-end="url(#ah)"/><rect class="b-lin" x="100" y="160" width="130" height="36" stroke-width="1.4"/><text class="m" x="165" y="183" text-anchor="middle">in_proj_a →48</text>
+        <path class="wire" d="M230,178 H392" marker-end="url(#ah)"/><text class="dim" x="310" y="170" text-anchor="middle">softplus, ×−e^A</text>
+        <rect class="b-plain" x="394" y="160" width="150" height="36" stroke-width="1.2"/><text x="469" y="183" text-anchor="middle">g · forgetting rate</text>
+        <path class="wire" d="M544,40 H590 V96" marker-end="url(#ah)"/><path class="wire" d="M544,114 H580" marker-end="url(#ah)"/><path class="wire" d="M544,178 H590 V136" marker-end="url(#ah)"/>
+        <rect class="b-lin" x="582" y="98" width="120" height="36" stroke-width="1.8"/><text x="642" y="114" text-anchor="middle" font-weight="600">memory S</text><text class="m dim" x="642" y="129" text-anchor="middle">48 × (128×128)</text>
+        <path class="wire" d="M702,116 H730 V226" marker-end="url(#ah)"/><text class="dim" x="738" y="176">read with q</text>
+        <path class="wire" d="M70,262 H98" marker-end="url(#ah)"/><rect class="b-lin" x="100" y="244" width="130" height="36" stroke-width="1.4"/><text class="m" x="165" y="267" text-anchor="middle">in_proj_z →6144</text>
+        <path class="wire" d="M230,262 H648" marker-end="url(#ah)"/><text class="dim" x="440" y="254" text-anchor="middle">gate: how much of the read-out to let through</text>
+        <rect class="b-norm" x="650" y="228" width="92" height="52" stroke-width="1.4"/><text x="696" y="250" text-anchor="middle">gated</text><text x="696" y="267" text-anchor="middle">RMSNorm</text>
+        <path class="wire" d="M742,254 H768" marker-end="url(#ah)"/><rect class="b-lin" x="770" y="236" width="82" height="36" stroke-width="1.4"/><text class="m" x="811" y="252" text-anchor="middle">out_proj</text><text class="m dim" x="811" y="266" text-anchor="middle">→5120</text>
+      </svg>
+      </div>
+      <figcaption>This mixer keeps a small memory matrix per head. At each token it lets the memory fade a little (g), writes the new value in with some strength (β), then reads it out with the query. The memory is the same size whether the text is 10 tokens or 100,000. The model calls this layer a Gated DeltaNet.</figcaption>
+    </figure>
+  </div>
+
+  <div id="pane-full" role="tabpanel" aria-labelledby="tab-full" hidden>
+    <figure>
+      <div class="scroll">
+      <svg viewBox="0 0 860 260" role="img" aria-label="Full-attention mixer: the input is projected to 24 query heads plus a gate, 4 key heads and 4 value heads; each token looks back at every earlier token; the result is multiplied by the gate and projected back to 5120.">
+        <text class="m" x="10" y="130">x</text><text class="m dim" x="10" y="146">5120</text>
+        <path class="wire" d="M40,126 H70"/><path class="wire" d="M70,44 V208"/>
+        <path class="wire" d="M70,44 H98" marker-end="url(#ah)"/><rect class="b-full" x="100" y="26" width="130" height="36" stroke-width="1.4"/><text class="m" x="165" y="49" text-anchor="middle">q_proj →12288</text>
+        <path class="wire" d="M230,44 H258" marker-end="url(#ah)"/><rect class="b-plain" x="260" y="16" width="150" height="56" stroke-width="1.2"/><text class="m" x="335" y="37" text-anchor="middle">query 24×256</text><text class="m" x="335" y="56" text-anchor="middle">gate  24×256</text>
+        <path class="wire" d="M70,126 H98" marker-end="url(#ah)"/><rect class="b-full" x="100" y="108" width="130" height="36" stroke-width="1.4"/><text class="m" x="165" y="131" text-anchor="middle">k_proj →1024</text>
+        <path class="wire" d="M230,126 H258" marker-end="url(#ah)"/><rect class="b-plain" x="260" y="108" width="150" height="36" stroke-width="1.2"/><text class="m" x="335" y="131" text-anchor="middle">keys 4×256</text>
+        <path class="wire" d="M70,208 H98" marker-end="url(#ah)"/><rect class="b-full" x="100" y="190" width="130" height="36" stroke-width="1.4"/><text class="m" x="165" y="213" text-anchor="middle">v_proj →1024</text>
+        <path class="wire" d="M230,208 H258" marker-end="url(#ah)"/><rect class="b-plain" x="260" y="190" width="150" height="36" stroke-width="1.2"/><text class="m" x="335" y="213" text-anchor="middle">values 4×256</text>
+        <path class="wire" d="M410,34 H470 V104" marker-end="url(#ah)"/><text class="dim" x="478" y="64">norm + rotary</text>
+        <path class="wire" d="M410,126 H448" marker-end="url(#ah)"/><text class="dim" x="428" y="118" text-anchor="middle" font-size="11">norm</text>
+        <path class="wire" d="M410,208 H470 V150" marker-end="url(#ah)"/>
+        <rect class="b-full" x="450" y="106" width="170" height="42" stroke-width="1.8"/><text x="535" y="124" text-anchor="middle" font-weight="600">look back at every</text><text x="535" y="141" text-anchor="middle" font-weight="600">earlier token</text>
+        <path class="wire" d="M620,127 H658" marker-end="url(#ah)"/>
+        <circle cx="672" cy="127" r="12" class="b-plain" stroke-width="1.6"/><text x="672" y="132" text-anchor="middle" font-size="14">×</text>
+        <path class="wire" d="M410,58 H672 V113" marker-end="url(#ah)"/><text class="dim" x="560" y="50" text-anchor="middle">sigmoid(gate)</text>
+        <path class="wire" d="M684,127 H716" marker-end="url(#ah)"/><rect class="b-full" x="718" y="109" width="130" height="36" stroke-width="1.4"/><text class="m" x="783" y="125" text-anchor="middle">o_proj</text><text class="m dim" x="783" y="139" text-anchor="middle">6144 →5120</text>
+      </svg>
+      </div>
+      <figcaption>This is the classic transformer attention, with two economies: only 4 key/value heads are shared among 24 query heads, and the output passes through a learned gate before it is added to the stream. Position is injected by rotating a quarter of each head's 256 dimensions (rotary embedding). Unlike the memory above, what this layer stores grows with every token.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section>
+  <h2>The matrices, drawn to scale</h2>
+  <p>Every rectangle is one weight matrix. Width is the size of the vector going in, height the size coming out, at one pixel per 128 numbers. A matrix is a machine that turns one vector into another; its shape tells you what goes in and what comes out.</p>
+  <h3>The MLP, in every one of the 64 blocks</h3>
+  <div class="mats" id="m-mlp"></div>
+  <p class="groupnote">The MLP computes <code>down( silu(gate(x)) × up(x) )</code>: two projections up to 17,408 numbers, multiplied together element by element, then one projection back down.</p>
+  <h3>Linear-attention mixer</h3>
+  <div class="mats" id="m-lin"></div>
+  <h3>Full-attention mixer</h3>
+  <div class="mats" id="m-full"></div>
+  <h3>The two ends</h3>
+  <div class="mats" id="m-emb"></div>
+  <p class="groupnote">The two end matrices are 1,940 pixels tall at this scale, so they are drawn here at one tenth of their true height.</p>
+</section>
+
+<section>
+  <h2>Where the 26.9 billion parameters sit</h2>
+  <div class="bar" id="budget" role="img" aria-label="MLPs hold 63.6 percent of the parameters, linear attention 20.7, embeddings and output 9.5, full attention 6.2."></div>
+  <div class="tscroll"><table>
+    <thead><tr><th>Part</th><th class="num">each</th><th class="num">count</th><th class="num">total</th><th class="num">share</th></tr></thead>
+    <tbody id="budget-rows"></tbody>
+  </table></div>
+  <p>Almost two thirds of the model is MLP. Attention, which gets most of the discussion, is a little over a quarter. The total from these shapes is 26,895,998,464, which matches the 26.90 B the pod reported after loading.</p>
+</section>
+
+<section>
+  <h2>What a hook hands you</h2>
+  <p>A hook placed on a block returns the residual stream as it leaves that block: one row of 5,120 numbers for every token, prompt and generated text together. Your two runs saved that at five blocks. Those five were a placeholder choice of evenly spaced blocks; all 64 can be saved for about 680 MB on the parabola run.</p>
+  <div class="tscroll"><table>
+    <thead><tr><th>Block</th><th>Kind</th><th>GSM8K duck eggs · 278 tokens</th><th>Parabola · 1,035 tokens</th></tr></thead>
+    <tbody id="norm-rows"></tbody>
+  </table></div>
+  <p class="muted" style="font-size:14px">Bars show the average length of the 5,120-number vector. It grows about 28 times from the first block to the last, because each block adds and nothing is removed until the final norm.</p>
+</section>
+
+<section>
+  <h2>Words used on this page</h2>
+  <dl>
+    <dt>Token</dt><dd>A piece of text, often a word fragment. This model writes numbers one digit per token, so "16" is two tokens.</dd>
+    <dt>Residual stream</dt><dd>The 5,120-number vector kept for each token position. It is the only thing blocks share with each other.</dd>
+    <dt>Block (layer)</dt><dd>One mixer plus one MLP, each wrapped in the copy, normalise, compute, add pattern.</dd>
+    <dt>RMSNorm</dt><dd>Rescales a vector so its overall size is about 1, then multiplies each entry by a learned weight. It keeps the numbers in a workable range.</dd>
+    <dt>Head</dt><dd>One of several independent copies of the attention computation, each working in its own small slice of dimensions (256 or 128 here).</dd>
+    <dt>Gate</dt><dd>A number between 0 and 1, computed from the input, that scales another signal. It lets the model decide how much of something to pass on.</dd>
+    <dt>Logits</dt><dd>The 248,320 scores that come out at the end, one per possible next token. The highest score is the model's first choice.</dd>
+  </dl>
+</section>
+
+<div class="src">
+  <div><strong>Where each fact comes from.</strong> Shapes, block order and the parameter count: <code>arch.txt</code>, printed by the pod from the loaded model on 19 Sept 2026. What each small matrix does (β, forgetting rate, gates, the order of operations): the official <code>modeling_qwen3_5.py</code> in transformers 5.17.0, read on 20 Sept 2026. Vector lengths: the two runs' <code>done.json</code> files.</div>
+  <div><strong>Not shown.</strong> This checkpoint also contains an image encoder. Your runs loaded the text-only class, so it was never in memory and is not drawn here.</div>
+  <div><strong>My reading, not a quoted fact.</strong> The statement that the linear-attention memory stays the same size while full attention's storage grows follows from the shapes and the code; I have not measured it.</div>
+</div>
+
+</div>
+
+<script>
+(function(){
+  var HOOKED=[0,15,31,47,63];
+  var strip=document.getElementById('strip'), out=document.getElementById('readout');
+  function kind(i){return (i%4===3)?'full':'lin';}
+  function describe(i){
+    var k=kind(i), group=Math.floor(i/4)+1, pos=(i%4)+1;
+    var s='<strong>Block '+i+'</strong> · '+(k==='full'?'full attention':'linear attention')+' · position '+pos+' of 4 in group '+group+' of 16. ';
+    s+= (k==='full') ? 'Here every token can look back at every earlier token directly. 104.9 M parameters in the mixer, 267.4 M in the MLP.' : 'Here tokens exchange information through a fixed-size memory. 115.9 M parameters in the mixer, 267.4 M in the MLP.';
+    if(HOOKED.indexOf(i)>-1) s+=' <span style="color:var(--hook)">Your runs saved the stream leaving this block.</span>';
+    return s;
+  }
+  function select(i){
+    var cells=strip.children; for(var j=0;j<cells.length;j++) cells[j].setAttribute('aria-pressed', j===i?'true':'false');
+    out.innerHTML=describe(i);
+  }
+  for(var i=0;i<64;i++){(function(i){
+    var b=document.createElement('button'); b.type='button'; b.id='cell-'+i; b.textContent=i;
+    b.className='cell '+kind(i)+(HOOKED.indexOf(i)>-1?' hook':''); b.setAttribute('aria-pressed','false');
+    b.setAttribute('aria-label','Block '+i+', '+(kind(i)==='full'?'full attention':'linear attention'));
+    b.addEventListener('click',function(){select(i);}); strip.appendChild(b);
+  })(i);}
+  select(3);
+
+  var tl=document.getElementById('tab-lin'), tf=document.getElementById('tab-full'), pl=document.getElementById('pane-lin'), pf=document.getElementById('pane-full');
+  function tab(which){var lin=which==='lin'; tl.setAttribute('aria-selected',lin); tf.setAttribute('aria-selected',!lin); pl.hidden=!lin; pf.hidden=lin;}
+  tl.addEventListener('click',function(){tab('lin');}); tf.addEventListener('click',function(){tab('full');});
+
+  function fmt(n){return n.toLocaleString('en-US');}
+  function mats(id,cls,list,scaleH){
+    var host=document.getElementById(id);
+    list.forEach(function(m){
+      var w=Math.max(3,Math.round(m.inp/128)), h=Math.max(3,Math.round(m.out/128/(scaleH||1)));
+      var d=document.createElement('div'); d.className='mat';
+      d.innerHTML='<div class="rect '+cls+'" style="width:'+w+'px;height:'+h+'px"></div><div class="n">'+m.name+'</div><div class="s">'+fmt(m.inp)+' → '+fmt(m.out)+' · '+(m.inp*m.out/1e6).toFixed(1)+' M</div><div class="r">'+m.role+'</div>';
+      host.appendChild(d);
+    });
+  }
+  mats('m-mlp','mlp',[
+    {name:'gate_proj',inp:5120,out:17408,role:'decides which of 17,408 channels switch on'},
+    {name:'up_proj',inp:5120,out:17408,role:'the values those channels carry'},
+    {name:'down_proj',inp:17408,out:5120,role:'writes the result back at stream size'}]);
+  mats('m-lin','lin',[
+    {name:'in_proj_qkv',inp:5120,out:10240,role:'queries, keys and values in one matrix'},
+    {name:'in_proj_z',inp:5120,out:6144,role:'gate on the read-out'},
+    {name:'in_proj_b',inp:5120,out:48,role:'β, write strength, one per head'},
+    {name:'in_proj_a',inp:5120,out:48,role:'forgetting rate, one per head'},
+    {name:'out_proj',inp:6144,out:5120,role:'back to stream size'}]);
+  mats('m-full','full',[
+    {name:'q_proj',inp:5120,out:12288,role:'24 query heads and 24 gate heads'},
+    {name:'k_proj',inp:5120,out:1024,role:'4 key heads'},
+    {name:'v_proj',inp:5120,out:1024,role:'4 value heads'},
+    {name:'o_proj',inp:6144,out:5120,role:'back to stream size'}]);
+  mats('m-emb','emb',[
+    {name:'embed_tokens',inp:5120,out:248320,role:'one row per token in the vocabulary'},
+    {name:'lm_head',inp:5120,out:248320,role:'one score per possible next token'}],10);
+
+  var parts=[
+    {n:'MLP',cls:'mlp',each:267386880,count:64,v:'--mlp-soft'},
+    {n:'Linear-attention mixer',cls:'lin',each:115876064,count:48,v:'--lin-soft'},
+    {n:'Embedding + output matrix',cls:'emb',each:1271398400,count:2,v:'--emb-soft'},
+    {n:'Full-attention mixer',cls:'full',each:104858112,count:16,v:'--full-soft'},
+    {n:'Norm weights',cls:'',each:5120,count:129,v:'--norm-soft'}];
+  var total=parts.reduce(function(a,p){return a+p.each*p.count;},0);
+  var bar=document.getElementById('budget'), rows=document.getElementById('budget-rows');
+  parts.forEach(function(p){
+    var t=p.each*p.count, pct=100*t/total;
+    if(pct>1){var seg=document.createElement('div'); seg.style.width=pct+'%'; seg.style.background='var('+p.v+')'; seg.textContent=pct.toFixed(1)+'%'; seg.title=p.n; bar.appendChild(seg);}
+    var tr=document.createElement('tr');
+    tr.innerHTML='<td>'+(p.cls?'<i class="sw '+p.cls+'"></i>':'')+p.n+'</td><td class="num">'+fmt(p.each)+'</td><td class="num">'+p.count+'</td><td class="num">'+fmt(t)+'</td><td class="num">'+(pct<0.1?'<0.1':pct.toFixed(1))+'%</td>';
+    rows.appendChild(tr);
+  });
+  var tr=document.createElement('tr'); tr.innerHTML='<td><strong>Total</strong></td><td></td><td></td><td class="num"><strong>'+fmt(total)+'</strong></td><td class="num">100%</td>'; rows.appendChild(tr);
+
+  var norms=[[0,14.4,14.4],[15,60.8,56.2],[31,80.3,81.2],[47,113.1,116.5],[63,401.2,395.6]], nr=document.getElementById('norm-rows');
+  norms.forEach(function(r){
+    var k=(r[0]%4===3)?'full attention':'linear attention';
+    function cell(v){return '<span class="nbar" style="width:'+Math.round(v/401.2*140)+'px"></span><span class="mono">'+v.toFixed(1)+'</span>';}
+    var t=document.createElement('tr'); t.innerHTML='<td class="mono">'+r[0]+'</td><td>'+k+'</td><td>'+cell(r[1])+'</td><td>'+cell(r[2])+'</td>'; nr.appendChild(t);
+  });
+})();
+</script>
