@@ -1350,3 +1350,42 @@ trained NLAs. Completion condition sized to my resources, public artifact at the
 
   **Next (morning): the two-pass full thinking sweep, then the extensive discussion I asked for.
   HF token STILL not rotated.**
+
+- **2026-09-23 — TRIG-03 + TRIG-04: chain of thought supplies BOOKKEEPING, not trigonometry.
+  $5.29 for the day, $6.69 for the whole trig arc. Balance $49.19 → $43.90. Zero pods.**
+  Full detail `mathematics/experiments.md` → TRIG-03, TRIG-04, and the new **COST LEDGER**
+  (opening/closing balance and estimate-vs-actual for every billed run, kept from here on).
+  - **TRIG-03, full 1° sweep thinking ON (1080 asks, 100 min):** paired against the thinking-off
+    sweep, **71.9% → 99.6%** exact to 5 dp, **282 angles fixed, 0 broken**, McNemar p=2.6e-85.
+    tan **43.0% → 98.7%**. The quadrant structure vanishes (Q4 49.8% → 99.6%) and **the
+    tabulation gradient collapses from 29.5 pts to 1.0** — the sharpest pre-registered reading.
+    **Caveat: 61/1080 (5.6%) hit the 2048 cap** and are excluded; 58 of them tan, and thinking-off
+    got only 16.9% of that set right, so they are the hard cases. Bounds: **99.6% excluding them,
+    94.4% counting them all as failures.**
+  - **TRIG-04, fractional and shifted angles thinking ON (345 asks):** **`+360°` 7.6% → 100.0%**
+    (61 of 66 fixed, none broken) — the biggest single effect in the project. `neg` was already
+    100% and stayed. **`dec2` (untabulated x.ab°) splits two ways: 87% never terminated** (60/69
+    at the 4096 cap, median generation 4096), but **all 9 that finished were exact.** Thinking-off
+    was 3.0% exact / 75.6% within 1e-3. So the scratchpad traded *approximate-and-always-answers*
+    for *exact-or-nothing*.
+  - **The mechanism, read off the traces:** `tan(37°)` is answered by **stating
+    0.7535540501027941 from memory** and then deliberating over the 6th digit; `tan(229°)` by
+    *"229° = 180° + 49°, tan same as tan 49°... QIII, tan positive"*. **The scratchpad supplies
+    range reduction, quadrant sign and rounding — the value still comes from recall.**
+  - **AG's own hypothesis tested and refuted:** tan is NOT computed as sin/cos. Thinking off, when
+    sin AND cos are both correct at an angle, tan is right only **48.5%** of the time, and the
+    model's own tan matches its own sin/cos in just **20.9%** of cases (55.8% with thinking).
+  - **Kantamneni–Tegmark checked against the source, and it matters:** GPT-J, Pythia-6.9B,
+    Llama3.1-8B; **zero mentions of chain of thought / scratchpad / step-by-step** in the paper.
+    Their design excludes it — *"To ensure that answers require only a single token... We focus on
+    the single-token regime for simplicity"*, prompt is literally `a+b=`. **So the Clock/helix
+    result characterises the thinking-OFF regime only**, which is exactly the regime our data says
+    is retrieval-dominated. Nobody has a mechanistic account of the scratchpad regime.
+  - **CSV for AG:** `runs/2026-09-23_trig03/TRIG_on_vs_off.csv` — 1080 rows, calculator answer vs
+    thinking-off vs thinking-on, both errors, both pass/fail.
+  - **Claude's errors:** three cost estimates in a row anchored to a previous run's median instead
+    of its tail (TRIG-03 1.51×, TRIG-04 1.30× over); a monitor that broke on a **false** completion
+    marker printed by a killed script; two leaked `until` waiters AG caught (now all bounded).
+
+  **Next: (1) read the 60 non-terminating dec2 traces — free, no GPU: is it looping or genuinely
+  mid-computation at 4096 tokens?; (2) commit; (3) HF token STILL not rotated.**

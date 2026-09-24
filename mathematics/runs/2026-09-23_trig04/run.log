@@ -1,0 +1,27 @@
+12:16:56 weights ready
+12:16:57 === FAST variants (int,half,over360,neg) @ cap 2048 — 276 asks ===
+12:16:59 276 asks to do (23 base angles x 4 variants x 3 functions), thinking=on
+Loading weights:   0%|          | 0/851 [00:00<?, ?it/s]Loading weights:  81%|████████  | 691/851 [00:00<00:00, 6904.48it/s]Loading weights: 100%|██████████| 851/851 [00:00<00:00, 6999.03it/s]
+12:17:20 LOAD OK in 14s
+12:21:19   24/276 done · 0.1 asks/s · eta 41.9 min
+12:24:40   48/276 done · 0.1 asks/s · eta 34.8 min
+12:28:03   72/276 done · 0.1 asks/s · eta 30.4 min
+12:31:21   96/276 done · 0.1 asks/s · eta 26.3 min
+12:34:40   120/276 done · 0.1 asks/s · eta 22.5 min
+12:38:12   144/276 done · 0.1 asks/s · eta 19.1 min
+12:41:50   168/276 done · 0.1 asks/s · eta 15.8 min
+12:45:07   192/276 done · 0.1 asks/s · eta 12.2 min
+12:48:24   216/276 done · 0.1 asks/s · eta 8.6 min
+12:51:41   240/276 done · 0.1 asks/s · eta 5.2 min
+12:55:00   264/276 done · 0.1 asks/s · eta 1.7 min
+12:58:22   276/276 done · 0.1 asks/s · eta 0.0 min
+12:58:22 DONE var_think in 41.0 min
+12:58:25 === dec2 ALONE @ cap 4096 — 69 asks, termination IS the result ===
+12:58:27 69 asks to do (23 base angles x 1 variants x 3 functions), thinking=on
+Loading weights:   0%|          | 0/851 [00:00<?, ?it/s]Loading weights:  75%|███████▍  | 638/851 [00:00<00:00, 6378.04it/s]Loading weights: 100%|██████████| 851/851 [00:00<00:00, 7782.83it/s]
+12:58:48 LOAD OK in 14s
+13:06:57   24/69 done · 0.0 asks/s · eta 15.3 min
+13:12:51   48/69 done · 0.1 asks/s · eta 6.1 min
+13:20:26   69/69 done · 0.1 asks/s · eta 0.0 min
+13:20:26 DONE var_think_dec2 in 21.6 min
+13:20:29 ALL DONE TRIG-04

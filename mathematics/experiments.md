@@ -1089,3 +1089,162 @@ the cost blow-up, and it is better science as well as cheaper:
   from the same data — no separate stratified sample needed, which was tonight's Part 2.
 - Keep the variants question (`dec2` / `over360` under thinking) as a SECOND, separate session —
   tonight showed it is the expensive half, and mixing the two is what blew the budget.
+
+### Leaked background waiters — AG caught this TWICE in one session
+After the pod was terminated, two laptop-side shells were still running:
+- `until $POD "grep -q 'ALL DONE TRIG-02' ..."; do sleep 60; done` — SSHing to a deleted pod forever.
+- `until [ -n "$(curl ... /v1/pods/yxvt7orso7heyd ...)" ]; do sleep 15; done` — polling the RunPod
+  API **with the API key, every 15 s**, for a pod that no longer exists.
+Plus the monitor loop AG spotted the previous evening. **Same bug in all three.**
+
+**Cause (Claude's, structural not accidental):** every waiter was written as
+`until <cond>; do sleep N; done` with **no iteration cap and no abort condition**. When the thing
+being waited on is destroyed, the condition becomes permanently unsatisfiable and the loop spins
+until the machine is rebooted. Neither leak cost money here — the pod was already gone — but the
+API poller was hitting a live endpoint with credentials indefinitely, and a waiter that outlives
+its pod is exactly the shape of bug that DOES cost money when the pod is still up.
+
+**Rule adopted:** never `until ... done` for a remote condition. Use a bounded
+`for i in $(seq 1 N)` with an explicit give-up that exits non-zero and says so, and make the loop
+break when the *resource itself* disappears, not only when the success string appears. The same
+applies to `Monitor` scripts: their break condition must cover the resource vanishing.
+
+---
+
+## TRIG-03 — the full 1° sweep with thinking ON (AG's restart, 2026-09-23)
+**Scope, set by AG: identical to condition A so the two split cleanly.** 0–359° in 1° steps ×
+sin/cos/tan = **1080 asks**, integer degrees only (fractional angles were TRIG-01b, a separate
+question). Pairs within-angle against `results_off_step1.jsonl` already on disk.
+
+**Budget: `--max-new-tokens 4096`, single pass.** AG pushed back on the 512-token two-pass plan
+and he was right. Measured distribution from condition B (n=216, thinking on, integer degrees):
+median **192**, p95 **392**, p99 **1874**; truncation would be 29.6% at cap 256, **1.9% at 512**,
+**1.4% at 1024 and at 2048** (identical), **0% at 4096**. The three that reach 2048 are tan(90),
+tan(95), tan(270) — two of them poles.
+**Why generous is correct here, not indulgent:** (a) 1024 and 2048 give the same completeness, so
+the cap only buys margin, and (b) that prior comes from a **5° grid — multiples of 5, the easy
+tabulated angles** — while this run includes 34°, 37°, 41° where the model plausibly reasons
+longer. The prior is a lower bound.
+**Claude's error being corrected:** the 512 cap was carried over from TRIG-02's cost overrun,
+which was caused by `dec2` **fractional** angles — a different input distribution entirely. Same
+mistake as before: estimating from the wrong prior. And cost anxiety actively damaged the previous
+run (a mid-flight restructure lost a batch and triggered the pkill self-kill). Balance is $49.19
+at ~$1.60/hr ≈ 30 GPU-hours; this needs one. **Single stage, launch once, do not touch it.**
+
+### Rule-7 preflight
+1. **Progress lines?** Yes — per batch, count/rate/ETA.
+2. **Incremental checkpoints?** Yes — one JSON line per ask, flushed per batch; resume skips
+   `(fn, deg)` already on disk, so a kill costs one batch.
+3. **Memory, computed:** KV `2 × 4 × 128 × 2 B × 16 layers = 32 KB/token`; at batch 24 × 4096 =
+   **3.2 GB**. Weights **53.8 GB**. Prefill logits `[24, ~74, 248320]` fp32 ≈ **1.8 GB**.
+   **Peak allocated ≈ 59 GB of 79.3.** `expandable_segments:True` exported inside the run script
+   (an env var in the pod-create call does NOT reach a non-login SSH shell — verified last night).
+   Scripts log allocated AND reserved.
+4. **Killed at 80%?** Everything up to the last flush survives and the run resumes. No activations
+   this time, so nothing is written once-at-the-end.
+**Cost line:** 1080 asks; condition B measured 216 asks in ~15 min ⇒ **~75 min**, plus ~10 min for
+create + 52 GB download ⇒ **~85 min ≈ $2.25**. Treat as a floor — the two previous estimates were
+both low.
+
+---
+
+## TRIG-04 — the last gap: fractional angles WITH thinking (2026-09-23)
+**Why.** TRIG-03 settled integer degrees (71.9% → 99.6%, tabulation gradient 29.5 pts → 1.0) and
+the traces showed what the scratchpad actually buys: **range reduction and careful rounding on top
+of a RECALLED value** — `tan(37°)` is answered by stating 0.7535540501027941 from memory and then
+deliberating over the 6th digit. On a **fractional** angle there is nothing tabulated to recall,
+so this is the condition that separates "it computes" from "it looks up and tidies".
+Thinking-OFF is already on disk: x.5° **70.7%**, x.ab° **3.0%** exact (but **75.6%** within 1e-3,
+median error 2.3e-4 — approximate computation, not garbage). Thinking-ON evidence is **6 asks**,
+4 truncated, so effectively nothing.
+
+**Design.** `int,half,dec2,over360,neg` × 23 base angles (stride 4) × 3 functions = **345 asks**,
+every one already having a thinking-OFF partner on disk (verified: 0 of 345 missing), so it is a
+true paired comparison at the same angle.
+**Two token budgets, deliberately.** Fast variants (`int,half,over360,neg`) at **2048**; **`dec2`
+alone at 4096 in its own batches.** Two reasons: a batch costs as much as its slowest member
+(the lesson that blew TRIG-02's budget), and for `dec2` **whether it terminates at all is itself
+the result** — last night 4 of 6 ran to the cap and one returned 2.56 for a sine, which is
+outside the range of the function.
+
+### Rule-7 preflight
+1. **Progress lines?** Yes, per batch with count/rate/ETA.
+2. **Incremental checkpoints?** Yes, one JSON line per ask flushed per batch; resume skips
+   `(fn, variant, asked)` already on disk.
+3. **Memory, computed:** KV = 32 KB/token × batch 24 × 4096 = **3.2 GB**; weights 53.8 GB;
+   prefill logits ≈ 1.8 GB ⇒ **≈ 59 GB of 79.3**. TRIG-03 measured peak ALLOCATED 62.1 GB at
+   cap 2048, so 4096 stays inside the card. `expandable_segments:True` exported in the script.
+4. **Killed at 80%?** Everything to the last flush survives; resume continues. No activations.
+**Cost line:** fast pass 276 asks ≈ 18 min; `dec2` 69 asks at 4096 ≈ 24 min; setup + 52 GB
+download ≈ 12 min ⇒ **~55 min ≈ $1.45**. **Treat as a floor — the last three estimates were all
+low, each time because the rate was anchored to easier inputs than the ones actually run.**
+Opening balance **$45.79**.
+
+---
+
+## COST LEDGER — every billed run, estimate vs actual
+Kept from here on for **every** experiment: opening balance before `create-pod`, closing balance
+≥5 min after `terminate` (RunPod posts the final minutes late), and the ratio. The preflight
+already required an estimate; what was missing was scoring it afterwards.
+
+| experiment | date | GPU | opened | closed | **ACTUAL** | estimated | ratio |
+|---|---|---|---|---|---|---|---|
+| TRIG-01 + 01b | 09-22 | A100 PCIe | $50.59 | $49.55 | **$1.04** | ~$1.00–1.40 | 0.74× |
+| TRIG-02 (stopped at 24/345) | 09-22/23 | A100 SXM | $49.55 | $49.19 | **$0.36** | ~$1.20 | 0.30× |
+| TRIG-03 (1080 asks, thinking on) | 09-23 | A100 SXM | $49.19 | $45.79 | **$3.40** | ~$2.25 | **1.51×** |
+| TRIG-04 (345 asks, variants on) | 09-23 | A100 SXM | $45.79 | $43.90 | **$1.89** | ~$1.45 | **1.30×** |
+| | | | | | **$6.69** | | session total |
+
+**What the ledger shows, which arguing about it would not.** The two runs that were *estimated
+from a previous run's measured rate* both overran — TRIG-03 by 51%, TRIG-04 by 30% — and in both
+cases the cause was the same: the prior run's rate came from easier inputs. TRIG-01 came in under
+because its dominant condition generated ~9 tokens per ask, so there was no long tail to
+underestimate. **The bias is not "Claude is optimistic"; it is specifically that a rate measured
+on short generations does not transfer to a run containing long ones.**
+**Rule going forward:** estimate generation time from the **p95/max** of the expected length
+distribution, not the median, and state the estimate as a range whose top assumes every batch
+hits the cap. Record the closing balance in the journal at the end of every run, not only the
+opening one.
+
+---
+
+## HELIX-01 — Kantamneni & Tegmark's first diagnostic, on Qwen3.8-27B (free, CPU, 2026-09-24)
+**Prompted by AG asking how the helix hypothesis was ever found** — "it's like finding a needle in
+a haystack." Answered from the paper, not from memory: it was not. (1) Four prior papers handed
+them the idea — Liu et al. 2022 (circular representations in 1-layer modular addition), Nanda et al.
+2023a (named the Clock algorithm), Zhong et al. 2023 (Pizza), and **Zhou et al. 2024, who had
+already found Fourier components in number representations and said larger LLMs "might use
+similar features"**. (2) Two cheap measurements: a Fourier transform over the number axis
+(sparse, spikes at T=2,5,10) and PCA (first component linear in the number). (3) **The helix is the
+smallest shape that is both periodic and linear** — circle for the units digit, stretched upward by
+magnitude. The paper says so (§3, "to account for both the periodic and linear structure"), and
+§7 notes humans already use one: decimal place value is a generalized helix with T=[10,100,…].
+(4) Only THEN the hard part: fit, and activation-patch against PCA/circle/polynomial baselines.
+
+**Their Fig 2, reproduced on our cached NUMBERS-01 activations** (90 numbers 10–99, read at the last
+digit token, all 65 depths). Plot: `mathematics/runs/2026-09-20_numbers/helix_qwen38.png`.
+- **Periodic:** normalised |FFT| at T=10 / 5 / 2 = **1.00 / 0.96 / 0.86 at depth 0**, still
+  **0.60 / 0.57 / 0.55 at depth 16** and **0.46 / 0.43 / 0.50 at depth 48**. T=3 and T=9 are
+  **0.00 at depth 0** — only harmonics of 10 are present there.
+- **Linear:** |corr(PC1, number)| = 0.106 (d0) → 0.678 (d4) → **0.955 (d16), 0.960 (d32)** → 0.817 (d64).
+- **So both ingredients of their helix are present in a 2026 hybrid, digit-tokenised model.**
+
+**What this does NOT show — three limits, stated before anyone quotes it:**
+1. **Depth-0 periodicity is trivial.** NUMBERS-01 already established that at the embedding the
+   reading position holds ONLY the units digit (all nine numbers ending in 6 are bit-identical), and
+   any function of the units digit has a spectrum only at harmonics of 10 — which is exactly the
+   depth-0 line. The non-trivial part is periodicity persisting at depths 8–48 *alongside* a strong
+   linear component, after the tens digit has been mixed in.
+2. **Panel 3 (the 3-D helix) is self-fulfilling.** It fits the basis [a, cos 2πa/10, sin 2πa/10] and
+   then projects onto it, so it will show that shape to some degree by construction. It is their
+   Fig 3 method (visualisation), not their evidence. Their evidence is Fig 4 — activation patching
+   the fit against baselines — which we have NOT done.
+3. **Our representation is at the last digit token of a digit-tokenised number**; theirs is a single
+   token for the whole number (GPT-J tokenises 0–361 as one token). Not the same read.
+**Net:** we have reproduced the step that *suggested* the helix, not the step that *tested* it.
+
+**An open question the paper names and does not answer** (§7): Gemma-2-9B "tokenizes each digit of a
+number separately and must use additional algorithms to collate digit tokens." Qwen3.8 does the same.
+How a digit-tokenised model assembles the helix from separate digit tokens is left open by the
+paper — and PROBE-01 (first digit readable at 100% from block 1) is already our first observation
+of that assembly. **AG's call whether this is the question.**
