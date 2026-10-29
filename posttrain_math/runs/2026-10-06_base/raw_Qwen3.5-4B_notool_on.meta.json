@@ -1,0 +1,10 @@
+{
+ "user_prompt": "Compute {expr}. Angles written with a degree sign (°) are in degrees; any other argument of a trigonometric function is in radians.{unit} Respond with only the numeric value, to 6 significant figures. If the value is undefined over the real numbers, respond with exactly: undefined",
+ "tools": null,
+ "cond": "notool_on",
+ "model": "Qwen/Qwen3.5-4B",
+ "max_tokens": 8192,
+ "max_turns": 6,
+ "temperature": 0.0,
+ "backend": "vllm"
+}

@@ -56,3 +56,9 @@ forking/runs/2026-09-15_qwen02/out/main/row080_branches.jsonl
 # keep the jsonl results and the index (both small and the actual evidence), never commit
 # the tensor. AG's operating principle (c) says cache activations - locally, not in git.
 mathematics/runs/**/*.npy
+
+# ---- posttrain_math: third-party data copies and sync bookkeeping ----
+# 600-row sample of nvidia/Nemotron-SFT-Instruction-Following-Chat-v4 (not ours to republish;
+# regenerate with posttrain_math/data_inspect/sample_ifc4.py, seed 20261018)
+posttrain_math/data_inspect/ifc4_sample600.jsonl
+**/.s3_sync_state.json

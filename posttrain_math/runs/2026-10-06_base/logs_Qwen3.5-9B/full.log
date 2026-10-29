@@ -1,0 +1,202 @@
+09:20:09 3362 questions x 4 conditions on Qwen3.5-9B
+INFO 10-06 09:20:17 [api_utils.py:286] non-default args: {'dtype': 'bfloat16', 'max_model_len': 24576, 'enable_prefix_caching': True, 'gpu_memory_utilization': 0.9, 'disable_log_stats': True, 'model': 'Qwen/Qwen3.5-9B'}
+INFO 10-06 09:20:17 [model.py:684] Resolved architecture: Qwen3_5ForConditionalGeneration
+INFO 10-06 09:20:17 [model.py:2021] Using max model len 24576
+WARNING 10-06 09:20:17 [model.py:981] Model does not support mm_device_do_normalize, forcing mm_device_do_normalize = False.
+INFO 10-06 09:20:20 [scheduler.py:277] Chunked prefill is enabled with max_num_batched_tokens=8192.
+INFO 10-06 09:20:20 [config.py:625] Mamba cache mode is set to 'align' for Qwen3_5ForConditionalGeneration by default when prefix caching is enabled
+INFO 10-06 09:20:20 [kernel.py:369] Final IR op priority after setting platform defaults: IrOpPriorityConfig(rms_norm=['native'], fused_add_rms_norm=['native'])
+[transformers] The `use_fast` parameter is deprecated and will be removed in a future version. Use `backend="torchvision"` instead of `use_fast=True`, or `backend="pil"` instead of `use_fast=False`.
+WARNING 10-06 09:20:30 [system_utils.py:157] We must use the `spawn` multiprocessing start method. Overriding VLLM_WORKER_MULTIPROC_METHOD to 'spawn'. See https://docs.vllm.ai/en/latest/usage/troubleshooting.html#python-multiprocessing for more information. Reasons: CUDA is initialized
+(EngineCore pid=7832) INFO 10-06 09:20:36 [core.py:123] Initializing a V1 LLM engine (v0.29.0) with config: model='Qwen/Qwen3.5-9B', speculative_config=None, tokenizer='Qwen/Qwen3.5-9B', skip_tokenizer_init=False, tokenizer_mode=auto, revision=main, tokenizer_revision=main, trust_remote_code=False, dtype=torch.bfloat16, max_seq_len=24576, download_dir=None, load_format=auto, tensor_parallel_size=1, pipeline_parallel_size=1, data_parallel_size=1, decode_context_parallel_size=1, dcp_comm_backend=ag_rs, disable_custom_all_reduce=False, quantization=None, quantization_config=None, enforce_eager=False, enable_return_routed_experts=False, kv_cache_dtype=auto, device_config=cuda, structured_outputs_config=StructuredOutputsConfig(backend='auto', disable_any_whitespace=False, disable_additional_properties=False, reasoning_parser='', reasoning_parser_plugin='', enable_in_reasoning=False), observability_config=ObservabilityConfig(show_hidden_metrics_for_version=None, otlp_traces_endpoint=None, collect_detailed_traces=None, per_request_spec_decode_metrics='none', kv_cache_metrics=False, kv_cache_metrics_sample=0.01, cudagraph_metrics=False, enable_layerwise_nvtx_tracing=False, enable_mfu_metrics=False, enable_mm_processor_stats=False, enable_logging_iteration_details=False, jit_monitor_mode='warn', jit_monitor_verbose=False), seed=0, served_model_name=Qwen/Qwen3.5-9B, enable_prefix_caching=True, enable_chunked_prefill=True, pooler_config=None, compilation_config={'mode': <CompilationMode.VLLM_COMPILE: 3>, 'debug_dump_path': None, 'cache_dir': '', 'compile_cache_save_format': 'binary', 'backend': 'inductor', 'custom_ops': ['none'], 'ir_enable_torch_wrap': True, 'splitting_ops': ['vllm::unified_attention_with_output', 'vllm::unified_mla_attention_with_output', 'vllm::mamba_mixer2', 'vllm::mamba_mixer', 'vllm::short_conv', 'vllm::qwen4_exp_compute_ple_ngram_ids', 'vllm::qwen4_exp_ple_short_conv', 'vllm::qwen4_exp_qsa_with_output', 'vllm::linear_attention', 'vllm::qwen_gdn_attention_core', 'vllm::qwen_gdn_attention_core_fused_norm_packed', 'vllm::gdn_attention_core_xpu', 'vllm::olmo_hybrid_gdn_full_forward', 'vllm::sparse_attn_indexer', 'vllm::rocm_aiter_sparse_attn_indexer', 'vllm::deepseek_v4_attention', 'vllm::hpc_rope_norm_forward', 'vllm::unified_kv_cache_update', 'vllm::unified_mla_kv_cache_update'], 'compile_mm_encoder': False, 'cudagraph_mm_encoder': False, 'encoder_cudagraph_token_budgets': [], 'encoder_cudagraph_max_vision_items_per_batch': 0, 'encoder_cudagraph_max_frames_per_batch': None, 'compile_sizes': [], 'compile_ranges_endpoints': [8192], 'inductor_compile_config': {'enable_auto_functionalized_v2': False, 'combo_kernels': True, 'benchmark_combo_kernel': True}, 'inductor_passes': {}, 'cudagraph_mode': <CUDAGraphMode.FULL_AND_PIECEWISE: (2, 1)>, 'cudagraph_num_of_warmups': 1, 'cudagraph_capture_sizes': [1, 2, 4, 8, 16, 24, 32, 40, 48, 56, 64, 72, 80, 88, 96, 104, 112, 120, 128, 136, 144, 152, 160, 168, 176, 184, 192, 200, 208, 216, 224, 232, 240, 248, 256, 272, 288, 304, 320, 336, 352, 368, 384, 400, 416, 432, 448, 464, 480, 496, 512], 'cudagraph_copy_inputs': False, 'cudagraph_specialize_lora': True, 'use_inductor_graph_partition': False, 'pass_config': {'fuse_norm_quant': False, 'fuse_act_quant': False, 'fuse_attn_quant': False, 'enable_sp': False, 'fuse_gemm_comms': False, 'fuse_allreduce_rms': False, 'enable_qk_norm_rope_fusion': False, 'fuse_rope_kvcache_cat_mla': False, 'fuse_act_padding': False, 'fuse_qk_norm_rope_kvcache': False}, 'max_cudagraph_capture_size': 512, 'dynamic_shapes_config': {'type': <DynamicShapesType.BACKED: 'backed'>, 'evaluate_guards': False, 'assume_32_bit_indexing': False}, 'local_cache_dir': None, 'fast_moe_cold_start': False, 'static_all_moe_layers': []}, kernel_config=KernelConfig(ir_op_priority=IrOpPriorityConfig(rms_norm=['native'], fused_add_rms_norm=['native']), enable_flashinfer_autotune=True, enable_cutedsl_warmup=True, enable_jit_warmup=True, enable_bf16x3_router_gemm=False, moe_backend='auto', linear_backend='auto')
+(EngineCore pid=7832) INFO 10-06 09:20:39 [parallel_state.py:1775] world_size=1 rank=0 local_rank=0 distributed_init_method=file:///tmp/vllm_dist_f6a7df9640d748bd94aa14a2bcf4ad26 backend=nccl
+(EngineCore pid=7832) INFO 10-06 09:20:39 [parallel_state.py:2119] rank 0 in world size 1 is assigned as DP rank 0, PP rank 0, PCP rank 0, TP rank 0, EP rank N/A, EPLB rank N/A
+(EngineCore pid=7832) INFO 10-06 09:20:39 [gpu_worker.py:429] Using V2 Model Runner
+(EngineCore pid=7832) INFO 10-06 09:20:39 [model_runner.py:382] Loading model from scratch...
+(EngineCore pid=7832) INFO 10-06 09:20:40 [cuda.py:551] Using backend AttentionBackendEnum.FLASH_ATTN for vit attention
+(EngineCore pid=7832) INFO 10-06 09:20:40 [mm_encoder_attention.py:372] Using AttentionBackendEnum.FLASH_ATTN for MMEncoderAttention.
+(EngineCore pid=7832) INFO 10-06 09:20:40 [qwen_gdn_linear_attn.py:167] Using Triton/FLA GDN prefill kernel (requested=auto, head_k_dim=128).
+(EngineCore pid=7832) INFO 10-06 09:20:40 [qwen_gdn_linear_attn.py:519] GDN decode kernel: cuda
+(EngineCore pid=7832) INFO 10-06 09:20:40 [cuda.py:492] Using FLASH_ATTN attention backend out of potential backends: ['FLASH_ATTN', 'FLASHINFER', 'TRITON_ATTN', 'FLEX_ATTENTION'].
+(EngineCore pid=7832) INFO 10-06 09:20:40 [flash_attn.py:897] Using FlashAttention version 2
+(EngineCore pid=7832) INFO 10-06 09:20:41 [weight_utils.py:863] Filesystem type for checkpoints: OVERLAY. Checkpoint size: 17.98 GiB. Available RAM: 17.53 GiB.
+(EngineCore pid=7832) INFO 10-06 09:20:41 [weight_utils.py:893] Auto-prefetch is disabled because the filesystem (OVERLAY) is not a recognized network FS (NFS/Lustre) and the checkpoint size (17.98 GiB) exceeds 90% of available RAM (17.53 GiB).
+(EngineCore pid=7832) Loading safetensors checkpoint shards:   0% Completed | 0/4 [00:00<?, ?it/s]
+(EngineCore pid=7832) Loading safetensors checkpoint shards:  25% Completed | 1/4 [00:00<00:02,  1.31it/s]
+(EngineCore pid=7832) Loading safetensors checkpoint shards:  50% Completed | 2/4 [00:01<00:01,  1.27it/s]
+(EngineCore pid=7832) Loading safetensors checkpoint shards:  75% Completed | 3/4 [00:02<00:00,  1.26it/s]
+(EngineCore pid=7832) Loading safetensors checkpoint shards: 100% Completed | 4/4 [00:02<00:00,  1.40it/s]
+(EngineCore pid=7832) Loading safetensors checkpoint shards: 100% Completed | 4/4 [00:02<00:00,  1.35it/s]
+(EngineCore pid=7832) 
+(EngineCore pid=7832) INFO 10-06 09:20:44 [default_loader.py:430] Loading weights took 3.01 seconds
+(EngineCore pid=7832) INFO 10-06 09:20:44 [model_runner.py:404] Model loading took 17.66 GiB memory and 5.111266 seconds
+(EngineCore pid=7832) INFO 10-06 09:20:44 [topk_topp_sampler.py:62] Using FlashInfer for top-p & top-k sampling.
+(EngineCore pid=7832) INFO 10-06 09:20:44 [interface.py:918] Setting attention block size to 528 tokens to ensure that attention page size is >= mamba page size.
+(EngineCore pid=7832) INFO 10-06 09:20:44 [interface.py:942] Padding mamba page size by 0.76% to ensure that mamba page size and attention page size are exactly equal.
+(EngineCore pid=7832) INFO 10-06 09:20:44 [utils.py:306] Using LBNHC KV cache layout.
+(EngineCore pid=7832) [transformers] The `use_fast` parameter is deprecated and will be removed in a future version. Use `backend="torchvision"` instead of `use_fast=True`, or `backend="pil"` instead of `use_fast=False`.
+(EngineCore pid=7832) INFO 10-06 09:20:51 [encoder_runner.py:131] Encoder cache will be initialized with a budget of 16384 tokens, and profiled with 1 image items of the maximum feature size.
+(EngineCore pid=7832) INFO 10-06 09:21:00 [caching.py:343] reconstructed serializable fn from standalone compile artifacts. num_artifacts=13 num_submods=33
+(EngineCore pid=7832) INFO 10-06 09:21:00 [decorators.py:313] Directly load AOT compilation from path /root/.cache/vllm/torch_compile_cache/torch_aot_compile/0be730563fd20a0a3ac7b1cfd14dc310c4b764c2c8bcc8207a8a93a186c1ef11/rank_0_0/model
+(EngineCore pid=7832) INFO 10-06 09:21:00 [monitor.py:53] torch.compile took 0.84 s in total
+(EngineCore pid=7832) INFO 10-06 09:21:01 [monitor.py:81] Initial profiling/warmup run took 1.05 s
+(EngineCore pid=7832) Capturing CUDA graphs (PIECEWISE):   0%|          | 0/51 [00:00<?, ?it/s]Capturing CUDA graphs (PIECEWISE):   2%|▏         | 1/51 [00:00<00:46,  1.07it/s]Capturing CUDA graphs (PIECEWISE):   4%|▍         | 2/51 [00:01<00:41,  1.17it/s]Capturing CUDA graphs (PIECEWISE):   6%|▌         | 3/51 [00:02<00:38,  1.26it/s]Capturing CUDA graphs (PIECEWISE):   8%|▊         | 4/51 [00:03<00:34,  1.35it/s]Capturing CUDA graphs (PIECEWISE):  10%|▉         | 5/51 [00:03<00:33,  1.37it/s]Capturing CUDA graphs (PIECEWISE):  12%|█▏        | 6/51 [00:04<00:31,  1.41it/s]Capturing CUDA graphs (PIECEWISE):  14%|█▎        | 7/51 [00:05<00:30,  1.46it/s]Capturing CUDA graphs (PIECEWISE):  16%|█▌        | 8/51 [00:05<00:28,  1.51it/s]Capturing CUDA graphs (PIECEWISE):  18%|█▊        | 9/51 [00:06<00:27,  1.53it/s]Capturing CUDA graphs (PIECEWISE):  20%|█▉        | 10/51 [00:06<00:25,  1.59it/s]Capturing CUDA graphs (PIECEWISE):  22%|██▏       | 11/51 [00:07<00:24,  1.67it/s]Capturing CUDA graphs (PIECEWISE):  24%|██▎       | 12/51 [00:07<00:21,  1.79it/s]Capturing CUDA graphs (PIECEWISE):  25%|██▌       | 13/51 [00:08<00:19,  1.92it/s]Capturing CUDA graphs (PIECEWISE):  27%|██▋       | 14/51 [00:08<00:18,  2.02it/s]Capturing CUDA graphs (PIECEWISE):  29%|██▉       | 15/51 [00:09<00:15,  2.31it/s]Capturing CUDA graphs (PIECEWISE):  31%|███▏      | 16/51 [00:09<00:13,  2.52it/s]Capturing CUDA graphs (PIECEWISE):  33%|███▎      | 17/51 [00:09<00:10,  3.21it/s]Capturing CUDA graphs (PIECEWISE):  35%|███▌      | 18/51 [00:09<00:08,  4.03it/s]Capturing CUDA graphs (PIECEWISE):  39%|███▉      | 20/51 [00:09<00:05,  5.59it/s]Capturing CUDA graphs (PIECEWISE):  41%|████      | 21/51 [00:09<00:05,  5.80it/s]Capturing CUDA graphs (PIECEWISE):  45%|████▌     | 23/51 [00:10<00:03,  7.07it/s]Capturing CUDA graphs (PIECEWISE):  49%|████▉     | 25/51 [00:10<00:03,  8.08it/s]Capturing CUDA graphs (PIECEWISE):  51%|█████     | 26/51 [00:10<00:02,  8.39it/s]Capturing CUDA graphs (PIECEWISE):  53%|█████▎    | 27/51 [00:10<00:02,  8.30it/s]Capturing CUDA graphs (PIECEWISE):  57%|█████▋    | 29/51 [00:10<00:02,  9.38it/s]Capturing CUDA graphs (PIECEWISE):  61%|██████    | 31/51 [00:10<00:01, 10.27it/s]Capturing CUDA graphs (PIECEWISE):  65%|██████▍   | 33/51 [00:11<00:01,  9.37it/s]Capturing CUDA graphs (PIECEWISE):  69%|██████▊   | 35/51 [00:11<00:01, 10.22it/s]Capturing CUDA graphs (PIECEWISE):  73%|███████▎  | 37/51 [00:11<00:01, 10.96it/s]Capturing CUDA graphs (PIECEWISE):  76%|███████▋  | 39/51 [00:11<00:01, 11.52it/s]Capturing CUDA graphs (PIECEWISE):  80%|████████  | 41/51 [00:11<00:00, 10.34it/s]Capturing CUDA graphs (PIECEWISE):  84%|████████▍ | 43/51 [00:12<00:00, 11.10it/s]Capturing CUDA graphs (PIECEWISE):  88%|████████▊ | 45/51 [00:12<00:00, 11.71it/s]Capturing CUDA graphs (PIECEWISE):  92%|█████████▏| 47/51 [00:12<00:00, 11.08it/s]Capturing CUDA graphs (PIECEWISE):  96%|█████████▌| 49/51 [00:12<00:00, 11.26it/s]Capturing CUDA graphs (PIECEWISE): 100%|██████████| 51/51 [00:12<00:00, 11.75it/s]Capturing CUDA graphs (PIECEWISE): 100%|██████████| 51/51 [00:12<00:00,  4.01it/s]
+(EngineCore pid=7832) Capturing CUDA graphs (FULL):   0%|          | 0/2 [00:00<?, ?it/s]Capturing CUDA graphs (FULL): 100%|██████████| 2/2 [00:00<00:00, 13.63it/s]Capturing CUDA graphs (FULL): 100%|██████████| 2/2 [00:00<00:00, 13.61it/s]
+(EngineCore pid=7832) INFO 10-06 09:21:15 [model_runner.py:960] Graph capturing finished in 13 secs, took 0.37 GiB
+(EngineCore pid=7832) INFO 10-06 09:21:15 [gpu_worker.py:625] Available KV cache memory: 19.55 GiB
+(EngineCore pid=7832) INFO 10-06 09:21:15 [gpu_worker.py:640] CUDA graph memory profiling is enabled (default since v0.21.0). The current --gpu-memory-utilization=0.9000 is equivalent to --gpu-memory-utilization=0.8901 without CUDA graph memory profiling. To maintain the same effective KV cache size as before, increase --gpu-memory-utilization to 0.9099. To disable, set VLLM_MEMORY_PROFILER_ESTIMATE_CUDAGRAPHS=0.
+(EngineCore pid=7832) INFO 10-06 09:21:15 [kv_cache_utils.py:2032] GPU KV cache size: 562,465 tokens, Maximum concurrency for 24,576 tokens per request: 22.89x
+(EngineCore pid=7832) INFO 10-06 09:21:15 [kernel_warmup.py:124] JIT kernel warmup starting.
+(EngineCore pid=7832) INFO 10-06 09:21:15 [kernel_warmup.py:134] JIT kernel warmup finished in 0.00s.
+(EngineCore pid=7832) INFO 10-06 09:21:15 [qwen_triton_warmup.py:270] Warming up Qwen Triton kernels for model_type=qwen3_5_text.
+(EngineCore pid=7832) Capturing CUDA graphs (PIECEWISE):   0%|          | 0/51 [00:00<?, ?it/s]Capturing CUDA graphs (PIECEWISE):   2%|▏         | 1/51 [00:00<00:49,  1.01it/s]Capturing CUDA graphs (PIECEWISE):   4%|▍         | 2/51 [00:01<00:47,  1.04it/s]Capturing CUDA graphs (PIECEWISE):   6%|▌         | 3/51 [00:02<00:44,  1.09it/s]Capturing CUDA graphs (PIECEWISE):   8%|▊         | 4/51 [00:03<00:41,  1.15it/s]Capturing CUDA graphs (PIECEWISE):  10%|▉         | 5/51 [00:04<00:37,  1.22it/s]Capturing CUDA graphs (PIECEWISE):  12%|█▏        | 6/51 [00:04<00:34,  1.31it/s]Capturing CUDA graphs (PIECEWISE):  14%|█▎        | 7/51 [00:05<00:31,  1.40it/s]Capturing CUDA graphs (PIECEWISE):  16%|█▌        | 8/51 [00:06<00:29,  1.47it/s]Capturing CUDA graphs (PIECEWISE):  18%|█▊        | 9/51 [00:06<00:28,  1.49it/s]Capturing CUDA graphs (PIECEWISE):  20%|█▉        | 10/51 [00:07<00:26,  1.56it/s]Capturing CUDA graphs (PIECEWISE):  22%|██▏       | 11/51 [00:07<00:24,  1.66it/s]Capturing CUDA graphs (PIECEWISE):  24%|██▎       | 12/51 [00:08<00:22,  1.77it/s]Capturing CUDA graphs (PIECEWISE):  25%|██▌       | 13/51 [00:08<00:19,  1.93it/s]Capturing CUDA graphs (PIECEWISE):  27%|██▋       | 14/51 [00:09<00:17,  2.10it/s]Capturing CUDA graphs (PIECEWISE):  29%|██▉       | 15/51 [00:09<00:15,  2.38it/s]Capturing CUDA graphs (PIECEWISE):  31%|███▏      | 16/51 [00:09<00:12,  2.75it/s]Capturing CUDA graphs (PIECEWISE):  35%|███▌      | 18/51 [00:09<00:07,  4.21it/s]Capturing CUDA graphs (PIECEWISE):  39%|███▉      | 20/51 [00:10<00:05,  5.34it/s]Capturing CUDA graphs (PIECEWISE):  41%|████      | 21/51 [00:10<00:05,  5.87it/s]Capturing CUDA graphs (PIECEWISE):  45%|████▌     | 23/51 [00:10<00:03,  7.19it/s]Capturing CUDA graphs (PIECEWISE):  49%|████▉     | 25/51 [00:10<00:03,  8.31it/s]Capturing CUDA graphs (PIECEWISE):  53%|█████▎    | 27/51 [00:10<00:02,  8.42it/s]Capturing CUDA graphs (PIECEWISE):  57%|█████▋    | 29/51 [00:10<00:02,  9.42it/s]Capturing CUDA graphs (PIECEWISE):  61%|██████    | 31/51 [00:11<00:01, 10.23it/s]Capturing CUDA graphs (PIECEWISE):  65%|██████▍   | 33/51 [00:11<00:01, 10.11it/s]Capturing CUDA graphs (PIECEWISE):  69%|██████▊   | 35/51 [00:11<00:01, 10.25it/s]Capturing CUDA graphs (PIECEWISE):  73%|███████▎  | 37/51 [00:11<00:01, 10.91it/s]Capturing CUDA graphs (PIECEWISE):  76%|███████▋  | 39/51 [00:11<00:01, 10.24it/s]Capturing CUDA graphs (PIECEWISE):  80%|████████  | 41/51 [00:12<00:00, 10.61it/s]Capturing CUDA graphs (PIECEWISE):  84%|████████▍ | 43/51 [00:12<00:00, 11.32it/s]Capturing CUDA graphs (PIECEWISE):  88%|████████▊ | 45/51 [00:12<00:00, 10.47it/s]Capturing CUDA graphs (PIECEWISE):  92%|█████████▏| 47/51 [00:12<00:00, 11.29it/s]Capturing CUDA graphs (PIECEWISE):  96%|█████████▌| 49/51 [00:12<00:00, 12.02it/s]Capturing CUDA graphs (PIECEWISE): 100%|██████████| 51/51 [00:12<00:00, 12.65it/s]Capturing CUDA graphs (PIECEWISE): 100%|██████████| 51/51 [00:12<00:00,  3.95it/s]
+(EngineCore pid=7832) Capturing CUDA graphs (FULL):   0%|          | 0/35 [00:00<?, ?it/s]Capturing CUDA graphs (FULL):   6%|▌         | 2/35 [00:00<00:02, 12.64it/s]Capturing CUDA graphs (FULL):  11%|█▏        | 4/35 [00:00<00:02, 12.56it/s]Capturing CUDA graphs (FULL):  17%|█▋        | 6/35 [00:00<00:02, 12.59it/s]Capturing CUDA graphs (FULL):  23%|██▎       | 8/35 [00:00<00:02, 12.75it/s]Capturing CUDA graphs (FULL):  29%|██▊       | 10/35 [00:00<00:01, 13.29it/s]Capturing CUDA graphs (FULL):  34%|███▍      | 12/35 [00:00<00:01, 14.02it/s]Capturing CUDA graphs (FULL):  40%|████      | 14/35 [00:01<00:01, 14.62it/s]Capturing CUDA graphs (FULL):  46%|████▌     | 16/35 [00:01<00:01, 14.93it/s]Capturing CUDA graphs (FULL):  51%|█████▏    | 18/35 [00:01<00:01, 15.21it/s]Capturing CUDA graphs (FULL):  57%|█████▋    | 20/35 [00:01<00:01, 14.80it/s]Capturing CUDA graphs (FULL):  63%|██████▎   | 22/35 [00:01<00:00, 15.09it/s]Capturing CUDA graphs (FULL):  69%|██████▊   | 24/35 [00:01<00:00, 15.32it/s]Capturing CUDA graphs (FULL):  74%|███████▍  | 26/35 [00:01<00:00, 15.60it/s]Capturing CUDA graphs (FULL):  80%|████████  | 28/35 [00:01<00:00, 15.43it/s]Capturing CUDA graphs (FULL):  86%|████████▌ | 30/35 [00:02<00:00, 15.77it/s]Capturing CUDA graphs (FULL):  91%|█████████▏| 32/35 [00:02<00:00, 16.36it/s]Capturing CUDA graphs (FULL):  97%|█████████▋| 34/35 [00:02<00:00, 16.79it/s]Capturing CUDA graphs (FULL): 100%|██████████| 35/35 [00:02<00:00, 15.05it/s]
+(EngineCore pid=7832) INFO 10-06 09:21:31 [model_runner.py:960] Graph capturing finished in 16 secs, took 0.23 GiB
+(EngineCore pid=7832) INFO 10-06 09:21:31 [gpu_worker.py:797] CUDA graph pool memory: 0.23 GiB (actual), 0.44 GiB (estimated), difference: 0.21 GiB (91.5%).
+(EngineCore pid=7832) INFO 10-06 09:21:31 [gpu_worker.py:860] Free memory on device (44.16/44.42 GiB) on startup. Desired GPU memory utilization is (0.9, 39.98 GiB). Actual usage is 18.11 GiB for consumed memory (weights + non-torch), 2.33 GiB for peak activation, and 0.23 GiB for CUDAGraph memory. Replace gpu_memory_utilization config with `--kv-cache-memory=20585568154` (19.17 GiB) to fit into requested memory, or `--kv-cache-memory=25071959552` (23.35 GiB) to fully utilize gpu memory. Current kv cache memory in use is 19.55 GiB.
+(EngineCore pid=7832) INFO 10-06 09:21:32 [jit_monitor.py:85] Kernel JIT monitor activated; monitored JIT compilations during inference will use mode=warn.
+(EngineCore pid=7832) INFO 10-06 09:21:33 [torch_utils.py:277] Reducing Torch threads from 48 to 1 for serving. Set OMP_NUM_THREADS in the external environment to override.
+(EngineCore pid=7832) INFO 10-06 09:21:33 [core.py:361] init engine (profile, create kv cache, warmup model) took 48.54 s (compilation: 0.84 s)
+(EngineCore pid=7832) INFO 10-06 09:21:33 [kernel.py:369] Final IR op priority after setting platform defaults: IrOpPriorityConfig(rms_norm=['native'], fused_add_rms_norm=['native'])
+INFO 10-06 09:21:34 [hf.py:547] Detected the chat template content format to be 'openai'. You can set `--chat-template-content-format` to override this.
+[transformers] Qwen3VL video processing does not apply the per-frame pixel cap the reference implementation (qwen-vl-utils) applies, so some videos cost far more tokens than they would there. In v5.22 the capped behavior will become the default and `cap_pixels_per_frame` will be removed. Pass `cap_pixels_per_frame=True` to adopt the reference behavior now, or `False` to keep the current behavior and silence this warning.
+INFO 10-06 09:21:53 [base.py:244] Multi-modal warmup completed in 19.344s
+INFO 10-06 09:21:55 [base.py:244] Readonly multi-modal warmup completed in 1.494s
+09:21:55 === notool_off: 3362 questions | model Qwen3.5-9B | tool=False thinking=False | max_tokens/turn 8192 | max_turns 6
+09:21:55 prompt template check: tools block ABSENT | ends with 'tant\n<think>\n\n</think>\n\n'
+09:21:59   notool_off 256/3362 done · 59.22 q/s · 532 tok/s · eta 0.9 min · this chunk {'answered': 256}
+09:22:03   notool_off 512/3362 done · 60.95 q/s · 523 tok/s · eta 0.8 min · this chunk {'answered': 256}
+09:22:07   notool_off 768/3362 done · 61.40 q/s · 522 tok/s · eta 0.7 min · this chunk {'answered': 256}
+09:22:11   notool_off 1024/3362 done · 61.56 q/s · 530 tok/s · eta 0.6 min · this chunk {'answered': 256}
+09:22:16   notool_off 1280/3362 done · 61.45 q/s · 542 tok/s · eta 0.6 min · this chunk {'answered': 256}
+09:22:20   notool_off 1536/3362 done · 61.36 q/s · 551 tok/s · eta 0.5 min · this chunk {'answered': 256}
+09:22:24   notool_off 1792/3362 done · 61.32 q/s · 554 tok/s · eta 0.4 min · this chunk {'answered': 256}
+09:22:28   notool_off 2048/3362 done · 61.29 q/s · 555 tok/s · eta 0.4 min · this chunk {'answered': 256}
+09:22:32   notool_off 2304/3362 done · 61.30 q/s · 556 tok/s · eta 0.3 min · this chunk {'answered': 256}
+09:22:36   notool_off 2560/3362 done · 61.36 q/s · 556 tok/s · eta 0.2 min · this chunk {'answered': 256}
+09:22:41   notool_off 2816/3362 done · 61.41 q/s · 554 tok/s · eta 0.1 min · this chunk {'answered': 256}
+09:22:45   notool_off 3072/3362 done · 61.33 q/s · 549 tok/s · eta 0.1 min · this chunk {'answered': 256}
+09:22:49   notool_off 3328/3362 done · 61.15 q/s · 546 tok/s · eta 0.0 min · this chunk {'answered': 256}
+09:22:50   notool_off 3362/3362 done · 60.72 q/s · 542 tok/s · eta 0.0 min · this chunk {'answered': 34}
+09:22:50 DONE Qwen3.5-9B notool_off: 3362 questions, 29988 generated tokens, 0.9 min
+09:22:50 === tool_off: 3362 questions | model Qwen3.5-9B | tool=True thinking=False | max_tokens/turn 8192 | max_turns 6
+09:22:50 prompt template check: tools block present | ends with 'tant\n<think>\n\n</think>\n\n'
+09:23:46   tool_off 256/3362 done · 4.54 q/s · 358 tok/s · eta 11.4 min · this chunk {'answered': 256}
+09:24:44   tool_off 512/3362 done · 4.47 q/s · 358 tok/s · eta 10.6 min · this chunk {'answered': 256}
+09:25:43   tool_off 768/3362 done · 4.44 q/s · 342 tok/s · eta 9.7 min · this chunk {'answered': 256}
+09:26:44   tool_off 1024/3362 done · 4.39 q/s · 347 tok/s · eta 8.9 min · this chunk {'answered': 256}
+09:27:42   tool_off 1280/3362 done · 4.38 q/s · 357 tok/s · eta 7.9 min · this chunk {'answered': 256}
+09:28:41   tool_off 1536/3362 done · 4.38 q/s · 362 tok/s · eta 6.9 min · this chunk {'answered': 256}
+09:29:40   tool_off 1792/3362 done · 4.38 q/s · 366 tok/s · eta 6.0 min · this chunk {'answered': 256}
+09:30:39   tool_off 2048/3362 done · 4.37 q/s · 369 tok/s · eta 5.0 min · this chunk {'answered': 256}
+09:31:37   tool_off 2304/3362 done · 4.37 q/s · 371 tok/s · eta 4.0 min · this chunk {'answered': 256}
+09:32:38   tool_off 2560/3362 done · 4.36 q/s · 372 tok/s · eta 3.1 min · this chunk {'answered': 256}
+09:33:34   tool_off 2816/3362 done · 4.38 q/s · 365 tok/s · eta 2.1 min · this chunk {'answered': 256}
+09:34:27   tool_off 3072/3362 done · 4.41 q/s · 358 tok/s · eta 1.1 min · this chunk {'answered': 256}
+09:35:31   tool_off 3328/3362 done · 4.38 q/s · 361 tok/s · eta 0.1 min · this chunk {'answered': 256}
+09:35:44   tool_off 3362/3362 done · 4.34 q/s · 359 tok/s · eta 0.0 min · this chunk {'answered': 34}
+09:35:44 DONE Qwen3.5-9B tool_off: 3362 questions, 278013 generated tokens, 12.9 min
+09:35:44 === tool_on: 3362 questions | model Qwen3.5-9B | tool=True thinking=True | max_tokens/turn 8192 | max_turns 6
+09:35:44 prompt template check: tools block present | ends with 'tart|>assistant\n<think>\n'
+09:48:55   tool_on 256/3362 done · 0.32 q/s · 296 tok/s · eta 159.9 min · this chunk {'answered': 243, 'truncated': 11, 'turn_limit': 2}
+10:01:21   tool_on 512/3362 done · 0.33 q/s · 247 tok/s · eta 142.6 min · this chunk {'answered': 252, 'truncated': 1, 'turn_limit': 3}
+10:11:05   tool_on 768/3362 done · 0.36 q/s · 252 tok/s · eta 119.4 min · this chunk {'answered': 249, 'truncated': 5, 'turn_limit': 2}
+10:16:50   tool_on 1024/3362 done · 0.42 q/s · 261 tok/s · eta 93.8 min · this chunk {'answered': 256}
+10:21:50   tool_on 1280/3362 done · 0.46 q/s · 280 tok/s · eta 75.0 min · this chunk {'answered': 253, 'turn_limit': 3}
+10:26:03   tool_on 1536/3362 done · 0.51 q/s · 295 tok/s · eta 59.8 min · this chunk {'answered': 255, 'turn_limit': 1}
+10:31:35   tool_on 1792/3362 done · 0.53 q/s · 310 tok/s · eta 48.9 min · this chunk {'answered': 254, 'turn_limit': 2}
+10:47:24   tool_on 2048/3362 done · 0.48 q/s · 289 tok/s · eta 46.0 min · this chunk {'answered': 246, 'truncated': 10}
+10:57:39   tool_on 2304/3362 done · 0.47 q/s · 293 tok/s · eta 37.6 min · this chunk {'answered': 247, 'truncated': 8, 'turn_limit': 1}
+11:05:51   tool_on 2560/3362 done · 0.47 q/s · 294 tok/s · eta 28.2 min · this chunk {'answered': 251, 'truncated': 5}
+11:19:50   tool_on 2816/3362 done · 0.45 q/s · 305 tok/s · eta 20.2 min · this chunk {'answered': 239, 'turn_limit': 1, 'truncated': 16}
+11:34:41   tool_on 3072/3362 done · 0.43 q/s · 330 tok/s · eta 11.2 min · this chunk {'answered': 219, 'truncated': 37}
+11:47:46   tool_on 3328/3362 done · 0.42 q/s · 326 tok/s · eta 1.3 min · this chunk {'answered': 242, 'truncated': 12, 'turn_limit': 2}
+11:52:42   tool_on 3362/3362 done · 0.41 q/s · 318 tok/s · eta 0.0 min · this chunk {'answered': 33, 'truncated': 1}
+11:52:42 DONE Qwen3.5-9B tool_on: 3362 questions, 2611682 generated tokens, 137.0 min
+11:52:42 === notool_on: 3362 questions | model Qwen3.5-9B | tool=False thinking=True | max_tokens/turn 8192 | max_turns 6
+11:52:42 prompt template check: tools block ABSENT | ends with 'tart|>assistant\n<think>\n'
+12:16:20   notool_on 256/3362 done · 0.18 q/s · 1049 tok/s · eta 286.9 min · this chunk {'truncated': 109, 'answered': 147}
+12:44:12   notool_on 512/3362 done · 0.17 q/s · 1032 tok/s · eta 286.7 min · this chunk {'answered': 99, 'truncated': 157}
+13:07:19   notool_on 768/3362 done · 0.17 q/s · 1037 tok/s · eta 252.1 min · this chunk {'truncated': 113, 'answered': 143}
+13:30:26   notool_on 1024/3362 done · 0.17 q/s · 1020 tok/s · eta 223.2 min · this chunk {'answered': 183, 'truncated': 73}
+13:53:35   notool_on 1280/3362 done · 0.18 q/s · 1011 tok/s · eta 196.6 min · this chunk {'answered': 190, 'truncated': 66}
+14:15:36   notool_on 1536/3362 done · 0.18 q/s · 1005 tok/s · eta 169.9 min · this chunk {'answered': 210, 'truncated': 46}
+14:39:38   notool_on 1792/3362 done · 0.18 q/s · 1003 tok/s · eta 146.3 min · this chunk {'answered': 168, 'truncated': 88}
+15:03:20   notool_on 2048/3362 done · 0.18 q/s · 1012 tok/s · eta 122.3 min · this chunk {'truncated': 122, 'answered': 134}
+15:26:41   notool_on 2304/3362 done · 0.18 q/s · 1014 tok/s · eta 98.3 min · this chunk {'answered': 155, 'truncated': 101}
+15:50:27   notool_on 2560/3362 done · 0.18 q/s · 1020 tok/s · eta 74.5 min · this chunk {'truncated': 116, 'answered': 140}
+16:13:19   notool_on 2816/3362 done · 0.18 q/s · 1023 tok/s · eta 50.5 min · this chunk {'truncated': 105, 'answered': 151}
+16:36:47   notool_on 3072/3362 done · 0.18 q/s · 1026 tok/s · eta 26.8 min · this chunk {'answered': 138, 'truncated': 118}
+17:03:45   notool_on 3328/3362 done · 0.18 q/s · 1022 tok/s · eta 3.2 min · this chunk {'answered': 129, 'truncated': 127}
+17:09:28   notool_on 3362/3362 done · 0.18 q/s · 1014 tok/s · eta 0.0 min · this chunk {'truncated': 13, 'answered': 21}
+17:09:28 DONE Qwen3.5-9B notool_on: 3362 questions, 19272636 generated tokens, 316.8 min
+17:09:28 ALL CONDITIONS DONE
+INFO 10-06 17:09:28 [utils.py:620] [shutdown] Process manager: send sigterm to process EngineCore
+(EngineCore pid=7832) INFO 10-06 17:09:28 [core.py:1350] [shutdown] EngineCore: trigger received signal=SIGTERM
+(EngineCore pid=7832) INFO 10-06 17:09:28 [core.py:1501] [shutdown] EngineCore: start mode=abort timeout=0s
+(EngineCore pid=7832) INFO 10-06 17:09:28 [core.py:1532] [shutdown] EngineCore: request processing complete; starting resource teardown
+(EngineCore pid=7832) INFO 10-06 17:09:28 [core.py:1363] [shutdown] EngineCore: exiting busy loop
+
+=== Qwen3.5-9B · notool_off · n=3362 ===
+family              n  correct  within 1e-3  wrong unparsed no answer
+trig_int         1078    53.3%        57.8%    503        0         0
+trig_var         1074    35.1%        59.2%    697        0         0
+transcendental    507    52.5%        73.4%    241        0         0
+composite         275    13.1%        14.2%    239        0         0
+nested            172     7.0%         7.0%    160        0         0
+mixed             240     0.4%         0.4%    239        0         0
+undefined          16    68.8%        68.8%      5        0         0
+ALL              3362    38.0%        50.4%   2084        0         0
+generated tokens per question: median 9, max 12
+
+=== Qwen3.5-9B · notool_on · n=3362 ===
+family              n  correct  within 1e-3  wrong unparsed no answer
+trig_int         1078    74.4%        74.5%      1        0       275
+trig_var         1074    48.3%        53.6%     60        0       495
+transcendental    507    45.2%        57.6%     64        0       214
+composite         275    24.0%        42.9%     57        0       152
+nested            172    14.5%        23.8%     17        0       130
+mixed             240    27.9%        65.8%     92        0        81
+undefined          16    56.2%        56.2%      0        0         7
+ALL              3362    51.1%        59.4%    291        0      1354
+generated tokens per question: median 5354, max 8192
+
+=== Qwen3.5-9B · tool_off · n=3362 ===
+family              n  correct  within 1e-3  wrong unparsed no answer
+trig_int         1078    91.6%        99.9%     91        0         0
+trig_var         1074    93.3%       100.0%     72        0         0
+transcendental    507    93.3%        98.8%     34        0         0
+composite         275    93.5%       100.0%     18        0         0
+nested            172    95.3%       100.0%      8        0         0
+mixed             240    95.8%       100.0%     10        0         0
+undefined          16    68.8%        68.8%      5        0         0
+ALL              3362    92.9%        99.6%    238        0         0
+generated tokens per question: median 87, max 209
+where each question went:
+   correct_with_tool          3082  (91.7%)
+   right_value_wrong_answer    143  (4.3%)
+   tool_gave_wrong_value        86  (2.6%)
+   correct_without_calling      42  (1.2%)
+   no_call_wrong                 8  (0.2%)
+   code_error                    1  (0.0%)
+
+=== Qwen3.5-9B · tool_on · n=3362 ===
+family              n  correct  within 1e-3  wrong unparsed no answer
+trig_int         1078    96.2%        98.9%     29        1        11
+trig_var         1074    94.9%        97.4%     27        0        28
+transcendental    507    87.0%        87.4%      2        2        62
+composite         275    98.9%        99.6%      2        0         1
+nested            172    97.7%        98.8%      2        0         2
+mixed             240    91.7%        92.1%      1        0        19
+undefined          16   100.0%       100.0%      0        0         0
+ALL              3362    94.4%        96.3%     63        3       123
+generated tokens per question: median 365, max 15109
+where each question went:
+   correct_with_tool          3167  (94.2%)
+   truncated                   106  (3.2%)
+   right_value_wrong_answer     37  (1.1%)
+   tool_gave_wrong_value        26  (0.8%)
+   turn_limit                   17  (0.5%)
+   correct_without_calling       6  (0.2%)
+   no_call_wrong                 3  (0.1%)
+FULL DONE Qwen/Qwen3.5-9B

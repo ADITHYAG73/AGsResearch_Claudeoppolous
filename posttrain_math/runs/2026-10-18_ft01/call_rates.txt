@@ -1,0 +1,6 @@
+Qwen3.5-4B-rerun       tool_off no call:  445/3362 ( 13.2%)  correct among no-call:  141  mean calls 0.87
+Qwen3.5-4B-rerun       tool_on  no call:    6/3362 (  0.2%)  correct among no-call:    6  mean calls 2.21
+Qwen3.5-4B-ifc4-s050   tool_off no call:  110/3362 (  3.3%)  correct among no-call:   83  mean calls 0.97
+Qwen3.5-4B-ifc4-s050   tool_on  no call: 1852/3362 ( 55.1%)  correct among no-call: 1288  mean calls 0.66
+Qwen3.5-4B-ifc4-s100   tool_off no call:  196/3362 (  5.8%)  correct among no-call:  135  mean calls 0.94
+Qwen3.5-4B-ifc4-s100   tool_on  no call: 1293/3362 ( 38.5%)  correct among no-call:  784  mean calls 0.83

@@ -1389,3 +1389,44 @@ trained NLAs. Completion condition sized to my resources, public artifact at the
 
   **Next: (1) read the 60 non-terminating dec2 traces — free, no GPU: is it looping or genuinely
   mid-computation at 4096 tokens?; (2) commit; (3) HF token STILL not rotated.**
+
+- **2026-10-06 — NEW PAPER PROJECT `posttrain_math/`; BASELINE DATA FULLY COLLECTED. $6.79 (provisional).**
+  Board `posttrain_math/BOARD.md`, journal `posttrain_math/experiments.md` (BASE-00, BASE-01).
+  - **My one-line objective:** measure how well a model evaluates mathematical expressions
+    (trigonometric, transcendental, composite, nested), on its own and with a general-purpose compute
+    sandbox, then measure how fine-tuning changes each ability on the same questions. Four cells:
+    base vs fine-tuned × alone vs sandbox.
+  - **Prior work, checked:** "fine-tune on something else and maths drops" is published up to 33B
+    (TRACE 2310.06762, Dong 2310.05492); the four-cell layout itself is in Cheng et al. 2605.06326
+    (Claude's and Codex's readings of its table disagree — do not quote its numbers).
+    `mathematics/LITERATURE_forgetting.md`. A single before/after score is not a contribution.
+  - **Built:** frozen question set (3,362 questions, 7 families, mpmath truth, sha256 `c01aa943…`),
+    one-tool Python sandbox harness on vLLM 0.29.0, scorer with failure labels.
+  - **BASE-01, Qwen3.5-4B and 9B, all 3,362 × 4 conditions (strict 6 s.f., Claude's scorer,
+    UNCHECKED by me):** alone/thinking-off 26.0% / 38.0%; alone/thinking-on 55.1% / 51.1% with
+    994 / 1,354 questions never finishing inside 8,192 tokens; sandbox/off 86.3% / 92.9%;
+    sandbox/on 94.4% / 94.4% (98.2% / 94.8% after re-asking turn-limited questions at 12 turns).
+    **A sandbox does not give 100%**, and the residue is precision slips, wrong code and budgets,
+    not maths. The 4B-beats-9B thinking-alone number is a budget effect, not a capability claim.
+  - Raw + scored data in `posttrain_math/runs/2026-10-06_base/`, backed up to the private bucket
+    `s3://posttrain-math-459653581741-ap-south-1`. Balance $104.04 → $97.25. Zero pods.
+  - Nothing committed: `posttrain_math/` and `mathematics/LITERATURE_forgetting.md` are untracked.
+
+  **Next, my decisions: (D1) which fine-tune — the public Qwen3.5-2B fine-tunes (free first look,
+  needs a 2B baseline) or my own on a named domain; (D3) scoring — strict 6 s.f. vs relative error
+  with precision reported separately; my own hand-check of ~20 random questions. Then the Hugging
+  Face dataset release (new token needed). HF token STILL not rotated.**
+
+- **2026-10-18 — FT-01: my own fine-tune, end to end in one day. ≈ $18.04 (provisional). Zero pods.**
+  Full detail `posttrain_math/experiments.md` → FT-01 design, run log, cost ledger, **FT-01 RESULTS**.
+  - Qwen3.5-4B full fine-tune on 5,000 rows of nvidia/Nemotron-SFT-Instruction-Following-Chat-v4 (off-domain on
+    purpose), H200, 313 steps; checkpoints s025/s050/s100 in S3. Base re-run on A100 so hardware matches.
+  - **Sandbox + thinking on: 98.3% → 81.4%** (+29/−597, z −22.7). Mechanism read off the labels: the fine-tuned model
+    answers WITHOUT calling the sandbox 38.5% of the time (base 0.2%). Thinking off, the opposite: calls more, 86.2 → 93.4.
+    Alone off 26.3 → 24.3 (z −3.6); alone on 55.3 → 59.2, mostly from finishing inside the budget.
+  - **Checked, not assumed:** all 5,000 trained rows have non-empty thinking — the fine-tune was thinking-mode-only.
+  - **IFEval did not improve like-for-like** (off 82.4 → 75.0; on the prompts where both close `</think>`, 95.3 → 90.5);
+    the thinking-on headline gain is "stops thinking in time". Loss barely moved. s050 ≈ s100.
+  - Cannot yet claim maths moved more than untrained skills (no untargeted control). IAM uploader user deleted.
+  **Next (my call): untargeted control; s025; a mixed-mode or tool-containing SFT to test the thinking-only reading;
+  my hand-read of ~20 no-call wrong answers. Nothing committed. HF token STILL not rotated.**

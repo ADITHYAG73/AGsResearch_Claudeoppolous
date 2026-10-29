@@ -1,0 +1,30 @@
+{
+ "user_prompt": "Compute {expr}. Angles written with a degree sign (°) are in degrees; any other argument of a trigonometric function is in radians.{unit} Respond with only the numeric value, to 6 significant figures. If the value is undefined over the real numbers, respond with exactly: undefined",
+ "tools": [
+  {
+   "type": "function",
+   "function": {
+    "name": "run_python",
+    "description": "Execute Python 3 code in a fresh interpreter and return what it prints to standard output. Each call starts with no memory of earlier calls. The standard library, numpy, sympy and mpmath are available. Use print() to see a value.",
+    "parameters": {
+     "type": "object",
+     "properties": {
+      "code": {
+       "type": "string",
+       "description": "Python source code to run."
+      }
+     },
+     "required": [
+      "code"
+     ]
+    }
+   }
+  }
+ ],
+ "cond": "tool_off",
+ "model": "Qwen/Qwen3.5-9B",
+ "max_tokens": 8192,
+ "max_turns": 6,
+ "temperature": 0.0,
+ "backend": "vllm"
+}

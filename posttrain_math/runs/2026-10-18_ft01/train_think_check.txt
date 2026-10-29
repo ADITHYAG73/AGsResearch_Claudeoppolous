@@ -1,0 +1,3 @@
+EXAMPLE trained segment start: '\n<|im_start|>assistant\n<think>\nUE4 Python API.\nAutomate updates to simulation assets.\nMedical simulation for nursing studies.\n\n    *   *Context:* Medical simulations often require high precision, repetitive setup (hospital rooms),'
+FIRST 5000 ROWS (the ones trained, train.py takes rows[:K]) {'non-empty thinking': 5000}
+TRAIN ROWS 5000 {'non-empty thinking': 5000}
