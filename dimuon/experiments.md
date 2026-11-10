@@ -146,3 +146,132 @@ stated. `fb` metric reported by the server is `loss:sum` = 30.403992 at weight 1
 
 37 training clients, 36 forward_backward + 36 optim_step, 73 exports, 1 rejected upload_start
 (`runs/calls.jsonl`; the two D1 rank-1 smoke-run clients are included and were reused, not rerun).
+
+---
+
+## FIRSTSTEP-01 — what function maps G to U at step 1 — 2026-11-10 (analysis agent; no Tinker calls)
+
+- Question: exact map from the step-1 lora_B gradient G (d_out x r) to the Dimuon update U, using
+  D1 only (152 modules x r = 1..64, rank-8 lr / loss-scale / beta1 variants). Measurement noise is
+  zero (V2), so every residual below is model error or finite-precision arithmetic.
+- Code (`pipeline/`): `fs_load.py` (loader + cached float64 SVDs), `fs_spec.py` (spectral curve,
+  schedules), `fs_sim.py` / `fs_ns16.py` (full-matrix Newton–Schulz emulation in f64/f32/fp16/bf16),
+  `fs_grid.py` (recover the fp16 matrix behind U), `fs_fitcoef.py` (free 15-coefficient fit, held
+  out), `fs_final.py` (main table), `fs_noise.py` (noise floor), `fs_norm.py`, `fs_beta.py`,
+  `fs_precond.py`, `fs_figs.py`. Cache + tables in `runs/FS_cache/` (`final_eval.txt|json`,
+  `noise_floor.json`, `norm.json`, `transfer_raw.npy`; SVD npz gitignored).
+  Figures: `figures/fs_transfer_function.png`, `figures/fs_residual_by_rank.png`.
+- **Disclosure:** the Polar-Express coefficients were typed from memory (published Muon-variant
+  schedule, Amsel et al. 2025), not looked up, and no Dimuon reimplementation was consulted. The data
+  selected them; a free refit did not do better on held-out modules (below).
+
+### Findings
+
+1. **U is a scaled fp16 matrix.** Every U tensor at every rank = (one float32 scalar per tensor) x
+   (a matrix whose entries are exactly representable in IEEE fp16, 11 significant bits): 100% of
+   entries on the 11-bit grid in every tested module of every rank; 10-bit grid fails (0–60%).
+   So the orthogonaliser runs in **fp16** (not bf16), and the result is rescaled in float32.
+2. **Spectral picture holds; normalisation is s_i/||G||_F.** In G's singular basis, P^T U Q is
+   diagonal up to median off-diagonal/total 7e-4 (r=2) … 1.6e-2 (r=64), and U has 5e-4 … 3.7e-2 of
+   its norm outside col-span(G) — both fully accounted for by fp16 rounding (item 4). All 19,304
+   singular values collapse on one curve of x = s_i/||G||_F (`fs_transfer_function.png`): linear
+   below x≈1e-3 (slope ≈1000), then equi-oscillating between ≈0.875 and ≈1.12 out to x=1, with
+   ~120 wiggles. No row/column energy scaling and no dependence on A: at r=8 (pe5_x0h model, 26
+   modules) relF 5.3e-3 at exponent 0, vs row^±0.01 2.8e-2, col^±0.01 1.5e-2, (AA^T)^±0.01 6.2e-3 /
+   6.9e-3, (AA^T)^±0.05 1.2e-2.
+3. **The polynomial is the Polar-Express 5-step schedule with safety factor 1.01**: per-step odd
+   quintics a x + b x^3 + c x^5 with (a,b,c) = (8.28721201814563, −23.595886519098837,
+   17.300387312530933), (4.107059111542203, −2.9478499167379106, 0.5448431082926601),
+   (3.9486908534822946, −2.908902115962949, 0.5518191394370137), (3.3184196573706015,
+   −2.488488024314874, 0.51004894012372), (2.300652019954817, −1.6689039845747493,
+   0.4188073119525673), each divided as (a/1.01, b/1.01^3, c/1.01^5), and X0 = G/(1.01·||G||_F).
+   Per-singular-value rms vs data (spectral, float64): r2 8.9e-3, r4 4.4e-3, r8 1.9e-3, r16 8.2e-4,
+   r32 5.1e-4, r64 3.9e-4. Neighbours, full-matrix median relF on every 5th module, X0-fp16 model
+   (r2 / r8 / r64): this rule 6.5e-3 / 4.9e-3 / 1.8e-2; last step exempt from the safety factor
+   1.1e-2 / 1.3e-2 / 2.1e-2 (the closest rival, 1.2–2.7x worse); safety 1.005 6.2e-2 / 9.3e-2 /
+   9.0e-2; 1.02 5.7e-2 / 1.0e-1 / 1.0e-1; safety on coefficients only 4.0e-2 / 6.3e-2 / 7.3e-2;
+   on input only 4.6e-2 / 1.0e-1 / 9.2e-2; 6 steps 3.5e-2 / 7.7e-2 / 2.2e-1; 4 steps 2.3e-1 /
+   3.6e-1 / 4.1e-1. Spectral-only fits: Muon quintic (3.4445, −4.7750, 2.0315) x3..x8 rms ≥1.4e-1
+   per rank; cubic NS x5..x15 ≥4.4e-2 at r2; a single fixed quintic fitted freely, best pooled
+   rms 1.7e-2 (N≥6) vs 1.4–1.7e-3 for this schedule in the same metric.
+   A free 15-coefficient fit (`fs_fitcoef.py`, half the modules) moved the coefficients by up to 3%
+   and improved train but not test (full-matrix held-out relF: r2 4.1e-3 PE vs 5.5e-3 fit, r4 5.5e-3
+   vs 6.3e-3, r8 5.5e-3 vs 5.2e-3, r16 5.8e-3 vs 5.9e-3, r32 1.41e-2 vs 1.44e-2, r64 1.80e-2 vs
+   1.82e-2). No evidence for different coefficients.
+4. **Precision placement.** X0 = fp16( G_f32 / (||G||_f32·1.01) ) — normalised in float32, then
+   cast. Evidence: the out-of-span part of U at r=32/64 (3% of ||U||, from fp16 rounding of X0
+   amplified ~1000x by the polynomial on tiny singular directions) has **cosine 0.86–0.90** with the
+   same quantity from this model, but cosine −0.2…−0.4 if G is cast to fp16 first and normalised in
+   fp16. Steps: fp16 storage, fp32 accumulate, **fused** updates B = fp16(bA + cA·A),
+   X = fp16(aX + B·X) (baddbmm-style). Rank-1 fingerprint (deviation of U from G's direction, which is
+   pure rounding): data relF 5.06e-4, elementwise rel. p50/p90/p99 3.55e-4 / 8.55e-4 / 1.37e-3;
+   fused fp16 emulation 5.00e-4, 3.57e-4 / 8.46e-4 / 1.38e-3; unfused (a·X and B@X rounded
+   separately) 6.8e-3 — rejected; bf16 3.9e-3 — rejected; f32 8e-7 — rejected.
+   **Not bit-exact:** at r=1 the emulation equals the recovered fp16 matrix in median 43% of entries
+   (p90 54%), differences ±1–4 fp16 ulp in 96/152 modules, up to 32 ulp; i.e. some per-step scalar
+   (A = X X^T or B) rounds differently from ours.
+5. **Final normalisation is explicit**: ||U||_F/(lr·sqrt(r)·(r/32)^0.175) − 1 is within ±1.3e-7 at
+   every rank (implied exponent 0.175000 at every r ≠ 32), while the fp16 NS output's own norm is far
+   from sqrt(r) where unconverged: ||X16|| = 0.876–0.896 (r1), 2.63–3.04 (r8), 4.16–4.68 (r32, vs
+   5.66), 4.30–4.73 (r64, vs 8.0). So U = −lr·sqrt(r)·(r/32)^0.175·X/||X||_F, not a consequence of
+   orthogonality. lr enters only as that scalar: lr 1e-1 and 1e-3 give identical residual tables.
+6. **Full-matrix residuals** (median / max over 152 modules of ||Û−U||_F/||U||_F; `final_eval.txt`):
+
+   | rule | r1 | r2 | r4 | r8 | r16 | r32 | r64 |
+   |---|---|---|---|---|---|---|---|
+   | exact polar | 5.1e-4 | 4.4e-2 | 7.4e-2 | 8.2e-2 | 8.5e-2 | 4.9e-1 | 7.2e-1 |
+   | Muon quintic x5, f64 | 5.1e-4 | 1.7e-1 | 1.8e-1 | 1.9e-1 | 2.0e-1 | 2.2e-1 | 2.3e-1 |
+   | PE5 no safety, f64 | 5.1e-4 | 6.5e-2 | 1.1e-1 | 1.1e-1 | 9.8e-2 | 1.0e-1 | 1.0e-1 |
+   | PE6 safety, f64 | 5.1e-4 | 4.5e-2 | 7.4e-2 | 8.2e-2 | 8.5e-2 | 1.8e-1 | 2.2e-1 |
+   | PE5 safety, f64 (= f32) | 5.1e-4 | 6.5e-3 | 6.5e-3 | 5.2e-3 | 9.6e-3 | 3.1e-2 | 4.0e-2 |
+   | PE5, X0 fp16, exact after | **4.6e-4** | 6.6e-3 | 6.5e-3 | **5.2e-3** | **5.6e-3** | **1.4e-2** | **1.8e-2** |
+   | PE5, full fp16 fused | 5.7e-4 | **6.3e-3** | **6.3e-3** | 5.7e-3 | 6.6e-3 | 1.9e-2 | 2.5e-2 |
+   | PE5, full bf16 fused | 4.1e-3 | 2.4e-2 | 2.9e-2 | 2.2e-2 | 6.4e-2 | 2.4e-1 | 3.1e-1 |
+
+   max over modules for the X0-fp16 rule: 5.8e-4, 3.8e-2, 2.8e-2, 1.6e-2, 1.0e-2, 1.9e-2, 2.5e-2.
+   Median max|Û−U|/max|U|: 6.3e-4, 6.4e-3, 7.5e-3, 5.8e-3, 6.6e-3, 1.7e-2, 2.3e-2.
+   Even/odd module halves agree to ≤10% at every rank (no rule parameter is fitted to modules).
+7. **Noise floor** (`fs_noise.py`): deviation from the deterministic part (X0 fp16, exact after) —
+   data vs our full-fp16 emulation: r1 4.6e-4 vs 4.7e-4, r32 1.38e-2 vs 1.28e-2, r64 1.79e-2 vs
+   1.68e-2 (consistent with independent fp16 step noise of equal size), but r2 5.4e-3 vs 2.9e-3,
+   r4 6.1e-3 vs 3.5e-3, r8 5.2e-3 vs 3.0e-3, r16 5.8e-3 vs 3.7e-3: **at r=2..16 the data deviates
+   1.5–2x more than our emulation's own rounding noise**, mostly in the diagonal (singular values
+   near x≈0.3–1 where the curve is steepest) and off-diagonal, not out-of-span. Unexplained;
+   rounding-placement variants did not fix it consistently (A@A rounded: matches r2, too low at r8;
+   b·A and c·AA rounded separately: matches r8, too high at r2).
+8. **Loss scale (w10 / w0.1 with their own oracle G):** same accuracy as w=1. Median relF, X0-fp16
+   rule: w10 4.9e-3, w0.1 5.3e-3, w1 5.2e-3 (fp16 emulation 5.3e-3 / 5.4e-3 / 5.7e-3). The 2.4%
+   U(w10) vs U(w1) difference is the gradient's own 1.2% change, propagated.
+9. **beta1:** only 1 of 152 rank-8 tensors differs between beta1 0.9 and 0
+   (`layers.27.self_attn.v_proj`); in it, after removing the per-tensor scale, exactly 5 fp16
+   entries differ, all in row 856 (±1, 3, 5 ulp) — the footprint of a single X0 entry rounding
+   differently. Plain EMA m = (1−β)G in float32 predicts ~818 X0 flips across ~150 tensors at
+   β=0.9 (Nesterov variants 120–550): **rejected**. Bias-corrected EMA m̂ = ((1−β)G)/(1−β) returns G
+   except for 1-ulp float32 changes in 13% of entries; on numpy those produce 0 X0 flips but shift
+   the float32 norm in 7/152 tensors, and the expected X0 flips from such norm shifts is ≈5.7 — so
+   "bias-corrected momentum, scale-invariant map, rare 1-ulp norm differences" is **consistent**
+   with 1 flip in 1 tensor (and with β=0 ≡ β=0.5 bit-identity), but not proven. It also implies
+   the normaliser's +eps is absent or too small to matter (with +1e-7 and plain EMA, β=0.5 would
+   already change 1 tensor).
+
+### Best rule (pseudocode)
+
+```
+G32 = float32(G)                       # G is bf16-valued, shape (d_out, r)
+X   = fp16( G32 / (||G32||_F * 1.01) ) # eps, if any, does not show
+X   = X^T                              # wide (r, d_out); orientation not identifiable
+for (a,b,c) in PE[0:5]:                # coefficients above, each (a/1.01, b/1.01^3, c/1.01^5)
+    A = fp16(X X^T)                    # fp32 accumulate
+    B = fp16(b*A + c*A@A)              # fused, fp32 inside
+    X = fp16(a*X + B@X)                # fused, fp32 inside
+U = - lr * sqrt(r) * (r/32)**0.175 * float32(X^T) / ||X||_F
+```
+
+### Caveats / open
+
+- Not bit-exact even at r=1 (median 43% of entries identical); r≥2 bit-exactness would also need the
+  GPU's accumulation order. Residual floor reached: 4.6e-4 (r1), ~5–7e-3 (r2–16), 1.4–1.8e-2
+  (r32–64, dominated by fp16 rounding amplified on tiny singular directions).
+- The extra 1.5–2x deviation at r=2..16 (item 7) is the one unexplained piece.
+- (r/32)^0.175 is measured, not explained. beta1 mechanism (item 9) is a consistent story, not a test.
+- Single text, single seed, step 1 only, B0 = 0.

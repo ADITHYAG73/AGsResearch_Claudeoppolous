@@ -102,10 +102,25 @@ The SDK exports adapter weights in PEFT format as float32. We export, take one
 the difference is the update. All runs use Qwen3.5-4B unless stated.
 
 \subsection{Recovering the gradient}\label{sec:oracle}
-\pending{AdamW with large $\epsilon$ as a gradient oracle; validation V3; precision.}
+To compare an update with the gradient that caused it we need the gradient, which the API does
+not return. We read it off AdamW. From a fresh optimizer state the first AdamW step is
+$\Delta w=-\eta\,g/(|g|+\epsilon)$ per entry, which inverts exactly:
+$|g|=\epsilon|\Delta w|/(\eta-|\Delta w|)$, $\mathrm{sign}(g)=-\mathrm{sign}(\Delta w)$. A second
+client with the same seed and batch, run for one AdamW step with $\eta=1,\epsilon=100$, therefore
+yields $G$. We checked the formula rather than assumed it: seven settings of
+$(\eta,\epsilon,\beta_1,\beta_2)$ recover gradients that agree to relative error
+$6\times10^{-8}$--$2\times10^{-6}$, and the alternative $\sqrt{g^2+\epsilon}$ form fails by factors
+of 2--30. The recovered values sit on an 8-significant-bit grid: the server computes gradients in
+bfloat16. After snapping to that grid all seven settings give bit-identical $G$
+(0 of 3{,}670{,}016 entries differ). One consequence: gradients are not exactly linear in the loss
+scale ($\times 2$ is exact, $\times 10$ changes the direction by about $1.3\%$), so every run at a
+different loss scale gets its own oracle run.
 
 \subsection{Noise floor}
-\pending{V1 init determinism, V2 step repeatability.}
+Initialisation is deterministic in the seed and independent of the optimizer: all 152 $A$
+tensors are bit-identical across six clients, and $B=0$. Repeating the same Dimuon step in three
+separate clients gives bit-identical weights. The measurement therefore has no sampling noise;
+any gap between a hypothesised rule and the data is model error or finite-precision arithmetic.
 
 \section{Results}
 \subsection{Pilot: one step, rank 4}
@@ -116,8 +131,66 @@ values close to but not equal to each other (e.g.\ $7.37,7.31,6.98,6.06\times10^
 width-independent norm with a near-flat spectrum is what an orthogonalising update produces; the
 spread in the singular values is what remains to be explained.
 
-\subsection{The first-step law}\pending{D1 analysis.}
-\subsection{Dependence on rank, learning rate and gradient scale}\pending{}
+\subsection{The first-step law}
+Dataset D1: ranks $r\in\{1,2,4,8,16,32,64\}$, 152 attention modules each, the exact gradient $G_B$
+and the one-step update $U$.
+
+\paragraph{Step size.} For every tensor at every rank
+\[
+\|U\|_\fro=\eta\,\sqrt{r}\,(r/32)^{0.175}
+\]
+to within $\pm1.3\times10^{-7}$ relative. It depends on neither the layer width nor the size of the
+gradient. $\sqrt r$ is the Frobenius norm of a matrix with $r$ unit singular values; the extra
+factor $(r/32)^{0.175}$ is an explicit rank-dependent rescale (it equals one at $r=32$) whose
+origin we measure but do not explain.
+
+\paragraph{Direction.} $U$ is a spectral function of $G$: in the singular basis of $G$ it is
+diagonal up to rounding, and all 19{,}304 singular values across ranks and modules fall on one
+transfer curve when the input is normalised as $s_i/\|G\|_\fro$. No row or column scaling and no
+dependence on $A$ is detectable at step one. The curve is linear below $x\approx10^{-3}$ and then
+oscillates between about $0.875$ and $1.12$ (Figure~\ref{fig:transfer}). It is \emph{not} Muon's
+fixed quintic. It is reproduced by five steps of a quintic iteration with a different coefficient
+triple at each step --- the schedule we recognise as ``Polar Express''
+\pending{verify the coefficients against the primary source; they were entered from memory and
+selected by the data} --- with a safety factor of $1.01$ applied to both the input normalisation
+and the coefficients. Table~\ref{tab:fs} shows what each ingredient buys.
+
+\begin{table}[h]\centering\small
+\begin{tabular}{lrrrrrrr}\toprule
+rule & $r{=}1$ & 2 & 4 & 8 & 16 & 32 & 64\\\midrule
+exact polar factor & 5.1e-4 & 4.4e-2 & 7.4e-2 & 8.2e-2 & 8.5e-2 & 4.9e-1 & 7.2e-1\\
+Muon quintic, 5 steps & 5.1e-4 & 1.7e-1 & 1.8e-1 & 1.9e-1 & 2.0e-1 & 2.2e-1 & 2.3e-1\\
+5-step schedule, no safety factor & 5.1e-4 & 6.5e-2 & 1.1e-1 & 1.1e-1 & 9.8e-2 & 1.0e-1 & 1.0e-1\\
+5-step schedule, factor 1.01 & 5.1e-4 & 6.5e-3 & 6.5e-3 & 5.2e-3 & 9.6e-3 & 3.1e-2 & 4.0e-2\\
+\quad + input rounded to fp16 & 4.6e-4 & 6.6e-3 & 6.5e-3 & 5.2e-3 & 5.6e-3 & 1.4e-2 & 1.8e-2\\\bottomrule
+\end{tabular}
+\caption{Median over 152 modules of $\|\hat U-U\|_\fro/\|U\|_\fro$ for candidate first-step rules.
+The coordinator re-derived rows 1, 2 and 4 at $r\in\{2,8,32\}$ with independent code and obtained
+the same values.}\label{tab:fs}
+\end{table}
+
+\begin{figure}[h]\centering
+\includegraphics[width=.8\linewidth]{../figures/fs_transfer_function.png}
+\caption{Measured transfer function: output singular value against normalised input singular
+value, all ranks and modules.}\label{fig:transfer}
+\end{figure}
+
+\paragraph{Precision.} Every entry of every $U$ is one float32 scalar times an exactly
+half-precision (fp16, 11 significant bits) number: the orthogonalisation runs in fp16, not the
+bfloat16 that Muon uses. The remaining $0.5$--$2\%$ residual is consistent in size and location
+with fp16 rounding inside the iteration; it is not reproduced bit-for-bit, and at ranks 2--16 the
+server deviates from the ideal rule 1.5--2$\times$ more than our emulation's rounding does. That
+excess is unexplained.
+
+\paragraph{Momentum at step one.} $\beta_1=0$ and $0.5$ give bit-identical updates; $\beta_1=0.9$
+differs in five entries of one tensor. A plain average $(1-\beta)G$ in float32 would change far
+more entries, so it is rejected; a bias-corrected average is consistent. Step one cannot settle
+this; the multi-step data will.
+\subsection{Dependence on rank, learning rate and gradient scale}
+The update is linear in $\eta$ to $5\times10^{-8}$ relative across $\eta\in[10^{-4},10^{-1}]$. It is
+invariant to the scale of the gradient: at loss weights $0.1$, $1$ and $10$ (each against its own
+oracle) the rule above fits equally well ($5.3$, $5.2$, $4.9\times10^{-3}$). Rank enters only
+through the step size and through how ill-conditioned the gradient is.
 \subsection{Momentum and state across steps}\pending{}
 \subsection{How $A$ is updated, and whether $A$ and $B$ are coupled}\pending{}
 \subsection{Cross-check on a second model}\pending{}

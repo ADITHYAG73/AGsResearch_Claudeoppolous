@@ -1,0 +1,3590 @@
+{
+ "ckpts": {
+  "S1_r32-ck0": {
+   "deleted": true,
+   "hist": [],
+   "optimizer": "dimuon",
+   "path": "tinker://8886d663-ec03-5cab-a20f-0609eabb4616:train:31/weights/S1_r32-ck0",
+   "rank": 32,
+   "sid": "5ca507c22b88b77d",
+   "t": 1794336211.408506
+  },
+  "S1_r32-ck1": {
+   "deleted": true,
+   "hist": [
+    "S1_r32/step1"
+   ],
+   "optimizer": "dimuon",
+   "path": "tinker://8886d663-ec03-5cab-a20f-0609eabb4616:train:31/weights/S1_r32-ck1",
+   "rank": 32,
+   "sid": "6cc8b409a77d1336",
+   "t": 1794336260.562071
+  },
+  "S1_r32-ck2": {
+   "deleted": true,
+   "hist": [
+    "S1_r32/step1",
+    "S1_r32/step2"
+   ],
+   "optimizer": "dimuon",
+   "path": "tinker://8886d663-ec03-5cab-a20f-0609eabb4616:train:31/weights/S1_r32-ck2",
+   "rank": 32,
+   "sid": "fc9de2900c1b86e5",
+   "t": 1794336310.51629
+  },
+  "S1_r8-ck0": {
+   "deleted": true,
+   "hist": [],
+   "optimizer": "dimuon",
+   "path": "tinker://8886d663-ec03-5cab-a20f-0609eabb4616:train:1/weights/S1_r8-ck0",
+   "rank": 8,
+   "sid": "0ff0b9c991af1568",
+   "t": 1794335595.5683577
+  },
+  "S1_r8-ck1": {
+   "deleted": true,
+   "hist": [
+    "S1_r8/step1"
+   ],
+   "optimizer": "dimuon",
+   "path": "tinker://8886d663-ec03-5cab-a20f-0609eabb4616:train:1/weights/S1_r8-ck1",
+   "rank": 8,
+   "sid": "3c4579d4aa8db69d",
+   "t": 1794335620.1772568
+  },
+  "S1_r8-ck2": {
+   "deleted": true,
+   "hist": [
+    "S1_r8/step1",
+    "S1_r8/step2"
+   ],
+   "optimizer": "dimuon",
+   "path": "tinker://8886d663-ec03-5cab-a20f-0609eabb4616:train:1/weights/S1_r8-ck2",
+   "rank": 8,
+   "sid": "97ca72c50f509776",
+   "t": 1794335642.4066608
+  },
+  "S1_r8-ck3": {
+   "deleted": true,
+   "hist": [
+    "S1_r8/step1",
+    "S1_r8/step2",
+    "S1_r8/step3"
+   ],
+   "optimizer": "dimuon",
+   "path": "tinker://8886d663-ec03-5cab-a20f-0609eabb4616:train:1/weights/S1_r8-ck3",
+   "rank": 8,
+   "sid": "284c39783caeeb28",
+   "t": 1794335671.7686074
+  },
+  "S1_r8-ck4": {
+   "deleted": true,
+   "hist": [
+    "S1_r8/step1",
+    "S1_r8/step2",
+    "S1_r8/step3",
+    "S1_r8/step4"
+   ],
+   "optimizer": "dimuon",
+   "path": "tinker://8886d663-ec03-5cab-a20f-0609eabb4616:train:1/weights/S1_r8-ck4",
+   "rank": 8,
+   "sid": "9942f130e3e7150b",
+   "t": 1794335695.6701381
+  },
+  "S2_r8_b0.9-ck0": {
+   "deleted": true,
+   "hist": [],
+   "optimizer": "dimuon",
+   "path": "tinker://3cad53af-8c1a-5c26-a0c4-7991a57900c7:train:0/weights/S2_r8_b0.9-ck0",
+   "rank": 8,
+   "sid": "0ff0b9c991af1568",
+   "t": 1794334977.9611447
+  },
+  "S2_r8_b0.9-ck1": {
+   "deleted": true,
+   "hist": [
+    "S2_r8_b0.9/step1"
+   ],
+   "optimizer": "dimuon",
+   "path": "tinker://3cad53af-8c1a-5c26-a0c4-7991a57900c7:train:0/weights/S2_r8_b0.9-ck1",
+   "rank": 8,
+   "sid": "3c4579d4aa8db69d",
+   "t": 1794335020.9567883
+  },
+  "S2_r8_b0.9-ck2": {
+   "deleted": true,
+   "hist": [
+    "S2_r8_b0.9/step1",
+    "S2_r8_b0.9/step2"
+   ],
+   "optimizer": "dimuon",
+   "path": "tinker://3cad53af-8c1a-5c26-a0c4-7991a57900c7:train:0/weights/S2_r8_b0.9-ck2",
+   "rank": 8,
+   "sid": "97ca72c50f509776",
+   "t": 1794335065.3180072
+  },
+  "S2_r8_b0.9-ck3": {
+   "deleted": true,
+   "hist": [
+    "S2_r8_b0.9/step1",
+    "S2_r8_b0.9/step2",
+    "S2_r8_b0.9/step3"
+   ],
+   "optimizer": "dimuon",
+   "path": "tinker://3cad53af-8c1a-5c26-a0c4-7991a57900c7:train:0/weights/S2_r8_b0.9-ck3",
+   "rank": 8,
+   "sid": "7f0a061acd28d484",
+   "t": 1794335102.2722461
+  },
+  "S2_r8_b0.9-ck4": {
+   "deleted": true,
+   "hist": [
+    "S2_r8_b0.9/step1",
+    "S2_r8_b0.9/step2",
+    "S2_r8_b0.9/step3",
+    "S2_r8_b0.9/step4"
+   ],
+   "optimizer": "dimuon",
+   "path": "tinker://3cad53af-8c1a-5c26-a0c4-7991a57900c7:train:0/weights/S2_r8_b0.9-ck4",
+   "rank": 8,
+   "sid": "0006c0df4d43400a",
+   "t": 1794335141.5499885
+  },
+  "S2_r8_b0.9-ck5": {
+   "deleted": true,
+   "hist": [
+    "S2_r8_b0.9/step1",
+    "S2_r8_b0.9/step2",
+    "S2_r8_b0.9/step3",
+    "S2_r8_b0.9/step4",
+    "S2_r8_b0.9/step5"
+   ],
+   "optimizer": "dimuon",
+   "path": "tinker://3cad53af-8c1a-5c26-a0c4-7991a57900c7:train:0/weights/S2_r8_b0.9-ck5",
+   "rank": 8,
+   "sid": "4be8af779dae8d28",
+   "t": 1794335189.7326138
+  },
+  "S2_r8_b0.9-ck6": {
+   "deleted": true,
+   "hist": [
+    "S2_r8_b0.9/step1",
+    "S2_r8_b0.9/step2",
+    "S2_r8_b0.9/step3",
+    "S2_r8_b0.9/step4",
+    "S2_r8_b0.9/step5",
+    "S2_r8_b0.9/step6"
+   ],
+   "optimizer": "dimuon",
+   "path": "tinker://3cad53af-8c1a-5c26-a0c4-7991a57900c7:train:0/weights/S2_r8_b0.9-ck6",
+   "rank": 8,
+   "sid": "ed0706a30b944ebe",
+   "t": 1794335227.3670447
+  }
+ },
+ "events": [
+  {
+   "error": "BillingError(\"Error code: 402 - {'detail': 'Free checkpoint storage limit reached (bytes or checkpoint count). Delete checkpoints or switch to paid storage to create a new training client.'}\")",
+   "job": "<function <lambda> at 0x7f6380f77ba0>",
+   "kind": "error"
+  },
+  {
+   "error": "BillingError(\"Error code: 402 - {'detail': 'Free checkpoint storage limit reached (bytes or checkpoint count). Delete checkpoints or switch to paid storage to create a new training client.'}\")",
+   "job": "<function <lambda> at 0x7f6380f77880>",
+   "kind": "error"
+  },
+  {
+   "error": "BillingError(\"Error code: 402 - {'detail': 'Free checkpoint storage limit reached (bytes or checkpoint count). Delete checkpoints or switch to paid storage to create a new training client.'}\")",
+   "job": "<function <lambda> at 0x7f6372a23ba0>",
+   "kind": "error"
+  },
+  {
+   "bit_identical": true,
+   "chain": "S0_opt_ck1",
+   "ckpt": "S2_r8_b0.9-ck1",
+   "how": "opt",
+   "kind": "reload_check",
+   "loaded_sid": "3c4579d4aa8db69d",
+   "src_sid": "3c4579d4aa8db69d"
+  },
+  {
+   "bit_identical": true,
+   "chain": "S0_opt_ck2",
+   "ckpt": "S2_r8_b0.9-ck2",
+   "how": "opt",
+   "kind": "reload_check",
+   "loaded_sid": "97ca72c50f509776",
+   "src_sid": "97ca72c50f509776"
+  },
+  {
+   "bit_identical": true,
+   "chain": "S0_fresh_ck0",
+   "ckpt": "S2_r8_b0.9-ck0",
+   "how": "fresh",
+   "kind": "reload_check",
+   "loaded_sid": "0ff0b9c991af1568",
+   "src_sid": "0ff0b9c991af1568"
+  },
+  {
+   "bit_identical": true,
+   "chain": "S3_r8_b0",
+   "ckpt": "S2_r8_b0.9-ck3",
+   "how": "opt",
+   "kind": "reload_check",
+   "loaded_sid": "7f0a061acd28d484",
+   "src_sid": "7f0a061acd28d484"
+  },
+  {
+   "bit_identical": true,
+   "chain": "S3_r8_b0.99",
+   "ckpt": "S2_r8_b0.9-ck3",
+   "how": "opt",
+   "kind": "reload_check",
+   "loaded_sid": "7f0a061acd28d484",
+   "src_sid": "7f0a061acd28d484"
+  },
+  {
+   "bit_identical": true,
+   "chain": "S3_r8_b0.9",
+   "ckpt": "S2_r8_b0.9-ck3",
+   "how": "opt",
+   "kind": "reload_check",
+   "loaded_sid": "7f0a061acd28d484",
+   "src_sid": "7f0a061acd28d484"
+  },
+  {
+   "bit_identical": true,
+   "chain": "S4_r8_fresh_ck2",
+   "ckpt": "S2_r8_b0.9-ck2",
+   "how": "fresh",
+   "kind": "reload_check",
+   "loaded_sid": "97ca72c50f509776",
+   "src_sid": "97ca72c50f509776"
+  },
+  {
+   "bit_identical": true,
+   "chain": "S6_r8_ck2_lr0.0001",
+   "ckpt": "S2_r8_b0.9-ck2",
+   "how": "opt",
+   "kind": "reload_check",
+   "loaded_sid": "97ca72c50f509776",
+   "src_sid": "97ca72c50f509776"
+  },
+  {
+   "bit_identical": true,
+   "chain": "S6_r8_ck2_lr0.01",
+   "ckpt": "S2_r8_b0.9-ck2",
+   "how": "opt",
+   "kind": "reload_check",
+   "loaded_sid": "97ca72c50f509776",
+   "src_sid": "97ca72c50f509776"
+  },
+  {
+   "bit_identical": true,
+   "chain": "S6_r8_ck3_lr0.0001",
+   "ckpt": "S2_r8_b0.9-ck3",
+   "how": "opt",
+   "kind": "reload_check",
+   "loaded_sid": "7f0a061acd28d484",
+   "src_sid": "7f0a061acd28d484"
+  },
+  {
+   "bit_identical": true,
+   "chain": "S6_r8_ck3_lr0.01",
+   "ckpt": "S2_r8_b0.9-ck3",
+   "how": "opt",
+   "kind": "reload_check",
+   "loaded_sid": "7f0a061acd28d484",
+   "src_sid": "7f0a061acd28d484"
+  },
+  {
+   "bit_identical": true,
+   "chain": "S5_step2_c0.5",
+   "ckpt": "S2_r8_b0.9-ck1",
+   "how": "opt",
+   "kind": "reload_check",
+   "loaded_sid": "3c4579d4aa8db69d",
+   "src_sid": "3c4579d4aa8db69d"
+  },
+  {
+   "bit_identical": true,
+   "chain": "S5_step2_c2",
+   "ckpt": "S2_r8_b0.9-ck1",
+   "how": "opt",
+   "kind": "reload_check",
+   "loaded_sid": "3c4579d4aa8db69d",
+   "src_sid": "3c4579d4aa8db69d"
+  },
+  {
+   "bit_identical": true,
+   "chain": "S5_step2_c0.01",
+   "ckpt": "S2_r8_b0.9-ck1",
+   "how": "opt",
+   "kind": "reload_check",
+   "loaded_sid": "3c4579d4aa8db69d",
+   "src_sid": "3c4579d4aa8db69d"
+  },
+  {
+   "error": "KeyError('S1_r8-ck5')",
+   "job": "<function fam_S1.<locals>.<lambda> at 0x7f0b75234fe0>",
+   "kind": "error"
+  },
+  {
+   "bit_identical": true,
+   "chain": "S1_r8_fresh_ck1_t0",
+   "ckpt": "S1_r8-ck1",
+   "how": "fresh",
+   "kind": "reload_check",
+   "loaded_sid": "3c4579d4aa8db69d",
+   "src_sid": "3c4579d4aa8db69d"
+  },
+  {
+   "bit_identical": true,
+   "chain": "S1_r8_fresh_ck1_t1",
+   "ckpt": "S1_r8-ck1",
+   "how": "fresh",
+   "kind": "reload_check",
+   "loaded_sid": "3c4579d4aa8db69d",
+   "src_sid": "3c4579d4aa8db69d"
+  },
+  {
+   "bit_identical": true,
+   "chain": "S1_r8_fresh_ck2_t0",
+   "ckpt": "S1_r8-ck2",
+   "how": "fresh",
+   "kind": "reload_check",
+   "loaded_sid": "97ca72c50f509776",
+   "src_sid": "97ca72c50f509776"
+  },
+  {
+   "bit_identical": true,
+   "chain": "S1_r8_fresh_ck2_t1",
+   "ckpt": "S1_r8-ck2",
+   "how": "fresh",
+   "kind": "reload_check",
+   "loaded_sid": "97ca72c50f509776",
+   "src_sid": "97ca72c50f509776"
+  },
+  {
+   "error": "KeyError('S1_r8-ck5')",
+   "job": "<function fam_S1.<locals>.<lambda> at 0x7f0b75235440>",
+   "kind": "error"
+  },
+  {
+   "error": "KeyError('S1_r8-ck5')",
+   "job": "<function fam_S1.<locals>.<lambda> at 0x7f0b752354e0>",
+   "kind": "error"
+  },
+  {
+   "error": "KeyError('S1_r8-ck5')",
+   "job": "<function fam_S1.<locals>.<lambda> at 0x7f0b75235580>",
+   "kind": "error"
+  },
+  {
+   "error": "RequestFailedError(\"Request failed: This TrainingClient is poisoned. We cannot run further operations against it. Please create a new TrainingClient from a checkpoint if you wish to continue. Failure reason: training run 8886d663-ec03-5cab-a20f-0609eabb4616:train:31 failed with user error: Training checkpoint saved. Free checkpoint storage limit reached (bytes or checkpoint count); this training client is closed. Delete checkpoints or switch to paid storage, then resume from the checkpoint with a new ServiceClient and training client.. for self.request_id='8886d663-ec03-5cab-a20f-0609eabb4616:train:31:11' and expected type self.model_cls=<class 'tinker.ForwardBackwardOutput'>\")",
+   "job": "<function trunk.<locals>.<lambda> at 0x7f0b75234540>",
+   "kind": "error"
+  },
+  {
+   "error": "KeyError('S1_r32-ck3')",
+   "job": "<function fam_S1.<locals>.<lambda> at 0x7f0b3db14540>",
+   "kind": "error"
+  },
+  {
+   "error": "KeyError('S1_r32-ck4')",
+   "job": "<function fam_S1.<locals>.<lambda> at 0x7f0b3db17f60>",
+   "kind": "error"
+  },
+  {
+   "error": "KeyError('S1_r32-ck5')",
+   "job": "<function fam_S1.<locals>.<lambda> at 0x7f0b3db144a0>",
+   "kind": "error"
+  },
+  {
+   "error": "RequestFailedError(\"Request failed: This ServiceClient is poisoned. We cannot run further operations against it. Please create a new ServiceClient if you wish to continue. Failure reason: training run 8886d663-ec03-5cab-a20f-0609eabb4616:train:31 failed: Training checkpoint saved. Free checkpoint storage limit reached (bytes or checkpoint count); this training client is closed. Delete checkpoints or switch to paid storage, then resume from the checkpoint with a new ServiceClient and training client.. for self.request_id='8886d663-ec03-5cab-a20f-0609eabb4616:train:34:0' and expected type self.model_cls=<class 'tinker.types._pydantic_types.load_weights_response.LoadWeightsResponse'>\")",
+   "job": "<function fam_S1.<locals>.<lambda> at 0x7f0b3db14ea0>",
+   "kind": "error"
+  },
+  {
+   "error": "RequestFailedError(\"Request failed: This ServiceClient is poisoned. We cannot run further operations against it. Please create a new ServiceClient if you wish to continue. Failure reason: training run 8886d663-ec03-5cab-a20f-0609eabb4616:train:31 failed: Training checkpoint saved. Free checkpoint storage limit reached (bytes or checkpoint count); this training client is closed. Delete checkpoints or switch to paid storage, then resume from the checkpoint with a new ServiceClient and training client.. for self.request_id='8886d663-ec03-5cab-a20f-0609eabb4616:train:35:0' and expected type self.model_cls=<class 'tinker.types._pydantic_types.load_weights_response.LoadWeightsResponse'>\")",
+   "job": "<function fam_S1.<locals>.<lambda> at 0x7f0b3db14fe0>",
+   "kind": "error"
+  },
+  {
+   "error": "RequestFailedError(\"Request failed: This ServiceClient is poisoned. We cannot run further operations against it. Please create a new ServiceClient if you wish to continue. Failure reason: training run 8886d663-ec03-5cab-a20f-0609eabb4616:train:31 failed: Training checkpoint saved. Free checkpoint storage limit reached (bytes or checkpoint count); this training client is closed. Delete checkpoints or switch to paid storage, then resume from the checkpoint with a new ServiceClient and training client.. for self.request_id='8886d663-ec03-5cab-a20f-0609eabb4616:train:33:0' and expected type self.model_cls=<class 'tinker.types._pydantic_types.load_weights_response.LoadWeightsResponse'>\")",
+   "job": "<function fam_S1.<locals>.<lambda> at 0x7f0b3db153a0>",
+   "kind": "error"
+  },
+  {
+   "error": "RequestFailedError(\"Request failed: This ServiceClient is poisoned. We cannot run further operations against it. Please create a new ServiceClient if you wish to continue. Failure reason: training run 8886d663-ec03-5cab-a20f-0609eabb4616:train:31 failed: Training checkpoint saved. Free checkpoint storage limit reached (bytes or checkpoint count); this training client is closed. Delete checkpoints or switch to paid storage, then resume from the checkpoint with a new ServiceClient and training client.. for self.request_id='8886d663-ec03-5cab-a20f-0609eabb4616:train:36:0' and expected type self.model_cls=<class 'tinker.types._pydantic_types.load_weights_response.LoadWeightsResponse'>\")",
+   "job": "<function fam_S1.<locals>.<lambda> at 0x7f0b3db145e0>",
+   "kind": "error"
+  },
+  {
+   "error": "RequestFailedError(\"Request failed: This ServiceClient is poisoned. We cannot run further operations against it. Please create a new ServiceClient if you wish to continue. Failure reason: training run 8886d663-ec03-5cab-a20f-0609eabb4616:train:31 failed: Training checkpoint saved. Free checkpoint storage limit reached (bytes or checkpoint count); this training client is closed. Delete checkpoints or switch to paid storage, then resume from the checkpoint with a new ServiceClient and training client.. for self.request_id='8886d663-ec03-5cab-a20f-0609eabb4616:train:38:0' and expected type self.model_cls=<class 'tinker.types._pydantic_types.load_weights_response.LoadWeightsResponse'>\")",
+   "job": "<function fam_S1.<locals>.<lambda> at 0x7f0b3db15300>",
+   "kind": "error"
+  },
+  {
+   "error": "RequestFailedError(\"Request failed: This ServiceClient is poisoned. We cannot run further operations against it. Please create a new ServiceClient if you wish to continue. Failure reason: training run 8886d663-ec03-5cab-a20f-0609eabb4616:train:31 failed: Training checkpoint saved. Free checkpoint storage limit reached (bytes or checkpoint count); this training client is closed. Delete checkpoints or switch to paid storage, then resume from the checkpoint with a new ServiceClient and training client.. for self.request_id='8886d663-ec03-5cab-a20f-0609eabb4616:train:37:0' and expected type self.model_cls=<class 'tinker.types._pydantic_types.load_weights_response.LoadWeightsResponse'>\")",
+   "job": "<function fam_S1.<locals>.<lambda> at 0x7f0b3db15620>",
+   "kind": "error"
+  },
+  {
+   "error": "KeyError('S1_r32-ck5')",
+   "job": "<function fam_S1.<locals>.<lambda> at 0x7f0b3db14f40>",
+   "kind": "error"
+  },
+  {
+   "error": "KeyError('S1_r32-ck5')",
+   "job": "<function fam_S1.<locals>.<lambda> at 0x7f0b3db14400>",
+   "kind": "error"
+  },
+  {
+   "error": "KeyError('S1_r32-ck5')",
+   "job": "<function fam_S1.<locals>.<lambda> at 0x7f0b3db14180>",
+   "kind": "error"
+  },
+  {
+   "error": "RequestFailedError(\"Request failed: This ServiceClient is poisoned. We cannot run further operations against it. Please create a new ServiceClient if you wish to continue. Failure reason: training run 8886d663-ec03-5cab-a20f-0609eabb4616:train:31 failed: Training checkpoint saved. Free checkpoint storage limit reached (bytes or checkpoint count); this training client is closed. Delete checkpoints or switch to paid storage, then resume from the checkpoint with a new ServiceClient and training client.. for self.request_id='8886d663-ec03-5cab-a20f-0609eabb4616:train:39:0' and expected type self.model_cls=<class 'tinker.types._pydantic_types.load_weights_response.LoadWeightsResponse'>\")",
+   "job": "<function fam_S1.<locals>.<lambda> at 0x7f0b3db154e0>",
+   "kind": "error"
+  },
+  {
+   "error": "RequestFailedError(\"Request failed: This ServiceClient is poisoned. We cannot run further operations against it. Please create a new ServiceClient if you wish to continue. Failure reason: training run 8886d663-ec03-5cab-a20f-0609eabb4616:train:31 failed: Training checkpoint saved. Free checkpoint storage limit reached (bytes or checkpoint count); this training client is closed. Delete checkpoints or switch to paid storage, then resume from the checkpoint with a new ServiceClient and training client.. for self.request_id='8886d663-ec03-5cab-a20f-0609eabb4616:train:40:0' and expected type self.model_cls=<class 'tinker.types._pydantic_types.load_weights_response.LoadWeightsResponse'>\")",
+   "job": "<function fam_S1.<locals>.<lambda> at 0x7f0b3db142c0>",
+   "kind": "error"
+  },
+  {
+   "error": "RequestFailedError(\"Request failed: This ServiceClient is poisoned. We cannot run further operations against it. Please create a new ServiceClient if you wish to continue. Failure reason: training run 8886d663-ec03-5cab-a20f-0609eabb4616:train:31 failed: Training checkpoint saved. Free checkpoint storage limit reached (bytes or checkpoint count); this training client is closed. Delete checkpoints or switch to paid storage, then resume from the checkpoint with a new ServiceClient and training client.. for self.request_id='8886d663-ec03-5cab-a20f-0609eabb4616:train:41:1' and expected type self.model_cls=<class 'tinker.types._pydantic_types.save_weights_external_response.SaveWeightsExternalResponseInternal'>\")",
+   "job": "<function trunk.<locals>.<lambda> at 0x7f0b3db140e0>",
+   "kind": "error"
+  },
+  {
+   "error": "RequestFailedError(\"Request failed: This ServiceClient is poisoned. We cannot run further operations against it. Please create a new ServiceClient if you wish to continue. Failure reason: training run 8886d663-ec03-5cab-a20f-0609eabb4616:train:31 failed: Training checkpoint saved. Free checkpoint storage limit reached (bytes or checkpoint count); this training client is closed. Delete checkpoints or switch to paid storage, then resume from the checkpoint with a new ServiceClient and training client.. for self.request_id='8886d663-ec03-5cab-a20f-0609eabb4616:train:32:0' and expected type self.model_cls=<class 'tinker.types._pydantic_types.load_weights_response.LoadWeightsResponse'>\")",
+   "job": "<function fam_S1.<locals>.<lambda> at 0x7f0b6e52ac00>",
+   "kind": "error"
+  },
+  {
+   "error": "KeyError('S2_r8_b0-ck0')",
+   "job": "<function fam_S2.<locals>.<lambda> at 0x7f0b75235f80>",
+   "kind": "error"
+  },
+  {
+   "error": "KeyError('S2_r8_b0-ck1')",
+   "job": "<function fam_S2.<locals>.<lambda> at 0x7f0b6dce5760>",
+   "kind": "error"
+  },
+  {
+   "error": "KeyError('S2_r8_b0-ck2')",
+   "job": "<function fam_S2.<locals>.<lambda> at 0x7f0b6dce4e00>",
+   "kind": "error"
+  },
+  {
+   "error": "KeyError('S2_r8_b0-ck3')",
+   "job": "<function fam_S2.<locals>.<lambda> at 0x7f0b3f749260>",
+   "kind": "error"
+  },
+  {
+   "error": "KeyError('S2_r8_b0-ck4')",
+   "job": "<function fam_S2.<locals>.<lambda> at 0x7f0b3f7499e0>",
+   "kind": "error"
+  },
+  {
+   "error": "KeyError('S2_r8_b0-ck5')",
+   "job": "<function fam_S2.<locals>.<lambda> at 0x7f0b3f749a80>",
+   "kind": "error"
+  },
+  {
+   "error": "KeyError('S2_r8_b0-ck2')",
+   "job": "<function fam_S2.<locals>.<lambda> at 0x7f0b3f749940>",
+   "kind": "error"
+  },
+  {
+   "error": "KeyError('S2_r8_b0-ck1')",
+   "job": "<function fam_S2.<locals>.<lambda> at 0x7f0b3f749c60>",
+   "kind": "error"
+  },
+  {
+   "error": "KeyError('S2_r8_b0-ck3')",
+   "job": "<function fam_S2.<locals>.<lambda> at 0x7f0b3f749bc0>",
+   "kind": "error"
+  },
+  {
+   "error": "KeyError('S2_r8_b0-ck4')",
+   "job": "<function fam_S2.<locals>.<lambda> at 0x7f0b3f7485e0>",
+   "kind": "error"
+  },
+  {
+   "error": "KeyError('S2_r8_b0-ck5')",
+   "job": "<function fam_S2.<locals>.<lambda> at 0x7f0b3f748400>",
+   "kind": "error"
+  },
+  {
+   "error": "RequestFailedError(\"Request failed: This ServiceClient is poisoned. We cannot run further operations against it. Please create a new ServiceClient if you wish to continue. Failure reason: training run 8886d663-ec03-5cab-a20f-0609eabb4616:train:31 failed: Training checkpoint saved. Free checkpoint storage limit reached (bytes or checkpoint count); this training client is closed. Delete checkpoints or switch to paid storage, then resume from the checkpoint with a new ServiceClient and training client.. for self.request_id='8886d663-ec03-5cab-a20f-0609eabb4616:train:42:1' and expected type self.model_cls=<class 'tinker.types._pydantic_types.save_weights_external_response.SaveWeightsExternalResponseInternal'>\")",
+   "job": "<function trunk.<locals>.<lambda> at 0x7f0b3f7482c0>",
+   "kind": "error"
+  },
+  {
+   "error": "KeyError('S2_r32_b0.9-ck0')",
+   "job": "<function fam_S2_b09.<locals>.<lambda> at 0x7f0b3f749ee0>",
+   "kind": "error"
+  },
+  {
+   "error": "KeyError('S2_r32_b0.9-ck1')",
+   "job": "<function fam_S2_b09.<locals>.<lambda> at 0x7f0b3f75c220>",
+   "kind": "error"
+  },
+  {
+   "error": "KeyError('S2_r32_b0.9-ck3')",
+   "job": "<function fam_S2_b09.<locals>.<lambda> at 0x7f0b3f75c2c0>",
+   "kind": "error"
+  },
+  {
+   "error": "KeyError('S2_r32_b0.9-ck5')",
+   "job": "<function fam_S2_b09.<locals>.<lambda> at 0x7f0b3f75c400>",
+   "kind": "error"
+  },
+  {
+   "error": "KeyError('S2_r32_b0.9-ck4')",
+   "job": "<function fam_S2_b09.<locals>.<lambda> at 0x7f0b3f75c360>",
+   "kind": "error"
+  },
+  {
+   "error": "KeyError('S2_r32_b0.9-ck2')",
+   "job": "<function fam_S2_b09.<locals>.<lambda> at 0x7f0b3f75c180>",
+   "kind": "error"
+  },
+  {
+   "error": "KeyError('S2_r32_b0.9-ck3')",
+   "job": "<function fam_S2_b09.<locals>.<lambda> at 0x7f0b3f75c4a0>",
+   "kind": "error"
+  },
+  {
+   "error": "KeyError('S2_r32_b0.9-ck3')",
+   "job": "<function fam_S2_b09.<locals>.<lambda> at 0x7f0b3f75c540>",
+   "kind": "error"
+  },
+  {
+   "error": "KeyError('S2_r32_b0.9-ck3')",
+   "job": "<function fam_S2_b09.<locals>.<lambda> at 0x7f0b3f75c5e0>",
+   "kind": "error"
+  },
+  {
+   "error": "KeyError('S2_r32_b0.9-ck2')",
+   "job": "<function fam_S2_b09.<locals>.<lambda> at 0x7f0b3f75c680>",
+   "kind": "error"
+  },
+  {
+   "error": "KeyError('S2_r32_b0.9-ck2')",
+   "job": "<function fam_S2_b09.<locals>.<lambda> at 0x7f0b3f75c720>",
+   "kind": "error"
+  },
+  {
+   "error": "KeyError('S2_r32_b0.9-ck2')",
+   "job": "<function fam_S2_b09.<locals>.<lambda> at 0x7f0b3f75c7c0>",
+   "kind": "error"
+  },
+  {
+   "error": "KeyError('S2_r32_b0.9-ck2')",
+   "job": "<function fam_S2_b09.<locals>.<lambda> at 0x7f0b3f75c860>",
+   "kind": "error"
+  },
+  {
+   "error": "RequestFailedError(\"Request failed: This ServiceClient is poisoned. We cannot run further operations against it. Please create a new ServiceClient if you wish to continue. Failure reason: training run 8886d663-ec03-5cab-a20f-0609eabb4616:train:31 failed: Training checkpoint saved. Free checkpoint storage limit reached (bytes or checkpoint count); this training client is closed. Delete checkpoints or switch to paid storage, then resume from the checkpoint with a new ServiceClient and training client.. for self.request_id='8886d663-ec03-5cab-a20f-0609eabb4616:train:43:1' and expected type self.model_cls=<class 'tinker.types._pydantic_types.save_weights_external_response.SaveWeightsExternalResponseInternal'>\")",
+   "job": "<function trunk.<locals>.<lambda> at 0x7f0b3f75c900>",
+   "kind": "error"
+  },
+  {
+   "error": "KeyError('S2_r8_b0.5-ck0')",
+   "job": "<function fam_S2.<locals>.<lambda> at 0x7f0b3f748ae0>",
+   "kind": "error"
+  },
+  {
+   "error": "KeyError('S2_r8_b0.5-ck1')",
+   "job": "<function fam_S2.<locals>.<lambda> at 0x7f0b3f7489a0>",
+   "kind": "error"
+  },
+  {
+   "error": "KeyError('S2_r8_b0.5-ck3')",
+   "job": "<function fam_S2.<locals>.<lambda> at 0x7f0b3f748e00>",
+   "kind": "error"
+  },
+  {
+   "error": "KeyError('S2_r8_b0.5-ck2')",
+   "job": "<function fam_S2.<locals>.<lambda> at 0x7f0b3f749260>",
+   "kind": "error"
+  },
+  {
+   "error": "KeyError('S2_r8_b0.5-ck4')",
+   "job": "<function fam_S2.<locals>.<lambda> at 0x7f0b3f749080>",
+   "kind": "error"
+  },
+  {
+   "error": "KeyError('S2_r8_b0.5-ck5')",
+   "job": "<function fam_S2.<locals>.<lambda> at 0x7f0b3f748d60>",
+   "kind": "error"
+  },
+  {
+   "error": "RequestFailedError(\"Request failed: This ServiceClient is poisoned. We cannot run further operations against it. Please create a new ServiceClient if you wish to continue. Failure reason: training run 8886d663-ec03-5cab-a20f-0609eabb4616:train:31 failed: Training checkpoint saved. Free checkpoint storage limit reached (bytes or checkpoint count); this training client is closed. Delete checkpoints or switch to paid storage, then resume from the checkpoint with a new ServiceClient and training client.. for self.request_id='8886d663-ec03-5cab-a20f-0609eabb4616:train:44:1' and expected type self.model_cls=<class 'tinker.types._pydantic_types.save_weights_external_response.SaveWeightsExternalResponseInternal'>\")",
+   "job": "<function trunk.<locals>.<lambda> at 0x7f0b3f748f40>",
+   "kind": "error"
+  },
+  {
+   "error": "KeyError('S2_r32_b0-ck0')",
+   "job": "<function fam_S2.<locals>.<lambda> at 0x7f0b6dce54e0>",
+   "kind": "error"
+  },
+  {
+   "error": "KeyError('S2_r32_b0-ck2')",
+   "job": "<function fam_S2.<locals>.<lambda> at 0x7f0b3f75ccc0>",
+   "kind": "error"
+  },
+  {
+   "error": "KeyError('S2_r32_b0-ck1')",
+   "job": "<function fam_S2.<locals>.<lambda> at 0x7f0b3f75cea0>",
+   "kind": "error"
+  },
+  {
+   "error": "KeyError('S2_r32_b0-ck3')",
+   "job": "<function fam_S2.<locals>.<lambda> at 0x7f0b3f75cfe0>",
+   "kind": "error"
+  },
+  {
+   "error": "KeyError('S2_r32_b0-ck4')",
+   "job": "<function fam_S2.<locals>.<lambda> at 0x7f0b3f75cd60>",
+   "kind": "error"
+  },
+  {
+   "error": "KeyError('S2_r32_b0-ck5')",
+   "job": "<function fam_S2.<locals>.<lambda> at 0x7f0b3f75c040>",
+   "kind": "error"
+  },
+  {
+   "error": "KeyError('S2_r32_b0-ck1')",
+   "job": "<function fam_S2.<locals>.<lambda> at 0x7f0b3f75c0e0>",
+   "kind": "error"
+  },
+  {
+   "error": "KeyError('S2_r32_b0-ck2')",
+   "job": "<function fam_S2.<locals>.<lambda> at 0x7f0b3f75d9e0>",
+   "kind": "error"
+  },
+  {
+   "error": "KeyError('S2_r32_b0-ck3')",
+   "job": "<function fam_S2.<locals>.<lambda> at 0x7f0b3f75d580>",
+   "kind": "error"
+  },
+  {
+   "error": "KeyError('S2_r32_b0-ck4')",
+   "job": "<function fam_S2.<locals>.<lambda> at 0x7f0b3f75d800>",
+   "kind": "error"
+  },
+  {
+   "error": "KeyError('S2_r32_b0-ck5')",
+   "job": "<function fam_S2.<locals>.<lambda> at 0x7f0b3f75d940>",
+   "kind": "error"
+  },
+  {
+   "error": "RequestFailedError(\"Request failed: This ServiceClient is poisoned. We cannot run further operations against it. Please create a new ServiceClient if you wish to continue. Failure reason: training run 8886d663-ec03-5cab-a20f-0609eabb4616:train:31 failed: Training checkpoint saved. Free checkpoint storage limit reached (bytes or checkpoint count); this training client is closed. Delete checkpoints or switch to paid storage, then resume from the checkpoint with a new ServiceClient and training client.. for self.request_id='8886d663-ec03-5cab-a20f-0609eabb4616:train:45:1' and expected type self.model_cls=<class 'tinker.types._pydantic_types.save_weights_external_response.SaveWeightsExternalResponseInternal'>\")",
+   "job": "<function trunk.<locals>.<lambda> at 0x7f0b3f75da80>",
+   "kind": "error"
+  },
+  {
+   "error": "KeyError('S2_r8_b0.99-ck0')",
+   "job": "<function fam_S2.<locals>.<lambda> at 0x7f0b6dce7880>",
+   "kind": "error"
+  },
+  {
+   "error": "KeyError('S2_r8_b0.99-ck1')",
+   "job": "<function fam_S2.<locals>.<lambda> at 0x7f0b3f749c60>",
+   "kind": "error"
+  },
+  {
+   "error": "KeyError('S2_r8_b0.99-ck2')",
+   "job": "<function fam_S2.<locals>.<lambda> at 0x7f0b3f749800>",
+   "kind": "error"
+  },
+  {
+   "error": "KeyError('S2_r8_b0.99-ck3')",
+   "job": "<function fam_S2.<locals>.<lambda> at 0x7f0b3f74afc0>",
+   "kind": "error"
+  },
+  {
+   "error": "KeyError('S2_r8_b0.99-ck4')",
+   "job": "<function fam_S2.<locals>.<lambda> at 0x7f0b3f749a80>",
+   "kind": "error"
+  },
+  {
+   "error": "KeyError('S2_r8_b0.99-ck5')",
+   "job": "<function fam_S2.<locals>.<lambda> at 0x7f0b3f748040>",
+   "kind": "error"
+  }
+ ],
+ "grads": {
+  "0006c0df4d43400a_t0_w1_O1": {
+   "GA_global": 13.341883299129144,
+   "GB_global": 221.3348088241559,
+   "G_global": 221.7365631716908,
+   "ckpt": "S2_r8_b0.9-ck4",
+   "eps": 1.0,
+   "fb": {
+    "clock_cycle:unique": 7530586.0,
+    "loss:sum": 28.070404052734375
+   },
+   "load_bit_identical": true,
+   "loaded_sid": "0006c0df4d43400a",
+   "lr": 1000000.0,
+   "max_rel_snap_residual": 4.035951371782074e-06,
+   "n_exact_zero": 0,
+   "n_saturated": 0,
+   "n_snap_resid_gt_1em3": 0,
+   "secs": 45.6,
+   "setting": "O1",
+   "sid": "0006c0df4d43400a",
+   "text": 0,
+   "weight": 1.0
+  },
+  "0ff0b9c991af1568_t0_w1_O1": {
+   "GA_global": 0.0,
+   "GB_global": 284.1868322193259,
+   "G_global": 284.1868322193259,
+   "ckpt": "S2_r8_b0.9-ck0",
+   "eps": 1.0,
+   "fb": {
+    "clock_cycle:unique": 7530476.0,
+    "loss:sum": 30.40399169921875
+   },
+   "load_bit_identical": true,
+   "loaded_sid": "0ff0b9c991af1568",
+   "lr": 1000000.0,
+   "max_rel_snap_residual": 1.7960529388715596e-06,
+   "n_exact_zero": 3506176,
+   "n_saturated": 0,
+   "n_snap_resid_gt_1em3": 0,
+   "secs": 44.3,
+   "setting": "O1",
+   "sid": "0ff0b9c991af1568",
+   "text": 0,
+   "weight": 1.0
+  },
+  "284c39783caeeb28_t0_w1_O1": {
+   "GA_global": 10.878089252697983,
+   "GB_global": 220.44982253188815,
+   "G_global": 220.71804883183125,
+   "ckpt": "S1_r8-ck3",
+   "eps": 1.0,
+   "fb": {
+    "clock_cycle:unique": 7201742.0,
+    "loss:sum": 28.573806762695312
+   },
+   "load_bit_identical": true,
+   "loaded_sid": "284c39783caeeb28",
+   "lr": 1000000.0,
+   "max_rel_snap_residual": 1.798005494514847e-06,
+   "n_exact_zero": 0,
+   "n_saturated": 0,
+   "n_snap_resid_gt_1em3": 0,
+   "secs": 53.0,
+   "setting": "O1",
+   "sid": "284c39783caeeb28",
+   "text": 0,
+   "weight": 1.0
+  },
+  "3c4579d4aa8db69d_t0_w1_O1": {
+   "GA_global": 6.008253189378104,
+   "GB_global": 231.9554331443247,
+   "G_global": 232.03323484268145,
+   "ckpt": "S2_r8_b0.9-ck1",
+   "eps": 1.0,
+   "fb": {
+    "clock_cycle:unique": 7530586.0,
+    "loss:sum": 29.581972122192383
+   },
+   "load_bit_identical": true,
+   "loaded_sid": "3c4579d4aa8db69d",
+   "lr": 1000000.0,
+   "max_rel_snap_residual": 2.370413864408802e-06,
+   "n_exact_zero": 0,
+   "n_saturated": 0,
+   "n_snap_resid_gt_1em3": 0,
+   "secs": 45.9,
+   "setting": "O1",
+   "sid": "3c4579d4aa8db69d",
+   "text": 0,
+   "weight": 1.0
+  },
+  "3c4579d4aa8db69d_t1_w1_O1": {
+   "GA_global": 0.31150985554327404,
+   "GB_global": 94.00199537899724,
+   "G_global": 94.0025115282731,
+   "ckpt": "S1_r8-ck1",
+   "eps": 1.0,
+   "fb": {
+    "clock_cycle:unique": 7530838.0,
+    "loss:sum": 45.305885314941406
+   },
+   "load_bit_identical": true,
+   "loaded_sid": "3c4579d4aa8db69d",
+   "lr": 1000000.0,
+   "max_rel_snap_residual": 2.1332900059782075e-05,
+   "n_exact_zero": 0,
+   "n_saturated": 0,
+   "n_snap_resid_gt_1em3": 0,
+   "secs": 42.5,
+   "setting": "O1",
+   "sid": "3c4579d4aa8db69d",
+   "text": 1,
+   "weight": 1.0
+  },
+  "4be8af779dae8d28_t1_w1_O1": {
+   "GA_global": 4.835390203340173,
+   "GB_global": 97.32515407167172,
+   "G_global": 97.44519800120064,
+   "ckpt": "S2_r8_b0.9-ck5",
+   "eps": 1.0,
+   "fb": {
+    "clock_cycle:unique": 7201633.0,
+    "loss:sum": 44.36457824707031
+   },
+   "load_bit_identical": true,
+   "loaded_sid": "4be8af779dae8d28",
+   "lr": 1000000.0,
+   "max_rel_snap_residual": 9.00892670247099e-07,
+   "n_exact_zero": 0,
+   "n_saturated": 0,
+   "n_snap_resid_gt_1em3": 0,
+   "secs": 54.2,
+   "setting": "O1",
+   "sid": "4be8af779dae8d28",
+   "text": 1,
+   "weight": 1.0
+  },
+  "7f0a061acd28d484_t2_w1_O1": {
+   "GA_global": 0.26752272904943813,
+   "GB_global": 40.13007425780666,
+   "G_global": 40.13096595333378,
+   "ckpt": "S2_r8_b0.9-ck3",
+   "eps": 1.0,
+   "fb": {
+    "clock_cycle:unique": 7201624.0,
+    "loss:sum": 14.281699180603027
+   },
+   "load_bit_identical": true,
+   "loaded_sid": "7f0a061acd28d484",
+   "lr": 1000000.0,
+   "max_rel_snap_residual": 3.839853004413886e-05,
+   "n_exact_zero": 0,
+   "n_saturated": 0,
+   "n_snap_resid_gt_1em3": 0,
+   "secs": 63.4,
+   "setting": "O1",
+   "sid": "7f0a061acd28d484",
+   "text": 2,
+   "weight": 1.0
+  },
+  "97ca72c50f509776_t0_w0_O1": {
+   "GA_global": 0.0,
+   "GB_global": 0.0,
+   "G_global": 0.0,
+   "ckpt": "S2_r8_b0.9-ck2",
+   "eps": 1.0,
+   "fb": {
+    "clock_cycle:unique": 7530665.0,
+    "loss:sum": 0.0
+   },
+   "load_bit_identical": true,
+   "loaded_sid": "97ca72c50f509776",
+   "lr": 1000000.0,
+   "max_rel_snap_residual": 0.0,
+   "n_exact_zero": 7176192,
+   "n_saturated": 0,
+   "n_snap_resid_gt_1em3": 0,
+   "secs": 41.6,
+   "setting": "O1",
+   "sid": "97ca72c50f509776",
+   "text": 0,
+   "weight": 0.0
+  },
+  "97ca72c50f509776_t0_w1_O1": {
+   "GA_global": 7.978567101016268,
+   "GB_global": 217.89797676948223,
+   "G_global": 218.04399971844956,
+   "ckpt": "S1_r8-ck2",
+   "eps": 1.0,
+   "fb": {
+    "clock_cycle:unique": 7530805.0,
+    "loss:sum": 29.27490234375
+   },
+   "load_bit_identical": true,
+   "loaded_sid": "97ca72c50f509776",
+   "lr": 1000000.0,
+   "max_rel_snap_residual": 1.7963988850478696e-06,
+   "n_exact_zero": 0,
+   "n_saturated": 0,
+   "n_snap_resid_gt_1em3": 0,
+   "secs": 42.7,
+   "setting": "O1",
+   "sid": "97ca72c50f509776",
+   "text": 0,
+   "weight": 1.0
+  },
+  "97ca72c50f509776_t1_w1_O1": {
+   "GA_global": 0.5008366743400082,
+   "GB_global": 96.17728009299474,
+   "G_global": 96.17858412069043,
+   "ckpt": "S2_r8_b0.9-ck2",
+   "eps": 1.0,
+   "fb": {
+    "clock_cycle:unique": 7201547.0,
+    "loss:sum": 45.28317642211914
+   },
+   "load_bit_identical": true,
+   "loaded_sid": "97ca72c50f509776",
+   "lr": 1000000.0,
+   "max_rel_snap_residual": 0.00016642769129441567,
+   "n_exact_zero": 0,
+   "n_saturated": 0,
+   "n_snap_resid_gt_1em3": 0,
+   "secs": 53.9,
+   "setting": "O1",
+   "sid": "97ca72c50f509776",
+   "text": 1,
+   "weight": 1.0
+  },
+  "97ca72c50f509776_t1_w1_O2": {
+   "GA_global": 0.5008366743400082,
+   "GB_global": 96.17728009299474,
+   "G_global": 96.17858412069043,
+   "ckpt": "S2_r8_b0.9-ck2",
+   "eps": 10.0,
+   "fb": {
+    "clock_cycle:unique": 7201565.0,
+    "loss:sum": 45.28317642211914
+   },
+   "load_bit_identical": true,
+   "loaded_sid": "97ca72c50f509776",
+   "lr": 1000000.0,
+   "max_rel_snap_residual": 0.0005763319669857,
+   "n_exact_zero": 0,
+   "n_saturated": 0,
+   "n_snap_resid_gt_1em3": 0,
+   "secs": 65.6,
+   "setting": "O2",
+   "sid": "97ca72c50f509776",
+   "text": 1,
+   "weight": 1.0
+  },
+  "97ca72c50f509776_t1_w1_O3": {
+   "GA_global": 0.5008367094547931,
+   "GB_global": 96.17728009299474,
+   "G_global": 96.1785841208733,
+   "ckpt": "S2_r8_b0.9-ck2",
+   "eps": 100.0,
+   "fb": {
+    "clock_cycle:unique": 7201565.0,
+    "loss:sum": 45.28317642211914
+   },
+   "load_bit_identical": true,
+   "loaded_sid": "97ca72c50f509776",
+   "lr": 1.0,
+   "max_rel_snap_residual": 0.0036363634757104924,
+   "n_exact_zero": 1640,
+   "n_saturated": 0,
+   "n_snap_resid_gt_1em3": 593412,
+   "secs": 63.7,
+   "setting": "O3",
+   "sid": "97ca72c50f509776",
+   "text": 1,
+   "weight": 1.0
+  },
+  "9942f130e3e7150b_t0_w1_O1": {
+   "GA_global": 14.028591114538743,
+   "GB_global": 226.36061028623638,
+   "G_global": 226.79490130471694,
+   "ckpt": "S1_r8-ck4",
+   "eps": 1.0,
+   "fb": {
+    "clock_cycle:unique": 7530830.0,
+    "loss:sum": 27.808897018432617
+   },
+   "load_bit_identical": true,
+   "loaded_sid": "9942f130e3e7150b",
+   "lr": 1000000.0,
+   "max_rel_snap_residual": 1.9391575940345866e-06,
+   "n_exact_zero": 0,
+   "n_saturated": 0,
+   "n_snap_resid_gt_1em3": 0,
+   "secs": 46.5,
+   "setting": "O1",
+   "sid": "9942f130e3e7150b",
+   "text": 0,
+   "weight": 1.0
+  }
+ },
+ "states": {
+  "0006c0df4d43400a": {
+   "A_fro_median": 1.6331960358797395,
+   "A_global": 20.139850990661408,
+   "B_fro_max": 0.008436969216609642,
+   "B_fro_median": 0.007328434845713543,
+   "B_global": 0.0910270712442187,
+   "first_name": "S2_r8_b0.9-s4",
+   "n": 304,
+   "rank": 8
+  },
+  "0ff0b9c991af1568": {
+   "A_fro_median": 1.6329229327184787,
+   "A_global": 20.1364371591839,
+   "B_fro_max": 0.0,
+   "B_fro_median": 0.0,
+   "B_global": 0.0,
+   "first_name": "S2_r8_b0.9-s0",
+   "n": 304,
+   "rank": 8
+  },
+  "106c9230ae2b70a9": {
+   "A_fro_median": 1.6329229327184787,
+   "A_global": 20.1364371591839,
+   "B_fro_max": 0.002219139067574068,
+   "B_fro_median": 0.002219138908925001,
+   "B_global": 0.02735938188054175,
+   "first_name": "S4_r8_b0_cont-s1",
+   "n": 304,
+   "rank": 8
+  },
+  "1ff16ab5e5267d3f": {
+   "A_fro_median": 1.6330345611977313,
+   "A_global": 20.137834239608033,
+   "B_fro_max": 0.004315356961802658,
+   "B_fro_median": 0.004094177554522937,
+   "B_global": 0.05073080513852951,
+   "first_name": "S4_r8_b0_cont-s2",
+   "n": 304,
+   "rank": 8
+  },
+  "284c39783caeeb28": {
+   "A_fro_median": 1.6331260095153848,
+   "A_global": 20.139005769240736,
+   "B_fro_max": 0.0065001165021552855,
+   "B_fro_median": 0.00621038268718296,
+   "B_global": 0.0768811307206214,
+   "first_name": "S1_r8-s3",
+   "n": 304,
+   "rank": 8
+  },
+  "314a92187b05bc2e": {
+   "A_fro_median": 1.6329228783230536,
+   "A_global": 20.136524790983845,
+   "B_fro_max": 0.0032367180047440623,
+   "B_fro_median": 0.0031495187531294638,
+   "B_global": 0.038810303143775454,
+   "first_name": "S1_r8_fresh_ck1_t1-s1",
+   "n": 304,
+   "rank": 8
+  },
+  "3c4579d4aa8db69d": {
+   "A_fro_median": 1.6329229327184787,
+   "A_global": 20.1364371591839,
+   "B_fro_max": 0.002219139067574068,
+   "B_fro_median": 0.002219138908925001,
+   "B_global": 0.027359381879960013,
+   "first_name": "S2_r8_b0.9-s1",
+   "n": 304,
+   "rank": 8
+  },
+  "3f99a8833b9dd429": {
+   "A_fro_median": 1.6330345611977313,
+   "A_global": 20.137834240023967,
+   "B_fro_max": 0.004331359592043998,
+   "B_fro_median": 0.004110366627859712,
+   "B_global": 0.05089585527602243,
+   "first_name": "S5_step2_c0.5-s1",
+   "n": 304,
+   "rank": 8
+  },
+  "4be8af779dae8d28": {
+   "A_fro_median": 1.6332926688527705,
+   "A_global": 20.141058081410925,
+   "B_fro_max": 0.010592311691779835,
+   "B_fro_median": 0.009369229893620226,
+   "B_global": 0.11613363862087572,
+   "first_name": "S2_r8_b0.9-s5",
+   "n": 304,
+   "rank": 8
+  },
+  "560b260c8032df9e": {
+   "A_fro_median": 1.6333071726940624,
+   "A_global": 20.14144441298023,
+   "B_fro_max": 0.010915565280866764,
+   "B_fro_median": 0.01056940230430556,
+   "B_global": 0.13066242468691622,
+   "first_name": "S4_r8_cont-s5",
+   "n": 304,
+   "rank": 8
+  },
+  "5ca507c22b88b77d": {
+   "A_fro_median": 3.2658370926852456,
+   "A_global": 40.26715699803447,
+   "B_fro_max": 0.0,
+   "B_fro_median": 0.0,
+   "B_global": 0.0,
+   "first_name": "S4_r32_cont-s0",
+   "n": 304,
+   "rank": 32
+  },
+  "5fee94e5c03badae": {
+   "A_fro_median": 1.633306909598102,
+   "A_global": 20.141483224949084,
+   "B_fro_max": 0.010872311141110211,
+   "B_fro_median": 0.010525301053291474,
+   "B_global": 0.13015010102055793,
+   "first_name": "S1_r8-s5",
+   "n": 304,
+   "rank": 8
+  },
+  "6631f47cfb0ee6b1": {
+   "A_fro_median": 1.6330345611977313,
+   "A_global": 20.137834240023967,
+   "B_fro_max": 0.004331014580326344,
+   "B_fro_median": 0.0041132744668165334,
+   "B_global": 0.05091253249948734,
+   "first_name": "S5_step2_c0.01-s1",
+   "n": 304,
+   "rank": 8
+  },
+  "68ab421230771d77": {
+   "A_fro_median": 1.6329229327184787,
+   "A_global": 20.1364371591839,
+   "B_fro_max": 0.002219139067574068,
+   "B_fro_median": 0.002219138908925001,
+   "B_global": 0.02735938188029043,
+   "first_name": "S5_step1_c0.5-s1",
+   "n": 304,
+   "rank": 8
+  },
+  "6cc8b409a77d1336": {
+   "A_fro_median": 3.2658370926852456,
+   "A_global": 40.26715699803447,
+   "B_fro_max": 0.005656854676062703,
+   "B_fro_median": 0.005656854264183844,
+   "B_global": 0.06974238322564638,
+   "first_name": "S4_r32_cont-s1",
+   "n": 304,
+   "rank": 32
+  },
+  "72725d41c2dba8fc": {
+   "A_fro_median": 1.6330452860578393,
+   "A_global": 20.13792879478911,
+   "B_fro_max": 0.004870677535848001,
+   "B_fro_median": 0.004681740463618181,
+   "B_global": 0.05789274298465441,
+   "first_name": "S1_r8_fresh_ck2_t1-s1",
+   "n": 304,
+   "rank": 8
+  },
+  "77f3cf050caf2fa3": {
+   "A_fro_median": 1.633202264336221,
+   "A_global": 20.13990515000787,
+   "B_fro_max": 0.008462206726831638,
+   "B_fro_median": 0.00751151056651644,
+   "B_global": 0.09339006092359757,
+   "first_name": "S3_r8_b0.99-s1",
+   "n": 304,
+   "rank": 8
+  },
+  "7e40d09bdbe8cad5": {
+   "A_fro_median": 3.267134392021495,
+   "A_global": 40.28457721251365,
+   "B_fro_max": 0.02739799258184664,
+   "B_fro_median": 0.02664337796755431,
+   "B_global": 0.3294327715350103,
+   "first_name": "S4_r32_cont-s5",
+   "n": 304,
+   "rank": 32
+  },
+  "7f0a061acd28d484": {
+   "A_fro_median": 1.6331164117262826,
+   "A_global": 20.138837920856922,
+   "B_fro_max": 0.00633971217982015,
+   "B_fro_median": 0.005623448082904719,
+   "B_global": 0.06978802023884977,
+   "first_name": "S2_r8_b0.9-s3",
+   "n": 304,
+   "rank": 8
+  },
+  "81c83e538ca68149": {
+   "A_fro_median": 1.6339262270061357,
+   "A_global": 20.149540578462926,
+   "B_fro_max": 0.026022262355643616,
+   "B_fro_median": 0.024592912593411023,
+   "B_global": 0.30459679325412353,
+   "first_name": "S6_r8_ck2_lr0.01-s1",
+   "n": 304,
+   "rank": 8
+  },
+  "8284b7ee4092889d": {
+   "A_fro_median": 1.6331263659847401,
+   "A_global": 20.139000512988233,
+   "B_fro_max": 0.006506925178505468,
+   "B_fro_median": 0.006216252868400258,
+   "B_global": 0.07693682375000739,
+   "first_name": "S4_r8_cont-s3",
+   "n": 304,
+   "rank": 8
+  },
+  "97ca72c50f509776": {
+   "A_fro_median": 1.6330345611977313,
+   "A_global": 20.137834240023967,
+   "B_fro_max": 0.0043254815446885945,
+   "B_fro_median": 0.004107889682335088,
+   "B_global": 0.050873140209419666,
+   "first_name": "S2_r8_b0.9-s2",
+   "n": 304,
+   "rank": 8
+  },
+  "9942f130e3e7150b": {
+   "A_fro_median": 1.6332155319606847,
+   "A_global": 20.14022417060594,
+   "B_fro_max": 0.008687798317782163,
+   "B_fro_median": 0.0083642321578265,
+   "B_global": 0.10344844070275878,
+   "first_name": "S1_r8-s4",
+   "n": 304,
+   "rank": 8
+  },
+  "ae8e75a1c27e07a7": {
+   "A_fro_median": 1.6331242383675528,
+   "A_global": 20.138937558229518,
+   "B_fro_max": 0.006545822219176642,
+   "B_fro_median": 0.0057834325042793,
+   "B_global": 0.07172555717821043,
+   "first_name": "S6_r8_ck3_lr0.0001-s1",
+   "n": 304,
+   "rank": 8
+  },
+  "b752aa9a91fe11b5": {
+   "A_fro_median": 3.2664956013600457,
+   "A_global": 40.27621304157724,
+   "B_fro_max": 0.016437308175804913,
+   "B_fro_median": 0.01575210964195911,
+   "B_global": 0.19495904163043856,
+   "first_name": "S4_r32_cont-s3",
+   "n": 304,
+   "rank": 32
+  },
+  "bca1d4396d28890f": {
+   "A_fro_median": 1.633118465041583,
+   "A_global": 20.138856517312632,
+   "B_fro_max": 0.006750115986413768,
+   "B_fro_median": 0.0060610704021022655,
+   "B_global": 0.07497745459752803,
+   "first_name": "S3_r8_b0-s1",
+   "n": 304,
+   "rank": 8
+  },
+  "c27761876885dac4": {
+   "A_fro_median": 1.6332153074958604,
+   "A_global": 20.140203883247658,
+   "B_fro_max": 0.008707501246202723,
+   "B_fro_median": 0.0083816569317254,
+   "B_global": 0.10367008555387433,
+   "first_name": "S4_r8_cont-s4",
+   "n": 304,
+   "rank": 8
+  },
+  "eba182306f08b160": {
+   "A_fro_median": 1.6340517860221024,
+   "A_global": 20.15063800540265,
+   "B_fro_max": 0.028165740141184826,
+   "B_fro_median": 0.0264320816766934,
+   "B_global": 0.3261812134081157,
+   "first_name": "S6_r8_ck3_lr0.01-s1",
+   "n": 304,
+   "rank": 8
+  },
+  "ed0706a30b944ebe": {
+   "A_fro_median": 1.6334270007398026,
+   "A_global": 20.142599884855354,
+   "B_fro_max": 0.012652354535670146,
+   "B_fro_median": 0.011297686408196145,
+   "B_global": 0.14022394725653917,
+   "first_name": "S2_r8_b0.9-s6",
+   "n": 304,
+   "rank": 8
+  },
+  "f1251af1dd0c3ed1": {
+   "A_fro_median": 1.6331493902009533,
+   "A_global": 20.139275515728624,
+   "B_fro_max": 0.006486868137575736,
+   "B_fro_median": 0.006180468326464559,
+   "B_global": 0.0765950750228324,
+   "first_name": "S1_r8_fresh_ck2_t0-s1",
+   "n": 304,
+   "rank": 8
+  },
+  "f4df6908b2fbcb61": {
+   "A_fro_median": 1.6330345611977313,
+   "A_global": 20.137834240023967,
+   "B_fro_max": 0.004428492736757453,
+   "B_fro_median": 0.0044198889402419644,
+   "B_global": 0.05447877508505499,
+   "first_name": "S1_r8_fresh_ck1_t0-s1",
+   "n": 304,
+   "rank": 8
+  },
+  "f785fec588720663": {
+   "A_fro_median": 1.6330426110142415,
+   "A_global": 20.137932937822907,
+   "B_fro_max": 0.004513681093950281,
+   "B_fro_median": 0.004227028326132377,
+   "B_global": 0.05243030916664748,
+   "first_name": "S6_r8_ck2_lr0.0001-s1",
+   "n": 304,
+   "rank": 8
+  },
+  "f94fd52e887f9109": {
+   "A_fro_median": 3.2668295006490764,
+   "A_global": 40.28036328372089,
+   "B_fro_max": 0.021919455837743344,
+   "B_fro_median": 0.021180848820353898,
+   "B_global": 0.2619926129742206,
+   "first_name": "S4_r32_cont-s4",
+   "n": 304,
+   "rank": 32
+  },
+  "fc9de2900c1b86e5": {
+   "A_fro_median": 3.2662001175064788,
+   "A_global": 40.27212366831018,
+   "B_fro_max": 0.010969302592692097,
+   "B_fro_median": 0.010439987994286975,
+   "B_global": 0.12925362961595843,
+   "first_name": "S4_r32_cont-s2",
+   "n": 304,
+   "rank": 32
+  }
+ },
+ "steps": {
+  "S0_fresh_ck0/step1": {
+   "after": "3c4579d4aa8db69d",
+   "before": "0ff0b9c991af1568",
+   "chain": "S0_fresh_ck0",
+   "client": {
+    "chain_start": "fresh",
+    "from_ckpt": "S2_r8_b0.9-ck0",
+    "kind": "fresh",
+    "load_bit_identical": true,
+    "model_id": "c1b95cc2-7466-53c6-be95-2b650644ddd1:train:8"
+   },
+   "exp": "S0",
+   "fb": {
+    "clock_cycle:unique": 7201580.0,
+    "loss:sum": 30.40399169921875
+   },
+   "grad_key": "0ff0b9c991af1568_t0_w1_O1",
+   "hist": [],
+   "index_in_chain": 0,
+   "note": "",
+   "optim": {},
+   "params": {
+    "beta1": 0.9,
+    "grad_clip_norm": 0.0,
+    "learning_rate": 0.001,
+    "type": "dimuon"
+   },
+   "rank": 8,
+   "stats": {
+    "A_moved": false,
+    "B_moved": true,
+    "dA_fro_max": 0.0,
+    "dA_fro_median": 0.0,
+    "dA_fro_min": 0.0,
+    "dA_global": 0.0,
+    "dA_maxabs": 0.0,
+    "dB_fro_max": 0.002219139067574068,
+    "dB_fro_median": 0.002219138908925001,
+    "dB_fro_min": 0.0022191387047979516,
+    "dB_global": 0.027359381879960013,
+    "dB_maxabs": 0.0005317132454365492
+   },
+   "text": 0,
+   "weight": 1.0
+  },
+  "S0_opt_ck1/step2": {
+   "after": "97ca72c50f509776",
+   "before": "3c4579d4aa8db69d",
+   "chain": "S0_opt_ck1",
+   "client": {
+    "chain_start": "opt",
+    "from_ckpt": "S2_r8_b0.9-ck1",
+    "kind": "opt",
+    "load_bit_identical": true,
+    "model_id": "c1b95cc2-7466-53c6-be95-2b650644ddd1:train:6"
+   },
+   "exp": "S0",
+   "fb": {
+    "clock_cycle:unique": 7201565.0,
+    "loss:sum": 29.581972122192383
+   },
+   "grad_key": "3c4579d4aa8db69d_t0_w1_O1",
+   "hist": [
+    "S2_r8_b0.9/step1"
+   ],
+   "index_in_chain": 0,
+   "note": "",
+   "optim": {},
+   "params": {
+    "beta1": 0.9,
+    "grad_clip_norm": 0.0,
+    "learning_rate": 0.001,
+    "type": "dimuon"
+   },
+   "rank": 8,
+   "stats": {
+    "A_moved": true,
+    "B_moved": true,
+    "dA_fro_max": 0.0022191408850694024,
+    "dA_fro_median": 0.0022191389326290008,
+    "dA_fro_min": 0.0022191379606003483,
+    "dA_global": 0.027359382046182604,
+    "dA_maxabs": 0.0006128745153546333,
+    "dB_fro_max": 0.0022191390958595774,
+    "dB_fro_median": 0.0022191389000287497,
+    "dB_fro_min": 0.002219138721374503,
+    "dB_global": 0.027359381846825133,
+    "dB_maxabs": 0.00021087042841827497
+   },
+   "text": 0,
+   "weight": 1.0
+  },
+  "S0_opt_ck2/step3": {
+   "after": "7f0a061acd28d484",
+   "before": "97ca72c50f509776",
+   "chain": "S0_opt_ck2",
+   "client": {
+    "chain_start": "opt",
+    "from_ckpt": "S2_r8_b0.9-ck2",
+    "kind": "opt",
+    "load_bit_identical": true,
+    "model_id": "c1b95cc2-7466-53c6-be95-2b650644ddd1:train:7"
+   },
+   "exp": "S0",
+   "fb": {
+    "clock_cycle:unique": 7530495.0,
+    "loss:sum": 45.28317642211914
+   },
+   "grad_key": "97ca72c50f509776_t1_w1_O1",
+   "hist": [
+    "S2_r8_b0.9/step1",
+    "S2_r8_b0.9/step2"
+   ],
+   "index_in_chain": 0,
+   "note": "",
+   "optim": {},
+   "params": {
+    "beta1": 0.9,
+    "grad_clip_norm": 0.0,
+    "learning_rate": 0.001,
+    "type": "dimuon"
+   },
+   "rank": 8,
+   "stats": {
+    "A_moved": true,
+    "B_moved": true,
+    "dA_fro_max": 0.0022191396263180592,
+    "dA_fro_median": 0.002219138848082034,
+    "dA_fro_min": 0.0022191382732183844,
+    "dA_global": 0.02735938141717481,
+    "dA_maxabs": 0.0004684061277657747,
+    "dB_fro_max": 0.0022191390639196996,
+    "dB_fro_median": 0.0022191389053435586,
+    "dB_fro_min": 0.0022191387252368184,
+    "dB_global": 0.02735938184596955,
+    "dB_maxabs": 0.0007192191060028108
+   },
+   "text": 1,
+   "weight": 1.0
+  },
+  "S1_r32/step1": {
+   "after": "6cc8b409a77d1336",
+   "before": "5ca507c22b88b77d",
+   "chain": "S1_r32",
+   "client": {
+    "chain_start": "new",
+    "from_ckpt": null,
+    "kind": "new",
+    "load_bit_identical": null,
+    "model_id": "8886d663-ec03-5cab-a20f-0609eabb4616:train:31"
+   },
+   "exp": "S1",
+   "fb": {
+    "clock_cycle:unique": 7201767.0,
+    "loss:sum": 30.40399169921875
+   },
+   "grad_key": "5ca507c22b88b77d_t0_w1_O1",
+   "hist": [],
+   "index_in_chain": 0,
+   "note": "",
+   "optim": {},
+   "params": {
+    "beta1": 0.9,
+    "grad_clip_norm": 0.0,
+    "learning_rate": 0.001,
+    "type": "dimuon"
+   },
+   "rank": 32,
+   "stats": {
+    "A_moved": false,
+    "B_moved": true,
+    "dA_fro_max": 0.0,
+    "dA_fro_median": 0.0,
+    "dA_fro_min": 0.0,
+    "dA_global": 0.0,
+    "dA_maxabs": 0.0,
+    "dB_fro_max": 0.005656854676062703,
+    "dB_fro_median": 0.005656854264183844,
+    "dB_fro_min": 0.005656853734591965,
+    "dB_global": 0.06974238322564638,
+    "dB_maxabs": 0.0006848868797533214
+   },
+   "text": 0,
+   "weight": 1.0
+  },
+  "S1_r32/step2": {
+   "after": "fc9de2900c1b86e5",
+   "before": "6cc8b409a77d1336",
+   "chain": "S1_r32",
+   "client": {
+    "chain_start": "new",
+    "from_ckpt": null,
+    "kind": "continuing",
+    "load_bit_identical": null,
+    "model_id": "8886d663-ec03-5cab-a20f-0609eabb4616:train:31"
+   },
+   "exp": "S1",
+   "fb": {
+    "clock_cycle:unique": 7201777.0,
+    "loss:sum": 29.78960418701172
+   },
+   "grad_key": "6cc8b409a77d1336_t0_w1_O1",
+   "hist": [
+    "S1_r32/step1"
+   ],
+   "index_in_chain": 1,
+   "note": "",
+   "optim": {},
+   "params": {
+    "beta1": 0.9,
+    "grad_clip_norm": 0.0,
+    "learning_rate": 0.001,
+    "type": "dimuon"
+   },
+   "rank": 32,
+   "stats": {
+    "A_moved": true,
+    "B_moved": true,
+    "dA_fro_max": 0.005656855254248226,
+    "dA_fro_median": 0.00565685426056765,
+    "dA_fro_min": 0.005656852352304371,
+    "dA_global": 0.06974238349563334,
+    "dA_maxabs": 0.0007178615778684616,
+    "dB_fro_max": 0.005656854698824443,
+    "dB_fro_median": 0.0056568542496648645,
+    "dB_fro_min": 0.005656853815075725,
+    "dB_global": 0.06974238304990618,
+    "dB_maxabs": 0.0006818817055318505
+   },
+   "text": 0,
+   "weight": 1.0
+  },
+  "S1_r8/step1": {
+   "after": "3c4579d4aa8db69d",
+   "before": "0ff0b9c991af1568",
+   "chain": "S1_r8",
+   "client": {
+    "chain_start": "new",
+    "from_ckpt": null,
+    "kind": "new",
+    "load_bit_identical": null,
+    "model_id": "8886d663-ec03-5cab-a20f-0609eabb4616:train:1"
+   },
+   "exp": "S1",
+   "fb": {
+    "clock_cycle:unique": 7530588.0,
+    "loss:sum": 30.40399169921875
+   },
+   "grad_key": "0ff0b9c991af1568_t0_w1_O1",
+   "hist": [],
+   "index_in_chain": 0,
+   "note": "",
+   "optim": {},
+   "params": {
+    "beta1": 0.9,
+    "grad_clip_norm": 0.0,
+    "learning_rate": 0.001,
+    "type": "dimuon"
+   },
+   "rank": 8,
+   "stats": {
+    "A_moved": false,
+    "B_moved": true,
+    "dA_fro_max": 0.0,
+    "dA_fro_median": 0.0,
+    "dA_fro_min": 0.0,
+    "dA_global": 0.0,
+    "dA_maxabs": 0.0,
+    "dB_fro_max": 0.002219139067574068,
+    "dB_fro_median": 0.002219138908925001,
+    "dB_fro_min": 0.0022191387047979516,
+    "dB_global": 0.027359381879960013,
+    "dB_maxabs": 0.0005317132454365492
+   },
+   "text": 0,
+   "weight": 1.0
+  },
+  "S1_r8/step2": {
+   "after": "97ca72c50f509776",
+   "before": "3c4579d4aa8db69d",
+   "chain": "S1_r8",
+   "client": {
+    "chain_start": "new",
+    "from_ckpt": null,
+    "kind": "continuing",
+    "load_bit_identical": null,
+    "model_id": "8886d663-ec03-5cab-a20f-0609eabb4616:train:1"
+   },
+   "exp": "S1",
+   "fb": {
+    "clock_cycle:unique": 7530599.0,
+    "loss:sum": 29.581972122192383
+   },
+   "grad_key": "3c4579d4aa8db69d_t0_w1_O1",
+   "hist": [
+    "S1_r8/step1"
+   ],
+   "index_in_chain": 1,
+   "note": "",
+   "optim": {},
+   "params": {
+    "beta1": 0.9,
+    "grad_clip_norm": 0.0,
+    "learning_rate": 0.001,
+    "type": "dimuon"
+   },
+   "rank": 8,
+   "stats": {
+    "A_moved": true,
+    "B_moved": true,
+    "dA_fro_max": 0.0022191408850694024,
+    "dA_fro_median": 0.0022191389326290008,
+    "dA_fro_min": 0.0022191379606003483,
+    "dA_global": 0.027359382046182604,
+    "dA_maxabs": 0.0006128745153546333,
+    "dB_fro_max": 0.0022191390958595774,
+    "dB_fro_median": 0.0022191389000287497,
+    "dB_fro_min": 0.002219138721374503,
+    "dB_global": 0.027359381846825133,
+    "dB_maxabs": 0.00021087042841827497
+   },
+   "text": 0,
+   "weight": 1.0
+  },
+  "S1_r8/step3": {
+   "after": "284c39783caeeb28",
+   "before": "97ca72c50f509776",
+   "chain": "S1_r8",
+   "client": {
+    "chain_start": "new",
+    "from_ckpt": null,
+    "kind": "continuing",
+    "load_bit_identical": null,
+    "model_id": "8886d663-ec03-5cab-a20f-0609eabb4616:train:1"
+   },
+   "exp": "S1",
+   "fb": {
+    "clock_cycle:unique": 7530609.0,
+    "loss:sum": 29.27490234375
+   },
+   "grad_key": "97ca72c50f509776_t0_w1_O1",
+   "hist": [
+    "S1_r8/step1",
+    "S1_r8/step2"
+   ],
+   "index_in_chain": 2,
+   "note": "",
+   "optim": {},
+   "params": {
+    "beta1": 0.9,
+    "grad_clip_norm": 0.0,
+    "learning_rate": 0.001,
+    "type": "dimuon"
+   },
+   "rank": 8,
+   "stats": {
+    "A_moved": true,
+    "B_moved": true,
+    "dA_fro_max": 0.0022191396428098893,
+    "dA_fro_median": 0.0022191388561461148,
+    "dA_fro_min": 0.002219138196847411,
+    "dA_global": 0.02735938130998147,
+    "dA_maxabs": 0.00020452914759516716,
+    "dB_fro_max": 0.0022191390588495227,
+    "dB_fro_median": 0.0022191389031530604,
+    "dB_fro_min": 0.0022191387339422844,
+    "dB_global": 0.02735938187353342,
+    "dB_maxabs": 0.0002455888024996966
+   },
+   "text": 0,
+   "weight": 1.0
+  },
+  "S1_r8/step4": {
+   "after": "9942f130e3e7150b",
+   "before": "284c39783caeeb28",
+   "chain": "S1_r8",
+   "client": {
+    "chain_start": "new",
+    "from_ckpt": null,
+    "kind": "continuing",
+    "load_bit_identical": null,
+    "model_id": "8886d663-ec03-5cab-a20f-0609eabb4616:train:1"
+   },
+   "exp": "S1",
+   "fb": {
+    "clock_cycle:unique": 7530623.0,
+    "loss:sum": 28.573806762695312
+   },
+   "grad_key": "284c39783caeeb28_t0_w1_O1",
+   "hist": [
+    "S1_r8/step1",
+    "S1_r8/step2",
+    "S1_r8/step3"
+   ],
+   "index_in_chain": 3,
+   "note": "",
+   "optim": {},
+   "params": {
+    "beta1": 0.9,
+    "grad_clip_norm": 0.0,
+    "learning_rate": 0.001,
+    "type": "dimuon"
+   },
+   "rank": 8,
+   "stats": {
+    "A_moved": true,
+    "B_moved": true,
+    "dA_fro_max": 0.0022191396131218065,
+    "dA_fro_median": 0.002219138921469046,
+    "dA_fro_min": 0.002219138175989509,
+    "dA_global": 0.02735938220311583,
+    "dA_maxabs": 0.0001634242944419384,
+    "dB_fro_max": 0.0022191390839346008,
+    "dB_fro_median": 0.002219138902343842,
+    "dB_fro_min": 0.0022191386972125002,
+    "dB_global": 0.02735938178549522,
+    "dB_maxabs": 0.0002620028390083462
+   },
+   "text": 0,
+   "weight": 1.0
+  },
+  "S1_r8/step5": {
+   "after": "5fee94e5c03badae",
+   "before": "9942f130e3e7150b",
+   "chain": "S1_r8",
+   "client": {
+    "chain_start": "new",
+    "from_ckpt": null,
+    "kind": "continuing",
+    "load_bit_identical": null,
+    "model_id": "8886d663-ec03-5cab-a20f-0609eabb4616:train:1"
+   },
+   "exp": "S1",
+   "fb": {
+    "clock_cycle:unique": 7530634.0,
+    "loss:sum": 27.808897018432617
+   },
+   "grad_key": "9942f130e3e7150b_t0_w1_O1",
+   "hist": [
+    "S1_r8/step1",
+    "S1_r8/step2",
+    "S1_r8/step3",
+    "S1_r8/step4"
+   ],
+   "index_in_chain": 4,
+   "note": "",
+   "optim": {},
+   "params": {
+    "beta1": 0.9,
+    "grad_clip_norm": 0.0,
+    "learning_rate": 0.001,
+    "type": "dimuon"
+   },
+   "rank": 8,
+   "stats": {
+    "A_moved": true,
+    "B_moved": true,
+    "dA_fro_max": 0.0022191397413134227,
+    "dA_fro_median": 0.0022191388763198668,
+    "dA_fro_min": 0.002219138243259317,
+    "dA_global": 0.027359381818139634,
+    "dA_maxabs": 0.00014929752796888351,
+    "dB_fro_max": 0.002219139073007797,
+    "dB_fro_median": 0.002219138909794089,
+    "dB_fro_min": 0.0022191387728601373,
+    "dB_global": 0.027359381846748736,
+    "dB_maxabs": 0.0002576714614406228
+   },
+   "text": 0,
+   "weight": 1.0
+  },
+  "S1_r8_fresh_ck1_t0/step": {
+   "after": "f4df6908b2fbcb61",
+   "before": "3c4579d4aa8db69d",
+   "chain": "S1_r8_fresh_ck1_t0",
+   "client": {
+    "chain_start": "fresh",
+    "from_ckpt": "S1_r8-ck1",
+    "kind": "fresh",
+    "load_bit_identical": true,
+    "model_id": "8886d663-ec03-5cab-a20f-0609eabb4616:train:27"
+   },
+   "exp": "S1",
+   "fb": {
+    "clock_cycle:unique": 7201749.0,
+    "loss:sum": 29.581972122192383
+   },
+   "grad_key": "3c4579d4aa8db69d_t0_w1_O1",
+   "hist": [],
+   "index_in_chain": 0,
+   "note": "",
+   "optim": {},
+   "params": {
+    "beta1": 0.9,
+    "grad_clip_norm": 0.0,
+    "learning_rate": 0.001,
+    "type": "dimuon"
+   },
+   "rank": 8,
+   "stats": {
+    "A_moved": true,
+    "B_moved": true,
+    "dA_fro_max": 0.0022191408850694024,
+    "dA_fro_median": 0.0022191389326290008,
+    "dA_fro_min": 0.0022191379606003483,
+    "dA_global": 0.027359382046182604,
+    "dA_maxabs": 0.0006128745153546333,
+    "dB_fro_max": 0.00221913907859065,
+    "dB_fro_median": 0.002219138890716367,
+    "dB_fro_min": 0.0022191387374764916,
+    "dB_global": 0.027359381793635132,
+    "dB_maxabs": 0.0005207493668422103
+   },
+   "text": 0,
+   "weight": 1.0
+  },
+  "S1_r8_fresh_ck1_t1/step": {
+   "after": "314a92187b05bc2e",
+   "before": "3c4579d4aa8db69d",
+   "chain": "S1_r8_fresh_ck1_t1",
+   "client": {
+    "chain_start": "fresh",
+    "from_ckpt": "S1_r8-ck1",
+    "kind": "fresh",
+    "load_bit_identical": true,
+    "model_id": "8886d663-ec03-5cab-a20f-0609eabb4616:train:28"
+   },
+   "exp": "S1",
+   "fb": {
+    "clock_cycle:unique": 7530851.0,
+    "loss:sum": 45.305885314941406
+   },
+   "grad_key": "3c4579d4aa8db69d_t1_w1_O1",
+   "hist": [],
+   "index_in_chain": 0,
+   "note": "",
+   "optim": {},
+   "params": {
+    "beta1": 0.9,
+    "grad_clip_norm": 0.0,
+    "learning_rate": 0.001,
+    "type": "dimuon"
+   },
+   "rank": 8,
+   "stats": {
+    "A_moved": true,
+    "B_moved": true,
+    "dA_fro_max": 0.002219139599676939,
+    "dA_fro_median": 0.002219138867583418,
+    "dA_fro_min": 0.0022191381363642795,
+    "dA_global": 0.027359381234900025,
+    "dA_maxabs": 0.0005628615617752075,
+    "dB_fro_max": 0.0022191391039792065,
+    "dB_fro_median": 0.002219138911639474,
+    "dB_fro_min": 0.0022191387127654867,
+    "dB_global": 0.02735938191341169,
+    "dB_maxabs": 0.000506446897134083
+   },
+   "text": 1,
+   "weight": 1.0
+  },
+  "S1_r8_fresh_ck2_t0/step": {
+   "after": "f1251af1dd0c3ed1",
+   "before": "97ca72c50f509776",
+   "chain": "S1_r8_fresh_ck2_t0",
+   "client": {
+    "chain_start": "fresh",
+    "from_ckpt": "S1_r8-ck2",
+    "kind": "fresh",
+    "load_bit_identical": true,
+    "model_id": "8886d663-ec03-5cab-a20f-0609eabb4616:train:29"
+   },
+   "exp": "S1",
+   "fb": {
+    "clock_cycle:unique": 7201756.0,
+    "loss:sum": 29.27490234375
+   },
+   "grad_key": "97ca72c50f509776_t0_w1_O1",
+   "hist": [],
+   "index_in_chain": 0,
+   "note": "",
+   "optim": {},
+   "params": {
+    "beta1": 0.9,
+    "grad_clip_norm": 0.0,
+    "learning_rate": 0.001,
+    "type": "dimuon"
+   },
+   "rank": 8,
+   "stats": {
+    "A_moved": true,
+    "B_moved": true,
+    "dA_fro_max": 0.0022191399045358366,
+    "dA_fro_median": 0.0022191388873306654,
+    "dA_fro_min": 0.002219137431569119,
+    "dA_global": 0.027359381561478855,
+    "dA_maxabs": 0.0006051976233720779,
+    "dB_fro_max": 0.002219139077069071,
+    "dB_fro_median": 0.002219138897206053,
+    "dB_fro_min": 0.0022191387231138403,
+    "dB_global": 0.027359381802371928,
+    "dB_maxabs": 0.0005059629329480231
+   },
+   "text": 0,
+   "weight": 1.0
+  },
+  "S1_r8_fresh_ck2_t1/step": {
+   "after": "72725d41c2dba8fc",
+   "before": "97ca72c50f509776",
+   "chain": "S1_r8_fresh_ck2_t1",
+   "client": {
+    "chain_start": "fresh",
+    "from_ckpt": "S1_r8-ck2",
+    "kind": "fresh",
+    "load_bit_identical": true,
+    "model_id": "8886d663-ec03-5cab-a20f-0609eabb4616:train:30"
+   },
+   "exp": "S1",
+   "fb": {
+    "clock_cycle:unique": 7530863.0,
+    "loss:sum": 45.28317642211914
+   },
+   "grad_key": "97ca72c50f509776_t1_w1_O1",
+   "hist": [],
+   "index_in_chain": 0,
+   "note": "",
+   "optim": {},
+   "params": {
+    "beta1": 0.9,
+    "grad_clip_norm": 0.0,
+    "learning_rate": 0.001,
+    "type": "dimuon"
+   },
+   "rank": 8,
+   "stats": {
+    "A_moved": true,
+    "B_moved": true,
+    "dA_fro_max": 0.002219140131351618,
+    "dA_fro_median": 0.002219138870987962,
+    "dA_fro_min": 0.0022191379312236637,
+    "dA_global": 0.02735938188922363,
+    "dA_maxabs": 0.0005964282900094986,
+    "dB_fro_max": 0.0022191390888735394,
+    "dB_fro_median": 0.002219138900818039,
+    "dB_fro_min": 0.0022191387270190815,
+    "dB_global": 0.02735938176981657,
+    "dB_maxabs": 0.0004867144807576551
+   },
+   "text": 1,
+   "weight": 1.0
+  },
+  "S2_r8_b0.9/step1": {
+   "after": "3c4579d4aa8db69d",
+   "before": "0ff0b9c991af1568",
+   "chain": "S2_r8_b0.9",
+   "client": {
+    "chain_start": "new",
+    "from_ckpt": null,
+    "kind": "new",
+    "load_bit_identical": null,
+    "model_id": "3cad53af-8c1a-5c26-a0c4-7991a57900c7:train:0"
+   },
+   "exp": "S2",
+   "fb": {
+    "clock_cycle:unique": 7201489.0,
+    "loss:sum": 30.40399169921875
+   },
+   "grad_key": "0ff0b9c991af1568_t0_w1_O1",
+   "hist": [],
+   "index_in_chain": 0,
+   "note": "",
+   "optim": {},
+   "params": {
+    "beta1": 0.9,
+    "grad_clip_norm": 0.0,
+    "learning_rate": 0.001,
+    "type": "dimuon"
+   },
+   "rank": 8,
+   "stats": {
+    "A_moved": false,
+    "B_moved": true,
+    "dA_fro_max": 0.0,
+    "dA_fro_median": 0.0,
+    "dA_fro_min": 0.0,
+    "dA_global": 0.0,
+    "dA_maxabs": 0.0,
+    "dB_fro_max": 0.002219139067574068,
+    "dB_fro_median": 0.002219138908925001,
+    "dB_fro_min": 0.0022191387047979516,
+    "dB_global": 0.027359381879960013,
+    "dB_maxabs": 0.0005317132454365492
+   },
+   "text": 0,
+   "weight": 1.0
+  },
+  "S2_r8_b0.9/step2": {
+   "after": "97ca72c50f509776",
+   "before": "3c4579d4aa8db69d",
+   "chain": "S2_r8_b0.9",
+   "client": {
+    "chain_start": "new",
+    "from_ckpt": null,
+    "kind": "continuing",
+    "load_bit_identical": null,
+    "model_id": "3cad53af-8c1a-5c26-a0c4-7991a57900c7:train:0"
+   },
+   "exp": "S2",
+   "fb": {
+    "clock_cycle:unique": 7201498.0,
+    "loss:sum": 29.581972122192383
+   },
+   "grad_key": "3c4579d4aa8db69d_t0_w1_O1",
+   "hist": [
+    "S2_r8_b0.9/step1"
+   ],
+   "index_in_chain": 1,
+   "note": "",
+   "optim": {},
+   "params": {
+    "beta1": 0.9,
+    "grad_clip_norm": 0.0,
+    "learning_rate": 0.001,
+    "type": "dimuon"
+   },
+   "rank": 8,
+   "stats": {
+    "A_moved": true,
+    "B_moved": true,
+    "dA_fro_max": 0.0022191408850694024,
+    "dA_fro_median": 0.0022191389326290008,
+    "dA_fro_min": 0.0022191379606003483,
+    "dA_global": 0.027359382046182604,
+    "dA_maxabs": 0.0006128745153546333,
+    "dB_fro_max": 0.0022191390958595774,
+    "dB_fro_median": 0.0022191389000287497,
+    "dB_fro_min": 0.002219138721374503,
+    "dB_global": 0.027359381846825133,
+    "dB_maxabs": 0.00021087042841827497
+   },
+   "text": 0,
+   "weight": 1.0
+  },
+  "S2_r8_b0.9/step3": {
+   "after": "7f0a061acd28d484",
+   "before": "97ca72c50f509776",
+   "chain": "S2_r8_b0.9",
+   "client": {
+    "chain_start": "new",
+    "from_ckpt": null,
+    "kind": "continuing",
+    "load_bit_identical": null,
+    "model_id": "3cad53af-8c1a-5c26-a0c4-7991a57900c7:train:0"
+   },
+   "exp": "S2",
+   "fb": {
+    "clock_cycle:unique": 7201507.0,
+    "loss:sum": 45.28317642211914
+   },
+   "grad_key": "97ca72c50f509776_t1_w1_O1",
+   "hist": [
+    "S2_r8_b0.9/step1",
+    "S2_r8_b0.9/step2"
+   ],
+   "index_in_chain": 2,
+   "note": "",
+   "optim": {},
+   "params": {
+    "beta1": 0.9,
+    "grad_clip_norm": 0.0,
+    "learning_rate": 0.001,
+    "type": "dimuon"
+   },
+   "rank": 8,
+   "stats": {
+    "A_moved": true,
+    "B_moved": true,
+    "dA_fro_max": 0.0022191396263180592,
+    "dA_fro_median": 0.002219138848082034,
+    "dA_fro_min": 0.0022191382732183844,
+    "dA_global": 0.02735938141717481,
+    "dA_maxabs": 0.0004684061277657747,
+    "dB_fro_max": 0.0022191390639196996,
+    "dB_fro_median": 0.0022191389053435586,
+    "dB_fro_min": 0.0022191387252368184,
+    "dB_global": 0.02735938184596955,
+    "dB_maxabs": 0.0007192191060028108
+   },
+   "text": 1,
+   "weight": 1.0
+  },
+  "S2_r8_b0.9/step4": {
+   "after": "0006c0df4d43400a",
+   "before": "7f0a061acd28d484",
+   "chain": "S2_r8_b0.9",
+   "client": {
+    "chain_start": "new",
+    "from_ckpt": null,
+    "kind": "continuing",
+    "load_bit_identical": null,
+    "model_id": "3cad53af-8c1a-5c26-a0c4-7991a57900c7:train:0"
+   },
+   "exp": "S2",
+   "fb": {
+    "clock_cycle:unique": 7201516.0,
+    "loss:sum": 14.281699180603027
+   },
+   "grad_key": "7f0a061acd28d484_t2_w1_O1",
+   "hist": [
+    "S2_r8_b0.9/step1",
+    "S2_r8_b0.9/step2",
+    "S2_r8_b0.9/step3"
+   ],
+   "index_in_chain": 3,
+   "note": "",
+   "optim": {},
+   "params": {
+    "beta1": 0.9,
+    "grad_clip_norm": 0.0,
+    "learning_rate": 0.001,
+    "type": "dimuon"
+   },
+   "rank": 8,
+   "stats": {
+    "A_moved": true,
+    "B_moved": true,
+    "dA_fro_max": 0.0022191394783059332,
+    "dA_fro_median": 0.0022191388796920434,
+    "dA_fro_min": 0.0022191381500910982,
+    "dA_global": 0.027359381486689364,
+    "dA_maxabs": 0.0005778237245976925,
+    "dB_fro_max": 0.0022191391061337083,
+    "dB_fro_median": 0.002219138920205545,
+    "dB_fro_min": 0.0022191387301939043,
+    "dB_global": 0.027359382032953662,
+    "dB_maxabs": 0.0007973222272994462
+   },
+   "text": 2,
+   "weight": 1.0
+  },
+  "S2_r8_b0.9/step5": {
+   "after": "4be8af779dae8d28",
+   "before": "0006c0df4d43400a",
+   "chain": "S2_r8_b0.9",
+   "client": {
+    "chain_start": "new",
+    "from_ckpt": null,
+    "kind": "continuing",
+    "load_bit_identical": null,
+    "model_id": "3cad53af-8c1a-5c26-a0c4-7991a57900c7:train:0"
+   },
+   "exp": "S2",
+   "fb": {
+    "clock_cycle:unique": 7201524.0,
+    "loss:sum": 28.070404052734375
+   },
+   "grad_key": "0006c0df4d43400a_t0_w1_O1",
+   "hist": [
+    "S2_r8_b0.9/step1",
+    "S2_r8_b0.9/step2",
+    "S2_r8_b0.9/step3",
+    "S2_r8_b0.9/step4"
+   ],
+   "index_in_chain": 4,
+   "note": "",
+   "optim": {},
+   "params": {
+    "beta1": 0.9,
+    "grad_clip_norm": 0.0,
+    "learning_rate": 0.001,
+    "type": "dimuon"
+   },
+   "rank": 8,
+   "stats": {
+    "A_moved": true,
+    "B_moved": true,
+    "dA_fro_max": 0.0022191397917774953,
+    "dA_fro_median": 0.0022191388795111,
+    "dA_fro_min": 0.0022191381784616004,
+    "dA_global": 0.027359381700278157,
+    "dA_maxabs": 0.00018471130169928074,
+    "dB_fro_max": 0.0022191390625369727,
+    "dB_fro_median": 0.002219138893397671,
+    "dB_fro_min": 0.0022191387309999787,
+    "dB_global": 0.027359381772919758,
+    "dB_maxabs": 0.00023478461662307382
+   },
+   "text": 0,
+   "weight": 1.0
+  },
+  "S2_r8_b0.9/step6": {
+   "after": "ed0706a30b944ebe",
+   "before": "4be8af779dae8d28",
+   "chain": "S2_r8_b0.9",
+   "client": {
+    "chain_start": "new",
+    "from_ckpt": null,
+    "kind": "continuing",
+    "load_bit_identical": null,
+    "model_id": "3cad53af-8c1a-5c26-a0c4-7991a57900c7:train:0"
+   },
+   "exp": "S2",
+   "fb": {
+    "clock_cycle:unique": 7201534.0,
+    "loss:sum": 44.36457824707031
+   },
+   "grad_key": "4be8af779dae8d28_t1_w1_O1",
+   "hist": [
+    "S2_r8_b0.9/step1",
+    "S2_r8_b0.9/step2",
+    "S2_r8_b0.9/step3",
+    "S2_r8_b0.9/step4",
+    "S2_r8_b0.9/step5"
+   ],
+   "index_in_chain": 5,
+   "note": "",
+   "optim": {},
+   "params": {
+    "beta1": 0.9,
+    "grad_clip_norm": 0.0,
+    "learning_rate": 0.001,
+    "type": "dimuon"
+   },
+   "rank": 8,
+   "stats": {
+    "A_moved": true,
+    "B_moved": true,
+    "dA_fro_max": 0.002219139582492042,
+    "dA_fro_median": 0.002219138901144788,
+    "dA_fro_min": 0.002219138294856654,
+    "dA_global": 0.027359381566289566,
+    "dA_maxabs": 0.0004425402730703354,
+    "dB_fro_max": 0.0022191390787768225,
+    "dB_fro_median": 0.0022191388993312695,
+    "dB_fro_min": 0.0022191387302128995,
+    "dB_global": 0.02735938185063169,
+    "dB_maxabs": 0.00020436890190467238
+   },
+   "text": 1,
+   "weight": 1.0
+  },
+  "S3_r8_b0.9/step4": {
+   "after": "0006c0df4d43400a",
+   "before": "7f0a061acd28d484",
+   "chain": "S3_r8_b0.9",
+   "client": {
+    "chain_start": "opt",
+    "from_ckpt": "S2_r8_b0.9-ck3",
+    "kind": "opt",
+    "load_bit_identical": true,
+    "model_id": "8886d663-ec03-5cab-a20f-0609eabb4616:train:7"
+   },
+   "exp": "S3",
+   "fb": {
+    "clock_cycle:unique": 7530631.0,
+    "loss:sum": 14.281699180603027
+   },
+   "grad_key": "7f0a061acd28d484_t2_w1_O1",
+   "hist": [
+    "S2_r8_b0.9/step1",
+    "S2_r8_b0.9/step2",
+    "S2_r8_b0.9/step3"
+   ],
+   "index_in_chain": 0,
+   "note": "",
+   "optim": {},
+   "params": {
+    "beta1": 0.9,
+    "grad_clip_norm": 0.0,
+    "learning_rate": 0.001,
+    "type": "dimuon"
+   },
+   "rank": 8,
+   "stats": {
+    "A_moved": true,
+    "B_moved": true,
+    "dA_fro_max": 0.0022191394783059332,
+    "dA_fro_median": 0.0022191388796920434,
+    "dA_fro_min": 0.0022191381500910982,
+    "dA_global": 0.027359381486689364,
+    "dA_maxabs": 0.0005778237245976925,
+    "dB_fro_max": 0.0022191391061337083,
+    "dB_fro_median": 0.002219138920205545,
+    "dB_fro_min": 0.0022191387301939043,
+    "dB_global": 0.027359382032953662,
+    "dB_maxabs": 0.0007973222272994462
+   },
+   "text": 2,
+   "weight": 1.0
+  },
+  "S3_r8_b0.99/step4": {
+   "after": "77f3cf050caf2fa3",
+   "before": "7f0a061acd28d484",
+   "chain": "S3_r8_b0.99",
+   "client": {
+    "chain_start": "opt",
+    "from_ckpt": "S2_r8_b0.9-ck3",
+    "kind": "opt",
+    "load_bit_identical": true,
+    "model_id": "8886d663-ec03-5cab-a20f-0609eabb4616:train:6"
+   },
+   "exp": "S3",
+   "fb": {
+    "clock_cycle:unique": 7201641.0,
+    "loss:sum": 14.281699180603027
+   },
+   "grad_key": "7f0a061acd28d484_t2_w1_O1",
+   "hist": [
+    "S2_r8_b0.9/step1",
+    "S2_r8_b0.9/step2",
+    "S2_r8_b0.9/step3"
+   ],
+   "index_in_chain": 0,
+   "note": "",
+   "optim": {},
+   "params": {
+    "beta1": 0.99,
+    "grad_clip_norm": 0.0,
+    "learning_rate": 0.001,
+    "type": "dimuon"
+   },
+   "rank": 8,
+   "stats": {
+    "A_moved": true,
+    "B_moved": true,
+    "dA_fro_max": 0.0022191396591175823,
+    "dA_fro_median": 0.002219138944950483,
+    "dA_fro_min": 0.002219138089298134,
+    "dA_global": 0.027359382229046547,
+    "dA_maxabs": 0.0001464241649955511,
+    "dB_fro_max": 0.0022191390534269874,
+    "dB_fro_median": 0.0022191388935609725,
+    "dB_fro_min": 0.002219138755106994,
+    "dB_global": 0.027359381775709013,
+    "dB_maxabs": 0.0002413871488897712
+   },
+   "text": 2,
+   "weight": 1.0
+  },
+  "S3_r8_b0/step4": {
+   "after": "bca1d4396d28890f",
+   "before": "7f0a061acd28d484",
+   "chain": "S3_r8_b0",
+   "client": {
+    "chain_start": "opt",
+    "from_ckpt": "S2_r8_b0.9-ck3",
+    "kind": "opt",
+    "load_bit_identical": true,
+    "model_id": "8886d663-ec03-5cab-a20f-0609eabb4616:train:5"
+   },
+   "exp": "S3",
+   "fb": {
+    "clock_cycle:unique": 7530607.0,
+    "loss:sum": 14.281699180603027
+   },
+   "grad_key": "7f0a061acd28d484_t2_w1_O1",
+   "hist": [
+    "S2_r8_b0.9/step1",
+    "S2_r8_b0.9/step2",
+    "S2_r8_b0.9/step3"
+   ],
+   "index_in_chain": 0,
+   "note": "",
+   "optim": {},
+   "params": {
+    "beta1": 0.0,
+    "grad_clip_norm": 0.0,
+    "learning_rate": 0.001,
+    "type": "dimuon"
+   },
+   "rank": 8,
+   "stats": {
+    "A_moved": true,
+    "B_moved": true,
+    "dA_fro_max": 0.0022191396383769925,
+    "dA_fro_median": 0.002219138863815204,
+    "dA_fro_min": 0.002219137998711893,
+    "dA_global": 0.027359381632887647,
+    "dA_maxabs": 0.0006855581887066364,
+    "dB_fro_max": 0.0022191390247503838,
+    "dB_fro_median": 0.00221913888610124,
+    "dB_fro_min": 0.002219138713673366,
+    "dB_global": 0.027359381698696617,
+    "dB_maxabs": 0.0007628365747223143
+   },
+   "text": 2,
+   "weight": 1.0
+  },
+  "S4_r32_cont/step1": {
+   "after": "6cc8b409a77d1336",
+   "before": "5ca507c22b88b77d",
+   "chain": "S4_r32_cont",
+   "client": {
+    "chain_start": "new",
+    "from_ckpt": null,
+    "kind": "new",
+    "load_bit_identical": null,
+    "model_id": "8886d663-ec03-5cab-a20f-0609eabb4616:train:18"
+   },
+   "exp": "S4",
+   "fb": {
+    "clock_cycle:unique": 7201686.0,
+    "loss:sum": 30.40399169921875
+   },
+   "grad_key": "5ca507c22b88b77d_t0_w1_O1",
+   "hist": [],
+   "index_in_chain": 0,
+   "note": "",
+   "optim": {},
+   "params": {
+    "beta1": 0.9,
+    "grad_clip_norm": 0.0,
+    "learning_rate": 0.001,
+    "type": "dimuon"
+   },
+   "rank": 32,
+   "stats": {
+    "A_moved": false,
+    "B_moved": true,
+    "dA_fro_max": 0.0,
+    "dA_fro_median": 0.0,
+    "dA_fro_min": 0.0,
+    "dA_global": 0.0,
+    "dA_maxabs": 0.0,
+    "dB_fro_max": 0.005656854676062703,
+    "dB_fro_median": 0.005656854264183844,
+    "dB_fro_min": 0.005656853734591965,
+    "dB_global": 0.06974238322564638,
+    "dB_maxabs": 0.0006848868797533214
+   },
+   "text": 0,
+   "weight": 1.0
+  },
+  "S4_r32_cont/step2": {
+   "after": "fc9de2900c1b86e5",
+   "before": "6cc8b409a77d1336",
+   "chain": "S4_r32_cont",
+   "client": {
+    "chain_start": "new",
+    "from_ckpt": null,
+    "kind": "continuing",
+    "load_bit_identical": null,
+    "model_id": "8886d663-ec03-5cab-a20f-0609eabb4616:train:18"
+   },
+   "exp": "S4",
+   "fb": {
+    "clock_cycle:unique": 7201692.0,
+    "loss:sum": 29.78960418701172
+   },
+   "grad_key": "6cc8b409a77d1336_t0_w1_O1",
+   "hist": [
+    "S4_r32_cont/step1"
+   ],
+   "index_in_chain": 1,
+   "note": "",
+   "optim": {},
+   "params": {
+    "beta1": 0.9,
+    "grad_clip_norm": 0.0,
+    "learning_rate": 0.001,
+    "type": "dimuon"
+   },
+   "rank": 32,
+   "stats": {
+    "A_moved": true,
+    "B_moved": true,
+    "dA_fro_max": 0.005656855254248226,
+    "dA_fro_median": 0.00565685426056765,
+    "dA_fro_min": 0.005656852352304371,
+    "dA_global": 0.06974238349563334,
+    "dA_maxabs": 0.0007178615778684616,
+    "dB_fro_max": 0.005656854698824443,
+    "dB_fro_median": 0.0056568542496648645,
+    "dB_fro_min": 0.005656853815075725,
+    "dB_global": 0.06974238304990618,
+    "dB_maxabs": 0.0006818817055318505
+   },
+   "text": 0,
+   "weight": 1.0
+  },
+  "S4_r32_cont/zero1": {
+   "after": "b752aa9a91fe11b5",
+   "before": "fc9de2900c1b86e5",
+   "chain": "S4_r32_cont",
+   "client": {
+    "chain_start": "new",
+    "from_ckpt": null,
+    "kind": "continuing",
+    "load_bit_identical": null,
+    "model_id": "8886d663-ec03-5cab-a20f-0609eabb4616:train:18"
+   },
+   "exp": "S4",
+   "fb": {
+    "clock_cycle:unique": 7201701.0,
+    "loss:sum": 0.0
+   },
+   "grad_key": "fc9de2900c1b86e5_t0_w0_O1",
+   "hist": [
+    "S4_r32_cont/step1",
+    "S4_r32_cont/step2"
+   ],
+   "index_in_chain": 2,
+   "note": "zero-gradient",
+   "optim": {},
+   "params": {
+    "beta1": 0.9,
+    "grad_clip_norm": 0.0,
+    "learning_rate": 0.001,
+    "type": "dimuon"
+   },
+   "rank": 32,
+   "stats": {
+    "A_moved": true,
+    "B_moved": true,
+    "dA_fro_max": 0.00565685499362097,
+    "dA_fro_median": 0.0056568542527326866,
+    "dA_fro_min": 0.005656853428368982,
+    "dA_global": 0.06974238326397324,
+    "dA_maxabs": 0.00046320073306560516,
+    "dB_fro_max": 0.005656854839968452,
+    "dB_fro_median": 0.005656854231551839,
+    "dB_fro_min": 0.005656853809372569,
+    "dB_global": 0.06974238292845986,
+    "dB_maxabs": 0.0005715262377634645
+   },
+   "text": 0,
+   "weight": 0.0
+  },
+  "S4_r32_cont/zero2": {
+   "after": "f94fd52e887f9109",
+   "before": "b752aa9a91fe11b5",
+   "chain": "S4_r32_cont",
+   "client": {
+    "chain_start": "new",
+    "from_ckpt": null,
+    "kind": "continuing",
+    "load_bit_identical": null,
+    "model_id": "8886d663-ec03-5cab-a20f-0609eabb4616:train:18"
+   },
+   "exp": "S4",
+   "fb": {
+    "clock_cycle:unique": 7201710.0,
+    "loss:sum": 0.0
+   },
+   "grad_key": "b752aa9a91fe11b5_t0_w0_O1",
+   "hist": [
+    "S4_r32_cont/step1",
+    "S4_r32_cont/step2",
+    "S4_r32_cont/zero1"
+   ],
+   "index_in_chain": 3,
+   "note": "zero-gradient",
+   "optim": {},
+   "params": {
+    "beta1": 0.9,
+    "grad_clip_norm": 0.0,
+    "learning_rate": 0.001,
+    "type": "dimuon"
+   },
+   "rank": 32,
+   "stats": {
+    "A_moved": true,
+    "B_moved": true,
+    "dA_fro_max": 0.005656855155314052,
+    "dA_fro_median": 0.005656854275544777,
+    "dA_fro_min": 0.005656853438326074,
+    "dA_global": 0.06974238326756883,
+    "dA_maxabs": 0.00046164263039827347,
+    "dB_fro_max": 0.0056568547290692306,
+    "dB_fro_median": 0.005656854246231873,
+    "dB_fro_min": 0.0056568538686941035,
+    "dB_global": 0.06974238333225154,
+    "dB_maxabs": 0.0005664562340825796
+   },
+   "text": 0,
+   "weight": 0.0
+  },
+  "S4_r32_cont/zero3": {
+   "after": "7e40d09bdbe8cad5",
+   "before": "f94fd52e887f9109",
+   "chain": "S4_r32_cont",
+   "client": {
+    "chain_start": "new",
+    "from_ckpt": null,
+    "kind": "continuing",
+    "load_bit_identical": null,
+    "model_id": "8886d663-ec03-5cab-a20f-0609eabb4616:train:18"
+   },
+   "exp": "S4",
+   "fb": {
+    "clock_cycle:unique": 7201718.0,
+    "loss:sum": 0.0
+   },
+   "grad_key": "f94fd52e887f9109_t0_w0_O1",
+   "hist": [
+    "S4_r32_cont/step1",
+    "S4_r32_cont/step2",
+    "S4_r32_cont/zero1",
+    "S4_r32_cont/zero2"
+   ],
+   "index_in_chain": 4,
+   "note": "zero-gradient",
+   "optim": {},
+   "params": {
+    "beta1": 0.9,
+    "grad_clip_norm": 0.0,
+    "learning_rate": 0.001,
+    "type": "dimuon"
+   },
+   "rank": 32,
+   "stats": {
+    "A_moved": true,
+    "B_moved": true,
+    "dA_fro_max": 0.005656855199015368,
+    "dA_fro_median": 0.005656854248213402,
+    "dA_fro_min": 0.005656853249773992,
+    "dA_global": 0.06974238329315138,
+    "dA_maxabs": 0.0004512006416916847,
+    "dB_fro_max": 0.00565685475894689,
+    "dB_fro_median": 0.005656854253187173,
+    "dB_fro_min": 0.005656853841729305,
+    "dB_global": 0.06974238307178332,
+    "dB_maxabs": 0.0005642380565404892
+   },
+   "text": 0,
+   "weight": 0.0
+  },
+  "S4_r8_b0_cont/step1": {
+   "after": "106c9230ae2b70a9",
+   "before": "0ff0b9c991af1568",
+   "chain": "S4_r8_b0_cont",
+   "client": {
+    "chain_start": "new",
+    "from_ckpt": null,
+    "kind": "new",
+    "load_bit_identical": null,
+    "model_id": "8886d663-ec03-5cab-a20f-0609eabb4616:train:19"
+   },
+   "exp": "S4",
+   "fb": {
+    "clock_cycle:unique": 7201689.0,
+    "loss:sum": 30.40399169921875
+   },
+   "grad_key": "0ff0b9c991af1568_t0_w1_O1",
+   "hist": [],
+   "index_in_chain": 0,
+   "note": "",
+   "optim": {},
+   "params": {
+    "beta1": 0.0,
+    "grad_clip_norm": 0.0,
+    "learning_rate": 0.001,
+    "type": "dimuon"
+   },
+   "rank": 8,
+   "stats": {
+    "A_moved": false,
+    "B_moved": true,
+    "dA_fro_max": 0.0,
+    "dA_fro_median": 0.0,
+    "dA_fro_min": 0.0,
+    "dA_global": 0.0,
+    "dA_maxabs": 0.0,
+    "dB_fro_max": 0.002219139067574068,
+    "dB_fro_median": 0.002219138908925001,
+    "dB_fro_min": 0.0022191387047979516,
+    "dB_global": 0.02735938188054175,
+    "dB_maxabs": 0.0005317132454365492
+   },
+   "text": 0,
+   "weight": 1.0
+  },
+  "S4_r8_b0_cont/step2": {
+   "after": "1ff16ab5e5267d3f",
+   "before": "106c9230ae2b70a9",
+   "chain": "S4_r8_b0_cont",
+   "client": {
+    "chain_start": "new",
+    "from_ckpt": null,
+    "kind": "continuing",
+    "load_bit_identical": null,
+    "model_id": "8886d663-ec03-5cab-a20f-0609eabb4616:train:19"
+   },
+   "exp": "S4",
+   "fb": {
+    "clock_cycle:unique": 7201698.0,
+    "loss:sum": 29.581972122192383
+   },
+   "grad_key": "106c9230ae2b70a9_t0_w1_O1",
+   "hist": [
+    "S4_r8_b0_cont/step1"
+   ],
+   "index_in_chain": 1,
+   "note": "",
+   "optim": {},
+   "params": {
+    "beta1": 0.0,
+    "grad_clip_norm": 0.0,
+    "learning_rate": 0.001,
+    "type": "dimuon"
+   },
+   "rank": 8,
+   "stats": {
+    "A_moved": true,
+    "B_moved": true,
+    "dA_fro_max": 0.0022191408850694024,
+    "dA_fro_median": 0.0022191389326290008,
+    "dA_fro_min": 0.0022191379606003483,
+    "dA_global": 0.027359382022535312,
+    "dA_maxabs": 0.0006128745153546333,
+    "dB_fro_max": 0.002219139060365173,
+    "dB_fro_median": 0.0022191388981592274,
+    "dB_fro_min": 0.002219138705161479,
+    "dB_global": 0.02735938177239721,
+    "dB_maxabs": 0.0002227488366770558
+   },
+   "text": 0,
+   "weight": 1.0
+  },
+  "S4_r8_b0_cont/zero1": {
+   "after": "1ff16ab5e5267d3f",
+   "before": "1ff16ab5e5267d3f",
+   "chain": "S4_r8_b0_cont",
+   "client": {
+    "chain_start": "new",
+    "from_ckpt": null,
+    "kind": "continuing",
+    "load_bit_identical": null,
+    "model_id": "8886d663-ec03-5cab-a20f-0609eabb4616:train:19"
+   },
+   "exp": "S4",
+   "fb": {
+    "clock_cycle:unique": 7201707.0,
+    "loss:sum": 0.0
+   },
+   "grad_key": "1ff16ab5e5267d3f_t0_w0_O1",
+   "hist": [
+    "S4_r8_b0_cont/step1",
+    "S4_r8_b0_cont/step2"
+   ],
+   "index_in_chain": 2,
+   "note": "zero-gradient",
+   "optim": {},
+   "params": {
+    "beta1": 0.0,
+    "grad_clip_norm": 0.0,
+    "learning_rate": 0.001,
+    "type": "dimuon"
+   },
+   "rank": 8,
+   "stats": {
+    "A_moved": false,
+    "B_moved": false,
+    "dA_fro_max": 0.0,
+    "dA_fro_median": 0.0,
+    "dA_fro_min": 0.0,
+    "dA_global": 0.0,
+    "dA_maxabs": 0.0,
+    "dB_fro_max": 0.0,
+    "dB_fro_median": 0.0,
+    "dB_fro_min": 0.0,
+    "dB_global": 0.0,
+    "dB_maxabs": 0.0
+   },
+   "text": 0,
+   "weight": 0.0
+  },
+  "S4_r8_cont/step1": {
+   "after": "3c4579d4aa8db69d",
+   "before": "0ff0b9c991af1568",
+   "chain": "S4_r8_cont",
+   "client": {
+    "chain_start": "new",
+    "from_ckpt": null,
+    "kind": "new",
+    "load_bit_identical": null,
+    "model_id": "8886d663-ec03-5cab-a20f-0609eabb4616:train:17"
+   },
+   "exp": "S4",
+   "fb": {
+    "clock_cycle:unique": 7530689.0,
+    "loss:sum": 30.40399169921875
+   },
+   "grad_key": "0ff0b9c991af1568_t0_w1_O1",
+   "hist": [],
+   "index_in_chain": 0,
+   "note": "",
+   "optim": {},
+   "params": {
+    "beta1": 0.9,
+    "grad_clip_norm": 0.0,
+    "learning_rate": 0.001,
+    "type": "dimuon"
+   },
+   "rank": 8,
+   "stats": {
+    "A_moved": false,
+    "B_moved": true,
+    "dA_fro_max": 0.0,
+    "dA_fro_median": 0.0,
+    "dA_fro_min": 0.0,
+    "dA_global": 0.0,
+    "dA_maxabs": 0.0,
+    "dB_fro_max": 0.002219139067574068,
+    "dB_fro_median": 0.002219138908925001,
+    "dB_fro_min": 0.0022191387047979516,
+    "dB_global": 0.027359381879960013,
+    "dB_maxabs": 0.0005317132454365492
+   },
+   "text": 0,
+   "weight": 1.0
+  },
+  "S4_r8_cont/step2": {
+   "after": "97ca72c50f509776",
+   "before": "3c4579d4aa8db69d",
+   "chain": "S4_r8_cont",
+   "client": {
+    "chain_start": "new",
+    "from_ckpt": null,
+    "kind": "continuing",
+    "load_bit_identical": null,
+    "model_id": "8886d663-ec03-5cab-a20f-0609eabb4616:train:17"
+   },
+   "exp": "S4",
+   "fb": {
+    "clock_cycle:unique": 7530699.0,
+    "loss:sum": 29.581972122192383
+   },
+   "grad_key": "3c4579d4aa8db69d_t0_w1_O1",
+   "hist": [
+    "S4_r8_cont/step1"
+   ],
+   "index_in_chain": 1,
+   "note": "",
+   "optim": {},
+   "params": {
+    "beta1": 0.9,
+    "grad_clip_norm": 0.0,
+    "learning_rate": 0.001,
+    "type": "dimuon"
+   },
+   "rank": 8,
+   "stats": {
+    "A_moved": true,
+    "B_moved": true,
+    "dA_fro_max": 0.0022191408850694024,
+    "dA_fro_median": 0.0022191389326290008,
+    "dA_fro_min": 0.0022191379606003483,
+    "dA_global": 0.027359382046182604,
+    "dA_maxabs": 0.0006128745153546333,
+    "dB_fro_max": 0.0022191390958595774,
+    "dB_fro_median": 0.0022191389000287497,
+    "dB_fro_min": 0.002219138721374503,
+    "dB_global": 0.027359381846825133,
+    "dB_maxabs": 0.00021087042841827497
+   },
+   "text": 0,
+   "weight": 1.0
+  },
+  "S4_r8_cont/zero1": {
+   "after": "8284b7ee4092889d",
+   "before": "97ca72c50f509776",
+   "chain": "S4_r8_cont",
+   "client": {
+    "chain_start": "new",
+    "from_ckpt": null,
+    "kind": "continuing",
+    "load_bit_identical": null,
+    "model_id": "8886d663-ec03-5cab-a20f-0609eabb4616:train:17"
+   },
+   "exp": "S4",
+   "fb": {
+    "clock_cycle:unique": 7530710.0,
+    "loss:sum": 0.0
+   },
+   "grad_key": "97ca72c50f509776_t0_w0_O1",
+   "hist": [
+    "S4_r8_cont/step1",
+    "S4_r8_cont/step2"
+   ],
+   "index_in_chain": 2,
+   "note": "zero-gradient",
+   "optim": {},
+   "params": {
+    "beta1": 0.9,
+    "grad_clip_norm": 0.0,
+    "learning_rate": 0.001,
+    "type": "dimuon"
+   },
+   "rank": 8,
+   "stats": {
+    "A_moved": true,
+    "B_moved": true,
+    "dA_fro_max": 0.0022191396839296444,
+    "dA_fro_median": 0.002219138890306088,
+    "dA_fro_min": 0.0022191381369271635,
+    "dA_global": 0.027359381869934727,
+    "dA_maxabs": 0.00021502003073692322,
+    "dB_fro_max": 0.0022191390828874102,
+    "dB_fro_median": 0.0022191389002023465,
+    "dB_fro_min": 0.002219138665681355,
+    "dB_global": 0.027359381802869898,
+    "dB_maxabs": 0.00023604079615324736
+   },
+   "text": 0,
+   "weight": 0.0
+  },
+  "S4_r8_cont/zero2": {
+   "after": "c27761876885dac4",
+   "before": "8284b7ee4092889d",
+   "chain": "S4_r8_cont",
+   "client": {
+    "chain_start": "new",
+    "from_ckpt": null,
+    "kind": "continuing",
+    "load_bit_identical": null,
+    "model_id": "8886d663-ec03-5cab-a20f-0609eabb4616:train:17"
+   },
+   "exp": "S4",
+   "fb": {
+    "clock_cycle:unique": 7530721.0,
+    "loss:sum": 0.0
+   },
+   "grad_key": "8284b7ee4092889d_t0_w0_O1",
+   "hist": [
+    "S4_r8_cont/step1",
+    "S4_r8_cont/step2",
+    "S4_r8_cont/zero1"
+   ],
+   "index_in_chain": 3,
+   "note": "zero-gradient",
+   "optim": {},
+   "params": {
+    "beta1": 0.9,
+    "grad_clip_norm": 0.0,
+    "learning_rate": 0.001,
+    "type": "dimuon"
+   },
+   "rank": 8,
+   "stats": {
+    "A_moved": true,
+    "B_moved": true,
+    "dA_fro_max": 0.0022191396941251026,
+    "dA_fro_median": 0.0022191389122918504,
+    "dA_fro_min": 0.0022191379975352067,
+    "dA_global": 0.0273593820356991,
+    "dA_maxabs": 0.00021489080972969532,
+    "dB_fro_max": 0.0022191390639049765,
+    "dB_fro_median": 0.0022191388921369275,
+    "dB_fro_min": 0.002219138742920236,
+    "dB_global": 0.027359381789748814,
+    "dB_maxabs": 0.00023703038459643722
+   },
+   "text": 0,
+   "weight": 0.0
+  },
+  "S4_r8_cont/zero3": {
+   "after": "560b260c8032df9e",
+   "before": "c27761876885dac4",
+   "chain": "S4_r8_cont",
+   "client": {
+    "chain_start": "new",
+    "from_ckpt": null,
+    "kind": "continuing",
+    "load_bit_identical": null,
+    "model_id": "8886d663-ec03-5cab-a20f-0609eabb4616:train:17"
+   },
+   "exp": "S4",
+   "fb": {
+    "clock_cycle:unique": 7530735.0,
+    "loss:sum": 0.0
+   },
+   "grad_key": "c27761876885dac4_t0_w0_O1",
+   "hist": [
+    "S4_r8_cont/step1",
+    "S4_r8_cont/step2",
+    "S4_r8_cont/zero1",
+    "S4_r8_cont/zero2"
+   ],
+   "index_in_chain": 4,
+   "note": "zero-gradient",
+   "optim": {},
+   "params": {
+    "beta1": 0.9,
+    "grad_clip_norm": 0.0,
+    "learning_rate": 0.001,
+    "type": "dimuon"
+   },
+   "rank": 8,
+   "stats": {
+    "A_moved": true,
+    "B_moved": true,
+    "dA_fro_max": 0.0022191399658231248,
+    "dA_fro_median": 0.0022191388965063603,
+    "dA_fro_min": 0.002219137866661132,
+    "dA_global": 0.02735938174813674,
+    "dA_maxabs": 0.00021463329903781414,
+    "dB_fro_max": 0.002219139119126807,
+    "dB_fro_median": 0.0022191388970435244,
+    "dB_fro_min": 0.002219138723814932,
+    "dB_global": 0.027359381799451687,
+    "dB_maxabs": 0.0002368829445913434
+   },
+   "text": 0,
+   "weight": 0.0
+  },
+  "S4_r8_fresh_ck2/zero1": {
+   "after": "97ca72c50f509776",
+   "before": "97ca72c50f509776",
+   "chain": "S4_r8_fresh_ck2",
+   "client": {
+    "chain_start": "fresh",
+    "from_ckpt": "S2_r8_b0.9-ck2",
+    "kind": "fresh",
+    "load_bit_identical": true,
+    "model_id": "8886d663-ec03-5cab-a20f-0609eabb4616:train:8"
+   },
+   "exp": "S4",
+   "fb": {
+    "clock_cycle:unique": 7201649.0,
+    "loss:sum": 0.0
+   },
+   "grad_key": "97ca72c50f509776_t0_w0_O1",
+   "hist": [],
+   "index_in_chain": 0,
+   "note": "zero-gradient",
+   "optim": {},
+   "params": {
+    "beta1": 0.9,
+    "grad_clip_norm": 0.0,
+    "learning_rate": 0.001,
+    "type": "dimuon"
+   },
+   "rank": 8,
+   "stats": {
+    "A_moved": false,
+    "B_moved": false,
+    "dA_fro_max": 0.0,
+    "dA_fro_median": 0.0,
+    "dA_fro_min": 0.0,
+    "dA_global": 0.0,
+    "dA_maxabs": 0.0,
+    "dB_fro_max": 0.0,
+    "dB_fro_median": 0.0,
+    "dB_fro_min": 0.0,
+    "dB_global": 0.0,
+    "dB_maxabs": 0.0
+   },
+   "text": 0,
+   "weight": 0.0
+  },
+  "S5_step1_c0.01/step1": {
+   "after": "3c4579d4aa8db69d",
+   "before": "0ff0b9c991af1568",
+   "chain": "S5_step1_c0.01",
+   "client": {
+    "chain_start": "new",
+    "from_ckpt": null,
+    "kind": "new",
+    "load_bit_identical": null,
+    "model_id": "8886d663-ec03-5cab-a20f-0609eabb4616:train:16"
+   },
+   "exp": "S5",
+   "fb": {
+    "clock_cycle:unique": 7201676.0,
+    "loss:sum": 30.40399169921875
+   },
+   "grad_key": "0ff0b9c991af1568_t0_w1_O1",
+   "hist": [],
+   "index_in_chain": 0,
+   "note": "clip 0.01 x N0=284.1868322193259",
+   "optim": {},
+   "params": {
+    "beta1": 0.9,
+    "grad_clip_norm": 2.841868322193259,
+    "learning_rate": 0.001,
+    "type": "dimuon"
+   },
+   "rank": 8,
+   "stats": {
+    "A_moved": false,
+    "B_moved": true,
+    "dA_fro_max": 0.0,
+    "dA_fro_median": 0.0,
+    "dA_fro_min": 0.0,
+    "dA_global": 0.0,
+    "dA_maxabs": 0.0,
+    "dB_fro_max": 0.002219139067574068,
+    "dB_fro_median": 0.002219138908925001,
+    "dB_fro_min": 0.0022191387047979516,
+    "dB_global": 0.027359381879960013,
+    "dB_maxabs": 0.0005317132454365492
+   },
+   "text": 0,
+   "weight": 1.0
+  },
+  "S5_step1_c0.5/step1": {
+   "after": "68ab421230771d77",
+   "before": "0ff0b9c991af1568",
+   "chain": "S5_step1_c0.5",
+   "client": {
+    "chain_start": "new",
+    "from_ckpt": null,
+    "kind": "new",
+    "load_bit_identical": null,
+    "model_id": "8886d663-ec03-5cab-a20f-0609eabb4616:train:15"
+   },
+   "exp": "S5",
+   "fb": {
+    "clock_cycle:unique": 7530688.0,
+    "loss:sum": 30.40399169921875
+   },
+   "grad_key": "0ff0b9c991af1568_t0_w1_O1",
+   "hist": [],
+   "index_in_chain": 0,
+   "note": "clip 0.5 x N0=284.1868322193259",
+   "optim": {},
+   "params": {
+    "beta1": 0.9,
+    "grad_clip_norm": 142.09341610966294,
+    "learning_rate": 0.001,
+    "type": "dimuon"
+   },
+   "rank": 8,
+   "stats": {
+    "A_moved": false,
+    "B_moved": true,
+    "dA_fro_max": 0.0,
+    "dA_fro_median": 0.0,
+    "dA_fro_min": 0.0,
+    "dA_global": 0.0,
+    "dA_maxabs": 0.0,
+    "dB_fro_max": 0.002219139067574068,
+    "dB_fro_median": 0.002219138908925001,
+    "dB_fro_min": 0.0022191387047979516,
+    "dB_global": 0.02735938188029043,
+    "dB_maxabs": 0.0005317132454365492
+   },
+   "text": 0,
+   "weight": 1.0
+  },
+  "S5_step1_c2/step1": {
+   "after": "3c4579d4aa8db69d",
+   "before": "0ff0b9c991af1568",
+   "chain": "S5_step1_c2",
+   "client": {
+    "chain_start": "new",
+    "from_ckpt": null,
+    "kind": "new",
+    "load_bit_identical": null,
+    "model_id": "8886d663-ec03-5cab-a20f-0609eabb4616:train:14"
+   },
+   "exp": "S5",
+   "fb": {
+    "clock_cycle:unique": 7201672.0,
+    "loss:sum": 30.40399169921875
+   },
+   "grad_key": "0ff0b9c991af1568_t0_w1_O1",
+   "hist": [],
+   "index_in_chain": 0,
+   "note": "clip 2.0 x N0=284.1868322193259",
+   "optim": {},
+   "params": {
+    "beta1": 0.9,
+    "grad_clip_norm": 568.3736644386518,
+    "learning_rate": 0.001,
+    "type": "dimuon"
+   },
+   "rank": 8,
+   "stats": {
+    "A_moved": false,
+    "B_moved": true,
+    "dA_fro_max": 0.0,
+    "dA_fro_median": 0.0,
+    "dA_fro_min": 0.0,
+    "dA_global": 0.0,
+    "dA_maxabs": 0.0,
+    "dB_fro_max": 0.002219139067574068,
+    "dB_fro_median": 0.002219138908925001,
+    "dB_fro_min": 0.0022191387047979516,
+    "dB_global": 0.027359381879960013,
+    "dB_maxabs": 0.0005317132454365492
+   },
+   "text": 0,
+   "weight": 1.0
+  },
+  "S5_step2_c0.01/step2": {
+   "after": "6631f47cfb0ee6b1",
+   "before": "3c4579d4aa8db69d",
+   "chain": "S5_step2_c0.01",
+   "client": {
+    "chain_start": "opt",
+    "from_ckpt": "S2_r8_b0.9-ck1",
+    "kind": "opt",
+    "load_bit_identical": true,
+    "model_id": "8886d663-ec03-5cab-a20f-0609eabb4616:train:22"
+   },
+   "exp": "S5",
+   "fb": {
+    "clock_cycle:unique": 7201735.0,
+    "loss:sum": 29.581972122192383
+   },
+   "grad_key": "3c4579d4aa8db69d_t0_w1_O1",
+   "hist": [
+    "S2_r8_b0.9/step1"
+   ],
+   "index_in_chain": 0,
+   "note": "clip 0.01 x N1=232.03323484268145",
+   "optim": {},
+   "params": {
+    "beta1": 0.9,
+    "grad_clip_norm": 2.3203323484268146,
+    "learning_rate": 0.001,
+    "type": "dimuon"
+   },
+   "rank": 8,
+   "stats": {
+    "A_moved": true,
+    "B_moved": true,
+    "dA_fro_max": 0.0022191408850694024,
+    "dA_fro_median": 0.0022191389326290008,
+    "dA_fro_min": 0.0022191379606003483,
+    "dA_global": 0.027359382046182604,
+    "dA_maxabs": 0.0006128745153546333,
+    "dB_fro_max": 0.002219139126656507,
+    "dB_fro_median": 0.002219138895101353,
+    "dB_fro_min": 0.0022191387072703784,
+    "dB_global": 0.027359381805633687,
+    "dB_maxabs": 0.00020818117627641186
+   },
+   "text": 0,
+   "weight": 1.0
+  },
+  "S5_step2_c0.5/step2": {
+   "after": "3f99a8833b9dd429",
+   "before": "3c4579d4aa8db69d",
+   "chain": "S5_step2_c0.5",
+   "client": {
+    "chain_start": "opt",
+    "from_ckpt": "S2_r8_b0.9-ck1",
+    "kind": "opt",
+    "load_bit_identical": true,
+    "model_id": "8886d663-ec03-5cab-a20f-0609eabb4616:train:21"
+   },
+   "exp": "S5",
+   "fb": {
+    "clock_cycle:unique": 7530806.0,
+    "loss:sum": 29.581972122192383
+   },
+   "grad_key": "3c4579d4aa8db69d_t0_w1_O1",
+   "hist": [
+    "S2_r8_b0.9/step1"
+   ],
+   "index_in_chain": 0,
+   "note": "clip 0.5 x N1=232.03323484268145",
+   "optim": {},
+   "params": {
+    "beta1": 0.9,
+    "grad_clip_norm": 116.01661742134073,
+    "learning_rate": 0.001,
+    "type": "dimuon"
+   },
+   "rank": 8,
+   "stats": {
+    "A_moved": true,
+    "B_moved": true,
+    "dA_fro_max": 0.0022191408850694024,
+    "dA_fro_median": 0.0022191389326290008,
+    "dA_fro_min": 0.0022191379606003483,
+    "dA_global": 0.027359382046182604,
+    "dA_maxabs": 0.0006128745153546333,
+    "dB_fro_max": 0.0022191390732050264,
+    "dB_fro_median": 0.0022191389087899216,
+    "dB_fro_min": 0.0022191387402668225,
+    "dB_global": 0.0273593818991657,
+    "dB_maxabs": 0.00020312333799665794
+   },
+   "text": 0,
+   "weight": 1.0
+  },
+  "S5_step2_c2/step2": {
+   "after": "97ca72c50f509776",
+   "before": "3c4579d4aa8db69d",
+   "chain": "S5_step2_c2",
+   "client": {
+    "chain_start": "opt",
+    "from_ckpt": "S2_r8_b0.9-ck1",
+    "kind": "opt",
+    "load_bit_identical": true,
+    "model_id": "8886d663-ec03-5cab-a20f-0609eabb4616:train:20"
+   },
+   "exp": "S5",
+   "fb": {
+    "clock_cycle:unique": 7201735.0,
+    "loss:sum": 29.581972122192383
+   },
+   "grad_key": "3c4579d4aa8db69d_t0_w1_O1",
+   "hist": [
+    "S2_r8_b0.9/step1"
+   ],
+   "index_in_chain": 0,
+   "note": "clip 2.0 x N1=232.03323484268145",
+   "optim": {},
+   "params": {
+    "beta1": 0.9,
+    "grad_clip_norm": 464.0664696853629,
+    "learning_rate": 0.001,
+    "type": "dimuon"
+   },
+   "rank": 8,
+   "stats": {
+    "A_moved": true,
+    "B_moved": true,
+    "dA_fro_max": 0.0022191408850694024,
+    "dA_fro_median": 0.0022191389326290008,
+    "dA_fro_min": 0.0022191379606003483,
+    "dA_global": 0.027359382046182604,
+    "dA_maxabs": 0.0006128745153546333,
+    "dB_fro_max": 0.0022191390958595774,
+    "dB_fro_median": 0.0022191389000287497,
+    "dB_fro_min": 0.002219138721374503,
+    "dB_global": 0.027359381846825133,
+    "dB_maxabs": 0.00021087042841827497
+   },
+   "text": 0,
+   "weight": 1.0
+  },
+  "S6_r8_ck2_lr0.0001/step3": {
+   "after": "f785fec588720663",
+   "before": "97ca72c50f509776",
+   "chain": "S6_r8_ck2_lr0.0001",
+   "client": {
+    "chain_start": "opt",
+    "from_ckpt": "S2_r8_b0.9-ck2",
+    "kind": "opt",
+    "load_bit_identical": true,
+    "model_id": "8886d663-ec03-5cab-a20f-0609eabb4616:train:9"
+   },
+   "exp": "S6",
+   "fb": {
+    "clock_cycle:unique": 7530642.0,
+    "loss:sum": 45.28317642211914
+   },
+   "grad_key": "97ca72c50f509776_t1_w1_O1",
+   "hist": [
+    "S2_r8_b0.9/step1",
+    "S2_r8_b0.9/step2"
+   ],
+   "index_in_chain": 0,
+   "note": "",
+   "optim": {},
+   "params": {
+    "beta1": 0.9,
+    "grad_clip_norm": 0.0,
+    "learning_rate": 0.0001,
+    "type": "dimuon"
+   },
+   "rank": 8,
+   "stats": {
+    "A_moved": true,
+    "B_moved": true,
+    "dA_fro_max": 0.0002219148940224383,
+    "dA_fro_median": 0.00022191389100889873,
+    "dA_fro_min": 0.0002219130479075769,
+    "dA_global": 0.0027359384959040733,
+    "dA_maxabs": 4.684063605964184e-05,
+    "dB_fro_max": 0.0002219139160121052,
+    "dB_fro_median": 0.00022191389875345676,
+    "dB_fro_min": 0.00022191388135995712,
+    "dB_global": 0.002735938292876226,
+    "dB_maxabs": 7.192191876015386e-05
+   },
+   "text": 1,
+   "weight": 1.0
+  },
+  "S6_r8_ck2_lr0.01/step3": {
+   "after": "81c83e538ca68149",
+   "before": "97ca72c50f509776",
+   "chain": "S6_r8_ck2_lr0.01",
+   "client": {
+    "chain_start": "opt",
+    "from_ckpt": "S2_r8_b0.9-ck2",
+    "kind": "opt",
+    "load_bit_identical": true,
+    "model_id": "8886d663-ec03-5cab-a20f-0609eabb4616:train:10"
+   },
+   "exp": "S6",
+   "fb": {
+    "clock_cycle:unique": 7530653.0,
+    "loss:sum": 45.28317642211914
+   },
+   "grad_key": "97ca72c50f509776_t1_w1_O1",
+   "hist": [
+    "S2_r8_b0.9/step1",
+    "S2_r8_b0.9/step2"
+   ],
+   "index_in_chain": 0,
+   "note": "",
+   "optim": {},
+   "params": {
+    "beta1": 0.9,
+    "grad_clip_norm": 0.0,
+    "learning_rate": 0.01,
+    "type": "dimuon"
+   },
+   "rank": 8,
+   "stats": {
+    "A_moved": true,
+    "B_moved": true,
+    "dA_fro_max": 0.022191390501607244,
+    "dA_fro_median": 0.02219138861996541,
+    "dA_fro_min": 0.02219138677330836,
+    "dA_global": 0.27359381344853195,
+    "dA_maxabs": 0.004684060113504529,
+    "dB_fro_max": 0.022191390178268256,
+    "dB_fro_median": 0.022191388556394537,
+    "dB_fro_min": 0.022191386768083653,
+    "dB_global": 0.273593812784227,
+    "dB_maxabs": 0.007192191269467685
+   },
+   "text": 1,
+   "weight": 1.0
+  },
+  "S6_r8_ck3_lr0.0001/step4": {
+   "after": "ae8e75a1c27e07a7",
+   "before": "7f0a061acd28d484",
+   "chain": "S6_r8_ck3_lr0.0001",
+   "client": {
+    "chain_start": "opt",
+    "from_ckpt": "S2_r8_b0.9-ck3",
+    "kind": "opt",
+    "load_bit_identical": true,
+    "model_id": "8886d663-ec03-5cab-a20f-0609eabb4616:train:11"
+   },
+   "exp": "S6",
+   "fb": {
+    "clock_cycle:unique": 7201662.0,
+    "loss:sum": 14.281699180603027
+   },
+   "grad_key": "7f0a061acd28d484_t2_w1_O1",
+   "hist": [
+    "S2_r8_b0.9/step1",
+    "S2_r8_b0.9/step2",
+    "S2_r8_b0.9/step3"
+   ],
+   "index_in_chain": 0,
+   "note": "",
+   "optim": {},
+   "params": {
+    "beta1": 0.9,
+    "grad_clip_norm": 0.0,
+    "learning_rate": 0.0001,
+    "type": "dimuon"
+   },
+   "rank": 8,
+   "stats": {
+    "A_moved": true,
+    "B_moved": true,
+    "dA_fro_max": 0.00022191471678670473,
+    "dA_fro_median": 0.00022191385225522637,
+    "dA_fro_min": 0.00022191300171334723,
+    "dA_global": 0.002735938177940411,
+    "dA_maxabs": 5.778251215815544e-05,
+    "dB_fro_max": 0.00022191392313476962,
+    "dB_fro_median": 0.00022191390070632058,
+    "dB_fro_min": 0.0002219138781507893,
+    "dB_global": 0.002735938313272031,
+    "dB_maxabs": 7.973222818691283e-05
+   },
+   "text": 2,
+   "weight": 1.0
+  },
+  "S6_r8_ck3_lr0.01/step4": {
+   "after": "eba182306f08b160",
+   "before": "7f0a061acd28d484",
+   "chain": "S6_r8_ck3_lr0.01",
+   "client": {
+    "chain_start": "opt",
+    "from_ckpt": "S2_r8_b0.9-ck3",
+    "kind": "opt",
+    "load_bit_identical": true,
+    "model_id": "8886d663-ec03-5cab-a20f-0609eabb4616:train:12"
+   },
+   "exp": "S6",
+   "fb": {
+    "clock_cycle:unique": 7201664.0,
+    "loss:sum": 14.281699180603027
+   },
+   "grad_key": "7f0a061acd28d484_t2_w1_O1",
+   "hist": [
+    "S2_r8_b0.9/step1",
+    "S2_r8_b0.9/step2",
+    "S2_r8_b0.9/step3"
+   ],
+   "index_in_chain": 0,
+   "note": "",
+   "optim": {},
+   "params": {
+    "beta1": 0.9,
+    "grad_clip_norm": 0.0,
+    "learning_rate": 0.01,
+    "type": "dimuon"
+   },
+   "rank": 8,
+   "stats": {
+    "A_moved": true,
+    "B_moved": true,
+    "dA_fro_max": 0.02219139033906738,
+    "dA_fro_median": 0.022191388411685775,
+    "dA_fro_min": 0.02219138616101024,
+    "dA_global": 0.27359381151484785,
+    "dA_maxabs": 0.005778233986347914,
+    "dB_fro_max": 0.02219139055694551,
+    "dB_fro_median": 0.022191388726697132,
+    "dB_fro_min": 0.02219138683538119,
+    "dB_global": 0.2735938144965884,
+    "dB_maxabs": 0.007973222443979466
+   },
+   "text": 2,
+   "weight": 1.0
+  }
+ }
+}

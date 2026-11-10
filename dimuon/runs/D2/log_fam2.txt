@@ -1,0 +1,4 @@
+todo: {'S2_r8_b0.9': 1, 'S1_r8': 4, 'S1_r32': 15, 'S2_r8_b0': 11, 'S2_r32_b0.9': 13, 'S2_r8_b0.5': 6, 'S2_r32_b0': 11, 'S2_r8_b0.99': 6}
+storage wait S2_r8_b0.9_re1-s0: listed 10.07 GB in 85 ckpts, inflight 0.00 GB, need 0.03
+storage wait S2_r8_b0.9_re1-s0: listed 10.07 GB in 85 ckpts, inflight 0.00 GB, need 0.03
+storage wait S2_r8_b0.9_re1-s0: listed 10.04 GB in 83 ckpts, inflight 0.00 GB, need 0.03
