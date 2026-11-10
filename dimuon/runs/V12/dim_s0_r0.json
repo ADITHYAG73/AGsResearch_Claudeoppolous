@@ -1,0 +1,19 @@
+{
+ "name": "dim_s0_r0",
+ "model_id": "d31a8984-2065-5e31-94b1-b326deb96523:train:0",
+ "optimizer": "dimuon",
+ "rank": 8,
+ "seed": 0,
+ "params": {
+  "lr": 0.001
+ },
+ "metrics": {
+  "fb": {
+   "clock_cycle:unique": 7529774.0,
+   "loss:sum": 30.40399169921875
+  },
+  "optim": {}
+ },
+ "max_abs_dA": 0.0,
+ "secs": 45.1
+}
