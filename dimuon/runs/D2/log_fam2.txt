@@ -2,3 +2,9 @@ todo: {'S2_r8_b0.9': 1, 'S1_r8': 4, 'S1_r32': 15, 'S2_r8_b0': 11, 'S2_r32_b0.9':
 storage wait S2_r8_b0.9_re1-s0: listed 10.07 GB in 85 ckpts, inflight 0.00 GB, need 0.03
 storage wait S2_r8_b0.9_re1-s0: listed 10.07 GB in 85 ckpts, inflight 0.00 GB, need 0.03
 storage wait S2_r8_b0.9_re1-s0: listed 10.04 GB in 83 ckpts, inflight 0.00 GB, need 0.03
+chain S2_r8_b0.9_re1 done 999s
+=== family S2_r8_b0.9: 2 jobs
+chain S3x_r8_fresh_ck3 done 55s
+chain S1_r8_re1 done 140s
+errors so far 75 COUNTS {'clients': 3, 'forward_backward': 9, 'optim_step': 9, 'exports': 12, 'uploads': 0}
+=== family S1_r8: 5 jobs

@@ -69,6 +69,8 @@ def _rnd(x, precision: str):
         return np.asarray(x, dtype=np.float32)
     if precision == "bf16":
         return bf16_round(x)
+    if precision == "fp16":  # IEEE half, round-to-nearest-even, carried as float32
+        return np.asarray(x, np.float32).astype(np.float16).astype(np.float32)
     raise ValueError(precision)
 
 
@@ -77,7 +79,7 @@ def _mm(X, Y, precision: str):
     if precision == "float64":
         return X @ Y
     out = np.asarray(X, np.float32) @ np.asarray(Y, np.float32)
-    return bf16_round(out) if precision == "bf16" else out
+    return out if precision == "float32" else _rnd(out, precision)
 
 
 # =============================================================================================
@@ -149,8 +151,8 @@ def newton_schulz(G, coeffs=QUINTIC_MUON, steps=5, precision="float64", prenorm=
     coeffs: one tuple (reused for `steps` steps) or a list of per-step tuples.
     Works on the wide orientation (r x d) as Keller Jordan's implementation does; prenorm 'fro'
     divides by ||G||_F + eps first (Muon), 'spec' by the exact spectral norm, None = no scaling.
-    precision: 'float64' | 'float32' | 'bf16' (bf16 inputs, fp32-accumulated matmuls, every
-    intermediate rounded to bf16). Returns float64.
+    precision: 'float64' | 'float32' | 'bf16' | 'fp16' (low-precision inputs, fp32-accumulated
+    matmuls, every intermediate rounded to the working precision). Returns float64.
     """
     cl = _expand(coeffs, steps)
     tall = G.shape[0] > G.shape[1]
@@ -993,8 +995,9 @@ def selftest():
           f"err={rel_err(a, polar(Gw))[1]:.2e}")
     e32 = rel_err(newton_schulz(G, QUINTIC_MUON, 5, "float32"), ns_spectral(G))[1]
     e16 = rel_err(newton_schulz(G, QUINTIC_MUON, 5, "bf16"), ns_spectral(G))[1]
-    check("precision: f32 err ~1e-7, bf16 err ~1e-3..1e-2", e32 < 1e-5 and 1e-4 < e16 < 5e-2,
-          f"f32={e32:.2e} bf16={e16:.2e}")
+    eh = rel_err(newton_schulz(G, QUINTIC_MUON, 5, "fp16"), ns_spectral(G))[1]
+    check("precision: f32 err ~1e-6, fp16 < bf16 err ~1e-2", e32 < 1e-5 and 1e-4 < eh < e16 < 5e-2,
+          f"f32={e32:.2e} fp16={eh:.2e} bf16={e16:.2e}")
     x = np.array([1.0, 1.00390625, 1.001953125, 3.14159265, -2.5e-3], np.float64)
     x = np.append(x, 1.0 + 3 * 2.0 ** -9)  # 1+2^-8 is a tie -> even (1.0); 1+3*2^-9 rounds up
     check("bf16_round", np.allclose(bf16_round(x), [1.0, 1.0, 1.0, 3.140625, -0.0025024414, 1.0078125]),

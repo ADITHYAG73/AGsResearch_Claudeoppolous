@@ -275,3 +275,49 @@ U = - lr * sqrt(r) * (r/32)**0.175 * float32(X^T) / ||X||_F
 - The extra 1.5–2x deviation at r=2..16 (item 7) is the one unexplained piece.
 - (r/32)^0.175 is measured, not explained. beta1 mechanism (item 9) is a consistent story, not a test.
 - Single text, single seed, step 1 only, B0 = 0.
+
+## 2026-11-10 — CAND-01: candidate-rule toolkit + synthetic identifiability (no Tinker calls)
+
+**Question.** Given (G, D) pairs for lora_B at step 1, which candidate rules G -> U can the data
+tell apart, at which rank and noise level? Built and validated on synthetic data only.
+
+**Files.** `pipeline/candidates.py` (maps, diagnostics, harness, generators, sweep),
+`pipeline/test_candidates.py` (pytest wrapper), outputs in `runs/2026-11-10_candidates/`
+(`identifiability.md`, `misfit.json`, `verify.json`, `selftest_output.txt`).
+Run: `python candidates.py selftest` (23/23 pass, 24 s); `python candidates.py identifiability`
+(780 jobs, 2868 s on 4 cores); real data: `python candidates.py analyze DIR` (dir of *.npz with G, D
+[, A or K=AA^T]).
+
+**Setup.** 18 fixed hidden rules (frob, sign, row/col norm, polar, NS quintic 3/5/8, cubic 5/15,
+s^0.5, L^-1/4 G R^-1/4, polar(L^-1/2 G), polar(G R^-1/2), polar(L^-1/4 G R^-1/4), quintic5 in
+f32 and simulated bf16, cpolar(.3,-.4,-.2,.1); + polar(G (AA^T)^-1/2) for sketch data) and 5 fitted
+families (s^p; L^a G R^c; L^a polar(L^b G R^c) R^d; 5-step NS coefficients; polar(G K^e) K^f).
+n=12 modules per cell, d_out in {1024, 2048}, 8 train / 4 held-out. Three G generators:
+`parametric` (geometric spectrum, cond 10–100, lognormal row σ=1 / column σ=0.5 weights; best case),
+`sketch` (G = Δ (X Aᵀ) with Gaussian A like the measured init; cond(AAᵀ) 1.1–1.8),
+`sketch_anisoA` (same, A rows scaled by logspace(0,-2,r): the "upload a chosen A" experiment).
+Confusable at noise eps := noise-free held-out misfit m < 1.118·eps (err ratio < 1.5 under i.i.d.
+noise on D). Noisy verification at eps 1e-6/1e-3/1e-2, r 1/4/16/64.
+
+**Results.**
+- r=1, every generator, every noise level: 5 classes only — {frob, polar, col_norm, all exact NS
+  variants, s^p, polar(G R^-1/2), polar(G K^-1/2), f32 NS} | {sign, row_norm, polar(L^-1/2 G)} |
+  {L^-1/4 G R^-1/4, polar(L^-1/4 G R^-1/4)} | cpolar(.3,-.4,-.2,.1) | bf16 NS. Analytically: at r=1
+  every rule D = G S collapses to G, and cpolar = g·|g|^(2(a+b)); only a+b is identifiable.
+- r>=2, parametric: the only confusable pairs are polar~ns_cubic15 (m 7e-11 at r=2,4; 1e-4 at
+  r=8,16; 1.9e-2 at r=64) and quintic5 f64~f32 (m ~1e-6). Everything else m >= 1e-2.
+- sketch (natural-like A): additionally polar(G (AAᵀ)^-1/2) ~ polar (m 4.7e-4 r=2, 7.9e-3 r=4,
+  2.7e-2 r=16) and at r=2 cubic5 ~ cubic15 ~ polar. With anisotropic A (sketch_anisoA) the A-rule vs
+  polar misfit rises to 0.27–0.60 and cubic15 vs polar to 8e-4..0.7.
+- bf16-simulated NS differs from f64 NS by m = 2e-2..2e-1 (grows with r in sketch data); fp16 3.6e-3
+  (selftest, r=16): reduced-precision arithmetic is itself a ~1e-3..1e-1 "noise" floor for f64 models.
+- Verification: at r>=2 every case where the true rule was not ranked 1st is a tie with a pair listed
+  above (ratio 1.00000). Family parameters recovered to < 0.02 in every r>=2 verification cell,
+  including eps=1e-2 (cpolar 4 exponents, NS coefficients 3.4445/-4.7750/2.0315, p, apolar e).
+- NS coefficient fit is very rugged: 400 random starts missed the Muon basin; 20000 vectorised
+  starts find it. Noise on G (not D) is amplified by polar-type maps: 1e-3 noise on G gave 3.8e-2
+  D-error for polar at r=16 (sketch).
+
+**Caveats.** Synthetic G only; generator realism not checked against real gradients. Bit-level
+reduced-precision behaviour of the real kernel is not modelled (rounding placement is a guess).
+Threshold 1.5 is a choice. fp16 mode was added after the sweep, so the table has no fp16 rows.
