@@ -1,0 +1,136 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,booktabs,graphicx,hyperref,xcolor}
+\newcommand{\pending}[1]{\textcolor{red}{[PENDING: #1]}}
+\newcommand{\fro}{\mathrm{F}}
+\title{What does Dimuon do to a LoRA?\\ \large A black-box measurement study of an undocumented optimizer}
+\author{Working draft --- updated as experiments complete. Status line: see Section~\ref{sec:status}.}
+\date{Started 10 November 2026}
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Dimuon is an optimizer for LoRA fine-tuning offered on the Tinker API. Its documentation gives
+three hyperparameters and usage guidance but not the update rule. We measure the rule from the
+outside: we take single optimizer steps on small LoRA adapters, export the adapter weights before
+and after, and compare the observed update with the gradient, which we recover separately.
+\pending{headline findings once the first-step law, the momentum law and the A/B coupling are
+measured and cross-checked.}
+\end{abstract}
+
+\section{Status of this draft}\label{sec:status}
+Everything in black has been measured or is sourced as stated. Red text marks claims that are
+planned but not yet supported by data. The lab journal with every run is
+\texttt{dimuon/experiments.md}.
+
+\section{Background, from the ground up}
+
+\subsection{Gradient descent and the question every optimizer answers}
+Training minimises a loss $L(W)$ over weights $W$. The gradient $G=\partial L/\partial W$ says how
+the loss changes for an infinitesimal change in each weight. Plain gradient descent moves against
+it, $W \leftarrow W-\eta G$, with learning rate $\eta$. The gradient gives a \emph{direction}; it
+does not say how far it is safe to go, and its entries can differ in size by orders of magnitude
+across a network. Every practical optimizer is an answer to one question: \emph{given $G$ (and its
+history), what step $\Delta W$ should be taken?} Different answers correspond to different notions
+of what a ``unit-size'' step is.
+
+\subsection{Momentum}
+Minibatch gradients are noisy. Momentum averages them over time,
+$M_t=\beta M_{t-1}+(1-\beta)G_t$ (one common convention), and steps along $M_t$. With
+$\beta=0.9$ the average covers roughly the last ten gradients.
+
+\subsection{Adam and AdamW: per-entry normalisation}
+Adam keeps the momentum $m_t$ and a second running average $v_t$ of the squared gradient, and
+steps each weight by
+\[
+\Delta w = -\eta\,\frac{\hat m_t}{\sqrt{\hat v_t}+\epsilon},
+\]
+where the hats denote the standard correction for the averages starting at zero. Each entry is
+divided by its own typical magnitude, so every weight moves about $\eta$ per step regardless of how
+large its gradient is. On the very first step $\hat m_1=g$ and $\hat v_1=g^2$, so
+$\Delta w=-\eta\, g/(|g|+\epsilon)$: with tiny $\epsilon$ this is $-\eta\,\mathrm{sign}(g)$, and
+with large $\epsilon$ it is proportional to $g$. We use the second fact as a measuring instrument
+(Section~\ref{sec:oracle}). AdamW adds weight decay applied directly to the weights. Adam treats a
+weight matrix as a bag of unrelated numbers: it is blind to the fact that the matrix acts as a
+linear map.
+
+\subsection{Muon: per-direction normalisation}
+A matrix $G\in\mathbb{R}^{m\times n}$ has a singular value decomposition $G=USV^\top$: orthonormal
+input directions (columns of $V$), orthonormal output directions (columns of $U$), and
+non-negative strengths $S$. Muon~\cite{jordan2024muon} takes the momentum matrix and replaces it
+by $UV^\top$, i.e.\ it sets every singular value to one. This is the nearest semi-orthogonal
+matrix to $G$ in Frobenius norm. Where Adam equalises the step \emph{per entry}, Muon equalises it
+\emph{per direction}. Jordan's stated motivation is empirical: updates for transformer weight
+matrices ``typically have very high condition number'' --- a few directions dominate --- and
+orthogonalising boosts the rare directions.
+
+Computing an SVD every step is expensive, so Muon approximates $UV^\top$ with a Newton--Schulz
+iteration: normalise $X_0=G/\|G\|_\fro$ and repeat $X\leftarrow aX+b(XX^\top)X+c(XX^\top)^2X$,
+which applies the odd polynomial $\varphi(x)=ax+bx^3+cx^5$ to every singular value while leaving
+$U$ and $V$ untouched. Muon uses $(a,b,c)=(3.4445,-4.7750,2.0315)$ for five steps in bfloat16.
+These coefficients are tuned for speed, not exactness: the singular values end up \emph{near} one,
+in a band, rather than exactly at one. That band is a fingerprint an outside observer can look for.
+
+\subsection{LoRA and why it complicates the picture}
+LoRA freezes a pretrained weight $W_0\in\mathbb{R}^{d_\text{out}\times d_\text{in}}$ and trains a
+low-rank correction $W=W_0+\tfrac{\alpha}{r}BA$ with $B\in\mathbb{R}^{d_\text{out}\times r}$ and
+$A\in\mathbb{R}^{r\times d_\text{in}}$, $r\ll d$. $B$ starts at zero so training begins exactly at
+the pretrained model. By the chain rule, with $G_W=\partial L/\partial W$,
+\[
+G_B=\tfrac{\alpha}{r}\,G_W A^\top,\qquad G_A=\tfrac{\alpha}{r}\,B^\top G_W .
+\]
+Two consequences matter here. First, at initialisation $B=0$ so $G_A=0$: on the first step only
+$B$ can move. Second, the factorisation is not unique: $(BQ^{-1})(QA)$ is the same adapter for any
+invertible $Q$, but the gradients, and therefore the steps of an optimizer applied to $A$ and $B$
+separately, change with $Q$. An optimizer ``built for LoRA'' has to take some position on this:
+it may treat $A$ and $B$ as two unrelated matrices, or use the structure of the product. Which one
+Dimuon does is one of our questions.
+
+\section{What is publicly documented}
+The Tinker documentation\footnote{\url{https://tinker-docs.thinkingmachines.ai/tinker/optimizers/},
+read 10 Nov 2026.} describes Dimuon as an in-house optimizer built for LoRA fine-tuning, selected
+at client creation, with per-step parameters \texttt{learning\_rate} (required; ``typically
+10--100$\times$ AdamW's''), \texttt{beta1} (default 0.9, a momentum coefficient) and
+\texttt{grad\_clip\_norm} (default off). It reports that in the authors' supervised fine-tuning
+runs about $15\times$ the AdamW learning rate worked best and that Dimuon benefited more from
+higher LoRA rank. It does not give the update rule.
+
+\section{Method}
+\subsection{Observing a step}
+The SDK exports adapter weights in PEFT format as float32. We export, take one
+\texttt{forward\_backward} and one \texttt{optim\_step} on a fixed short batch, and export again;
+the difference is the update. All runs use Qwen3.5-4B unless stated.
+
+\subsection{Recovering the gradient}\label{sec:oracle}
+\pending{AdamW with large $\epsilon$ as a gradient oracle; validation V3; precision.}
+
+\subsection{Noise floor}
+\pending{V1 init determinism, V2 step repeatability.}
+
+\section{Results}
+\subsection{Pilot: one step, rank 4}
+One Dimuon step at $\eta=10^{-3}$ on a rank-4 attention-only adapter (304 tensors) left every
+$A$ exactly unchanged, consistent with $G_A=0$ at $B=0$. Every $B$ update had Frobenius norm
+$\approx 1.39\times10^{-3}$ independent of $d_\text{out}\in\{1024,\dots,8192\}$, with four singular
+values close to but not equal to each other (e.g.\ $7.37,7.31,6.98,6.06\times10^{-4}$). A
+width-independent norm with a near-flat spectrum is what an orthogonalising update produces; the
+spread in the singular values is what remains to be explained.
+
+\subsection{The first-step law}\pending{D1 analysis.}
+\subsection{Dependence on rank, learning rate and gradient scale}\pending{}
+\subsection{Momentum and state across steps}\pending{}
+\subsection{How $A$ is updated, and whether $A$ and $B$ are coupled}\pending{}
+\subsection{Cross-check on a second model}\pending{}
+\subsection{Comparison with a public reimplementation}\pending{done last, after our own rule is
+fixed, so the measurement is independent.}
+
+\section{Limitations}
+A black-box study can show that a rule reproduces the observed updates on the inputs tested. It
+cannot show that the rule is the implementation, and it says nothing about inputs not tested.
+\pending{specific gaps.}
+
+\begin{thebibliography}{9}
+\bibitem{jordan2024muon} K.~Jordan et al. \emph{Muon: An optimizer for hidden layers in neural
+networks}. 2024. \url{https://kellerjordan.github.io/posts/muon/}
+\end{thebibliography}
+\end{document}
