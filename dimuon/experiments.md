@@ -841,3 +841,73 @@ new client step 1 → `3362e501…` again (`score_regime.txt`).
 - Usage (`runs/calls.jsonl`, events after 21:50 UTC): 85 training clients (7 new, 38 weights-only AdamW oracles,
   9 weights-only Dimuon fresh-state, 31 restored with optimizer), 116 forward_backward + optim_step, 201 exports (all deleted after download), 31
   save_state checkpoints, all deleted; final listing = the owner's 10 checkpoints, 6.92 GB (`runs/P3/final_ckpt_listing.json`).
+
+---
+
+## COMPARE-01 — our frozen rule vs public sources — 2026-11-10 (comparison agent; no Tinker calls)
+
+**Question.** What do public sources say about Dimuon? Where do they agree or disagree with our rule? Do their
+statements explain anything we left open? Full write-up and source list: `runs/COMPARE/compare.md` (retrieved
+2026-11-10).
+
+**Sources.**
+- Official: Tinker docs Optimizers page; SDK docstrings; the announcement (republished); "LoRA Without Regret".
+  None of these gives the rule. `tinker-cookbook` @8486b8d never mentions Dimuon.
+- Third-party, independent: `anpaure/dimuon` @d6570bb (full PyTorch rule) and `romeerp/dimuon-replay` @d32fbee
+  plus its site (precision fingerprinting).
+- Third-party, not independent: `catid/dimuon` (its `dimuon.py` is anpaure's, uncredited) and theblackcat102's blog
+  (ablates anpaure's code).
+- Papers checked: Polar Express 2505.16932, PoLoRA 2607.17620, Shampoo 1802.09568, Old Optimizer New Norm 2409.20325.
+
+**Agreement.** Every equation in our rule matches anpaure, and romeerp matches it where it covers the same point:
+EMA momentum in fp32 stored as bf16; row/column energies of the previous stored momentum; −1/4 on four sides;
+relative 1e-4 ridge; identity when the momentum is zero; PE5 with safety 1.01 and X0 normalised in fp32 then cast to
+fp16; norm lr·√r·(r/32)^0.175; global clip before the EMA; no weight decay; no A/B coupling. anpaure's relative ridge
+(e/max + 1e-4) is our l + 1e-4·max up to a scalar that cancels. Running anpaure's `dimuon.py` unchanged on the P6
+chain reproduces our residuals step for step: fp64 identical to ≤2%, fp16 default within 10% (`anpaure_p6.txt`).
+
+**Disagreement (one): orthogonaliser arithmetic.** romeerp's Horner form X·(aI + R(bI + cR)), with R = XᵀX and
+a separate fp16 store of cR, beats our expanded fused form (`cmp_horner.py`, D1, all 152 modules). Median relF:
+
+| r | 1 | 2 | 4 | 8 | 16 | 32 | 64 |
+|---|---|---|---|---|---|---|---|
+| ours | 5.70e-4 | 6.34e-3 | 6.28e-3 | 5.68e-3 | 6.58e-3 | 1.87e-2 | 2.46e-2 |
+| Horner | **6.3e-8** | **9.1e-8** | 1.76e-4 | 1.83e-3 | 2.79e-3 | 8.07e-3 | 1.03e-2 |
+
+- Bit-identical modules: 149/152 at r1 and 91/152 at r2 (ours: 43% / 2% of entries). Dropping the cR store loses
+  this (r1 3.96e-4).
+- Resolves FIRSTSTEP-01 item 7. The deviation from "X0 fp16 exact after" is, data vs Horner: r2 6.59e-3 vs 7.09e-3,
+  r4 6.53e-3 vs 6.55e-3, r8 5.19e-3 vs 4.99e-3, r16 5.62e-3 vs 5.66e-3, r32/64 equal. Our emulation gave 2.6–3.6e-3.
+- Split-K fp16 partial sums on the Gram (romeerp's GPU explanation, our emulation of it) fit worse at every r ≥ 2.
+- Horner also helps preconditioned steps: P6 step 2 B vs Y goes 4.6e-3 → 1.4e-3, and step 1 B 5.1e-3 → 2.0e-3.
+  Beyond step 2 the ~1% chain residual and the T1/T2 fresh-twin floors (1.6–2.3%) do not move, so those are not
+  orthogonaliser precision. That is consistent with PREDICT-01's gradient-version explanation.
+
+**Open items closed or narrowed.**
+- **Column damping is identified at rank 32** (`cmp_damping.py`, P2s/P4s solo, step 3, row damping fixed). Median relF
+  A / B by eps_c·max: 0 → 9.4e-3 / 4.0e-3; 6e-5 → 7.7e-3 / 3.8e-3; **1e-4 → 5.9e-3 / 3.5e-3**; 1.5e-4 → 8.1e-3 / 3.9e-3;
+  1e-3 → 1.3e-2 / 5.5e-3. Relative to the mean (1e-4) is worse: 9.1e-3 / 4.0e-3. This matches the public 1e-4·max.
+  One state, one step.
+- **Variant X: no public description reproduces it.** Every orthogonaliser variant, including Horner and split-K
+  2/8/32, sits at relF 2.8–3.0e-2 from X in A (= X vs Y 2.83e-2). Fits to Y: 3.8–5.8e-3. anpaure says "clients can
+  compute different gradients from identical inputs", which would fit X being a backward-pass variant, but that is
+  untestable offline here.
+- **(r/32)^0.175: no source explains it.** All public formulas are the identical empirical expression. anpaure has it
+  to 1.2 ppm over ranks 1–128; romeerp says the origin is "a mystery". Tinker exposes no alpha, so it cannot be told
+  apart from (α/r)^−0.175.
+- Bias correction and the norm-floor form remain unaddressed everywhere.
+
+**Theory.** These are my inferences; the sourced pieces are cited in compare.md §4.
+- PoLoRA eq. 14: steepest descent under ‖P^{1/2}ΔW Q^{1/2}‖₂ is −P^{−1/2} msign(P^{−1/2} G Q^{−1/2}) Q^{−1/2}.
+  Dimuon is that form with P = diag(l)^{1/2} and Q = diag(c)^{1/2}.
+- That is a diagonal, unaccumulated, one-step-lagged Shampoo preconditioner (Shampoo's L^{−1/4} G R^{−1/4}) wrapped
+  around Muon.
+- At r = 1 it reduces to Adam with β₂ = 0, using the previous momentum as the second moment and an ε relative to
+  the max.
+
+**Caveats.** All tests are offline on existing D1/P3 data with our oracle gradients. The Horner emulation is
+CPU-style (fp32 accumulation, fp16 stores), not GPU kernels. The damping test is one rank-32 state. Third-party code
+lives only in the scratchpad (not in the repo). anpaure's file was imported unchanged after reading all 104 lines.
+
+**Files.** `pipeline/cmp_horner.py`, `cmp_variantX.py`, `cmp_anpaure.py`, `cmp_damping.py`;
+`runs/COMPARE/compare.md`, `horner.{txt,json}`, `variantX.{txt,json}`, `anpaure_p6.{txt,json}`, `damping.{txt,json}`.

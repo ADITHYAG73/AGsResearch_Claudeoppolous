@@ -27,9 +27,10 @@ steps, MLP and unembedding adapters, and a second base model. Open points are li
 \end{abstract}
 
 \section{Status of this draft}\label{sec:status}
-Everything in black has been measured or is sourced as stated. Red text marks claims that are
-planned but not yet supported by data. The lab journal with every run is
-\texttt{dimuon/experiments.md}.
+Every number here was measured on 10 November 2026 or is sourced as stated. The sections are in
+the order the study ran, so later sections correct earlier ones in two places (the apparent
+learning-rate anomaly, and the claim that repeated calls are bit-identical). The lab journal
+with every run is \texttt{dimuon/experiments.md}.
 
 \section{Background, from the ground up}
 
@@ -508,8 +509,59 @@ first hours of the study, but that is not guaranteed.
 
 \subsection{Cross-check on a second model}
 See the last row of the table above.
-\subsection{Comparison with a public reimplementation}\pending{done last, after our own rule is
-fixed, so the measurement is independent.}
+\subsection{Comparison with public material}\label{sec:compare}
+This comparison was made only after the rule above was frozen and tested; sources were
+retrieved on 10 November 2026 and are listed in \texttt{dimuon/runs/COMPARE/compare.md}.
+
+\paragraph{What exists.} The official documentation gives no update rule; it states that
+momentum is an exponential average with $\beta_1$, that clipping uses a global gradient norm,
+and that learning rates are typically 10--100 times AdamW's. Two independent third-party
+reconstructions are public: \texttt{anpaure/dimuon} (a full PyTorch rule) and
+\texttt{romeerp/dimuon-replay} (precision fingerprinting, mostly at rank 1). Two further
+sources (\texttt{catid/dimuon} and a blog by theblackcat102) build on the first.
+
+\paragraph{Agreement.} Every equation of Section~\ref{sec:rule} agrees with both
+reconstructions: the $(1-\beta)$ average kept in bf16 and used unrounded; row and column
+energies of the previous stored momentum; exponent $-1/4$ before and after; damping
+$10^{-4}$ relative to the maximum; identity when the stored momentum is zero; five Polar
+Express steps with safety factor 1.01 in half precision; no coupling between $A$ and $B$; a
+global-norm clip before the momentum update; no weight decay; and the step size
+$\eta\sqrt r\,(r/32)^{0.175}$, which all three efforts found empirically and none can derive.
+The column-side damping, open on our side, is given publicly as the same $10^{-4}\max$; tested
+on one of our rank-32 steps the residual is minimal there (0.0059 against 0.0094 with no
+damping and 0.0091 with damping relative to the mean).
+
+\paragraph{One disagreement, and we were wrong.} We evaluated each quintic step in expanded
+form, $aX+bXR+cXR^2$ with $R=X^\top X$. The romeerp reconstruction uses the nested (Horner)
+form $X\,(aI+R\,(bI+cR))$ with $cR$ rounded to half precision separately. On our step-1 data
+the nested form is far closer:
+
+\begin{center}\small
+\begin{tabular}{lccccccc}\toprule
+rank & 1 & 2 & 4 & 8 & 16 & 32 & 64\\\midrule
+expanded (ours) & 5.7e-4 & 6.3e-3 & 6.3e-3 & 5.7e-3 & 6.6e-3 & 1.9e-2 & 2.5e-2\\
+nested & 6.3e-8 & 9.1e-8 & 1.8e-4 & 1.8e-3 & 2.8e-3 & 8.1e-3 & 1.0e-2\\\bottomrule
+\end{tabular}
+\end{center}
+At ranks 1 and 2 the nested form reproduces the service bit-for-bit (149 and 91 of 152 tensors
+entirely identical). The two forms are the same polynomial; they differ only in where rounding
+happens, which is what a 0.5\% residual was made of. The remaining gap at higher rank is
+presumably the order in which the hardware sums products. The 1--2\% floors at later steps do
+not improve with the nested form, consistent with their being gradient-version mismatches
+(Section~\ref{sec:predict}).
+
+\paragraph{What only this study reports.} The two numerical variants of a step at a fixed
+gradient; the zero-gradient-step tests of bf16 storage; the out-of-sample tests on a second
+model and on MLP and unembedding adapters; exact proportionality in $\eta$.
+
+\paragraph{Why these exponents (partly our inference).} Steepest descent under the norm
+$\|P^{1/2}\,\Delta W\,Q^{1/2}\|_{\rm spectral}$ has the solution
+$-P^{-1/2}\,\mathrm{msign}(P^{-1/2}GQ^{-1/2})\,Q^{-1/2}$ (stated in the PoLoRA paper,
+arXiv:2607.17620). Dimuon has this form with $P$ and $Q$ the square roots of the diagonal row
+and column energies. Shampoo (Gupta et al., arXiv:1802.09568) uses the same $-1/4$ power on
+each side of a matrix gradient. So Dimuon can be read as a diagonal, one-step-lagged Shampoo
+preconditioner wrapped around Muon; at rank 1 it reduces to Adam with $\beta_2=0$ using the
+previous momentum as second moment. No Dimuon source makes this connection; it is our reading.
 
 \section{Limitations}
 A black-box study can show that a rule reproduces the observed updates on the inputs tested. It
@@ -518,11 +570,12 @@ cannot show that the rule is the implementation, and it says nothing about input
 \item Two base models, ranks 8 and 32 beyond step 1, three short texts, at most 12 steps.
 \item The service returns one of at least two numerical variants of a gradient or a step. We
 characterise one.
-\item The fit is 0.4--3\%, not bit-exact. The orthogonaliser's rounding is not fully emulated,
+\item The fit is 0.4--3\% with our own orthogonaliser and bit-exact only at ranks 1--2 with
+the nested form taken from a public source (Section~\ref{sec:compare}),
 and one step (rank 8, $\beta_1=0$, step 5) fits 2.5 times worse than its floor.
 \item The exponent $0.175$ in the step size is an empirical fit over seven ranks.
-\item The column-side damping, and whether the row-side damping is exactly relative to the
-maximum, are not pinned down. Bias correction is invisible to this method.
+\item The column-side damping is confirmed on a single step only. Bias correction is invisible
+to this method.
 \item The coordinator had read a one-paragraph summary of a public reimplementation before the
 study; the agents who did the analysis were not given it and were told not to look. The
 candidate list they were handed included row and column preconditioning as one family among
