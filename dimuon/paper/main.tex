@@ -150,10 +150,15 @@ transfer curve when the input is normalised as $s_i/\|G\|_\fro$. No row or colum
 dependence on $A$ is detectable at step one. The curve is linear below $x\approx10^{-3}$ and then
 oscillates between about $0.875$ and $1.12$ (Figure~\ref{fig:transfer}). It is \emph{not} Muon's
 fixed quintic. It is reproduced by five steps of a quintic iteration with a different coefficient
-triple at each step --- the schedule we recognise as ``Polar Express''
-\pending{verify the coefficients against the primary source; they were entered from memory and
-selected by the data} --- with a safety factor of $1.01$ applied to both the input normalisation
-and the coefficients. Table~\ref{tab:fs} shows what each ingredient buys.
+triple at each step --- the first five entries of the degree-5 ``Polar Express'' schedule of Amsel et
+al.~\cite{amsel2025polar}, with that paper's safety factor of $1.01$ applied to the input
+normalisation and to the coefficients ($a/1.01$, $b/1.01^3$, $c/1.01^5$). We checked the
+coefficients digit for digit against the reference code printed in the paper. Polar Express picks
+each step's polynomial to be the best possible for the range the singular values currently occupy,
+assuming they start in $[\ell,1]$ with $\ell=10^{-3}$; that is why the measured curve has its knee
+at $x\approx10^{-3}$: singular values smaller than $\ell$ relative to the largest are not brought up
+to one. The measured rule differs from the reference code in two ways: the arithmetic is fp16 where
+the reference uses bfloat16, and the input is normalised in float32 before the cast. Table~\ref{tab:fs} shows what each ingredient buys.
 
 \begin{table}[h]\centering\small
 \begin{tabular}{lrrrrrrr}\toprule
@@ -205,5 +210,7 @@ cannot show that the rule is the implementation, and it says nothing about input
 \begin{thebibliography}{9}
 \bibitem{jordan2024muon} K.~Jordan et al. \emph{Muon: An optimizer for hidden layers in neural
 networks}. 2024. \url{https://kellerjordan.github.io/posts/muon/}
+\bibitem{amsel2025polar} N.~Amsel, D.~Persson, C.~Musco, R.~M.~Gower. \emph{The Polar Express:
+Optimal Matrix Sign Methods and Their Application to the Muon Algorithm}. arXiv:2505.16932, 2025.
 \end{thebibliography}
 \end{document}
