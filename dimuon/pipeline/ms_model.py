@@ -25,6 +25,10 @@ def add_eps(v, eps, form):
         return v + eps * v.mean()
     if form == "relmax":
         return v + eps * v.max()
+    if form == "clampmax":
+        return np.maximum(v, eps * v.max())
+    if form == "relmax_sqrt":   # eps added to the root-energy: (sqrt(v) + eps*max sqrt(v))^2
+        return (np.sqrt(v) + eps * np.sqrt(v.max())) ** 2
     raise ValueError(form)
 
 

@@ -467,3 +467,97 @@ once (fixed: created up front). At the end none of my checkpoints remain (listin
 with 402, not logged), 200 forward_backward+optim_step pairs, 338 exports (all deleted after
 download), 61 save_state (all deleted), 46 already-expired D1-era exports deleted. Some clients
 were wasted on the storage failures and one deadlock (~20).
+
+---
+
+## FRESH-01 — fresh-state steps from B != 0, clipping, lr dependence — 2026-11-10 (analysis agent; no Tinker calls)
+
+Offline, float64 analysis on D2 (`runs/D2`). Scripts `pipeline/fr_*.py` (`fr_core.py` helpers: lazy npz,
+PE5 in f64 and in the FIRSTSTEP-01 fp16 emulation, `finalise` = explicit norm lr·sqrt(r)·(r/32)^0.175).
+Outputs `runs/FR/` (`baseline`, `step1scan`, `coupling`, `orient`, `orient_r32`, `grid`, `clip`, `clip2`,
+`lr`, `lr2`, `lr3` .txt/.json). Figure `figures/fr_fresh_state.png`. Momentum/hidden state in continuing
+runs is left to the `ms_` analysis; continuing steps are used here only for clipping and lr.
+
+**Q1a — fresh-state step from B != 0 = per-factor PE5 of the factor's own gradient (same law as step 1).**
+`fr_step1scan.py` (all 45 hist-free steps with a same-regime G, every 4th module) and `fr_baseline.py`
+(17 steps, all 152 modules). Relative Frobenius residual of finalise(PE5_fp16(G_X)) vs dX, per tensor:
+- r8 (S1_r8 ck1/2/5 × T0/T1, S3x ck3 T2, S2_r8_b0 ck1/4/5): A median 0.0048–0.0060, B 0.0052–0.0064;
+  max over tensors A ≤ 0.025, B ≤ 0.022. Step-1 reference (B, from B=0): median 0.0056–0.0059, max 0.013–0.016.
+- r32 (S1v2_r32 ck1/2/5, S2_r32_b0 ck1–5): on T0 A 0.019–0.020, B 0.018–0.019 (step-1 reference B 0.0186);
+  on T1/T2 A 0.0046–0.011, B 0.0057–0.0080. max A ≤ 0.032, B ≤ 0.028.
+- f64 PE5 instead of fp16: r8 about equal, r32 worse (A/B 0.029–0.031 vs 0.019 on T0) — same precision
+  fingerprint as step 1. Best-scalar residual = residual (norm law exact for both factors). cos ≈ 1.
+- Null (PE5 of the other text's gradient at the same state): 1.38–1.41.
+- Bit level (`fr_grid.py`, lora_B): fresh-state updates are (scalar × fp16 matrix) in 91–100% of sampled
+  entries (step 1: 100%; misses track float32 subtraction error 1e-7..7e-7 near the 1e-6 test tolerance).
+  **Continuing updates (hist ≥ 1, incl. beta1 = 0, S5, S6) are NOT: 1.5% on grid = chance.** So a
+  continuing step has a non-scalar float32 operation after the fp16 orthogonaliser (relevant to `ms_`).
+- Orientation (`fr_orient.py`, 7 r8 + 11 r32 tensors): fp16 PE5 with the r×r Gram vs with the d×d Gram give
+  equal residuals (r32 e.g. 0.0259 vs 0.0259, 0.0168 vs 0.0170; f64 0.030–0.037). Not identifiable, does
+  not matter at this resolution; the fp16 advantage comes from rounding X0, not from the Gram side.
+- **Three step/gradient pairs do not match** (exclude them): `S1v2_r32_fresh_ck1_t1` (A 0.14, B 0.067),
+  `S2_r8_b0_fresh_ck2/step3` (A 0.025, B 0.015), `S2_r8_b0_fresh_ck3/step4` (A 0.029, B 0.018). In them
+  1.5% of ||dW|| lies outside span(G) (0.1% in matched steps), uniformly over all 152 modules, while the
+  update is still a scaled fp16 matrix (grid 0.95–0.985): the fresh law applied to a gradient that differs
+  from the stored oracle G. All are R2, T1/T2, 19:35 and 20:00; clock_cycle cluster does not explain it.
+  Probably the same kind of backward-numerics difference as DRIFT-01; not resolvable offline.
+
+**Q1b — no coupling** (`fr_coupling.py`, 9 matched steps, exponent fitted on even modules, reported on odd):
+A1 PE5((BᵀB)^p G_A), A2 (BᵀB)^p PE5(G_A), A3 PE5((AAᵀ)^p G_A), B1 PE5(G_B (AAᵀ)^p), B2 PE5(G_B)(AAᵀ)^p,
+B3 PE5(G_B (BᵀB)^p): **p* = 0 for all six families in all 9 steps**; |p| = 0.05 already raises the median
+residual 1.1–15× (e.g. r32 ck5 B3 0.018 → 0.088). Identifiable: cond(BᵀB) median 1.6 (r8 ck1), 3.8 (r8 ck5,
+max 9.2), 55 (r32 ck2), 85 (r32 ck5, max 165); cond(AAᵀ) 1.18 (r8), 1.49 (r32). Joint orthogonalisation of
+[G_Bᵀ, w G_A] (shared r×r Gram): B best only as w → 0 and A best only as w → ∞ (A still 0.06–0.67 at
+w = 100) — i.e. only the decoupled limit fits. No ‖A‖/‖B‖ balancing: both norms are exactly the law value.
+
+**Q1c.** Fresh dA and dB are PE5 of G_A and G_B at the current state, nothing else (Q1a/b). At state 1 the
+continuing dA is bit-identical to the fresh one because A has no history (G_A = 0 at step 1), so whatever A
+state the continuing step keeps is scale-equivalent to "empty"; B's step-1 history makes dB differ. At state 2
+both factors have history, so both differ. Continuing dB at step 2 is not PE5(g2 + a·g1) nor PE5(g2 + a·U1)
+for any per-tensor a (residual 0.76–0.78, no better than PE5(g2) 0.78; `fr_clip.py`).
+
+**Q2 — clipping** (`fr_clip.py`, `fr_clip2.py`; rank 8, R1, step 2 from state 1, T0).
+- Global oracle norm g2 232.033 (N1 232.04). At clip 0.5·N1 = 116: **152/152 B tensors change, only 1 B tensor
+  has its own ‖g2‖ > 116** (max 179.6) → not per-tensor clipping; a global norm (over all LoRA tensors or over
+  all B tensors — indistinguishable here, ‖G_A‖ ≈ 6 vs ‖G_B‖ ≈ 232). At 0.01·N1: 152/152 change.
+- A is bit-identical at every level (0 elements): A's stored state is empty at step 2, and the map is scale
+  invariant in a lone gradient (as at step 1, where clip 0.01 is bit-identical and 0.5 changes 14 elements).
+  → **clipping multiplies the current gradient by c = clip/N before it is combined with stored state.**
+  2·N1 → c = 1 → bit-identical (as observed).
+- Not scale-invariant at step 2: the relative weight of (c·g2) vs B's stored state. ΔB vs unclipped: c=0.5 relF
+  0.0755 (p90 0.096), c=0.01 0.129 (p90 0.153); far smaller than relF(PE5 g1, PE5 g2) = 0.19 would suggest for
+  a g1/g2 mixture, and the two increments are nearly orthogonal (cos(D1−D.5, D.5−D.01) median 0.07), ratio of
+  norms 0.72 (linear-in-c would be 1.02). D(1)−D(0.01) has cos −0.29 with the polar tangent of g2⊥g1 (sign as
+  expected for a −orth(Y + c·g2) update), 0.000 with T(g1), 0.000 with T(random). So g2 enters additively with
+  the right sign but most of the c-dependence is not explained. **No quantitative model**: it needs the
+  continuing map, which is not PE5 of any g1/g2/U1 combination.
+
+**Q3 — lr** (`fr_lr.py`, `fr_lr2.py`, `fr_lr3.py`; r32 R2 step 3 from state 2, T1).
+- Re-measured: U(lr)·1e-3/lr vs U(1e-3): A 1.6e-4 (1e-4), 1.5e-5 (3e-3), **0.037 (1e-2; p90 0.054, max 0.108)**;
+  B 4.9e-7, 1.0e-7, **0.017 (p90 0.022, max 0.041)**. r8 R2 at 1e-2: A 2.0e-5, B 8.6e-8 (proportional). All 304
+  tensors affected. Reproduced bit-identically on a different clock_cycle cluster (7202958 vs 7533163).
+- Structure of E = U(1e-2)/10 − U(1e-3): 93–94% of ‖E‖ outside the span of U(1e-3); inside, singular values
+  change only 0.1% (rotation, not rescaling). |E| has the same absolute rms in every |U| decile (additive,
+  magnitude-independent, unbiased: mean E·sign(U)/|U| ≤ 0.004). corr(|E|, |W|): A 1e-4, B 0.05; corr(E, W) ≤ 0.03.
+  Tangent-space test: cos(E, T(Z)) ≤ 0.035 for Z ∈ {g3, g2, U1, U2, W, U(1e-3), random}; least squares on all of
+  them explains < 0.2% of ‖E‖².
+- **Rules out:** precision of W + lr·U (exported fp32, float32 ulp/|U| = 7e-6 (A), 2e-8 (B); and no |W|
+  correlation); weight decay / any W-proportional term; saturation/element clipping (no |U| dependence);
+  a smooth lr-weighted mix of state and gradient (lr 1e-4 and 3e-3 are proportional to rounding level).
+- **Consistent with:** the same algorithm taking a different numerical path (rounding) at lr 1e-2, r32: per
+  tensor relE correlates with the tensor's fp16-vs-f64 PE5 gap on g3 (corr of logs A +0.65, B +0.24); relE is
+  ~2.7× that gap. Trigger unknown. Candidates for the switch, by scale: per-tensor ‖lr·U_A‖/‖A‖ = 0.049 (r32 1e-2)
+  vs 0.019 (r8 1e-2) and 0.015 (r32 3e-3); global ‖lr·U‖ over 304 tensors 0.99 vs 0.39 vs 0.30.
+
+**Caveats.** Fresh-state law residuals are not bit-exact (same floor as FIRSTSTEP-01). Clip analysis is one
+state, one batch, rank 8. The lr anomaly is one state, one rank. Q2/Q3 conclusions about the continuing map
+are limited by not knowing that map.
+
+**Proposed Tinker follow-ups (not run).** (1) Recompute the oracle G at the three mismatched states
+(48f8…/T2, 7bde…/T1, 6b6b…/T1) twice each and compare with the stored G — decides gradient mismatch vs map.
+(2) r32 state 2 T1 restored-with-optimizer lr ∈ {4e-3, 5e-3, 6e-3, 7e-3, 8e-3}, plus r8 state 2 lr ∈ {2e-2, 3e-2,
+5e-2}: locate the threshold and see whether it is at fixed ‖lr·U_A‖/‖A‖ or fixed global ‖lr·U‖. (3) Fresh-state
+(weights-only) r32 step from state 2 at lr 1e-2 vs 1e-3: does the anomaly need optimizer state? (4) Clip at a
+continuing step with threshold between ‖G_B‖_global and ‖G‖_global at a state with large G_A (r8 state 5:
+‖G_A‖ 17.6) — global over all tensors vs over B only; and a dense clip series c ∈ {1, .9, .7, .5, .3, .1, .01, 1e-4}
+at step 2 to map the c-path. ~15 clients.

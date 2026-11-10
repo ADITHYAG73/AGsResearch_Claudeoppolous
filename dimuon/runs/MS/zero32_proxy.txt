@@ -1,0 +1,4 @@
+S2_r32_b0.9 B f64: simulated cos(zero2,zero1) median 1.000000 min 1.00000 (n=19)
+S2_r32_b0.9 B f16: simulated cos(zero2,zero1) median 0.999999 min 0.99999 (n=19)
+S2_r8_b0.9 B f64: simulated cos(zero2,zero1) median 1.000000 min 1.00000 (n=19)
+S2_r8_b0.9 B f16: simulated cos(zero2,zero1) median 1.000000 min 1.00000 (n=19)

@@ -13,12 +13,12 @@ T = sys.argv[6] if len(sys.argv) > 6 else f"S2_r{r}_b0"
 c = step(f"{T}/step{k}")
 G = {j: grad(step(f"{T}/step{j}")["grad_key"]) for j in range(1, k + 1)}
 W0, Wc = state(c["before"]), state(c["after"])
-od = OUT / "symfree"; od.mkdir(parents=True, exist_ok=True)
+od = OUT / ("symfree" + os.environ.get("MS_TAG", "")); od.mkdir(parents=True, exist_ok=True)
 for m in names(W0)[off::stride]:
     g = get(G[k], kind, m, "G"); U = unit(get(Wc, kind, m) - get(W0, kind, m))
     gs = [get(G[j], kind, m, "G") for j in range(1, k)]
     e = (gs[-1] ** 2).sum(1)
-    init = -0.25 * np.log(e + 1e-4 * e.max())
+    init = -0.25 * np.log(e + float(os.environ.get("MS_INIT_DAMP", "1e-4")) * e.max())  # init only
     lL = torch.tensor(init - init.mean(), requires_grad=True)
     lR = torch.tensor(-0.25 * np.log((gs[-1] ** 2).sum(0) + 1e-30), requires_grad=True)
     gt, Ut = torch.tensor(g), torch.tensor(U)

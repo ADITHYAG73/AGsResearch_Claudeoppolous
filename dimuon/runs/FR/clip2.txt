@@ -1,0 +1,7 @@
+|D(1)-D(.5)| / |D(.5)-D(.01)|  (H_add, linear: 1.02)           [med 0.723  p90 1.07  max 1.56  (n=152)]
+cos(D(1)-D(.5), D(.5)-D(.01))  (H_add: ~1)                     [med 0.0736  p90 0.576  max 0.923  (n=152)]
+cos(D(1)-D(.01), T_Q(g2))                                      [med -0.0684  p90 -0.0373  max -0.0133  (n=152)]
+cos(D(1)-D(.01), T_Q(g1))  [null]                              [med 0.000723  p90 0.0124  max 0.0481  (n=152)]
+cos(D(1)-D(.01), T_Q(g2 minus its g1 component))               [med -0.292  p90 -0.179  max -0.114  (n=152)]
+cos(D(1)-D(.01), T_Q(random))  [null]                          [med 7.72e-05  p90 0.00604  max 0.0169  (n=152)]
+cos(D(1)-D(.01), g2) raw  [no tangent projection]              [med -0.0486  p90 0.159  max 0.393  (n=152)]

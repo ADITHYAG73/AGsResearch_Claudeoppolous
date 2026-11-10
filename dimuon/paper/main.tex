@@ -242,7 +242,48 @@ gradient from the same regime. This is a reminder that a hosted optimizer is a m
 the results below describe the service on that date.
 
 \subsection{Momentum and state across steps}\pending{analysis running}
-\subsection{How $A$ is updated, and whether $A$ and $B$ are coupled}\pending{}
+\subsection{How $A$ is updated, and whether $A$ and $B$ are coupled}\label{sec:fresh}
+These results use a \emph{fresh} optimizer restored at weights where $B\neq0$, so that both
+factors have a non-zero gradient and no history.
+
+\paragraph{Each factor follows the first-step law on its own gradient.}
+\[
+\Delta A=-\eta\sqrt r\,(r/32)^{0.175}\,\frac{X_A}{\|X_A\|_F},\qquad
+\Delta B=-\eta\sqrt r\,(r/32)^{0.175}\,\frac{X_B}{\|X_B\|_F},
+\]
+with $X_A,X_B$ the five-step half-precision Polar Express of $G_A$ and $G_B$. Median relative
+residuals over 152 modules are 0.005--0.006 for both factors at rank 8 (maximum 0.025) and
+0.005--0.020 at rank 32, the same as at step 1; the control (the law applied to another batch's
+gradient) gives 1.4. My own float64 re-computation on one rank-8 step gives medians 0.0050
+($A$) and 0.0051 ($B$). Whether the iteration is run on the tall or the wide orientation cannot
+be told apart at this resolution.
+
+\paragraph{No coupling in a fresh step.} Six families that would let one factor's update depend
+on the other, such as $\mathrm{PE}\big((B^\top B)^pG_A\big)$ or
+$\mathrm{PE}\big(G_B(AA^\top)^p\big)$, were fitted on half the modules and scored on the other
+half. The best exponent is $p=0$ in every family at every step, and $|p|=0.05$ already makes
+the fit 1.1--15 times worse. The test had power: $B^\top B$ has condition number up to 165.
+A joint orthogonalisation of the two gradients also fails. So without history Dimuon is, to our
+resolution, Muon-style orthogonalisation applied to $A$ and $B$ separately with a fixed step
+size. Whatever is LoRA-specific must live in the remembered state
+(Section~\ref{sec:multi}).
+
+\paragraph{Clipping is by a global norm, applied to the incoming gradient.} With the threshold
+at half the global gradient norm, all 152 $B$ updates change although only one tensor's own
+gradient norm exceeds the threshold. The clip only matters once there is stored state to weigh
+the scaled gradient against, which is why step 1, and $A$ at step 2, are unaffected. The change
+is not linear in the clip factor; there is no quantitative model yet.
+
+\paragraph{The learning-rate anomaly.} At rank 32, step 3, $\eta=10^{-2}$, the deviation from
+proportionality (3.7\% for $A$, 1.7\% for $B$) is almost entirely outside the span of the
+$\eta=10^{-3}$ update, uncorrelated with the weights, and not a weight-decay or saturation
+term. It looks like the same algorithm taking a different rounding path, with an unknown
+trigger. Open.
+
+\paragraph{Three excluded steps.} Three fresh steps (all in the second service regime) match
+the law only to 1.5--14\%, with part of the update outside the span of the stored gradient.
+The likeliest cause is that the stored gradient is not the one the optimizer saw; to be
+re-measured.
 \subsection{Cross-check on a second model}\pending{}
 \subsection{Comparison with a public reimplementation}\pending{done last, after our own rule is
 fixed, so the measurement is independent.}
