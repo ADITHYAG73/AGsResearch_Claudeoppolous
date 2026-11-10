@@ -1,0 +1,3798 @@
+{
+ "1": {
+  "versions": [
+   [
+    "r1_oracle1",
+    "r1_oracle2"
+   ],
+   [
+    "r1_oracle3"
+   ]
+  ],
+  "ver_of": {
+   "r1_b0": "r1_oracle3",
+   "r1_b0.5": "r1_oracle3",
+   "r1_b0.75": "r1_oracle3",
+   "r1_b0.9": "r1_oracle3",
+   "r1_b0.99": "r1_oracle1",
+   "r1_b0.999": "r1_oracle1",
+   "r1_b0.3": "r1_oracle1",
+   "r1_b0.7": "r1_oracle1"
+  },
+  "total_entries": 458752,
+  "n_tensors": 152,
+  "runs": {
+   "r1_b0": {
+    "data": {
+     "gradient": "r1_oracle3",
+     "beta": 0.0,
+     "vs": "r1_b0",
+     "f32_tensors": 0,
+     "f32_entries": 0,
+     "x16_tensors": 0,
+     "x16_entries": 0,
+     "changed": []
+    },
+    "cands": {
+     "g|eps=1e-07": {
+      "x16_mismatch": 4091,
+      "tensors_exact": 150,
+      "f32_match": 199783,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "ema_a64|eps=1e-07": {
+      "x16_mismatch": 4091,
+      "tensors_exact": 150,
+      "f32_match": 199783,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "ema_a32|eps=1e-07": {
+      "x16_mismatch": 4091,
+      "tensors_exact": 150,
+      "f32_match": 199783,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "lerp_a64|eps=1e-07": {
+      "x16_mismatch": 4091,
+      "tensors_exact": 150,
+      "f32_match": 199783,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "lerp_a64_fma|eps=1e-07": {
+      "x16_mismatch": 4091,
+      "tensors_exact": 150,
+      "f32_match": 199783,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "lerp_a32|eps=1e-07": {
+      "x16_mismatch": 4091,
+      "tensors_exact": 150,
+      "f32_match": 199783,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "ema_a64_bcdiv64|eps=1e-07": {
+      "x16_mismatch": 4091,
+      "tensors_exact": 150,
+      "f32_match": 199783,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "ema_a64_bcdiv32|eps=1e-07": {
+      "x16_mismatch": 4091,
+      "tensors_exact": 150,
+      "f32_match": 199783,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "ema_a32_bcdiv32|eps=1e-07": {
+      "x16_mismatch": 4091,
+      "tensors_exact": 150,
+      "f32_match": 199783,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "ema_a64_bcmul64|eps=1e-07": {
+      "x16_mismatch": 4091,
+      "tensors_exact": 150,
+      "f32_match": 199783,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "lerp_a64_bcdiv64|eps=1e-07": {
+      "x16_mismatch": 4091,
+      "tensors_exact": 150,
+      "f32_match": 199783,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "ema_a64_bf16|eps=1e-07": {
+      "x16_mismatch": 4091,
+      "tensors_exact": 150,
+      "f32_match": 199783,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "ema_a64_fp16|eps=1e-07": {
+      "x16_mismatch": 4091,
+      "tensors_exact": 150,
+      "f32_match": 199783,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "g|eps=0": {
+      "x16_mismatch": 4091,
+      "tensors_exact": 150,
+      "f32_match": 199783,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "ema_a64|eps=0": {
+      "x16_mismatch": 4091,
+      "tensors_exact": 150,
+      "f32_match": 199783,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "ema_a32|eps=0": {
+      "x16_mismatch": 4091,
+      "tensors_exact": 150,
+      "f32_match": 199783,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "lerp_a64|eps=0": {
+      "x16_mismatch": 4091,
+      "tensors_exact": 150,
+      "f32_match": 199783,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "lerp_a64_fma|eps=0": {
+      "x16_mismatch": 4091,
+      "tensors_exact": 150,
+      "f32_match": 199783,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "lerp_a32|eps=0": {
+      "x16_mismatch": 4091,
+      "tensors_exact": 150,
+      "f32_match": 199783,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "ema_a64_bcdiv64|eps=0": {
+      "x16_mismatch": 4091,
+      "tensors_exact": 150,
+      "f32_match": 199783,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "ema_a64_bcdiv32|eps=0": {
+      "x16_mismatch": 4091,
+      "tensors_exact": 150,
+      "f32_match": 199783,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "ema_a32_bcdiv32|eps=0": {
+      "x16_mismatch": 4091,
+      "tensors_exact": 150,
+      "f32_match": 199783,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "ema_a64_bcmul64|eps=0": {
+      "x16_mismatch": 4091,
+      "tensors_exact": 150,
+      "f32_match": 199783,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "lerp_a64_bcdiv64|eps=0": {
+      "x16_mismatch": 4091,
+      "tensors_exact": 150,
+      "f32_match": 199783,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "ema_a64_bf16|eps=0": {
+      "x16_mismatch": 4091,
+      "tensors_exact": 150,
+      "f32_match": 199783,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "ema_a64_fp16|eps=0": {
+      "x16_mismatch": 4091,
+      "tensors_exact": 150,
+      "f32_match": 199783,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     }
+    }
+   },
+   "r1_b0.5": {
+    "data": {
+     "gradient": "r1_oracle3",
+     "beta": 0.5,
+     "vs": "r1_b0",
+     "f32_tensors": 0,
+     "f32_entries": 0,
+     "x16_tensors": 0,
+     "x16_entries": 0,
+     "changed": []
+    },
+    "cands": {
+     "g|eps=1e-07": {
+      "x16_mismatch": 4091,
+      "tensors_exact": 150,
+      "f32_match": 199783,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "ema_a64|eps=1e-07": {
+      "x16_mismatch": 4091,
+      "tensors_exact": 150,
+      "f32_match": 199783,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "ema_a32|eps=1e-07": {
+      "x16_mismatch": 4091,
+      "tensors_exact": 150,
+      "f32_match": 199783,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "lerp_a64|eps=1e-07": {
+      "x16_mismatch": 4091,
+      "tensors_exact": 150,
+      "f32_match": 199783,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "lerp_a64_fma|eps=1e-07": {
+      "x16_mismatch": 4091,
+      "tensors_exact": 150,
+      "f32_match": 199783,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "lerp_a32|eps=1e-07": {
+      "x16_mismatch": 4091,
+      "tensors_exact": 150,
+      "f32_match": 199783,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "ema_a64_bcdiv64|eps=1e-07": {
+      "x16_mismatch": 4091,
+      "tensors_exact": 150,
+      "f32_match": 199783,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "ema_a64_bcdiv32|eps=1e-07": {
+      "x16_mismatch": 4091,
+      "tensors_exact": 150,
+      "f32_match": 199783,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "ema_a32_bcdiv32|eps=1e-07": {
+      "x16_mismatch": 4091,
+      "tensors_exact": 150,
+      "f32_match": 199783,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "ema_a64_bcmul64|eps=1e-07": {
+      "x16_mismatch": 4091,
+      "tensors_exact": 150,
+      "f32_match": 199783,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "lerp_a64_bcdiv64|eps=1e-07": {
+      "x16_mismatch": 4091,
+      "tensors_exact": 150,
+      "f32_match": 199783,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "ema_a64_bf16|eps=1e-07": {
+      "x16_mismatch": 4091,
+      "tensors_exact": 150,
+      "f32_match": 199783,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "ema_a64_fp16|eps=1e-07": {
+      "x16_mismatch": 4093,
+      "tensors_exact": 149,
+      "f32_match": 199782,
+      "cand_flips": 2,
+      "cand_flip_tensors": 2,
+      "both": 0
+     },
+     "g|eps=0": {
+      "x16_mismatch": 4091,
+      "tensors_exact": 150,
+      "f32_match": 199783,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "ema_a64|eps=0": {
+      "x16_mismatch": 4091,
+      "tensors_exact": 150,
+      "f32_match": 199783,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "ema_a32|eps=0": {
+      "x16_mismatch": 4091,
+      "tensors_exact": 150,
+      "f32_match": 199783,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "lerp_a64|eps=0": {
+      "x16_mismatch": 4091,
+      "tensors_exact": 150,
+      "f32_match": 199783,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "lerp_a64_fma|eps=0": {
+      "x16_mismatch": 4091,
+      "tensors_exact": 150,
+      "f32_match": 199783,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "lerp_a32|eps=0": {
+      "x16_mismatch": 4091,
+      "tensors_exact": 150,
+      "f32_match": 199783,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "ema_a64_bcdiv64|eps=0": {
+      "x16_mismatch": 4091,
+      "tensors_exact": 150,
+      "f32_match": 199783,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "ema_a64_bcdiv32|eps=0": {
+      "x16_mismatch": 4091,
+      "tensors_exact": 150,
+      "f32_match": 199783,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "ema_a32_bcdiv32|eps=0": {
+      "x16_mismatch": 4091,
+      "tensors_exact": 150,
+      "f32_match": 199783,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "ema_a64_bcmul64|eps=0": {
+      "x16_mismatch": 4091,
+      "tensors_exact": 150,
+      "f32_match": 199783,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "lerp_a64_bcdiv64|eps=0": {
+      "x16_mismatch": 4091,
+      "tensors_exact": 150,
+      "f32_match": 199783,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "ema_a64_bf16|eps=0": {
+      "x16_mismatch": 4091,
+      "tensors_exact": 150,
+      "f32_match": 199783,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "ema_a64_fp16|eps=0": {
+      "x16_mismatch": 4093,
+      "tensors_exact": 149,
+      "f32_match": 199782,
+      "cand_flips": 2,
+      "cand_flip_tensors": 2,
+      "both": 0
+     }
+    }
+   },
+   "r1_b0.75": {
+    "data": {
+     "gradient": "r1_oracle3",
+     "beta": 0.75,
+     "vs": "r1_b0",
+     "f32_tensors": 0,
+     "f32_entries": 0,
+     "x16_tensors": 0,
+     "x16_entries": 0,
+     "changed": []
+    },
+    "cands": {
+     "g|eps=1e-07": {
+      "x16_mismatch": 4091,
+      "tensors_exact": 150,
+      "f32_match": 199783,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "ema_a64|eps=1e-07": {
+      "x16_mismatch": 4091,
+      "tensors_exact": 150,
+      "f32_match": 199783,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "ema_a32|eps=1e-07": {
+      "x16_mismatch": 4091,
+      "tensors_exact": 150,
+      "f32_match": 199783,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "lerp_a64|eps=1e-07": {
+      "x16_mismatch": 4091,
+      "tensors_exact": 150,
+      "f32_match": 199783,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "lerp_a64_fma|eps=1e-07": {
+      "x16_mismatch": 4091,
+      "tensors_exact": 150,
+      "f32_match": 199783,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "lerp_a32|eps=1e-07": {
+      "x16_mismatch": 4091,
+      "tensors_exact": 150,
+      "f32_match": 199783,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "ema_a64_bcdiv64|eps=1e-07": {
+      "x16_mismatch": 4091,
+      "tensors_exact": 150,
+      "f32_match": 199783,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "ema_a64_bcdiv32|eps=1e-07": {
+      "x16_mismatch": 4091,
+      "tensors_exact": 150,
+      "f32_match": 199783,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "ema_a32_bcdiv32|eps=1e-07": {
+      "x16_mismatch": 4091,
+      "tensors_exact": 150,
+      "f32_match": 199783,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "ema_a64_bcmul64|eps=1e-07": {
+      "x16_mismatch": 4091,
+      "tensors_exact": 150,
+      "f32_match": 199783,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "lerp_a64_bcdiv64|eps=1e-07": {
+      "x16_mismatch": 4091,
+      "tensors_exact": 150,
+      "f32_match": 199783,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "ema_a64_bf16|eps=1e-07": {
+      "x16_mismatch": 4091,
+      "tensors_exact": 150,
+      "f32_match": 199783,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "ema_a64_fp16|eps=1e-07": {
+      "x16_mismatch": 4106,
+      "tensors_exact": 139,
+      "f32_match": 199773,
+      "cand_flips": 15,
+      "cand_flip_tensors": 12,
+      "both": 0
+     },
+     "g|eps=0": {
+      "x16_mismatch": 4091,
+      "tensors_exact": 150,
+      "f32_match": 199783,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "ema_a64|eps=0": {
+      "x16_mismatch": 4091,
+      "tensors_exact": 150,
+      "f32_match": 199783,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "ema_a32|eps=0": {
+      "x16_mismatch": 4091,
+      "tensors_exact": 150,
+      "f32_match": 199783,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "lerp_a64|eps=0": {
+      "x16_mismatch": 4091,
+      "tensors_exact": 150,
+      "f32_match": 199783,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "lerp_a64_fma|eps=0": {
+      "x16_mismatch": 4091,
+      "tensors_exact": 150,
+      "f32_match": 199783,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "lerp_a32|eps=0": {
+      "x16_mismatch": 4091,
+      "tensors_exact": 150,
+      "f32_match": 199783,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "ema_a64_bcdiv64|eps=0": {
+      "x16_mismatch": 4091,
+      "tensors_exact": 150,
+      "f32_match": 199783,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "ema_a64_bcdiv32|eps=0": {
+      "x16_mismatch": 4091,
+      "tensors_exact": 150,
+      "f32_match": 199783,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "ema_a32_bcdiv32|eps=0": {
+      "x16_mismatch": 4091,
+      "tensors_exact": 150,
+      "f32_match": 199783,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "ema_a64_bcmul64|eps=0": {
+      "x16_mismatch": 4091,
+      "tensors_exact": 150,
+      "f32_match": 199783,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "lerp_a64_bcdiv64|eps=0": {
+      "x16_mismatch": 4091,
+      "tensors_exact": 150,
+      "f32_match": 199783,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "ema_a64_bf16|eps=0": {
+      "x16_mismatch": 4091,
+      "tensors_exact": 150,
+      "f32_match": 199783,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "ema_a64_fp16|eps=0": {
+      "x16_mismatch": 4106,
+      "tensors_exact": 139,
+      "f32_match": 199773,
+      "cand_flips": 15,
+      "cand_flip_tensors": 12,
+      "both": 0
+     }
+    }
+   },
+   "r1_b0.9": {
+    "data": {
+     "gradient": "r1_oracle3",
+     "beta": 0.9,
+     "vs": "r1_b0",
+     "f32_tensors": 1,
+     "f32_entries": 4096,
+     "x16_tensors": 1,
+     "x16_entries": 44,
+     "changed": [
+      "layers.16.linear_attn.in_proj_v.lora_B"
+     ]
+    },
+    "cands": {
+     "g|eps=1e-07": {
+      "x16_mismatch": 4135,
+      "tensors_exact": 149,
+      "f32_match": 197356,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "ema_a64|eps=1e-07": {
+      "x16_mismatch": 4157,
+      "tensors_exact": 147,
+      "f32_match": 195434,
+      "cand_flips": 22,
+      "cand_flip_tensors": 2,
+      "both": 0
+     },
+     "ema_a32|eps=1e-07": {
+      "x16_mismatch": 4157,
+      "tensors_exact": 147,
+      "f32_match": 195434,
+      "cand_flips": 22,
+      "cand_flip_tensors": 2,
+      "both": 0
+     },
+     "lerp_a64|eps=1e-07": {
+      "x16_mismatch": 4157,
+      "tensors_exact": 147,
+      "f32_match": 195434,
+      "cand_flips": 22,
+      "cand_flip_tensors": 2,
+      "both": 0
+     },
+     "lerp_a64_fma|eps=1e-07": {
+      "x16_mismatch": 4157,
+      "tensors_exact": 147,
+      "f32_match": 195434,
+      "cand_flips": 22,
+      "cand_flip_tensors": 2,
+      "both": 0
+     },
+     "lerp_a32|eps=1e-07": {
+      "x16_mismatch": 4157,
+      "tensors_exact": 147,
+      "f32_match": 195434,
+      "cand_flips": 22,
+      "cand_flip_tensors": 2,
+      "both": 0
+     },
+     "ema_a64_bcdiv64|eps=1e-07": {
+      "x16_mismatch": 4135,
+      "tensors_exact": 149,
+      "f32_match": 197356,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "ema_a64_bcdiv32|eps=1e-07": {
+      "x16_mismatch": 4135,
+      "tensors_exact": 149,
+      "f32_match": 197356,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "ema_a32_bcdiv32|eps=1e-07": {
+      "x16_mismatch": 4135,
+      "tensors_exact": 149,
+      "f32_match": 197356,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "ema_a64_bcmul64|eps=1e-07": {
+      "x16_mismatch": 4135,
+      "tensors_exact": 149,
+      "f32_match": 197356,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "lerp_a64_bcdiv64|eps=1e-07": {
+      "x16_mismatch": 4135,
+      "tensors_exact": 149,
+      "f32_match": 197356,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "ema_a64_bf16|eps=1e-07": {
+      "x16_mismatch": 386154,
+      "tensors_exact": 0,
+      "f32_match": 5,
+      "cand_flips": 385637,
+      "cand_flip_tensors": 152,
+      "both": 44
+     },
+     "ema_a64_fp16|eps=1e-07": {
+      "x16_mismatch": 228183,
+      "tensors_exact": 0,
+      "f32_match": 4,
+      "cand_flips": 228605,
+      "cand_flip_tensors": 152,
+      "both": 44
+     },
+     "g|eps=0": {
+      "x16_mismatch": 4135,
+      "tensors_exact": 149,
+      "f32_match": 197356,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "ema_a64|eps=0": {
+      "x16_mismatch": 4134,
+      "tensors_exact": 149,
+      "f32_match": 197320,
+      "cand_flips": 25,
+      "cand_flip_tensors": 2,
+      "both": 0
+     },
+     "ema_a32|eps=0": {
+      "x16_mismatch": 4090,
+      "tensors_exact": 150,
+      "f32_match": 199605,
+      "cand_flips": 69,
+      "cand_flip_tensors": 3,
+      "both": 44
+     },
+     "lerp_a64|eps=0": {
+      "x16_mismatch": 4134,
+      "tensors_exact": 149,
+      "f32_match": 197320,
+      "cand_flips": 25,
+      "cand_flip_tensors": 2,
+      "both": 0
+     },
+     "lerp_a64_fma|eps=0": {
+      "x16_mismatch": 4134,
+      "tensors_exact": 149,
+      "f32_match": 197320,
+      "cand_flips": 25,
+      "cand_flip_tensors": 2,
+      "both": 0
+     },
+     "lerp_a32|eps=0": {
+      "x16_mismatch": 4090,
+      "tensors_exact": 150,
+      "f32_match": 199605,
+      "cand_flips": 69,
+      "cand_flip_tensors": 3,
+      "both": 44
+     },
+     "ema_a64_bcdiv64|eps=0": {
+      "x16_mismatch": 4122,
+      "tensors_exact": 150,
+      "f32_match": 197929,
+      "cand_flips": 13,
+      "cand_flip_tensors": 1,
+      "both": 0
+     },
+     "ema_a64_bcdiv32|eps=0": {
+      "x16_mismatch": 4135,
+      "tensors_exact": 149,
+      "f32_match": 197356,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "ema_a32_bcdiv32|eps=0": {
+      "x16_mismatch": 4135,
+      "tensors_exact": 149,
+      "f32_match": 197356,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "ema_a64_bcmul64|eps=0": {
+      "x16_mismatch": 4122,
+      "tensors_exact": 150,
+      "f32_match": 197929,
+      "cand_flips": 13,
+      "cand_flip_tensors": 1,
+      "both": 0
+     },
+     "lerp_a64_bcdiv64|eps=0": {
+      "x16_mismatch": 4122,
+      "tensors_exact": 150,
+      "f32_match": 197929,
+      "cand_flips": 13,
+      "cand_flip_tensors": 1,
+      "both": 0
+     },
+     "ema_a64_bf16|eps=0": {
+      "x16_mismatch": 386128,
+      "tensors_exact": 0,
+      "f32_match": 5,
+      "cand_flips": 385611,
+      "cand_flip_tensors": 152,
+      "both": 44
+     },
+     "ema_a64_fp16|eps=0": {
+      "x16_mismatch": 228138,
+      "tensors_exact": 0,
+      "f32_match": 4,
+      "cand_flips": 228560,
+      "cand_flip_tensors": 152,
+      "both": 44
+     }
+    }
+   },
+   "r1_b0.99": {
+    "data": {
+     "gradient": "r1_oracle1",
+     "beta": 0.99
+    },
+    "cands": {
+     "g|eps=1e-07": {
+      "x16_mismatch": 2134,
+      "tensors_exact": 149,
+      "f32_match": 207535,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": null
+     },
+     "ema_a64|eps=1e-07": {
+      "x16_mismatch": 8254,
+      "tensors_exact": 141,
+      "f32_match": 205648,
+      "cand_flips": 6294,
+      "cand_flip_tensors": 12,
+      "both": null
+     },
+     "ema_a32|eps=1e-07": {
+      "x16_mismatch": 8261,
+      "tensors_exact": 140,
+      "f32_match": 205065,
+      "cand_flips": 6301,
+      "cand_flip_tensors": 13,
+      "both": null
+     },
+     "lerp_a64|eps=1e-07": {
+      "x16_mismatch": 8254,
+      "tensors_exact": 141,
+      "f32_match": 205648,
+      "cand_flips": 6294,
+      "cand_flip_tensors": 12,
+      "both": null
+     },
+     "lerp_a64_fma|eps=1e-07": {
+      "x16_mismatch": 8254,
+      "tensors_exact": 141,
+      "f32_match": 205648,
+      "cand_flips": 6294,
+      "cand_flip_tensors": 12,
+      "both": null
+     },
+     "lerp_a32|eps=1e-07": {
+      "x16_mismatch": 8261,
+      "tensors_exact": 140,
+      "f32_match": 205065,
+      "cand_flips": 6301,
+      "cand_flip_tensors": 13,
+      "both": null
+     },
+     "ema_a64_bcdiv64|eps=1e-07": {
+      "x16_mismatch": 2134,
+      "tensors_exact": 149,
+      "f32_match": 207535,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": null
+     },
+     "ema_a64_bcdiv32|eps=1e-07": {
+      "x16_mismatch": 2091,
+      "tensors_exact": 149,
+      "f32_match": 213139,
+      "cand_flips": 131,
+      "cand_flip_tensors": 4,
+      "both": null
+     },
+     "ema_a32_bcdiv32|eps=1e-07": {
+      "x16_mismatch": 2134,
+      "tensors_exact": 149,
+      "f32_match": 207535,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": null
+     },
+     "ema_a64_bcmul64|eps=1e-07": {
+      "x16_mismatch": 2134,
+      "tensors_exact": 149,
+      "f32_match": 207535,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": null
+     },
+     "lerp_a64_bcdiv64|eps=1e-07": {
+      "x16_mismatch": 2134,
+      "tensors_exact": 149,
+      "f32_match": 207535,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": null
+     },
+     "ema_a64_bf16|eps=1e-07": {
+      "x16_mismatch": 389356,
+      "tensors_exact": 0,
+      "f32_match": 55,
+      "cand_flips": 389284,
+      "cand_flip_tensors": 152,
+      "both": null
+     },
+     "ema_a64_fp16|eps=1e-07": {
+      "x16_mismatch": 253109,
+      "tensors_exact": 0,
+      "f32_match": 37,
+      "cand_flips": 253022,
+      "cand_flip_tensors": 152,
+      "both": null
+     },
+     "g|eps=0": {
+      "x16_mismatch": 2134,
+      "tensors_exact": 149,
+      "f32_match": 207535,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": null
+     },
+     "ema_a64|eps=0": {
+      "x16_mismatch": 2142,
+      "tensors_exact": 149,
+      "f32_match": 209323,
+      "cand_flips": 38,
+      "cand_flip_tensors": 2,
+      "both": null
+     },
+     "ema_a32|eps=0": {
+      "x16_mismatch": 2119,
+      "tensors_exact": 150,
+      "f32_match": 209716,
+      "cand_flips": 15,
+      "cand_flip_tensors": 1,
+      "both": null
+     },
+     "lerp_a64|eps=0": {
+      "x16_mismatch": 2142,
+      "tensors_exact": 149,
+      "f32_match": 209323,
+      "cand_flips": 38,
+      "cand_flip_tensors": 2,
+      "both": null
+     },
+     "lerp_a64_fma|eps=0": {
+      "x16_mismatch": 2142,
+      "tensors_exact": 149,
+      "f32_match": 209323,
+      "cand_flips": 38,
+      "cand_flip_tensors": 2,
+      "both": null
+     },
+     "lerp_a32|eps=0": {
+      "x16_mismatch": 2119,
+      "tensors_exact": 150,
+      "f32_match": 209716,
+      "cand_flips": 15,
+      "cand_flip_tensors": 1,
+      "both": null
+     },
+     "ema_a64_bcdiv64|eps=0": {
+      "x16_mismatch": 2134,
+      "tensors_exact": 149,
+      "f32_match": 207535,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": null
+     },
+     "ema_a64_bcdiv32|eps=0": {
+      "x16_mismatch": 2091,
+      "tensors_exact": 149,
+      "f32_match": 213139,
+      "cand_flips": 131,
+      "cand_flip_tensors": 4,
+      "both": null
+     },
+     "ema_a32_bcdiv32|eps=0": {
+      "x16_mismatch": 2134,
+      "tensors_exact": 149,
+      "f32_match": 207535,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": null
+     },
+     "ema_a64_bcmul64|eps=0": {
+      "x16_mismatch": 2134,
+      "tensors_exact": 149,
+      "f32_match": 207535,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": null
+     },
+     "lerp_a64_bcdiv64|eps=0": {
+      "x16_mismatch": 2134,
+      "tensors_exact": 149,
+      "f32_match": 207535,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": null
+     },
+     "ema_a64_bf16|eps=0": {
+      "x16_mismatch": 388245,
+      "tensors_exact": 0,
+      "f32_match": 55,
+      "cand_flips": 388173,
+      "cand_flip_tensors": 152,
+      "both": null
+     },
+     "ema_a64_fp16|eps=0": {
+      "x16_mismatch": 253894,
+      "tensors_exact": 0,
+      "f32_match": 37,
+      "cand_flips": 253807,
+      "cand_flip_tensors": 152,
+      "both": null
+     }
+    }
+   },
+   "r1_b0.999": {
+    "data": {
+     "gradient": "r1_oracle1",
+     "beta": 0.999
+    },
+    "cands": {
+     "g|eps=1e-07": {
+      "x16_mismatch": 2142,
+      "tensors_exact": 149,
+      "f32_match": 208738,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": null
+     },
+     "ema_a64|eps=1e-07": {
+      "x16_mismatch": 65966,
+      "tensors_exact": 56,
+      "f32_match": 101028,
+      "cand_flips": 64014,
+      "cand_flip_tensors": 96,
+      "both": null
+     },
+     "ema_a32|eps=1e-07": {
+      "x16_mismatch": 65966,
+      "tensors_exact": 56,
+      "f32_match": 101028,
+      "cand_flips": 64014,
+      "cand_flip_tensors": 96,
+      "both": null
+     },
+     "lerp_a64|eps=1e-07": {
+      "x16_mismatch": 65966,
+      "tensors_exact": 56,
+      "f32_match": 101028,
+      "cand_flips": 64014,
+      "cand_flip_tensors": 96,
+      "both": null
+     },
+     "lerp_a64_fma|eps=1e-07": {
+      "x16_mismatch": 65966,
+      "tensors_exact": 56,
+      "f32_match": 101028,
+      "cand_flips": 64014,
+      "cand_flip_tensors": 96,
+      "both": null
+     },
+     "lerp_a32|eps=1e-07": {
+      "x16_mismatch": 65966,
+      "tensors_exact": 56,
+      "f32_match": 101028,
+      "cand_flips": 64014,
+      "cand_flip_tensors": 96,
+      "both": null
+     },
+     "ema_a64_bcdiv64|eps=1e-07": {
+      "x16_mismatch": 2142,
+      "tensors_exact": 149,
+      "f32_match": 208738,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": null
+     },
+     "ema_a64_bcdiv32|eps=1e-07": {
+      "x16_mismatch": 2142,
+      "tensors_exact": 149,
+      "f32_match": 208738,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": null
+     },
+     "ema_a32_bcdiv32|eps=1e-07": {
+      "x16_mismatch": 2142,
+      "tensors_exact": 149,
+      "f32_match": 208738,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": null
+     },
+     "ema_a64_bcmul64|eps=1e-07": {
+      "x16_mismatch": 2047,
+      "tensors_exact": 151,
+      "f32_match": 215507,
+      "cand_flips": 95,
+      "cand_flip_tensors": 2,
+      "both": null
+     },
+     "lerp_a64_bcdiv64|eps=1e-07": {
+      "x16_mismatch": 2142,
+      "tensors_exact": 149,
+      "f32_match": 208738,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": null
+     },
+     "ema_a64_bf16|eps=1e-07": {
+      "x16_mismatch": 392316,
+      "tensors_exact": 0,
+      "f32_match": 13,
+      "cand_flips": 392267,
+      "cand_flip_tensors": 152,
+      "both": null
+     },
+     "ema_a64_fp16|eps=1e-07": {
+      "x16_mismatch": 265022,
+      "tensors_exact": 0,
+      "f32_match": 48,
+      "cand_flips": 264932,
+      "cand_flip_tensors": 152,
+      "both": null
+     },
+     "g|eps=0": {
+      "x16_mismatch": 2142,
+      "tensors_exact": 149,
+      "f32_match": 208738,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": null
+     },
+     "ema_a64|eps=0": {
+      "x16_mismatch": 2163,
+      "tensors_exact": 148,
+      "f32_match": 207407,
+      "cand_flips": 21,
+      "cand_flip_tensors": 1,
+      "both": null
+     },
+     "ema_a32|eps=0": {
+      "x16_mismatch": 2091,
+      "tensors_exact": 149,
+      "f32_match": 212554,
+      "cand_flips": 93,
+      "cand_flip_tensors": 2,
+      "both": null
+     },
+     "lerp_a64|eps=0": {
+      "x16_mismatch": 2163,
+      "tensors_exact": 148,
+      "f32_match": 207407,
+      "cand_flips": 21,
+      "cand_flip_tensors": 1,
+      "both": null
+     },
+     "lerp_a64_fma|eps=0": {
+      "x16_mismatch": 2163,
+      "tensors_exact": 148,
+      "f32_match": 207407,
+      "cand_flips": 21,
+      "cand_flip_tensors": 1,
+      "both": null
+     },
+     "lerp_a32|eps=0": {
+      "x16_mismatch": 2091,
+      "tensors_exact": 149,
+      "f32_match": 212554,
+      "cand_flips": 93,
+      "cand_flip_tensors": 2,
+      "both": null
+     },
+     "ema_a64_bcdiv64|eps=0": {
+      "x16_mismatch": 2142,
+      "tensors_exact": 149,
+      "f32_match": 208738,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": null
+     },
+     "ema_a64_bcdiv32|eps=0": {
+      "x16_mismatch": 2142,
+      "tensors_exact": 149,
+      "f32_match": 208738,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": null
+     },
+     "ema_a32_bcdiv32|eps=0": {
+      "x16_mismatch": 2142,
+      "tensors_exact": 149,
+      "f32_match": 208738,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": null
+     },
+     "ema_a64_bcmul64|eps=0": {
+      "x16_mismatch": 2047,
+      "tensors_exact": 151,
+      "f32_match": 215507,
+      "cand_flips": 95,
+      "cand_flip_tensors": 2,
+      "both": null
+     },
+     "lerp_a64_bcdiv64|eps=0": {
+      "x16_mismatch": 2142,
+      "tensors_exact": 149,
+      "f32_match": 208738,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": null
+     },
+     "ema_a64_bf16|eps=0": {
+      "x16_mismatch": 389203,
+      "tensors_exact": 0,
+      "f32_match": 13,
+      "cand_flips": 389154,
+      "cand_flip_tensors": 152,
+      "both": null
+     },
+     "ema_a64_fp16|eps=0": {
+      "x16_mismatch": 257647,
+      "tensors_exact": 0,
+      "f32_match": 66,
+      "cand_flips": 257557,
+      "cand_flip_tensors": 152,
+      "both": null
+     }
+    }
+   },
+   "r1_b0.3": {
+    "data": {
+     "gradient": "r1_oracle1",
+     "beta": 0.3
+    },
+    "cands": {
+     "g|eps=1e-07": {
+      "x16_mismatch": 2083,
+      "tensors_exact": 149,
+      "f32_match": 210337,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": null
+     },
+     "ema_a64|eps=1e-07": {
+      "x16_mismatch": 2134,
+      "tensors_exact": 149,
+      "f32_match": 206623,
+      "cand_flips": 93,
+      "cand_flip_tensors": 2,
+      "both": null
+     },
+     "ema_a32|eps=1e-07": {
+      "x16_mismatch": 2134,
+      "tensors_exact": 149,
+      "f32_match": 206623,
+      "cand_flips": 93,
+      "cand_flip_tensors": 2,
+      "both": null
+     },
+     "lerp_a64|eps=1e-07": {
+      "x16_mismatch": 2062,
+      "tensors_exact": 150,
+      "f32_match": 210756,
+      "cand_flips": 21,
+      "cand_flip_tensors": 1,
+      "both": null
+     },
+     "lerp_a64_fma|eps=1e-07": {
+      "x16_mismatch": 2134,
+      "tensors_exact": 149,
+      "f32_match": 206623,
+      "cand_flips": 93,
+      "cand_flip_tensors": 2,
+      "both": null
+     },
+     "lerp_a32|eps=1e-07": {
+      "x16_mismatch": 2062,
+      "tensors_exact": 150,
+      "f32_match": 210756,
+      "cand_flips": 21,
+      "cand_flip_tensors": 1,
+      "both": null
+     },
+     "ema_a64_bcdiv64|eps=1e-07": {
+      "x16_mismatch": 2068,
+      "tensors_exact": 150,
+      "f32_match": 212518,
+      "cand_flips": 15,
+      "cand_flip_tensors": 1,
+      "both": null
+     },
+     "ema_a64_bcdiv32|eps=1e-07": {
+      "x16_mismatch": 2068,
+      "tensors_exact": 150,
+      "f32_match": 212518,
+      "cand_flips": 15,
+      "cand_flip_tensors": 1,
+      "both": null
+     },
+     "ema_a32_bcdiv32|eps=1e-07": {
+      "x16_mismatch": 2068,
+      "tensors_exact": 150,
+      "f32_match": 212518,
+      "cand_flips": 15,
+      "cand_flip_tensors": 1,
+      "both": null
+     },
+     "ema_a64_bcmul64|eps=1e-07": {
+      "x16_mismatch": 2068,
+      "tensors_exact": 150,
+      "f32_match": 212518,
+      "cand_flips": 15,
+      "cand_flip_tensors": 1,
+      "both": null
+     },
+     "lerp_a64_bcdiv64|eps=1e-07": {
+      "x16_mismatch": 2068,
+      "tensors_exact": 150,
+      "f32_match": 212518,
+      "cand_flips": 15,
+      "cand_flip_tensors": 1,
+      "both": null
+     },
+     "ema_a64_bf16|eps=1e-07": {
+      "x16_mismatch": 378272,
+      "tensors_exact": 0,
+      "f32_match": 13,
+      "cand_flips": 378272,
+      "cand_flip_tensors": 152,
+      "both": null
+     },
+     "ema_a64_fp16|eps=1e-07": {
+      "x16_mismatch": 207444,
+      "tensors_exact": 0,
+      "f32_match": 684,
+      "cand_flips": 205912,
+      "cand_flip_tensors": 152,
+      "both": null
+     },
+     "g|eps=0": {
+      "x16_mismatch": 2083,
+      "tensors_exact": 149,
+      "f32_match": 210337,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": null
+     },
+     "ema_a64|eps=0": {
+      "x16_mismatch": 2134,
+      "tensors_exact": 149,
+      "f32_match": 206623,
+      "cand_flips": 93,
+      "cand_flip_tensors": 2,
+      "both": null
+     },
+     "ema_a32|eps=0": {
+      "x16_mismatch": 2134,
+      "tensors_exact": 149,
+      "f32_match": 206623,
+      "cand_flips": 93,
+      "cand_flip_tensors": 2,
+      "both": null
+     },
+     "lerp_a64|eps=0": {
+      "x16_mismatch": 2062,
+      "tensors_exact": 150,
+      "f32_match": 210756,
+      "cand_flips": 21,
+      "cand_flip_tensors": 1,
+      "both": null
+     },
+     "lerp_a64_fma|eps=0": {
+      "x16_mismatch": 2134,
+      "tensors_exact": 149,
+      "f32_match": 206623,
+      "cand_flips": 93,
+      "cand_flip_tensors": 2,
+      "both": null
+     },
+     "lerp_a32|eps=0": {
+      "x16_mismatch": 2062,
+      "tensors_exact": 150,
+      "f32_match": 210756,
+      "cand_flips": 21,
+      "cand_flip_tensors": 1,
+      "both": null
+     },
+     "ema_a64_bcdiv64|eps=0": {
+      "x16_mismatch": 2068,
+      "tensors_exact": 150,
+      "f32_match": 212518,
+      "cand_flips": 15,
+      "cand_flip_tensors": 1,
+      "both": null
+     },
+     "ema_a64_bcdiv32|eps=0": {
+      "x16_mismatch": 2068,
+      "tensors_exact": 150,
+      "f32_match": 212518,
+      "cand_flips": 15,
+      "cand_flip_tensors": 1,
+      "both": null
+     },
+     "ema_a32_bcdiv32|eps=0": {
+      "x16_mismatch": 2068,
+      "tensors_exact": 150,
+      "f32_match": 212518,
+      "cand_flips": 15,
+      "cand_flip_tensors": 1,
+      "both": null
+     },
+     "ema_a64_bcmul64|eps=0": {
+      "x16_mismatch": 2068,
+      "tensors_exact": 150,
+      "f32_match": 212518,
+      "cand_flips": 15,
+      "cand_flip_tensors": 1,
+      "both": null
+     },
+     "lerp_a64_bcdiv64|eps=0": {
+      "x16_mismatch": 2068,
+      "tensors_exact": 150,
+      "f32_match": 212518,
+      "cand_flips": 15,
+      "cand_flip_tensors": 1,
+      "both": null
+     },
+     "ema_a64_bf16|eps=0": {
+      "x16_mismatch": 378272,
+      "tensors_exact": 0,
+      "f32_match": 13,
+      "cand_flips": 378272,
+      "cand_flip_tensors": 152,
+      "both": null
+     },
+     "ema_a64_fp16|eps=0": {
+      "x16_mismatch": 207455,
+      "tensors_exact": 0,
+      "f32_match": 684,
+      "cand_flips": 205923,
+      "cand_flip_tensors": 152,
+      "both": null
+     }
+    }
+   },
+   "r1_b0.7": {
+    "data": {
+     "gradient": "r1_oracle1",
+     "beta": 0.7
+    },
+    "cands": {
+     "g|eps=1e-07": {
+      "x16_mismatch": 2083,
+      "tensors_exact": 149,
+      "f32_match": 210337,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": null
+     },
+     "ema_a64|eps=1e-07": {
+      "x16_mismatch": 2047,
+      "tensors_exact": 151,
+      "f32_match": 212937,
+      "cand_flips": 36,
+      "cand_flip_tensors": 2,
+      "both": null
+     },
+     "ema_a32|eps=1e-07": {
+      "x16_mismatch": 2047,
+      "tensors_exact": 151,
+      "f32_match": 212937,
+      "cand_flips": 36,
+      "cand_flip_tensors": 2,
+      "both": null
+     },
+     "lerp_a64|eps=1e-07": {
+      "x16_mismatch": 2047,
+      "tensors_exact": 151,
+      "f32_match": 212937,
+      "cand_flips": 36,
+      "cand_flip_tensors": 2,
+      "both": null
+     },
+     "lerp_a64_fma|eps=1e-07": {
+      "x16_mismatch": 2047,
+      "tensors_exact": 151,
+      "f32_match": 212937,
+      "cand_flips": 36,
+      "cand_flip_tensors": 2,
+      "both": null
+     },
+     "lerp_a32|eps=1e-07": {
+      "x16_mismatch": 2047,
+      "tensors_exact": 151,
+      "f32_match": 212937,
+      "cand_flips": 36,
+      "cand_flip_tensors": 2,
+      "both": null
+     },
+     "ema_a64_bcdiv64|eps=1e-07": {
+      "x16_mismatch": 2068,
+      "tensors_exact": 150,
+      "f32_match": 212518,
+      "cand_flips": 15,
+      "cand_flip_tensors": 1,
+      "both": null
+     },
+     "ema_a64_bcdiv32|eps=1e-07": {
+      "x16_mismatch": 2068,
+      "tensors_exact": 150,
+      "f32_match": 212518,
+      "cand_flips": 15,
+      "cand_flip_tensors": 1,
+      "both": null
+     },
+     "ema_a32_bcdiv32|eps=1e-07": {
+      "x16_mismatch": 2068,
+      "tensors_exact": 150,
+      "f32_match": 212518,
+      "cand_flips": 15,
+      "cand_flip_tensors": 1,
+      "both": null
+     },
+     "ema_a64_bcmul64|eps=1e-07": {
+      "x16_mismatch": 2068,
+      "tensors_exact": 150,
+      "f32_match": 212518,
+      "cand_flips": 15,
+      "cand_flip_tensors": 1,
+      "both": null
+     },
+     "lerp_a64_bcdiv64|eps=1e-07": {
+      "x16_mismatch": 2068,
+      "tensors_exact": 150,
+      "f32_match": 212518,
+      "cand_flips": 15,
+      "cand_flip_tensors": 1,
+      "both": null
+     },
+     "ema_a64_bf16|eps=1e-07": {
+      "x16_mismatch": 378322,
+      "tensors_exact": 0,
+      "f32_match": 49,
+      "cand_flips": 378358,
+      "cand_flip_tensors": 152,
+      "both": null
+     },
+     "ema_a64_fp16|eps=1e-07": {
+      "x16_mismatch": 218079,
+      "tensors_exact": 0,
+      "f32_match": 26,
+      "cand_flips": 218043,
+      "cand_flip_tensors": 152,
+      "both": null
+     },
+     "g|eps=0": {
+      "x16_mismatch": 2083,
+      "tensors_exact": 149,
+      "f32_match": 210337,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": null
+     },
+     "ema_a64|eps=0": {
+      "x16_mismatch": 2047,
+      "tensors_exact": 151,
+      "f32_match": 212937,
+      "cand_flips": 36,
+      "cand_flip_tensors": 2,
+      "both": null
+     },
+     "ema_a32|eps=0": {
+      "x16_mismatch": 2047,
+      "tensors_exact": 151,
+      "f32_match": 212937,
+      "cand_flips": 36,
+      "cand_flip_tensors": 2,
+      "both": null
+     },
+     "lerp_a64|eps=0": {
+      "x16_mismatch": 2047,
+      "tensors_exact": 151,
+      "f32_match": 212937,
+      "cand_flips": 36,
+      "cand_flip_tensors": 2,
+      "both": null
+     },
+     "lerp_a64_fma|eps=0": {
+      "x16_mismatch": 2047,
+      "tensors_exact": 151,
+      "f32_match": 212937,
+      "cand_flips": 36,
+      "cand_flip_tensors": 2,
+      "both": null
+     },
+     "lerp_a32|eps=0": {
+      "x16_mismatch": 2047,
+      "tensors_exact": 151,
+      "f32_match": 212937,
+      "cand_flips": 36,
+      "cand_flip_tensors": 2,
+      "both": null
+     },
+     "ema_a64_bcdiv64|eps=0": {
+      "x16_mismatch": 2068,
+      "tensors_exact": 150,
+      "f32_match": 212518,
+      "cand_flips": 15,
+      "cand_flip_tensors": 1,
+      "both": null
+     },
+     "ema_a64_bcdiv32|eps=0": {
+      "x16_mismatch": 2068,
+      "tensors_exact": 150,
+      "f32_match": 212518,
+      "cand_flips": 15,
+      "cand_flip_tensors": 1,
+      "both": null
+     },
+     "ema_a32_bcdiv32|eps=0": {
+      "x16_mismatch": 2068,
+      "tensors_exact": 150,
+      "f32_match": 212518,
+      "cand_flips": 15,
+      "cand_flip_tensors": 1,
+      "both": null
+     },
+     "ema_a64_bcmul64|eps=0": {
+      "x16_mismatch": 2068,
+      "tensors_exact": 150,
+      "f32_match": 212518,
+      "cand_flips": 15,
+      "cand_flip_tensors": 1,
+      "both": null
+     },
+     "lerp_a64_bcdiv64|eps=0": {
+      "x16_mismatch": 2068,
+      "tensors_exact": 150,
+      "f32_match": 212518,
+      "cand_flips": 15,
+      "cand_flip_tensors": 1,
+      "both": null
+     },
+     "ema_a64_bf16|eps=0": {
+      "x16_mismatch": 378322,
+      "tensors_exact": 0,
+      "f32_match": 49,
+      "cand_flips": 378358,
+      "cand_flip_tensors": 152,
+      "both": null
+     },
+     "ema_a64_fp16|eps=0": {
+      "x16_mismatch": 218079,
+      "tensors_exact": 0,
+      "f32_match": 26,
+      "cand_flips": 218043,
+      "cand_flip_tensors": 152,
+      "both": null
+     }
+    }
+   }
+  }
+ },
+ "2": {
+  "versions": [
+   [
+    "r2_oracle1"
+   ],
+   [
+    "r2_oracle2"
+   ]
+  ],
+  "ver_of": {
+   "r2_b0": "r2_oracle2",
+   "r2_b0.5": "r2_oracle1",
+   "r2_b0.75": "r2_oracle2",
+   "r2_b0.9": "r2_oracle2",
+   "r2_b0.99": "r2_oracle2",
+   "r2_b0.999": "r2_oracle2",
+   "r2_b0.3": "r2_oracle1",
+   "r2_b0.7": "r2_oracle2",
+   "r2_b0.9_rep": "r2_oracle2"
+  },
+  "total_entries": 917504,
+  "n_tensors": 152,
+  "runs": {
+   "r2_b0": {
+    "data": {
+     "gradient": "r2_oracle2",
+     "beta": 0.0,
+     "vs": "r2_b0",
+     "f32_tensors": 0,
+     "f32_entries": 0,
+     "x16_tensors": 0,
+     "x16_entries": 0,
+     "changed": []
+    },
+    "cands": {
+     "g|eps=1e-07": {
+      "x16_mismatch": 170840,
+      "tensors_exact": 86,
+      "f32_match": 279653,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "ema_a64|eps=1e-07": {
+      "x16_mismatch": 170840,
+      "tensors_exact": 86,
+      "f32_match": 279653,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "ema_a32|eps=1e-07": {
+      "x16_mismatch": 170840,
+      "tensors_exact": 86,
+      "f32_match": 279653,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "lerp_a64|eps=1e-07": {
+      "x16_mismatch": 170840,
+      "tensors_exact": 86,
+      "f32_match": 279653,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "lerp_a64_fma|eps=1e-07": {
+      "x16_mismatch": 170840,
+      "tensors_exact": 86,
+      "f32_match": 279653,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "lerp_a32|eps=1e-07": {
+      "x16_mismatch": 170840,
+      "tensors_exact": 86,
+      "f32_match": 279653,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "ema_a64_bcdiv64|eps=1e-07": {
+      "x16_mismatch": 170840,
+      "tensors_exact": 86,
+      "f32_match": 279653,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "ema_a64_bcdiv32|eps=1e-07": {
+      "x16_mismatch": 170840,
+      "tensors_exact": 86,
+      "f32_match": 279653,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "ema_a32_bcdiv32|eps=1e-07": {
+      "x16_mismatch": 170840,
+      "tensors_exact": 86,
+      "f32_match": 279653,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "ema_a64_bcmul64|eps=1e-07": {
+      "x16_mismatch": 170840,
+      "tensors_exact": 86,
+      "f32_match": 279653,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "lerp_a64_bcdiv64|eps=1e-07": {
+      "x16_mismatch": 170840,
+      "tensors_exact": 86,
+      "f32_match": 279653,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "ema_a64_bf16|eps=1e-07": {
+      "x16_mismatch": 170840,
+      "tensors_exact": 86,
+      "f32_match": 279653,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "ema_a64_fp16|eps=1e-07": {
+      "x16_mismatch": 170845,
+      "tensors_exact": 84,
+      "f32_match": 279651,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "g|eps=0": {
+      "x16_mismatch": 170810,
+      "tensors_exact": 87,
+      "f32_match": 281430,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "ema_a64|eps=0": {
+      "x16_mismatch": 170810,
+      "tensors_exact": 87,
+      "f32_match": 281430,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "ema_a32|eps=0": {
+      "x16_mismatch": 170810,
+      "tensors_exact": 87,
+      "f32_match": 281430,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "lerp_a64|eps=0": {
+      "x16_mismatch": 170810,
+      "tensors_exact": 87,
+      "f32_match": 281430,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "lerp_a64_fma|eps=0": {
+      "x16_mismatch": 170810,
+      "tensors_exact": 87,
+      "f32_match": 281430,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "lerp_a32|eps=0": {
+      "x16_mismatch": 170810,
+      "tensors_exact": 87,
+      "f32_match": 281430,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "ema_a64_bcdiv64|eps=0": {
+      "x16_mismatch": 170810,
+      "tensors_exact": 87,
+      "f32_match": 281430,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "ema_a64_bcdiv32|eps=0": {
+      "x16_mismatch": 170810,
+      "tensors_exact": 87,
+      "f32_match": 281430,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "ema_a32_bcdiv32|eps=0": {
+      "x16_mismatch": 170810,
+      "tensors_exact": 87,
+      "f32_match": 281430,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "ema_a64_bcmul64|eps=0": {
+      "x16_mismatch": 170810,
+      "tensors_exact": 87,
+      "f32_match": 281430,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "lerp_a64_bcdiv64|eps=0": {
+      "x16_mismatch": 170810,
+      "tensors_exact": 87,
+      "f32_match": 281430,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "ema_a64_bf16|eps=0": {
+      "x16_mismatch": 170810,
+      "tensors_exact": 87,
+      "f32_match": 281430,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "ema_a64_fp16|eps=0": {
+      "x16_mismatch": 170815,
+      "tensors_exact": 85,
+      "f32_match": 281428,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     }
+    }
+   },
+   "r2_b0.5": {
+    "data": {
+     "gradient": "r2_oracle1",
+     "beta": 0.5
+    },
+    "cands": {
+     "g|eps=1e-07": {
+      "x16_mismatch": 202304,
+      "tensors_exact": 91,
+      "f32_match": 295999,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": null
+     },
+     "ema_a64|eps=1e-07": {
+      "x16_mismatch": 202304,
+      "tensors_exact": 91,
+      "f32_match": 295999,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": null
+     },
+     "ema_a32|eps=1e-07": {
+      "x16_mismatch": 202304,
+      "tensors_exact": 91,
+      "f32_match": 295999,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": null
+     },
+     "lerp_a64|eps=1e-07": {
+      "x16_mismatch": 202304,
+      "tensors_exact": 91,
+      "f32_match": 295999,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": null
+     },
+     "lerp_a64_fma|eps=1e-07": {
+      "x16_mismatch": 202304,
+      "tensors_exact": 91,
+      "f32_match": 295999,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": null
+     },
+     "lerp_a32|eps=1e-07": {
+      "x16_mismatch": 202304,
+      "tensors_exact": 91,
+      "f32_match": 295999,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": null
+     },
+     "ema_a64_bcdiv64|eps=1e-07": {
+      "x16_mismatch": 202304,
+      "tensors_exact": 91,
+      "f32_match": 295999,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": null
+     },
+     "ema_a64_bcdiv32|eps=1e-07": {
+      "x16_mismatch": 202304,
+      "tensors_exact": 91,
+      "f32_match": 295999,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": null
+     },
+     "ema_a32_bcdiv32|eps=1e-07": {
+      "x16_mismatch": 202304,
+      "tensors_exact": 91,
+      "f32_match": 295999,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": null
+     },
+     "ema_a64_bcmul64|eps=1e-07": {
+      "x16_mismatch": 202304,
+      "tensors_exact": 91,
+      "f32_match": 295999,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": null
+     },
+     "lerp_a64_bcdiv64|eps=1e-07": {
+      "x16_mismatch": 202304,
+      "tensors_exact": 91,
+      "f32_match": 295999,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": null
+     },
+     "ema_a64_bf16|eps=1e-07": {
+      "x16_mismatch": 202304,
+      "tensors_exact": 91,
+      "f32_match": 295999,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": null
+     },
+     "ema_a64_fp16|eps=1e-07": {
+      "x16_mismatch": 202328,
+      "tensors_exact": 83,
+      "f32_match": 295984,
+      "cand_flips": 24,
+      "cand_flip_tensors": 12,
+      "both": null
+     },
+     "g|eps=0": {
+      "x16_mismatch": 202304,
+      "tensors_exact": 91,
+      "f32_match": 295999,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": null
+     },
+     "ema_a64|eps=0": {
+      "x16_mismatch": 202304,
+      "tensors_exact": 91,
+      "f32_match": 295999,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": null
+     },
+     "ema_a32|eps=0": {
+      "x16_mismatch": 202304,
+      "tensors_exact": 91,
+      "f32_match": 295999,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": null
+     },
+     "lerp_a64|eps=0": {
+      "x16_mismatch": 202304,
+      "tensors_exact": 91,
+      "f32_match": 295999,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": null
+     },
+     "lerp_a64_fma|eps=0": {
+      "x16_mismatch": 202304,
+      "tensors_exact": 91,
+      "f32_match": 295999,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": null
+     },
+     "lerp_a32|eps=0": {
+      "x16_mismatch": 202304,
+      "tensors_exact": 91,
+      "f32_match": 295999,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": null
+     },
+     "ema_a64_bcdiv64|eps=0": {
+      "x16_mismatch": 202304,
+      "tensors_exact": 91,
+      "f32_match": 295999,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": null
+     },
+     "ema_a64_bcdiv32|eps=0": {
+      "x16_mismatch": 202304,
+      "tensors_exact": 91,
+      "f32_match": 295999,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": null
+     },
+     "ema_a32_bcdiv32|eps=0": {
+      "x16_mismatch": 202304,
+      "tensors_exact": 91,
+      "f32_match": 295999,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": null
+     },
+     "ema_a64_bcmul64|eps=0": {
+      "x16_mismatch": 202304,
+      "tensors_exact": 91,
+      "f32_match": 295999,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": null
+     },
+     "lerp_a64_bcdiv64|eps=0": {
+      "x16_mismatch": 202304,
+      "tensors_exact": 91,
+      "f32_match": 295999,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": null
+     },
+     "ema_a64_bf16|eps=0": {
+      "x16_mismatch": 202304,
+      "tensors_exact": 91,
+      "f32_match": 295999,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": null
+     },
+     "ema_a64_fp16|eps=0": {
+      "x16_mismatch": 202328,
+      "tensors_exact": 83,
+      "f32_match": 295984,
+      "cand_flips": 24,
+      "cand_flip_tensors": 12,
+      "both": null
+     }
+    }
+   },
+   "r2_b0.75": {
+    "data": {
+     "gradient": "r2_oracle2",
+     "beta": 0.75,
+     "vs": "r2_b0",
+     "f32_tensors": 0,
+     "f32_entries": 0,
+     "x16_tensors": 0,
+     "x16_entries": 0,
+     "changed": []
+    },
+    "cands": {
+     "g|eps=1e-07": {
+      "x16_mismatch": 170840,
+      "tensors_exact": 86,
+      "f32_match": 279653,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "ema_a64|eps=1e-07": {
+      "x16_mismatch": 170840,
+      "tensors_exact": 86,
+      "f32_match": 279653,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "ema_a32|eps=1e-07": {
+      "x16_mismatch": 170840,
+      "tensors_exact": 86,
+      "f32_match": 279653,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "lerp_a64|eps=1e-07": {
+      "x16_mismatch": 170840,
+      "tensors_exact": 86,
+      "f32_match": 279653,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "lerp_a64_fma|eps=1e-07": {
+      "x16_mismatch": 170840,
+      "tensors_exact": 86,
+      "f32_match": 279653,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "lerp_a32|eps=1e-07": {
+      "x16_mismatch": 170840,
+      "tensors_exact": 86,
+      "f32_match": 279653,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "ema_a64_bcdiv64|eps=1e-07": {
+      "x16_mismatch": 170840,
+      "tensors_exact": 86,
+      "f32_match": 279653,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "ema_a64_bcdiv32|eps=1e-07": {
+      "x16_mismatch": 170840,
+      "tensors_exact": 86,
+      "f32_match": 279653,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "ema_a32_bcdiv32|eps=1e-07": {
+      "x16_mismatch": 170840,
+      "tensors_exact": 86,
+      "f32_match": 279653,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "ema_a64_bcmul64|eps=1e-07": {
+      "x16_mismatch": 170840,
+      "tensors_exact": 86,
+      "f32_match": 279653,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "lerp_a64_bcdiv64|eps=1e-07": {
+      "x16_mismatch": 170840,
+      "tensors_exact": 86,
+      "f32_match": 279653,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "ema_a64_bf16|eps=1e-07": {
+      "x16_mismatch": 170840,
+      "tensors_exact": 86,
+      "f32_match": 279653,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "ema_a64_fp16|eps=1e-07": {
+      "x16_mismatch": 170905,
+      "tensors_exact": 69,
+      "f32_match": 281717,
+      "cand_flips": 82,
+      "cand_flip_tensors": 30,
+      "both": 0
+     },
+     "g|eps=0": {
+      "x16_mismatch": 170810,
+      "tensors_exact": 87,
+      "f32_match": 281430,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "ema_a64|eps=0": {
+      "x16_mismatch": 170810,
+      "tensors_exact": 87,
+      "f32_match": 281430,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "ema_a32|eps=0": {
+      "x16_mismatch": 170810,
+      "tensors_exact": 87,
+      "f32_match": 281430,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "lerp_a64|eps=0": {
+      "x16_mismatch": 170810,
+      "tensors_exact": 87,
+      "f32_match": 281430,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "lerp_a64_fma|eps=0": {
+      "x16_mismatch": 170810,
+      "tensors_exact": 87,
+      "f32_match": 281430,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "lerp_a32|eps=0": {
+      "x16_mismatch": 170810,
+      "tensors_exact": 87,
+      "f32_match": 281430,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "ema_a64_bcdiv64|eps=0": {
+      "x16_mismatch": 170810,
+      "tensors_exact": 87,
+      "f32_match": 281430,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "ema_a64_bcdiv32|eps=0": {
+      "x16_mismatch": 170810,
+      "tensors_exact": 87,
+      "f32_match": 281430,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "ema_a32_bcdiv32|eps=0": {
+      "x16_mismatch": 170810,
+      "tensors_exact": 87,
+      "f32_match": 281430,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "ema_a64_bcmul64|eps=0": {
+      "x16_mismatch": 170810,
+      "tensors_exact": 87,
+      "f32_match": 281430,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "lerp_a64_bcdiv64|eps=0": {
+      "x16_mismatch": 170810,
+      "tensors_exact": 87,
+      "f32_match": 281430,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "ema_a64_bf16|eps=0": {
+      "x16_mismatch": 170810,
+      "tensors_exact": 87,
+      "f32_match": 281430,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "ema_a64_fp16|eps=0": {
+      "x16_mismatch": 170875,
+      "tensors_exact": 69,
+      "f32_match": 283493,
+      "cand_flips": 82,
+      "cand_flip_tensors": 30,
+      "both": 0
+     }
+    }
+   },
+   "r2_b0.9": {
+    "data": {
+     "gradient": "r2_oracle2",
+     "beta": 0.9,
+     "vs": "r2_b0",
+     "f32_tensors": 1,
+     "f32_entries": 8192,
+     "x16_tensors": 1,
+     "x16_entries": 59,
+     "changed": [
+      "layers.26.linear_attn.in_proj_v.lora_B"
+     ]
+    },
+    "cands": {
+     "g|eps=1e-07": {
+      "x16_mismatch": 170850,
+      "tensors_exact": 86,
+      "f32_match": 279653,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "ema_a64|eps=1e-07": {
+      "x16_mismatch": 170850,
+      "tensors_exact": 86,
+      "f32_match": 279653,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "ema_a32|eps=1e-07": {
+      "x16_mismatch": 170850,
+      "tensors_exact": 86,
+      "f32_match": 279653,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "lerp_a64|eps=1e-07": {
+      "x16_mismatch": 170850,
+      "tensors_exact": 86,
+      "f32_match": 279653,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "lerp_a64_fma|eps=1e-07": {
+      "x16_mismatch": 170850,
+      "tensors_exact": 86,
+      "f32_match": 279653,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "lerp_a32|eps=1e-07": {
+      "x16_mismatch": 170850,
+      "tensors_exact": 86,
+      "f32_match": 279653,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "ema_a64_bcdiv64|eps=1e-07": {
+      "x16_mismatch": 170850,
+      "tensors_exact": 86,
+      "f32_match": 279653,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "ema_a64_bcdiv32|eps=1e-07": {
+      "x16_mismatch": 170944,
+      "tensors_exact": 85,
+      "f32_match": 274528,
+      "cand_flips": 193,
+      "cand_flip_tensors": 2,
+      "both": 43
+     },
+     "ema_a32_bcdiv32|eps=1e-07": {
+      "x16_mismatch": 170850,
+      "tensors_exact": 86,
+      "f32_match": 279653,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "ema_a64_bcmul64|eps=1e-07": {
+      "x16_mismatch": 170850,
+      "tensors_exact": 86,
+      "f32_match": 279653,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "lerp_a64_bcdiv64|eps=1e-07": {
+      "x16_mismatch": 170850,
+      "tensors_exact": 86,
+      "f32_match": 279653,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "ema_a64_bf16|eps=1e-07": {
+      "x16_mismatch": 864985,
+      "tensors_exact": 0,
+      "f32_match": 12,
+      "cand_flips": 863219,
+      "cand_flip_tensors": 152,
+      "both": 56
+     },
+     "ema_a64_fp16|eps=1e-07": {
+      "x16_mismatch": 674090,
+      "tensors_exact": 0,
+      "f32_match": 10,
+      "cand_flips": 654840,
+      "cand_flip_tensors": 152,
+      "both": 58
+     },
+     "g|eps=0": {
+      "x16_mismatch": 170820,
+      "tensors_exact": 87,
+      "f32_match": 281430,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "ema_a64|eps=0": {
+      "x16_mismatch": 170914,
+      "tensors_exact": 86,
+      "f32_match": 276305,
+      "cand_flips": 193,
+      "cand_flip_tensors": 2,
+      "both": 43
+     },
+     "ema_a32|eps=0": {
+      "x16_mismatch": 170918,
+      "tensors_exact": 86,
+      "f32_match": 276305,
+      "cand_flips": 98,
+      "cand_flip_tensors": 1,
+      "both": 0
+     },
+     "lerp_a64|eps=0": {
+      "x16_mismatch": 170914,
+      "tensors_exact": 86,
+      "f32_match": 276305,
+      "cand_flips": 193,
+      "cand_flip_tensors": 2,
+      "both": 43
+     },
+     "lerp_a64_fma|eps=0": {
+      "x16_mismatch": 170914,
+      "tensors_exact": 86,
+      "f32_match": 276305,
+      "cand_flips": 193,
+      "cand_flip_tensors": 2,
+      "both": 43
+     },
+     "lerp_a32|eps=0": {
+      "x16_mismatch": 170918,
+      "tensors_exact": 86,
+      "f32_match": 276305,
+      "cand_flips": 98,
+      "cand_flip_tensors": 1,
+      "both": 0
+     },
+     "ema_a64_bcdiv64|eps=0": {
+      "x16_mismatch": 170820,
+      "tensors_exact": 87,
+      "f32_match": 281430,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "ema_a64_bcdiv32|eps=0": {
+      "x16_mismatch": 170914,
+      "tensors_exact": 86,
+      "f32_match": 276305,
+      "cand_flips": 193,
+      "cand_flip_tensors": 2,
+      "both": 43
+     },
+     "ema_a32_bcdiv32|eps=0": {
+      "x16_mismatch": 170820,
+      "tensors_exact": 87,
+      "f32_match": 281430,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "ema_a64_bcmul64|eps=0": {
+      "x16_mismatch": 170820,
+      "tensors_exact": 87,
+      "f32_match": 281430,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "lerp_a64_bcdiv64|eps=0": {
+      "x16_mismatch": 170820,
+      "tensors_exact": 87,
+      "f32_match": 281430,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "ema_a64_bf16|eps=0": {
+      "x16_mismatch": 865045,
+      "tensors_exact": 0,
+      "f32_match": 167,
+      "cand_flips": 863304,
+      "cand_flip_tensors": 152,
+      "both": 56
+     },
+     "ema_a64_fp16|eps=0": {
+      "x16_mismatch": 671651,
+      "tensors_exact": 0,
+      "f32_match": 10,
+      "cand_flips": 652422,
+      "cand_flip_tensors": 152,
+      "both": 58
+     }
+    }
+   },
+   "r2_b0.99": {
+    "data": {
+     "gradient": "r2_oracle2",
+     "beta": 0.99,
+     "vs": "r2_b0",
+     "f32_tensors": 1,
+     "f32_entries": 8192,
+     "x16_tensors": 1,
+     "x16_entries": 98,
+     "changed": [
+      "layers.22.linear_attn.in_proj_v.lora_B"
+     ]
+    },
+    "cands": {
+     "g|eps=1e-07": {
+      "x16_mismatch": 170938,
+      "tensors_exact": 85,
+      "f32_match": 274528,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "ema_a64|eps=1e-07": {
+      "x16_mismatch": 188329,
+      "tensors_exact": 73,
+      "f32_match": 230371,
+      "cand_flips": 20891,
+      "cand_flip_tensors": 23,
+      "both": 0
+     },
+     "ema_a32|eps=1e-07": {
+      "x16_mismatch": 188407,
+      "tensors_exact": 72,
+      "f32_match": 225632,
+      "cand_flips": 20969,
+      "cand_flip_tensors": 24,
+      "both": 0
+     },
+     "lerp_a64|eps=1e-07": {
+      "x16_mismatch": 188329,
+      "tensors_exact": 73,
+      "f32_match": 230371,
+      "cand_flips": 20891,
+      "cand_flip_tensors": 23,
+      "both": 0
+     },
+     "lerp_a64_fma|eps=1e-07": {
+      "x16_mismatch": 188329,
+      "tensors_exact": 73,
+      "f32_match": 230371,
+      "cand_flips": 20891,
+      "cand_flip_tensors": 23,
+      "both": 0
+     },
+     "lerp_a32|eps=1e-07": {
+      "x16_mismatch": 188407,
+      "tensors_exact": 72,
+      "f32_match": 225632,
+      "cand_flips": 20969,
+      "cand_flip_tensors": 24,
+      "both": 0
+     },
+     "ema_a64_bcdiv64|eps=1e-07": {
+      "x16_mismatch": 170938,
+      "tensors_exact": 85,
+      "f32_match": 274528,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "ema_a64_bcdiv32|eps=1e-07": {
+      "x16_mismatch": 170938,
+      "tensors_exact": 85,
+      "f32_match": 274528,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "ema_a32_bcdiv32|eps=1e-07": {
+      "x16_mismatch": 170938,
+      "tensors_exact": 85,
+      "f32_match": 274528,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "ema_a64_bcmul64|eps=1e-07": {
+      "x16_mismatch": 170938,
+      "tensors_exact": 85,
+      "f32_match": 274528,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "lerp_a64_bcdiv64|eps=1e-07": {
+      "x16_mismatch": 170938,
+      "tensors_exact": 85,
+      "f32_match": 274528,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "ema_a64_bf16|eps=1e-07": {
+      "x16_mismatch": 866940,
+      "tensors_exact": 0,
+      "f32_match": 93,
+      "cand_flips": 865304,
+      "cand_flip_tensors": 152,
+      "both": 94
+     },
+     "ema_a64_fp16|eps=1e-07": {
+      "x16_mismatch": 659187,
+      "tensors_exact": 0,
+      "f32_match": 5,
+      "cand_flips": 655731,
+      "cand_flip_tensors": 152,
+      "both": 71
+     },
+     "g|eps=0": {
+      "x16_mismatch": 170908,
+      "tensors_exact": 86,
+      "f32_match": 276305,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "ema_a64|eps=0": {
+      "x16_mismatch": 170908,
+      "tensors_exact": 86,
+      "f32_match": 276305,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "ema_a32|eps=0": {
+      "x16_mismatch": 170908,
+      "tensors_exact": 86,
+      "f32_match": 276305,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "lerp_a64|eps=0": {
+      "x16_mismatch": 170908,
+      "tensors_exact": 86,
+      "f32_match": 276305,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "lerp_a64_fma|eps=0": {
+      "x16_mismatch": 170908,
+      "tensors_exact": 86,
+      "f32_match": 276305,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "lerp_a32|eps=0": {
+      "x16_mismatch": 170908,
+      "tensors_exact": 86,
+      "f32_match": 276305,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "ema_a64_bcdiv64|eps=0": {
+      "x16_mismatch": 170908,
+      "tensors_exact": 86,
+      "f32_match": 276305,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "ema_a64_bcdiv32|eps=0": {
+      "x16_mismatch": 170908,
+      "tensors_exact": 86,
+      "f32_match": 276305,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "ema_a32_bcdiv32|eps=0": {
+      "x16_mismatch": 170908,
+      "tensors_exact": 86,
+      "f32_match": 276305,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "ema_a64_bcmul64|eps=0": {
+      "x16_mismatch": 170938,
+      "tensors_exact": 85,
+      "f32_match": 274528,
+      "cand_flips": 30,
+      "cand_flip_tensors": 1,
+      "both": 0
+     },
+     "lerp_a64_bcdiv64|eps=0": {
+      "x16_mismatch": 170908,
+      "tensors_exact": 86,
+      "f32_match": 276305,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "ema_a64_bf16|eps=0": {
+      "x16_mismatch": 866959,
+      "tensors_exact": 0,
+      "f32_match": 6,
+      "cand_flips": 865293,
+      "cand_flip_tensors": 152,
+      "both": 94
+     },
+     "ema_a64_fp16|eps=0": {
+      "x16_mismatch": 660949,
+      "tensors_exact": 0,
+      "f32_match": 6,
+      "cand_flips": 657520,
+      "cand_flip_tensors": 152,
+      "both": 71
+     }
+    }
+   },
+   "r2_b0.999": {
+    "data": {
+     "gradient": "r2_oracle2",
+     "beta": 0.999,
+     "vs": "r2_b0",
+     "f32_tensors": 0,
+     "f32_entries": 0,
+     "x16_tensors": 0,
+     "x16_entries": 0,
+     "changed": []
+    },
+    "cands": {
+     "g|eps=1e-07": {
+      "x16_mismatch": 170840,
+      "tensors_exact": 86,
+      "f32_match": 279653,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "ema_a64|eps=1e-07": {
+      "x16_mismatch": 255706,
+      "tensors_exact": 17,
+      "f32_match": 51287,
+      "cand_flips": 227907,
+      "cand_flip_tensors": 120,
+      "both": 0
+     },
+     "ema_a32|eps=1e-07": {
+      "x16_mismatch": 255728,
+      "tensors_exact": 17,
+      "f32_match": 51287,
+      "cand_flips": 227929,
+      "cand_flip_tensors": 120,
+      "both": 0
+     },
+     "lerp_a64|eps=1e-07": {
+      "x16_mismatch": 255706,
+      "tensors_exact": 17,
+      "f32_match": 51287,
+      "cand_flips": 227907,
+      "cand_flip_tensors": 120,
+      "both": 0
+     },
+     "lerp_a64_fma|eps=1e-07": {
+      "x16_mismatch": 255706,
+      "tensors_exact": 17,
+      "f32_match": 51287,
+      "cand_flips": 227907,
+      "cand_flip_tensors": 120,
+      "both": 0
+     },
+     "lerp_a32|eps=1e-07": {
+      "x16_mismatch": 255728,
+      "tensors_exact": 17,
+      "f32_match": 51287,
+      "cand_flips": 227929,
+      "cand_flip_tensors": 120,
+      "both": 0
+     },
+     "ema_a64_bcdiv64|eps=1e-07": {
+      "x16_mismatch": 170840,
+      "tensors_exact": 86,
+      "f32_match": 279653,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "ema_a64_bcdiv32|eps=1e-07": {
+      "x16_mismatch": 170851,
+      "tensors_exact": 87,
+      "f32_match": 281430,
+      "cand_flips": 71,
+      "cand_flip_tensors": 2,
+      "both": 0
+     },
+     "ema_a32_bcdiv32|eps=1e-07": {
+      "x16_mismatch": 170840,
+      "tensors_exact": 86,
+      "f32_match": 279653,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "ema_a64_bcmul64|eps=1e-07": {
+      "x16_mismatch": 170840,
+      "tensors_exact": 86,
+      "f32_match": 279653,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "lerp_a64_bcdiv64|eps=1e-07": {
+      "x16_mismatch": 170840,
+      "tensors_exact": 86,
+      "f32_match": 279653,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "ema_a64_bf16|eps=1e-07": {
+      "x16_mismatch": 861461,
+      "tensors_exact": 0,
+      "f32_match": 13,
+      "cand_flips": 863837,
+      "cand_flip_tensors": 152,
+      "both": 0
+     },
+     "ema_a64_fp16|eps=1e-07": {
+      "x16_mismatch": 723728,
+      "tensors_exact": 0,
+      "f32_match": 7,
+      "cand_flips": 726287,
+      "cand_flip_tensors": 152,
+      "both": 0
+     },
+     "g|eps=0": {
+      "x16_mismatch": 170810,
+      "tensors_exact": 87,
+      "f32_match": 281430,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "ema_a64|eps=0": {
+      "x16_mismatch": 170810,
+      "tensors_exact": 87,
+      "f32_match": 281430,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "ema_a32|eps=0": {
+      "x16_mismatch": 170851,
+      "tensors_exact": 86,
+      "f32_match": 278149,
+      "cand_flips": 41,
+      "cand_flip_tensors": 1,
+      "both": 0
+     },
+     "lerp_a64|eps=0": {
+      "x16_mismatch": 170810,
+      "tensors_exact": 87,
+      "f32_match": 281430,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "lerp_a64_fma|eps=0": {
+      "x16_mismatch": 170810,
+      "tensors_exact": 87,
+      "f32_match": 281430,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "lerp_a32|eps=0": {
+      "x16_mismatch": 170851,
+      "tensors_exact": 86,
+      "f32_match": 278149,
+      "cand_flips": 41,
+      "cand_flip_tensors": 1,
+      "both": 0
+     },
+     "ema_a64_bcdiv64|eps=0": {
+      "x16_mismatch": 170810,
+      "tensors_exact": 87,
+      "f32_match": 281430,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "ema_a64_bcdiv32|eps=0": {
+      "x16_mismatch": 170851,
+      "tensors_exact": 87,
+      "f32_match": 281430,
+      "cand_flips": 41,
+      "cand_flip_tensors": 1,
+      "both": 0
+     },
+     "ema_a32_bcdiv32|eps=0": {
+      "x16_mismatch": 170810,
+      "tensors_exact": 87,
+      "f32_match": 281430,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "ema_a64_bcmul64|eps=0": {
+      "x16_mismatch": 170810,
+      "tensors_exact": 87,
+      "f32_match": 281430,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "lerp_a64_bcdiv64|eps=0": {
+      "x16_mismatch": 170810,
+      "tensors_exact": 87,
+      "f32_match": 281430,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "ema_a64_bf16|eps=0": {
+      "x16_mismatch": 862126,
+      "tensors_exact": 0,
+      "f32_match": 11,
+      "cand_flips": 861218,
+      "cand_flip_tensors": 152,
+      "both": 0
+     },
+     "ema_a64_fp16|eps=0": {
+      "x16_mismatch": 721648,
+      "tensors_exact": 0,
+      "f32_match": 10,
+      "cand_flips": 724336,
+      "cand_flip_tensors": 152,
+      "both": 0
+     }
+    }
+   },
+   "r2_b0.3": {
+    "data": {
+     "gradient": "r2_oracle1",
+     "beta": 0.3
+    },
+    "cands": {
+     "g|eps=1e-07": {
+      "x16_mismatch": 202304,
+      "tensors_exact": 91,
+      "f32_match": 295999,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": null
+     },
+     "ema_a64|eps=1e-07": {
+      "x16_mismatch": 202304,
+      "tensors_exact": 91,
+      "f32_match": 295999,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": null
+     },
+     "ema_a32|eps=1e-07": {
+      "x16_mismatch": 202304,
+      "tensors_exact": 91,
+      "f32_match": 295999,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": null
+     },
+     "lerp_a64|eps=1e-07": {
+      "x16_mismatch": 202304,
+      "tensors_exact": 91,
+      "f32_match": 295999,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": null
+     },
+     "lerp_a64_fma|eps=1e-07": {
+      "x16_mismatch": 202304,
+      "tensors_exact": 91,
+      "f32_match": 295999,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": null
+     },
+     "lerp_a32|eps=1e-07": {
+      "x16_mismatch": 202304,
+      "tensors_exact": 91,
+      "f32_match": 295999,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": null
+     },
+     "ema_a64_bcdiv64|eps=1e-07": {
+      "x16_mismatch": 202304,
+      "tensors_exact": 91,
+      "f32_match": 295999,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": null
+     },
+     "ema_a64_bcdiv32|eps=1e-07": {
+      "x16_mismatch": 202304,
+      "tensors_exact": 91,
+      "f32_match": 295999,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": null
+     },
+     "ema_a32_bcdiv32|eps=1e-07": {
+      "x16_mismatch": 202304,
+      "tensors_exact": 91,
+      "f32_match": 295999,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": null
+     },
+     "ema_a64_bcmul64|eps=1e-07": {
+      "x16_mismatch": 202304,
+      "tensors_exact": 91,
+      "f32_match": 295999,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": null
+     },
+     "lerp_a64_bcdiv64|eps=1e-07": {
+      "x16_mismatch": 202304,
+      "tensors_exact": 91,
+      "f32_match": 295999,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": null
+     },
+     "ema_a64_bf16|eps=1e-07": {
+      "x16_mismatch": 861448,
+      "tensors_exact": 0,
+      "f32_match": 8,
+      "cand_flips": 859316,
+      "cand_flip_tensors": 152,
+      "both": null
+     },
+     "ema_a64_fp16|eps=1e-07": {
+      "x16_mismatch": 665328,
+      "tensors_exact": 0,
+      "f32_match": 9,
+      "cand_flips": 657045,
+      "cand_flip_tensors": 152,
+      "both": null
+     },
+     "g|eps=0": {
+      "x16_mismatch": 202304,
+      "tensors_exact": 91,
+      "f32_match": 295999,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": null
+     },
+     "ema_a64|eps=0": {
+      "x16_mismatch": 202304,
+      "tensors_exact": 91,
+      "f32_match": 295999,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": null
+     },
+     "ema_a32|eps=0": {
+      "x16_mismatch": 202304,
+      "tensors_exact": 91,
+      "f32_match": 295999,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": null
+     },
+     "lerp_a64|eps=0": {
+      "x16_mismatch": 202304,
+      "tensors_exact": 91,
+      "f32_match": 295999,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": null
+     },
+     "lerp_a64_fma|eps=0": {
+      "x16_mismatch": 202304,
+      "tensors_exact": 91,
+      "f32_match": 295999,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": null
+     },
+     "lerp_a32|eps=0": {
+      "x16_mismatch": 202304,
+      "tensors_exact": 91,
+      "f32_match": 295999,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": null
+     },
+     "ema_a64_bcdiv64|eps=0": {
+      "x16_mismatch": 202304,
+      "tensors_exact": 91,
+      "f32_match": 295999,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": null
+     },
+     "ema_a64_bcdiv32|eps=0": {
+      "x16_mismatch": 202304,
+      "tensors_exact": 91,
+      "f32_match": 295999,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": null
+     },
+     "ema_a32_bcdiv32|eps=0": {
+      "x16_mismatch": 202304,
+      "tensors_exact": 91,
+      "f32_match": 295999,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": null
+     },
+     "ema_a64_bcmul64|eps=0": {
+      "x16_mismatch": 202304,
+      "tensors_exact": 91,
+      "f32_match": 295999,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": null
+     },
+     "lerp_a64_bcdiv64|eps=0": {
+      "x16_mismatch": 202304,
+      "tensors_exact": 91,
+      "f32_match": 295999,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": null
+     },
+     "ema_a64_bf16|eps=0": {
+      "x16_mismatch": 861448,
+      "tensors_exact": 0,
+      "f32_match": 8,
+      "cand_flips": 859316,
+      "cand_flip_tensors": 152,
+      "both": null
+     },
+     "ema_a64_fp16|eps=0": {
+      "x16_mismatch": 665356,
+      "tensors_exact": 0,
+      "f32_match": 9,
+      "cand_flips": 657078,
+      "cand_flip_tensors": 152,
+      "both": null
+     }
+    }
+   },
+   "r2_b0.7": {
+    "data": {
+     "gradient": "r2_oracle2",
+     "beta": 0.7,
+     "vs": "r2_b0",
+     "f32_tensors": 0,
+     "f32_entries": 0,
+     "x16_tensors": 0,
+     "x16_entries": 0,
+     "changed": []
+    },
+    "cands": {
+     "g|eps=1e-07": {
+      "x16_mismatch": 170840,
+      "tensors_exact": 86,
+      "f32_match": 279653,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "ema_a64|eps=1e-07": {
+      "x16_mismatch": 170840,
+      "tensors_exact": 86,
+      "f32_match": 279653,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "ema_a32|eps=1e-07": {
+      "x16_mismatch": 170840,
+      "tensors_exact": 86,
+      "f32_match": 279653,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "lerp_a64|eps=1e-07": {
+      "x16_mismatch": 170840,
+      "tensors_exact": 86,
+      "f32_match": 279653,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "lerp_a64_fma|eps=1e-07": {
+      "x16_mismatch": 170840,
+      "tensors_exact": 86,
+      "f32_match": 279653,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "lerp_a32|eps=1e-07": {
+      "x16_mismatch": 170840,
+      "tensors_exact": 86,
+      "f32_match": 279653,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "ema_a64_bcdiv64|eps=1e-07": {
+      "x16_mismatch": 170840,
+      "tensors_exact": 86,
+      "f32_match": 279653,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "ema_a64_bcdiv32|eps=1e-07": {
+      "x16_mismatch": 170840,
+      "tensors_exact": 86,
+      "f32_match": 279653,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "ema_a32_bcdiv32|eps=1e-07": {
+      "x16_mismatch": 170840,
+      "tensors_exact": 86,
+      "f32_match": 279653,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "ema_a64_bcmul64|eps=1e-07": {
+      "x16_mismatch": 170840,
+      "tensors_exact": 86,
+      "f32_match": 279653,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "lerp_a64_bcdiv64|eps=1e-07": {
+      "x16_mismatch": 170840,
+      "tensors_exact": 86,
+      "f32_match": 279653,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "ema_a64_bf16|eps=1e-07": {
+      "x16_mismatch": 863075,
+      "tensors_exact": 0,
+      "f32_match": 14,
+      "cand_flips": 865905,
+      "cand_flip_tensors": 152,
+      "both": 0
+     },
+     "ema_a64_fp16|eps=1e-07": {
+      "x16_mismatch": 642813,
+      "tensors_exact": 0,
+      "f32_match": 211,
+      "cand_flips": 653506,
+      "cand_flip_tensors": 152,
+      "both": 0
+     },
+     "g|eps=0": {
+      "x16_mismatch": 170810,
+      "tensors_exact": 87,
+      "f32_match": 281430,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "ema_a64|eps=0": {
+      "x16_mismatch": 170810,
+      "tensors_exact": 87,
+      "f32_match": 281430,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "ema_a32|eps=0": {
+      "x16_mismatch": 170810,
+      "tensors_exact": 87,
+      "f32_match": 281430,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "lerp_a64|eps=0": {
+      "x16_mismatch": 170810,
+      "tensors_exact": 87,
+      "f32_match": 281430,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "lerp_a64_fma|eps=0": {
+      "x16_mismatch": 170810,
+      "tensors_exact": 87,
+      "f32_match": 281430,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "lerp_a32|eps=0": {
+      "x16_mismatch": 170810,
+      "tensors_exact": 87,
+      "f32_match": 281430,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "ema_a64_bcdiv64|eps=0": {
+      "x16_mismatch": 170810,
+      "tensors_exact": 87,
+      "f32_match": 281430,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "ema_a64_bcdiv32|eps=0": {
+      "x16_mismatch": 170810,
+      "tensors_exact": 87,
+      "f32_match": 281430,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "ema_a32_bcdiv32|eps=0": {
+      "x16_mismatch": 170810,
+      "tensors_exact": 87,
+      "f32_match": 281430,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "ema_a64_bcmul64|eps=0": {
+      "x16_mismatch": 170810,
+      "tensors_exact": 87,
+      "f32_match": 281430,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "lerp_a64_bcdiv64|eps=0": {
+      "x16_mismatch": 170810,
+      "tensors_exact": 87,
+      "f32_match": 281430,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "ema_a64_bf16|eps=0": {
+      "x16_mismatch": 863075,
+      "tensors_exact": 0,
+      "f32_match": 14,
+      "cand_flips": 865904,
+      "cand_flip_tensors": 152,
+      "both": 0
+     },
+     "ema_a64_fp16|eps=0": {
+      "x16_mismatch": 642842,
+      "tensors_exact": 0,
+      "f32_match": 211,
+      "cand_flips": 653535,
+      "cand_flip_tensors": 152,
+      "both": 0
+     }
+    }
+   },
+   "r2_b0.9_rep": {
+    "data": {
+     "gradient": "r2_oracle2",
+     "beta": 0.9,
+     "vs": "r2_b0",
+     "f32_tensors": 1,
+     "f32_entries": 8192,
+     "x16_tensors": 1,
+     "x16_entries": 59,
+     "changed": [
+      "layers.26.linear_attn.in_proj_v.lora_B"
+     ]
+    },
+    "cands": {
+     "g|eps=1e-07": {
+      "x16_mismatch": 170850,
+      "tensors_exact": 86,
+      "f32_match": 279653,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "ema_a64|eps=1e-07": {
+      "x16_mismatch": 170850,
+      "tensors_exact": 86,
+      "f32_match": 279653,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "ema_a32|eps=1e-07": {
+      "x16_mismatch": 170850,
+      "tensors_exact": 86,
+      "f32_match": 279653,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "lerp_a64|eps=1e-07": {
+      "x16_mismatch": 170850,
+      "tensors_exact": 86,
+      "f32_match": 279653,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "lerp_a64_fma|eps=1e-07": {
+      "x16_mismatch": 170850,
+      "tensors_exact": 86,
+      "f32_match": 279653,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "lerp_a32|eps=1e-07": {
+      "x16_mismatch": 170850,
+      "tensors_exact": 86,
+      "f32_match": 279653,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "ema_a64_bcdiv64|eps=1e-07": {
+      "x16_mismatch": 170850,
+      "tensors_exact": 86,
+      "f32_match": 279653,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "ema_a64_bcdiv32|eps=1e-07": {
+      "x16_mismatch": 170944,
+      "tensors_exact": 85,
+      "f32_match": 274528,
+      "cand_flips": 193,
+      "cand_flip_tensors": 2,
+      "both": 43
+     },
+     "ema_a32_bcdiv32|eps=1e-07": {
+      "x16_mismatch": 170850,
+      "tensors_exact": 86,
+      "f32_match": 279653,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "ema_a64_bcmul64|eps=1e-07": {
+      "x16_mismatch": 170850,
+      "tensors_exact": 86,
+      "f32_match": 279653,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "lerp_a64_bcdiv64|eps=1e-07": {
+      "x16_mismatch": 170850,
+      "tensors_exact": 86,
+      "f32_match": 279653,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "ema_a64_bf16|eps=1e-07": {
+      "x16_mismatch": 864985,
+      "tensors_exact": 0,
+      "f32_match": 12,
+      "cand_flips": 863219,
+      "cand_flip_tensors": 152,
+      "both": 56
+     },
+     "ema_a64_fp16|eps=1e-07": {
+      "x16_mismatch": 674090,
+      "tensors_exact": 0,
+      "f32_match": 10,
+      "cand_flips": 654840,
+      "cand_flip_tensors": 152,
+      "both": 58
+     },
+     "g|eps=0": {
+      "x16_mismatch": 170820,
+      "tensors_exact": 87,
+      "f32_match": 281430,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "ema_a64|eps=0": {
+      "x16_mismatch": 170914,
+      "tensors_exact": 86,
+      "f32_match": 276305,
+      "cand_flips": 193,
+      "cand_flip_tensors": 2,
+      "both": 43
+     },
+     "ema_a32|eps=0": {
+      "x16_mismatch": 170918,
+      "tensors_exact": 86,
+      "f32_match": 276305,
+      "cand_flips": 98,
+      "cand_flip_tensors": 1,
+      "both": 0
+     },
+     "lerp_a64|eps=0": {
+      "x16_mismatch": 170914,
+      "tensors_exact": 86,
+      "f32_match": 276305,
+      "cand_flips": 193,
+      "cand_flip_tensors": 2,
+      "both": 43
+     },
+     "lerp_a64_fma|eps=0": {
+      "x16_mismatch": 170914,
+      "tensors_exact": 86,
+      "f32_match": 276305,
+      "cand_flips": 193,
+      "cand_flip_tensors": 2,
+      "both": 43
+     },
+     "lerp_a32|eps=0": {
+      "x16_mismatch": 170918,
+      "tensors_exact": 86,
+      "f32_match": 276305,
+      "cand_flips": 98,
+      "cand_flip_tensors": 1,
+      "both": 0
+     },
+     "ema_a64_bcdiv64|eps=0": {
+      "x16_mismatch": 170820,
+      "tensors_exact": 87,
+      "f32_match": 281430,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "ema_a64_bcdiv32|eps=0": {
+      "x16_mismatch": 170914,
+      "tensors_exact": 86,
+      "f32_match": 276305,
+      "cand_flips": 193,
+      "cand_flip_tensors": 2,
+      "both": 43
+     },
+     "ema_a32_bcdiv32|eps=0": {
+      "x16_mismatch": 170820,
+      "tensors_exact": 87,
+      "f32_match": 281430,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "ema_a64_bcmul64|eps=0": {
+      "x16_mismatch": 170820,
+      "tensors_exact": 87,
+      "f32_match": 281430,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "lerp_a64_bcdiv64|eps=0": {
+      "x16_mismatch": 170820,
+      "tensors_exact": 87,
+      "f32_match": 281430,
+      "cand_flips": 0,
+      "cand_flip_tensors": 0,
+      "both": 0
+     },
+     "ema_a64_bf16|eps=0": {
+      "x16_mismatch": 865045,
+      "tensors_exact": 0,
+      "f32_match": 167,
+      "cand_flips": 863304,
+      "cand_flip_tensors": 152,
+      "both": 56
+     },
+     "ema_a64_fp16|eps=0": {
+      "x16_mismatch": 671651,
+      "tensors_exact": 0,
+      "f32_match": 10,
+      "cand_flips": 652422,
+      "cand_flip_tensors": 152,
+      "both": 58
+     }
+    }
+   }
+  }
+ }
+}

@@ -1,0 +1,94 @@
+== rank 1: oracle gradient versions: [['r1_oracle1', 'r1_oracle2'], ['r1_oracle3']]
+   versions differ in (152, 366695) (tensors, entries); median per-tensor relF 9.618e-03
+   r1_b0        -> gradient r1_oracle3  (emulation relF r1_oracle1: 9.55e-03, r1_oracle3: 6.24e-08)
+   r1_b0.5      -> gradient r1_oracle3  (emulation relF r1_oracle1: 9.55e-03, r1_oracle3: 6.24e-08)
+   r1_b0.75     -> gradient r1_oracle3  (emulation relF r1_oracle1: 9.55e-03, r1_oracle3: 6.24e-08)
+   r1_b0.9      -> gradient r1_oracle3  (emulation relF r1_oracle1: 9.55e-03, r1_oracle3: 6.31e-08)
+   r1_b0.99     -> gradient r1_oracle1  (emulation relF r1_oracle1: 6.24e-08, r1_oracle3: 9.55e-03)
+   r1_b0.999    -> gradient r1_oracle1  (emulation relF r1_oracle1: 6.24e-08, r1_oracle3: 9.55e-03)
+   r1_b0.3      -> gradient r1_oracle1  (emulation relF r1_oracle1: 6.24e-08, r1_oracle3: 9.55e-03)
+   r1_b0.7      -> gradient r1_oracle1  (emulation relF r1_oracle1: 6.24e-08, r1_oracle3: 9.55e-03)
+   DATA r1_b0 (grad r1_oracle3) vs r1_b0: f32 differs in 0 tensors / 0 entries; X16 in 0 tensors / 0 entries; tensors []
+   DATA r1_b0.5 (grad r1_oracle3) vs r1_b0: f32 differs in 0 tensors / 0 entries; X16 in 0 tensors / 0 entries; tensors []
+   DATA r1_b0.75 (grad r1_oracle3) vs r1_b0: f32 differs in 0 tensors / 0 entries; X16 in 0 tensors / 0 entries; tensors []
+   DATA r1_b0.9 (grad r1_oracle3) vs r1_b0: f32 differs in 1 tensors / 4096 entries; X16 in 1 tensors / 44 entries; tensors ['layers.16.linear_attn.in_proj_v.lora_B']
+   DATA r1_b0.99 (grad r1_oracle1): no same-version beta=0 run
+   DATA r1_b0.999 (grad r1_oracle1): no same-version beta=0 run
+   DATA r1_b0.3 (grad r1_oracle1): no same-version beta=0 run
+   DATA r1_b0.7 (grad r1_oracle1): no same-version beta=0 run
+   -- rank 1: X16 mismatching entries (of 458752) / exactly-predicted tensors (of 152)
+   cand                                  b0            b0.5           b0.75            b0.9           b0.99          b0.999            b0.3            b0.7
+   g|eps=1e-07                   4091/150        4091/150        4091/150        4135/149        2134/149        2142/149        2083/149        2083/149  
+   ema_a64|eps=1e-07             4091/150        4091/150        4091/150        4157/147        8254/141       65966/56         2134/149        2047/151  
+   ema_a32|eps=1e-07             4091/150        4091/150        4091/150        4157/147        8261/140       65966/56         2134/149        2047/151  
+   lerp_a64|eps=1e-07            4091/150        4091/150        4091/150        4157/147        8254/141       65966/56         2062/150        2047/151  
+   lerp_a64_fma|eps=1e-07        4091/150        4091/150        4091/150        4157/147        8254/141       65966/56         2134/149        2047/151  
+   lerp_a32|eps=1e-07            4091/150        4091/150        4091/150        4157/147        8261/140       65966/56         2062/150        2047/151  
+   ema_a64_bcdiv64|eps=1e-07      4091/150        4091/150        4091/150        4135/149        2134/149        2142/149        2068/150        2068/150  
+   ema_a64_bcdiv32|eps=1e-07      4091/150        4091/150        4091/150        4135/149        2091/149        2142/149        2068/150        2068/150  
+   ema_a32_bcdiv32|eps=1e-07      4091/150        4091/150        4091/150        4135/149        2134/149        2142/149        2068/150        2068/150  
+   ema_a64_bcmul64|eps=1e-07      4091/150        4091/150        4091/150        4135/149        2134/149        2047/151        2068/150        2068/150  
+   lerp_a64_bcdiv64|eps=1e-07      4091/150        4091/150        4091/150        4135/149        2134/149        2142/149        2068/150        2068/150  
+   ema_a64_bf16|eps=1e-07        4091/150        4091/150        4091/150      386154/0        389356/0        392316/0        378272/0        378322/0    
+   ema_a64_fp16|eps=1e-07        4091/150        4093/149        4106/139      228183/0        253109/0        265022/0        207444/0        218079/0    
+   g|eps=0                       4091/150        4091/150        4091/150        4135/149        2134/149        2142/149        2083/149        2083/149  
+   ema_a64|eps=0                 4091/150        4091/150        4091/150        4134/149        2142/149        2163/148        2134/149        2047/151  
+   ema_a32|eps=0                 4091/150        4091/150        4091/150        4090/150        2119/150        2091/149        2134/149        2047/151  
+   lerp_a64|eps=0                4091/150        4091/150        4091/150        4134/149        2142/149        2163/148        2062/150        2047/151  
+   lerp_a64_fma|eps=0            4091/150        4091/150        4091/150        4134/149        2142/149        2163/148        2134/149        2047/151  
+   lerp_a32|eps=0                4091/150        4091/150        4091/150        4090/150        2119/150        2091/149        2062/150        2047/151  
+   ema_a64_bcdiv64|eps=0         4091/150        4091/150        4091/150        4122/150        2134/149        2142/149        2068/150        2068/150  
+   ema_a64_bcdiv32|eps=0         4091/150        4091/150        4091/150        4135/149        2091/149        2142/149        2068/150        2068/150  
+   ema_a32_bcdiv32|eps=0         4091/150        4091/150        4091/150        4135/149        2134/149        2142/149        2068/150        2068/150  
+   ema_a64_bcmul64|eps=0         4091/150        4091/150        4091/150        4122/150        2134/149        2047/151        2068/150        2068/150  
+   lerp_a64_bcdiv64|eps=0        4091/150        4091/150        4091/150        4122/150        2134/149        2142/149        2068/150        2068/150  
+   ema_a64_bf16|eps=0            4091/150        4091/150        4091/150      386128/0        388245/0        389203/0        378272/0        378322/0    
+   ema_a64_fp16|eps=0            4091/150        4093/149        4106/139      228138/0        253894/0        257647/0        207455/0        218079/0    
+== rank 2: oracle gradient versions: [['r2_oracle1'], ['r2_oracle2']]
+   versions differ in (152, 732877) (tensors, entries); median per-tensor relF 9.692e-03
+   r2_b0        -> gradient r2_oracle2  (emulation relF r2_oracle1: 1.25e-02, r2_oracle2: 9.75e-08)
+   r2_b0.5      -> gradient r2_oracle1  (emulation relF r2_oracle1: 9.06e-08, r2_oracle2: 1.24e-02)
+   r2_b0.75     -> gradient r2_oracle2  (emulation relF r2_oracle1: 1.25e-02, r2_oracle2: 9.75e-08)
+   r2_b0.9      -> gradient r2_oracle2  (emulation relF r2_oracle1: 1.25e-02, r2_oracle2: 9.75e-08)
+   r2_b0.99     -> gradient r2_oracle2  (emulation relF r2_oracle1: 1.25e-02, r2_oracle2: 1.03e-07)
+   r2_b0.999    -> gradient r2_oracle2  (emulation relF r2_oracle1: 1.25e-02, r2_oracle2: 9.75e-08)
+   r2_b0.3      -> gradient r2_oracle1  (emulation relF r2_oracle1: 9.06e-08, r2_oracle2: 1.24e-02)
+   r2_b0.7      -> gradient r2_oracle2  (emulation relF r2_oracle1: 1.25e-02, r2_oracle2: 9.75e-08)
+   r2_b0.9_rep  -> gradient r2_oracle2  (emulation relF r2_oracle1: 1.25e-02, r2_oracle2: 9.75e-08)
+   DATA r2_b0 (grad r2_oracle2) vs r2_b0: f32 differs in 0 tensors / 0 entries; X16 in 0 tensors / 0 entries; tensors []
+   DATA r2_b0.5 (grad r2_oracle1): no same-version beta=0 run
+   DATA r2_b0.75 (grad r2_oracle2) vs r2_b0: f32 differs in 0 tensors / 0 entries; X16 in 0 tensors / 0 entries; tensors []
+   DATA r2_b0.9 (grad r2_oracle2) vs r2_b0: f32 differs in 1 tensors / 8192 entries; X16 in 1 tensors / 59 entries; tensors ['layers.26.linear_attn.in_proj_v.lora_B']
+   DATA r2_b0.99 (grad r2_oracle2) vs r2_b0: f32 differs in 1 tensors / 8192 entries; X16 in 1 tensors / 98 entries; tensors ['layers.22.linear_attn.in_proj_v.lora_B']
+   DATA r2_b0.999 (grad r2_oracle2) vs r2_b0: f32 differs in 0 tensors / 0 entries; X16 in 0 tensors / 0 entries; tensors []
+   DATA r2_b0.3 (grad r2_oracle1): no same-version beta=0 run
+   DATA r2_b0.7 (grad r2_oracle2) vs r2_b0: f32 differs in 0 tensors / 0 entries; X16 in 0 tensors / 0 entries; tensors []
+   DATA r2_b0.9_rep (grad r2_oracle2) vs r2_b0: f32 differs in 1 tensors / 8192 entries; X16 in 1 tensors / 59 entries; tensors ['layers.26.linear_attn.in_proj_v.lora_B']
+   -- rank 2: X16 mismatching entries (of 917504) / exactly-predicted tensors (of 152)
+   cand                                  b0            b0.5           b0.75            b0.9           b0.99          b0.999            b0.3            b0.7        b0.9_rep
+   g|eps=1e-07                 170840/86       202304/91       170840/86       170850/86       170938/85       170840/86       202304/91       170840/86       170850/86   
+   ema_a64|eps=1e-07           170840/86       202304/91       170840/86       170850/86       188329/73       255706/17       202304/91       170840/86       170850/86   
+   ema_a32|eps=1e-07           170840/86       202304/91       170840/86       170850/86       188407/72       255728/17       202304/91       170840/86       170850/86   
+   lerp_a64|eps=1e-07          170840/86       202304/91       170840/86       170850/86       188329/73       255706/17       202304/91       170840/86       170850/86   
+   lerp_a64_fma|eps=1e-07      170840/86       202304/91       170840/86       170850/86       188329/73       255706/17       202304/91       170840/86       170850/86   
+   lerp_a32|eps=1e-07          170840/86       202304/91       170840/86       170850/86       188407/72       255728/17       202304/91       170840/86       170850/86   
+   ema_a64_bcdiv64|eps=1e-07    170840/86       202304/91       170840/86       170850/86       170938/85       170840/86       202304/91       170840/86       170850/86   
+   ema_a64_bcdiv32|eps=1e-07    170840/86       202304/91       170840/86       170944/85       170938/85       170851/87       202304/91       170840/86       170944/85   
+   ema_a32_bcdiv32|eps=1e-07    170840/86       202304/91       170840/86       170850/86       170938/85       170840/86       202304/91       170840/86       170850/86   
+   ema_a64_bcmul64|eps=1e-07    170840/86       202304/91       170840/86       170850/86       170938/85       170840/86       202304/91       170840/86       170850/86   
+   lerp_a64_bcdiv64|eps=1e-07    170840/86       202304/91       170840/86       170850/86       170938/85       170840/86       202304/91       170840/86       170850/86   
+   ema_a64_bf16|eps=1e-07      170840/86       202304/91       170840/86       864985/0        866940/0        861461/0        861448/0        863075/0        864985/0    
+   ema_a64_fp16|eps=1e-07      170845/84       202328/83       170905/69       674090/0        659187/0        723728/0        665328/0        642813/0        674090/0    
+   g|eps=0                     170810/87       202304/91       170810/87       170820/87       170908/86       170810/87       202304/91       170810/87       170820/87   
+   ema_a64|eps=0               170810/87       202304/91       170810/87       170914/86       170908/86       170810/87       202304/91       170810/87       170914/86   
+   ema_a32|eps=0               170810/87       202304/91       170810/87       170918/86       170908/86       170851/86       202304/91       170810/87       170918/86   
+   lerp_a64|eps=0              170810/87       202304/91       170810/87       170914/86       170908/86       170810/87       202304/91       170810/87       170914/86   
+   lerp_a64_fma|eps=0          170810/87       202304/91       170810/87       170914/86       170908/86       170810/87       202304/91       170810/87       170914/86   
+   lerp_a32|eps=0              170810/87       202304/91       170810/87       170918/86       170908/86       170851/86       202304/91       170810/87       170918/86   
+   ema_a64_bcdiv64|eps=0       170810/87       202304/91       170810/87       170820/87       170908/86       170810/87       202304/91       170810/87       170820/87   
+   ema_a64_bcdiv32|eps=0       170810/87       202304/91       170810/87       170914/86       170908/86       170851/87       202304/91       170810/87       170914/86   
+   ema_a32_bcdiv32|eps=0       170810/87       202304/91       170810/87       170820/87       170908/86       170810/87       202304/91       170810/87       170820/87   
+   ema_a64_bcmul64|eps=0       170810/87       202304/91       170810/87       170820/87       170938/85       170810/87       202304/91       170810/87       170820/87   
+   lerp_a64_bcdiv64|eps=0      170810/87       202304/91       170810/87       170820/87       170908/86       170810/87       202304/91       170810/87       170820/87   
+   ema_a64_bf16|eps=0          170810/87       202304/91       170810/87       865045/0        866959/0        862126/0        861448/0        863075/0        865045/0    
+   ema_a64_fp16|eps=0          170815/85       202328/83       170875/69       671651/0        660949/0        721648/0        665356/0        642842/0        671651/0    

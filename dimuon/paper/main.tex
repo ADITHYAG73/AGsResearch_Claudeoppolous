@@ -761,21 +761,26 @@ $B$: 0.031 becomes 0.21). One bf16 buffer per tensor is also consistent with the
 optimizer state (half the float32 weights; an inference from file sizes). The strongest test of
 bf16 storage is the zero-gradient step (Section~\ref{sec:ev-zero}).
 
-\paragraph{Bias correction: a tension at step 1.} Because every later operation is scale-invariant
-in the momentum, a scalar bias correction $1/(1-\beta^t)$ applied to the value fed to the
-orthogonaliser cannot be detected at steps after the first; nor, therefore, can its absence. Step 1
-is different, because rounding is not scale-invariant. With $\beta=0$ and $\beta=0.5$ the step-1
-updates are bit-identical (here $(1-\beta)g$ is $g$ or $g/2$, an exact power-of-two scaling in
-float32), while $\beta=0.9$ differs in exactly one of 152 rank-8 tensors, in five fp16 entries of a
-single row: the footprint of one entry of $X_0$ rounding differently. The rule as written, feeding
-$(1-\beta)g=0.1g$ in float32, predicts about 818 such flips spread over about 150 tensors
-(FIRSTSTEP-01 item 9). A bias-corrected value $(0.1g)/(1-0.9)$ returns $g$ except for one-unit float32
-changes in 13\% of entries, which shift the float32 norm in 7 of 152 tensors and are expected to
-cause about 5.7 flips: consistent with what we see. So step-1 rounding favours feeding the
-orthogonaliser a bias-corrected value (or anything numerically equal to $g$), while all later steps
-cannot see the difference, and the stored recursion we fitted is the uncorrected EMA. Neither public
-reconstruction includes a bias correction; one reports that a ``first-gradient initialization''
-does not fit (COMPARE-01). We do not resolve this.
+\paragraph{What is fed to the orthogonaliser at step 1.} Because every later operation is
+scale-invariant in the momentum, a scalar bias correction $1/(1-\beta^t)$ on the value fed to the
+orthogonaliser cannot be detected after the first step; nor can its absence. Step 1 is different,
+because rounding is not scale-invariant. An early estimate suggested that the plain float32
+$(1-\beta)g$ predicts about 818 changed entries of $X_0$ at $\beta=0.9$, rank 8, where the data
+show 5, and so favoured a bias-corrected value. A dedicated measurement at ranks 1 and 2, where
+the nested-form emulation is bit-exact for most tensors, corrects this (BIASCORR-01, 22 clients,
+eight values of $\beta$). The 818 came from a small constant ($10^{-7}$) that our emulation added
+to the norm, not from the EMA: with that constant at most about $10^{-12}$, or absent, the plain
+EMA predicts changes in 1--6 tensors over eight comparisons, bias correction predicts 0--3, and
+the data show 3. Three alternatives are rejected outright. A value that does not depend on $\beta$
+(the gradient itself, or the sum form $\beta S+g$) is rejected because the update changes
+reproducibly at $\beta=0.9$ and $0.99$. Rounding the momentum to bf16 or fp16 before normalising
+mispredicts every tensor whenever $1-\beta$ is not a power of two. A plain EMA with a norm constant
+of $10^{-8}$ or more predicts 24--120 changed tensors at rank 2, $\beta=0.999$, against none. Plain
+EMA and bias-corrected EMA remain indistinguishable: which single tensor changes appears to be
+decided by the last bit of the float32 norm, that is, by the order in which the hardware sums,
+which we do not model. The \emph{stored} momentum is certainly not bias-corrected: storing
+$\mathrm{bf16}(g_1)$ instead of $\mathrm{bf16}((1-\beta)g_1)$ raises the step-2 residual for $B$
+from 0.0046 to 0.114 at rank 8. Neither public reconstruction includes a bias correction.
 
 \paragraph{Caveats.} The EMA-versus-sum test rests on one change of $\beta$ (at two ranks).
 
@@ -936,8 +941,9 @@ Within R2 we later found that a repeated request does not always return the same
 
 \emph{Gradients.} Repeated oracles at the same state and batch sometimes disagree: at one rank-32
 state 23.4 of 28.7 million entries differed between two oracle runs; at one rank-8 state 5.85 of
-7.18 million. At other states repeats were bit-identical, and the gradient at initialisation ($B=0$)
-never varied. Each version recurs bit for bit. A server metric (\texttt{clock\_cycle:unique}) falls in
+7.18 million. At other states repeats were bit-identical. In the first rounds the gradient at initialisation
+($B=0$) never varied, but in the last measurement of the study it too came in two versions (about
+1\% apart) at ranks 1 and 2, interleaved in time (BIASCORR-01). Each version recurs bit for bit. A server metric (\texttt{clock\_cycle:unique}) falls in
 two clusters, but it does not predict the version in general.
 
 \emph{Steps.} From one restored rank-8 state the same unclipped step returned two different results,
@@ -1113,9 +1119,9 @@ and not separable from a dependence on $\alpha$.
 \item \textbf{Variant X.} One of the two step versions is not characterised. Which version a call
 returns cannot be controlled or predicted, and some residuals in Section~\ref{sec:evidence} (steps 2--3
 of the 12-step chain; $A$ in some clipping runs; the $\beta'$ zero steps) are inflated by it.
-\item \textbf{Bias correction at step 1.} Step-1 rounding favours feeding a bias-corrected value (or
-anything numerically equal to $g$) to the orthogonaliser; later steps cannot detect it; the public
-reconstructions omit it (Section~\ref{sec:ev-mom}). Unresolved.
+\item \textbf{Bias correction.} Whether the value fed to the orthogonaliser is bias-corrected is
+not decidable from our data; the stored momentum is not (Section~\ref{sec:ev-mom}). The float32
+arithmetic of the final scaling is also not reproduced bit for bit.
 \item \textbf{$\beta'$ at a zero step.} The three steps with $\beta'\in\{0.5,0.9,0.99\}$ agree to a
 maximum residual of $3\times10^{-3}$, about 100 times more than the rule's rounding predicts. Cause
 unknown.

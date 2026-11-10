@@ -51,18 +51,18 @@
 \contentsline {paragraph}{The statistic comes from the previous momentum, not the previous gradient.}{16}{section*.34}%
 \contentsline {paragraph}{EMA, not a sum, and not Nesterov.}{16}{section*.35}%
 \contentsline {paragraph}{Stored in bf16, used unrounded.}{17}{section*.36}%
-\contentsline {paragraph}{Bias correction: a tension at step 1.}{17}{section*.37}%
+\contentsline {paragraph}{What is fed to the orthogonaliser at step 1.}{17}{section*.37}%
 \contentsline {paragraph}{Caveats.}{17}{section*.38}%
 \contentsline {subsection}{\numberline {5.6}Zero-gradient steps}{17}{subsection.5.6}%
 \contentsline {paragraph}{Measurement.}{17}{section*.39}%
 \contentsline {paragraph}{Predictions without new constants.}{17}{section*.40}%
-\contentsline {paragraph}{bf16 storage at rank 32.}{17}{section*.41}%
+\contentsline {paragraph}{bf16 storage at rank 32.}{18}{section*.41}%
 \contentsline {paragraph}{Changing $\beta $ at a zero step}{18}{section*.42}%
 \contentsline {subsection}{\numberline {5.7}Clipping}{18}{subsection.5.7}%
 \contentsline {paragraph}{Measurement.}{18}{section*.43}%
 \contentsline {paragraph}{Test}{18}{section*.44}%
 \contentsline {paragraph}{Caveat.}{18}{section*.45}%
-\contentsline {subsection}{\numberline {5.8}Learning rate}{18}{subsection.5.8}%
+\contentsline {subsection}{\numberline {5.8}Learning rate}{19}{subsection.5.8}%
 \contentsline {subsection}{\numberline {5.9}Out-of-sample tests}{19}{subsection.5.9}%
 \contentsline {section}{\numberline {6}The service is not a deterministic function}{20}{section.6}%
 \contentsline {subsection}{\numberline {6.1}A change of regime}{20}{subsection.6.1}%
@@ -73,15 +73,15 @@
 \contentsline {subsection}{\numberline {7.2}Agreement}{22}{subsection.7.2}%
 \contentsline {subsection}{\numberline {7.3}One disagreement, where we were wrong}{22}{subsection.7.3}%
 \contentsline {subsection}{\numberline {7.4}What the public material settles and what it does not}{22}{subsection.7.4}%
-\contentsline {section}{\numberline {8}Interpretation}{22}{section.8}%
+\contentsline {section}{\numberline {8}Interpretation}{23}{section.8}%
 \contentsline {paragraph}{The update as steepest descent under a weighted spectral norm.}{23}{section*.48}%
 \contentsline {paragraph}{Relation to Shampoo and PoLoRA.}{23}{section*.49}%
 \contentsline {paragraph}{Rank 1.}{23}{section*.50}%
-\contentsline {paragraph}{Why a lagged statistic?}{23}{section*.51}%
-\contentsline {paragraph}{Damping and the fixed norm.}{23}{section*.52}%
+\contentsline {paragraph}{Why a lagged statistic?}{24}{section*.51}%
+\contentsline {paragraph}{Damping and the fixed norm.}{24}{section*.52}%
 \contentsline {section}{\numberline {9}Limitations and open questions}{24}{section.9}%
 \contentsline {section}{\numberline {A}Reproducibility}{25}{appendix.A}%
 \contentsline {paragraph}{Repository layout.}{25}{section*.53}%
 \contentsline {paragraph}{Data layout.}{25}{section*.54}%
 \contentsline {paragraph}{Usage.}{25}{section*.55}%
-\contentsline {section}{\numberline {B}How the study was run}{25}{appendix.B}%
+\contentsline {section}{\numberline {B}How the study was run}{26}{appendix.B}%

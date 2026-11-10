@@ -1,0 +1,3 @@
+done r1_oracle3 38.7 30.40399169921875
+r1_oracle3 emulation vs r1_b0 median relF 6.235451621705579e-08
+COUNTS {'clients': 1, 'forward_backward': 1, 'optim_step': 1, 'exports': 1, 'uploads': 0}

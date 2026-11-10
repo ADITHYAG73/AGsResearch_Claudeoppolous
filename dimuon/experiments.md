@@ -929,3 +929,103 @@ reproduced by the equations in the paper; they are not saved as files (caveat).
   (max 0.0118), B 0.00461 (max 0.0150); per-tensor norms 0.00221914.
 - Billing: the first billing script truncated output; corrected. Study training cost priced so far ~$0.003;
   $7.88 of sampling on thinkingmachines/Inkling-Small on 2026-11-10 is not from this study.
+
+---
+
+## BIASCORR-01 — what is fed to the orthogonaliser at step 1 (S = 0)? — 2026-11-10 (measurement agent)
+
+**Question.** At step 1 is the orthogonalised tensor g, f32 (1−β)·g, a bias-corrected m/(1−β), a lerp form, or a
+reduced-precision copy? Earlier evidence: rank 8, β 0 ≡ 0.5 bit-identical, β 0.9 differs in 5 fp16 entries of one
+tensor; FIRSTSTEP-01 item 9 estimated ~818 flips for plain f32 EMA and rejected it.
+
+**Setup.** Qwen/Qwen3.5-4B attention-only, seed 0, `tk.TEXTS[0]`, weight 1, Dimuon lr 1e-3, no clip, B0 = 0, ranks 1
+and 2. One new client per run, strictly sequential. β ∈ {0, 0.5, 0.75, 0.9, 0.99, 0.999, 0.3, 0.7} per rank
+((1−β) exact powers of two at 0.5/0.75); oracle G (AdamW lr 1, eps 100, bf16-snapped, as D1) before and after the
+β runs at each rank, one extra rank-1 oracle, one repeat of r2 β 0.9. Only lora_B kept (float32; = the update).
+Emulation (`bc_lib.py`): candidate M = f(g, β) → X0 = fp16(M/(1.01·‖M‖ + eps)) → COMPARE-01 Horner PE5 → norm law.
+Candidates: `g`; `ema_a64` f32(1−β)·g; `ema_a32` (f32(1)−f32(β))·g; `lerp_*` torch-lerp semantics (incl. FMA);
+`*_bcdiv*` / `*_bcmul64` bias-corrected (÷ f32(1−β) in f64- or f32-computed form, or × f32(1/(1−β)));
+`ema_a64_bf16` / `_fp16` (fed after a bf16/fp16 cast); each with eps 1e-7 and 0. `bc_flips.py` / `bc_pairs.py`
+also vary the normaliser arithmetic (norm by numpy pairwise f32 / f64 / sequential f32 / BLAS dot; M/(n·1.01),
+M·(1/(n·1.01)), (M/n)/1.01).
+
+**Finding 0 again, now at B = 0: two gradient versions at each rank.** r1: oracle1 ≡ oracle2 but r1 β 0/0.5/0.75/0.9
+were stepped on a different gradient (emulation relF 9.6e-3 vs 6.2e-8); oracle3 reproduced it (6.2e-8). r2: oracle1
+and oracle2 differ in all 152 tensors (732,877 entries, median relF 9.7e-3); runs fall in both (b0.5, b0.3 on
+oracle1; the rest on oracle2). Versions interleave in time (r1 switched between 23:32:14 and 23:32:36 UTC; r2 went
+v2, v1, v2, …, v1, v2). PREDICT-01 had "the init gradient never varied" — no longer true. Every run below is scored
+against the oracle that reproduces it (`analysis.txt` lists the pairing). Within a version the step is
+deterministic: r2 β 0.9 repeat bit-identical (0 entries differ).
+
+**Data, within one gradient version (no emulation involved; `analysis.txt`, `pairs.txt`).**
+- r1 (grad oracle3): β 0.5, 0.75 ≡ β 0 bit-for-bit; β 0.9 differs in 1 tensor (`layers.16.linear_attn.in_proj_v`,
+  44 X16 entries, all 4096 float32 entries).
+- r2 (grad oracle2): β 0.75, 0.999, 0.7 ≡ β 0 bit-for-bit; β 0.9 differs in 1 tensor (`layers.26…in_proj_v`, 59 X16
+  entries), β 0.99 in 1 other tensor (`layers.22…in_proj_v`, 98 entries).
+- r1 (grad oracle1, no β 0 run): β 0.3 ≡ 0.7; β 0.99 and 0.999 differ from them in 2 and 4 tensors.
+- r2 (grad oracle1): β 0.5 ≡ 0.3.
+- Every tensor whose float32 update changed also changed its X16; no tensor changed only in the final scalar.
+  So β acts only before the fp16 cast of X0.
+
+**Candidates × β (`table.md`; cell = X16 entries mispredicted / tensors predicted exactly, of 152).**
+
+| candidate | r1 β0 | r1 β0.9 | r1 β0.99 | r1 β0.999 | r2 β0 | r2 β0.99 | r2 β0.999 |
+|---|---|---|---|---|---|---|---|
+| g, eps 1e-7 | 4091/150 | 4135/149 | 2134/149 | 2142/149 | 170840/86 | 170938/85 | 170840/86 |
+| ema f32(1−β)g, eps 1e-7 | 4091/150 | 4157/147 | 8254/141 | **65966/56** | 170840/86 | 188329/73 | **255706/17** |
+| ema, eps 0 | 4091/150 | 4134/149 | 2142/149 | 2163/148 | 170810/87 | 170908/86 | 170810/87 |
+| bias-corr ÷f32(1−β), eps 1e-7 | 4091/150 | 4135/149 | 2134/149 | 2142/149 | 170840/86 | 170938/85 | 170840/86 |
+| bias-corr ÷f32(1−β), eps 0 | 4091/150 | 4122/150 | 2134/149 | 2142/149 | 170810/87 | 170908/86 | 170810/87 |
+| fed bf16(ema) | 4091/150 | 386154/0 | 389356/0 | 392316/0 | 170840/86 | 866940/0 | 861461/0 |
+| fed fp16(ema) | 4091/150 | 228183/0 | 253109/0 | 265022/0 | 170845/84 | 659187/0 | 723728/0 |
+
+(Full table, all 13 forms × all 17 runs × both eps: `table.md`. The β 0 column is the emulation floor: r1 150/152,
+r2 86–87/152 tensors exact, as in COMPARE-01. Float32 entries are never predicted exactly in any tensor, by any
+candidate: the final-scalar stage is not bit-exact (r1 β0 199,783 of 458,752 float32 entries equal; I tried 26
+op orders for −lr·√r·(r/32)^0.175·X/‖X‖ and none is exact; for 7 r1 tensors tested, no single float32 multiplier fits). So the
+discrimination is done on X16.)
+
+**Verdict.**
+- **Rejected:** (a) M = g for every β (also the sum form βS + g, S = 0): the data change deterministically at β 0.9
+  (r1, r2, repeat) and 0.99 (r2); (b) M fed after a bf16 or fp16 cast: wrong in every tensor at every non-power-of-two
+  β; (c) plain EMA (any of a64/a32/lerp) **with** an additive normaliser eps ≥ 1e-8: at β 0.999 it predicts 120 changed
+  tensors at r2 (1e-8: 24, 1e-9: 1; data 0) and 65,966 mispredicted entries at r1 (`eps_scan.txt`).
+- **Not rejected, not separable:** plain f32 EMA with eps ≲ 1e-12 (or none; 1e-10 and 1e-9 already predict 1 change at r2 β 0.999, data 0), and bias-corrected EMA (eps anything ≤ 1e-7).
+  Both predict the observed pattern: no change at exactly representable (1−β), rare one-tensor changes elsewhere,
+  none of them gross. Predicted changed tensors over the 8 within-version β-vs-0 comparisons, numpy/f64 norm
+  variants: plain EMA 1–6, bias-corrected 0–3, data 3 (`rate_by_variant.txt`). Too few events to choose.
+- **Bit level: undetermined.** No (form × normaliser) combination reproduces all three distinct flip events without
+  false positives (best: `bias-corr ÷(f32(1)−f32β) after f32(1−β)g`, f64 norm: 2 TP, 0 FP, 2 FN of 4 β-vs-0 tensor
+  events, none of the TP exact; `pairs.txt` over all within-version pairs: best 15 TP / 3 FP / 12 FN of 27).
+  `ema_a32` (or `lerp_a32`) with pairwise norm and eps 0 reproduces the r1 β 0.9 event exactly (all 44 entries) but
+  also flips 2 tensors the data does not. Which tensors flip is decided by the last ulp of the f32 norm, i.e. by the
+  GPU reduction order, which we do not model; so these 1–3 tensor events cannot identify the form.
+- **FIRSTSTEP-01 item 9 corrected:** its "~818 X0 flips, plain EMA rejected" used eps 1e-7 in the normaliser
+  (`fs_ns16.x0_f16`). Recomputed on D1 rank 8 at β 0.9: plain EMA 818–986 X0 flips with eps 1e-7, 120–121 in 2–3
+  tensors with eps ≤ 1e-8; bias-corrected 0–6 in 0–1 tensors; data 5 in 1. The rejection was of the eps, not of EMA.
+- **Step 2 (offline, D2, `step2.txt`, no new calls):** the STORED momentum is not bias-corrected. Storing
+  S = bf16(g1) instead of bf16((1−β)g1) gives step-2 lora_B median relF 0.114 vs 0.0046 (S2_r8_b0.9, R1), 0.107 vs
+  0.0043 (r8 b0.99, R2), 0.171 vs 0.014 (r32 b0.9, R2). A bias correction, if present, is applied only to the copy
+  that is orthogonalised; a scalar there cancels except at the rounding level, so step 2 cannot separate it either.
+  I did not spend clients on a step-2 run.
+
+**Caveats.** The X16 recovery and Horner emulation are CPU float32/fp16 (COMPARE-01), bit-exact for 150/152 (r1) and
+86–87/152 (r2) tensors at β 0; changes in the other tensors are scored only coarsely. Two gradient versions, one
+text, one seed. The "eps ≲ 1e-12 under plain EMA" bound is from one tensor count at r2 β 0.999 with numpy norms.
+The scale stage (float32) is unidentified, so "entries predicted exactly in float32" is ~43–46% for every candidate
+and carries no information about the form.
+
+**What would decide it.** A gradient with large dynamic range per tensor (‖g‖ ≪ 1, e.g. loss weight 1e-6) at
+β 0.999/0.9999: an additive eps would then act even under bias correction, and under plain EMA (1−β)·g would approach
+eps; or a step that makes the norm's last ulp irrelevant (not available through the API).
+
+**Usage.** 22 training clients (1 smoke = r1_oracle1, 19 in the main run, 1 extra oracle), 22 forward_backward +
+22 optim_step, 22 exports — every export's server checkpoint deleted right after download (22/22 `delete` events,
+0 failures). No save_state. Final listing = the owner's 10 checkpoints, 6.92 GB (`runs/BC/final_ckpt_listing.json`).
+Billing for these calls had not posted at report time (last bucket 21:00 UTC).
+
+**Files.** `pipeline/bc_lib.py` (candidates + emulation), `bc_collect.py`, `bc_extra.py` (Tinker), `bc_analyze.py`,
+`bc_flips.py`, `bc_pairs.py`, `bc_eps.py`, `bc_step2.py`, `bc_table.py` (offline). `runs/BC/`: `r{1,2}_b*.npz`,
+`r{1,2}_oracle*.npz` + `.json` (model_id, metrics, A sha, export path, deleted flag), `analysis.{txt,json}`,
+`table.md`, `flips.{txt,json}`, `pairs.{txt,json}`, `rate*.txt`, `eps_scan.txt`, `step2.txt`, `collect.log`,
+`extra.log`, `final_ckpt_listing.json` (42 MB total).

@@ -1,0 +1,27 @@
+rank 1 (r1_oracle3): per-tensor ||g|| min 1.006, p10 3.581, median 16.01
+  ema_a64          eps 0      changed tensors at beta 0.5: 0, 0.75: 0, 0.9: 2
+  ema_a64          eps 1e-12  changed tensors at beta 0.5: 0, 0.75: 0, 0.9: 2
+  ema_a64          eps 1e-10  changed tensors at beta 0.5: 0, 0.75: 0, 0.9: 2
+  ema_a64          eps 1e-09  changed tensors at beta 0.5: 0, 0.75: 0, 0.9: 2
+  ema_a64          eps 1e-08  changed tensors at beta 0.5: 0, 0.75: 0, 0.9: 1
+  ema_a64          eps 1e-07  changed tensors at beta 0.5: 0, 0.75: 0, 0.9: 2
+  ema_a64_bcdiv64  eps 0      changed tensors at beta 0.5: 0, 0.75: 0, 0.9: 1
+  ema_a64_bcdiv64  eps 1e-12  changed tensors at beta 0.5: 0, 0.75: 0, 0.9: 1
+  ema_a64_bcdiv64  eps 1e-10  changed tensors at beta 0.5: 0, 0.75: 0, 0.9: 1
+  ema_a64_bcdiv64  eps 1e-09  changed tensors at beta 0.5: 0, 0.75: 0, 0.9: 1
+  ema_a64_bcdiv64  eps 1e-08  changed tensors at beta 0.5: 0, 0.75: 0, 0.9: 1
+  ema_a64_bcdiv64  eps 1e-07  changed tensors at beta 0.5: 0, 0.75: 0, 0.9: 0
+rank 2 (r2_oracle2): per-tensor ||g|| min 1.048, p10 2.779, median 13.19
+  ema_a64          eps 0      changed tensors at beta 0.75: 0, 0.999: 0, 0.7: 0, 0.9: 2, 0.99: 0
+  ema_a64          eps 1e-12  changed tensors at beta 0.75: 0, 0.999: 0, 0.7: 0, 0.9: 2, 0.99: 0
+  ema_a64          eps 1e-10  changed tensors at beta 0.75: 0, 0.999: 1, 0.7: 0, 0.9: 2, 0.99: 0
+  ema_a64          eps 1e-09  changed tensors at beta 0.75: 0, 0.999: 1, 0.7: 0, 0.9: 2, 0.99: 1
+  ema_a64          eps 1e-08  changed tensors at beta 0.75: 0, 0.999: 24, 0.7: 0, 0.9: 3, 0.99: 1
+  ema_a64          eps 1e-07  changed tensors at beta 0.75: 0, 0.999: 120, 0.7: 0, 0.9: 0, 0.99: 23
+  ema_a64_bcdiv64  eps 0      changed tensors at beta 0.75: 0, 0.999: 0, 0.7: 0, 0.9: 0, 0.99: 0
+  ema_a64_bcdiv64  eps 1e-12  changed tensors at beta 0.75: 0, 0.999: 0, 0.7: 0, 0.9: 0, 0.99: 0
+  ema_a64_bcdiv64  eps 1e-10  changed tensors at beta 0.75: 0, 0.999: 0, 0.7: 0, 0.9: 0, 0.99: 0
+  ema_a64_bcdiv64  eps 1e-09  changed tensors at beta 0.75: 0, 0.999: 0, 0.7: 0, 0.9: 0, 0.99: 0
+  ema_a64_bcdiv64  eps 1e-08  changed tensors at beta 0.75: 0, 0.999: 0, 0.7: 0, 0.9: 0, 0.99: 0
+  ema_a64_bcdiv64  eps 1e-07  changed tensors at beta 0.75: 0, 0.999: 0, 0.7: 0, 0.9: 0, 0.99: 0
+data: r1 0.5: 0, 0.75: 0, 0.9: 1 | r2 0.75: 0, 0.999: 0, 0.7: 0, 0.9: 1, 0.99: 1
