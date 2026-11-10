@@ -44,8 +44,8 @@ def diff(u, v, label):
 
 def line(step_id):
     s = S[step_id]["stats"]
-    g = m["grads"].get(S[step_id]["grad_key"], {})
-    print(f"  {step_id:32s} t{S[step_id]['text']} w{S[step_id]['weight']:g} "
+    g = m["grads"].get(S[step_id]["grad_key"] or "", {})
+    print(f"  {step_id:32s} [{S[step_id].get('regime', '?')}] t{S[step_id]['text']} w{S[step_id]['weight']:g} "
           f"b1={S[step_id]['params']['beta1']} lr={S[step_id]['params']['learning_rate']:g} "
           f"clip={S[step_id]['params']['grad_clip_norm']:.4g} | dA per-tensor F "
           f"{s['dA_fro_min']:.6g}/{s['dA_fro_median']:.6g}/{s['dA_fro_max']:.6g} "
@@ -63,25 +63,29 @@ def have(*ids):
 
 print("== grads: oracle quality")
 for k, g in sorted(m["grads"].items()):
-    print(f"  {k:36s} load_ok={g['load_bit_identical']} resid {g['max_rel_snap_residual']:.2e} "
-          f">1e-3: {g['n_snap_resid_gt_1em3']} sat {g['n_saturated']} zeros {g['n_exact_zero']} "
+    print(f"  {k:36s} [{g.get('regime', '?')}] load_ok={g['load_bit_identical']} "
+          f"resid {g.get('max_rel_snap_residual', float('nan')):.2e} "
+          f">1e-3: {g.get('n_snap_resid_gt_1em3')} sat {g.get('n_saturated')} zeros {g.get('n_exact_zero')} "
           f"|GA| {g['GA_global']:.5g} |GB| {g['GB_global']:.5g}")
 ev = [e for e in m["events"] if e["kind"] == "reload_check"]
 print("== reload checks:", len(ev), "bit-identical", sum(e["bit_identical"] for e in ev),
-      "| errors:", [e for e in m["events"] if e["kind"] == "error"])
+      "| job errors logged (all from the storage-capped runs, see journal):",
+      sum(e["kind"] == "error" for e in m["events"]),
+      "| regen checks:", [(e["regen"], e["k"], e["bit_identical"]) for e in m["events"]
+                          if e["kind"] == "regen_check"])
 
 print("\n== S1 trunks + fresh-state branches")
-for r in (8, 32):
+for r, T in ((8, "S1_r8"), (32, "S1_r32"), (32, "S1v2_r32")):
     for i in range(1, 6):
-        if f"S1_r{r}/step{i}" in S:
-            line(f"S1_r{r}/step{i}")
+        if f"{T}/step{i}" in S:
+            line(f"{T}/step{i}")
     for k in (1, 2, 5):
         for t in (0, 1):
-            sid = f"S1_r{r}_fresh_ck{k}_t{t}/step"
+            sid = f"{T}_fresh_ck{k}_t{t}/step"
             if sid in S:
                 line(sid)
-                if t == 0 and f"S1_r{r}/step{k + 1}" in S:
-                    diff(U(sid), U(f"S1_r{r}/step{k + 1}"), f"fresh T0 vs continuing T0 at state {k}")
+                if t == 0 and f"{T}/step{k + 1}" in S:
+                    diff(U(sid), U(f"{T}/step{k + 1}"), f"fresh T0 vs continuing T0 at state {k}")
     if have(f"S1_r{r}/step1", f"S1_r{r}/step2"):
         print("  S1 trunk states 1,2 == S2 b0.9 trunk states 1,2:",
               [S[f"S1_r{r}/step{i}"]["after"] == S.get(f"S2_r{r}_b0.9/step{i}", {}).get("after")
@@ -113,6 +117,11 @@ for r in (8, 32):
         if x in S and base in S:
             line(x)
             diff(U(x), U(base), f"S3 b1={b} vs trunk step4 (b1=0.9)")
+    if r == 8 and "S3x_r8_fresh_ck3/step4" in S:
+        line("S3x_r8_fresh_ck3/step4")
+        assert S["S3x_r8_fresh_ck3/step4"]["before"] == S["S3_r8_b0/step4"]["before"]
+        diff(U("S3_r8_b0/step4"), U("S3x_r8_fresh_ck3/step4"),
+             "S3 b1=0 (restored state) vs fresh-state b1=0, same weights + batch")
     if f"S3_r{r}_b0/step4" in S and f"S3_r{r}_b0.99/step4" in S:
         diff(U(f"S3_r{r}_b0/step4"), U(f"S3_r{r}_b0.99/step4"), "S3 b0 vs b0.99")
 

@@ -321,3 +321,149 @@ noise on D). Noisy verification at eps 1e-6/1e-3/1e-2, r 1/4/16/64.
 **Caveats.** Synthetic G only; generator realism not checked against real gradients. Bit-level
 reduced-precision behaviour of the real kernel is not modelled (rounding placement is a guess).
 Threshold 1.5 is a choice. fp16 mode was added after the sweep, so the table has no fp16 rows.
+
+---
+
+## D2 collection (S0–S6) — 2026-11-10 (implementation agent; collection + sanity stats, no fitting)
+
+Common setup: attention-only LoRA, Qwen/Qwen3.5-4B, seed 0, `tk.TEXTS` batches T0/T1/T2, weight 1,
+Dimuon lr 1e-3, no clip unless stated. Library `pipeline/s_d2.py` (on top of `tk.py`); drivers
+`s_smoke.py`, `s_S0.py`, `s_fam.py`, `s_S1v2.py`, `s_S6b.py`, `s_drift.py`; regime tagging
+`s_regime.py`; analysis `s_an_S0.py`, `s_an_D2.py`, `s_an_S6b.py` (outputs `runs/D2/an_*.txt`).
+**Data layout (`runs/D2/`, 11 GB, npz gitignored)** — content-addressed, not per-file like D1:
+`states/<sid>.npz` (`A/<m>`, `B/<m>` float32 as exported; sid = sha256 prefix of all tensors),
+`grads/<key>.npz` (`GA/<m>`, `GB/<m>`, bf16-snapped oracle gradient; key = `<sid>_t<text>_w<w>_<setting>`),
+`manifest.json` → `steps[step_id]` = {before, after, text, weight, params, client kind
+(`new` | `fresh` = weights-only reload into fresh Dimuon state | `opt` = restored with optimizer |
+`continuing`), `hist` (step ids whose optimizer state this step inherits), `grad_key`, `regime`,
+`grad_regime_ok`, stats}. `s_d2.load_step(step_id)` returns before/after weights + G.
+**Use only `grad_key` from the manifest (it is regime-matched, see DRIFT-01); never pair a step with
+a gradient by sid alone.** 135 step records; 117 have a same-regime gradient; the other 18 are
+listed in `an_D2.txt` (zero-gradient steps, the straddling S1_r32 records, three unused).
+
+### S0 — save/restore and the nonzero-B oracle
+
+- Oracle setting changed for nonzero states: **O1 = AdamW lr 1e6, eps 1** (wd 0, no clip, fresh
+  state). With lr 1 / eps 100 (D1 setting, "O3") the float32 difference W1−W0 cannot resolve small
+  lora_A gradients once A ≈ 0.03 is in the weights. lr 1e6 is accepted by the server.
+- At state 2 of the b0.9 trunk (nonzero A and B), batch T1: **O1 (lr 1e6, eps 1) and O2 (lr 1e6,
+  eps 10) give bit-identical snapped G for all 3,506,176 lora_A and 3,670,016 lora_B elements.**
+  O1 max snap residual 1.7e-4, O2 5.8e-4 (bf16 half-gap ≈ 2e-3). O3 vs O1: B differs at 4 elements
+  (|G| ≤ 8.6e-9); A differs at 303,364 elements (median |G| there 4.8e-6), rel. Frobenius 5.8e-5;
+  O3 has 593,412 elements with snap residual > 1e-3. → O3 is not usable for lora_A; O1 is.
+- O1 at init (B = 0, T0) vs D1 `r8_oracle` G: 0 of 3,670,016 elements differ; G_A exactly 0.
+- **Reload is bit-exact**: 54/54 clients created from a save_state checkpoint (weights-only into
+  fresh AdamW or Dimuon, or with optimizer) exported weights bit-identical to the source state.
+- **Restore-with-optimizer is bit-exact**: continue-in-original vs save → restore with optimizer →
+  continue: identical after-state (sid) at step 2 (from ck1) and step 3 (from ck2), rank 8. Also
+  holds in the later regime: S3_r32_b0.9 and S6_r32_ck2_lr1e-3 (restored) are bit-identical to the
+  continuing trunk's step (0 differing elements).
+- Fresh Dimuon client loaded from the init checkpoint, step on T0: bit-identical to D1
+  `r8_dim_lr1e-3` (0 differing elements).
+- Side facts: an r8 save_state (weights + optimizer) is 43.1 MB vs 28.7 MB for the weights export
+  (r32: 172.3 MB vs ~115 MB) — the optimizer state is half the size of the float32 weights.
+  Re-running a trunk from a new client reproduced recorded states bit-for-bit in 3/3 checks
+  (`regen_check` events).
+
+### DRIFT-01 — the server changed numerics at ~19:31 UTC (important for every analyst)
+
+- Symptom: trunks created after 19:32 did not reproduce D1's step 1 (rank 8: rel. Frobenius 2.05e-2
+  vs D1 for b1 0 / 0.5 / 0.99, all 3.67M elements different; rank 32 similar).
+- `s_drift.py` at 19:50, 19:54, 20:02 (identical results each time): new r8 Dimuon client, step 1 on
+  T0 vs D1 → rel. F 2.0498e-2; new AdamW client, O1 at init on T0 vs the 18:3x gradient → G_B
+  differs at 2,928,419 of 3,670,016 elements, rel. F 1.105e-2. Loss is bit-identical
+  (30.40399169921875) in both regimes: the forward pass did not change, the backward did.
+- Bracket: an oracle stepped at 19:30:45–52 reproduces D1's r32 gradient bit-for-bit (R1); a
+  Dimuon step bracketed by 19:32:38–19:32:53 does not (R2). Steps between are "U".
+- Each regime is internally deterministic (R2 repeats bit-identical at 19:50/19:54/20:02; R2 trunk
+  re-runs at 20:00 and 20:38 reproduce 19:36 states bit-for-bit).
+- Handling: `s_regime.py` tags every step/gradient R1/R2/U by its bracketing export times; R2
+  gradients carry setting suffix `O1r2`; R2 init gradients were recomputed; `grad_key` always points
+  to a same-regime gradient or is null. S1 rank 32 was re-collected entirely in R2 (`S1v2_r32*`).
+  Whether the Dimuon map itself also changed is not tested here (the analyst can, with R2 pairs).
+
+### Storage incident (affects reruns)
+
+Free checkpoint storage is capped (~10 GB; the owner's 10 old checkpoints hold 6.92 GB). The cap
+blocked client creation (402) and, when a save_state crossed it, poisoned the ServiceClient so 72 of
+my jobs failed. Fixes in `s_d2.py`: every export is deleted right after download; save_state
+checkpoints are deleted when their family is done; every export/save waits until listed bytes +
+in-flight reservations < 9.5 GB. 46 D1-era exports were still listed ~15–20 min past their TTL
+(expires_at 19:07–19:12) and kept storage at the cap; I deleted those (already-expired, contents
+on disk in `runs/D1`). Also: creating the SDK REST client lazily inside a worker thread deadlocked
+once (fixed: created up front). At the end none of my checkpoints remain (listing = owner's 10).
+
+### S1 — fresh-state step from a nonzero-B state
+
+- Trunks T0×5 (b1 0.9): `S1_r8` (R1), `S1v2_r32` (R2; the original `S1_r32` straddles the change,
+  only its steps 1, 3 have same-regime G). At states 1, 2, 5: fresh-state Dimuon branch on T0 and on
+  T1 (`<T>_fresh_ck{k}_t{t}`), oracle G at every state for T0 and at 1, 2, 5 for T1.
+- Every Dimuon update (all experiments, both regimes) has per-tensor Frobenius norm equal to the
+  step-1 value: r8 0.00221914 (0.00221913–0.00221915), r32 0.00565685 (…684–…686), **for lora_A and
+  for lora_B separately**, at lr 1e-3; lr 1e-4/1e-2 scale it exactly (S6).
+- lora_A moves at every step except a step from B = 0 (all step-1 records: max |ΔA| = 0).
+- Fresh-state T0 step vs continuing T0 step from the same state: at state 1, **ΔA bit-identical**
+  (0 diffs, r8 and r32) while ΔB differs (rel. F 0.73 r8, 0.75 r32); at state 2 both differ
+  (A 0.63 / B 0.74 r8; 0.65 / 0.77 r32 R2).
+- |G_A| (global) at T0 states 1→5: r8 6.0, 8.0, 10.9, 14.0, 17.6; r32 (R2) 2.66, 3.56, 4.28, 5.38,
+  6.66. |G_B| ≈ 218–235 (r8), 100–112 (r32). On T1 |G_A| 0.17–1.1.
+
+### S2 — continuing runs, T0,T0,T1,T2,T0,T1
+
+- Runs: r8 b1 0.0 / 0.5 / 0.99 (R2), r8 0.9 (R1), r32 0.0 / 0.9 (R2). Oracle at every state for the
+  batch used; checkpoints of every state 0–5 were saved during collection and deleted after.
+- Step-1 updates: b1 0 and b1 0.5 bit-identical (as in D1); b1 0.9 / 0.99 differ from them slightly.
+- **beta1 = 0 control (fresh-state step vs continuing step, same weights, same batch):** never
+  bit-identical. r8: step 2 A 0 diffs / B rel. F 0.733; steps 3–6 A 0.61–0.63, B 0.64–0.68.
+  r32: step 2 A 0 diffs / B 0.732; steps 3–6 A 0.54–0.60, B 0.62–0.67. Same in R1 (S3x below:
+  A 0.59, B 0.64). **So with beta1 = 0 the step still depends on stored optimizer state.**
+- Losses at the T0 steps decrease (r8 b0.9: 30.40, 29.58, —, —, 28.07); T1/T2 losses ~45 / ~14.
+
+### S3 — beta1 changed at step 4 (restored with optimizer from b0.9 state 3, batch T2)
+
+- b1 0.9 restored = trunk step 4 bit-identically (r8 R1, r32 R2).
+- r8: b1 0.0 vs trunk A rel. F 1.25, B 1.11; b1 0.99 vs trunk A 0.32, B 0.49; b0 vs b0.99 A 1.39,
+  B 1.37. r32 (R2): b0 A 1.18 / B 1.14; b0.99 A 0.54 / B 0.53. Norms unchanged (0.00221914 /
+  0.00565685).
+- Extra control `S3x_r8_fresh_ck3`: fresh-state b1 0 step from the same weights: vs restored b1 0
+  step A rel. F 0.59, B 0.64 — consistent with S2's control.
+
+### S4 — zero-gradient step (all per-token weights 0)
+
+- Oracle on the zero batch (state 2, r8): G = 0 exactly (max |G| 0); loss 0.
+- Continuing b1 0.9 client after 2 normal T0 steps (r8 and r32, R1): **the weights move at full
+  step size** — per-tensor Frobenius 0.00221914 (r8) / 0.00565685 (r32) for A and B, at each of 3
+  consecutive zero steps. Per-tensor cosine with the previous update: zero1 vs step 2 median 0.95
+  (r8; min 0.61) / 0.94 (r32); zero2 vs zero1 median 0.99998 (r8) / 0.983 (r32); zero3 vs zero2
+  0.99998 / 0.984.
+- Fresh-state client at the same weights (r8 R1, r32 R2): zero step → max |Δ| = 0 (no movement).
+- Continuing **b1 0** client after 2 steps: zero step → max |Δ| = 0.
+- Shrinkage: in every zero step with fresh state or b1 0, weights are bit-unchanged, so there is no
+  decay applied independently of the update. Whether the continuing zero-step update equals
+  "momentum alone" exactly is left to the analyst (states + previous updates are stored).
+
+### S5 — gradient clipping (rank 8, R1)
+
+- Global oracle norm (A and B) at init T0: N0 = 284.19 (G_A = 0); at state 1 T0: N1 = 232.04.
+- Step 1 with clip 2×N0: bit-identical to unclipped; 0.01×N0: bit-identical; **0.5×N0: 14 of
+  3.67M B elements differ, max 3.1e-9, rel. F 1.7e-7**.
+- Step 2 (restored with optimizer from state 1): clip 2×N1 bit-identical; 0.5×N1: **A bit-identical,
+  B rel. F 7.5e-2** (max 2.1e-5); 0.01×N1: A bit-identical, B rel. F 0.126. Norms unchanged.
+
+### S6 — lr linearity beyond step 1 (restored with optimizer)
+
+- r8 R1, from state 2 (step 3, T1) and state 3 (step 4, T2): U(lr)·(1e-3/lr) vs U(1e-3): lr 1e-4
+  A 1.9e-4 / B 4.9e-7–6.7e-7; lr 1e-2 A 1.9e-5 / B 8.7e-8–1.0e-7 (float32 rounding of A ≈ 0.03
+  limits A; consistent with exact proportionality). r8 R2 (`S6b_r8`): same numbers.
+- r32 R2 from state 2: lr 1e-4 A 1.5e-4 / B 4.9e-7; lr 3e-3 A 1.4e-5 / B 1.0e-7; **lr 1e-2 A 4.2e-2
+  / B 1.8e-2 — not proportional**, every one of the 304 tensors affected (A per-tensor median 3.7e-2,
+  max 0.108), per-tensor norms still exactly 10× (0.0565685). Reproducible: a repeat (re-run trunk
+  + restore) is bit-identical. r32 at step 1 with lr 1e-2: proportional (B 4.9e-8). Cause not
+  investigated.
+
+### Usage
+
+145 training clients logged (36 new, 87 from_state, 22 from_state_with_optimizer; +3 refused
+with 402, not logged), 200 forward_backward+optim_step pairs, 338 exports (all deleted after
+download), 61 save_state (all deleted), 46 already-expired D1-era exports deleted. Some clients
+were wasted on the storage failures and one deadlock (~20).

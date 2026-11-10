@@ -44,7 +44,11 @@ ORACLES = {
     "O1": dict(lr=1e6, eps=1.0),
     "O2": dict(lr=1e6, eps=10.0),
     "O3": dict(lr=1.0, eps=100.0),   # the D1 / V3 setting
+    "O1r2": dict(lr=1e6, eps=1.0),   # = O1, computed after the 2026-11-10 ~19:31 UTC server change
 }
+# Regime-aware default oracle key: steps recorded after the server change (regime R2) must be
+# paired with gradients computed after it. Set SETTING = "O1r2" for any run in regime R2.
+SETTING = "O1"
 _LOCK = threading.Lock()
 _MAN = None
 
@@ -269,7 +273,7 @@ def chain(name, rank, steps, exp, kind="new", ckpt=None, save=False, save_last=F
                    client=dict(kind=kind if k == 0 else "continuing", chain_start=kind,
                                from_ckpt=ckpt, model_id=mid, load_bit_identical=load_ok),
                    hist=list(hist), fb=m["fb"], optim=m["optim"],
-                   grad_key=gkey(sid, st["text"], st["weight"], "O1"), stats=upd_stats(w, w1),
+                   grad_key=gkey(sid, st["text"], st["weight"], SETTING), stats=upd_stats(w, w1),
                    note=st.get("note", ""))
         with _LOCK:
             man()["steps"][step_id] = rec
@@ -287,8 +291,9 @@ def gkey(sid, text, weight, setting):
     return f"{sid}_t{text}_w{weight:g}_{setting}"
 
 
-def oracle(ckpt, text, weight=1.0, setting="O1"):
+def oracle(ckpt, text, weight=1.0, setting=None):
     """Exact gradient of every lora_A and lora_B at ckpt's weights, for batch (text, weight)."""
+    setting = setting or SETTING
     c = man()["ckpts"][ckpt]
     key = gkey(c["sid"], text, weight, setting)
     if key in man()["grads"] and (OUT / "grads" / f"{key}.npz").exists():
@@ -334,6 +339,10 @@ def oracle(ckpt, text, weight=1.0, setting="O1"):
 
 def run(jobs, workers=4):
     """jobs: list of zero-arg callables. At most `workers` concurrent clients."""
+    # create the service and REST clients here, single-threaded: creating them lazily inside a
+    # worker thread (while holding _SLOCK) deadlocked the SDK's event loop once (S6b, 20:05 UTC).
+    tk.service()
+    tk.rest()
     def safe(j):
         try:
             return j()
@@ -419,3 +428,13 @@ def drop_trunk(T, n=7):
         for nme in names:
             man()["ckpts"][nme]["deleted"] = True
     save_man()
+
+
+def load_step(step_id):
+    """Everything for one recorded step: dict(rec, W0, W1, G) where W0/W1 = {"A/<m>", "B/<m>"}
+    (float32 before/after) and G = {"GA/<m>", "GB/<m>"} or None if no same-regime gradient
+    (run s_regime.py first; it sets rec["regime"] and rec["grad_key"])."""
+    rec = man()["steps"][step_id]
+    g = rec.get("grad_key")
+    return dict(rec=rec, W0=load_state(rec["before"]), W1=load_state(rec["after"]),
+                G=load_grad(g) if g else None)

@@ -33,7 +33,7 @@ class Fam:
     def oracle(self, k, text, weight=1.0):
         def done():
             s = self.sid(k)
-            return s is not None and d.gkey(s, text, weight, "O1") in d.man()["grads"]
+            return s is not None and d.gkey(s, text, weight, d.SETTING) in d.man()["grads"]
         self.jobs.append((k, done, lambda: d.oracle(CK(self.T, k), text, weight)))
 
     def chain(self, k, name, steps, kind, exp):
@@ -53,14 +53,15 @@ class Fam:
         return [fn for _, _, fn in self.todo()]
 
 
-def fam_S1(r):
-    f = Fam(f"S1_r{r}", r, 0.9, [0] * 5, "S1")
+def fam_S1(r, T=None):
+    T = T or f"S1_r{r}"
+    f = Fam(T, r, 0.9, [0] * 5, "S1")
     for k in range(6):
         f.oracle(k, 0)
     for k in (1, 2, 5):
         f.oracle(k, 1)
         for t in (0, 1):
-            f.chain(k, f"S1_r{r}_fresh_ck{k}_t{t}", one(t, d.D(), "step"), "fresh", "S1")
+            f.chain(k, f"{T}_fresh_ck{k}_t{t}", one(t, d.D(), "step"), "fresh", "S1")
     return f
 
 

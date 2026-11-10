@@ -1,0 +1,10 @@
+regen checks: [('S2_r8_b0.9_re1', 3, True), ('S1_r8_re1', 5, True), ('S2_r32_b0.9_re1', 2, True)]
+S6b_r8_ck2_lr0.0001/step3        [R2] vs S6b_r8/step3         [R2] lr=0.0001: relF A 1.927e-04  B 4.940e-07
+S6b_r8_ck2_lr0.01/step3          [R2] vs S6b_r8/step3         [R2] lr=0.01: relF A 1.926e-05  B 8.655e-08
+S6_r32_ck2_lr0.01/step3          [R2] vs S2_r32_b0.9/step3    [R2] lr=0.01: relF A 4.233e-02  B 1.777e-02
+S6b_r32_ck2_lr0.01_rep/step3     [R2] vs S2_r32_b0.9/step3    [R2] lr=0.01: relF A 4.233e-02  B 1.777e-02
+S6b_r32_ck2_lr0.003/step3        [R2] vs S2_r32_b0.9/step3    [R2] lr=0.003: relF A 1.416e-05  B 1.018e-07
+S6_r32_ck2_lr0.0001/step3        [R2] vs S2_r32_b0.9/step3    [R2] lr=0.0001: relF A 1.511e-04  B 4.900e-07
+S6b_r32_step1_lr0.01/step1       [R2] vs S2_r32_b0.9/step1    [R2] lr=0.01: relF A nan  B 4.853e-08
+S6_r8_ck2_lr0.01/step3           [R1] vs S0_opt_ck2/step3     [R1] lr=0.01: relF A 1.927e-05  B 8.652e-08
+lr1e-2 repeat bit-identical: True
