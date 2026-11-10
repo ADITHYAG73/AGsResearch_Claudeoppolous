@@ -537,3 +537,7 @@
 {"t": "2026-11-10T19:08:04+00:00", "event": "save_state", "name": "S1_r8_re1-ck5", "path": "tinker://ec208139-5a9f-5574-ac93-455a89088423:train:2/weights/S1_r8_re1-ck5", "sid": "5fee94e5c03badae"}
 {"t": "2026-11-10T19:08:05+00:00", "event": "delete", "path": "tinker://ec208139-5a9f-5574-ac93-455a89088423:train:0/weights/S2_r8_b0.9_re1-ck3"}
 {"t": "2026-11-10T19:08:05+00:00", "event": "summary", "clients": 3, "forward_backward": 9, "optim_step": 9, "exports": 12, "uploads": 0}
+{"t": "2026-11-10T19:08:29+00:00", "event": "client_from_state", "optimizer": "dimuon", "from_state": "tinker://ec208139-5a9f-5574-ac93-455a89088423:train:2/weights/S1_r8_re1-ck5", "tag": "S1_r8_fresh_ck5_t1"}
+{"t": "2026-11-10T19:08:29+00:00", "event": "client_from_state", "optimizer": "adamw", "from_state": "tinker://ec208139-5a9f-5574-ac93-455a89088423:train:2/weights/S1_r8_re1-ck5", "tag": "oracle 5fee94e5c03badae_t1_w1_O1"}
+{"t": "2026-11-10T19:08:29+00:00", "event": "client_from_state", "optimizer": "adamw", "from_state": "tinker://ec208139-5a9f-5574-ac93-455a89088423:train:2/weights/S1_r8_re1-ck5", "tag": "oracle 5fee94e5c03badae_t0_w1_O1"}
+{"t": "2026-11-10T19:08:30+00:00", "event": "client_from_state", "optimizer": "dimuon", "from_state": "tinker://ec208139-5a9f-5574-ac93-455a89088423:train:2/weights/S1_r8_re1-ck5", "tag": "S1_r8_fresh_ck5_t0"}
