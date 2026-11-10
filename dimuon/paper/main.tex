@@ -196,7 +196,52 @@ The update is linear in $\eta$ to $5\times10^{-8}$ relative across $\eta\in[10^{
 invariant to the scale of the gradient: at loss weights $0.1$, $1$ and $10$ (each against its own
 oracle) the rule above fits equally well ($5.3$, $5.2$, $4.9\times10^{-3}$). Rank enters only
 through the step size and through how ill-conditioned the gradient is.
-\subsection{Momentum and state across steps}\pending{}
+\subsection{Beyond the first step: what was observed}\label{sec:multi}
+The analysis of these runs is in progress; this subsection records only the raw observations,
+each of which I re-computed from the saved weights.
+
+\paragraph{How the runs were made.} A training client can be saved with or without its
+optimizer state and restored either way. Restoring \emph{with} the state and continuing gives
+bit-identical weights to never having stopped, so a run can be branched at any step. Restoring
+\emph{without} it gives a ``fresh'' optimizer at non-zero weights. Comparing the two from the
+same weights on the same batch isolates what the optimizer remembers.
+
+\paragraph{Both factors move, with one fixed size.} $A$ is unchanged only when $B=0$ (its
+gradient is then exactly zero). At every later step both $A$ and $B$ move, and every tensor's
+update has the same Frobenius norm as at step 1 ($2.2191\times10^{-3}$ at rank 8,
+$5.6569\times10^{-3}$ at rank 32, for $\eta=10^{-3}$), to seven digits.
+
+\paragraph{The optimizer remembers more than a momentum average.} With $\beta_1=0$ a momentum
+average would be just the current gradient, so a fresh and a continuing optimizer should agree.
+They do not: at step 2 the $A$ updates are bit-identical but the $B$ updates differ by 0.73 in
+relative Frobenius norm; at steps 3--6 both differ by about 0.6. A saved state with optimizer
+is 1.5 times the size of the weights alone, so the extra state is about half the size of the
+float32 weights (consistent with one half-precision buffer per tensor, though that is an
+inference from file size only).
+
+\paragraph{A step with zero gradient still moves the weights.} With $\beta_1=0.9$, feeding a
+batch whose gradient is exactly zero moves every tensor by the full step size; the direction
+has cosine 0.95 with the previous update and 0.99998 with the next zero-gradient step. With
+$\beta_1=0$, or with a fresh optimizer, the same step moves nothing. So the direction comes
+from the momentum buffer and the size is re-normalised every step: Dimuon does not slow down
+when the gradient vanishes.
+
+\paragraph{Gradient clipping.} At step 1 clipping has no effect beyond a few last-bit changes,
+as expected of a scale-invariant map. At step 2, clipping below the gradient norm changes the
+$B$ updates by 0.08--0.13 and leaves $A$ bit-identical.
+
+\paragraph{Learning rate.} Updates at step 3 are proportional to $\eta$ to rounding, except at
+rank 32 with $\eta=10^{-2}$, where the direction differs by 2--4\% while the norms stay exactly
+ten times larger. Unexplained so far.
+
+\paragraph{The service changed during the study.} At about 19:31 UTC on 10 November 2026 the
+gradients returned for an identical request changed by about 1\% (relative Frobenius norm)
+while the loss stayed bit-identical; both the old and the new behaviour are individually
+deterministic. Every step is therefore tagged with its regime and only compared with a
+gradient from the same regime. This is a reminder that a hosted optimizer is a moving target:
+the results below describe the service on that date.
+
+\subsection{Momentum and state across steps}\pending{analysis running}
 \subsection{How $A$ is updated, and whether $A$ and $B$ are coupled}\pending{}
 \subsection{Cross-check on a second model}\pending{}
 \subsection{Comparison with a public reimplementation}\pending{done last, after our own rule is
