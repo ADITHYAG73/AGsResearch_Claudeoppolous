@@ -911,3 +911,21 @@ lives only in the scratchpad (not in the repo). anpaure's file was imported unch
 
 **Files.** `pipeline/cmp_horner.py`, `cmp_variantX.py`, `cmp_anpaure.py`, `cmp_damping.py`;
 `runs/COMPARE/compare.md`, `horner.{txt,json}`, `variantX.{txt,json}`, `anpaure_p6.{txt,json}`, `damping.{txt,json}`.
+
+## COORD-CHECKS (coordinator's own re-computations, 2026-11-10)
+
+Independent float64 numpy re-implementations written inline by the coordinator (not the agents' code),
+expanded-form Polar Express 5 steps, safety 1.01, no fp16 emulation; residual = relative Frobenius per
+tensor with the prediction scaled to the measured norm. Scripts were run as inline heredocs and are
+reproduced by the equations in the paper; they are not saved as files (caveat).
+
+- D2 sanity: rank-8 per-tensor update norms at `S2_r8_b0/step3` 0.00221914 (A and B) vs law 0.00221914;
+  b0 fresh-vs-continuing step 2: A 0, B 0.7334; step 3: A 0.6126, B 0.6813; zero1 vs previous update
+  cosine (A, B pooled) median 0.952; zero2 vs zero1 0.99998; r32 lr 1e-2 vs 10x lr 1e-3: A 0.0423, B 0.0178.
+- Fresh-state law, `S1_r8_fresh_ck2_t0/step` (R1): A median 0.00504 (max 0.0190), B 0.00509 (max 0.0140).
+- Full rule, `S2_r8_b0.9/step3` (R1), momentum rolled from step 1 with bf16 storage: A median 0.00450
+  (max 0.0131), B 0.00449 (max 0.0116); unconditioned PE(m3): A 0.611, B 0.763.
+- Second model, `P7_r8/step3` (gpt-oss-20b, 192 tensors, shapes (2880|4096|512) x 8): A 0.00534
+  (max 0.0118), B 0.00461 (max 0.0150); per-tensor norms 0.00221914.
+- Billing: the first billing script truncated output; corrected. Study training cost priced so far ~$0.003;
+  $7.88 of sampling on thinkingmachines/Inkling-Small on 2026-11-10 is not from this study.
