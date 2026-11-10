@@ -1,0 +1,5 @@
+{"tag": "S2_r8_b0_s4_A_layers.0.linear_attn.in_proj_q", "relF": 0.02554, "sec": 13}
+{"tag": "S2_r8_b0_s4_A_layers.4.linear_attn.in_proj_q", "relF": 0.01517, "sec": 15}
+{"tag": "S2_r8_b0_s4_A_layers.8.linear_attn.in_proj_q", "relF": 0.03088, "sec": 15}
+{"tag": "S2_r8_b0_s4_A_layers.12.linear_attn.in_proj_q", "relF": 0.01711, "sec": 14}
+{"tag": "S2_r8_b0_s4_A_layers.16.linear_attn.in_proj_q", "relF": 0.01552, "sec": 14}

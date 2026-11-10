@@ -1,0 +1,17 @@
+S1_r8/step1                      hist 0  on-fp16-grid frac [med 1  p90 1  max 1  (n=38)]   f32 subtraction err/|D| median 8.4e-08
+S1v2_r32/step1                   hist 0  on-fp16-grid frac [med 1  p90 1  max 1  (n=38)]   f32 subtraction err/|D| median 8.4e-08
+S1_r8_fresh_ck1_t0/step          hist 0  on-fp16-grid frac [med 0.998  p90 1  max 1  (n=38)]   f32 subtraction err/|D| median 1.7e-07
+S1_r8_fresh_ck2_t1/step          hist 0  on-fp16-grid frac [med 0.955  p90 0.973  max 0.985  (n=38)]   f32 subtraction err/|D| median 2.4e-07
+S1_r8_fresh_ck5_t0/step          hist 0  on-fp16-grid frac [med 0.933  p90 0.971  max 0.98  (n=38)]   f32 subtraction err/|D| median 7.1e-07
+S1v2_r32_fresh_ck2_t0/step       hist 0  on-fp16-grid frac [med 0.988  p90 0.995  max 1  (n=38)]   f32 subtraction err/|D| median 2.8e-07
+S1v2_r32_fresh_ck5_t1/step       hist 0  on-fp16-grid frac [med 0.912  p90 0.947  max 0.958  (n=38)]   f32 subtraction err/|D| median 4.8e-07
+S3x_r8_fresh_ck3/step4           hist 0  on-fp16-grid frac [med 0.932  p90 0.963  max 0.975  (n=38)]   f32 subtraction err/|D| median 3.1e-07
+S2_r8_b0_fresh_ck3/step4         hist 0  on-fp16-grid frac [med 0.948  p90 0.973  max 0.978  (n=38)]   f32 subtraction err/|D| median 2.5e-07
+S1v2_r32_fresh_ck1_t1/step       hist 0  on-fp16-grid frac [med 0.985  p90 0.99  max 0.993  (n=38)]   f32 subtraction err/|D| median 1.2e-07
+S1_r8/step2                      hist 1  on-fp16-grid frac [med 0.015  p90 0.0175  max 0.02  (n=38)]   f32 subtraction err/|D| median 1.4e-07
+S1_r8/step3                      hist 2  on-fp16-grid frac [med 0.015  p90 0.0175  max 0.0175  (n=38)]   f32 subtraction err/|D| median 2.2e-07
+S1v2_r32/step2                   hist 1  on-fp16-grid frac [med 0.015  p90 0.02  max 0.0225  (n=38)]   f32 subtraction err/|D| median 1.5e-07
+S2_r8_b0/step2                   hist 1  on-fp16-grid frac [med 0.015  p90 0.0175  max 0.0175  (n=38)]   f32 subtraction err/|D| median 1.4e-07
+S5_step2_c0.5/step2              hist 1  on-fp16-grid frac [med 0.015  p90 0.0175  max 0.02  (n=38)]   f32 subtraction err/|D| median 1.4e-07
+S6_r32_ck2_lr0.01/step3          hist 2  on-fp16-grid frac [med 0.015  p90 0.0175  max 0.0225  (n=38)]   f32 subtraction err/|D| median 9.6e-08
+S6_r32_ck2_lr0.001/step3         hist 2  on-fp16-grid frac [med 0.015  p90 0.0175  max 0.025  (n=38)]   f32 subtraction err/|D| median 2.4e-07

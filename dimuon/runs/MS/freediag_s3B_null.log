@@ -1,0 +1,5 @@
+{"tag": "r8_s3_B_null_layers.0.linear_attn.in_proj_z", "relF": 1.1585, "sec": 38}
+{"tag": "r8_s3_B_null_layers.6.linear_attn.out_proj", "relF": 1.18377, "sec": 19}
+{"tag": "r8_s3_B_null_layers.13.linear_attn.in_proj_k", "relF": 1.13553, "sec": 18}
+{"tag": "r8_s3_B_null_layers.19.self_attn.v_proj", "relF": 1.13645, "sec": 13}
+{"tag": "r8_s3_B_null_layers.25.linear_attn.out_proj", "relF": 1.07887, "sec": 22}
