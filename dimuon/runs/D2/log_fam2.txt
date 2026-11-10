@@ -8,3 +8,11 @@ chain S3x_r8_fresh_ck3 done 55s
 chain S1_r8_re1 done 140s
 errors so far 75 COUNTS {'clients': 3, 'forward_backward': 9, 'optim_step': 9, 'exports': 12, 'uploads': 0}
 === family S1_r8: 5 jobs
+chain S1_r8_fresh_ck5_t0 done 54s
+chain S1_r8_fresh_ck5_t1 done 54s
+oracle 5fee94e5c03badae_t1_w1_O1 done 54.7s resid 3.25e-06 bad 0
+oracle 5fee94e5c03badae_t0_w1_O1 done 57.6s resid 1.53e-06 bad 0
+storage wait S1_r32-s1: listed 9.48 GB in 58 ckpts, inflight 0.00 GB, need 0.13
+storage wait S1_r32-s1: listed 9.48 GB in 58 ckpts, inflight 0.00 GB, need 0.13
+storage wait S1_r32-s1: listed 9.48 GB in 58 ckpts, inflight 0.00 GB, need 0.13
+storage wait S1_r32-s1: listed 9.48 GB in 58 ckpts, inflight 0.00 GB, need 0.13
