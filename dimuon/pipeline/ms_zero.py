@@ -9,6 +9,7 @@ import numpy as np
 sys.path.insert(0, os.path.dirname(__file__))
 from ms_common import step, state, grad, names, get, relF, cos, summ, fmt, OUT
 from ms_model import direction, mom_update
+from fs_sim import bf16
 
 res = {}
 # ---- rank 8, full simulation
@@ -19,8 +20,8 @@ for a, b in zip(recs, recs[1:]):
 G = [grad(S[0]["grad_key"]), grad(S[1]["grad_key"])]
 W = [state(S[0]["before"])] + [state(s["after"]) for s in S]
 ms = names(W[0])
-variants = {"ema/prevmom": ("ema", "prevmom"), "sum/prevmom": ("sum", "prevmom"),
-            "ema/prevgrad": ("ema", "prevgrad")}
+variants = {"ema/prevmom": ("ema", "prevmom", "f32"), "ema/prevmom/bf16s": ("ema", "prevmom", "bf16s"),
+            "ema/prevgrad": ("ema", "prevgrad", "f32")}
 acc = {}
 for m in ms:
     for kind in "AB":
@@ -29,12 +30,14 @@ for m in ms:
         meas = [cos(Us[2], Us[1]), cos(Us[3], Us[2]), cos(Us[4], Us[3])]
         for i, c in enumerate(meas):
             acc.setdefault(("measured", kind, f"cos{i}"), []).append(c)
-        for vn, (form, src) in variants.items():
+        for vn, (form, src, prec) in variants.items():
             mom, pm, pg = None, None, None
             preds = []
             for i in range(5):
                 Sst = pm if src == "prevmom" else pg
                 mom, fed = mom_update(mom, gs[i], 0.9, form)
+                if prec == "bf16s":
+                    mom = bf16(mom).astype(np.float64)
                 d = direction(fed, Sst, 1e-4, 1e-4, "relmax")
                 preds.append(d)
                 pm, pg = mom.copy(), gs[i]

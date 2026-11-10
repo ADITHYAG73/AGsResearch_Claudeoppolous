@@ -4,7 +4,7 @@ For a chain with oracle gradients at every step, simulate the candidate rule (ms
 and score every recorded update (test half = odd module index) per step, A and B separately.
 Variants: momentum form (ema | sum | nest_ema | nest_sum) x statistic source S
 (prevmom = stored momentum before this step's update | prevgrad = g_{t-1} | prevfed = vector fed to
-PE at t-1) x momentum storage (f32 | bf16).
+PE at t-1) x momentum storage (f32 | bf16 = stored AND fed rounded | bf16s = stored rounded, fed f32).
 usage: ms_mom.py CHAIN [EPSFORM EPSL EPSR]    e.g. ms_mom.py S2_r8_b0.9 relmax 1e-4 0
 Chains may switch beta (S3_*: steps 1-3 from the S2 b0.9 trunk, step 4 restored with a new beta).
 """
@@ -45,7 +45,9 @@ def run(chain, epsform="relmax", eL=1e-4, eR=0.0, variants=None, kinds="AB", str
                 for i, (g, U) in enumerate(zip(gs, Us)):
                     Sstat = {"prevmom": prev_m, "prevgrad": prev_g, "prevfed": prev_fed}[src]
                     mom, fed = mom_update(mom, g, betas[i], form)
-                    if prec == "bf16":
+                    if prec == "bf16s":   # fed in f32 from the bf16-stored previous momentum; store bf16
+                        mom = bf16(mom).astype(np.float64)
+                    elif prec == "bf16":  # (rejected) fed value itself rounded to bf16
                         mom = bf16(mom).astype(np.float64)
                         if form in ("ema", "sum"):
                             fed = mom

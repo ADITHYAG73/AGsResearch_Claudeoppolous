@@ -26,26 +26,26 @@ r8 ema/prevmom    B relF_step2         relF 5.29e-03 / 7.50e-03 / 1.48e-02
 r8 ema/prevmom    B relF_zero1         relF 6.73e-03 / 1.09e-02 / 1.74e-02
 r8 ema/prevmom    B relF_zero2         relF 8.40e-03 / 1.23e-02 / 2.13e-02
 r8 ema/prevmom    B relF_zero3         relF 9.61e-03 / 1.43e-02 / 2.32e-02
+r8 ema/prevmom/bf16s A cos(zero1,step2)   median 0.816456  min 0.6062
+r8 ema/prevmom/bf16s A cos(zero2,zero1)   median 0.999994  min 1.0000
+r8 ema/prevmom/bf16s A cos(zero3,zero2)   median 0.999994  min 1.0000
+r8 ema/prevmom/bf16s A relF_step2         relF 4.77e-03 / 8.22e-03 / 1.82e-02
+r8 ema/prevmom/bf16s A relF_zero1         relF 4.31e-03 / 7.32e-03 / 1.77e-02
+r8 ema/prevmom/bf16s A relF_zero2         relF 4.69e-03 / 6.89e-03 / 1.78e-02
+r8 ema/prevmom/bf16s A relF_zero3         relF 4.38e-03 / 7.54e-03 / 1.85e-02
+r8 ema/prevmom/bf16s B cos(zero1,step2)   median 0.995098  min 0.9702
+r8 ema/prevmom/bf16s B cos(zero2,zero1)   median 0.999990  min 0.9999
+r8 ema/prevmom/bf16s B cos(zero3,zero2)   median 0.999990  min 0.9999
+r8 ema/prevmom/bf16s B relF_step2         relF 4.69e-03 / 6.97e-03 / 1.37e-02
+r8 ema/prevmom/bf16s B relF_zero1         relF 4.31e-03 / 7.72e-03 / 1.20e-02
+r8 ema/prevmom/bf16s B relF_zero2         relF 4.38e-03 / 6.85e-03 / 1.19e-02
+r8 ema/prevmom/bf16s B relF_zero3         relF 4.23e-03 / 6.96e-03 / 1.20e-02
 r8 measured       A cos(zero1,step2)   median 0.816565  min 0.6064
 r8 measured       A cos(zero2,zero1)   median 0.999983  min 0.9999
 r8 measured       A cos(zero3,zero2)   median 0.999983  min 0.9999
 r8 measured       B cos(zero1,step2)   median 0.995095  min 0.9703
 r8 measured       B cos(zero2,zero1)   median 0.999981  min 0.9999
 r8 measured       B cos(zero3,zero2)   median 0.999981  min 0.9999
-r8 sum/prevmom    A cos(zero1,step2)   median 0.816410  min 0.6061
-r8 sum/prevmom    A cos(zero2,zero1)   median 1.000000  min 1.0000
-r8 sum/prevmom    A cos(zero3,zero2)   median 1.000000  min 1.0000
-r8 sum/prevmom    A relF_step2         relF 4.77e-03 / 8.22e-03 / 1.82e-02
-r8 sum/prevmom    A relF_zero1         relF 5.65e-03 / 8.33e-03 / 1.79e-02
-r8 sum/prevmom    A relF_zero2         relF 6.87e-03 / 9.02e-03 / 1.83e-02
-r8 sum/prevmom    A relF_zero3         relF 7.54e-03 / 1.01e-02 / 1.93e-02
-r8 sum/prevmom    B cos(zero1,step2)   median 0.995124  min 0.9702
-r8 sum/prevmom    B cos(zero2,zero1)   median 1.000000  min 1.0000
-r8 sum/prevmom    B cos(zero3,zero2)   median 1.000000  min 1.0000
-r8 sum/prevmom    B relF_step2         relF 5.29e-03 / 7.50e-03 / 1.48e-02
-r8 sum/prevmom    B relF_zero1         relF 6.73e-03 / 1.09e-02 / 1.74e-02
-r8 sum/prevmom    B relF_zero2         relF 8.40e-03 / 1.23e-02 / 2.13e-02
-r8 sum/prevmom    B relF_zero3         relF 9.61e-03 / 1.43e-02 / 2.32e-02
 r32 measured A cos(delta23, delta12)    median -0.06909  p10 -0.0755  min -0.0861
 r32 measured A cos(zero1,step2)         median 0.80773  p10 0.7086  min 0.6428
 r32 measured A cos(zero2,zero1)         median 0.98176  p10 0.9783  min 0.9744

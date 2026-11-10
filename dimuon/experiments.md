@@ -561,3 +561,150 @@ are limited by not knowing that map.
 continuing step with threshold between ‖G_B‖_global and ‖G‖_global at a state with large G_A (r8 state 5:
 ‖G_A‖ 17.6) — global over all tensors vs over B only; and a dense clip series c ∈ {1, .9, .7, .5, .3, .1, .01, 1e-4}
 at step 2 to map the c-path. ~15 clients.
+
+---
+
+## MULTISTEP-01 — the continuing-step rule: state, momentum, R2 — 2026-11-10 (analysis agent; no Tinker calls)
+
+**Questions.** (1) What hidden state makes a beta1 = 0 continuing step differ from its fresh twin?
+(2) Momentum form / storage. (3) Does the FIRSTSTEP-01 step-1 law still hold in regime R2?
+All offline on D2 (`runs/D2`), regime-matched gradients via `grad_key` only. float64 analysis.
+Score = relative Frobenius residual after unit-normalising both sides (norm is the known constant),
+per tensor; tables give median / p90 / max. Fitted parameters (2 eps values) chosen on the EVEN module
+half, every score below is on the ODD half (76 modules x A/B) unless marked "exploratory".
+
+**Files.** `pipeline/ms_common.py` (loaders, PE5 in f64, relF), `ms_model.py` (the rule),
+`ms_fit.py` (torch fitter for conditioned-PE families), `ms_freediag.py` / `ms_symfree.py`
+(hypothesis-free free-diagonal probes), `ms_b0.py` (beta1=0 grid + held-out eval), `ms_freshfloor.py`,
+`ms_mom.py` (momentum chains), `ms_zero.py`, `ms_zero32_proxy.py`, `ms_r2step1.py`, `ms_figs.py`.
+Outputs `runs/MS/` (`b0_grid_r{8,32}.txt`, `b0_finegrid_r8.txt`, `b0_eval_r{8,32}.{txt,json}`,
+`fresh_floor.{txt,json}`, `mom_*.{txt,json}`, `zero_steps.{txt,json}`, `zero32_proxy.{txt,json}`,
+`r2_step1.{txt,json}`, `freediag/`, `symfree/`). Figure `figures/ms_b0_residuals.png`.
+Throwaway exploration scripts (e1–e29) live in the scratchpad, not the repo; their numbers are
+marked exploratory below.
+
+### Result: the rule
+
+```
+state per tensor: m  (momentum, STORED IN bf16), starts at 0          tall orientation n x r
+                                                                        (lora_B as is, lora_A^T)
+step t, gradient g_t (bf16-valued), beta = beta1 of THIS call:
+  S     = m                                   # the stored momentum BEFORE this step
+  m32   = beta * S + (1 - beta) * g_t         # float32; this is what is orthogonalised
+  m     = bf16(m32)                           # stored for next step
+  if S == 0 (fresh state, or a factor whose previous momentum is 0):  Dl = Dr = 1
+  else:
+      l_i = sum_j S_ij^2 ;  l = l + 1e-4 * max(l)          # row energies of previous momentum
+      c_j = sum_i S_ij^2 ;  c = c + 1e-4 * max(c)          # column energies
+      Dl = l^(-1/4) ;  Dr = c^(-1/4)
+  X  = PE5( Dl * m32 * Dr )                   # FIRSTSTEP-01 Polar Express, 5 steps, safety 1.01
+  V  = Dl * X * Dr
+  U_t = - lr * sqrt(r) * (r/32)^0.175 * V / ||V||_F
+```
+i.e. U ∝ −L^{-1/4} PE(L^{-1/4} m_t R^{-1/4}) R^{-1/4} with L, R the row/column Gram diagonals of the
+PREVIOUS momentum (a one-step-lagged, diagonal two-sided preconditioner, no second-moment EMA),
+momentum m_t = beta m_{t-1} + (1-beta) g_t (EMA form, not beta m + g, not Nesterov).
+
+### Q1 — hidden state at beta1 = 0 (S2_r{8,32}_b0 vs fresh twins; all R2)
+
+- **Hypothesis-free first (exploratory, r8).** Step-2 lora_B continuing update has 66% of its norm
+  OUTSIDE col-span(g_2) (and 65% outside span[g_1, g_2]) → not a right r x r map, needs a left
+  (d_out-side) operator; its singular values are not flat (0.6–1.45 x mean) → not a bare PE output.
+  Best free per-row rescaling of PE(g_t) still leaves 0.20; the fitted row scale correlates with
+  the PREVIOUS gradient's row energy (log–log corr −0.97 at steps 3–6) and not the current one (−0.3),
+  for A and B. Free diagonals on all four sides U ≈ diag·PE(diag·g·diag)·diag reach 0.009–0.021 on
+  every tensor tried (14 tensors; the same freedom fitted to a WRONG target — another step's update —
+  gives 1.08–1.18, so the freedom alone does not fit anything). A torch fit of exponents gave
+  a = −0.262, b = −0.253, c = −0.259, e = −0.253: all −1/4. A free symmetric fit (one diagonal per side)
+  decomposed by NNLS: row stat = energy of g_{t−1} (older gradients and current gradient coefficients
+  0 to ≤1e-3), column stat likewise.
+- **Damping.** eps relative to the MAX energy, 1e-4, is sharply identified (fit half, r8, steps 2/4/6:
+  median relF 6.4e-3 A / 6.2e-3 B at 1e-4·max; 8e-5 → 1.8e-2 / 2.6e-2; 1.25e-4 → 1.9e-2 / 2.6e-2).
+  Best eps relative to the mean: 4.2e-2 / 4.7e-2; best absolute eps: 6.0e-2 (A). Column eps is not
+  identifiable (0, 1e-6, 1e-5, 1e-4 ·max indistinguishable); 1e-4·max used by symmetry. Rank 32 grid
+  picks the same values (1.26e-2 / 1.18e-2 median).
+- **Held-out table (odd half; `b0_eval_r*.txt`), median relF per step 2..6:**
+
+  | rule (median relF, steps 2, 3, 4, 5, 6) | r8 A | r8 B | r32 A | r32 B |
+  |---|---|---|---|---|
+  | fresh twin vs continuing [null] | 0, .601, .602, .616, .593 | .745, .692, .638, .654, .693 | 0, .558, .541, .594, .511 | .743, .675, .631, .666, .679 |
+  | PE5(g_t) alone [baseline] | .005, .601, .602, .616, .593 | .745, .692, .638, .654, .693 | .030, .557, .541, .594, .511 | .742, .675, .631, .665, .679 |
+  | symmetric −1/4, stats from CURRENT g_t | .605, .569, .595, .572, .561 | .150, .786, .810, .795, .790 | .599, .588, .576, .606, .550 | .129, .737, .772, .793, .740 |
+  | symmetric, exponents −1/2 | .005, .395, .402, .400, .375 | .533, .487, .459, .463, .473 | .030, .415, .404, .438, .371 | .542, .500, .437, .467, .493 |
+  | pre-only row-normalise by prev (L^-1/2 g, damp 1e-2·mean) | –, .243, .248, .275, .201 | .275, .245, .244, .268, .248 | –, .289, .283, .346, .219 | .366, .292, .279, .327, .290 |
+  | L^-1/4 only (no column side) | .005, .210, .219, .228, .174 | .208, .219, .215, .225, .225 | .030, .259, .259, .320, .180 | .322, .258, .240, .293, .254 |
+  | symmetric −1/4, eps → 0 | .005, .140, .162, .145, .130 | .172, .300, .252, .335, .296 | .030, .108, .099, .105, .099 | .167, .274, .241, .260, .279 |
+  | **MODEL** (−1/4, 1e-4·max), PE5 f64 | **.005, .028, .035, .012, .005** | **.004, .016, .020, .013, .005** | **.030, .014, .013, .031, .005** | **.027, .007, .011, .029, .007** |
+  | **MODEL, X0 rounded to fp16** | .004, .028, .035, .012, .005 | .004, .016, .020, .013, .005 | **.014, .007, .007, .015, .004** | **.014, .005, .006, .013, .005** |
+  | fresh twin vs PE5(g_t) f64 [floor, no state] | .005, .026, .033, .005, .005 | .005, .017, .018, .005, .005 | .030, .015, .014, .031, .005 | .031, .008, .012, .031, .008 |
+
+  ("–": the row-normalise rule divides by a zero previous A gradient at step 2.) The model sits on the
+  floor of "PE5 applied to this oracle gradient" (the fresh twin vs PE5(g_t), which involves no state
+  at all) at every step and rank, with one exception: **r8 step 5 (A .012, B .013 vs floor .005)**.
+  At rank 32 the X0-fp16 version halves the model residual (steps 2/5: .030 → .014, = the FIRSTSTEP
+  r32 step-1 floor .014), so the r32 "floor" of the f64 column is fp16 rounding of X0. The r8 floor
+  at steps 3–4 (1.7–3.3%) is NOT reduced by X0 fp16 nor by the full fp16 fused emulation (r8 step 4 A
+  0.0376 f64 vs 0.0374 fp16, exploratory e28); it is a property of PE on those gradients, not of state.
+- **Leakage tests (exploratory, r8 steps 3–6, fit half):** adding w·g_t² or w·g_{t−2}² to the
+  statistic (w = 1e-4…0.1) never helps; adding w·g_{t−1} to the orthogonalised vector (momentum leak
+  at beta = 0, w = ±1e-4…1e-2) never helps; an extra absolute eps (1e-12…1e-8) on energies, on root
+  energies, or in the PE normaliser never helps. EMA second moments of g² with beta2 0.5–0.999
+  (pre-row only form) 0.43–0.51 vs 0.22 for the previous gradient alone (step 4 B).
+- **Why A is bit-identical at step 2 but B is not:** at step 1 G_A = 0 exactly (B = 0), so A's stored
+  momentum after step 1 is 0 — the same as a fresh state — and the rule takes the S = 0 branch in
+  both cases. B's stored momentum is (1−beta)g_1 ≠ 0, so the continuing step is preconditioned and the
+  fresh one is not. Zero-gradient step with beta1 = 0: m32 = 0 → PE(0) = 0 → no movement (as observed).
+
+### Q2 — momentum form, state source, storage precision (`mom_*.txt`, odd half)
+
+- **Source of the statistic = previous stored momentum, not previous gradient.** S2_r8_b0.9 medians
+  per step 2..6, ema/prev-momentum 0.005–0.006 at every step; ema/prev-gradient 0.005, 0.105 (B),
+  0.54/0.65, 0.55/0.75, 0.12/0.44. Same picture at beta 0.99 and 0.5.
+- **EMA, not sum; not Nesterov.** At constant beta EMA and sum are proportional (identical scores).
+  S3 (beta 0.9 → 0.99 at step 4): EMA 0.0045 A / 0.0045 B (r8), 0.014 / 0.0045 (r32); sum 0.26 / 0.44
+  (r8), 0.52 / 0.50 (r32). Nesterov variants (fed = beta m + (1−beta) g after the update, or g + beta m)
+  already fail at step 2: 0.071 (r8 b0.9, B) and 0.25–0.29 at steps 3–6.
+- **Stored in bf16, orthogonalised in float32.** Rounding the stored momentum to bf16 while feeding the
+  float32 value: r32 b0.9 steps 2..6 B 0.095 → 0.027, 0.0087 → 0.0040, 0.0086 → 0.0040, 0.0105 → 0.0043,
+  0.0088 → 0.0041; A step 3 0.048 → 0.0092, step 4 0.032 → 0.0075, step 6 0.0072 → 0.0038; r8 b0.9 all
+  steps 0.005–0.006 → 0.0043–0.0046. Rounding the FED value too is rejected (step 1 B r32 0.031 → 0.21).
+  Consistent with D2's size fact (optimizer state = half the float32 weight bytes).
+- **Zero-gradient steps (S4_r8_cont, R1; all 304 tensors), model with bf16 storage, no refit:**
+  relF zero1/zero2/zero3 = 4.3e-3 / 4.7e-3 / 4.4e-3 (A), 4.3e-3 / 4.4e-3 / 4.2e-3 (B).
+  cos(zero1, step2): predicted 0.81646 A / 0.99510 B, measured 0.81657 / 0.99510.
+  cos(zero2, zero1): predicted 0.999994 / 0.999990, measured 0.999983 / 0.999981. (The D2 entry's
+  "0.95" was A and B pooled.) The prev-gradient variant predicts zero2 = unpreconditioned PE(m)
+  (relF 0.61 / 0.75) — rejected.
+- **Rank-32 zero steps (S4_r32_cont)** cannot be simulated (no same-regime step-2 gradient). Measured
+  cos(zero2,zero1) 0.982 A / 0.984 B; successive changes are nearly orthogonal (cos(Δ23, Δ12) −0.07),
+  i.e. rounding-like, not a drift. A proxy built from the R2 trunk S2_r32_b0.9 (same texts) reproduces
+  this only with bf16 storage: cos(zero2,zero1) 1.000000 (f32 momentum, f64 or fp16 PE) vs 0.9853 /
+  0.9847 (bf16 storage, f64 / fp16 PE); rank-8 proxy 0.99999 (measured 0.99998). bf16 rounding of a
+  0.9-scaled momentum perturbs the tiny singular directions that PE amplifies ~1000x; at rank 32 that
+  is a 17% change of direction per zero step.
+- Momentum EMA uses beta of the CURRENT call (S3 restored with a new beta: fits at the floor).
+
+### Q3 — step-1 law in R2 (`r2_step1.txt`)
+
+Same rule, same residual: r8 PE5 (X0 fp16) median 4.85e-3 (R2) vs 5.19e-3 (R1); fp16 fused emulation
+5.55e-3 vs 5.68e-3; r32 1.40e-2 vs 1.39e-2 (fused 1.88e-2 both). Norm law within 1e-7 in both; A
+unchanged in both. Only the backward pass changed at ~19:31.
+
+### Caveats / open
+
+- r8 beta1=0 step 5 sits at 1.2–1.3% vs a 0.5% floor (only exception). Not explained by leakage,
+  abs eps or precision variants tried.
+- The per-step floor itself (fresh twin vs PE5(g_t)) at r8 steps 3–4 (T1/T2 batches) is 1.7–3.3%;
+  FIRSTSTEP's PE emulation (f64, X0-fp16 or full fp16) does not capture it. Not a state effect.
+- epsR is not identified; the "max" normaliser and exponents −1/4 are fitted on rank 8/32, Qwen3.5-4B,
+  three texts only. Bias correction is invisible (every quantity is scale-invariant) — not tested.
+- Rank-32 zero-step reproduction is via a proxy trunk, not the S4_r32 chain itself.
+- r32 lr 1e-2 non-proportionality (S6) not investigated; plausibly the same bf16/PE sensitivity.
+
+### Measurements that would settle the rest
+1. S4 at rank 32 in the current regime WITH an oracle at step 2 (2 normal steps, 3 zero steps) → direct
+   test of bf16 storage via zero-step predictions (~4 clients).
+2. Upload chosen weights so the previous gradient has a few rows of exactly known, widely spread energy
+   (incl. rows ≪ 1e-4·max), then one continuing step → pins epsL form and epsR.
+3. beta1 changed at a ZERO-gradient step (m = beta' m exactly) → separates EMA (1−beta) placement from
+   any bias correction.
