@@ -1,0 +1,21 @@
+P2 -- rank 32, b0.9: T0, T0, zero, zero, zero
+step1: norm/law (np.float64(0.9999999015582182), np.float64(1.0000000887441733))
+  step1 rule[bf16_x0f16]             A 0.00e+00 / 0.00e+00 / 0.00e+00   B 1.40e-02 / 1.64e-02 / 1.88e-02
+  step1 rule[f32_x0f16]              A 0.00e+00 / 0.00e+00 / 0.00e+00   B 1.40e-02 / 1.64e-02 / 1.88e-02
+step2: norm/law (np.float64(0.9999998372472115), np.float64(1.0000002099398033))
+  step2 rule[bf16_x0f16]             A 2.80e-01 / 3.05e-01 / 3.48e-01   B 1.28e-01 / 1.42e-01 / 1.54e-01
+  step2 rule[f32_x0f16]              A 2.80e-01 / 3.05e-01 / 3.48e-01   B 1.56e-01 / 1.72e-01 / 1.84e-01
+zero1: norm/law (np.float64(0.9999998272349908), np.float64(1.000000164896224))
+  zero1 rule[bf16_x0f16]             A 3.21e-01 / 3.75e-01 / 4.28e-01   B 2.60e-01 / 2.87e-01 / 3.12e-01
+  zero1 rule[f32_x0f16]              A 3.18e-01 / 3.59e-01 / 3.92e-01   B 2.26e-01 / 2.51e-01 / 2.73e-01
+zero2: norm/law (np.float64(0.9999998613412944), np.float64(1.0000001640394514))
+  zero2 rule[bf16_x0f16]             A 3.37e-01 / 3.97e-01 / 4.61e-01   B 2.95e-01 / 3.24e-01 / 3.52e-01
+  zero2 rule[f32_x0f16]              A 3.57e-01 / 4.01e-01 / 4.36e-01   B 2.83e-01 / 3.12e-01 / 3.39e-01
+zero3: norm/law (np.float64(0.9999998447672158), np.float64(1.0000001462909662))
+  zero3 rule[bf16_x0f16]             A 3.51e-01 / 4.14e-01 / 4.88e-01   B 3.19e-01 / 3.51e-01 / 3.82e-01
+  zero3 rule[f32_x0f16]              A 3.89e-01 / 4.35e-01 / 4.73e-01   B 3.24e-01 / 3.53e-01 / 3.87e-01
+successive-update cosines (median over tensors; measured vs predicted)
+  cos(step2,step1) measured A nan B 0.703468 | bf16_x0f16 A nan B 0.704017 | f32_x0f16 A nan B 0.706665
+  cos(zero1,step2) measured A 0.808406 B 0.981248 | bf16_x0f16 A 0.808302 B 0.981457 | f32_x0f16 A 0.823065 B 0.997004
+  cos(zero2,zero1) measured A 0.981811 B 0.984242 | bf16_x0f16 A 0.982072 B 0.984407 | f32_x0f16 A 1.000000 B 1.000000
+  cos(zero3,zero2) measured A 0.983054 B 0.985255 | bf16_x0f16 A 0.983278 B 0.985377 | f32_x0f16 A 1.000000 B 1.000000

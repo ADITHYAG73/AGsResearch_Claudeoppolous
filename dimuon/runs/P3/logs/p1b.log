@@ -1,0 +1,6 @@
+22:08:20 start p1b
+{'NA': 21.477456828797933, 'NB': 242.80799515755677, 'N': 243.7560330828039, 't1': 243.28201412018035, 't2': 72.2142522891666, 't3': 10.738728414398967}
+chain P1b_t1 done 32s
+chain P1b_t3 done 33s
+chain P1b_t2 done 46s
+22:09:07 done p1b {'clients': 3, 'forward_backward': 3, 'optim_step': 3, 'exports': 6, 'uploads': 0}

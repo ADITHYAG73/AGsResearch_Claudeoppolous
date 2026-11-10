@@ -1,0 +1,12 @@
+oracle aab5039568e48d84_t1_w1_P3x1 done 48.0s resid 1.14e-03 bad 1
+oracle d7d226c60d71ee91_t2_w1_P3x1 done 39.5s resid 1.75e-05 bad 0
+chain P4s_r32_lr0.001 done 46s
+chain P4s_r32_lr0.01 done 47s
+chain P1bs_none done 57s
+chain P1bs_t1 done 78s
+chain P8_r8 done 79s
+oracle 6af7b7017487c50a_t0_w1_P3 done 37.7s resid 1.80e-06 bad 0
+oracle 6865ff7c3463e2b1_t1_w1_P3 done 43.3s resid 5.82e-06 bad 0
+oracle 6a3807b045990c4e_t2_w1_P3 done 48.0s resid 6.40e-05 bad 0
+chain DRIFT_end_r8 done 37s
+{'clients': 11, 'forward_backward': 13, 'optim_step': 13, 'exports': 24, 'uploads': 0}

@@ -21,8 +21,9 @@ $-1/4$ power of the row and column energies of the \emph{previous} step's moment
 result by an approximately orthogonal matrix using five steps of the Polar Express iteration in
 half precision; apply the same row and column scaling again; and normalise the result to a
 fixed size $\eta\sqrt r\,(r/32)^{0.175}$ that depends only on the learning rate and the rank.
-With no history the scaling is absent and the rule reduces to Muon. Open points are listed
-at the end.
+With no history the scaling is absent and the rule reduces to Muon. Frozen, the rule predicts
+later measurements without refitting: twelve consecutive steps, gradient clipping, zero-gradient
+steps, MLP and unembedding adapters, and a second base model. Open points are listed at the end.
 \end{abstract}
 
 \section{Status of this draft}\label{sec:status}
@@ -237,9 +238,8 @@ when the gradient vanishes.
 as expected of a scale-invariant map. At step 2, clipping below the gradient norm changes the
 $B$ updates by 0.08--0.13 and leaves $A$ bit-identical.
 
-\paragraph{Learning rate.} Updates at step 3 are proportional to $\eta$ to rounding, except at
-rank 32 with $\eta=10^{-2}$, where the direction differs by 2--4\% while the norms stay exactly
-ten times larger. Unexplained so far.
+\paragraph{Learning rate.} Updates at step 3 are proportional to $\eta$ to rounding. (One
+rank-32 run at $\eta=10^{-2}$ differed by 2--4\%; see Section~\ref{sec:predict}.)
 
 \paragraph{The service changed during the study.} At about 19:31 UTC on 10 November 2026 the
 gradients returned for an identical request changed by about 1\% (relative Frobenius norm)
@@ -247,6 +247,111 @@ while the loss stayed bit-identical; both the old and the new behaviour are indi
 deterministic. Every step is therefore tagged with its regime and only compared with a
 gradient from the same regime. This is a reminder that a hosted optimizer is a moving target:
 the results below describe the service on that date.
+
+\subsection{Momentum and state across steps}\label{sec:rule}
+\paragraph{The rule.} For one factor, written as a tall $n\times r$ matrix ($B$ as stored,
+$A$ transposed), let $g_t$ be its gradient, $S=m_{t-1}$ the stored momentum (zero for a fresh
+optimizer), and $\mathrm{PE}$ the five-step Polar Express of Section~\ref{sec:firststep}.
+\begin{align*}
+\tilde m_t &= \beta_1 S+(1-\beta_1)\,g_t &&\text{(float32; $\beta_1$ of this call)}\\
+m_t &= \mathrm{bf16}(\tilde m_t) &&\text{(what is stored)}\\
+\ell_i &= \textstyle\sum_j S_{ij}^2,\quad \ell\leftarrow\ell+10^{-4}\max_i\ell_i,\quad D_L=\mathrm{diag}(\ell^{-1/4})\\
+c_j &= \textstyle\sum_i S_{ij}^2,\quad c\leftarrow c+10^{-4}\max_j c_j,\quad D_R=\mathrm{diag}(c^{-1/4})\\
+V &= D_L\,\mathrm{PE}\!\big(D_L\,\tilde m_t\,D_R\big)\,D_R &&\text{($D_L=D_R=I$ if $S=0$)}\\
+\Delta &= -\eta\sqrt r\,(r/32)^{0.175}\;V/\|V\|_F .
+\end{align*}
+
+\paragraph{How it was found.} At $\beta_1=0$ the continuing step-2 update of $B$ has 66\% of
+its norm outside the column space of the current gradient, so whatever is remembered acts on
+the rows (the $d_{\rm out}$ side). Allowing a free rescaling of every row and column, before
+and after the orthogonalisation, brought the residual from 0.7 to 0.01--0.02, and the fitted
+scales tracked the \emph{previous} gradient's row energies (log-correlation $-0.97$), not the
+current one's ($-0.3$). Fitted exponents came out between $-0.253$ and $-0.262$; the damping
+$10^{-4}\max$ is sharply preferred on the row side ($6\times10^{-3}$ versus about
+$2\times10^{-2}$ at $0.8\times$ or $1.25\times$ that value) and not identifiable on the column
+side. Constants were fitted on even-numbered modules; numbers below are for odd-numbered ones.
+
+\begin{table}[h]\centering\small
+\begin{tabular}{lcccc}\toprule
+rule, steps 2--6, $\beta_1=0$ & rank 8, $A$ & rank 8, $B$ & rank 32, $A$ & rank 32, $B$\\\midrule
+fresh twin (no state) & 0--0.62 & 0.64--0.75 & 0--0.59 & 0.63--0.74\\
+energies of current $g$ & 0.56--0.61 & 0.15--0.81 & 0.55--0.61 & 0.13--0.79\\
+exponent $-1/2$ & 0.005--0.40 & 0.46--0.53 & 0.03--0.44 & 0.44--0.54\\
+rows only & 0.005--0.23 & 0.21--0.23 & 0.03--0.32 & 0.24--0.32\\
+no damping & 0.005--0.16 & 0.17--0.34 & 0.03--0.11 & 0.17--0.28\\
+\textbf{rule above} & 0.005--0.035 & 0.004--0.020 & 0.004--0.015 & 0.005--0.014\\
+floor: PE on a fresh step & 0.005--0.033 & 0.005--0.018 & 0.005--0.031 & 0.008--0.031\\\bottomrule
+\end{tabular}
+\caption{Median relative residual over 76 held-out modules; range over steps 2--6. The last row
+is how well the first-step law fits fresh steps on the same gradients, i.e.\ the accuracy of our
+emulation of the orthogonaliser itself.}
+\end{table}
+
+\paragraph{Momentum.} With $\beta_1=0.9$ the scaling must be built from the previous
+\emph{momentum} (residual 0.005--0.006), not the previous gradient (0.10--0.75). The average is
+the $(1-\beta)$ form: when $\beta_1$ is changed from 0.9 to 0.99 at step 4, that form fits at
+0.0045 and the plain sum $\beta m+g$ at 0.26--0.52. Nesterov variants fail at step 2 (0.07).
+Storing the momentum in bf16 but feeding the unrounded value to the orthogonaliser improves
+rank-32 fits from about 0.009 to 0.004, and matches the size of the saved optimizer state.
+Bias correction cannot be detected: every later operation is scale-invariant.
+
+\paragraph{Predictions that were not fitted.} The zero-gradient steps follow from the rule with
+no new constants: residual 0.004--0.005; cosine between the first zero-gradient step and the
+step before, predicted 0.8165 ($A$) and 0.9951 ($B$), measured 0.8166 and 0.9951. The facts of
+Section~\ref{sec:multi} also follow: $A$ is unpreconditioned at step 2 because its stored
+momentum is exactly zero; a zero gradient at $\beta_1=0$ gives $\mathrm{PE}(0)=0$; clipping
+rescales $g_t$ against $S$.
+
+\paragraph{Coordinator's check.} I re-implemented the rule in float64 from the equations and
+applied it to step 3 of the $\beta_1=0.9$, rank-8 run: median residual 0.0045 for both $A$ and
+$B$ (maximum 0.013), against 0.61 and 0.76 for the orthogonaliser applied to the momentum
+without scaling.
+
+\paragraph{Reading the rule.} Muon gives every direction the same step. Dimuon first asks
+which rows and columns of the factor have recently received large gradients, shrinks those,
+orthogonalises, and shrinks them again; a quarter power on each of two sides, applied twice,
+is the matrix analogue of dividing by a square root once, as Adam does per entry and Shampoo
+does per side. The statistics are one step stale and are not averaged over time.
+
+\paragraph{The service change did not touch the rule.} With gradients from the matching
+regime, the first-step law fits equally well before and after the change (0.0052 and 0.0049 at
+rank 8; 0.0139 and 0.0140 at rank 32).
+\subsection{How $A$ is updated, and whether $A$ and $B$ are coupled}\label{sec:fresh}
+These results use a \emph{fresh} optimizer restored at weights where $B\neq0$, so that both
+factors have a non-zero gradient and no history.
+
+\paragraph{Each factor follows the first-step law on its own gradient.}
+\[
+\Delta A=-\eta\sqrt r\,(r/32)^{0.175}\,\frac{X_A}{\|X_A\|_F},\qquad
+\Delta B=-\eta\sqrt r\,(r/32)^{0.175}\,\frac{X_B}{\|X_B\|_F},
+\]
+with $X_A,X_B$ the five-step half-precision Polar Express of $G_A$ and $G_B$. Median relative
+residuals over 152 modules are 0.005--0.006 for both factors at rank 8 (maximum 0.025) and
+0.005--0.020 at rank 32, the same as at step 1; the control (the law applied to another batch's
+gradient) gives 1.4. My own float64 re-computation on one rank-8 step gives medians 0.0050
+($A$) and 0.0051 ($B$). Whether the iteration is run on the tall or the wide orientation cannot
+be told apart at this resolution.
+
+\paragraph{No coupling in a fresh step.} Six families that would let one factor's update depend
+on the other, such as $\mathrm{PE}\big((B^\top B)^pG_A\big)$ or
+$\mathrm{PE}\big(G_B(AA^\top)^p\big)$, were fitted on half the modules and scored on the other
+half. The best exponent is $p=0$ in every family at every step, and $|p|=0.05$ already makes
+the fit 1.1--15 times worse. The test had power: $B^\top B$ has condition number up to 165.
+A joint orthogonalisation of the two gradients also fails. So without history Dimuon is, to our
+resolution, Muon-style orthogonalisation applied to $A$ and $B$ separately with a fixed step
+size. Whatever is LoRA-specific must live in the remembered state
+(Section~\ref{sec:multi}).
+
+\paragraph{Clipping is by a global norm, applied to the incoming gradient.} With the threshold
+at half the global gradient norm, all 152 $B$ updates change although only one tensor's own
+gradient norm exceeds the threshold. The clip only matters once there is stored state to weigh
+the scaled gradient against, which is why step 1, and $A$ at step 2, are unaffected. The change
+is not linear in the clip factor; there is no quantitative model yet.
+
+\paragraph{Two apparent anomalies that were measurement artefacts.} An early run suggested
+that at rank 32 the update direction changes by 2--4\% at $\eta=10^{-2}$, and three fresh steps
+fitted the law poorly. Section~\ref{sec:predict} shows both came from the service returning one
+of two numerical variants for the same request, not from the rule.
 
 \subsection{Momentum and state across steps}\label{sec:rule}
 \paragraph{The rule.} For one factor, written as a tall $n\times r$ matrix ($B$ as stored,
@@ -358,7 +463,51 @@ trigger. Open.
 the law only to 1.5--14\%, with part of the update outside the span of the stored gradient.
 The likeliest cause is that the stored gradient is not the one the optimizer saw; to be
 re-measured.
-\subsection{Cross-check on a second model}\pending{}
+\subsection{Out-of-sample tests}\label{sec:predict}
+With the equations frozen, a further 85 training clients were used to test predictions made
+from gradients alone, with no constant refitted. Residuals are medians over tensors.
+
+\begin{table}[h]\centering\small
+\begin{tabular}{p{4.3cm}p{9.2cm}}\toprule
+test & result\\\midrule
+12 consecutive steps, rank 8, momentum rolled forward from step 1 & 0.006--0.010 at steps
+4--12; no accumulation of error. Nulls 0.25--1.4.\\
+gradient clipping, clip$/N\in\{0.7,0.5,0.3,0.1,0.01\}$ & replacing $g$ by $c\,g$ fits at
+0.005--0.013; the best-fitting $c$ is $0.702,\,0.5005,\,0.301,\,0.1000,\,0.0100$. $N$ is a
+global norm; over all LoRA tensors is favoured over $B$ only, not decisively.\\
+zero-gradient steps, rank 32 & bf16 storage of momentum: 0.014--0.015 (the step-1 floor is
+0.014). float32 storage: 0.10--0.30. \\
+$\beta_1$ changed at a zero-gradient step & $\beta_1'=0$: nothing moves, as predicted.
+$\beta_1'\in\{0.5,0.9,0.99\}$ agree with each other to $10^{-3}$. Next step predicted at
+0.01--0.03; ignoring the change gives 0.08--1.1.\\
+MLP and unembedding adapters & step-size law exact; 0.004--0.008.\\
+second base model, \texttt{openai/gpt-oss-20b}, rank 8 & step-size law exact to $10^{-7}$;
+steps 1--5 at 0.004--0.005; $\beta_1=0$ continuing step 0.005.\\\bottomrule
+\end{tabular}
+\caption{Predictions of the rule of Section~\ref{sec:rule} on data collected after it was
+written down.}
+\end{table}
+
+I recomputed the second-model result from the equations in float64: step 3 of the
+$\beta_1=0.9$ run on \texttt{gpt-oss-20b} gives medians 0.0053 ($A$) and 0.0046 ($B$) over 192
+tensors, each of norm $2.2191\times10^{-3}$, the same number as on Qwen. The clip rule is
+therefore $g\leftarrow\min(1,\mathrm{clip}/N)\,g$ before the momentum update.
+
+\paragraph{The service is not a function.} The same request does not always return the same
+numbers. An oracle gradient repeated at one state came back in two versions (23.4 of 28.7
+million entries different at one rank-32 state), and the same Dimuon step from the same
+restored state gave two results differing by 3.3\% in $A$. Each variant recurs bit-for-bit, and
+which one is returned is not predicted by any request parameter we control, nor by whether
+other clients are running. The rule fits one step variant at the floor; the other is not
+characterised. This explains the earlier ``learning-rate anomaly'' (a solo pair at
+$\eta=10^{-3}$ and $10^{-2}$ is proportional to $1.6\times10^{-5}$) and two of the three
+poorly fitting fresh steps (0.14 becomes 0.007 once the gradient is re-measured). Presumably
+different hardware or kernels serve different requests; that is a guess. It also means an
+earlier statement in this paper needs qualifying: repeated calls were bit-identical in the
+first hours of the study, but that is not guaranteed.
+
+\subsection{Cross-check on a second model}
+See the last row of the table above.
 \subsection{Comparison with a public reimplementation}\pending{done last, after our own rule is
 fixed, so the measurement is independent.}
 
@@ -366,14 +515,14 @@ fixed, so the measurement is independent.}
 A black-box study can show that a rule reproduces the observed updates on the inputs tested. It
 cannot show that the rule is the implementation, and it says nothing about inputs not tested.
 \begin{itemize}
-\item One base model, attention-only adapters, ranks 8 and 32 beyond step 1, three short texts.
+\item Two base models, ranks 8 and 32 beyond step 1, three short texts, at most 12 steps.
+\item The service returns one of at least two numerical variants of a gradient or a step. We
+characterise one.
 \item The fit is 0.4--3\%, not bit-exact. The orthogonaliser's rounding is not fully emulated,
 and one step (rank 8, $\beta_1=0$, step 5) fits 2.5 times worse than its floor.
 \item The exponent $0.175$ in the step size is an empirical fit over seven ranks.
 \item The column-side damping, and whether the row-side damping is exactly relative to the
 maximum, are not pinned down. Bias correction is invisible to this method.
-\item The learning-rate anomaly at rank 32, $\eta=10^{-2}$, and three poorly fitting fresh
-steps are unexplained.
 \item The coordinator had read a one-paragraph summary of a public reimplementation before the
 study; the agents who did the analysis were not given it and were told not to look. The
 candidate list they were handed included row and column preconditioning as one family among

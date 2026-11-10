@@ -708,3 +708,136 @@ unchanged in both. Only the backward pass changed at ~19:31.
    (incl. rows ≪ 1e-4·max), then one continuing step → pins epsL form and epsR.
 3. beta1 changed at a ZERO-gradient step (m = beta' m exactly) → separates EMA (1−beta) placement from
    any bias correction.
+
+---
+
+## PREDICT-01 — out-of-sample predictions of the MULTISTEP-01 rule (P1–P8) — 2026-11-10 (measurement agent)
+
+**Setup.** Qwen/Qwen3.5-4B attention-only LoRA unless stated, seed 0, Dimuon lr 1e-3 b0.9 unless stated, texts
+T0/T1/T2 (`tk.TEXTS`). Library `pipeline/p3_lib.py` = `s_d2.py` re-pointed to `runs/P3/` (own manifest; oracle O1 =
+AdamW lr 1e6 eps 1, setting `P3`; repeats `P3b`, `P3x1..`). Rule `pipeline/p3_rule.py` (exactly the stated rule;
+PE5 with X0 rounded to fp16 = "x0f16" unless stated; momentum stored bf16). Drivers `p3_collect.py`, `p3_solo.py`;
+predictions `p3_predict.py` → `runs/P3/pred/<exp>/` (npz + json with write time and sha; computed from oracle
+GRADIENTS and call parameters only, never from measured states); scoring `p3_score.py` → `runs/P3/score_*.txt|json`;
+figures `p3_figs.py`. Residual = ‖U_pred − U_meas‖_F/‖U_meas‖_F per tensor (prediction includes the norm law),
+median / p90 / max, A and B separately. P1a, P1b, P3 (zero step) and P4 predictions were written BEFORE the branch
+existed (pre-registered, times in the json); all others blind (gradients only). Exploratory scratch scripts
+(`e_*.py`) are in the scratchpad, numbers marked "exploratory".
+
+**Regime.** Same regime as D2 R2 throughout: P6 step 1 → `3362e501…` (= D2 R2), init oracle bit-identical to D2
+`0ff0…_O1r2`; P2/P5 trunks reproduce D2 R2 states `6b6b…`, `aab5…`, `7bde…`, `48f8…` bit-for-bit; end-of-session
+new client step 1 → `3362e501…` again (`score_regime.txt`).
+
+### Finding 0 (affects everything): neither the oracle gradient nor the Dimuon step is a function of (state, batch, params) alone
+- **Gradient.** Repeated oracles at the same state/text: r32 state 1/T1 — P3 (= D2's stored G, bit-identical) vs P3b:
+  23.4M of 28.7M elements differ; r8 b0 state 3/T2 — P3 vs P3b 5.85M of 7.18M differ (P3b = D2's stored G, 0 diffs);
+  r32 state 1/T0: the concurrent oracle differs from a solo one at 20.2M elements. At other states repeats are
+  bit-identical (r8 b0 state 2/T1 ×3 incl. D2; P6 state 1/T1 ×3: one concurrent, two solo on different pools).
+  The init gradient (B = 0) never varied. Loss is always bit-identical. The server metric `clock_cycle:unique` falls in
+  two clusters (~7.20M, ~7.53M; gpt-oss ~5.43M/7.96M); in the P5 cases the gradient version follows the cluster, but
+  the cluster does NOT predict it in general.
+- **Step.** From one restored state (P6 ck1, T1) the unclipped step 2 gave two different results: trunk (X,
+  `d7d2…`) and two repeats (Y, `92f2…`, one of them strictly solo). Every lora_A tensor falls cleanly in X or Y
+  (149–152 of 152 bit-identical to one of them); the state-1 oracle that both share is verified identical, so the split
+  is in the optim step path. X/Y does not follow c, lr, pool, or co-scheduling (P1a c 0.5 and 0.3 shared a cycle; P4
+  lr 5e-3 and 6e-3 shared a cycle and gave the other variant). X vs Y differ by relF 3.3% (A, state 1); the
+  difference lies 59–98% inside span(g_A); a free r-side diagonal fits X only to 1.5–3.9% (Y: 0.3%); bf16/fp16-fed
+  momentum or bf16 PE do not reproduce X (exploratory). **X is not characterised.** The rule fits Y at the floor.
+- Consequence: the per-step "floors" quoted in FRESH-01/MULTISTEP-01 for T1/T2 (1.7–3.3%) and the S6 "lr
+  anomaly" are at least partly this variance (see P4, P5). Run oracles solo; even solo does not guarantee one variant.
+
+### P1 — clipping (`score_p1a.txt`, `score_p1b.txt`, `score_solo.txt`; fig `p3_clip_storage.png` a)
+- P1a, state 1 (T1, N_all 94.55): pre-registered rule with g → c·g, c = clip/N. Fitted c (B, every 4th tensor):
+  **0.7021, 0.5005, 0.3011, 0.1000, 0.0100** for nominal 0.7, 0.5, 0.3, 0.1, 0.01. Residual (rule, c) B median
+  1.25e-2 / 1.15e-2 / 1.01e-2 / 4.5e-3 / 4.5e-3 vs null (unclipped prediction) 0.167 / 0.272 / 0.443 / 0.760 / 1.06;
+  unclipped c = 1 1.31e-2. A: 2.83e-2 (X-variant runs) or 4.9e-3 (Y-variant runs). N_all vs N_B indistinguishable
+  here (‖G_A‖ small).
+- P1b, state 6 (T0): N_A 21.48, N_B 242.81, N_all 243.76; t1 243.28, t2 72.21, t3 10.74. Per-type and per-tensor
+  N rejected: t2 A residual 0.230 (per-type predicts A unclipped) vs 6.8e-3 (all); t3 A 0.232 vs 8.1e-3. All vs B-only
+  by fitted c on 4 disjoint quarters of the A tensors: t2 0.29561–0.29609 (all → 0.29626, B-only → 0.29741); t3
+  0.04392–0.04412 (all → 0.04406 inside the range, B-only → 0.04423 outside). B quarters are noisier (t3 0.04313–0.04412).
+  **Favours N = global norm over all LoRA tensors (A and B).** The t1 bit-identity test is inconclusive because of
+  Finding 0: concurrent t1 run = solo unclipped run bit-for-bit (as if c = 1), solo t1 run differs from it (A relF
+  1.2%, fits "all" 6.5e-3 vs "none" 7.7e-3); predicted size of the c = 0.998 effect is only A 3.0e-3 / B 1.7e-3.
+- **Verdict: g → c·g before the momentum update holds (fitted c within 0.3% of clip/N_all at every level).
+  N over all LoRA tensors: favoured, not decisively.**
+
+### P2 — zero-gradient steps at rank 32 (`score_p2.txt` pre-registered oracle, `score_p2_solo.txt`; fig b)
+- Trunk T0, T0, zero ×3 (b0.9), re-run solo (`P2s_r32`): every state identical to the concurrent run. With the solo
+  oracle at state 1 (the concurrent one was a different gradient version): bf16 storage, x0f16 — median relF
+  A/B: step1 –/1.40e-2, step2 1.42e-2/1.43e-2, zero1 1.52e-2/1.48e-2, zero2 1.49e-2/1.45e-2, zero3 1.46e-2/1.42e-2
+  (floor = step 1, 1.40e-2). f32 storage: step2 B 9.5e-2, zero1 0.19/0.19, zero2 0.25/0.26, zero3 0.30/0.30.
+  f64 PE instead of x0f16: 2.5–2.9e-2 (bf16 storage).
+- Cosines (median, measured | bf16 | f32): cos(zero1,step2) A 0.80841 | 0.80856 | 0.82251, B 0.98125 | 0.98142 |
+  0.99701; cos(zero2,zero1) A 0.98181 | 0.98199 | 1.000000, B 0.98424 | 0.98439 | 1.000000; cos(zero3,zero2)
+  A 0.98305 | 0.98326 | 1.000000, B 0.98526 | 0.98543 | 1.000000.
+- With the concurrent (wrong-version) oracle the same predictions were 0.13–0.35 (kept in `score_p2.txt`).
+- **Verdict: bf16 storage holds (at the step-1 floor, zero-step cosines to ≤2e-4); f32 storage fails.**
+
+### P3 — beta changed at a zero-gradient step (`score_p3.txt`)
+- From P6 state 2: zero step at β′ = 0 → max|ΔW| = 0 (predicted 0). β′ = 0.5 / 0.9 / 0.99 → identical within
+  max|diff| 3.2–4.0e-7 (|U| entries ~1.7e-4); 0.5–2.0M differing elements; relF between them median 2–3e-5, p90
+  0.4–1.1e-3, max 3e-3. The rule predicts relF median 0, p90 ~1e-5 (bf16 rounding only): **nearly, not bit-for-bit;
+  the measured β′-dependence is ~100× the rule's rounding prediction (cause not identified).** Zero-step residual vs
+  rule A 3.05e-2 / B 1.31e-2 (inflated by the step-2 variant issue, see P6).
+- Next normal T2 step (β 0.9), oracle at the post-zero state: rule vs null "β′ ignored (0.9)": β′=0 A 3.0e-2 / B 1.7e-2
+  vs 1.02 / 1.12; β′=0.5 1.4e-2 / 1.1e-2 vs 0.24 / 0.24; β′=0.99 1.8e-2 / 1.1e-2 vs 9.7e-2 / 7.9e-2; β′=0.9 1.7e-2 /
+  1.2e-2. **Verdict: holds** (stored m = bf16(β′S), next step uses it with (1−β) weighting; β′=0 empties momentum →
+  the next step is the fresh law).
+
+### P4 — learning rate (`score_p4.txt`, `score_p4_solo.txt`, `score_solo.txt`)
+- r32 from P2 state 2 (T1), restored with optimizer: U(lr)·1e-3/lr takes exactly two values. {4e-3, 5e-3, 6e-3, 1e-2}
+  are proportional to each other and to a SOLO pair (solo U(1e-2)/10 vs solo U(1e-3): A 1.6e-5, B 9e-8 = float32
+  rounding of W+ΔW); {1e-3, 8e-3} (concurrent) are the other variant, 3.7e-2 A / 1.7e-2 B away. No threshold in lr,
+  per-tensor ‖lrU‖/‖W‖ (A 0.0017–0.0173) or global ‖lrU‖ (0.10–0.99). Fresh-state r32 lr 1e-2 vs 1e-3: proportional
+  (A 1.6e-5, B 8e-8). With solo oracles the rule fits the proportional group at A 5.9e-3 / B 3.5e-3 (x0f16;
+  f64 9.2e-3/3.9e-3; fused fp16 7.3e-3/3.9e-3) and the other group at 3.6e-2 / 1.7e-2. r8 (state 2, T2): lr 1e-2…5e-2
+  all mutually proportional, all 1.7e-2 A / 7.8e-3 B from the trunk's lr-1e-3 step.
+- **Verdict: there is no lr anomaly; the update is exactly proportional to lr. The D2/FRESH-01 "r32 lr 1e-2" effect is
+  the two-variant step nondeterminism (Finding 0).** No PE precision/orientation variant fits the other variant better.
+
+### P5 — the three FRESH-01 mismatches (`score_p5.txt`)
+- r32 state 1/T1: fresh step re-taken → same after-state as D2 (`773d…`). Oracle P3 = D2's G (bit-identical) →
+  residual A 0.140 / B 0.070 (the old mismatch); oracle P3b (different version) → **7.4e-3 / 5.0e-3**.
+- r8 b0 state 3/T2: today's fresh step `81ca…` ≠ D2's `1828…`. Today's step vs PE5(G_P3b) 4.8e-3 / 5.1e-3 (vs G_P3
+  3.2e-2/1.8e-2); D2's step vs PE5(G_P3) **4.5e-3 / 5.2e-3**. Each fresh step matches one of the two gradient versions.
+- r8 b0 state 2/T1: all three oracles bit-identical (incl. D2), fresh step = D2's; residual 2.6e-2 / 1.6e-2 — not
+  resolved (no second gradient version seen; could be the step variant).
+- **Verdict: gradient mismatch, not a different map** (2 of 3 resolved to the floor by a recomputed oracle).
+
+### P6 — 12-step horizon, rank 8 (`score_p6.txt`, `p6_table.json`; fig `p3_horizon.png`)
+- Rolled from oracle gradients only (bf16 storage). Median relF A / B, steps 2…12: 2.8e-2/1.3e-2, 2.0e-2/1.2e-2,
+  9.4e-3/1.0e-2, 8.7e-3/1.0e-2, 8.5e-3/1.0e-2, 6.4e-3/9.4e-3, 7.3e-3/9.4e-3, 7.0e-3/9.0e-3, 8.1e-3/9.5e-3,
+  6.7e-3/8.4e-3, 7.0e-3/8.2e-3 (step 1 B 4.8e-3). Nulls: no-state 0.67–1.24, previous update 0.25–1.4.
+  Fresh-twin floor: step 4 (T0) 5.0e-3/4.8e-3, step 8 (T1) 1.6e-2/1.6e-2, step 12 (T2) 2.3e-2/1.8e-2.
+- f32 storage at r8: indistinguishable (B 7.9e-3 vs 8.2e-3 at step 12, slightly lower).
+- **Verdict: no error accumulation over 12 steps** (residual falls after steps 2–3 and stays ≤1% median, p90 ≤1.4%).
+  Steps 2–3 elevated A (2–3%) are where the step-variant/gradient-version issue was seen.
+
+### P7 — openai/gpt-oss-20b (`score_p7.txt`)
+- Rank 8 attention LoRA: 192 tensors; lora_A (8, 2880) and (8, 4096); lora_B (4096, 8), (512, 8), (2880, 8); r < every
+  dimension. Init oracle: snap residual 5.0e-6, G_A exactly 0 (all 2,445,312 A elements), ‖G_B‖ 345.5.
+  Step 1: A unchanged, norm/law 0.9999999–1.0000000 (same constant lr·√r·(r/32)^0.175).
+- No refit. Median relF A / B: step1 –/4.95e-3; step2 4.6e-3/4.3e-3; step3 5.3e-3/4.6e-3; step4 4.6e-3/4.6e-3;
+  step5 4.6e-3/4.5e-3 (p90 ≤ 8.5e-3, max ≤ 1.8e-2); nulls 0.31–1.31. β=0 at state 2: continuing 4.9e-3/4.8e-3, fresh
+  4.8e-3/4.6e-3, continuing vs fresh differ by 0.75/0.79. **Verdict: holds at the step-1 floor, no refit.**
+
+### P8 — MLP + unembed adapters, Qwen rank 8 (`score_p8.txt`)
+- 498 tensors: attention as before + gate/up (lora_B 9216×8), down (2560×8), unembed_tokens (lora_B 248320×8,
+  lora_A 8×2560). Norm law 1.000000 for every type at every step. Rule median relF per type, steps 1–3: 3.5e-3–8.0e-3
+  (A and B), unembed B 4.8e-3 / 8.0e-3 / 3.7e-3; nulls 0.35–1.3. **Verdict: holds for MLP and unembed.**
+
+### Changes I would make to the rule
+- None to the equations. Clipping: write c = min(1, clip/N), N = ‖G‖ over all LoRA tensors (A and B), applied to g
+  before the momentum update. Add to the model: the server step and the backward each have ≥2 numerical variants
+  per call (Finding 0), so a pairing of a step with an oracle from another call is only valid when both are the same
+  version; compute oracles solo and repeat them where residuals are high.
+
+### Caveats
+- X variant uncharacterised; which variant a call takes is not observable beforehand. Some P1b/P3/P6 residuals are
+  inflated by it. Solo-oracle predictions (`*_solo`) were computed after the measured states existed (still from
+  gradients only). To fit the disk I deleted the f64/fused32/fusedbf16 prediction arrays after scoring (json metadata
+  kept). The clip-N verdict rests on fitted-c spreads, not on bit identity.
+- Usage (`runs/calls.jsonl`, events after 21:50 UTC): 85 training clients (7 new, 38 weights-only AdamW oracles,
+  9 weights-only Dimuon fresh-state, 31 restored with optimizer), 116 forward_backward + optim_step, 201 exports (all deleted after download), 31
+  save_state checkpoints, all deleted; final listing = the owner's 10 checkpoints, 6.92 GB (`runs/P3/final_ckpt_listing.json`).

@@ -1,0 +1,15 @@
+22:38:10 P4 r32_lr1e-3_x0f16
+22:38:10 P4 r32_fresh_lr1e-3_x0f16
+22:38:12 P4 r32_lr1e-3_f64
+22:38:13 P4 r32_fresh_lr1e-3_f64
+22:38:16 P4 r32_lr1e-3_fused16
+22:38:17 P4 r32_fresh_lr1e-3_fused16
+22:38:19 P4 r32_lr1e-3_fused32
+22:38:19 P4 r32_fresh_lr1e-3_fused32
+22:38:22 P4 r32_lr1e-3_fusedbf16
+22:38:22 P4 r32_fresh_lr1e-3_fusedbf16
+22:38:23 P4 r8_lr1e-3_x0f16
+22:38:24 P4 r8_lr1e-3_f64
+22:38:24 P4 r8_lr1e-3_fused16
+22:38:25 P4 r8_lr1e-3_fused32
+22:38:25 P4 r8_lr1e-3_fusedbf16

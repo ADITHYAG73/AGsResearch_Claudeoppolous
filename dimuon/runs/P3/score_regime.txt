@@ -1,0 +1,5 @@
+P6_r8 step1 before 0ff0b9c991af1568 after 3362e501604407c2 | D2 r8 b0.9 T0 step1 after: R1 3c4579d4aa8db69d, R2 3362e501604407c2
+  init oracle vs D2 0ff0b9c991af1568_t0_w1_O1: 2928419 of 7176192 elements differ
+  init oracle vs D2 0ff0b9c991af1568_t0_w1_O1r2: 0 of 7176192 elements differ
+  end-of-session drift check: new client step1 after = 3362e501604407c2 identical to P6 step1: True
+  init oracle: max rel snap residual 1.80e-06, |G_A| 0, |G_B| 284
