@@ -1,0 +1,2 @@
+{"t": "2026-11-10T17:57:58+00:00", "event": "client", "secs": 2.7, "optimizer": "dimuon", "rank": 8, "seed": 0, "train_attn": true, "train_mlp": false, "train_unembed": false, "model": "Qwen/Qwen3.5-4B", "tag": "dim_s0_r0", "model_id": "d31a8984-2065-5e31-94b1-b326deb96523:train:0"}
+{"t": "2026-11-10T17:58:22+00:00", "event": "export", "name": "dim_s0_r0-w0", "path": "tinker://d31a8984-2065-5e31-94b1-b326deb96523:train:0/external_weights/dim_s0_r0-w0", "n": 304, "dtypes": ["float32"], "model_id": "d31a8984-2065-5e31-94b1-b326deb96523:train:0"}
