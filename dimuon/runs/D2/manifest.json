@@ -785,6 +785,24 @@
    "kind": "regen_check",
    "regen": "S1_r8_re1",
    "trunk": "S1_r8"
+  },
+  {
+   "bit_identical": true,
+   "chain": "S1_r8_fresh_ck5_t0",
+   "ckpt": "S1_r8-ck5",
+   "how": "fresh",
+   "kind": "reload_check",
+   "loaded_sid": "5fee94e5c03badae",
+   "src_sid": "5fee94e5c03badae"
+  },
+  {
+   "bit_identical": true,
+   "chain": "S1_r8_fresh_ck5_t1",
+   "ckpt": "S1_r8-ck5",
+   "how": "fresh",
+   "kind": "reload_check",
+   "loaded_sid": "5fee94e5c03badae",
+   "src_sid": "5fee94e5c03badae"
   }
  ],
  "grads": {

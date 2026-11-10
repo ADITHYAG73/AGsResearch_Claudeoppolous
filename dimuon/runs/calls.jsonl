@@ -541,3 +541,11 @@
 {"t": "2026-11-10T19:08:29+00:00", "event": "client_from_state", "optimizer": "adamw", "from_state": "tinker://ec208139-5a9f-5574-ac93-455a89088423:train:2/weights/S1_r8_re1-ck5", "tag": "oracle 5fee94e5c03badae_t1_w1_O1"}
 {"t": "2026-11-10T19:08:29+00:00", "event": "client_from_state", "optimizer": "adamw", "from_state": "tinker://ec208139-5a9f-5574-ac93-455a89088423:train:2/weights/S1_r8_re1-ck5", "tag": "oracle 5fee94e5c03badae_t0_w1_O1"}
 {"t": "2026-11-10T19:08:30+00:00", "event": "client_from_state", "optimizer": "dimuon", "from_state": "tinker://ec208139-5a9f-5574-ac93-455a89088423:train:2/weights/S1_r8_re1-ck5", "tag": "S1_r8_fresh_ck5_t0"}
+{"t": "2026-11-10T19:08:39+00:00", "event": "export", "name": "S1_r8_fresh_ck5_t0-s0", "path": "tinker://ec208139-5a9f-5574-ac93-455a89088423:train:5/external_weights/S1_r8_fresh_ck5_t0-s0", "n": 304, "dtypes": ["float32"], "model_id": null}
+{"t": "2026-11-10T19:08:39+00:00", "event": "delete", "path": "tinker://ec208139-5a9f-5574-ac93-455a89088423:train:5/external_weights/S1_r8_fresh_ck5_t0-s0"}
+{"t": "2026-11-10T19:08:39+00:00", "event": "export", "name": "or-5fee94e5c03badae_t1_w1_O1-w0", "path": "tinker://ec208139-5a9f-5574-ac93-455a89088423:train:4/external_weights/or-5fee94e5c03badae_t1_w1_O1-w0", "n": 304, "dtypes": ["float32"], "model_id": null}
+{"t": "2026-11-10T19:08:39+00:00", "event": "delete", "path": "tinker://ec208139-5a9f-5574-ac93-455a89088423:train:4/external_weights/or-5fee94e5c03badae_t1_w1_O1-w0"}
+{"t": "2026-11-10T19:08:40+00:00", "event": "export", "name": "S1_r8_fresh_ck5_t1-s0", "path": "tinker://ec208139-5a9f-5574-ac93-455a89088423:train:6/external_weights/S1_r8_fresh_ck5_t1-s0", "n": 304, "dtypes": ["float32"], "model_id": null}
+{"t": "2026-11-10T19:08:40+00:00", "event": "export", "name": "or-5fee94e5c03badae_t0_w1_O1-w0", "path": "tinker://ec208139-5a9f-5574-ac93-455a89088423:train:3/external_weights/or-5fee94e5c03badae_t0_w1_O1-w0", "n": 304, "dtypes": ["float32"], "model_id": null}
+{"t": "2026-11-10T19:08:40+00:00", "event": "delete", "path": "tinker://ec208139-5a9f-5574-ac93-455a89088423:train:6/external_weights/S1_r8_fresh_ck5_t1-s0"}
+{"t": "2026-11-10T19:08:40+00:00", "event": "delete", "path": "tinker://ec208139-5a9f-5574-ac93-455a89088423:train:3/external_weights/or-5fee94e5c03badae_t0_w1_O1-w0"}
