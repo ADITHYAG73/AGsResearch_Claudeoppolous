@@ -1,0 +1,11 @@
+A_adamw_lr0.0001_r8: train(last6 mean)=0.0002 held=0.0062 s/step=14.4
+A_adamw_lr3e-05_r8: train(last6 mean)=0.0313 held=0.2201 s/step=14.5
+A_dimuon_lr0.003_r8: train(last6 mean)=0.0004 held=0.1317 s/step=14.8
+A_dimuon_lr0.001_r8: train(last6 mean)=1.1807 held=1.7004 s/step=15.2
+A_adamw_lr0.001_r8: train(last6 mean)=0.0000 held=0.0019 s/step=12.5
+A_adamw_lr0.0003_r8: train(last6 mean)=0.0000 held=0.0000 s/step=13.4
+A_dimuon_lr0.01_r8: train(last6 mean)=0.0008 held=0.0030 s/step=13.7
+A_dimuon_lr0.03_r8: train(last6 mean)=0.3174 held=0.0396 s/step=13.2
+A_adamw_lr0.003_r8: train(last6 mean)=2.2689 held=2.2129 s/step=12.7
+A_dimuon_lr0.1_r8: train(last6 mean)=1.6694 held=1.3228 s/step=12.8
+{'clients': 10, 'forward_backward': 0, 'optim_step': 0, 'exports': 0, 'uploads': 0}
