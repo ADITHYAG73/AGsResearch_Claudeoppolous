@@ -7,3 +7,5 @@ B_dimuon_lr0.01_r32: train(last6 mean)=0.0399 held=0.0201 s/step=7.5
 B_dimuon_lr0.03_r32: train(last6 mean)=0.8532 held=0.6798 s/step=8.9
 B_adamw_lr0.001_r32: train(last6 mean)=0.1440 held=0.0962 s/step=17.0
 R_dimuon_lr0.01_r8: train(last6 mean)=0.0221 held=0.0005 s/step=14.4
+C_adamw_lr0.0003_r8_const: train(last6 mean)=0.0000 held=0.0000 s/step=6.7
+C_adamw_lr0.001_r8_const: train(last6 mean)=2.6574 held=3.2778 s/step=6.1
