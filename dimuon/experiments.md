@@ -1030,7 +1030,7 @@ Billing for these calls had not posted at report time (last bucket 21:00 UTC).
 `table.md`, `flips.{txt,json}`, `pairs.{txt,json}`, `rate*.txt`, `eps_scan.txt`, `step2.txt`, `collect.log`,
 `extra.log`, `final_ckpt_listing.json` (42 MB total).
 
-## BEHAVE-01 — behavioural comparison, Dimuon vs AdamW, losses only — 2026-11-13 (measurement agent; UNREVIEWED)
+## BEHAVE-01 — behavioural comparison, Dimuon vs AdamW, losses only — 2026-11-13 (measurement agent; coordinator re-computed the block A/B/C end-point and mean losses from the json files on 2026-11-14 and they agree)
 
 **Question.** H1: is Dimuon's best lr ≈ 30–90× AdamW's, with loss-vs-lr curves coinciding after that rescale?
 H2: at constant lr, late in training on a memorisable set, does Dimuon (fixed-norm step) sit on a noisy floor that
@@ -1080,7 +1080,7 @@ At each optimizer's best lr, 4 → 32 changes AdamW by −1% and Dimuon by +7% (
 | AdamW 1e-3 linear | 2.9e-4 | 0.18 | 0.15 | 0.0015 |
 | Dimuon 1e-2 const | 0.023 | 2.60 | 0.57 | 0.011 |
 | Dimuon 1e-2 linear | 1.3e-5 | 0.61 | 0.05 | 2e-6 |
-DIMUON_3E2_PLACEHOLDER
+| Dimuon 3e-2 const / linear | not available | | | | (both runs were cut at step 90 of 150 by a container restart; at step 90 last-6 train loss 0.91 const vs 0.006 linear, held-out 1.11 vs 0.0019) |
 At each optimizer's best lr: AdamW const keeps falling smoothly (late median 4.6e-6, never above 1.1e-5); Dimuon
 const sits ~5000× higher (median 0.023) with spikes to 2.6 — a noisy floor; linear decay brings Dimuon to the
 AdamW level (1.3e-5). But AdamW at 3× its best lr shows the same kind of floor (median 0.10, spikes to 4.7) and

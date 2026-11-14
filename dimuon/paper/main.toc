@@ -73,15 +73,22 @@
 \contentsline {subsection}{\numberline {7.2}Agreement}{22}{subsection.7.2}%
 \contentsline {subsection}{\numberline {7.3}One disagreement, where we were wrong}{22}{subsection.7.3}%
 \contentsline {subsection}{\numberline {7.4}What the public material settles and what it does not}{22}{subsection.7.4}%
-\contentsline {section}{\numberline {8}Interpretation}{23}{section.8}%
-\contentsline {paragraph}{The update as steepest descent under a weighted spectral norm.}{23}{section*.48}%
-\contentsline {paragraph}{Relation to Shampoo and PoLoRA.}{23}{section*.49}%
-\contentsline {paragraph}{Rank 1.}{23}{section*.50}%
-\contentsline {paragraph}{Why a lagged statistic?}{24}{section*.51}%
-\contentsline {paragraph}{Damping and the fixed norm.}{24}{section*.52}%
-\contentsline {section}{\numberline {9}Limitations and open questions}{24}{section.9}%
-\contentsline {section}{\numberline {A}Reproducibility}{25}{appendix.A}%
-\contentsline {paragraph}{Repository layout.}{25}{section*.53}%
-\contentsline {paragraph}{Data layout.}{25}{section*.54}%
-\contentsline {paragraph}{Usage.}{25}{section*.55}%
-\contentsline {section}{\numberline {B}How the study was run}{26}{appendix.B}%
+\contentsline {section}{\numberline {8}What the rule does to training: a small behavioural test}{23}{section.8}%
+\contentsline {paragraph}{A prediction from the rule.}{23}{section*.48}%
+\contentsline {paragraph}{Setup.}{23}{section*.49}%
+\contentsline {paragraph}{Learning-rate correspondence: supported, at the low end.}{23}{section*.50}%
+\contentsline {paragraph}{No natural slowdown: partly supported.}{24}{section*.52}%
+\contentsline {paragraph}{Benefit from rank: not supported here.}{24}{section*.54}%
+\contentsline {paragraph}{Caveats.}{24}{section*.55}%
+\contentsline {section}{\numberline {9}Interpretation}{24}{section.9}%
+\contentsline {paragraph}{The update as steepest descent under a weighted spectral norm.}{24}{section*.56}%
+\contentsline {paragraph}{Relation to Shampoo and PoLoRA.}{25}{section*.57}%
+\contentsline {paragraph}{Rank 1.}{25}{section*.58}%
+\contentsline {paragraph}{Why a lagged statistic?}{25}{section*.59}%
+\contentsline {paragraph}{Damping and the fixed norm.}{25}{section*.60}%
+\contentsline {section}{\numberline {10}Limitations and open questions}{26}{section.10}%
+\contentsline {section}{\numberline {A}Reproducibility}{27}{appendix.A}%
+\contentsline {paragraph}{Repository layout.}{27}{section*.61}%
+\contentsline {paragraph}{Data layout.}{27}{section*.62}%
+\contentsline {paragraph}{Usage.}{27}{section*.63}%
+\contentsline {section}{\numberline {B}How the study was run}{27}{appendix.B}%

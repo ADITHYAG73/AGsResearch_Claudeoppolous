@@ -1050,6 +1050,67 @@ new, include the full equations, validation on many models and ranks (anpaure's 
 including gpt-oss, and every LoRA factor), and the existence of nondeterminism.
 
 %======================================================================
+\section{What the rule does to training: a small behavioural test}\label{sec:behave}
+Everything above concerns what Dimuon computes. This section asks what that implies for training,
+on one toy task, with losses only (journal entry BEHAVE-01). It is a first look, not a benchmark.
+
+\paragraph{A prediction from the rule.} Dimuon moves every $n\times r$ LoRA tensor by the fixed
+Frobenius norm $\eta\sqrt r\,(r/32)^{0.175}$. Early in training AdamW moves each entry by about
+$\eta$, so the same tensor moves by about $\eta\sqrt{nr}$. For the two to move a tensor equally
+far, Dimuon's learning rate must be larger by about $\sqrt n\,/(r/32)^{0.175}$, which is 30--90 for
+the layer widths of Qwen3.5-4B ($n$ from 1024 to 8192). The documentation says Dimuon's learning
+rate is ``typically 10--100$\times$'' AdamW's without giving a reason; the fixed step size supplies
+one.
+
+\paragraph{Setup.} Qwen3.5-4B, LoRA on attention and MLP, one seed. The data are an invented
+language of 8 nouns and 8 adjectives; the task is to translate a two-word English phrase into the
+two invented words in swapped order. Of the 64 phrases 48 are used for training and 16 held out,
+with every word seen in training. Batches of 8, 60 steps (150 for the schedule test), loss on the
+answer tokens only. AdamW uses the SDK defaults ($\beta$ 0.9/0.95), Dimuon $\beta_1=0.9$, no
+clipping. Twenty-seven training runs; nothing was stored on the service.
+
+\paragraph{Learning-rate correspondence: supported, at the low end.} At rank 8, over five learning
+rates each, the lowest mean training loss over 60 steps is at $3\times10^{-4}$ for AdamW (0.589)
+and $10^{-2}$ for Dimuon (0.768): a ratio of 33 on a half-decade grid, so anywhere from 10 to 100.
+Both optimizers work over about one decade and diverge at ten times their best rate. Dimuon's
+curve, shifted by 30, has the same shape as AdamW's but lies a little higher at every point.
+Figure~\ref{fig:bhlr}.
+
+\begin{figure}[ht]\centering
+\includegraphics[width=\linewidth]{../figures/bh_lr.png}
+\caption{Loss against learning rate at rank 8, three measures. Solid lines are the two
+optimizers; the dotted and dashed lines are Dimuon's curve with its learning rate divided by 30
+and by 90. Look at the left panel: divided by 30, Dimuon's curve lies on AdamW's.}\label{fig:bhlr}
+\end{figure}
+
+\paragraph{No natural slowdown: partly supported.} Over 150 steps at a constant learning rate,
+AdamW at its best rate keeps settling (training loss over steps 91--150: median
+$4.6\times10^{-6}$, never above $1.1\times10^{-5}$). Dimuon at its best rate does not: median
+0.023 with spikes to 2.6. With the learning rate decayed linearly to zero Dimuon reaches the same
+level as AdamW (median $1.3\times10^{-5}$). This is what a step that never shrinks would do. But
+AdamW at three times its best rate shows the same kind of noisy floor (median 0.10), also removed
+by decay, so this test cannot separate ``Dimuon never slows down'' from ``Dimuon's fastest
+learning rate sits closer to its stability edge''. Figure~\ref{fig:bhc}. The practical reading is
+the same either way: with Dimuon, decay the learning rate.
+
+\begin{figure}[ht]\centering
+\includegraphics[width=.9\linewidth]{../figures/bh_blockC.png}
+\caption{Training loss over 150 steps, constant against linearly decayed learning rate. Look at
+the late part of each constant-rate curve. The two Dimuon runs at $3\times10^{-2}$ stop at step 90
+because the machine running the study restarted.}\label{fig:bhc}
+\end{figure}
+
+\paragraph{Benefit from rank: not supported here.} From rank 4 to rank 32 at each optimizer's
+best rate, the mean training loss changes by $-1\%$ for AdamW and $+7\%$ for Dimuon, both within
+the 6\% difference between two identical Dimuon runs. The task is solved to a loss near $10^{-5}$
+at every rank, so capacity never limits it, and Dimuon's step grows with rank at fixed $\eta$, so
+its best rate may shift; this test says little about the documentation's claim.
+
+\paragraph{Caveats.} One model, one tiny synthetic task, one seed, a half-decade grid, and ``best''
+defined by speed over 60 steps. Two identical runs agree bit for bit for 11 steps and then drift;
+late in training their losses differ by factors of 10--30, so only large differences mean
+anything.
+
 \section{Interpretation}\label{sec:interp}
 
 In this section we mark sourced statements [S] and our own inferences [I].
