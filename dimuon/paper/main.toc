@@ -77,11 +77,11 @@
 \contentsline {paragraph}{A prediction from the rule.}{23}{section*.48}%
 \contentsline {paragraph}{Setup.}{23}{section*.49}%
 \contentsline {paragraph}{Learning-rate correspondence: supported, at the low end.}{23}{section*.50}%
-\contentsline {paragraph}{No natural slowdown: partly supported.}{24}{section*.52}%
+\contentsline {paragraph}{No natural slowdown: not the cause of the floor.}{24}{section*.52}%
 \contentsline {paragraph}{Benefit from rank: not supported here.}{24}{section*.54}%
 \contentsline {paragraph}{Caveats.}{24}{section*.55}%
 \contentsline {section}{\numberline {9}Interpretation}{24}{section.9}%
-\contentsline {paragraph}{The update as steepest descent under a weighted spectral norm.}{24}{section*.56}%
+\contentsline {paragraph}{The update as steepest descent under a weighted spectral norm.}{25}{section*.56}%
 \contentsline {paragraph}{Relation to Shampoo and PoLoRA.}{25}{section*.57}%
 \contentsline {paragraph}{Rank 1.}{25}{section*.58}%
 \contentsline {paragraph}{Why a lagged statistic?}{25}{section*.59}%

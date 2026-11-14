@@ -1080,18 +1080,25 @@ Figure~\ref{fig:bhlr}.
 \includegraphics[width=\linewidth]{../figures/bh_lr.png}
 \caption{Loss against learning rate at rank 8, three measures. Solid lines are the two
 optimizers; the dotted and dashed lines are Dimuon's curve with its learning rate divided by 30
-and by 90. Look at the left panel: divided by 30, Dimuon's curve lies on AdamW's.}\label{fig:bhlr}
+and by 90. Look at the left panel: divided by 30, Dimuon's curve lies close to AdamW's.}\label{fig:bhlr}
 \end{figure}
 
-\paragraph{No natural slowdown: partly supported.} Over 150 steps at a constant learning rate,
-AdamW at its best rate keeps settling (training loss over steps 91--150: median
+\paragraph{No natural slowdown: not the cause of the floor.} Over 150 steps at a constant
+learning rate, AdamW at its best rate keeps settling (training loss over steps 91--150: median
 $4.6\times10^{-6}$, never above $1.1\times10^{-5}$). Dimuon at its best rate does not: median
 0.023 with spikes to 2.6. With the learning rate decayed linearly to zero Dimuon reaches the same
-level as AdamW (median $1.3\times10^{-5}$). This is what a step that never shrinks would do. But
-AdamW at three times its best rate shows the same kind of noisy floor (median 0.10), also removed
-by decay, so this test cannot separate ``Dimuon never slows down'' from ``Dimuon's fastest
-learning rate sits closer to its stability edge''. Figure~\ref{fig:bhc}. The practical reading is
-the same either way: with Dimuon, decay the learning rate.
+level as AdamW (median $1.3\times10^{-5}$). A step that never shrinks would explain this, but so
+would a best rate that sits close to the edge of stability: AdamW at three times its best rate
+shows the same kind of floor (median 0.10), also removed by decay. A second test separates the two
+(BEHAVE-02). Dimuon at one tenth of its best rate, constant for 240 steps, settles smoothly: the
+loss falls below 0.01 at step 88, its median over steps 181--240 is $1.4\times10^{-5}$ and still
+falling, and no late step exceeds 0.01. That is the level AdamW reaches. So the fixed step size
+does not by itself prevent settling, at least down to a loss of $10^{-5}$; the floor at the best
+rate is a matter of running near the stability edge. A run at one third of the best rate was cut
+at 110 steps by a slow service and looked quiet up to there (2\% of steps 51--110 above 0.01,
+against 22\% at the best rate); the matching AdamW runs are also incomplete. One seed, one
+completed run. The practical reading is unchanged: at its fastest learning rate Dimuon needs
+decay. Figure~\ref{fig:bhc}.
 
 \begin{figure}[ht]\centering
 \includegraphics[width=.9\linewidth]{../figures/bh_blockC.png}
