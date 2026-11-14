@@ -1029,3 +1029,75 @@ Billing for these calls had not posted at report time (last bucket 21:00 UTC).
 `r{1,2}_oracle*.npz` + `.json` (model_id, metrics, A sha, export path, deleted flag), `analysis.{txt,json}`,
 `table.md`, `flips.{txt,json}`, `pairs.{txt,json}`, `rate*.txt`, `eps_scan.txt`, `step2.txt`, `collect.log`,
 `extra.log`, `final_ckpt_listing.json` (42 MB total).
+
+## BEHAVE-01 — behavioural comparison, Dimuon vs AdamW, losses only — 2026-11-13 (measurement agent; UNREVIEWED)
+
+**Question.** H1: is Dimuon's best lr ≈ 30–90× AdamW's, with loss-vs-lr curves coinciding after that rescale?
+H2: at constant lr, late in training on a memorisable set, does Dimuon (fixed-norm step) sit on a noisy floor that
+AdamW does not, and does linear decay remove it? H3: does rank 4 → 32 help Dimuon more than AdamW?
+
+**Setup.** Qwen/Qwen3.5-4B, LoRA attn+MLP (train_unembed=False), seed 0. Dataset (`pipeline/bh_lib.py`): a made-up
+language "Velish", 8 nouns × 8 adjectives; prompt `Velish for '<adj> <noun>':`, answer ` <noun-word>-<adj-word>.`
+(order swapped vs English). 48 train / 16 held-out combinations (seeded split, every word seen in train), so
+held-out loss measures composition. Loss only on answer tokens (≈5 tokens/example, 83 held-out tokens). Step =
+forward_backward on a fixed-order minibatch of 8 (6 minibatches, cycled) + optim_step. Train loss = loss:sum/answer
+tokens of that minibatch before the step; held-out = `forward` on all 16 every 10 steps (step 0 = 7.60 for every
+run). AdamW = SDK defaults β 0.9/0.95, eps 1e-12, wd 0, no clip. Dimuon β1 0.9, no clip. "Best lr" = lowest
+mean train loss over all 60 steps (a speed metric; end-point losses are ~0 for several lrs and spiky, see noise).
+
+**Noise floor (repeat of Dimuon 1e-2 r8, `R_dimuon_lr0.01_r8`).** Steps 1–11 bit-identical; diverges from step 12
+(1.1969 vs 1.1974). Mean train loss 0.768 vs 0.817 (6%); last-6 train 0.0008 vs 0.022; held at step 60 0.0030 vs
+0.0005. So: mean-train differences under ~10% and end-point differences under ~10–30× are within run-to-run noise.
+
+**Block A (rank 8, 60 steps)** — mean train loss over 60 steps / held-out at 60:
+| AdamW lr | mean | held60 | | Dimuon lr | mean | held60 |
+|---|---|---|---|---|---|---|
+| 3e-5 | 2.095 | 0.220 | | 1e-3 | 4.147 | 1.70 |
+| 1e-4 | 0.943 | 0.0062 | | 3e-3 | 1.722 | 0.132 |
+| **3e-4** | **0.589** | 2e-5 | | **1e-2** | **0.768** | 0.0030 |
+| 1e-3 | 0.865 | 0.0019 | | 3e-2 | 0.910 | 0.040 |
+| 3e-3 | 5.531 | 2.21 | | 1e-1 | 6.278 | 1.32 |
+Best lr AdamW 3e-4, Dimuon 1e-2 → **measured ratio ≈ 33×** (grid resolution ½ decade, so "between ~10× and ~100×").
+Held-out ranking gives the same two lrs. Dimuon lr ÷ 30 against AdamW at the same lr: 4.15 vs 2.10 (3.3e-5),
+1.72 vs 0.94 (1e-4), 0.77 vs 0.59 (3.3e-4), 0.91 vs 0.87 (1e-3), 6.28 vs 5.53 (3.3e-3) — same shape and width
+(both usable over ~1 decade, both diverge 10× above best), Dimuon uniformly a bit worse (best 0.768 vs 0.589, 30%,
+outside the 6% repeat noise). Dimuon lr ÷ 90 puts its optimum at 1.1e-4, where AdamW is 0.94 — fits worse.
+**H1: supported at the low end of the predicted range (≈30×, not 90×)**; curves coincide in shape, not level.
+
+**Block B (60 steps), mean train loss at ranks 4 / 8 / 32:** AdamW 3e-4: 0.580 / 0.589 / 0.575; AdamW 1e-3:
+1.071 / 0.865 / 0.749. Dimuon 1e-2: 0.795 / 0.768 / 0.854; Dimuon 3e-2: 0.957 / 0.910 / 1.025.
+At each optimizer's best lr, 4 → 32 changes AdamW by −1% and Dimuon by +7% (both near the 6% noise).
+**H3: not supported** — no sign rank helps Dimuon more; if anything AdamW gains with rank at its second lr
+(1.07 → 0.75). Caveat: Dimuon's step norm scales with √r·(r/32)^0.175, so its best lr may shift with rank and only
+2 lrs per rank were run; and the task saturates (loss → 1e-5), so capacity is never the limit.
+
+**Block C (rank 8, 150 steps, const vs linear decay to 0).** Late phase = steps 91–150 (`runs/BH/blockC_stats.json`):
+| run | median late | max late | frac late > 0.01 | held at 150 |
+|---|---|---|---|---|
+| AdamW 3e-4 const | 4.6e-6 | 1.1e-5 | 0.00 | 2e-6 |
+| AdamW 3e-4 linear | 1.1e-5 | 2.0e-5 | 0.00 | 2e-5 |
+| AdamW 1e-3 const | 0.100 | 4.72 | 0.87 | 3.28 |
+| AdamW 1e-3 linear | 2.9e-4 | 0.18 | 0.15 | 0.0015 |
+| Dimuon 1e-2 const | 0.023 | 2.60 | 0.57 | 0.011 |
+| Dimuon 1e-2 linear | 1.3e-5 | 0.61 | 0.05 | 2e-6 |
+DIMUON_3E2_PLACEHOLDER
+At each optimizer's best lr: AdamW const keeps falling smoothly (late median 4.6e-6, never above 1.1e-5); Dimuon
+const sits ~5000× higher (median 0.023) with spikes to 2.6 — a noisy floor; linear decay brings Dimuon to the
+AdamW level (1.3e-5). But AdamW at 3× its best lr shows the same kind of floor (median 0.10, spikes to 4.7) and
+decay also removes it. **H2: partly supported** — at matched best lr Dimuon has a late noisy floor that AdamW does
+not, and decay removes it; but the floor is not unique to Dimuon (AdamW gets one at 3× lr), so this run cannot
+separate "Dimuon never slows down" from "Dimuon's best-by-speed lr sits closer to its stability edge". One seed; the
+repeat shows late-phase values vary ~10–30× between identical runs.
+
+**Caveats.** One model, one tiny synthetic dataset (saturates to ~1e-5), one seed, one minibatch order, ½-decade lr
+grid, best lr chosen by a 60-step speed metric. Service is not deterministic after ~11 steps. Step time 6–260 s
+under shared load (later block C runs were slow).
+
+**Usage.** 27 training clients (10 A, 8 B, 1 repeat, 8 C); 1,980 forward_backward + 1,980 optim_step, plus 186
+forward (eval) calls. **Nothing stored on the server:** no save_weights, save_state or export call in this task;
+no files written except losses.
+
+**Files.** `pipeline/bh_lib.py` (dataset + run loop), `bh_blockA.py`, `bh_blockBC.py`, `bh_figs.py`,
+`bh_c_stats.py`; `runs/BH/{A,B,R,C}_*.json` (per-step train loss, held-out every 10, s/step, model_id),
+`summary.json`, `blockC_stats.json`, `blockA.log`, `blockBC.log`; `figures/bh_curves.png`, `bh_lr.png`,
+`bh_blockC.png`.

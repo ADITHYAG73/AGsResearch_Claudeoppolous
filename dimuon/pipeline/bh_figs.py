@@ -27,7 +27,7 @@ def best_held(r):
 rows = []
 for k, r in runs.items():
     rows.append(dict(name=k, opt=r["opt"], lr=r["lr"], rank=r["rank"], steps=r["steps"],
-                     schedule=r["schedule"], train_last6=fin(r), held_final=r["held"][-1][1],
+                     schedule=r["schedule"], train_last6=fin(r), train_mean=float(np.mean(r["train"])), held_final=r["held"][-1][1],
                      held_min=best_held(r), held0=r["held"][0][1],
                      train_last30_sd=float(np.std(np.diff(r["train"][-30:]))) if r["steps"] > 60
                      else None))
@@ -55,8 +55,8 @@ if A:
     fig.tight_layout(); fig.savefig(F / "bh_curves.png", dpi=120); plt.close(fig)
 
     # Fig 2: final loss vs lr, Dimuon lr also divided by predicted factor
-    fig, ax = plt.subplots(1, 2, figsize=(11, 4))
-    for i, (key, lab) in enumerate([("train_last6", "train loss, last 6 steps"),
+    fig, ax = plt.subplots(1, 3, figsize=(15, 4))
+    for i, (key, lab) in enumerate([("train_mean", "mean train loss over all 60 steps (speed)"), ("train_last6", "train loss, last 6 steps"),
                                     ("held_final", "held-out loss at step 60")]):
         for opt, mk in [("adamw", "o-"), ("dimuon", "s-")]:
             xs = sorted([x for x in rows if x["name"].startswith("A_") and x["opt"] == opt],
