@@ -1,0 +1,14 @@
+chain S1v2_r32 done 102s
+oracle 848426735c90afba_t0_w1_O1r2 done 49.2s resid 2.13e-05 bad 0
+oracle aab5039568e48d84_t0_w1_O1r2 done 49.7s resid 6.40e-05 bad 0
+oracle 434701fd72fbe35d_t0_w1_O1r2 done 49.8s resid 9.53e-06 bad 0
+oracle cb647dbd29789ccd_t0_w1_O1r2 done 49.9s resid 4.27e-06 bad 0
+chain S1v2_r32_fresh_ck1_t1 done 47s
+chain S1v2_r32_fresh_ck1_t0 done 49s
+oracle 6b6b57f85d3dbb33_t1_w1_O1r2 done 50.6s resid 5.76e-04 bad 0
+chain S1v2_r32_fresh_ck2_t0 done 50s
+oracle cb647dbd29789ccd_t1_w1_O1r2 done 38.4s resid 5.76e-04 bad 0
+chain S1v2_r32_fresh_ck2_t1 done 40s
+chain S1v2_r32_fresh_ck5_t1 done 48s
+chain S1v2_r32_fresh_ck5_t0 done 49s
+todo after: 0 COUNTS {'clients': 13, 'forward_backward': 17, 'optim_step': 17, 'exports': 30, 'uploads': 0}

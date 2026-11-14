@@ -1,0 +1,7 @@
+oracle 3362e501604407c2_t1_w1_P3x1 done 32.8s resid 1.69e-04 bad 0
+oracle 3362e501604407c2_t1_w1_P3x2 done 29.4s resid 1.69e-04 bad 0
+chain P1s_c1 done 40s
+chain P2s_r32 done 103s
+oracle 5ca507c22b88b77d_t0_w1_P3x1 done 35.2s resid 4.19e-07 bad 0
+oracle 6b6b57f85d3dbb33_t0_w1_P3x1 done 48.2s resid 6.40e-05 bad 0
+{'clients': 6, 'forward_backward': 10, 'optim_step': 10, 'exports': 16, 'uploads': 0}

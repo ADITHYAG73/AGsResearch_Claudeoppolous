@@ -1,0 +1,18 @@
+P5 r32_ck1_t1: state 6b6b57f85d3dbb33 (D2 6b6b57f85d3dbb33, same: True); fresh step after 773dfb54de299e14 (D2 773dfb54de299e14, same: True)
+   oracle P3 vs P3b (same session): 23444452 differing elements of 28704768
+   oracle now vs D2 stored 6b6b57f85d3dbb33_t1_w1_O1r2: differing elements {'A': 0, 'B': 0}; per-tensor relF A 0.00e+00 / 0.00e+00 / 0.00e+00 B 0.00e+00 / 0.00e+00 / 0.00e+00
+  r32_ck1_t1 fresh step vs PE5(G_P3) A 1.40e-01 / 1.78e-01 / 2.56e-01   B 6.97e-02 / 1.04e-01 / 1.54e-01
+  r32_ck1_t1 fresh step vs PE5(G_P3b) A 7.40e-03 / 8.83e-03 / 9.80e-03   B 4.96e-03 / 6.26e-03 / 9.37e-03
+  r32_ck1_t1 D2 fresh step vs PE5(G_now) A 1.40e-01 / 1.78e-01 / 2.56e-01   B 6.97e-02 / 1.04e-01 / 1.54e-01
+P5 r8b0_ck2_t1: state 7bdecab086fd9a60 (D2 7bdecab086fd9a60, same: True); fresh step after f10ee8663f894c04 (D2 f10ee8663f894c04, same: True)
+   oracle P3 vs P3b (same session): 0 differing elements of 7176192
+   oracle now vs D2 stored 7bdecab086fd9a60_t1_w1_O1r2: differing elements {'A': 0, 'B': 0}; per-tensor relF A 0.00e+00 / 0.00e+00 / 0.00e+00 B 0.00e+00 / 0.00e+00 / 0.00e+00
+  r8b0_ck2_t1 fresh step vs PE5(G_P3) A 2.61e-02 / 4.95e-02 / 8.38e-02   B 1.60e-02 / 2.56e-02 / 3.97e-02
+  r8b0_ck2_t1 fresh step vs PE5(G_P3b) A 2.61e-02 / 4.95e-02 / 8.38e-02   B 1.60e-02 / 2.56e-02 / 3.97e-02
+  r8b0_ck2_t1 D2 fresh step vs PE5(G_now) A 2.61e-02 / 4.95e-02 / 8.38e-02   B 1.60e-02 / 2.56e-02 / 3.97e-02
+P5 r8b0_ck3_t2: state 48f87021a2ccf9b9 (D2 48f87021a2ccf9b9, same: True); fresh step after 81caf74e731816a0 (D2 18284bfdfae9a9cb, same: False)
+   oracle P3 vs P3b (same session): 5850713 differing elements of 7176192
+   oracle now vs D2 stored 48f87021a2ccf9b9_t2_w1_O1r2: differing elements {'A': 2852253, 'B': 2998460}; per-tensor relF A 1.19e-02 / 2.28e-02 / 6.00e-02 B 1.17e-02 / 1.65e-02 / 2.90e-02
+  r8b0_ck3_t2 fresh step vs PE5(G_P3) A 3.24e-02 / 6.19e-02 / 1.02e-01   B 1.79e-02 / 3.43e-02 / 1.03e-01
+  r8b0_ck3_t2 fresh step vs PE5(G_P3b) A 4.83e-03 / 9.89e-03 / 2.42e-02   B 5.08e-03 / 8.60e-03 / 1.66e-02
+  r8b0_ck3_t2 D2 fresh step vs PE5(G_now) A 4.50e-03 / 8.51e-03 / 1.42e-02   B 5.23e-03 / 9.49e-03 / 1.97e-02

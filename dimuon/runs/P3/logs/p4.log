@@ -1,0 +1,14 @@
+22:10:57 start p4
+chain P4_r32_lr0.004 done 43s
+chain P4_r32_lr0.005 done 49s
+chain P4_r32_lr0.001 done 49s
+chain P4_r32_lr0.006 done 51s
+chain P4_r8_lr0.02 done 34s
+chain P4_r32_lr0.01 done 44s
+chain P4_r8_lr0.01 done 46s
+chain P4_r32_lr0.008 done 54s
+chain P4_r8_lr0.05 done 37s
+chain P4_r32_fresh_lr0.01 done 36s
+chain P4_r8_lr0.03 done 49s
+chain P4_r32_fresh_lr0.001 done 53s
+22:13:25 done p4 {'clients': 12, 'forward_backward': 12, 'optim_step': 12, 'exports': 24, 'uploads': 0}

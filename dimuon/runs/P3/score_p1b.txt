@@ -1,0 +1,25 @@
+P1b -- clip thresholds at state 6 (T0): {'NA': 21.4775, 'NB': 242.808, 'N': 243.756, 't1': 243.282, 't2': 72.2143, 't3': 10.7387}
+t1 clip=243.2820: differing elements vs unclipped trunk step 7: A 3495648, B 3669935
+  t1 hyp=all                         A 1.23e-02 / 2.68e-02 / 6.31e-02   B 1.11e-02 / 1.54e-02 / 4.82e-02
+  t1 hyp=B                           A 1.17e-02 / 2.76e-02 / 6.48e-02   B 1.09e-02 / 1.58e-02 / 5.00e-02
+  t1 hyp=pertype                     A 1.17e-02 / 2.76e-02 / 6.48e-02   B 1.09e-02 / 1.58e-02 / 5.00e-02
+  t1 hyp=pertensor                   A 1.17e-02 / 2.76e-02 / 6.48e-02   B 1.09e-02 / 1.58e-02 / 5.00e-02
+  t1 hyp=none                        A 1.17e-02 / 2.76e-02 / 6.48e-02   B 1.09e-02 / 1.58e-02 / 5.00e-02
+    A: fitted c = 1.00060 (median relF 1.21e-02); clip/N candidates: all 0.99806, B 1.00000, pertype 1.00000
+    B: fitted c = 1.00179 (median relF 1.07e-02); clip/N candidates: all 0.99806, B 1.00000, pertype 1.00000
+t2 clip=72.2143: differing elements vs unclipped trunk step 7: A 3505741, B 3670010
+  t2 hyp=all                         A 6.83e-03 / 1.22e-02 / 1.99e-02   B 1.00e-02 / 1.26e-02 / 1.72e-02
+  t2 hyp=B                           A 8.53e-03 / 1.39e-02 / 2.18e-02   B 1.02e-02 / 1.24e-02 / 1.70e-02
+  t2 hyp=pertype                     A 2.30e-01 / 2.70e-01 / 2.98e-01   B 1.02e-02 / 1.24e-02 / 1.70e-02
+  t2 hyp=pertensor                   A 2.30e-01 / 2.70e-01 / 2.98e-01   B 1.80e-01 / 2.02e-01 / 2.35e-01
+  t2 hyp=none                        A 2.30e-01 / 2.70e-01 / 2.98e-01   B 1.80e-01 / 2.02e-01 / 2.35e-01
+    A: fitted c = 0.29561 (median relF 6.96e-03); clip/N candidates: all 0.29626, B 0.29741, pertype 1.00000
+    B: fitted c = 0.29546 (median relF 9.86e-03); clip/N candidates: all 0.29626, B 0.29741, pertype 0.29741
+t3 clip=10.7387: differing elements vs unclipped trunk step 7: A 3505894, B 3670012
+  t3 hyp=all                         A 8.11e-03 / 1.32e-02 / 1.97e-02   B 1.04e-02 / 1.33e-02 / 1.98e-02
+  t3 hyp=B                           A 8.04e-03 / 1.31e-02 / 2.10e-02   B 1.04e-02 / 1.33e-02 / 1.98e-02
+  t3 hyp=pertype                     A 2.32e-01 / 2.67e-01 / 3.26e-01   B 1.04e-02 / 1.33e-02 / 1.98e-02
+  t3 hyp=pertensor                   A 3.42e-01 / 3.99e-01 / 4.87e-01   B 2.41e-01 / 2.63e-01 / 2.85e-01
+  t3 hyp=none                        A 3.42e-01 / 3.99e-01 / 4.87e-01   B 2.42e-01 / 2.63e-01 / 2.85e-01
+    A: fitted c = 0.04407 (median relF 8.19e-03); clip/N candidates: all 0.04406, B 0.04423, pertype 0.50000
+    B: fitted c = 0.04322 (median relF 1.05e-02); clip/N candidates: all 0.04406, B 0.04423, pertype 0.04423

@@ -1,0 +1,94 @@
+\contentsline {section}{\numberline {1}Introduction}{2}{section.1}%
+\contentsline {paragraph}{What Dimuon is.}{2}{section*.2}%
+\contentsline {paragraph}{What we did.}{3}{section*.3}%
+\contentsline {paragraph}{Summary of findings.}{3}{section*.4}%
+\contentsline {paragraph}{How to read this paper.}{3}{section*.5}%
+\contentsline {section}{\numberline {2}Background}{3}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Gradient descent}{3}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}Momentum}{4}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.3}Adam and AdamW}{4}{subsection.2.3}%
+\contentsline {subsection}{\numberline {2.4}Optimizers as steepest descent under a norm}{4}{subsection.2.4}%
+\contentsline {subsection}{\numberline {2.5}Computing the polar factor: Newton--Schulz and Polar Express}{5}{subsection.2.5}%
+\contentsline {subsection}{\numberline {2.6}Shampoo and PoLoRA}{5}{subsection.2.6}%
+\contentsline {subsection}{\numberline {2.7}LoRA}{6}{subsection.2.7}%
+\contentsline {subsection}{\numberline {2.8}Floating-point formats, and why rounding leaves fingerprints}{6}{subsection.2.8}%
+\contentsline {section}{\numberline {3}Method}{6}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Observing a step}{6}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Recovering the gradient: two oracle settings}{7}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.3}Branching a run, with and without optimizer state}{7}{subsection.3.3}%
+\contentsline {subsection}{\numberline {3.4}Residuals, held-out fitting, floors and nulls}{8}{subsection.3.4}%
+\contentsline {section}{\numberline {4}The rule}{8}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Statement}{8}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}A worked example}{9}{subsection.4.2}%
+\contentsline {paragraph}{Adam and Muon.}{9}{section*.7}%
+\contentsline {paragraph}{Dimuon, step 1.}{10}{section*.8}%
+\contentsline {paragraph}{Dimuon, step 2.}{10}{section*.9}%
+\contentsline {section}{\numberline {5}Evidence for each ingredient}{10}{section.5}%
+\contentsline {subsection}{\numberline {5.1}First-step direction and precision}{11}{subsection.5.1}%
+\contentsline {paragraph}{Data.}{11}{section*.10}%
+\contentsline {paragraph}{The update is a spectral function of the gradient.}{11}{section*.11}%
+\contentsline {paragraph}{The polynomial.}{12}{section*.13}%
+\contentsline {paragraph}{Precision.}{12}{section*.16}%
+\contentsline {paragraph}{Orientation.}{13}{section*.17}%
+\contentsline {paragraph}{Caveats.}{13}{section*.18}%
+\contentsline {subsection}{\numberline {5.2}Step size and its dependence on rank}{13}{subsection.5.2}%
+\contentsline {paragraph}{Measurement.}{13}{section*.19}%
+\contentsline {paragraph}{This is an explicit rescaling, not a consequence of orthogonality.}{13}{section*.20}%
+\contentsline {paragraph}{Learning rate and loss scale.}{14}{section*.21}%
+\contentsline {paragraph}{Caveat.}{14}{section*.22}%
+\contentsline {subsection}{\numberline {5.3}Fresh steps on $A$ and $B$, and absence of coupling}{14}{subsection.5.3}%
+\contentsline {paragraph}{Measurement.}{14}{section*.23}%
+\contentsline {paragraph}{No coupling between $A$ and $B$.}{14}{section*.24}%
+\contentsline {paragraph}{Caveats.}{14}{section*.25}%
+\contentsline {subsection}{\numberline {5.4}Hidden state and the lagged $-1/4$ preconditioner}{14}{subsection.5.4}%
+\contentsline {paragraph}{The optimizer remembers more than a momentum average.}{14}{section*.26}%
+\contentsline {paragraph}{Finding the form.}{15}{section*.27}%
+\contentsline {paragraph}{Damping.}{15}{section*.28}%
+\contentsline {paragraph}{Held-out test.}{15}{section*.29}%
+\contentsline {paragraph}{Two facts that follow.}{15}{section*.32}%
+\contentsline {paragraph}{Caveats.}{16}{section*.33}%
+\contentsline {subsection}{\numberline {5.5}Momentum form and storage}{16}{subsection.5.5}%
+\contentsline {paragraph}{The statistic comes from the previous momentum, not the previous gradient.}{16}{section*.34}%
+\contentsline {paragraph}{EMA, not a sum, and not Nesterov.}{16}{section*.35}%
+\contentsline {paragraph}{Stored in bf16, used unrounded.}{17}{section*.36}%
+\contentsline {paragraph}{What is fed to the orthogonaliser at step 1.}{17}{section*.37}%
+\contentsline {paragraph}{Caveats.}{17}{section*.38}%
+\contentsline {subsection}{\numberline {5.6}Zero-gradient steps}{17}{subsection.5.6}%
+\contentsline {paragraph}{Measurement.}{17}{section*.39}%
+\contentsline {paragraph}{Predictions without new constants.}{17}{section*.40}%
+\contentsline {paragraph}{bf16 storage at rank 32.}{18}{section*.41}%
+\contentsline {paragraph}{Changing $\beta $ at a zero step}{18}{section*.42}%
+\contentsline {subsection}{\numberline {5.7}Clipping}{18}{subsection.5.7}%
+\contentsline {paragraph}{Measurement.}{18}{section*.43}%
+\contentsline {paragraph}{Test}{18}{section*.44}%
+\contentsline {paragraph}{Caveat.}{18}{section*.45}%
+\contentsline {subsection}{\numberline {5.8}Learning rate}{19}{subsection.5.8}%
+\contentsline {subsection}{\numberline {5.9}Out-of-sample tests}{19}{subsection.5.9}%
+\contentsline {section}{\numberline {6}The service is not a deterministic function}{20}{section.6}%
+\contentsline {subsection}{\numberline {6.1}A change of regime}{20}{subsection.6.1}%
+\contentsline {subsection}{\numberline {6.2}Two gradient versions and two step variants}{20}{subsection.6.2}%
+\contentsline {subsection}{\numberline {6.3}What this did to earlier conclusions}{21}{subsection.6.3}%
+\contentsline {section}{\numberline {7}Comparison with public material}{21}{section.7}%
+\contentsline {subsection}{\numberline {7.1}What exists}{21}{subsection.7.1}%
+\contentsline {subsection}{\numberline {7.2}Agreement}{22}{subsection.7.2}%
+\contentsline {subsection}{\numberline {7.3}One disagreement, where we were wrong}{22}{subsection.7.3}%
+\contentsline {subsection}{\numberline {7.4}What the public material settles and what it does not}{22}{subsection.7.4}%
+\contentsline {section}{\numberline {8}What the rule does to training: a small behavioural test}{23}{section.8}%
+\contentsline {paragraph}{A prediction from the rule.}{23}{section*.48}%
+\contentsline {paragraph}{Setup.}{23}{section*.49}%
+\contentsline {paragraph}{Learning-rate correspondence: supported, at the low end.}{23}{section*.50}%
+\contentsline {paragraph}{No natural slowdown: not the cause of the floor.}{24}{section*.52}%
+\contentsline {paragraph}{Benefit from rank: not supported here.}{24}{section*.54}%
+\contentsline {paragraph}{Caveats.}{24}{section*.55}%
+\contentsline {section}{\numberline {9}Interpretation}{24}{section.9}%
+\contentsline {paragraph}{The update as steepest descent under a weighted spectral norm.}{25}{section*.56}%
+\contentsline {paragraph}{Relation to Shampoo and PoLoRA.}{25}{section*.57}%
+\contentsline {paragraph}{Rank 1.}{25}{section*.58}%
+\contentsline {paragraph}{Why a lagged statistic?}{25}{section*.59}%
+\contentsline {paragraph}{Damping and the fixed norm.}{25}{section*.60}%
+\contentsline {section}{\numberline {10}Limitations and open questions}{26}{section.10}%
+\contentsline {section}{\numberline {A}Reproducibility}{27}{appendix.A}%
+\contentsline {paragraph}{Repository layout.}{27}{section*.61}%
+\contentsline {paragraph}{Data layout.}{27}{section*.62}%
+\contentsline {paragraph}{Usage.}{27}{section*.63}%
+\contentsline {section}{\numberline {B}How the study was run}{27}{appendix.B}%

@@ -1,0 +1,12 @@
+S2_r8_b0.9/step1       R1 r8 b1=0.9   PE5(x0 f16) 5.19e-03 / 8.53e-03 / 1.60e-02 | fp16 fused 5.68e-03 / 9.08e-03 / 1.85e-02 | norm dev 1.1e-07 | max|dA| 0.0e+00
+S1_r8/step1            R1 r8 b1=0.9   PE5(x0 f16) 5.19e-03 / 8.53e-03 / 1.60e-02 | fp16 fused 5.68e-03 / 9.08e-03 / 1.85e-02 | norm dev 1.1e-07 | max|dA| 0.0e+00
+S5_step1_c2/step1      R1 r8 b1=0.9   PE5(x0 f16) 5.19e-03 / 8.53e-03 / 1.60e-02 | fp16 fused 5.68e-03 / 9.08e-03 / 1.85e-02 | norm dev 1.1e-07 | max|dA| 0.0e+00
+S2_r8_b0/step1         R2 r8 b1=0.0   PE5(x0 f16) 4.85e-03 / 9.14e-03 / 1.44e-02 | fp16 fused 5.55e-03 / 9.38e-03 / 1.63e-02 | norm dev 8.7e-08 | max|dA| 0.0e+00
+S2_r8_b0.5/step1       R2 r8 b1=0.5   PE5(x0 f16) 4.85e-03 / 9.14e-03 / 1.44e-02 | fp16 fused 5.55e-03 / 9.38e-03 / 1.63e-02 | norm dev 8.7e-08 | max|dA| 0.0e+00
+S2_r8_b0.99/step1      R2 r8 b1=0.99  PE5(x0 f16) 4.82e-03 / 9.02e-03 / 1.44e-02 | fp16 fused 5.55e-03 / 9.38e-03 / 1.63e-02 | norm dev 8.7e-08 | max|dA| 0.0e+00
+S6b_r8/step1           R2 r8 b1=0.9   PE5(x0 f16) 4.82e-03 / 9.14e-03 / 1.44e-02 | fp16 fused 5.55e-03 / 9.38e-03 / 1.63e-02 | norm dev 8.7e-08 | max|dA| 0.0e+00
+S4_r32_cont/step1      R1 r32 b1=0.9   PE5(x0 f16) 1.39e-02 / 1.63e-02 / 1.89e-02 | fp16 fused 1.88e-02 / 2.20e-02 / 2.51e-02 | norm dev 9.1e-08 | max|dA| 0.0e+00
+S1_r32/step1           R1 r32 b1=0.9   PE5(x0 f16) 1.39e-02 / 1.63e-02 / 1.89e-02 | fp16 fused 1.88e-02 / 2.20e-02 / 2.51e-02 | norm dev 9.1e-08 | max|dA| 0.0e+00
+S2_r32_b0/step1        R2 r32 b1=0.0   PE5(x0 f16) 1.40e-02 / 1.64e-02 / 1.92e-02 | fp16 fused 1.88e-02 / 2.21e-02 / 2.45e-02 | norm dev 9.8e-08 | max|dA| 0.0e+00
+S2_r32_b0.9/step1      R2 r32 b1=0.9   PE5(x0 f16) 1.40e-02 / 1.64e-02 / 1.88e-02 | fp16 fused 1.88e-02 / 2.22e-02 / 2.45e-02 | norm dev 9.8e-08 | max|dA| 0.0e+00
+S1v2_r32/step1         R2 r32 b1=0.9   PE5(x0 f16) 1.40e-02 / 1.64e-02 / 1.88e-02 | fp16 fused 1.88e-02 / 2.22e-02 / 2.45e-02 | norm dev 9.8e-08 | max|dA| 0.0e+00

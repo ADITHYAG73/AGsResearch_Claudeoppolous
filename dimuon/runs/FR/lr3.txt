@@ -1,0 +1,4 @@
+A: relE med 0.0368  p90 0.0521  max 0.0881  (n=76);  s_f16_f64 med 0.0135  p90 0.017  max 0.0221  (n=76);  corr(log relE, log s_f16_f64) = +0.647
+A: relE med 0.0368  p90 0.0521  max 0.0881  (n=76);  s_ulp med 0  p90 4.31e-06  max 0.00714  (n=76);  corr(log relE, log s_ulp) = -0.012
+B: relE med 0.0167  p90 0.0215  max 0.0284  (n=76);  s_f16_f64 med 0.00691  p90 0.0106  max 0.0151  (n=76);  corr(log relE, log s_f16_f64) = +0.235
+B: relE med 0.0167  p90 0.0215  max 0.0284  (n=76);  s_ulp med 0  p90 0  max 0.0051  (n=76);  corr(log relE, log s_ulp) = +0.546

@@ -1,0 +1,151 @@
+Traceback (most recent call last):
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 250, in safe
+    return j()
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_S0.py", line 6, in <lambda>
+    lambda: d.chain("S1_r32", 32, d.seq_steps(0.9, texts=[0] * 5), exp="S1", save=True),
+            ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 156, in chain
+    tc = new_client(kind, rank, ckpt, tag=name)
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 134, in new_client
+    return tk.make_client(optimizer, rank=rank, seed=0, tag=tag)
+           ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/tk.py", line 96, in make_client
+    train_unembed=train_unembed, optimizer=opt).result()
+                                                ~~~~~~^^
+  File "/tmp/claude-0/-home-user-AGsResearch-Claudeoppolous/31484cee-6902-5b45-bc20-3fc4fb38db73/scratchpad/venv/lib/python3.13/site-packages/tinker/lib/sync_only.py", line 94, in wrapper
+    return func(*args, **kwargs)
+  File "/tmp/claude-0/-home-user-AGsResearch-Claudeoppolous/31484cee-6902-5b45-bc20-3fc4fb38db73/scratchpad/venv/lib/python3.13/site-packages/tinker/lib/public_interfaces/backcompat_client_future.py", line 36, in result
+    return self._future.result(timeout)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/tmp/claude-0/-home-user-AGsResearch-Claudeoppolous/31484cee-6902-5b45-bc20-3fc4fb38db73/scratchpad/venv/lib/python3.13/site-packages/tinker/lib/public_interfaces/api_future.py", line 151, in result
+    return self._future.result(timeout)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/usr/local/lib/python3.13/concurrent/futures/_base.py", line 460, in result
+    return self.__get_result()
+           ~~~~~~~~~~~~~~~~~^^
+  File "/usr/local/lib/python3.13/concurrent/futures/_base.py", line 402, in __get_result
+    raise self._exception
+  File "/tmp/claude-0/-home-user-AGsResearch-Claudeoppolous/31484cee-6902-5b45-bc20-3fc4fb38db73/scratchpad/venv/lib/python3.13/site-packages/tinker/lib/telemetry.py", line 423, in _awrapper
+    return await cast(Callable[..., Awaitable[R]], func)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/claude-0/-home-user-AGsResearch-Claudeoppolous/31484cee-6902-5b45-bc20-3fc4fb38db73/scratchpad/venv/lib/python3.13/site-packages/tinker/lib/public_interfaces/service_client.py", line 276, in _create_lora_training_client_async
+    future = await client.models.create(request=request)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/claude-0/-home-user-AGsResearch-Claudeoppolous/31484cee-6902-5b45-bc20-3fc4fb38db73/scratchpad/venv/lib/python3.13/site-packages/tinker/resources/models.py", line 34, in create
+    return await self._post(
+           ^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "/tmp/claude-0/-home-user-AGsResearch-Claudeoppolous/31484cee-6902-5b45-bc20-3fc4fb38db73/scratchpad/venv/lib/python3.13/site-packages/tinker/_base_client.py", line 1289, in post
+    return await self.request(
+           ^^^^^^^^^^^^^^^^^^^
+    ...<5 lines>...
+    )
+    ^
+  File "/tmp/claude-0/-home-user-AGsResearch-Claudeoppolous/31484cee-6902-5b45-bc20-3fc4fb38db73/scratchpad/venv/lib/python3.13/site-packages/tinker/_base_client.py", line 1084, in request
+    raise self._make_status_error_from_response(err.response) from None
+tinker.BillingError: Error code: 402 - {'detail': 'Free checkpoint storage limit reached (bytes or checkpoint count). Delete checkpoints or switch to paid storage to create a new training client.'}
+Traceback (most recent call last):
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 250, in safe
+    return j()
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_S0.py", line 5, in <lambda>
+    lambda: d.chain("S1_r8", 8, d.seq_steps(0.9, texts=[0] * 5), exp="S1", save=True),
+            ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 156, in chain
+    tc = new_client(kind, rank, ckpt, tag=name)
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 134, in new_client
+    return tk.make_client(optimizer, rank=rank, seed=0, tag=tag)
+           ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/tk.py", line 96, in make_client
+    train_unembed=train_unembed, optimizer=opt).result()
+                                                ~~~~~~^^
+  File "/tmp/claude-0/-home-user-AGsResearch-Claudeoppolous/31484cee-6902-5b45-bc20-3fc4fb38db73/scratchpad/venv/lib/python3.13/site-packages/tinker/lib/sync_only.py", line 94, in wrapper
+    return func(*args, **kwargs)
+  File "/tmp/claude-0/-home-user-AGsResearch-Claudeoppolous/31484cee-6902-5b45-bc20-3fc4fb38db73/scratchpad/venv/lib/python3.13/site-packages/tinker/lib/public_interfaces/backcompat_client_future.py", line 36, in result
+    return self._future.result(timeout)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/tmp/claude-0/-home-user-AGsResearch-Claudeoppolous/31484cee-6902-5b45-bc20-3fc4fb38db73/scratchpad/venv/lib/python3.13/site-packages/tinker/lib/public_interfaces/api_future.py", line 151, in result
+    return self._future.result(timeout)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/usr/local/lib/python3.13/concurrent/futures/_base.py", line 460, in result
+    return self.__get_result()
+           ~~~~~~~~~~~~~~~~~^^
+  File "/usr/local/lib/python3.13/concurrent/futures/_base.py", line 402, in __get_result
+    raise self._exception
+  File "/tmp/claude-0/-home-user-AGsResearch-Claudeoppolous/31484cee-6902-5b45-bc20-3fc4fb38db73/scratchpad/venv/lib/python3.13/site-packages/tinker/lib/telemetry.py", line 423, in _awrapper
+    return await cast(Callable[..., Awaitable[R]], func)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/claude-0/-home-user-AGsResearch-Claudeoppolous/31484cee-6902-5b45-bc20-3fc4fb38db73/scratchpad/venv/lib/python3.13/site-packages/tinker/lib/public_interfaces/service_client.py", line 276, in _create_lora_training_client_async
+    future = await client.models.create(request=request)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/claude-0/-home-user-AGsResearch-Claudeoppolous/31484cee-6902-5b45-bc20-3fc4fb38db73/scratchpad/venv/lib/python3.13/site-packages/tinker/resources/models.py", line 34, in create
+    return await self._post(
+           ^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "/tmp/claude-0/-home-user-AGsResearch-Claudeoppolous/31484cee-6902-5b45-bc20-3fc4fb38db73/scratchpad/venv/lib/python3.13/site-packages/tinker/_base_client.py", line 1289, in post
+    return await self.request(
+           ^^^^^^^^^^^^^^^^^^^
+    ...<5 lines>...
+    )
+    ^
+  File "/tmp/claude-0/-home-user-AGsResearch-Claudeoppolous/31484cee-6902-5b45-bc20-3fc4fb38db73/scratchpad/venv/lib/python3.13/site-packages/tinker/_base_client.py", line 1084, in request
+    raise self._make_status_error_from_response(err.response) from None
+tinker.BillingError: Error code: 402 - {'detail': 'Free checkpoint storage limit reached (bytes or checkpoint count). Delete checkpoints or switch to paid storage to create a new training client.'}
+Traceback (most recent call last):
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 250, in safe
+    return j()
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_S0.py", line 7, in <lambda>
+    lambda: d.chain("S2_r32_b0.9", 32, d.seq_steps(0.9), exp="S2", save=True),
+            ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 156, in chain
+    tc = new_client(kind, rank, ckpt, tag=name)
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 134, in new_client
+    return tk.make_client(optimizer, rank=rank, seed=0, tag=tag)
+           ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/tk.py", line 96, in make_client
+    train_unembed=train_unembed, optimizer=opt).result()
+                                                ~~~~~~^^
+  File "/tmp/claude-0/-home-user-AGsResearch-Claudeoppolous/31484cee-6902-5b45-bc20-3fc4fb38db73/scratchpad/venv/lib/python3.13/site-packages/tinker/lib/sync_only.py", line 94, in wrapper
+    return func(*args, **kwargs)
+  File "/tmp/claude-0/-home-user-AGsResearch-Claudeoppolous/31484cee-6902-5b45-bc20-3fc4fb38db73/scratchpad/venv/lib/python3.13/site-packages/tinker/lib/public_interfaces/backcompat_client_future.py", line 36, in result
+    return self._future.result(timeout)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/tmp/claude-0/-home-user-AGsResearch-Claudeoppolous/31484cee-6902-5b45-bc20-3fc4fb38db73/scratchpad/venv/lib/python3.13/site-packages/tinker/lib/public_interfaces/api_future.py", line 151, in result
+    return self._future.result(timeout)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/usr/local/lib/python3.13/concurrent/futures/_base.py", line 460, in result
+    return self.__get_result()
+           ~~~~~~~~~~~~~~~~~^^
+  File "/usr/local/lib/python3.13/concurrent/futures/_base.py", line 402, in __get_result
+    raise self._exception
+  File "/tmp/claude-0/-home-user-AGsResearch-Claudeoppolous/31484cee-6902-5b45-bc20-3fc4fb38db73/scratchpad/venv/lib/python3.13/site-packages/tinker/lib/telemetry.py", line 423, in _awrapper
+    return await cast(Callable[..., Awaitable[R]], func)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/claude-0/-home-user-AGsResearch-Claudeoppolous/31484cee-6902-5b45-bc20-3fc4fb38db73/scratchpad/venv/lib/python3.13/site-packages/tinker/lib/public_interfaces/service_client.py", line 276, in _create_lora_training_client_async
+    future = await client.models.create(request=request)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/claude-0/-home-user-AGsResearch-Claudeoppolous/31484cee-6902-5b45-bc20-3fc4fb38db73/scratchpad/venv/lib/python3.13/site-packages/tinker/resources/models.py", line 34, in create
+    return await self._post(
+           ^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "/tmp/claude-0/-home-user-AGsResearch-Claudeoppolous/31484cee-6902-5b45-bc20-3fc4fb38db73/scratchpad/venv/lib/python3.13/site-packages/tinker/_base_client.py", line 1289, in post
+    return await self.request(
+           ^^^^^^^^^^^^^^^^^^^
+    ...<5 lines>...
+    )
+    ^
+  File "/tmp/claude-0/-home-user-AGsResearch-Claudeoppolous/31484cee-6902-5b45-bc20-3fc4fb38db73/scratchpad/venv/lib/python3.13/site-packages/tinker/_base_client.py", line 1084, in request
+    raise self._make_status_error_from_response(err.response) from None
+tinker.BillingError: Error code: 402 - {'detail': 'Free checkpoint storage limit reached (bytes or checkpoint count). Delete checkpoints or switch to paid storage to create a new training client.'}
+oracle 0ff0b9c991af1568_t0_w1_O1 done 44.3s resid 1.80e-06 bad 0
+oracle 97ca72c50f509776_t1_w1_O2 done 65.6s resid 5.76e-04 bad 0
+oracle 97ca72c50f509776_t1_w1_O3 done 63.7s resid 3.64e-03 bad 593412
+chain S0_opt_ck1 done 66s
+chain S0_opt_ck2 done 47s
+chain S0_fresh_ck0 done 59s
+{'clients': 6, 'forward_backward': 6, 'optim_step': 6, 'exports': 12, 'uploads': 0}

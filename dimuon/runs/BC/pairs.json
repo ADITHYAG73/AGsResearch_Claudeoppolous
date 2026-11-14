@@ -1,0 +1,772 @@
+{
+ "g|pair|mul|eps=0": {
+  "TP": 0,
+  "FP": 0,
+  "FN": 27,
+  "TP_clean": 0,
+  "TP_clean_exact": 0
+ },
+ "ema_a64|pair|mul|eps=0": {
+  "TP": 13,
+  "FP": 16,
+  "FN": 14,
+  "TP_clean": 4,
+  "TP_clean_exact": 4
+ },
+ "ema_a32|pair|mul|eps=0": {
+  "TP": 10,
+  "FP": 20,
+  "FN": 17,
+  "TP_clean": 8,
+  "TP_clean_exact": 8
+ },
+ "lerp_a64|pair|mul|eps=0": {
+  "TP": 11,
+  "FP": 15,
+  "FN": 16,
+  "TP_clean": 4,
+  "TP_clean_exact": 4
+ },
+ "lerp_a64_fma|pair|mul|eps=0": {
+  "TP": 13,
+  "FP": 16,
+  "FN": 14,
+  "TP_clean": 4,
+  "TP_clean_exact": 4
+ },
+ "lerp_a32|pair|mul|eps=0": {
+  "TP": 10,
+  "FP": 19,
+  "FN": 17,
+  "TP_clean": 9,
+  "TP_clean_exact": 9
+ },
+ "ema_a64_bcdiv64|pair|mul|eps=0": {
+  "TP": 2,
+  "FP": 5,
+  "FN": 25,
+  "TP_clean": 2,
+  "TP_clean_exact": 2
+ },
+ "ema_a64_bcdiv32|pair|mul|eps=0": {
+  "TP": 14,
+  "FP": 13,
+  "FN": 13,
+  "TP_clean": 5,
+  "TP_clean_exact": 5
+ },
+ "ema_a32_bcdiv32|pair|mul|eps=0": {
+  "TP": 2,
+  "FP": 2,
+  "FN": 25,
+  "TP_clean": 2,
+  "TP_clean_exact": 2
+ },
+ "ema_a64_bcmul64|pair|mul|eps=0": {
+  "TP": 7,
+  "FP": 11,
+  "FN": 20,
+  "TP_clean": 7,
+  "TP_clean_exact": 7
+ },
+ "lerp_a64_bcdiv64|pair|mul|eps=0": {
+  "TP": 2,
+  "FP": 5,
+  "FN": 25,
+  "TP_clean": 2,
+  "TP_clean_exact": 2
+ },
+ "g|pair|mul|eps=1e-07": {
+  "TP": 0,
+  "FP": 0,
+  "FN": 27,
+  "TP_clean": 0,
+  "TP_clean_exact": 0
+ },
+ "ema_a64|pair|mul|eps=1e-07": {
+  "TP": 10,
+  "FP": 992,
+  "FN": 17,
+  "TP_clean": 3,
+  "TP_clean_exact": 2
+ },
+ "ema_a32|pair|mul|eps=1e-07": {
+  "TP": 10,
+  "FP": 997,
+  "FN": 17,
+  "TP_clean": 3,
+  "TP_clean_exact": 2
+ },
+ "lerp_a64|pair|mul|eps=1e-07": {
+  "TP": 12,
+  "FP": 991,
+  "FN": 15,
+  "TP_clean": 5,
+  "TP_clean_exact": 4
+ },
+ "lerp_a64_fma|pair|mul|eps=1e-07": {
+  "TP": 10,
+  "FP": 992,
+  "FN": 17,
+  "TP_clean": 3,
+  "TP_clean_exact": 2
+ },
+ "lerp_a32|pair|mul|eps=1e-07": {
+  "TP": 12,
+  "FP": 996,
+  "FN": 15,
+  "TP_clean": 5,
+  "TP_clean_exact": 4
+ },
+ "ema_a64_bcdiv64|pair|mul|eps=1e-07": {
+  "TP": 2,
+  "FP": 2,
+  "FN": 25,
+  "TP_clean": 2,
+  "TP_clean_exact": 2
+ },
+ "ema_a64_bcdiv32|pair|mul|eps=1e-07": {
+  "TP": 14,
+  "FP": 18,
+  "FN": 13,
+  "TP_clean": 5,
+  "TP_clean_exact": 5
+ },
+ "ema_a32_bcdiv32|pair|mul|eps=1e-07": {
+  "TP": 2,
+  "FP": 2,
+  "FN": 25,
+  "TP_clean": 2,
+  "TP_clean_exact": 2
+ },
+ "ema_a64_bcmul64|pair|mul|eps=1e-07": {
+  "TP": 7,
+  "FP": 3,
+  "FN": 20,
+  "TP_clean": 7,
+  "TP_clean_exact": 7
+ },
+ "lerp_a64_bcdiv64|pair|mul|eps=1e-07": {
+  "TP": 2,
+  "FP": 2,
+  "FN": 25,
+  "TP_clean": 2,
+  "TP_clean_exact": 2
+ },
+ "g|pair|recip|eps=0": {
+  "TP": 0,
+  "FP": 0,
+  "FN": 27,
+  "TP_clean": 0,
+  "TP_clean_exact": 0
+ },
+ "ema_a64|pair|recip|eps=0": {
+  "TP": 11,
+  "FP": 20,
+  "FN": 16,
+  "TP_clean": 4,
+  "TP_clean_exact": 4
+ },
+ "ema_a32|pair|recip|eps=0": {
+  "TP": 12,
+  "FP": 20,
+  "FN": 15,
+  "TP_clean": 9,
+  "TP_clean_exact": 9
+ },
+ "lerp_a64|pair|recip|eps=0": {
+  "TP": 11,
+  "FP": 23,
+  "FN": 16,
+  "TP_clean": 4,
+  "TP_clean_exact": 4
+ },
+ "lerp_a64_fma|pair|recip|eps=0": {
+  "TP": 11,
+  "FP": 20,
+  "FN": 16,
+  "TP_clean": 4,
+  "TP_clean_exact": 4
+ },
+ "lerp_a32|pair|recip|eps=0": {
+  "TP": 12,
+  "FP": 23,
+  "FN": 15,
+  "TP_clean": 9,
+  "TP_clean_exact": 9
+ },
+ "ema_a64_bcdiv64|pair|recip|eps=0": {
+  "TP": 3,
+  "FP": 3,
+  "FN": 24,
+  "TP_clean": 3,
+  "TP_clean_exact": 3
+ },
+ "ema_a64_bcdiv32|pair|recip|eps=0": {
+  "TP": 10,
+  "FP": 7,
+  "FN": 17,
+  "TP_clean": 2,
+  "TP_clean_exact": 2
+ },
+ "ema_a32_bcdiv32|pair|recip|eps=0": {
+  "TP": 0,
+  "FP": 0,
+  "FN": 27,
+  "TP_clean": 0,
+  "TP_clean_exact": 0
+ },
+ "ema_a64_bcmul64|pair|recip|eps=0": {
+  "TP": 5,
+  "FP": 4,
+  "FN": 22,
+  "TP_clean": 5,
+  "TP_clean_exact": 5
+ },
+ "lerp_a64_bcdiv64|pair|recip|eps=0": {
+  "TP": 3,
+  "FP": 3,
+  "FN": 24,
+  "TP_clean": 3,
+  "TP_clean_exact": 3
+ },
+ "g|pair|recip|eps=1e-07": {
+  "TP": 0,
+  "FP": 0,
+  "FN": 27,
+  "TP_clean": 0,
+  "TP_clean_exact": 0
+ },
+ "ema_a64|pair|recip|eps=1e-07": {
+  "TP": 12,
+  "FP": 994,
+  "FN": 15,
+  "TP_clean": 5,
+  "TP_clean_exact": 4
+ },
+ "ema_a32|pair|recip|eps=1e-07": {
+  "TP": 12,
+  "FP": 998,
+  "FN": 15,
+  "TP_clean": 5,
+  "TP_clean_exact": 4
+ },
+ "lerp_a64|pair|recip|eps=1e-07": {
+  "TP": 12,
+  "FP": 996,
+  "FN": 15,
+  "TP_clean": 5,
+  "TP_clean_exact": 4
+ },
+ "lerp_a64_fma|pair|recip|eps=1e-07": {
+  "TP": 12,
+  "FP": 994,
+  "FN": 15,
+  "TP_clean": 5,
+  "TP_clean_exact": 4
+ },
+ "lerp_a32|pair|recip|eps=1e-07": {
+  "TP": 12,
+  "FP": 1000,
+  "FN": 15,
+  "TP_clean": 5,
+  "TP_clean_exact": 4
+ },
+ "ema_a64_bcdiv64|pair|recip|eps=1e-07": {
+  "TP": 3,
+  "FP": 3,
+  "FN": 24,
+  "TP_clean": 3,
+  "TP_clean_exact": 3
+ },
+ "ema_a64_bcdiv32|pair|recip|eps=1e-07": {
+  "TP": 10,
+  "FP": 9,
+  "FN": 17,
+  "TP_clean": 2,
+  "TP_clean_exact": 2
+ },
+ "ema_a32_bcdiv32|pair|recip|eps=1e-07": {
+  "TP": 0,
+  "FP": 0,
+  "FN": 27,
+  "TP_clean": 0,
+  "TP_clean_exact": 0
+ },
+ "ema_a64_bcmul64|pair|recip|eps=1e-07": {
+  "TP": 5,
+  "FP": 4,
+  "FN": 22,
+  "TP_clean": 5,
+  "TP_clean_exact": 5
+ },
+ "lerp_a64_bcdiv64|pair|recip|eps=1e-07": {
+  "TP": 3,
+  "FP": 3,
+  "FN": 24,
+  "TP_clean": 3,
+  "TP_clean_exact": 3
+ },
+ "g|pair|div2|eps=0": {
+  "TP": 0,
+  "FP": 0,
+  "FN": 27,
+  "TP_clean": 0,
+  "TP_clean_exact": 0
+ },
+ "ema_a64|pair|div2|eps=0": {
+  "TP": 5,
+  "FP": 5,
+  "FN": 22,
+  "TP_clean": 5,
+  "TP_clean_exact": 5
+ },
+ "ema_a32|pair|div2|eps=0": {
+  "TP": 3,
+  "FP": 7,
+  "FN": 24,
+  "TP_clean": 3,
+  "TP_clean_exact": 3
+ },
+ "lerp_a64|pair|div2|eps=0": {
+  "TP": 5,
+  "FP": 5,
+  "FN": 22,
+  "TP_clean": 5,
+  "TP_clean_exact": 5
+ },
+ "lerp_a64_fma|pair|div2|eps=0": {
+  "TP": 5,
+  "FP": 5,
+  "FN": 22,
+  "TP_clean": 5,
+  "TP_clean_exact": 5
+ },
+ "lerp_a32|pair|div2|eps=0": {
+  "TP": 3,
+  "FP": 7,
+  "FN": 24,
+  "TP_clean": 3,
+  "TP_clean_exact": 3
+ },
+ "ema_a64_bcdiv64|pair|div2|eps=0": {
+  "TP": 3,
+  "FP": 4,
+  "FN": 24,
+  "TP_clean": 3,
+  "TP_clean_exact": 3
+ },
+ "ema_a64_bcdiv32|pair|div2|eps=0": {
+  "TP": 6,
+  "FP": 15,
+  "FN": 21,
+  "TP_clean": 4,
+  "TP_clean_exact": 4
+ },
+ "ema_a32_bcdiv32|pair|div2|eps=0": {
+  "TP": 0,
+  "FP": 1,
+  "FN": 27,
+  "TP_clean": 0,
+  "TP_clean_exact": 0
+ },
+ "ema_a64_bcmul64|pair|div2|eps=0": {
+  "TP": 3,
+  "FP": 9,
+  "FN": 24,
+  "TP_clean": 3,
+  "TP_clean_exact": 3
+ },
+ "lerp_a64_bcdiv64|pair|div2|eps=0": {
+  "TP": 3,
+  "FP": 4,
+  "FN": 24,
+  "TP_clean": 3,
+  "TP_clean_exact": 3
+ },
+ "g|f64|mul|eps=0": {
+  "TP": 0,
+  "FP": 0,
+  "FN": 27,
+  "TP_clean": 0,
+  "TP_clean_exact": 0
+ },
+ "ema_a64|f64|mul|eps=0": {
+  "TP": 10,
+  "FP": 11,
+  "FN": 17,
+  "TP_clean": 4,
+  "TP_clean_exact": 4
+ },
+ "ema_a32|f64|mul|eps=0": {
+  "TP": 10,
+  "FP": 14,
+  "FN": 17,
+  "TP_clean": 9,
+  "TP_clean_exact": 9
+ },
+ "lerp_a64|f64|mul|eps=0": {
+  "TP": 12,
+  "FP": 12,
+  "FN": 15,
+  "TP_clean": 4,
+  "TP_clean_exact": 4
+ },
+ "lerp_a64_fma|f64|mul|eps=0": {
+  "TP": 10,
+  "FP": 11,
+  "FN": 17,
+  "TP_clean": 4,
+  "TP_clean_exact": 4
+ },
+ "lerp_a32|f64|mul|eps=0": {
+  "TP": 10,
+  "FP": 15,
+  "FN": 17,
+  "TP_clean": 8,
+  "TP_clean_exact": 8
+ },
+ "ema_a64_bcdiv64|f64|mul|eps=0": {
+  "TP": 3,
+  "FP": 3,
+  "FN": 24,
+  "TP_clean": 3,
+  "TP_clean_exact": 3
+ },
+ "ema_a64_bcdiv32|f64|mul|eps=0": {
+  "TP": 15,
+  "FP": 3,
+  "FN": 12,
+  "TP_clean": 5,
+  "TP_clean_exact": 5
+ },
+ "ema_a32_bcdiv32|f64|mul|eps=0": {
+  "TP": 0,
+  "FP": 0,
+  "FN": 27,
+  "TP_clean": 0,
+  "TP_clean_exact": 0
+ },
+ "ema_a64_bcmul64|f64|mul|eps=0": {
+  "TP": 12,
+  "FP": 11,
+  "FN": 15,
+  "TP_clean": 12,
+  "TP_clean_exact": 12
+ },
+ "lerp_a64_bcdiv64|f64|mul|eps=0": {
+  "TP": 3,
+  "FP": 3,
+  "FN": 24,
+  "TP_clean": 3,
+  "TP_clean_exact": 3
+ },
+ "g|f64|mul|eps=1e-07": {
+  "TP": 0,
+  "FP": 0,
+  "FN": 27,
+  "TP_clean": 0,
+  "TP_clean_exact": 0
+ },
+ "ema_a64|f64|mul|eps=1e-07": {
+  "TP": 12,
+  "FP": 991,
+  "FN": 15,
+  "TP_clean": 5,
+  "TP_clean_exact": 4
+ },
+ "ema_a32|f64|mul|eps=1e-07": {
+  "TP": 12,
+  "FP": 996,
+  "FN": 15,
+  "TP_clean": 5,
+  "TP_clean_exact": 4
+ },
+ "lerp_a64|f64|mul|eps=1e-07": {
+  "TP": 10,
+  "FP": 992,
+  "FN": 17,
+  "TP_clean": 3,
+  "TP_clean_exact": 2
+ },
+ "lerp_a64_fma|f64|mul|eps=1e-07": {
+  "TP": 12,
+  "FP": 991,
+  "FN": 15,
+  "TP_clean": 5,
+  "TP_clean_exact": 4
+ },
+ "lerp_a32|f64|mul|eps=1e-07": {
+  "TP": 10,
+  "FP": 997,
+  "FN": 17,
+  "TP_clean": 3,
+  "TP_clean_exact": 2
+ },
+ "ema_a64_bcdiv64|f64|mul|eps=1e-07": {
+  "TP": 3,
+  "FP": 0,
+  "FN": 24,
+  "TP_clean": 3,
+  "TP_clean_exact": 3
+ },
+ "ema_a64_bcdiv32|f64|mul|eps=1e-07": {
+  "TP": 15,
+  "FP": 3,
+  "FN": 12,
+  "TP_clean": 5,
+  "TP_clean_exact": 5
+ },
+ "ema_a32_bcdiv32|f64|mul|eps=1e-07": {
+  "TP": 0,
+  "FP": 0,
+  "FN": 27,
+  "TP_clean": 0,
+  "TP_clean_exact": 0
+ },
+ "ema_a64_bcmul64|f64|mul|eps=1e-07": {
+  "TP": 12,
+  "FP": 8,
+  "FN": 15,
+  "TP_clean": 12,
+  "TP_clean_exact": 12
+ },
+ "lerp_a64_bcdiv64|f64|mul|eps=1e-07": {
+  "TP": 3,
+  "FP": 0,
+  "FN": 24,
+  "TP_clean": 3,
+  "TP_clean_exact": 3
+ },
+ "g|f64|recip|eps=0": {
+  "TP": 0,
+  "FP": 0,
+  "FN": 27,
+  "TP_clean": 0,
+  "TP_clean_exact": 0
+ },
+ "ema_a64|f64|recip|eps=0": {
+  "TP": 10,
+  "FP": 16,
+  "FN": 17,
+  "TP_clean": 4,
+  "TP_clean_exact": 4
+ },
+ "ema_a32|f64|recip|eps=0": {
+  "TP": 12,
+  "FP": 15,
+  "FN": 15,
+  "TP_clean": 9,
+  "TP_clean_exact": 9
+ },
+ "lerp_a64|f64|recip|eps=0": {
+  "TP": 10,
+  "FP": 19,
+  "FN": 17,
+  "TP_clean": 4,
+  "TP_clean_exact": 4
+ },
+ "lerp_a64_fma|f64|recip|eps=0": {
+  "TP": 10,
+  "FP": 16,
+  "FN": 17,
+  "TP_clean": 4,
+  "TP_clean_exact": 4
+ },
+ "lerp_a32|f64|recip|eps=0": {
+  "TP": 12,
+  "FP": 18,
+  "FN": 15,
+  "TP_clean": 9,
+  "TP_clean_exact": 9
+ },
+ "ema_a64_bcdiv64|f64|recip|eps=0": {
+  "TP": 3,
+  "FP": 3,
+  "FN": 24,
+  "TP_clean": 3,
+  "TP_clean_exact": 3
+ },
+ "ema_a64_bcdiv32|f64|recip|eps=0": {
+  "TP": 12,
+  "FP": 11,
+  "FN": 15,
+  "TP_clean": 2,
+  "TP_clean_exact": 2
+ },
+ "ema_a32_bcdiv32|f64|recip|eps=0": {
+  "TP": 0,
+  "FP": 0,
+  "FN": 27,
+  "TP_clean": 0,
+  "TP_clean_exact": 0
+ },
+ "ema_a64_bcmul64|f64|recip|eps=0": {
+  "TP": 13,
+  "FP": 4,
+  "FN": 14,
+  "TP_clean": 13,
+  "TP_clean_exact": 13
+ },
+ "lerp_a64_bcdiv64|f64|recip|eps=0": {
+  "TP": 3,
+  "FP": 3,
+  "FN": 24,
+  "TP_clean": 3,
+  "TP_clean_exact": 3
+ },
+ "g|f64|recip|eps=1e-07": {
+  "TP": 0,
+  "FP": 0,
+  "FN": 27,
+  "TP_clean": 0,
+  "TP_clean_exact": 0
+ },
+ "ema_a64|f64|recip|eps=1e-07": {
+  "TP": 12,
+  "FP": 989,
+  "FN": 15,
+  "TP_clean": 5,
+  "TP_clean_exact": 4
+ },
+ "ema_a32|f64|recip|eps=1e-07": {
+  "TP": 12,
+  "FP": 997,
+  "FN": 15,
+  "TP_clean": 5,
+  "TP_clean_exact": 4
+ },
+ "lerp_a64|f64|recip|eps=1e-07": {
+  "TP": 12,
+  "FP": 991,
+  "FN": 15,
+  "TP_clean": 5,
+  "TP_clean_exact": 4
+ },
+ "lerp_a64_fma|f64|recip|eps=1e-07": {
+  "TP": 12,
+  "FP": 989,
+  "FN": 15,
+  "TP_clean": 5,
+  "TP_clean_exact": 4
+ },
+ "lerp_a32|f64|recip|eps=1e-07": {
+  "TP": 12,
+  "FP": 999,
+  "FN": 15,
+  "TP_clean": 5,
+  "TP_clean_exact": 4
+ },
+ "ema_a64_bcdiv64|f64|recip|eps=1e-07": {
+  "TP": 3,
+  "FP": 3,
+  "FN": 24,
+  "TP_clean": 3,
+  "TP_clean_exact": 3
+ },
+ "ema_a64_bcdiv32|f64|recip|eps=1e-07": {
+  "TP": 12,
+  "FP": 8,
+  "FN": 15,
+  "TP_clean": 2,
+  "TP_clean_exact": 2
+ },
+ "ema_a32_bcdiv32|f64|recip|eps=1e-07": {
+  "TP": 0,
+  "FP": 0,
+  "FN": 27,
+  "TP_clean": 0,
+  "TP_clean_exact": 0
+ },
+ "ema_a64_bcmul64|f64|recip|eps=1e-07": {
+  "TP": 13,
+  "FP": 9,
+  "FN": 14,
+  "TP_clean": 13,
+  "TP_clean_exact": 13
+ },
+ "lerp_a64_bcdiv64|f64|recip|eps=1e-07": {
+  "TP": 3,
+  "FP": 3,
+  "FN": 24,
+  "TP_clean": 3,
+  "TP_clean_exact": 3
+ },
+ "g|f64|div2|eps=0": {
+  "TP": 0,
+  "FP": 0,
+  "FN": 27,
+  "TP_clean": 0,
+  "TP_clean_exact": 0
+ },
+ "ema_a64|f64|div2|eps=0": {
+  "TP": 5,
+  "FP": 4,
+  "FN": 22,
+  "TP_clean": 5,
+  "TP_clean_exact": 5
+ },
+ "ema_a32|f64|div2|eps=0": {
+  "TP": 3,
+  "FP": 6,
+  "FN": 24,
+  "TP_clean": 3,
+  "TP_clean_exact": 3
+ },
+ "lerp_a64|f64|div2|eps=0": {
+  "TP": 5,
+  "FP": 4,
+  "FN": 22,
+  "TP_clean": 5,
+  "TP_clean_exact": 5
+ },
+ "lerp_a64_fma|f64|div2|eps=0": {
+  "TP": 5,
+  "FP": 4,
+  "FN": 22,
+  "TP_clean": 5,
+  "TP_clean_exact": 5
+ },
+ "lerp_a32|f64|div2|eps=0": {
+  "TP": 3,
+  "FP": 6,
+  "FN": 24,
+  "TP_clean": 3,
+  "TP_clean_exact": 3
+ },
+ "ema_a64_bcdiv64|f64|div2|eps=0": {
+  "TP": 0,
+  "FP": 3,
+  "FN": 27,
+  "TP_clean": 0,
+  "TP_clean_exact": 0
+ },
+ "ema_a64_bcdiv32|f64|div2|eps=0": {
+  "TP": 3,
+  "FP": 6,
+  "FN": 24,
+  "TP_clean": 2,
+  "TP_clean_exact": 2
+ },
+ "ema_a32_bcdiv32|f64|div2|eps=0": {
+  "TP": 0,
+  "FP": 0,
+  "FN": 27,
+  "TP_clean": 0,
+  "TP_clean_exact": 0
+ },
+ "ema_a64_bcmul64|f64|div2|eps=0": {
+  "TP": 6,
+  "FP": 8,
+  "FN": 21,
+  "TP_clean": 6,
+  "TP_clean_exact": 6
+ },
+ "lerp_a64_bcdiv64|f64|div2|eps=0": {
+  "TP": 0,
+  "FP": 3,
+  "FN": 27,
+  "TP_clean": 0,
+  "TP_clean_exact": 0
+ }
+}

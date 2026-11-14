@@ -1,0 +1,27 @@
+{
+ "job": {
+  "name": "r1_b0.999",
+  "kind": "dimuon",
+  "rank": 1,
+  "beta": 0.999
+ },
+ "optim_params": {
+  "type": "dimuon",
+  "learning_rate": 0.001,
+  "grad_clip_norm": 0.0,
+  "beta1": 0.999
+ },
+ "model_id": "002647d0-9705-5c06-bee4-bcf3be45bd4b:train:5",
+ "metrics": {
+  "fb": {
+   "loss:sum": 30.40399169921875,
+   "clock_cycle:unique": 7206214.0
+  },
+  "optim": {}
+ },
+ "A_sha256": "b62c2bbcdb22793aa9772d1daea64aed4b3d3e3a662b7ba96261479908c1e27a",
+ "export_path": "tinker://002647d0-9705-5c06-bee4-bcf3be45bd4b:train:5/external_weights/BC-r1_b0.999",
+ "export_deleted": true,
+ "t_end": "2026-11-10T23:33:06Z",
+ "secs": 29.9
+}
