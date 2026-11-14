@@ -1101,3 +1101,69 @@ no files written except losses.
 `bh_c_stats.py`; `runs/BH/{A,B,R,C}_*.json` (per-step train loss, held-out every 10, s/step, model_id),
 `summary.json`, `blockC_stats.json`, `blockA.log`, `blockBC.log`; `figures/bh_curves.png`, `bh_lr.png`,
 `bh_blockC.png`.
+
+## BEHAVE-02 — does Dimuon's constant-lr floor persist below its best lr? — 2026-11-14 (measurement agent; UNREVIEWED)
+
+**Question.** BEHAVE-01 block C: at constant lr Dimuon 1e-2 (its best) ends on a noisy floor (late median 0.023), AdamW
+3e-4 (its best) settles to 5e-6, but AdamW at 1e-3 also shows a floor. Fixed-step account: Dimuon's per-tensor update
+norm is fixed, so it cannot settle at constant lr; well below its best lr it still sits on a floor (lower, but well
+above AdamW and not decreasing). Stability-edge account: Dimuon's best lr is simply nearer its stability edge; well
+below it Dimuon settles like AdamW.
+
+**Setup.** Identical to BEHAVE-01 (same model, Velish data, split seed 1234, fixed minibatch order, LoRA seed 0, rank 8,
+attn+MLP), constant lr, 240 steps planned, held-out every 20. `pipeline/bh2_blockD.py`; `bh_lib.py` gained a
+`data_seed` argument (0 = BEHAVE-01 behaviour, unchanged) and now writes the json every 10 steps. Stats:
+`pipeline/bh2_analyze.py` → `runs/BH/behave02_stats.json`, figure `figures/bh_floor.png`. Last 60 = the last 60
+steps the run actually reached.
+
+**Consistency check.** First 60 steps against block A at the same lr: mean train loss AdamW 1e-4 0.931 vs 0.943,
+Dimuon 1e-3 4.144 vs 4.147 (within the 6% repeat noise; not bit-identical, as before).
+
+**Service throughput was the binding constraint.** Steps took 4 s for some clients and 30–260 s for others. Attempt 1
+(00:34) gave Dimuon 1e-3 a fast lane (240 steps at 6.3 s/step); the other three stalled (one waited >13 min on its
+step-0 eval). At 01:08 I killed and relaunched those three with fresh clients (partials kept in
+`runs/BH/D_attempt1_partial/`). They still ran at ~30–100 s/step and were stopped at 02:47 by the deadline.
+**Only Dimuon 1e-3 completed 240 steps.**
+
+| run | steps reached | first step < 0.01 | last-60 window | median | max | frac > 0.01 | trend (median) |
+|---|---|---|---|---|---|---|---|
+| Dimuon 1e-3 (1/10 best) | **240 (done)** | 88 | 181–240 | **1.4e-5** | 3.3e-3 | **0.00** | 121–180: 1.05e-3 → 181–240: 1.4e-5 (falling) |
+| Dimuon 3e-3 (1/3 best) | 110 (partial) | 46 | 51–110 | 6.3e-5 | 0.033 | 0.02 | 51–80: 1.6e-4 → 81–110: 2.5e-5 (falling) |
+| AdamW 1e-4 (1/3 best) | 170 (partial) | 34 | 111–170 | 1.3e-5 | 4.3e-5 | 0.00 | 111–140: 1.6e-5 → 141–170: 9.5e-6 (falling) |
+| AdamW 3e-5 (1/10 best) | 60 (partial) | not reached | 1–60 | 0.90 | 7.8 | 1.00 | not converged — no reading |
+| *ref.* AdamW 3e-4 const (BEHAVE-01 C) | 150 | 22 | 91–150 | 4.6e-6 | 1.1e-5 | 0.00 | |
+| *ref.* Dimuon 1e-2 const (BEHAVE-01 C) | 150 | 24 | 91–150 | 0.023 | 2.6 | 0.57 | |
+
+Held-out at the last eval: Dimuon 1e-3 0.0013 (step 240), Dimuon 3e-3 0.0018 (step 100), AdamW 1e-4 1.1e-4 (step 160),
+AdamW 3e-5 0.21 (step 60). Last 10 train losses of Dimuon 1e-3 are ~5e-7 to 1.2e-6.
+
+**Matched window for the partial Dimuon 3e-3 run.** Dimuon 1e-2's floor in BEHAVE-01 developed late. Over steps
+61–90 its median was 9e-4, and over 51–110 it was 4.9e-4 with max 0.55 and 22% of steps above 0.01. Dimuon 3e-3 over
+the same 51–110 window has median 6.3e-5, max 0.033 and 2% of steps above 0.01. AdamW 1e-3 over 51–110 has median
+0.042 and 77% of steps above 0.01. So 3e-3 is already much quieter than 1e-2 in the same window, but 110 steps cannot
+rule out a floor that appears later.
+
+**Verdict: stability-edge account supported (one seed, one fully completed Dimuon run).** Dimuon at 1/10 of its best
+lr converges (below 0.01 at step 88) and then keeps falling: median 1.05e-3 over steps 121–180 and 1.4e-5 over
+181–240, never above 0.01 in the last 60 steps. That is within ~3× of AdamW at 1/3 of its best lr (1.3e-5 over
+111–170) and of the same order as AdamW at its best (4.6e-6). The fixed-step account predicted a floor well above
+AdamW's that stops decreasing; at lr 1e-3 neither happens. A floor that scales with lr may still exist below these
+values. With a fixed update norm the attainable loss should fall with lr, and 240 steps at 1e-3 cannot separate "no
+floor" from "floor below ~1e-5". So what is refuted is the floor as an explanation of the 0.023 seen at 1e-2, not
+fixed-norm steps as such. Dimuon 3e-3 (partial) points the same way.
+
+**Caveats.** One seed, one data order, one task that saturates. Three of four runs are partial because of service
+throughput: AdamW 3e-5 did not converge in its 60 steps, so it gives no reading, and Dimuon 3e-3 stopped at 110 of 240.
+The "best-lr" comparison mixes a done Dimuon run with a partial AdamW run (170 steps). The Dimuon 1e-3 curve shows
+some isolated late spikes (max 3.3e-3); these are small next to 1e-2's 2.6.
+**Block E (seed-1 replication of the lr ratio) was not run**: there was no time once block D throughput collapsed.
+Code is ready (`pipeline/bh2_blockE.py`; `data_seed=1` gives split seed 1235 with 3/16 held-out overlap, shuffled
+minibatch order, LoRA seed 1).
+
+**Usage.** 7 training clients (4 in attempt 1, 3 relaunched), about 590 forward_backward + optim_step calls
+(240 + 60 + 10 attempt-1 partials, then 170 + 110 + 60 relaunched, minus a few in flight at the kill), about 35 forward
+evals. No save_weights, save_state or export calls; losses only.
+
+**Files.** `runs/BH/D_*.json`, `runs/BH/D_attempt1_partial/`, `runs/BH/blockD.log`, `runs/BH/behave02_stats.json`,
+`figures/bh_floor.png`, `pipeline/bh2_blockD.py`, `bh2_blockE.py`, `bh2_analyze.py`, `bh_lib.py` (data_seed + write
+every 10 steps).
