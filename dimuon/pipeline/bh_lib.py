@@ -58,8 +58,12 @@ def datum(adj: str, noun: str):
                        loss_fn_inputs={"target_tokens": ids[1:], "weights": w}), len(a), len(ids)
 
 
-def build():
-    tr, ho = split()
+def build(data_seed: int = 0):
+    """data_seed 0 = BEHAVE-01 split (seed 1234) and fixed order. data_seed k>0 (BEHAVE-02) = split with
+    seed 1234+k and the 48 train examples shuffled with Random(k) before chunking into minibatches."""
+    tr, ho = split(1234 + data_seed)
+    if data_seed:
+        random.Random(data_seed).shuffle(tr)
     train = [datum(a, n) for a, n in tr]
     held = [datum(a, n) for a, n in ho]
     mbs = [train[i:i + 8] for i in range(0, 48, 8)]  # fixed order, 6 minibatches
@@ -67,16 +71,17 @@ def build():
 
 
 def run(name: str, opt: str, lr: float, rank: int, steps: int = 60, schedule: str = "const",
-        eval_every: int = 10, seed: int = 0):
+        eval_every: int = 10, seed: int = 0, data_seed: int = 0):
     path = OUT / f"{name}.json"
     if path.exists() and json.loads(path.read_text()).get("done"):
         return json.loads(path.read_text())
-    mbs, held, _, _ = build()
+    mbs, held, tr_pairs, ho_pairs = build(data_seed)
     hd = [d for d, _, _ in held]
     hn = sum(n for _, n, _ in held)
     tc = tk.make_client(opt, rank=rank, seed=seed, train_attn=True, train_mlp=True,
                         train_unembed=False, tag=f"BH:{name}")
     rec = dict(name=name, opt=opt, lr=lr, rank=rank, steps=steps, schedule=schedule, seed=seed,
+               data_seed=data_seed, held_pairs=ho_pairs if data_seed else None,
                model_id=tc._tk_meta["model_id"], train=[], held=[], secs=[], done=False,
                adam=dict(beta1=0.9, beta2=0.95, eps=1e-12, wd=0.0) if opt == "adamw" else None,
                dimuon=dict(beta1=0.9) if opt == "dimuon" else None)
@@ -99,6 +104,7 @@ def run(name: str, opt: str, lr: float, rank: int, steps: int = 60, schedule: st
         rec["secs"].append(round(time.time() - t0, 2))
         if (k + 1) % eval_every == 0:
             ev(k + 1)
+        if (k + 1) % eval_every == 0 or (k + 1) % 10 == 0:
             path.write_text(json.dumps(rec))
     rec["done"] = True
     path.write_text(json.dumps(rec))
