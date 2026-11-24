@@ -1,0 +1,79 @@
+11:19:57 VERSIONS torch 2.8.0+cu128 transformers 5.17.0 device cuda NVIDIA A40
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Fetching 2 files:   0%|          | 0/2 [00:00<?, ?it/s]Fetching 2 files: 100%|██████████| 2/2 [00:00<00:00, 824.68it/s]
+Loading weights:   0%|          | 0/426 [00:00<?, ?it/s]Loading weights: 100%|██████████| 426/426 [00:00<00:00, 4293.26it/s]
+11:20:06 MODEL READY Qwen3_5ForCausalLM n_layers=32 d_model=2560 layout=Layout(path='model', layers='layers', norm='norm', embed='embed_tokens', lm_head='lm_head')
+Fetching 1 files:   0%|          | 0/1 [00:00<?, ?it/s]Fetching 1 files: 100%|██████████| 1/1 [00:00<00:00, 859.84it/s]
+11:20:06 LENS JacobianLens(d_model=2560, n_prompts=1000, source_layers=[0..30] (31 layers))
+11:20:07 DM 3450 trials (0 already done) -> /root/w/out/dm_trials.jsonl
+11:20:08 [dm 1/3450] math '4 * 2' none min_rank=34 eta 57.1 min
+11:20:16 [dm 51/3450] math '4 * 2' none min_rank=29 eta 10.8 min
+11:20:24 [dm 101/3450] math '5 + 4' none min_rank=75 eta 9.8 min
+11:20:33 [dm 151/3450] math '3 * 3' none min_rank=76 eta 9.5 min
+11:20:41 [dm 201/3450] math '3 * 3' none min_rank=45 eta 9.2 min
+11:20:49 [dm 251/3450] math '3 + 4' none min_rank=140 eta 9.0 min
+11:20:57 [dm 301/3450] math '2 * 3' none min_rank=36 eta 8.8 min
+11:21:05 [dm 351/3450] math '2 * 3' none min_rank=54 eta 8.6 min
+11:21:13 [dm 401/3450] math '2 + 3' none min_rank=48 eta 8.4 min
+11:21:21 [dm 451/3450] math '14 / 2' none min_rank=44 eta 8.3 min
+11:21:29 [dm 501/3450] math '14 / 2' none min_rank=145 eta 8.1 min
+11:21:37 [dm 551/3450] math '18 / 2' none min_rank=58 eta 7.9 min
+11:21:45 [dm 601/3450] math '11 - 5' none min_rank=69 eta 7.8 min
+11:21:54 [dm 651/3450] math '11 - 5' none min_rank=37 eta 7.7 min
+11:22:02 [dm 701/3450] math '15 - 7' none min_rank=34 eta 7.5 min
+11:22:10 [dm 751/3450] math '9 - 5' none min_rank=54 eta 7.4 min
+11:22:18 [dm 801/3450] math '9 - 5' none min_rank=49 eta 7.2 min
+11:22:26 [dm 851/3450] math '11 - 9' none min_rank=11 eta 7.1 min
+11:22:35 [dm 901/3450] math '12 / 4' none min_rank=42 eta 7.0 min
+11:22:43 [dm 951/3450] math '12 / 4' none min_rank=42 eta 6.8 min
+11:22:51 [dm 1001/3450] math '21 / 3' none min_rank=54 eta 6.7 min
+11:22:59 [dm 1051/3450] math '24 / 3' none min_rank=46 eta 6.6 min
+11:23:07 [dm 1101/3450] math '24 / 3' none min_rank=58 eta 6.4 min
+11:23:15 [dm 1151/3450] math '3^2 - 2' none min_rank=44 eta 6.3 min
+11:23:23 [dm 1201/3450] math '2^3 - 3' none min_rank=89 eta 6.1 min
+11:23:31 [dm 1251/3450] math '2^3 - 3' none min_rank=41 eta 6.0 min
+11:23:39 [dm 1301/3450] math '2^3 + 1' none min_rank=67 eta 5.9 min
+11:23:47 [dm 1351/3450] math '2^2 + 2' none min_rank=23 eta 5.7 min
+11:23:55 [dm 1401/3450] math '2^2 + 2' none min_rank=79 eta 5.6 min
+11:24:04 [dm 1451/3450] math '3^2 - 4' none min_rank=60 eta 5.4 min
+11:24:12 [dm 1501/3450] math '2^4 - 9' none min_rank=47 eta 5.3 min
+11:24:20 [dm 1551/3450] math '2^4 - 9' none min_rank=21 eta 5.2 min
+11:24:28 [dm 1601/3450] math '4 * 4 - 9' none min_rank=69 eta 5.0 min
+11:24:36 [dm 1651/3450] math '6 * 6 / 4' none min_rank=87 eta 4.9 min
+11:24:44 [dm 1701/3450] math '6 * 6 / 4' none min_rank=59 eta 4.8 min
+11:24:52 [dm 1751/3450] math '5^2 - 19' none min_rank=64 eta 4.6 min
+11:25:00 [dm 1801/3450] category 'citrus fruits' none min_rank=665 eta 4.5 min
+11:25:08 [dm 1851/3450] category 'citrus fruits' none min_rank=390 eta 4.3 min
+11:25:20 [dm 1901/3450] category 'months of the year' none min_rank=127 eta 4.3 min
+11:25:31 [dm 1951/3450] category 'days of the week' none min_rank=4 eta 4.2 min
+11:25:42 [dm 2001/3450] category 'days of the week' none min_rank=51 eta 4.0 min
+11:25:53 [dm 2051/3450] category 'planets' none min_rank=91 eta 3.9 min
+11:26:04 [dm 2101/3450] category 'chess pieces' none min_rank=51 eta 3.8 min
+11:26:13 [dm 2151/3450] category 'chess pieces' none min_rank=200 eta 3.7 min
+11:26:23 [dm 2201/3450] category 'precious metals' none min_rank=262 eta 3.6 min
+11:26:32 [dm 2251/3450] category 'gemstones' none min_rank=83 eta 3.4 min
+11:26:42 [dm 2301/3450] category 'gemstones' none min_rank=590 eta 3.3 min
+11:26:51 [dm 2351/3450] category 'farm animals' none min_rank=210 eta 3.1 min
+11:27:00 [dm 2401/3450] category 'musical instruments' none min_rank=39 eta 3.0 min
+11:27:08 [dm 2451/3450] category 'musical instruments' none min_rank=200 eta 2.9 min
+11:27:17 [dm 2501/3450] category 'weather conditions' none min_rank=18 eta 2.7 min
+11:27:26 [dm 2551/3450] category 'body parts' none min_rank=77 eta 2.6 min
+11:27:39 [dm 2601/3450] category 'body parts' none min_rank=107 eta 2.5 min
+11:27:50 [dm 2651/3450] category 'vegetables' none min_rank=121 eta 2.3 min
+11:27:59 [dm 2701/3450] category 'card suits' none min_rank=1069 eta 2.2 min
+11:28:07 [dm 2751/3450] category 'card suits' none min_rank=312 eta 2.0 min
+11:28:16 [dm 2801/3450] category 'ocean creatures' none min_rank=391 eta 1.9 min
+11:28:24 [dm 2851/3450] category 'types of trees' none min_rank=309 eta 1.7 min
+11:28:33 [dm 2901/3450] category 'types of trees' none min_rank=1050 eta 1.6 min
+11:28:42 [dm 2951/3450] category 'kitchen utensils' none min_rank=18 eta 1.5 min
+11:28:50 [dm 3001/3450] category 'emotions' none min_rank=11 eta 1.3 min
+11:29:01 [dm 3051/3450] category 'emotions' none min_rank=1 eta 1.2 min
+11:29:11 [dm 3101/3450] category 'geometric shapes' none min_rank=341 eta 1.0 min
+11:29:22 [dm 3151/3450] category 'types of boats' none min_rank=66 eta 0.9 min
+11:29:31 [dm 3201/3450] category 'types of boats' none min_rank=56 eta 0.7 min
+11:29:41 [dm 3251/3450] category 'insects' none min_rank=58 eta 0.6 min
+11:29:51 [dm 3301/3450] category 'desserts' none min_rank=200 eta 0.4 min
+11:29:59 [dm 3351/3450] category 'desserts' none min_rank=97 eta 0.3 min
+11:30:08 [dm 3401/3450] category 'types of footwear' none min_rank=364 eta 0.1 min
+11:30:17 [dm 3450/3450] category 'types of footwear' men_medial min_rank=3 eta 0.0 min
+11:30:17 DM DONE
