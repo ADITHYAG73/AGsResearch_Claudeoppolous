@@ -10,4 +10,5 @@
 - [Let him build the idea](let-him-build-the-idea.md) — stay proactive, but while AG thinks an idea through out loud, let him finish before adding options or flaws.
 - [Over-collect on GPU](overcollect-on-gpu.md) — compute is expensive, storage cheap: save every internal plausibly useful to S3 during a billed run.
 - [Latent cube experiment](latent-cube-experiment.md) — AG's interp idea: imagine sin's 2nd Taylor term, find x³/6 in hidden states; prompt set; backlog: read Biology of an LLM.
+- [Autonomous daily assistant](autonomous-daily-assistant.md) — daily sessions from 2026-11-24; branches/PRs/project board allowed; merge only on his word; hold him to the habit.
 - [MATS outcome, paper dread](mats-outcome-and-paper-dread.md) — Neel-stream application rejected; long interp papers intimidate him: one example at a time, never front to back.

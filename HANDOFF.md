@@ -71,7 +71,7 @@ either way yet.
     `latent_cube/capture.py` docstring and `latent_cube/dashboard/BRIEF.md`). Files without __free/__forced are a
     superseded first run.
   - `posttrain_math/…` — baseline and FT-01 runs, checkpoints s025/s050/s100.
-- **Compute (decided 2026-11-24): Modal for cloud sessions; RunPod stays for local, hands-on runs.**
+- **Compute (2026-11-24): Modal or RunPod from cloud sessions — both verified working (§6). Which to default to is AG's call.**
   - Why (AG, after reading https://www.runpod.io/articles/comparison/runpod-vs-modal, 2026-11-24): a scheduled
     cloud session should launch GPU work as one `modal run` of a Python function that ends by itself, not
     create/SSH/watch/delete a pod. The post itself says that for "a set of Python functions that need to run on
@@ -83,18 +83,34 @@ either way yet.
     For comparison, RunPod A100 SXM cost us $1.79/hr (Oct 2026); H200 $5.29/hr.
   - Docs read: functions run HF transformers on a GPU via `@app.function(gpu=..., image=...)`; timeout 1 s–24 h
     (default 300 s); `modal shell` gives an interactive shell (not SSH). Token auth for a headless cloud VM
-    (`modal token set` / env vars) still to be confirmed against https://modal.com/docs when it is set up, and
-    the cloud environment's network allowlist must include Modal's API domains (or use Full access).
+    (`modal token set` / env vars `MODAL_TOKEN_ID` + `MODAL_TOKEN_SECRET`, per modal.com/docs/reference/modal.config).
   - **Rules for a scheduled session until AG sets a budget:** stay within the free $30/month; write rule-7
     preflight (incl. a cost line) into the journal BEFORE any `modal run`; smoke-test on the smallest GPU/input
     first; send results to S3 (or a Modal Volume) incrementally; log estimated vs actual cost in the experiment's
     cost ledger; anything above the free credit needs AG's explicit go (ask in the daily summary).
-  - RunPod (pods by API; image `ghcr.io/adithyag73/interp-pod:torch28-tf5170`; keys only on AG's Mac) is not
-    for unattended cloud sessions.
+  - RunPod (image `ghcr.io/adithyag73/interp-pod:torch28-tf5170`) is ALSO usable from cloud sessions since
+    2026-11-24 via the RunPod connector (see §6): `exec-pod` runs commands inside a pod without SSH.
 - **Not in the repo on purpose:** `.env`, API keys, AWS/RunPod credentials, raw tensors (>100 MB, regenerable),
   `latent_cube/dashboard/site_pub/` (base64 copy for publishing, made by `make_publish.py`).
 
 ## 5. Open housekeeping
-- HF token leaked into a log on 2026-08-22 and was never rotated (repeat of every session's note).
 - `posttrain_math/OWED.md`: AG's hand-checks still owed for the paper.
-- Global volume `like_aquamarine_bandicoot` (RunPod, ~52 GB of Qwen3.8 weights) may still be billing; AG to decide.
+- (Closed 2026-11-24: HF token replaced with a new one `cloud-claude`; global volume `like_aquamarine_bandicoot`
+  deleted by AG — list-global-volumes returns empty.)
+
+## 6. Cloud session setup (verified 2026-11-24, each by a real call from a cloud session)
+| Service | How it is reached | Check that passed |
+|---|---|---|
+| GitHub | repo access + push to the session branch | pushed `von_neumann/ecstatic-rubin-q4en3l` |
+| AWS S3 | claude.ai **AWS connector** (`run_script`, `get_presigned_url`); not the CLI | listed `latent_cube/capture01/out/tay__sin x__2__hold*` |
+| RunPod | claude.ai **custom connector** `https://mcp.runpod.io/` (OAuth) — pods, volumes, balance, `exec-pod` | list-pods empty, balance $88.10 |
+| Hugging Face | network secret on host `huggingface.co` (proxy injects it; no env var exists) | whoami → token `cloud-claude`; Qwen3.5-4B config 200 |
+| Modal | env vars `MODAL_TOKEN_ID`/`MODAL_TOKEN_SECRET` in the Default environment; **must** `pip install 'modal[api-proxy-support]'` | token verified; `modal app list` |
+- **Modal gotcha (cost an hour on day 1):** all outbound traffic goes through a local HTTP proxy. The Modal client
+  supports proxies but needs the optional `python-socks` package; without it `modal` hangs silently (debug log:
+  "A proxy is configured … but the 'python-socks' package is not installed"). Fix: install the extra above.
+  Claude first misdiagnosed this as "gRPC is blocked by the proxy" from one README line — check with
+  `MODAL_LOGLEVEL=DEBUG` before concluding anything.
+- If the AWS connector says "sign in again", AG disconnects and reconnects it at claude.ai/customize/connectors.
+- Claude in Chrome is not available to cloud sessions (it lives in AG's Chrome on his Mac).
+- Standing instructions for these daily sessions: `claude_config/memory/autonomous-daily-assistant.md`.
