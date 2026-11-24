@@ -149,3 +149,40 @@ R1 at forced-reply tokens on CPU, sin x vs cos x. AG approved provisioning the G
 - **Cost line:** boot+install ~5 min, model 9 GB + lens 0.4 GB download ~3 min, sanity ~1 min, dm 3,450 trials × ~0.2 s ≈ 12 min,
   cube 33,551 tokens ≈ 10 min, uploads ~5 min → ~36 min; ×1.5 for the tail (past runs ran 1.3–1.7× over) ≈ 55 min ×
   $0.59 ≈ **$0.55**. **Opening balance $88.10** (RunPod get-balance, 2026-11-24 ~10:56 UTC).
+
+### JLENS-01 run log + results (2026-11-24, UTC)
+- 11:17 pod `uzbes1kx4m8g0g` (latentcube-jlens01), A40 SECURE $0.59/hr, EU-SE-1, image interp-pod:torch28-tf5170
+  (torch 2.8.0+cu128, transformers 5.17.0, fla 0.5.2), jacobian-lens 581d398 installed `--no-deps`. Run from git branch
+  `von_neumann/ecstatic-rubin-q4en3l` @ 0a14bc2. Driven entirely through the RunPod connector's exec-pod (no SSH).
+- 11:19:52 sanity: unembed(final block) vs model logits **max|diff| = 0**. Walkthrough boot prompt at "boot": J-lens L16 top-5
+  ['?', '？', "'?", **' Italy'**, '____']; logit lens L16 ['shaw','วย','amaz','REA','举世'] — the hidden hop appears only in the
+  J-lens, as the walkthrough says. L24 both show "shape". Model's next token ' the' / ' called' / ' Euro'.
+- 11:20–11:30 dm: 3,450 trials, 0 errors. 11:30–11:44 cube: 338 captures, 0 errors. Upload via presigned PUT, all HTTP 200:
+  `s3://…/latent_cube/jlens01/{small.tar, full.tar.part00, full.tar.part01, SHA256SUMS}`. small.tar downloaded to the cloud
+  container: sha256 e520b94d… matches the pod's SHA256SUMS. Analysis outputs: `jlens01/results/`.
+
+**RESULT 1 — positive control, category targets: REPLICATES the paper's pattern on Qwen3.5-4B.** Hit = a target member at
+J-lens top-1 at any (layer 0–30, carrier position): no instruction 0/66 (0%), mention ("control") 59/396 (15%), **focus
+100/330 (30%)**, suppress (dismissal + don't-think) 80/858 (9%). Top-5: 3% / 36% / 67% / 22%. Same order as the paper:
+baseline ≈ 0 < suppress < mention < focus, and suppression is above zero (the "white bear" effect).
+
+**RESULT 2 — positive control, MATH targets: FAILS on this model.** Focus 3/360 top-1 (1%), top-5 2%; baseline 0/72;
+mention 2/432; suppress 0/936. Inspected one focus trial ("Concentrate on 4 * 2…"): the J-lens at mid layers shows the
+carrier's own words and punctuation ("carefully", "letter", "**"), nothing about 8. The paper reports math modulation on
+Claude models and says it grows with model size; on a 4B model the silent arithmetic answer is not readable at top-1/top-5.
+Caveat: the user-turn wording is ours, not the paper's (they did not release it).
+
+**RESULT 3 — AG's question (forced replies, ranks over layers 8–27 and the forced-reply tokens): NO SIGNAL.**
+- No tracked math token reaches top-20 in ANY of 137 forced captures for "³", "²", " cube", "6", "2", "3", " six", " two".
+- No power-specificity: median best rank of "³" is 72 / 70 / 55 / 54 for hidden powers 0 / 1 / 2 / 3; of "²" 34 / 49 / 30 / 28.
+  "²" outranks "³" even when the hidden term is a cube. These ranks look like generic "maths-prompt" tokens, not the term.
+- sin x vs cos x, 2nd term (best J-lens rank of "³"): hold 94 vs 91, imagine 47 vs 51. "²": 78 vs 78, 24 vs 27. Indistinguishable.
+- What DOES show at top-1: " Paris" in the hold captures (11 of 28 at power 3) — that is the reply itself; " third" top-1 in 2.
+**AG's prediction** (" cube"/"³", "sin", "x", "6") is **not supported**: " cube" median rank ~4,000, "sin" ~16,000, never top-20.
+**Interpretation (Claude's, for AG to judge):** because the math positive control fails on this model, the null on −x³/6 is
+NOT evidence that the term is absent; the lens on Qwen3.5-4B does not surface silently computed arithmetic even for 4 * 2.
+The categories work, so the pipeline works. The informative next step is a bigger model (Neuronpedia also fitted
+Qwen3.6-27B) for the math control, before reading anything into the cube null.
+- 11:55 pod deleted (HTTP 204); list-pods empty. S3 sizes match the pod byte for byte. Safety-deadline task cancelled.
+- **Cost:** 11:17 → 11:55 ≈ 38 min × $0.59 ≈ **$0.37** (estimate was $0.55 incl. tail). Opening $88.10; closing balance to be
+  read ≥5 min after terminate (RunPod posts late) — PROVISIONAL until then. S3 storage added ≈ 6.75 GB.

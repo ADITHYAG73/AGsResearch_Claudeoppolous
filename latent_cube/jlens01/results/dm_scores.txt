@@ -1,0 +1,11 @@
+3450 trials
+
+=== math ===
+  [all 0-30] baseline: top1 0/72 (0%) top5 0%  control: top1 2/432 (0%) top5 2%  focus: top1 3/360 (1%) top5 2%  suppress: top1 0/936 (0%) top5 0%
+  [mid 8-27] baseline: top1 0/72 (0%) top5 0%  control: top1 1/432 (0%) top5 1%  focus: top1 3/360 (1%) top5 2%  suppress: top1 0/936 (0%) top5 0%
+  [late 28-30] baseline: top1 0/72 (0%) top5 0%  control: top1 1/432 (0%) top5 2%  focus: top1 0/360 (0%) top5 0%  suppress: top1 0/936 (0%) top5 0%
+
+=== category ===
+  [all 0-30] baseline: top1 0/66 (0%) top5 3%  control: top1 59/396 (15%) top5 36%  focus: top1 100/330 (30%) top5 67%  suppress: top1 80/858 (9%) top5 22%
+  [mid 8-27] baseline: top1 0/66 (0%) top5 3%  control: top1 56/396 (14%) top5 32%  focus: top1 100/330 (30%) top5 59%  suppress: top1 77/858 (9%) top5 20%
+  [late 28-30] baseline: top1 0/66 (0%) top5 2%  control: top1 21/396 (5%) top5 26%  focus: top1 17/330 (5%) top5 55%  suppress: top1 25/858 (3%) top5 14%

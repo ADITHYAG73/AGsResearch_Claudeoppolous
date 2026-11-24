@@ -1,0 +1,389 @@
+137 forced captures; layers 0-30; positions = forced-reply tokens only
+
+===== J-lens =====
+
+-- hidden term power 0: 14 captures --
+  '³'          median best rank       24   top1   0   top5   0   top20   1   of 14
+  '²'          median best rank       18   top1   0   top5   0   top20   8   of 14
+  ' cube'      median best rank     3953   top1   0   top5   0   top20   0   of 14
+  ' cubic'     median best rank    15412   top1   0   top5   0   top20   0   of 14
+  ' square'    median best rank     1446   top1   0   top5   0   top20   0   of 14
+  ' squared'   median best rank     2402   top1   0   top5   0   top20   0   of 14
+  '6'          median best rank       90   top1   0   top5   0   top20   0   of 14
+  '2'          median best rank       69   top1   0   top5   0   top20   0   of 14
+  '3'          median best rank       77   top1   0   top5   0   top20   0   of 14
+  ' six'       median best rank      152   top1   0   top5   0   top20   0   of 14
+  ' three'     median best rank       69   top1   0   top5   0   top20   0   of 14
+  ' two'       median best rank       32   top1   0   top5   0   top20   0   of 14
+  ' third'     median best rank     1859   top1   0   top5   0   top20   0   of 14
+  'x'          median best rank     2220   top1   0   top5   0   top20   0   of 14
+  ' x'         median best rank      600   top1   0   top5   0   top20   0   of 14
+  'sin'        median best rank     4824   top1   0   top5   0   top20   0   of 14
+  ' sin'       median best rank      949   top1   0   top5   0   top20   0   of 14
+  ' Taylor'    median best rank      676   top1   0   top5   6   top20   6   of 14
+  ' Paris'     median best rank     2769   top1   6   top5   6   top20   6   of 14
+
+-- hidden term power 1: 22 captures --
+  '³'          median best rank       33   top1   0   top5   0   top20   0   of 22
+  '²'          median best rank       19   top1   0   top5   0   top20  11   of 22
+  ' cube'      median best rank     2319   top1   0   top5   0   top20   0   of 22
+  ' cubic'     median best rank     8928   top1   0   top5   0   top20   0   of 22
+  ' square'    median best rank     1416   top1   0   top5   0   top20   0   of 22
+  ' squared'   median best rank     1368   top1   0   top5   0   top20   0   of 22
+  '6'          median best rank       90   top1   0   top5   0   top20   0   of 22
+  '2'          median best rank       54   top1   0   top5   0   top20   0   of 22
+  '3'          median best rank       74   top1   0   top5   0   top20   0   of 22
+  ' six'       median best rank      125   top1   0   top5   0   top20   0   of 22
+  ' three'     median best rank       68   top1   0   top5   0   top20   0   of 22
+  ' two'       median best rank       32   top1   0   top5   0   top20   0   of 22
+  ' third'     median best rank      834   top1   0   top5   0   top20   3   of 22
+  'x'          median best rank     2007   top1   0   top5   0   top20   0   of 22
+  ' x'         median best rank      638   top1   0   top5   0   top20   0   of 22
+  'sin'        median best rank     2899   top1   0   top5   0   top20   0   of 22
+  ' sin'       median best rank      368   top1   0   top5   0   top20   0   of 22
+  ' Taylor'    median best rank       85   top1   0   top5  11   top20  11   of 22
+  ' Paris'     median best rank     1324   top1  11   top5  11   top20  11   of 22
+
+-- hidden term power 2: 21 captures --
+  '³'          median best rank       26   top1   0   top5   0   top20   0   of 21
+  '²'          median best rank       17   top1   0   top5   0   top20  11   of 21
+  ' cube'      median best rank     1093   top1   0   top5   0   top20   0   of 21
+  ' cubic'     median best rank     7825   top1   0   top5   0   top20   3   of 21
+  ' square'    median best rank      293   top1   0   top5   0   top20   0   of 21
+  ' squared'   median best rank      890   top1   0   top5   0   top20   0   of 21
+  '6'          median best rank       88   top1   0   top5   0   top20   0   of 21
+  '2'          median best rank       63   top1   0   top5   0   top20   0   of 21
+  '3'          median best rank       73   top1   0   top5   0   top20   0   of 21
+  ' six'       median best rank      183   top1   0   top5   0   top20   0   of 21
+  ' three'     median best rank       70   top1   0   top5   0   top20   3   of 21
+  ' two'       median best rank       32   top1   0   top5   0   top20   0   of 21
+  ' third'     median best rank       75   top1   3   top5   3   top20   8   of 21
+  'x'          median best rank     1906   top1   0   top5   0   top20   0   of 21
+  ' x'         median best rank      344   top1   0   top5   1   top20   1   of 21
+  'sin'        median best rank     3112   top1   0   top5   0   top20   0   of 21
+  ' sin'       median best rank      360   top1   0   top5   0   top20   0   of 21
+  ' Taylor'    median best rank      582   top1   0   top5  10   top20  10   of 21
+  ' Paris'     median best rank     2842   top1  10   top5  10   top20  10   of 21
+
+-- hidden term power 3: 28 captures --
+  '³'          median best rank       24   top1   0   top5   0   top20   0   of 28
+  '²'          median best rank       15   top1   0   top5   0   top20  17   of 28
+  ' cube'      median best rank     3336   top1   0   top5   0   top20   0   of 28
+  ' cubic'     median best rank     6252   top1   0   top5   0   top20   2   of 28
+  ' square'    median best rank     1567   top1   0   top5   0   top20   0   of 28
+  ' squared'   median best rank     1200   top1   0   top5   0   top20   0   of 28
+  '6'          median best rank       92   top1   0   top5   0   top20   0   of 28
+  '2'          median best rank       71   top1   0   top5   0   top20   0   of 28
+  '3'          median best rank       78   top1   0   top5   0   top20   0   of 28
+  ' six'       median best rank      186   top1   0   top5   0   top20   0   of 28
+  ' three'     median best rank       71   top1   0   top5   0   top20   2   of 28
+  ' two'       median best rank       31   top1   0   top5   0   top20   0   of 28
+  ' third'     median best rank      992   top1   2   top5   5   top20  11   of 28
+  'x'          median best rank     1971   top1   0   top5   0   top20   0   of 28
+  ' x'         median best rank      344   top1   0   top5   1   top20   1   of 28
+  'sin'        median best rank     4066   top1   0   top5   0   top20   0   of 28
+  ' sin'       median best rank      955   top1   0   top5   0   top20   0   of 28
+  ' Taylor'    median best rank      752   top1   0   top5  10   top20  11   of 28
+  ' Paris'     median best rank     2912   top1  11   top5  11   top20  11   of 28
+
+-- hidden term power 4: 12 captures --
+  '³'          median best rank       30   top1   0   top5   0   top20   0   of 12
+  '²'          median best rank       17   top1   0   top5   0   top20   7   of 12
+  ' cube'      median best rank     2070   top1   0   top5   0   top20   0   of 12
+  ' cubic'     median best rank     5912   top1   0   top5   0   top20   3   of 12
+  ' square'    median best rank     1494   top1   0   top5   0   top20   0   of 12
+  ' squared'   median best rank     1300   top1   0   top5   0   top20   0   of 12
+  '6'          median best rank       90   top1   0   top5   0   top20   0   of 12
+  '2'          median best rank       56   top1   0   top5   0   top20   0   of 12
+  '3'          median best rank       74   top1   0   top5   0   top20   0   of 12
+  ' six'       median best rank      123   top1   0   top5   0   top20   0   of 12
+  ' three'     median best rank       70   top1   0   top5   0   top20   3   of 12
+  ' two'       median best rank       32   top1   0   top5   0   top20   0   of 12
+  ' third'     median best rank       36   top1   3   top5   4   top20   6   of 12
+  'x'          median best rank     1938   top1   0   top5   0   top20   0   of 12
+  ' x'         median best rank      656   top1   0   top5   0   top20   0   of 12
+  'sin'        median best rank     3046   top1   0   top5   0   top20   0   of 12
+  ' sin'       median best rank      544   top1   0   top5   0   top20   0   of 12
+  ' Taylor'    median best rank      348   top1   0   top5   6   top20   6   of 12
+  ' Paris'     median best rank     1385   top1   6   top5   6   top20   6   of 12
+
+-- hidden term power 5: 14 captures --
+  '³'          median best rank       32   top1   0   top5   0   top20   0   of 14
+  '²'          median best rank       18   top1   0   top5   0   top20   7   of 14
+  ' cube'      median best rank     2044   top1   0   top5   0   top20   0   of 14
+  ' cubic'     median best rank     5946   top1   0   top5   0   top20   6   of 14
+  ' square'    median best rank     1478   top1   0   top5   0   top20   0   of 14
+  ' squared'   median best rank     2517   top1   0   top5   0   top20   0   of 14
+  '6'          median best rank       88   top1   0   top5   0   top20   0   of 14
+  '2'          median best rank       57   top1   0   top5   0   top20   0   of 14
+  '3'          median best rank       72   top1   0   top5   0   top20   0   of 14
+  ' six'       median best rank      128   top1   0   top5   0   top20   0   of 14
+  ' three'     median best rank       69   top1   0   top5   0   top20   6   of 14
+  ' two'       median best rank       32   top1   0   top5   0   top20   0   of 14
+  ' third'     median best rank       26   top1   6   top5   6   top20   7   of 14
+  'x'          median best rank     2035   top1   0   top5   0   top20   0   of 14
+  ' x'         median best rank      665   top1   0   top5   0   top20   0   of 14
+  'sin'        median best rank     2923   top1   0   top5   0   top20   0   of 14
+  ' sin'       median best rank      480   top1   0   top5   0   top20   0   of 14
+  ' Taylor'    median best rank      200   top1   0   top5   7   top20   7   of 14
+  ' Paris'     median best rank     1352   top1   7   top5   7   top20   7   of 14
+
+-- hidden term power 6: 10 captures --
+  '³'          median best rank       30   top1   0   top5   0   top20   0   of 10
+  '²'          median best rank       18   top1   0   top5   0   top20   6   of 10
+  ' cube'      median best rank     2188   top1   0   top5   0   top20   0   of 10
+  ' cubic'     median best rank     5602   top1   0   top5   0   top20   2   of 10
+  ' square'    median best rank     1615   top1   0   top5   0   top20   0   of 10
+  ' squared'   median best rank     2044   top1   0   top5   0   top20   0   of 10
+  '6'          median best rank       88   top1   0   top5   0   top20   0   of 10
+  '2'          median best rank       57   top1   0   top5   0   top20   0   of 10
+  '3'          median best rank       70   top1   0   top5   0   top20   0   of 10
+  ' six'       median best rank      126   top1   0   top5   0   top20   0   of 10
+  ' three'     median best rank       70   top1   0   top5   0   top20   2   of 10
+  ' two'       median best rank       32   top1   0   top5   0   top20   0   of 10
+  ' third'     median best rank       29   top1   2   top5   4   top20   5   of 10
+  'x'          median best rank     1988   top1   0   top5   0   top20   0   of 10
+  ' x'         median best rank      659   top1   0   top5   0   top20   0   of 10
+  'sin'        median best rank     2906   top1   0   top5   0   top20   0   of 10
+  ' sin'       median best rank      567   top1   0   top5   0   top20   0   of 10
+  ' Taylor'    median best rank      360   top1   0   top5   5   top20   5   of 10
+  ' Paris'     median best rank     1380   top1   5   top5   5   top20   5   of 10
+
+-- hidden term power 7: 12 captures --
+  '³'          median best rank       32   top1   0   top5   0   top20   0   of 12
+  '²'          median best rank       18   top1   0   top5   0   top20   7   of 12
+  ' cube'      median best rank     2187   top1   0   top5   0   top20   0   of 12
+  ' cubic'     median best rank     8389   top1   0   top5   0   top20   0   of 12
+  ' square'    median best rank     1396   top1   0   top5   0   top20   0   of 12
+  ' squared'   median best rank     3046   top1   0   top5   0   top20   0   of 12
+  '6'          median best rank       86   top1   0   top5   0   top20   0   of 12
+  '2'          median best rank       56   top1   0   top5   0   top20   0   of 12
+  '3'          median best rank       70   top1   0   top5   0   top20   0   of 12
+  ' six'       median best rank      127   top1   0   top5   0   top20   0   of 12
+  ' three'     median best rank       69   top1   0   top5   0   top20   0   of 12
+  ' two'       median best rank       32   top1   0   top5   0   top20   0   of 12
+  ' third'     median best rank      392   top1   0   top5   5   top20   6   of 12
+  'x'          median best rank     2020   top1   0   top5   0   top20   0   of 12
+  ' x'         median best rank      661   top1   0   top5   0   top20   0   of 12
+  'sin'        median best rank     2953   top1   0   top5   0   top20   0   of 12
+  ' sin'       median best rank      635   top1   0   top5   0   top20   0   of 12
+  ' Taylor'    median best rank      243   top1   0   top5   6   top20   6   of 12
+  ' Paris'     median best rank     1304   top1   6   top5   6   top20   6   of 12
+
+-- hidden term power 8: 4 captures --
+  '³'          median best rank       30   top1   0   top5   0   top20   0   of 4
+  '²'          median best rank       16   top1   0   top5   0   top20   3   of 4
+  ' cube'      median best rank     2314   top1   0   top5   0   top20   0   of 4
+  ' cubic'     median best rank     9498   top1   0   top5   0   top20   0   of 4
+  ' square'    median best rank     1680   top1   0   top5   0   top20   0   of 4
+  ' squared'   median best rank     2649   top1   0   top5   0   top20   0   of 4
+  '6'          median best rank       86   top1   0   top5   0   top20   0   of 4
+  '2'          median best rank       58   top1   0   top5   0   top20   0   of 4
+  '3'          median best rank       68   top1   0   top5   0   top20   0   of 4
+  ' six'       median best rank      126   top1   0   top5   0   top20   0   of 4
+  ' three'     median best rank       70   top1   0   top5   0   top20   0   of 4
+  ' two'       median best rank       32   top1   0   top5   0   top20   0   of 4
+  ' third'     median best rank      356   top1   0   top5   2   top20   2   of 4
+  'x'          median best rank     1980   top1   0   top5   0   top20   0   of 4
+  ' x'         median best rank      662   top1   0   top5   0   top20   0   of 4
+  'sin'        median best rank     3063   top1   0   top5   0   top20   0   of 4
+  ' sin'       median best rank      656   top1   0   top5   0   top20   0   of 4
+  ' Taylor'    median best rank      464   top1   0   top5   2   top20   2   of 4
+  ' Paris'     median best rank     1426   top1   2   top5   2   top20   2   of 4
+
+===== logit lens =====
+
+-- hidden term power 0: 14 captures --
+  '³'          median best rank      450   top1   0   top5   0   top20   0   of 14
+  '²'          median best rank     1568   top1   0   top5   0   top20   0   of 14
+  ' cube'      median best rank     2870   top1   0   top5   0   top20   0   of 14
+  ' cubic'     median best rank     7458   top1   0   top5   0   top20   0   of 14
+  ' square'    median best rank     6824   top1   0   top5   0   top20   0   of 14
+  ' squared'   median best rank      474   top1   0   top5   0   top20   0   of 14
+  '6'          median best rank     5050   top1   0   top5   0   top20   0   of 14
+  '2'          median best rank       57   top1   0   top5   0   top20   6   of 14
+  '3'          median best rank      191   top1   0   top5   0   top20   0   of 14
+  ' six'       median best rank     9936   top1   0   top5   0   top20   0   of 14
+  ' three'     median best rank      838   top1   0   top5   0   top20   0   of 14
+  ' two'       median best rank      738   top1   0   top5   0   top20   0   of 14
+  ' third'     median best rank      294   top1   0   top5   0   top20   0   of 14
+  'x'          median best rank      228   top1   0   top5   0   top20   0   of 14
+  ' x'         median best rank       50   top1   0   top5   0   top20   0   of 14
+  'sin'        median best rank     1128   top1   0   top5   0   top20   0   of 14
+  ' sin'       median best rank      270   top1   0   top5   0   top20   0   of 14
+  ' Taylor'    median best rank     4404   top1   0   top5   0   top20   6   of 14
+  ' Paris'     median best rank     2347   top1   6   top5   6   top20   6   of 14
+
+-- hidden term power 1: 22 captures --
+  '³'          median best rank      438   top1   0   top5   0   top20   0   of 22
+  '²'          median best rank      189   top1   0   top5   0   top20   0   of 22
+  ' cube'      median best rank     2325   top1   0   top5   0   top20   0   of 22
+  ' cubic'     median best rank     3730   top1   0   top5   0   top20   0   of 22
+  ' square'    median best rank     3267   top1   0   top5   0   top20   0   of 22
+  ' squared'   median best rank      461   top1   0   top5   0   top20   0   of 22
+  '6'          median best rank     2760   top1   0   top5   0   top20   0   of 22
+  '2'          median best rank       38   top1   0   top5   0   top20  11   of 22
+  '3'          median best rank      160   top1   0   top5   0   top20   0   of 22
+  ' six'       median best rank     9678   top1   0   top5   0   top20   0   of 22
+  ' three'     median best rank      800   top1   0   top5   0   top20   0   of 22
+  ' two'       median best rank      483   top1   0   top5   0   top20   0   of 22
+  ' third'     median best rank      190   top1   0   top5   0   top20   3   of 22
+  'x'          median best rank      150   top1   0   top5   0   top20   0   of 22
+  ' x'         median best rank       50   top1   0   top5   0   top20   0   of 22
+  'sin'        median best rank      197   top1   0   top5   0   top20   0   of 22
+  ' sin'       median best rank      260   top1   0   top5   0   top20   0   of 22
+  ' Taylor'    median best rank      473   top1   0   top5   0   top20  11   of 22
+  ' Paris'     median best rank     1117   top1  11   top5  11   top20  11   of 22
+
+-- hidden term power 2: 21 captures --
+  '³'          median best rank      442   top1   0   top5   0   top20   1   of 21
+  '²'          median best rank      239   top1   0   top5   0   top20   0   of 21
+  ' cube'      median best rank     1371   top1   0   top5   0   top20   0   of 21
+  ' cubic'     median best rank     6516   top1   0   top5   0   top20   0   of 21
+  ' square'    median best rank      348   top1   0   top5   0   top20   0   of 21
+  ' squared'   median best rank      454   top1   0   top5   0   top20   0   of 21
+  '6'          median best rank     5088   top1   0   top5   0   top20   0   of 21
+  '2'          median best rank       55   top1   0   top5   0   top20  10   of 21
+  '3'          median best rank      191   top1   0   top5   0   top20   0   of 21
+  ' six'       median best rank     9391   top1   0   top5   0   top20   0   of 21
+  ' three'     median best rank      751   top1   0   top5   2   top20   3   of 21
+  ' two'       median best rank      466   top1   0   top5   0   top20   0   of 21
+  ' third'     median best rank       38   top1   3   top5   3   top20   8   of 21
+  'x'          median best rank      247   top1   0   top5   0   top20   0   of 21
+  ' x'         median best rank       50   top1   0   top5   0   top20   1   of 21
+  'sin'        median best rank      269   top1   0   top5   0   top20   0   of 21
+  ' sin'       median best rank      278   top1   0   top5   0   top20   0   of 21
+  ' Taylor'    median best rank     2726   top1   0   top5   1   top20  10   of 21
+  ' Paris'     median best rank     2275   top1  10   top5  10   top20  10   of 21
+
+-- hidden term power 3: 28 captures --
+  '³'          median best rank      412   top1   0   top5   0   top20   1   of 28
+  '²'          median best rank      615   top1   0   top5   0   top20   1   of 28
+  ' cube'      median best rank     1446   top1   0   top5   0   top20   0   of 28
+  ' cubic'     median best rank     7120   top1   0   top5   0   top20   0   of 28
+  ' square'    median best rank     6438   top1   0   top5   0   top20   0   of 28
+  ' squared'   median best rank      510   top1   0   top5   0   top20   0   of 28
+  '6'          median best rank     5362   top1   0   top5   0   top20   0   of 28
+  '2'          median best rank       58   top1   0   top5   0   top20  11   of 28
+  '3'          median best rank      200   top1   0   top5   0   top20   0   of 28
+  ' six'       median best rank     8104   top1   0   top5   0   top20   0   of 28
+  ' three'     median best rank      804   top1   0   top5   0   top20   2   of 28
+  ' two'       median best rank      629   top1   0   top5   0   top20   0   of 28
+  ' third'     median best rank      304   top1   2   top5   5   top20  11   of 28
+  'x'          median best rank      238   top1   0   top5   0   top20   0   of 28
+  ' x'         median best rank       48   top1   0   top5   0   top20   1   of 28
+  'sin'        median best rank      626   top1   0   top5   0   top20   0   of 28
+  ' sin'       median best rank      275   top1   0   top5   0   top20   0   of 28
+  ' Taylor'    median best rank     4376   top1   0   top5   1   top20  10   of 28
+  ' Paris'     median best rank     2354   top1  11   top5  11   top20  11   of 28
+
+-- hidden term power 4: 12 captures --
+  '³'          median best rank      390   top1   0   top5   0   top20   0   of 12
+  '²'          median best rank      210   top1   0   top5   0   top20   0   of 12
+  ' cube'      median best rank     1160   top1   0   top5   0   top20   0   of 12
+  ' cubic'     median best rank     4470   top1   0   top5   0   top20   0   of 12
+  ' square'    median best rank     3616   top1   0   top5   0   top20   0   of 12
+  ' squared'   median best rank      584   top1   0   top5   0   top20   0   of 12
+  '6'          median best rank     2581   top1   0   top5   0   top20   0   of 12
+  '2'          median best rank       36   top1   0   top5   0   top20   6   of 12
+  '3'          median best rank      149   top1   0   top5   0   top20   0   of 12
+  ' six'       median best rank     8231   top1   0   top5   0   top20   0   of 12
+  ' three'     median best rank      564   top1   0   top5   1   top20   3   of 12
+  ' two'       median best rank      420   top1   0   top5   0   top20   0   of 12
+  ' third'     median best rank       17   top1   3   top5   4   top20   7   of 12
+  'x'          median best rank      150   top1   0   top5   0   top20   0   of 12
+  ' x'         median best rank       54   top1   0   top5   0   top20   0   of 12
+  'sin'        median best rank      599   top1   0   top5   0   top20   0   of 12
+  ' sin'       median best rank      276   top1   0   top5   0   top20   0   of 12
+  ' Taylor'    median best rank     1999   top1   0   top5   1   top20   6   of 12
+  ' Paris'     median best rank     1131   top1   6   top5   6   top20   6   of 12
+
+-- hidden term power 5: 14 captures --
+  '³'          median best rank      183   top1   0   top5   0   top20   1   of 14
+  '²'          median best rank     1508   top1   0   top5   0   top20   0   of 14
+  ' cube'      median best rank     1073   top1   0   top5   0   top20   0   of 14
+  ' cubic'     median best rank     4552   top1   0   top5   0   top20   0   of 14
+  ' square'    median best rank     3770   top1   0   top5   0   top20   0   of 14
+  ' squared'   median best rank      704   top1   0   top5   0   top20   0   of 14
+  '6'          median best rank     2616   top1   0   top5   0   top20   0   of 14
+  '2'          median best rank       36   top1   0   top5   0   top20   7   of 14
+  '3'          median best rank      156   top1   0   top5   0   top20   0   of 14
+  ' six'       median best rank     8414   top1   0   top5   0   top20   0   of 14
+  ' three'     median best rank      381   top1   0   top5   2   top20   6   of 14
+  ' two'       median best rank      453   top1   0   top5   0   top20   0   of 14
+  ' third'     median best rank       10   top1   6   top5   6   top20   9   of 14
+  'x'          median best rank      146   top1   0   top5   0   top20   0   of 14
+  ' x'         median best rank       52   top1   0   top5   0   top20   0   of 14
+  'sin'        median best rank      544   top1   0   top5   0   top20   0   of 14
+  ' sin'       median best rank      283   top1   0   top5   0   top20   0   of 14
+  ' Taylor'    median best rank      969   top1   0   top5   2   top20   7   of 14
+  ' Paris'     median best rank     1162   top1   7   top5   7   top20   7   of 14
+
+-- hidden term power 6: 10 captures --
+  '³'          median best rank      274   top1   0   top5   0   top20   1   of 10
+  '²'          median best rank     1238   top1   0   top5   0   top20   0   of 10
+  ' cube'      median best rank     1194   top1   0   top5   0   top20   0   of 10
+  ' cubic'     median best rank     4110   top1   0   top5   0   top20   0   of 10
+  ' square'    median best rank     3450   top1   0   top5   0   top20   0   of 10
+  ' squared'   median best rank      741   top1   0   top5   0   top20   0   of 10
+  '6'          median best rank     2690   top1   0   top5   0   top20   0   of 10
+  '2'          median best rank       37   top1   0   top5   0   top20   5   of 10
+  '3'          median best rank      154   top1   0   top5   0   top20   0   of 10
+  ' six'       median best rank     7156   top1   0   top5   0   top20   0   of 10
+  ' three'     median best rank      417   top1   0   top5   0   top20   2   of 10
+  ' two'       median best rank      526   top1   0   top5   0   top20   0   of 10
+  ' third'     median best rank       12   top1   2   top5   2   top20   6   of 10
+  'x'          median best rank      148   top1   0   top5   0   top20   0   of 10
+  ' x'         median best rank       54   top1   0   top5   0   top20   0   of 10
+  'sin'        median best rank      642   top1   0   top5   0   top20   0   of 10
+  ' sin'       median best rank      328   top1   0   top5   0   top20   0   of 10
+  ' Taylor'    median best rank     2128   top1   0   top5   2   top20   5   of 10
+  ' Paris'     median best rank     1188   top1   5   top5   5   top20   5   of 10
+
+-- hidden term power 7: 12 captures --
+  '³'          median best rank      357   top1   0   top5   0   top20   0   of 12
+  '²'          median best rank     1251   top1   0   top5   0   top20   0   of 12
+  ' cube'      median best rank     1916   top1   0   top5   0   top20   0   of 12
+  ' cubic'     median best rank     4491   top1   0   top5   0   top20   0   of 12
+  ' square'    median best rank     3706   top1   0   top5   0   top20   0   of 12
+  ' squared'   median best rank     1120   top1   0   top5   0   top20   0   of 12
+  '6'          median best rank     2795   top1   0   top5   0   top20   0   of 12
+  '2'          median best rank       38   top1   0   top5   0   top20   6   of 12
+  '3'          median best rank      165   top1   0   top5   0   top20   0   of 12
+  ' six'       median best rank     3194   top1   0   top5   0   top20   0   of 12
+  ' three'     median best rank      497   top1   0   top5   0   top20   0   of 12
+  ' two'       median best rank      646   top1   0   top5   0   top20   0   of 12
+  ' third'     median best rank      160   top1   0   top5   2   top20   6   of 12
+  'x'          median best rank      148   top1   0   top5   0   top20   0   of 12
+  ' x'         median best rank       53   top1   0   top5   0   top20   0   of 12
+  'sin'        median best rank      639   top1   0   top5   0   top20   0   of 12
+  ' sin'       median best rank      282   top1   0   top5   0   top20   0   of 12
+  ' Taylor'    median best rank      954   top1   0   top5   2   top20   6   of 12
+  ' Paris'     median best rank     1190   top1   6   top5   6   top20   6   of 12
+
+-- hidden term power 8: 4 captures --
+  '³'          median best rank      370   top1   0   top5   0   top20   0   of 4
+  '²'          median best rank     1356   top1   0   top5   0   top20   0   of 4
+  ' cube'      median best rank     2590   top1   0   top5   0   top20   0   of 4
+  ' cubic'     median best rank     4555   top1   0   top5   0   top20   0   of 4
+  ' square'    median best rank     3784   top1   0   top5   0   top20   0   of 4
+  ' squared'   median best rank     1071   top1   0   top5   0   top20   0   of 4
+  '6'          median best rank     2890   top1   0   top5   0   top20   0   of 4
+  '2'          median best rank       38   top1   0   top5   0   top20   2   of 4
+  '3'          median best rank      166   top1   0   top5   0   top20   0   of 4
+  ' six'       median best rank     4328   top1   0   top5   0   top20   0   of 4
+  ' three'     median best rank      450   top1   0   top5   0   top20   0   of 4
+  ' two'       median best rank      704   top1   0   top5   0   top20   0   of 4
+  ' third'     median best rank      159   top1   0   top5   1   top20   2   of 4
+  'x'          median best rank      152   top1   0   top5   0   top20   0   of 4
+  ' x'         median best rank       56   top1   0   top5   0   top20   0   of 4
+  'sin'        median best rank      713   top1   0   top5   0   top20   0   of 4
+  ' sin'       median best rank      348   top1   0   top5   0   top20   0   of 4
+  ' Taylor'    median best rank     2796   top1   0   top5   0   top20   2   of 4
+  ' Paris'     median best rank     1199   top1   2   top5   2   top20   2   of 4
+
+===== sin x vs cos x, 2nd term, forced, per template (best rank over layers & reply positions) =====
+  tay|cos x|2|hold         '³':J40/L457  '²':J20/L84  ' cube':J321/L11584  '6':J82/L206  '2':J41/L15  ' square':J89/L118
+  tay|cos x|2|imagine      '³':J23/L509  '²':J14/L583  ' cube':J4021/L1068  '6':J95/L5094  '2':J72/L60  ' square':J2646/L6711
+  tay|sin x|2|hold         '³':J40/L419  '²':J20/L83  ' cube':J373/L13948  '6':J77/L212  '2':J40/L17  ' square':J57/L68
+  tay|sin x|2|imagine      '³':J23/L430  '²':J11/L714  ' cube':J4391/L1213  '6':J95/L5579  '2':J76/L61  ' square':J2566/L7324
