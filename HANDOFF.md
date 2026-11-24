@@ -68,9 +68,26 @@ either way yet.
     `latent_cube/capture.py` docstring and `latent_cube/dashboard/BRIEF.md`). Files without __free/__forced are a
     superseded first run.
   - `posttrain_math/…` — baseline and FT-01 runs, checkpoints s025/s050/s100.
-- **Compute:** RunPod (pods by API; image above; balance and keys only on AG's Mac). AG plans to add compute for
-  cloud sessions himself (he mentioned Modal). Until he sets that up and says so, a scheduled session must NOT
-  rent GPUs on its own.
+- **Compute (decided 2026-11-24): Modal for cloud sessions; RunPod stays for local, hands-on runs.**
+  - Why (AG, after reading https://www.runpod.io/articles/comparison/runpod-vs-modal, 2026-11-24): a scheduled
+    cloud session should launch GPU work as one `modal run` of a Python function that ends by itself, not
+    create/SSH/watch/delete a pod. The post itself says that for "a set of Python functions that need to run on
+    assorted hardware on assorted schedules … the recommendation is to use [Modal]".
+  - Prices (Modal's own pricing page, read 2026-11-24): A100 80GB $0.000694/s ≈ $2.50/hr, A100 40GB ≈ $2.10/hr,
+    H100 ≈ $3.95/hr, H200 ≈ $4.54/hr, L40S ≈ $1.95/hr; Starter plan $0/month with **$30/month free compute**.
+    Base rates are preemptible (guaranteed non-preemptible = 3x, region pinning 1.15–1.75x), so every job must
+    **checkpoint and resume** (latent_cube/capture.py already resumes per prompt). Volumes $0.09/GiB/month.
+    For comparison, RunPod A100 SXM cost us $1.79/hr (Oct 2026); H200 $5.29/hr.
+  - Docs read: functions run HF transformers on a GPU via `@app.function(gpu=..., image=...)`; timeout 1 s–24 h
+    (default 300 s); `modal shell` gives an interactive shell (not SSH). Token auth for a headless cloud VM
+    (`modal token set` / env vars) still to be confirmed against https://modal.com/docs when it is set up, and
+    the cloud environment's network allowlist must include Modal's API domains (or use Full access).
+  - **Rules for a scheduled session until AG sets a budget:** stay within the free $30/month; write rule-7
+    preflight (incl. a cost line) into the journal BEFORE any `modal run`; smoke-test on the smallest GPU/input
+    first; send results to S3 (or a Modal Volume) incrementally; log estimated vs actual cost in the experiment's
+    cost ledger; anything above the free credit needs AG's explicit go (ask in the daily summary).
+  - RunPod (pods by API; image `ghcr.io/adithyag73/interp-pod:torch28-tf5170`; keys only on AG's Mac) is not
+    for unattended cloud sessions.
 - **Not in the repo on purpose:** `.env`, API keys, AWS/RunPod credentials, raw tensors (>100 MB, regenerable),
   `latent_cube/dashboard/site_pub/` (base64 copy for publishing, made by `make_publish.py`).
 
