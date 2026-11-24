@@ -1,0 +1,9 @@
+chain S6b_r32_step1_lr0.01 done 50s
+chain S2_r32_b0.9_re1 done 62s
+chain S6b_r8 done 72s
+chain S6b_r8_ck2_lr0.01 done 33s
+chain S6b_r8_ck2_lr0.0001 done 34s
+chain S6b_r32_ck2_lr0.01_rep done 37s
+chain S6b_r32_ck2_lr0.003 done 37s
+oracle 12ce81512b933986_t1_w1_O1r2 done 40.3s resid 5.94e-06 bad 0
+COUNTS {'clients': 8, 'forward_backward': 11, 'optim_step': 11, 'exports': 19, 'uploads': 0}

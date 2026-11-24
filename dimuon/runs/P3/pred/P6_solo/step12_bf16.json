@@ -1,0 +1,8 @@
+{
+ "step": "P6_r8/step12",
+ "storage": "bf16",
+ "source": "rolled from oracle gradients of steps 1..t only",
+ "written": 1794350310.9723632,
+ "written_utc": "22:38:30",
+ "sha": "59237d1309d45b80"
+}

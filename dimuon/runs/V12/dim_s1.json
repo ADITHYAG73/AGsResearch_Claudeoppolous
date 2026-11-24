@@ -1,0 +1,9 @@
+{
+ "name": "dim_s1",
+ "model_id": "0e4b5a21-419a-5ea3-8358-cae3ab370038:train:2",
+ "optimizer": "dimuon",
+ "rank": 8,
+ "seed": 1,
+ "params": null,
+ "secs": 30.8
+}

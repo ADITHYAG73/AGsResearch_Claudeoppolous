@@ -1,0 +1,11 @@
+S1v2_r32_fresh_ck2_t0/step   A A/layers.0.linear_attn.in_proj_k.lora_A    small-Gram fp16 0.02592  big-Gram fp16 0.02591  f64 0.03674
+S1v2_r32_fresh_ck2_t0/step   A A/layers.0.linear_attn.in_proj_q.lora_A    small-Gram fp16 0.02685  big-Gram fp16 0.02662  f64 0.03437
+S1v2_r32_fresh_ck2_t0/step   A A/layers.0.linear_attn.in_proj_v.lora_A    small-Gram fp16 0.02097  big-Gram fp16 0.02097  f64 0.03348
+S1v2_r32_fresh_ck2_t0/step   B B/layers.11.self_attn.k_proj.lora_B        small-Gram fp16 0.01681  big-Gram fp16 0.01697  f64 0.02955
+S1v2_r32_fresh_ck2_t0/step   B B/layers.11.self_attn.v_proj.lora_B        small-Gram fp16 0.01697  big-Gram fp16 0.01682  f64 0.03206
+S1v2_r32_fresh_ck2_t0/step   B B/layers.15.self_attn.k_proj.lora_B        small-Gram fp16 0.02016  big-Gram fp16 0.02022  f64 0.03160
+S1v2_r32_fresh_ck2_t0/step   B B/layers.15.self_attn.v_proj.lora_B        small-Gram fp16 0.01491  big-Gram fp16 0.01494  f64 0.03244
+S1v2_r32/step1               B B/layers.11.self_attn.k_proj.lora_B        small-Gram fp16 0.01775  big-Gram fp16 0.01781  f64 0.03114
+S1v2_r32/step1               B B/layers.11.self_attn.v_proj.lora_B        small-Gram fp16 0.01682  big-Gram fp16 0.01720  f64 0.03195
+S1v2_r32/step1               B B/layers.15.self_attn.k_proj.lora_B        small-Gram fp16 0.02026  big-Gram fp16 0.01992  f64 0.03149
+S1v2_r32/step1               B B/layers.15.self_attn.v_proj.lora_B        small-Gram fp16 0.01516  big-Gram fp16 0.01537  f64 0.03201

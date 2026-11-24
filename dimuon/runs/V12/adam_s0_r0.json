@@ -1,0 +1,20 @@
+{
+ "name": "adam_s0_r0",
+ "model_id": "0e4b5a21-419a-5ea3-8358-cae3ab370038:train:0",
+ "optimizer": "adamw",
+ "rank": 8,
+ "seed": 0,
+ "params": {
+  "lr": 1.0,
+  "eps": 1.0
+ },
+ "metrics": {
+  "fb": {
+   "loss:sum": 30.40399169921875,
+   "clock_cycle:unique": 7201168.0
+  },
+  "optim": {}
+ },
+ "max_abs_dA": 0.0,
+ "secs": 52.0
+}

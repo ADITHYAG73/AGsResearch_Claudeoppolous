@@ -1,0 +1,7 @@
+{"tag": "S2_r8_b0_s3_B_layers.1.linear_attn.in_proj_q", "relF": 0.01695, "sec": 13}
+{"tag": "S2_r8_b0_s3_B_layers.5.linear_attn.in_proj_q", "relF": 0.01693, "sec": 14}
+{"tag": "S2_r8_b0_s3_B_layers.9.linear_attn.in_proj_q", "relF": 0.01394, "sec": 13}
+{"tag": "S2_r8_b0_s3_B_layers.13.linear_attn.in_proj_q", "relF": 0.0113, "sec": 12}
+{"tag": "S2_r8_b0_s3_B_layers.17.linear_attn.in_proj_q", "relF": 0.01183, "sec": 14}
+{"tag": "S2_r8_b0_s3_B_layers.21.linear_attn.in_proj_q", "relF": 0.01141, "sec": 13}
+{"tag": "S2_r8_b0_s3_B_layers.25.linear_attn.in_proj_q", "relF": 0.01119, "sec": 13}

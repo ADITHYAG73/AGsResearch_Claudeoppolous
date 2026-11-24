@@ -1,0 +1,24 @@
+{
+ "name": "lr1_eps1_b0.5_0.99",
+ "model_id": "1c9a7a46-49e6-59dc-aa30-5c6102e774ef:train:6",
+ "optimizer": "adamw",
+ "rank": 8,
+ "seed": 0,
+ "params": {
+  "lr": 1.0,
+  "eps": 1.0,
+  "beta1": 0.5,
+  "beta2": 0.99
+ },
+ "weight": 1.0,
+ "keep_A": false,
+ "metrics": {
+  "fb": {
+   "clock_cycle:unique": 7529862.0,
+   "loss:sum": 30.40399169921875
+  },
+  "optim": {}
+ },
+ "max_abs_dA": 0.0,
+ "secs": 52.1
+}

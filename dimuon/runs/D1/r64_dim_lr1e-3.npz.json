@@ -1,0 +1,32 @@
+{
+ "file": "r64_dim_lr1e-3.npz",
+ "optimizer": "dimuon",
+ "rank": 64,
+ "seed": 0,
+ "train_attn": true,
+ "train_mlp": false,
+ "train_unembed": false,
+ "model": "Qwen/Qwen3.5-4B",
+ "text_index": 0,
+ "loss_weight": 1.0,
+ "optim_params": {
+  "type": "dimuon",
+  "learning_rate": 0.001,
+  "grad_clip_norm": 0.0,
+  "beta1": 0.9
+ },
+ "client_model_id": "5dcec71b-258e-505a-bfb0-c0256878a4bb:train:11",
+ "fb_metrics": {
+  "loss:sum": 30.40399169921875,
+  "clock_cycle:unique": 7530018.0
+ },
+ "max_abs_dA": 0.0,
+ "A0_sha256": "49b3e9228052236f10e3a31f958eb895134f108c23e362623b0a966b6aac58d1",
+ "n_lora_B": 152,
+ "stats": {
+  "U_fro_min": 0.009031714043319409,
+  "U_fro_median": 0.009031714905765084,
+  "U_fro_max": 0.009031715746278493
+ },
+ "secs": 63.9
+}

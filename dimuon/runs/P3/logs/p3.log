@@ -1,0 +1,9 @@
+22:09:08 start p3
+chain P3_zb0.99 done 59s
+chain P3_zb0.0 done 59s
+chain P3_zb0.9 done 67s
+chain P3_zb0.5 done 69s
+oracle 81b769589635d440_t2_w1_P3 done 33.6s resid 1.07e-04 bad 0
+oracle 0439672b04765d64_t2_w1_P3 done 34.8s resid 3.84e-05 bad 0
+oracle 774616e5d919680a_t2_w1_P3 done 37.1s resid 5.42e-05 bad 0
+22:10:55 done p3 {'clients': 7, 'forward_backward': 11, 'optim_step': 11, 'exports': 18, 'uploads': 0}

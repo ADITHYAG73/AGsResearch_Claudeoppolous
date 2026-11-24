@@ -1,0 +1,22 @@
+P3 -- zero-gradient step at beta' from P6 state 2 (b0.9 history), then a T2 step at beta 0.9
+beta'=0.0: max |dW| of zero step 0.000e+00
+beta'=0.5: max |dW| of zero step 1.724e-04
+  zero b'=0.5 rule                   A 3.05e-02 / 5.79e-02 / 1.40e-01   B 1.31e-02 / 1.71e-02 / 3.89e-02
+beta'=0.9: max |dW| of zero step 1.724e-04
+  zero b'=0.9 rule                   A 3.05e-02 / 5.79e-02 / 1.40e-01   B 1.31e-02 / 1.71e-02 / 3.89e-02
+beta'=0.99: max |dW| of zero step 1.724e-04
+  zero b'=0.99 rule                  A 3.05e-02 / 5.79e-02 / 1.40e-01   B 1.31e-02 / 1.71e-02 / 3.89e-02
+  zero step b'=0.5 vs b'=0.9: differing elements {'A': 671154, 'B': 1773934}, max|diff| {'A': 3.2223761081695557e-07, 'B': 3.821041900664568e-07}, relF 2.79e-05 / 8.16e-04 / 3.08e-03 (A) 2.09e-05 / 1.05e-03 / 2.82e-03 (B)
+    predicted: differing elements {'A': 1772876, 'B': 1522456}  relF B 0.00e+00 / 9.20e-06 / 2.07e-05
+  zero step b'=0.5 vs b'=0.99: differing elements {'A': 495687, 'B': 1834501}, max|diff| {'A': 3.2479874789714813e-07, 'B': 3.5745324566960335e-07}, relF 2.23e-05 / 4.29e-04 / 2.96e-03 (A) 2.19e-05 / 1.07e-03 / 1.83e-03 (B)
+    predicted: differing elements {'A': 1941078, 'B': 1601359}  relF B 0.00e+00 / 1.16e-05 / 2.32e-05
+  zero step b'=0.9 vs b'=0.99: differing elements {'A': 699522, 'B': 2032281}, max|diff| {'A': 3.2479874789714813e-07, 'B': 4.0034501580521464e-07}, relF 2.50e-05 / 8.27e-04 / 2.82e-03 (A) 2.23e-05 / 1.07e-03 / 2.92e-03 (B)
+    predicted: differing elements {'A': 2204824, 'B': 1958373}  relF B 1.53e-06 / 1.23e-05 / 2.24e-05
+  step3 after zero b'=0.0 rule       A 3.00e-02 / 5.61e-02 / 8.66e-02   B 1.73e-02 / 2.70e-02 / 5.97e-02
+  step3 after zero b'=0.0 null(b'=0.9) A 1.02e+00 / 1.11e+00 / 1.19e+00   B 1.12e+00 / 1.28e+00 / 1.37e+00
+  step3 after zero b'=0.5 rule       A 1.38e-02 / 3.27e-02 / 4.93e-02   B 1.08e-02 / 1.54e-02 / 2.57e-02
+  step3 after zero b'=0.5 null(b'=0.9) A 2.42e-01 / 2.66e-01 / 2.99e-01   B 2.43e-01 / 2.67e-01 / 2.87e-01
+  step3 after zero b'=0.9 rule       A 1.73e-02 / 4.09e-02 / 1.11e-01   B 1.18e-02 / 1.66e-02 / 2.34e-02
+  step3 after zero b'=0.9 null(b'=0.9) A 1.73e-02 / 4.09e-02 / 1.11e-01   B 1.18e-02 / 1.66e-02 / 2.34e-02
+  step3 after zero b'=0.99 rule      A 1.81e-02 / 4.08e-02 / 7.75e-02   B 1.14e-02 / 1.62e-02 / 2.34e-02
+  step3 after zero b'=0.99 null(b'=0.9) A 9.73e-02 / 1.25e-01 / 1.72e-01   B 7.93e-02 / 1.24e-01 / 1.64e-01

@@ -1,0 +1,29 @@
+21:56:49 start oracles
+oracle 3362e501604407c2_t1_w1_P3 done 42.9s resid 1.69e-04 bad 0
+oracle 0ff0b9c991af1568_t0_w1_P3 done 43.7s resid 1.80e-06 bad 0
+oracle d7d226c60d71ee91_t2_w1_P3 done 47.7s resid 1.07e-04 bad 0
+oracle e2a77b6e4b077761_t0_w1_P3 done 50.1s resid 2.31e-06 bad 0
+oracle a84be62044eb3403_t2_w1_P3 done 31.0s resid 4.12e-06 bad 0
+oracle 76b2cd79b4e44f96_t1_w1_P3 done 33.3s resid 3.15e-06 bad 0
+oracle 47f74e2fac222775_t1_w1_P3 done 38.1s resid 4.48e-07 bad 0
+oracle f7bbcfc44b05d926_t0_w1_P3 done 54.2s resid 1.80e-06 bad 0
+oracle 84c568e04830fdc1_t0_w1_P3 done 36.9s resid 1.80e-06 bad 0
+oracle 022dfacead2f14b6_t2_w1_P3 done 50.9s resid 8.10e-07 bad 0
+oracle 23e7ac1701c9c187_t1_w1_P3 done 42.3s resid 7.70e-07 bad 0
+oracle f2db9b3a6c8f7f51_t2_w1_P3 done 35.4s resid 5.97e-07 bad 0
+oracle 5ca507c22b88b77d_t0_w1_P3 done 43.1s resid 4.19e-07 bad 0
+oracle aab5039568e48d84_t1_w1_P3 done 40.2s resid 1.14e-03 bad 1
+oracle 6b6b57f85d3dbb33_t0_w1_P3 done 53.0s resid 1.98e-05 bad 0
+oracle 6b6b57f85d3dbb33_t1_w1_P3 done 51.6s resid 5.76e-04 bad 0
+oracle 6b6b57f85d3dbb33_t1_w1_P3b done 53.5s resid 5.76e-04 bad 0
+oracle 7bdecab086fd9a60_t1_w1_P3b done 32.9s resid 1.68e-05 bad 0
+oracle 7bdecab086fd9a60_t1_w1_P3 done 48.4s resid 1.68e-05 bad 0
+oracle 48f87021a2ccf9b9_t2_w1_P3 done 44.4s resid 6.40e-05 bad 0
+chain P6_fresh_ck3 done 42s
+oracle 48f87021a2ccf9b9_t2_w1_P3b done 43.4s resid 9.14e-06 bad 0
+chain P6_fresh_ck7 done 48s
+chain P6_fresh_ck11 done 41s
+chain P5_fresh_r32_ck1_t1 done 46s
+chain P5_fresh_r8b0_ck2_t1 done 48s
+chain P5_fresh_r8b0_ck3_t2 done 41s
+22:01:59 done oracles {'clients': 27, 'forward_backward': 27, 'optim_step': 27, 'exports': 54, 'uploads': 0}

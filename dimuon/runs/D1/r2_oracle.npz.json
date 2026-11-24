@@ -1,0 +1,35 @@
+{
+ "file": "r2_oracle.npz",
+ "optimizer": "adamw",
+ "rank": 2,
+ "seed": 0,
+ "train_attn": true,
+ "train_mlp": false,
+ "train_unembed": false,
+ "model": "Qwen/Qwen3.5-4B",
+ "text_index": 0,
+ "loss_weight": 1.0,
+ "optim_params": {
+  "learning_rate": 1.0,
+  "beta1": 0.9,
+  "beta2": 0.95,
+  "eps": 100.0,
+  "weight_decay": 0.0,
+  "grad_clip_norm": 0.0
+ },
+ "client_model_id": "5dcec71b-258e-505a-bfb0-c0256878a4bb:train:1",
+ "fb_metrics": {
+  "loss:sum": 30.40399169921875,
+  "clock_cycle:unique": 7529970.0
+ },
+ "max_abs_dA": 0.0,
+ "A0_sha256": "10356f644ec6152dd88c784e7e0b0b85be1a4e1dbe93ebaed10cb6e66e3ff474",
+ "n_lora_B": 152,
+ "stats": {
+  "max_abs_delta": 0.2647058963775635,
+  "max_rel_snap_residual": 1.5644794130209988e-07,
+  "G_global_fro": 601.1230977969215,
+  "G_n_zero": 0
+ },
+ "secs": 38.4
+}

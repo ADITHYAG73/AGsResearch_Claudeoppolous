@@ -1,0 +1,4 @@
+chain P1c_c1_rep done 45s
+chain P1c_c0.2 done 48s
+chain P1c_c0.1_rep done 48s
+{'clients': 3, 'forward_backward': 3, 'optim_step': 3, 'exports': 6, 'uploads': 0}

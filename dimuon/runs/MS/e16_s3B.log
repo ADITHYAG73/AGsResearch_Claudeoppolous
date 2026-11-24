@@ -1,0 +1,4 @@
+r8 s3 B diagR pre+post     test 1.46e-01 / 1.85e-01 / 2.06e-01  b=-0.531, ldL=-3.548, c=-0.425, e=-0.311, ldR=-1.722 (2s)
+r8 s3 B K=gram pre+post    test 2.64e-01 / 3.13e-01 / 3.40e-01  b=-0.498, ldL=-3.836, kc=-0.137, ke=-0.028, ldK=-6.750 (1s)
+r8 s3 B K=white pre+post   test 2.45e-01 / 2.90e-01 / 2.92e-01  b=-0.497, ldL=-3.942, kc=-0.143, ke=-0.084, ldK=-0.812 (1s)
+r8 s3 B diagR + postL      test 6.19e-02 / 1.29e-01 / 1.34e-01  a=-0.262, b=-0.253, ldL=-3.793, c=-0.259, e=-0.253, ldR=-4.522 (1s)

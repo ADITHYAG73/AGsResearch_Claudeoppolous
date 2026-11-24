@@ -1,0 +1,8 @@
+{
+ "step": "P6_r8/step9",
+ "storage": "f32",
+ "source": "rolled from oracle gradients of steps 1..t only",
+ "written": 1794348224.6661355,
+ "written_utc": "22:03:44",
+ "sha": "2dc5746f9fea9d8d"
+}

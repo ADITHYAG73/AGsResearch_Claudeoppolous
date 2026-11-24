@@ -1,0 +1,31 @@
+SOLO r32 lr pair from P2 ck2 (T1), strictly sequential:
+  U(1e-2)/10 vs U(1e-3): A 1.56e-05 / 1.56e-05 / 1.57e-05  B 8.72e-08 / 9.02e-08 / 9.39e-08
+  concurrent lr 0.001 (scaled) vs solo lr 1e-3: A 3.68e-02 / 5.44e-02 / 1.08e-01 B 1.68e-02 / 2.15e-02 / 4.07e-02  cc 7205276
+  concurrent lr 0.004 (scaled) vs solo lr 1e-3: A 1.64e-05 / 1.64e-05 / 1.65e-05 B 7.60e-08 / 7.96e-08 / 8.29e-08  cc 7534804
+  concurrent lr 0.005 (scaled) vs solo lr 1e-3: A 1.51e-05 / 1.52e-05 / 1.53e-05 B 8.86e-08 / 9.14e-08 / 9.52e-08  cc 7205277
+  concurrent lr 0.006 (scaled) vs solo lr 1e-3: A 1.59e-05 / 1.59e-05 / 1.60e-05 B 9.85e-08 / 1.01e-07 / 1.04e-07  cc 7205277
+  concurrent lr 0.008 (scaled) vs solo lr 1e-3: A 3.68e-02 / 5.44e-02 / 1.08e-01 B 1.68e-02 / 2.15e-02 / 4.07e-02  cc 7205308
+  concurrent lr 0.01 (scaled) vs solo lr 1e-3: A 1.56e-05 / 1.56e-05 / 1.57e-05 B 8.72e-08 / 9.02e-08 / 9.39e-08  cc 7534823
+  P4s_r32_lr0.001 cc 7205595 after b0a2258f4c482f88
+  P4s_r32_lr0.01 cc 7205600 after 19b7765d6047da6f
+  solo r32 lr1e-3 rule[x0f16]        A 5.88e-03 / 9.72e-03 / 1.29e-02   B 3.51e-03 / 4.22e-03 / 5.22e-03
+  solo r32 lr1e-2 rule[x0f16] (scaled) A 5.88e-03 / 9.72e-03 / 1.29e-02   B 3.51e-03 / 4.22e-03 / 5.22e-03
+  solo r32 lr1e-3 rule[f64]          A 9.24e-03 / 1.69e-02 / 2.26e-02   B 3.91e-03 / 4.96e-03 / 7.21e-03
+  solo r32 lr1e-2 rule[f64] (scaled) A 9.24e-03 / 1.69e-02 / 2.26e-02   B 3.91e-03 / 4.96e-03 / 7.21e-03
+  solo r32 lr1e-3 rule[fused16]      A 7.33e-03 / 1.23e-02 / 1.69e-02   B 3.94e-03 / 4.71e-03 / 5.60e-03
+  solo r32 lr1e-2 rule[fused16] (scaled) A 7.33e-03 / 1.23e-02 / 1.69e-02   B 3.94e-03 / 4.71e-03 / 5.60e-03
+SOLO clip at P6 state 6 (T0): unclipped vs clip t1 (N_B < t1 < N_all)
+  t1=243.2820 N_B=242.8080 N_all=243.7560: differing elements solo-t1 vs solo-unclipped {'A': 3496899, 'B': 3669932}; relF A 1.18e-02 / 2.77e-02 / 6.55e-02 B 7.26e-03 / 1.24e-02 / 4.69e-02
+  solo unclipped vs trunk step 7 (concurrent era): differing {'A': 3495648, 'B': 3669935}
+  concurrent P1b_t1 vs solo unclipped: differing {'A': 0, 'B': 0}
+  concurrent P1b_t2 vs solo unclipped: differing {'A': 3505714, 'B': 3670010}
+  concurrent P1b_t3 vs solo unclipped: differing {'A': 3505867, 'B': 3670013}
+  solo t1 hyp=all                    A 6.51e-03 / 1.00e-02 / 1.70e-02   B 9.27e-03 / 1.18e-02 / 1.49e-02
+  solo t1 hyp=B                      A 7.67e-03 / 1.16e-02 / 2.02e-02   B 9.53e-03 / 1.17e-02 / 1.51e-02
+  solo t1 hyp=none                   A 7.67e-03 / 1.16e-02 / 2.02e-02   B 9.53e-03 / 1.17e-02 / 1.51e-02
+  solo unclipped vs rule             A 1.17e-02 / 2.76e-02 / 6.48e-02   B 1.09e-02 / 1.58e-02 / 5.00e-02
+  predicted effect of c=0.99806: relF(rule c, rule 1) A 2.96e-03 / 4.80e-03 / 5.84e-03 B 1.74e-03 / 2.55e-03 / 4.26e-03
+  t2 A: c fitted on 4 disjoint quarters [0.29561 0.29588 0.29576 0.29609]; all-tensor N -> 0.29626, B-only N -> 0.29741, per-type -> 1.00000
+  t2 B: c fitted on 4 disjoint quarters [0.29546 0.29604 0.2964  0.29637]; all-tensor N -> 0.29626, B-only N -> 0.29741
+  t3 A: c fitted on 4 disjoint quarters [0.04407 0.04412 0.04392 0.04409]; all-tensor N -> 0.04406, B-only N -> 0.04423, per-type -> 0.50000
+  t3 B: c fitted on 4 disjoint quarters [0.04322 0.0438  0.04412 0.04313]; all-tensor N -> 0.04406, B-only N -> 0.04423

@@ -1,0 +1,8 @@
+{
+ "mode": "fusedbf16",
+ "gkey": "aab5039568e48d84_t1_w1_P3x1",
+ "note": "prediction at lr 1e-3; at other lr the rule predicts exactly lr/1e-3 x this",
+ "written": 1794350302.615198,
+ "written_utc": "22:38:22",
+ "sha": "530ca2b0e730e3e9"
+}

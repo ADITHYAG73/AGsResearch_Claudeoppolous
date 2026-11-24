@@ -1,0 +1,8 @@
+22:07:12 start p1a
+state1 T1 norms A 0.3136 B 94.5507 all 94.5513
+chain P1a_c0.1 done 30s
+chain P1a_c0.7 done 31s
+chain P1a_c0.3 done 35s
+chain P1a_c0.5 done 36s
+chain P1a_c0.01 done 35s
+22:08:19 done p1a {'clients': 5, 'forward_backward': 5, 'optim_step': 5, 'exports': 10, 'uploads': 0}

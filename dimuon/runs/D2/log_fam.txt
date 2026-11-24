@@ -1,0 +1,1616 @@
+=== pool 0
+oracle 0006c0df4d43400a_t0_w1_O1 done 45.6s resid 4.04e-06 bad 0
+oracle 3c4579d4aa8db69d_t0_w1_O1 done 45.9s resid 2.37e-06 bad 0
+oracle 7f0a061acd28d484_t2_w1_O1 done 63.4s resid 3.84e-05 bad 0
+chain S3_r8_b0 done 57s
+oracle 4be8af779dae8d28_t1_w1_O1 done 54.2s resid 9.01e-07 bad 0
+chain S3_r8_b0.99 done 65s
+chain S3_r8_b0.9 done 44s
+chain S1_r8 done 154s
+chain S4_r8_fresh_ck2 done 54s
+chain S6_r8_ck2_lr0.0001 done 51s
+chain S6_r8_ck2_lr0.01 done 48s
+chain S6_r8_ck3_lr0.0001 done 66s
+oracle 97ca72c50f509776_t0_w0_O1 done 41.6s resid 0.00e+00 bad 0
+chain S6_r8_ck3_lr0.01 done 74s
+chain S5_step1_c2 done 65s
+chain S5_step1_c0.5 done 59s
+chain S5_step1_c0.01 done 70s
+chain S4_r8_cont done 142s
+chain S4_r8_b0_cont done 133s
+chain S4_r32_cont done 203s
+errors so far 3
+COUNTS {'clients': 20, 'forward_backward': 34, 'optim_step': 34, 'exports': 54, 'uploads': 0}
+=== pool 1
+oracle 97ca72c50f509776_t0_w1_O1 done 42.7s resid 1.80e-06 bad 0
+chain S5_step2_c0.5 done 49s
+chain S5_step2_c0.01 done 69s
+Traceback (most recent call last):
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 291, in safe
+    return j()
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_fam.py", line 73, in <lambda>
+    j = [lambda k=k: d.oracle(CK(T, k), 0) for k in range(6)]
+                     ~~~~~~~~^^^^^^^^^^^^^
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 244, in oracle
+    c = man()["ckpts"][ckpt]
+        ~~~~~~~~~~~~~~^^^^^^
+KeyError: 'S1_r8-ck5'
+chain S5_step2_c2 done 70s
+oracle 284c39783caeeb28_t0_w1_O1 done 53.0s resid 1.80e-06 bad 0
+oracle 9942f130e3e7150b_t0_w1_O1 done 46.5s resid 1.94e-06 bad 0
+oracle 3c4579d4aa8db69d_t1_w1_O1 done 42.5s resid 2.13e-05 bad 0
+chain S1_r8_fresh_ck1_t0 done 74s
+Traceback (most recent call last):
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 291, in safe
+    return j()
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_fam.py", line 75, in <lambda>
+    j.append(lambda k=k: d.oracle(CK(T, k), 1))
+                         ~~~~~~~~^^^^^^^^^^^^^
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 244, in oracle
+    c = man()["ckpts"][ckpt]
+        ~~~~~~~~~~~~~~^^^^^^
+KeyError: 'S1_r8-ck5'
+Traceback (most recent call last):
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 291, in safe
+    return j()
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_fam.py", line 77, in <lambda>
+    j.append(lambda k=k, t=t: d.chain(f"S1_r{r}_fresh_ck{k}_t{t}", r, one(t, d.D(), "step"),
+                              ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                                      exp="S1", kind="fresh", ckpt=CK(T, k)))
+                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 197, in chain
+    tc = new_client(kind, rank, ckpt, tag=name)
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 162, in new_client
+    return _new_client(kind, rank, ckpt, optimizer, tag)
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 175, in _new_client
+    path = man()["ckpts"][ckpt]["path"]
+           ~~~~~~~~~~~~~~^^^^^^
+KeyError: 'S1_r8-ck5'
+Traceback (most recent call last):
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 291, in safe
+    return j()
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_fam.py", line 77, in <lambda>
+    j.append(lambda k=k, t=t: d.chain(f"S1_r{r}_fresh_ck{k}_t{t}", r, one(t, d.D(), "step"),
+                              ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                                      exp="S1", kind="fresh", ckpt=CK(T, k)))
+                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 197, in chain
+    tc = new_client(kind, rank, ckpt, tag=name)
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 162, in new_client
+    return _new_client(kind, rank, ckpt, optimizer, tag)
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 175, in _new_client
+    path = man()["ckpts"][ckpt]["path"]
+           ~~~~~~~~~~~~~~^^^^^^
+KeyError: 'S1_r8-ck5'
+chain S1_r8_fresh_ck1_t1 done 54s
+chain S1_r8_fresh_ck2_t1 done 52s
+chain S1_r8_fresh_ck2_t0 done 80s
+Traceback (most recent call last):
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 291, in safe
+    return j()
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_fam.py", line 18, in <lambda>
+    return lambda: d.chain(T, r, d.seq_steps(beta1, texts=texts), exp=exp, save=True)
+                   ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 215, in chain
+    m = tk.step(tc, st["params"], data=tk.batch(st["text"], st["weight"]),
+                text=st["text"], weight=st["weight"])
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/tk.py", line 179, in step
+    fb = tc.forward_backward(data, "cross_entropy").result()
+  File "/tmp/claude-0/-home-user-AGsResearch-Claudeoppolous/31484cee-6902-5b45-bc20-3fc4fb38db73/scratchpad/venv/lib/python3.13/site-packages/tinker/lib/public_interfaces/api_future.py", line 151, in result
+    return self._future.result(timeout)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/usr/local/lib/python3.13/concurrent/futures/_base.py", line 460, in result
+    return self.__get_result()
+           ~~~~~~~~~~~~~~~~~^^
+  File "/usr/local/lib/python3.13/concurrent/futures/_base.py", line 402, in __get_result
+    raise self._exception
+  File "/tmp/claude-0/-home-user-AGsResearch-Claudeoppolous/31484cee-6902-5b45-bc20-3fc4fb38db73/scratchpad/venv/lib/python3.13/site-packages/tinker/lib/telemetry.py", line 423, in _awrapper
+    return await cast(Callable[..., Awaitable[R]], func)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/claude-0/-home-user-AGsResearch-Claudeoppolous/31484cee-6902-5b45-bc20-3fc4fb38db73/scratchpad/venv/lib/python3.13/site-packages/tinker/lib/public_interfaces/training_client.py", line 461, in _run_async
+    return await _CombinedAPIFuture(futures, combine_fwd_bwd_output_results, self.holder)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/claude-0/-home-user-AGsResearch-Claudeoppolous/31484cee-6902-5b45-bc20-3fc4fb38db73/scratchpad/venv/lib/python3.13/site-packages/tinker/lib/api_future_impl.py", line 676, in result_async
+    return await self._future.result_async(timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/claude-0/-home-user-AGsResearch-Claudeoppolous/31484cee-6902-5b45-bc20-3fc4fb38db73/scratchpad/venv/lib/python3.13/site-packages/tinker/lib/public_interfaces/api_future.py", line 156, in result_async
+    return await asyncio.wrap_future(self._future)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/claude-0/-home-user-AGsResearch-Claudeoppolous/31484cee-6902-5b45-bc20-3fc4fb38db73/scratchpad/venv/lib/python3.13/site-packages/tinker/lib/api_future_impl.py", line 668, in _combine
+    results = await asyncio.gather(*[future.result_async() for future in self.futures])
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/claude-0/-home-user-AGsResearch-Claudeoppolous/31484cee-6902-5b45-bc20-3fc4fb38db73/scratchpad/venv/lib/python3.13/site-packages/tinker/lib/api_future_impl.py", line 635, in result_async
+    return await asyncio.wait_for(self._future, timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/asyncio/tasks.py", line 514, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "/tmp/claude-0/-home-user-AGsResearch-Claudeoppolous/31484cee-6902-5b45-bc20-3fc4fb38db73/scratchpad/venv/lib/python3.13/site-packages/tinker/lib/public_interfaces/api_future.py", line 156, in result_async
+    return await asyncio.wrap_future(self._future)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/claude-0/-home-user-AGsResearch-Claudeoppolous/31484cee-6902-5b45-bc20-3fc4fb38db73/scratchpad/venv/lib/python3.13/site-packages/tinker/lib/api_future_impl.py", line 288, in _result_async
+    result = await self._handle_outcome(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        fetched, state, stack, iteration, start_time
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/tmp/claude-0/-home-user-AGsResearch-Claudeoppolous/31484cee-6902-5b45-bc20-3fc4fb38db73/scratchpad/venv/lib/python3.13/site-packages/tinker/lib/api_future_impl.py", line 558, in _handle_outcome
+    raise RequestFailedError(
+    ...<4 lines>...
+    )
+tinker.RequestFailedError: Request failed: This TrainingClient is poisoned. We cannot run further operations against it. Please create a new TrainingClient from a checkpoint if you wish to continue. Failure reason: training run 8886d663-ec03-5cab-a20f-0609eabb4616:train:31 failed with user error: Training checkpoint saved. Free checkpoint storage limit reached (bytes or checkpoint count); this training client is closed. Delete checkpoints or switch to paid storage, then resume from the checkpoint with a new ServiceClient and training client.. for self.request_id='8886d663-ec03-5cab-a20f-0609eabb4616:train:31:11' and expected type self.model_cls=<class 'tinker.ForwardBackwardOutput'>
+errors so far 8
+COUNTS {'clients': 32, 'forward_backward': 47, 'optim_step': 47, 'exports': 79, 'uploads': 0}
+=== pool 2
+Traceback (most recent call last):
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 291, in safe
+    return j()
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_fam.py", line 73, in <lambda>
+    j = [lambda k=k: d.oracle(CK(T, k), 0) for k in range(6)]
+                     ~~~~~~~~^^^^^^^^^^^^^
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 244, in oracle
+    c = man()["ckpts"][ckpt]
+        ~~~~~~~~~~~~~~^^^^^^
+KeyError: 'S1_r32-ck3'
+Traceback (most recent call last):
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 291, in safe
+    return j()
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_fam.py", line 73, in <lambda>
+    j = [lambda k=k: d.oracle(CK(T, k), 0) for k in range(6)]
+                     ~~~~~~~~^^^^^^^^^^^^^
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 244, in oracle
+    c = man()["ckpts"][ckpt]
+        ~~~~~~~~~~~~~~^^^^^^
+KeyError: 'S1_r32-ck4'
+Traceback (most recent call last):
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 291, in safe
+    return j()
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_fam.py", line 73, in <lambda>
+    j = [lambda k=k: d.oracle(CK(T, k), 0) for k in range(6)]
+                     ~~~~~~~~^^^^^^^^^^^^^
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 244, in oracle
+    c = man()["ckpts"][ckpt]
+        ~~~~~~~~~~~~~~^^^^^^
+KeyError: 'S1_r32-ck5'
+Traceback (most recent call last):
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 291, in safe
+    return j()
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_fam.py", line 73, in <lambda>
+    j = [lambda k=k: d.oracle(CK(T, k), 0) for k in range(6)]
+                     ~~~~~~~~^^^^^^^^^^^^^
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 250, in oracle
+    tc = new_client("fresh", c["rank"], ckpt, optimizer="adamw", tag=f"oracle {key}")
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 162, in new_client
+    return _new_client(kind, rank, ckpt, optimizer, tag)
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 177, in _new_client
+    return tk.client_from_state(path, optimizer=optimizer, tag=tag)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/tk.py", line 112, in client_from_state
+    tc = service().create_training_client_from_state(path, optimizer=opt).result()
+  File "/tmp/claude-0/-home-user-AGsResearch-Claudeoppolous/31484cee-6902-5b45-bc20-3fc4fb38db73/scratchpad/venv/lib/python3.13/site-packages/tinker/lib/sync_only.py", line 94, in wrapper
+    return func(*args, **kwargs)
+  File "/tmp/claude-0/-home-user-AGsResearch-Claudeoppolous/31484cee-6902-5b45-bc20-3fc4fb38db73/scratchpad/venv/lib/python3.13/site-packages/tinker/lib/public_interfaces/backcompat_client_future.py", line 36, in result
+    return self._future.result(timeout)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/tmp/claude-0/-home-user-AGsResearch-Claudeoppolous/31484cee-6902-5b45-bc20-3fc4fb38db73/scratchpad/venv/lib/python3.13/site-packages/tinker/lib/public_interfaces/api_future.py", line 151, in result
+    return self._future.result(timeout)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/usr/local/lib/python3.13/concurrent/futures/_base.py", line 460, in result
+    return self.__get_result()
+           ~~~~~~~~~~~~~~~~~^^
+  File "/usr/local/lib/python3.13/concurrent/futures/_base.py", line 402, in __get_result
+    raise self._exception
+  File "/tmp/claude-0/-home-user-AGsResearch-Claudeoppolous/31484cee-6902-5b45-bc20-3fc4fb38db73/scratchpad/venv/lib/python3.13/site-packages/tinker/lib/telemetry.py", line 423, in _awrapper
+    return await cast(Callable[..., Awaitable[R]], func)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/claude-0/-home-user-AGsResearch-Claudeoppolous/31484cee-6902-5b45-bc20-3fc4fb38db73/scratchpad/venv/lib/python3.13/site-packages/tinker/lib/public_interfaces/service_client.py", line 421, in _create_via_load_weights_async
+    await _APIFuture(
+    ...<6 lines>...
+    ).result_async()
+  File "/tmp/claude-0/-home-user-AGsResearch-Claudeoppolous/31484cee-6902-5b45-bc20-3fc4fb38db73/scratchpad/venv/lib/python3.13/site-packages/tinker/lib/api_future_impl.py", line 635, in result_async
+    return await asyncio.wait_for(self._future, timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/asyncio/tasks.py", line 514, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "/tmp/claude-0/-home-user-AGsResearch-Claudeoppolous/31484cee-6902-5b45-bc20-3fc4fb38db73/scratchpad/venv/lib/python3.13/site-packages/tinker/lib/public_interfaces/api_future.py", line 156, in result_async
+    return await asyncio.wrap_future(self._future)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/claude-0/-home-user-AGsResearch-Claudeoppolous/31484cee-6902-5b45-bc20-3fc4fb38db73/scratchpad/venv/lib/python3.13/site-packages/tinker/lib/api_future_impl.py", line 288, in _result_async
+    result = await self._handle_outcome(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        fetched, state, stack, iteration, start_time
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/tmp/claude-0/-home-user-AGsResearch-Claudeoppolous/31484cee-6902-5b45-bc20-3fc4fb38db73/scratchpad/venv/lib/python3.13/site-packages/tinker/lib/api_future_impl.py", line 558, in _handle_outcome
+    raise RequestFailedError(
+    ...<4 lines>...
+    )
+tinker.RequestFailedError: Request failed: This ServiceClient is poisoned. We cannot run further operations against it. Please create a new ServiceClient if you wish to continue. Failure reason: training run 8886d663-ec03-5cab-a20f-0609eabb4616:train:31 failed: Training checkpoint saved. Free checkpoint storage limit reached (bytes or checkpoint count); this training client is closed. Delete checkpoints or switch to paid storage, then resume from the checkpoint with a new ServiceClient and training client.. for self.request_id='8886d663-ec03-5cab-a20f-0609eabb4616:train:34:0' and expected type self.model_cls=<class 'tinker.types._pydantic_types.load_weights_response.LoadWeightsResponse'>
+Traceback (most recent call last):
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 291, in safe
+    return j()
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_fam.py", line 75, in <lambda>
+    j.append(lambda k=k: d.oracle(CK(T, k), 1))
+                         ~~~~~~~~^^^^^^^^^^^^^
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 250, in oracle
+    tc = new_client("fresh", c["rank"], ckpt, optimizer="adamw", tag=f"oracle {key}")
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 162, in new_client
+    return _new_client(kind, rank, ckpt, optimizer, tag)
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 177, in _new_client
+    return tk.client_from_state(path, optimizer=optimizer, tag=tag)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/tk.py", line 112, in client_from_state
+    tc = service().create_training_client_from_state(path, optimizer=opt).result()
+  File "/tmp/claude-0/-home-user-AGsResearch-Claudeoppolous/31484cee-6902-5b45-bc20-3fc4fb38db73/scratchpad/venv/lib/python3.13/site-packages/tinker/lib/sync_only.py", line 94, in wrapper
+    return func(*args, **kwargs)
+  File "/tmp/claude-0/-home-user-AGsResearch-Claudeoppolous/31484cee-6902-5b45-bc20-3fc4fb38db73/scratchpad/venv/lib/python3.13/site-packages/tinker/lib/public_interfaces/backcompat_client_future.py", line 36, in result
+    return self._future.result(timeout)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/tmp/claude-0/-home-user-AGsResearch-Claudeoppolous/31484cee-6902-5b45-bc20-3fc4fb38db73/scratchpad/venv/lib/python3.13/site-packages/tinker/lib/public_interfaces/api_future.py", line 151, in result
+    return self._future.result(timeout)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/usr/local/lib/python3.13/concurrent/futures/_base.py", line 460, in result
+    return self.__get_result()
+           ~~~~~~~~~~~~~~~~~^^
+  File "/usr/local/lib/python3.13/concurrent/futures/_base.py", line 402, in __get_result
+    raise self._exception
+  File "/tmp/claude-0/-home-user-AGsResearch-Claudeoppolous/31484cee-6902-5b45-bc20-3fc4fb38db73/scratchpad/venv/lib/python3.13/site-packages/tinker/lib/telemetry.py", line 423, in _awrapper
+    return await cast(Callable[..., Awaitable[R]], func)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/claude-0/-home-user-AGsResearch-Claudeoppolous/31484cee-6902-5b45-bc20-3fc4fb38db73/scratchpad/venv/lib/python3.13/site-packages/tinker/lib/public_interfaces/service_client.py", line 421, in _create_via_load_weights_async
+    await _APIFuture(
+    ...<6 lines>...
+    ).result_async()
+  File "/tmp/claude-0/-home-user-AGsResearch-Claudeoppolous/31484cee-6902-5b45-bc20-3fc4fb38db73/scratchpad/venv/lib/python3.13/site-packages/tinker/lib/api_future_impl.py", line 635, in result_async
+    return await asyncio.wait_for(self._future, timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/asyncio/tasks.py", line 514, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "/tmp/claude-0/-home-user-AGsResearch-Claudeoppolous/31484cee-6902-5b45-bc20-3fc4fb38db73/scratchpad/venv/lib/python3.13/site-packages/tinker/lib/public_interfaces/api_future.py", line 156, in result_async
+    return await asyncio.wrap_future(self._future)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/claude-0/-home-user-AGsResearch-Claudeoppolous/31484cee-6902-5b45-bc20-3fc4fb38db73/scratchpad/venv/lib/python3.13/site-packages/tinker/lib/api_future_impl.py", line 288, in _result_async
+    result = await self._handle_outcome(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        fetched, state, stack, iteration, start_time
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/tmp/claude-0/-home-user-AGsResearch-Claudeoppolous/31484cee-6902-5b45-bc20-3fc4fb38db73/scratchpad/venv/lib/python3.13/site-packages/tinker/lib/api_future_impl.py", line 558, in _handle_outcome
+    raise RequestFailedError(
+    ...<4 lines>...
+    )
+tinker.RequestFailedError: Request failed: This ServiceClient is poisoned. We cannot run further operations against it. Please create a new ServiceClient if you wish to continue. Failure reason: training run 8886d663-ec03-5cab-a20f-0609eabb4616:train:31 failed: Training checkpoint saved. Free checkpoint storage limit reached (bytes or checkpoint count); this training client is closed. Delete checkpoints or switch to paid storage, then resume from the checkpoint with a new ServiceClient and training client.. for self.request_id='8886d663-ec03-5cab-a20f-0609eabb4616:train:35:0' and expected type self.model_cls=<class 'tinker.types._pydantic_types.load_weights_response.LoadWeightsResponse'>
+Traceback (most recent call last):
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 291, in safe
+    return j()
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_fam.py", line 73, in <lambda>
+    j = [lambda k=k: d.oracle(CK(T, k), 0) for k in range(6)]
+                     ~~~~~~~~^^^^^^^^^^^^^
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 250, in oracle
+    tc = new_client("fresh", c["rank"], ckpt, optimizer="adamw", tag=f"oracle {key}")
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 162, in new_client
+    return _new_client(kind, rank, ckpt, optimizer, tag)
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 177, in _new_client
+    return tk.client_from_state(path, optimizer=optimizer, tag=tag)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/tk.py", line 112, in client_from_state
+    tc = service().create_training_client_from_state(path, optimizer=opt).result()
+  File "/tmp/claude-0/-home-user-AGsResearch-Claudeoppolous/31484cee-6902-5b45-bc20-3fc4fb38db73/scratchpad/venv/lib/python3.13/site-packages/tinker/lib/sync_only.py", line 94, in wrapper
+    return func(*args, **kwargs)
+  File "/tmp/claude-0/-home-user-AGsResearch-Claudeoppolous/31484cee-6902-5b45-bc20-3fc4fb38db73/scratchpad/venv/lib/python3.13/site-packages/tinker/lib/public_interfaces/backcompat_client_future.py", line 36, in result
+    return self._future.result(timeout)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/tmp/claude-0/-home-user-AGsResearch-Claudeoppolous/31484cee-6902-5b45-bc20-3fc4fb38db73/scratchpad/venv/lib/python3.13/site-packages/tinker/lib/public_interfaces/api_future.py", line 151, in result
+    return self._future.result(timeout)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/usr/local/lib/python3.13/concurrent/futures/_base.py", line 460, in result
+    return self.__get_result()
+           ~~~~~~~~~~~~~~~~~^^
+  File "/usr/local/lib/python3.13/concurrent/futures/_base.py", line 402, in __get_result
+    raise self._exception
+  File "/tmp/claude-0/-home-user-AGsResearch-Claudeoppolous/31484cee-6902-5b45-bc20-3fc4fb38db73/scratchpad/venv/lib/python3.13/site-packages/tinker/lib/telemetry.py", line 423, in _awrapper
+    return await cast(Callable[..., Awaitable[R]], func)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/claude-0/-home-user-AGsResearch-Claudeoppolous/31484cee-6902-5b45-bc20-3fc4fb38db73/scratchpad/venv/lib/python3.13/site-packages/tinker/lib/public_interfaces/service_client.py", line 421, in _create_via_load_weights_async
+    await _APIFuture(
+    ...<6 lines>...
+    ).result_async()
+  File "/tmp/claude-0/-home-user-AGsResearch-Claudeoppolous/31484cee-6902-5b45-bc20-3fc4fb38db73/scratchpad/venv/lib/python3.13/site-packages/tinker/lib/api_future_impl.py", line 635, in result_async
+    return await asyncio.wait_for(self._future, timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/asyncio/tasks.py", line 514, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "/tmp/claude-0/-home-user-AGsResearch-Claudeoppolous/31484cee-6902-5b45-bc20-3fc4fb38db73/scratchpad/venv/lib/python3.13/site-packages/tinker/lib/public_interfaces/api_future.py", line 156, in result_async
+    return await asyncio.wrap_future(self._future)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/claude-0/-home-user-AGsResearch-Claudeoppolous/31484cee-6902-5b45-bc20-3fc4fb38db73/scratchpad/venv/lib/python3.13/site-packages/tinker/lib/api_future_impl.py", line 288, in _result_async
+    result = await self._handle_outcome(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        fetched, state, stack, iteration, start_time
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/tmp/claude-0/-home-user-AGsResearch-Claudeoppolous/31484cee-6902-5b45-bc20-3fc4fb38db73/scratchpad/venv/lib/python3.13/site-packages/tinker/lib/api_future_impl.py", line 558, in _handle_outcome
+    raise RequestFailedError(
+    ...<4 lines>...
+    )
+tinker.RequestFailedError: Request failed: This ServiceClient is poisoned. We cannot run further operations against it. Please create a new ServiceClient if you wish to continue. Failure reason: training run 8886d663-ec03-5cab-a20f-0609eabb4616:train:31 failed: Training checkpoint saved. Free checkpoint storage limit reached (bytes or checkpoint count); this training client is closed. Delete checkpoints or switch to paid storage, then resume from the checkpoint with a new ServiceClient and training client.. for self.request_id='8886d663-ec03-5cab-a20f-0609eabb4616:train:33:0' and expected type self.model_cls=<class 'tinker.types._pydantic_types.load_weights_response.LoadWeightsResponse'>
+Traceback (most recent call last):
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 291, in safe
+    return j()
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_fam.py", line 77, in <lambda>
+    j.append(lambda k=k, t=t: d.chain(f"S1_r{r}_fresh_ck{k}_t{t}", r, one(t, d.D(), "step"),
+                              ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                                      exp="S1", kind="fresh", ckpt=CK(T, k)))
+                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 197, in chain
+    tc = new_client(kind, rank, ckpt, tag=name)
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 162, in new_client
+    return _new_client(kind, rank, ckpt, optimizer, tag)
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 177, in _new_client
+    return tk.client_from_state(path, optimizer=optimizer, tag=tag)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/tk.py", line 112, in client_from_state
+    tc = service().create_training_client_from_state(path, optimizer=opt).result()
+  File "/tmp/claude-0/-home-user-AGsResearch-Claudeoppolous/31484cee-6902-5b45-bc20-3fc4fb38db73/scratchpad/venv/lib/python3.13/site-packages/tinker/lib/sync_only.py", line 94, in wrapper
+    return func(*args, **kwargs)
+  File "/tmp/claude-0/-home-user-AGsResearch-Claudeoppolous/31484cee-6902-5b45-bc20-3fc4fb38db73/scratchpad/venv/lib/python3.13/site-packages/tinker/lib/public_interfaces/backcompat_client_future.py", line 36, in result
+    return self._future.result(timeout)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/tmp/claude-0/-home-user-AGsResearch-Claudeoppolous/31484cee-6902-5b45-bc20-3fc4fb38db73/scratchpad/venv/lib/python3.13/site-packages/tinker/lib/public_interfaces/api_future.py", line 151, in result
+    return self._future.result(timeout)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/usr/local/lib/python3.13/concurrent/futures/_base.py", line 460, in result
+    return self.__get_result()
+           ~~~~~~~~~~~~~~~~~^^
+  File "/usr/local/lib/python3.13/concurrent/futures/_base.py", line 402, in __get_result
+    raise self._exception
+  File "/tmp/claude-0/-home-user-AGsResearch-Claudeoppolous/31484cee-6902-5b45-bc20-3fc4fb38db73/scratchpad/venv/lib/python3.13/site-packages/tinker/lib/telemetry.py", line 423, in _awrapper
+    return await cast(Callable[..., Awaitable[R]], func)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/claude-0/-home-user-AGsResearch-Claudeoppolous/31484cee-6902-5b45-bc20-3fc4fb38db73/scratchpad/venv/lib/python3.13/site-packages/tinker/lib/public_interfaces/service_client.py", line 421, in _create_via_load_weights_async
+    await _APIFuture(
+    ...<6 lines>...
+    ).result_async()
+  File "/tmp/claude-0/-home-user-AGsResearch-Claudeoppolous/31484cee-6902-5b45-bc20-3fc4fb38db73/scratchpad/venv/lib/python3.13/site-packages/tinker/lib/api_future_impl.py", line 635, in result_async
+    return await asyncio.wait_for(self._future, timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/asyncio/tasks.py", line 514, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "/tmp/claude-0/-home-user-AGsResearch-Claudeoppolous/31484cee-6902-5b45-bc20-3fc4fb38db73/scratchpad/venv/lib/python3.13/site-packages/tinker/lib/public_interfaces/api_future.py", line 156, in result_async
+    return await asyncio.wrap_future(self._future)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/claude-0/-home-user-AGsResearch-Claudeoppolous/31484cee-6902-5b45-bc20-3fc4fb38db73/scratchpad/venv/lib/python3.13/site-packages/tinker/lib/api_future_impl.py", line 288, in _result_async
+    result = await self._handle_outcome(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        fetched, state, stack, iteration, start_time
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/tmp/claude-0/-home-user-AGsResearch-Claudeoppolous/31484cee-6902-5b45-bc20-3fc4fb38db73/scratchpad/venv/lib/python3.13/site-packages/tinker/lib/api_future_impl.py", line 558, in _handle_outcome
+    raise RequestFailedError(
+    ...<4 lines>...
+    )
+tinker.RequestFailedError: Request failed: This ServiceClient is poisoned. We cannot run further operations against it. Please create a new ServiceClient if you wish to continue. Failure reason: training run 8886d663-ec03-5cab-a20f-0609eabb4616:train:31 failed: Training checkpoint saved. Free checkpoint storage limit reached (bytes or checkpoint count); this training client is closed. Delete checkpoints or switch to paid storage, then resume from the checkpoint with a new ServiceClient and training client.. for self.request_id='8886d663-ec03-5cab-a20f-0609eabb4616:train:36:0' and expected type self.model_cls=<class 'tinker.types._pydantic_types.load_weights_response.LoadWeightsResponse'>
+Traceback (most recent call last):
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 291, in safe
+    return j()
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_fam.py", line 75, in <lambda>
+    j.append(lambda k=k: d.oracle(CK(T, k), 1))
+                         ~~~~~~~~^^^^^^^^^^^^^
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 250, in oracle
+    tc = new_client("fresh", c["rank"], ckpt, optimizer="adamw", tag=f"oracle {key}")
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 162, in new_client
+    return _new_client(kind, rank, ckpt, optimizer, tag)
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 177, in _new_client
+    return tk.client_from_state(path, optimizer=optimizer, tag=tag)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/tk.py", line 112, in client_from_state
+    tc = service().create_training_client_from_state(path, optimizer=opt).result()
+  File "/tmp/claude-0/-home-user-AGsResearch-Claudeoppolous/31484cee-6902-5b45-bc20-3fc4fb38db73/scratchpad/venv/lib/python3.13/site-packages/tinker/lib/sync_only.py", line 94, in wrapper
+    return func(*args, **kwargs)
+  File "/tmp/claude-0/-home-user-AGsResearch-Claudeoppolous/31484cee-6902-5b45-bc20-3fc4fb38db73/scratchpad/venv/lib/python3.13/site-packages/tinker/lib/public_interfaces/backcompat_client_future.py", line 36, in result
+    return self._future.result(timeout)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/tmp/claude-0/-home-user-AGsResearch-Claudeoppolous/31484cee-6902-5b45-bc20-3fc4fb38db73/scratchpad/venv/lib/python3.13/site-packages/tinker/lib/public_interfaces/api_future.py", line 151, in result
+    return self._future.result(timeout)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/usr/local/lib/python3.13/concurrent/futures/_base.py", line 460, in result
+    return self.__get_result()
+           ~~~~~~~~~~~~~~~~~^^
+  File "/usr/local/lib/python3.13/concurrent/futures/_base.py", line 402, in __get_result
+    raise self._exception
+  File "/tmp/claude-0/-home-user-AGsResearch-Claudeoppolous/31484cee-6902-5b45-bc20-3fc4fb38db73/scratchpad/venv/lib/python3.13/site-packages/tinker/lib/telemetry.py", line 423, in _awrapper
+    return await cast(Callable[..., Awaitable[R]], func)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/claude-0/-home-user-AGsResearch-Claudeoppolous/31484cee-6902-5b45-bc20-3fc4fb38db73/scratchpad/venv/lib/python3.13/site-packages/tinker/lib/public_interfaces/service_client.py", line 421, in _create_via_load_weights_async
+    await _APIFuture(
+    ...<6 lines>...
+    ).result_async()
+  File "/tmp/claude-0/-home-user-AGsResearch-Claudeoppolous/31484cee-6902-5b45-bc20-3fc4fb38db73/scratchpad/venv/lib/python3.13/site-packages/tinker/lib/api_future_impl.py", line 635, in result_async
+    return await asyncio.wait_for(self._future, timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/asyncio/tasks.py", line 514, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "/tmp/claude-0/-home-user-AGsResearch-Claudeoppolous/31484cee-6902-5b45-bc20-3fc4fb38db73/scratchpad/venv/lib/python3.13/site-packages/tinker/lib/public_interfaces/api_future.py", line 156, in result_async
+    return await asyncio.wrap_future(self._future)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/claude-0/-home-user-AGsResearch-Claudeoppolous/31484cee-6902-5b45-bc20-3fc4fb38db73/scratchpad/venv/lib/python3.13/site-packages/tinker/lib/api_future_impl.py", line 288, in _result_async
+    result = await self._handle_outcome(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        fetched, state, stack, iteration, start_time
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/tmp/claude-0/-home-user-AGsResearch-Claudeoppolous/31484cee-6902-5b45-bc20-3fc4fb38db73/scratchpad/venv/lib/python3.13/site-packages/tinker/lib/api_future_impl.py", line 558, in _handle_outcome
+    raise RequestFailedError(
+    ...<4 lines>...
+    )
+tinker.RequestFailedError: Request failed: This ServiceClient is poisoned. We cannot run further operations against it. Please create a new ServiceClient if you wish to continue. Failure reason: training run 8886d663-ec03-5cab-a20f-0609eabb4616:train:31 failed: Training checkpoint saved. Free checkpoint storage limit reached (bytes or checkpoint count); this training client is closed. Delete checkpoints or switch to paid storage, then resume from the checkpoint with a new ServiceClient and training client.. for self.request_id='8886d663-ec03-5cab-a20f-0609eabb4616:train:38:0' and expected type self.model_cls=<class 'tinker.types._pydantic_types.load_weights_response.LoadWeightsResponse'>
+Traceback (most recent call last):
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 291, in safe
+    return j()
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_fam.py", line 77, in <lambda>
+    j.append(lambda k=k, t=t: d.chain(f"S1_r{r}_fresh_ck{k}_t{t}", r, one(t, d.D(), "step"),
+                              ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                                      exp="S1", kind="fresh", ckpt=CK(T, k)))
+                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 197, in chain
+    tc = new_client(kind, rank, ckpt, tag=name)
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 162, in new_client
+    return _new_client(kind, rank, ckpt, optimizer, tag)
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 177, in _new_client
+    return tk.client_from_state(path, optimizer=optimizer, tag=tag)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/tk.py", line 112, in client_from_state
+    tc = service().create_training_client_from_state(path, optimizer=opt).result()
+  File "/tmp/claude-0/-home-user-AGsResearch-Claudeoppolous/31484cee-6902-5b45-bc20-3fc4fb38db73/scratchpad/venv/lib/python3.13/site-packages/tinker/lib/sync_only.py", line 94, in wrapper
+    return func(*args, **kwargs)
+  File "/tmp/claude-0/-home-user-AGsResearch-Claudeoppolous/31484cee-6902-5b45-bc20-3fc4fb38db73/scratchpad/venv/lib/python3.13/site-packages/tinker/lib/public_interfaces/backcompat_client_future.py", line 36, in result
+    return self._future.result(timeout)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/tmp/claude-0/-home-user-AGsResearch-Claudeoppolous/31484cee-6902-5b45-bc20-3fc4fb38db73/scratchpad/venv/lib/python3.13/site-packages/tinker/lib/public_interfaces/api_future.py", line 151, in result
+    return self._future.result(timeout)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/usr/local/lib/python3.13/concurrent/futures/_base.py", line 460, in result
+    return self.__get_result()
+           ~~~~~~~~~~~~~~~~~^^
+  File "/usr/local/lib/python3.13/concurrent/futures/_base.py", line 402, in __get_result
+    raise self._exception
+  File "/tmp/claude-0/-home-user-AGsResearch-Claudeoppolous/31484cee-6902-5b45-bc20-3fc4fb38db73/scratchpad/venv/lib/python3.13/site-packages/tinker/lib/telemetry.py", line 423, in _awrapper
+    return await cast(Callable[..., Awaitable[R]], func)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/claude-0/-home-user-AGsResearch-Claudeoppolous/31484cee-6902-5b45-bc20-3fc4fb38db73/scratchpad/venv/lib/python3.13/site-packages/tinker/lib/public_interfaces/service_client.py", line 421, in _create_via_load_weights_async
+    await _APIFuture(
+    ...<6 lines>...
+    ).result_async()
+  File "/tmp/claude-0/-home-user-AGsResearch-Claudeoppolous/31484cee-6902-5b45-bc20-3fc4fb38db73/scratchpad/venv/lib/python3.13/site-packages/tinker/lib/api_future_impl.py", line 635, in result_async
+    return await asyncio.wait_for(self._future, timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/asyncio/tasks.py", line 514, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "/tmp/claude-0/-home-user-AGsResearch-Claudeoppolous/31484cee-6902-5b45-bc20-3fc4fb38db73/scratchpad/venv/lib/python3.13/site-packages/tinker/lib/public_interfaces/api_future.py", line 156, in result_async
+    return await asyncio.wrap_future(self._future)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/claude-0/-home-user-AGsResearch-Claudeoppolous/31484cee-6902-5b45-bc20-3fc4fb38db73/scratchpad/venv/lib/python3.13/site-packages/tinker/lib/api_future_impl.py", line 288, in _result_async
+    result = await self._handle_outcome(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        fetched, state, stack, iteration, start_time
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/tmp/claude-0/-home-user-AGsResearch-Claudeoppolous/31484cee-6902-5b45-bc20-3fc4fb38db73/scratchpad/venv/lib/python3.13/site-packages/tinker/lib/api_future_impl.py", line 558, in _handle_outcome
+    raise RequestFailedError(
+    ...<4 lines>...
+    )
+tinker.RequestFailedError: Request failed: This ServiceClient is poisoned. We cannot run further operations against it. Please create a new ServiceClient if you wish to continue. Failure reason: training run 8886d663-ec03-5cab-a20f-0609eabb4616:train:31 failed: Training checkpoint saved. Free checkpoint storage limit reached (bytes or checkpoint count); this training client is closed. Delete checkpoints or switch to paid storage, then resume from the checkpoint with a new ServiceClient and training client.. for self.request_id='8886d663-ec03-5cab-a20f-0609eabb4616:train:37:0' and expected type self.model_cls=<class 'tinker.types._pydantic_types.load_weights_response.LoadWeightsResponse'>
+Traceback (most recent call last):
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 291, in safe
+    return j()
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_fam.py", line 75, in <lambda>
+    j.append(lambda k=k: d.oracle(CK(T, k), 1))
+                         ~~~~~~~~^^^^^^^^^^^^^
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 244, in oracle
+    c = man()["ckpts"][ckpt]
+        ~~~~~~~~~~~~~~^^^^^^
+KeyError: 'S1_r32-ck5'
+Traceback (most recent call last):
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 291, in safe
+    return j()
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_fam.py", line 77, in <lambda>
+    j.append(lambda k=k, t=t: d.chain(f"S1_r{r}_fresh_ck{k}_t{t}", r, one(t, d.D(), "step"),
+                              ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                                      exp="S1", kind="fresh", ckpt=CK(T, k)))
+                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 197, in chain
+    tc = new_client(kind, rank, ckpt, tag=name)
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 162, in new_client
+    return _new_client(kind, rank, ckpt, optimizer, tag)
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 175, in _new_client
+    path = man()["ckpts"][ckpt]["path"]
+           ~~~~~~~~~~~~~~^^^^^^
+KeyError: 'S1_r32-ck5'
+Traceback (most recent call last):
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 291, in safe
+    return j()
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_fam.py", line 77, in <lambda>
+    j.append(lambda k=k, t=t: d.chain(f"S1_r{r}_fresh_ck{k}_t{t}", r, one(t, d.D(), "step"),
+                              ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                                      exp="S1", kind="fresh", ckpt=CK(T, k)))
+                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 197, in chain
+    tc = new_client(kind, rank, ckpt, tag=name)
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 162, in new_client
+    return _new_client(kind, rank, ckpt, optimizer, tag)
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 175, in _new_client
+    path = man()["ckpts"][ckpt]["path"]
+           ~~~~~~~~~~~~~~^^^^^^
+KeyError: 'S1_r32-ck5'
+Traceback (most recent call last):
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 291, in safe
+    return j()
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_fam.py", line 77, in <lambda>
+    j.append(lambda k=k, t=t: d.chain(f"S1_r{r}_fresh_ck{k}_t{t}", r, one(t, d.D(), "step"),
+                              ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                                      exp="S1", kind="fresh", ckpt=CK(T, k)))
+                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 197, in chain
+    tc = new_client(kind, rank, ckpt, tag=name)
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 162, in new_client
+    return _new_client(kind, rank, ckpt, optimizer, tag)
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 177, in _new_client
+    return tk.client_from_state(path, optimizer=optimizer, tag=tag)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/tk.py", line 112, in client_from_state
+    tc = service().create_training_client_from_state(path, optimizer=opt).result()
+  File "/tmp/claude-0/-home-user-AGsResearch-Claudeoppolous/31484cee-6902-5b45-bc20-3fc4fb38db73/scratchpad/venv/lib/python3.13/site-packages/tinker/lib/sync_only.py", line 94, in wrapper
+    return func(*args, **kwargs)
+  File "/tmp/claude-0/-home-user-AGsResearch-Claudeoppolous/31484cee-6902-5b45-bc20-3fc4fb38db73/scratchpad/venv/lib/python3.13/site-packages/tinker/lib/public_interfaces/backcompat_client_future.py", line 36, in result
+    return self._future.result(timeout)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/tmp/claude-0/-home-user-AGsResearch-Claudeoppolous/31484cee-6902-5b45-bc20-3fc4fb38db73/scratchpad/venv/lib/python3.13/site-packages/tinker/lib/public_interfaces/api_future.py", line 151, in result
+    return self._future.result(timeout)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/usr/local/lib/python3.13/concurrent/futures/_base.py", line 460, in result
+    return self.__get_result()
+           ~~~~~~~~~~~~~~~~~^^
+  File "/usr/local/lib/python3.13/concurrent/futures/_base.py", line 402, in __get_result
+    raise self._exception
+  File "/tmp/claude-0/-home-user-AGsResearch-Claudeoppolous/31484cee-6902-5b45-bc20-3fc4fb38db73/scratchpad/venv/lib/python3.13/site-packages/tinker/lib/telemetry.py", line 423, in _awrapper
+    return await cast(Callable[..., Awaitable[R]], func)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/claude-0/-home-user-AGsResearch-Claudeoppolous/31484cee-6902-5b45-bc20-3fc4fb38db73/scratchpad/venv/lib/python3.13/site-packages/tinker/lib/public_interfaces/service_client.py", line 421, in _create_via_load_weights_async
+    await _APIFuture(
+    ...<6 lines>...
+    ).result_async()
+  File "/tmp/claude-0/-home-user-AGsResearch-Claudeoppolous/31484cee-6902-5b45-bc20-3fc4fb38db73/scratchpad/venv/lib/python3.13/site-packages/tinker/lib/api_future_impl.py", line 635, in result_async
+    return await asyncio.wait_for(self._future, timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/asyncio/tasks.py", line 514, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "/tmp/claude-0/-home-user-AGsResearch-Claudeoppolous/31484cee-6902-5b45-bc20-3fc4fb38db73/scratchpad/venv/lib/python3.13/site-packages/tinker/lib/public_interfaces/api_future.py", line 156, in result_async
+    return await asyncio.wrap_future(self._future)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/claude-0/-home-user-AGsResearch-Claudeoppolous/31484cee-6902-5b45-bc20-3fc4fb38db73/scratchpad/venv/lib/python3.13/site-packages/tinker/lib/api_future_impl.py", line 288, in _result_async
+    result = await self._handle_outcome(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        fetched, state, stack, iteration, start_time
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/tmp/claude-0/-home-user-AGsResearch-Claudeoppolous/31484cee-6902-5b45-bc20-3fc4fb38db73/scratchpad/venv/lib/python3.13/site-packages/tinker/lib/api_future_impl.py", line 558, in _handle_outcome
+    raise RequestFailedError(
+    ...<4 lines>...
+    )
+tinker.RequestFailedError: Request failed: This ServiceClient is poisoned. We cannot run further operations against it. Please create a new ServiceClient if you wish to continue. Failure reason: training run 8886d663-ec03-5cab-a20f-0609eabb4616:train:31 failed: Training checkpoint saved. Free checkpoint storage limit reached (bytes or checkpoint count); this training client is closed. Delete checkpoints or switch to paid storage, then resume from the checkpoint with a new ServiceClient and training client.. for self.request_id='8886d663-ec03-5cab-a20f-0609eabb4616:train:39:0' and expected type self.model_cls=<class 'tinker.types._pydantic_types.load_weights_response.LoadWeightsResponse'>
+Traceback (most recent call last):
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 291, in safe
+    return j()
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_fam.py", line 77, in <lambda>
+    j.append(lambda k=k, t=t: d.chain(f"S1_r{r}_fresh_ck{k}_t{t}", r, one(t, d.D(), "step"),
+                              ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                                      exp="S1", kind="fresh", ckpt=CK(T, k)))
+                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 197, in chain
+    tc = new_client(kind, rank, ckpt, tag=name)
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 162, in new_client
+    return _new_client(kind, rank, ckpt, optimizer, tag)
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 177, in _new_client
+    return tk.client_from_state(path, optimizer=optimizer, tag=tag)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/tk.py", line 112, in client_from_state
+    tc = service().create_training_client_from_state(path, optimizer=opt).result()
+  File "/tmp/claude-0/-home-user-AGsResearch-Claudeoppolous/31484cee-6902-5b45-bc20-3fc4fb38db73/scratchpad/venv/lib/python3.13/site-packages/tinker/lib/sync_only.py", line 94, in wrapper
+    return func(*args, **kwargs)
+  File "/tmp/claude-0/-home-user-AGsResearch-Claudeoppolous/31484cee-6902-5b45-bc20-3fc4fb38db73/scratchpad/venv/lib/python3.13/site-packages/tinker/lib/public_interfaces/backcompat_client_future.py", line 36, in result
+    return self._future.result(timeout)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/tmp/claude-0/-home-user-AGsResearch-Claudeoppolous/31484cee-6902-5b45-bc20-3fc4fb38db73/scratchpad/venv/lib/python3.13/site-packages/tinker/lib/public_interfaces/api_future.py", line 151, in result
+    return self._future.result(timeout)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/usr/local/lib/python3.13/concurrent/futures/_base.py", line 460, in result
+    return self.__get_result()
+           ~~~~~~~~~~~~~~~~~^^
+  File "/usr/local/lib/python3.13/concurrent/futures/_base.py", line 402, in __get_result
+    raise self._exception
+  File "/tmp/claude-0/-home-user-AGsResearch-Claudeoppolous/31484cee-6902-5b45-bc20-3fc4fb38db73/scratchpad/venv/lib/python3.13/site-packages/tinker/lib/telemetry.py", line 423, in _awrapper
+    return await cast(Callable[..., Awaitable[R]], func)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/claude-0/-home-user-AGsResearch-Claudeoppolous/31484cee-6902-5b45-bc20-3fc4fb38db73/scratchpad/venv/lib/python3.13/site-packages/tinker/lib/public_interfaces/service_client.py", line 421, in _create_via_load_weights_async
+    await _APIFuture(
+    ...<6 lines>...
+    ).result_async()
+  File "/tmp/claude-0/-home-user-AGsResearch-Claudeoppolous/31484cee-6902-5b45-bc20-3fc4fb38db73/scratchpad/venv/lib/python3.13/site-packages/tinker/lib/api_future_impl.py", line 635, in result_async
+    return await asyncio.wait_for(self._future, timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/asyncio/tasks.py", line 514, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "/tmp/claude-0/-home-user-AGsResearch-Claudeoppolous/31484cee-6902-5b45-bc20-3fc4fb38db73/scratchpad/venv/lib/python3.13/site-packages/tinker/lib/public_interfaces/api_future.py", line 156, in result_async
+    return await asyncio.wrap_future(self._future)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/claude-0/-home-user-AGsResearch-Claudeoppolous/31484cee-6902-5b45-bc20-3fc4fb38db73/scratchpad/venv/lib/python3.13/site-packages/tinker/lib/api_future_impl.py", line 288, in _result_async
+    result = await self._handle_outcome(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        fetched, state, stack, iteration, start_time
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/tmp/claude-0/-home-user-AGsResearch-Claudeoppolous/31484cee-6902-5b45-bc20-3fc4fb38db73/scratchpad/venv/lib/python3.13/site-packages/tinker/lib/api_future_impl.py", line 558, in _handle_outcome
+    raise RequestFailedError(
+    ...<4 lines>...
+    )
+tinker.RequestFailedError: Request failed: This ServiceClient is poisoned. We cannot run further operations against it. Please create a new ServiceClient if you wish to continue. Failure reason: training run 8886d663-ec03-5cab-a20f-0609eabb4616:train:31 failed: Training checkpoint saved. Free checkpoint storage limit reached (bytes or checkpoint count); this training client is closed. Delete checkpoints or switch to paid storage, then resume from the checkpoint with a new ServiceClient and training client.. for self.request_id='8886d663-ec03-5cab-a20f-0609eabb4616:train:40:0' and expected type self.model_cls=<class 'tinker.types._pydantic_types.load_weights_response.LoadWeightsResponse'>
+Traceback (most recent call last):
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 291, in safe
+    return j()
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_fam.py", line 18, in <lambda>
+    return lambda: d.chain(T, r, d.seq_steps(beta1, texts=texts), exp=exp, save=True)
+                   ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 205, in chain
+    sid, w = export_state(tc, f"{name}-s0", rank)
+             ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 119, in export_state
+    w = export_tmp(tc, name)
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 103, in export_tmp
+    w, path = tk.export(tc, name, return_path=True)
+              ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/tk.py", line 133, in export
+    r = tc.save_weights_external(name, ttl_seconds=TTL).result()
+  File "/tmp/claude-0/-home-user-AGsResearch-Claudeoppolous/31484cee-6902-5b45-bc20-3fc4fb38db73/scratchpad/venv/lib/python3.13/site-packages/tinker/lib/public_interfaces/api_future.py", line 151, in result
+    return self._future.result(timeout)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/usr/local/lib/python3.13/concurrent/futures/_base.py", line 460, in result
+    return self.__get_result()
+           ~~~~~~~~~~~~~~~~~^^
+  File "/usr/local/lib/python3.13/concurrent/futures/_base.py", line 402, in __get_result
+    raise self._exception
+  File "/tmp/claude-0/-home-user-AGsResearch-Claudeoppolous/31484cee-6902-5b45-bc20-3fc4fb38db73/scratchpad/venv/lib/python3.13/site-packages/tinker/lib/telemetry.py", line 423, in _awrapper
+    return await cast(Callable[..., Awaitable[R]], func)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/claude-0/-home-user-AGsResearch-Claudeoppolous/31484cee-6902-5b45-bc20-3fc4fb38db73/scratchpad/venv/lib/python3.13/site-packages/tinker/lib/public_interfaces/training_client.py", line 1241, in _save_weights_external_async
+    result = await _APIFuture(
+             ^^^^^^^^^^^^^^^^^
+    ...<6 lines>...
+    )
+    ^
+  File "/tmp/claude-0/-home-user-AGsResearch-Claudeoppolous/31484cee-6902-5b45-bc20-3fc4fb38db73/scratchpad/venv/lib/python3.13/site-packages/tinker/lib/api_future_impl.py", line 635, in result_async
+    return await asyncio.wait_for(self._future, timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/asyncio/tasks.py", line 514, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "/tmp/claude-0/-home-user-AGsResearch-Claudeoppolous/31484cee-6902-5b45-bc20-3fc4fb38db73/scratchpad/venv/lib/python3.13/site-packages/tinker/lib/public_interfaces/api_future.py", line 156, in result_async
+    return await asyncio.wrap_future(self._future)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/claude-0/-home-user-AGsResearch-Claudeoppolous/31484cee-6902-5b45-bc20-3fc4fb38db73/scratchpad/venv/lib/python3.13/site-packages/tinker/lib/api_future_impl.py", line 288, in _result_async
+    result = await self._handle_outcome(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        fetched, state, stack, iteration, start_time
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/tmp/claude-0/-home-user-AGsResearch-Claudeoppolous/31484cee-6902-5b45-bc20-3fc4fb38db73/scratchpad/venv/lib/python3.13/site-packages/tinker/lib/api_future_impl.py", line 558, in _handle_outcome
+    raise RequestFailedError(
+    ...<4 lines>...
+    )
+tinker.RequestFailedError: Request failed: This ServiceClient is poisoned. We cannot run further operations against it. Please create a new ServiceClient if you wish to continue. Failure reason: training run 8886d663-ec03-5cab-a20f-0609eabb4616:train:31 failed: Training checkpoint saved. Free checkpoint storage limit reached (bytes or checkpoint count); this training client is closed. Delete checkpoints or switch to paid storage, then resume from the checkpoint with a new ServiceClient and training client.. for self.request_id='8886d663-ec03-5cab-a20f-0609eabb4616:train:41:1' and expected type self.model_cls=<class 'tinker.types._pydantic_types.save_weights_external_response.SaveWeightsExternalResponseInternal'>
+Traceback (most recent call last):
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 291, in safe
+    return j()
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_fam.py", line 73, in <lambda>
+    j = [lambda k=k: d.oracle(CK(T, k), 0) for k in range(6)]
+                     ~~~~~~~~^^^^^^^^^^^^^
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 250, in oracle
+    tc = new_client("fresh", c["rank"], ckpt, optimizer="adamw", tag=f"oracle {key}")
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 162, in new_client
+    return _new_client(kind, rank, ckpt, optimizer, tag)
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 177, in _new_client
+    return tk.client_from_state(path, optimizer=optimizer, tag=tag)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/tk.py", line 112, in client_from_state
+    tc = service().create_training_client_from_state(path, optimizer=opt).result()
+  File "/tmp/claude-0/-home-user-AGsResearch-Claudeoppolous/31484cee-6902-5b45-bc20-3fc4fb38db73/scratchpad/venv/lib/python3.13/site-packages/tinker/lib/sync_only.py", line 94, in wrapper
+    return func(*args, **kwargs)
+  File "/tmp/claude-0/-home-user-AGsResearch-Claudeoppolous/31484cee-6902-5b45-bc20-3fc4fb38db73/scratchpad/venv/lib/python3.13/site-packages/tinker/lib/public_interfaces/backcompat_client_future.py", line 36, in result
+    return self._future.result(timeout)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/tmp/claude-0/-home-user-AGsResearch-Claudeoppolous/31484cee-6902-5b45-bc20-3fc4fb38db73/scratchpad/venv/lib/python3.13/site-packages/tinker/lib/public_interfaces/api_future.py", line 151, in result
+    return self._future.result(timeout)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/usr/local/lib/python3.13/concurrent/futures/_base.py", line 460, in result
+    return self.__get_result()
+           ~~~~~~~~~~~~~~~~~^^
+  File "/usr/local/lib/python3.13/concurrent/futures/_base.py", line 402, in __get_result
+    raise self._exception
+  File "/tmp/claude-0/-home-user-AGsResearch-Claudeoppolous/31484cee-6902-5b45-bc20-3fc4fb38db73/scratchpad/venv/lib/python3.13/site-packages/tinker/lib/telemetry.py", line 423, in _awrapper
+    return await cast(Callable[..., Awaitable[R]], func)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/claude-0/-home-user-AGsResearch-Claudeoppolous/31484cee-6902-5b45-bc20-3fc4fb38db73/scratchpad/venv/lib/python3.13/site-packages/tinker/lib/public_interfaces/service_client.py", line 421, in _create_via_load_weights_async
+    await _APIFuture(
+    ...<6 lines>...
+    ).result_async()
+  File "/tmp/claude-0/-home-user-AGsResearch-Claudeoppolous/31484cee-6902-5b45-bc20-3fc4fb38db73/scratchpad/venv/lib/python3.13/site-packages/tinker/lib/api_future_impl.py", line 635, in result_async
+    return await asyncio.wait_for(self._future, timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/asyncio/tasks.py", line 514, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "/tmp/claude-0/-home-user-AGsResearch-Claudeoppolous/31484cee-6902-5b45-bc20-3fc4fb38db73/scratchpad/venv/lib/python3.13/site-packages/tinker/lib/public_interfaces/api_future.py", line 156, in result_async
+    return await asyncio.wrap_future(self._future)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/claude-0/-home-user-AGsResearch-Claudeoppolous/31484cee-6902-5b45-bc20-3fc4fb38db73/scratchpad/venv/lib/python3.13/site-packages/tinker/lib/api_future_impl.py", line 288, in _result_async
+    result = await self._handle_outcome(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        fetched, state, stack, iteration, start_time
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/tmp/claude-0/-home-user-AGsResearch-Claudeoppolous/31484cee-6902-5b45-bc20-3fc4fb38db73/scratchpad/venv/lib/python3.13/site-packages/tinker/lib/api_future_impl.py", line 558, in _handle_outcome
+    raise RequestFailedError(
+    ...<4 lines>...
+    )
+tinker.RequestFailedError: Request failed: This ServiceClient is poisoned. We cannot run further operations against it. Please create a new ServiceClient if you wish to continue. Failure reason: training run 8886d663-ec03-5cab-a20f-0609eabb4616:train:31 failed: Training checkpoint saved. Free checkpoint storage limit reached (bytes or checkpoint count); this training client is closed. Delete checkpoints or switch to paid storage, then resume from the checkpoint with a new ServiceClient and training client.. for self.request_id='8886d663-ec03-5cab-a20f-0609eabb4616:train:32:0' and expected type self.model_cls=<class 'tinker.types._pydantic_types.load_weights_response.LoadWeightsResponse'>
+errors so far 24
+COUNTS {'clients': 33, 'forward_backward': 47, 'optim_step': 47, 'exports': 79, 'uploads': 0}
+=== pool 3
+Traceback (most recent call last):
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 291, in safe
+    return j()
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_fam.py", line 84, in <lambda>
+    j = [lambda k=k: d.oracle(CK(T, k), SEQ[k]) for k in range(6)]
+                     ~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 244, in oracle
+    c = man()["ckpts"][ckpt]
+        ~~~~~~~~~~~~~~^^^^^^
+KeyError: 'S2_r8_b0-ck0'
+Traceback (most recent call last):
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 291, in safe
+    return j()
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_fam.py", line 84, in <lambda>
+    j = [lambda k=k: d.oracle(CK(T, k), SEQ[k]) for k in range(6)]
+                     ~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 244, in oracle
+    c = man()["ckpts"][ckpt]
+        ~~~~~~~~~~~~~~^^^^^^
+KeyError: 'S2_r8_b0-ck1'
+Traceback (most recent call last):
+Traceback (most recent call last):
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 291, in safe
+    return j()
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_fam.py", line 84, in <lambda>
+    j = [lambda k=k: d.oracle(CK(T, k), SEQ[k]) for k in range(6)]
+                     ~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 244, in oracle
+    c = man()["ckpts"][ckpt]
+        ~~~~~~~~~~~~~~^^^^^^
+KeyError: 'S2_r8_b0-ck2'
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 291, in safe
+    return j()
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_fam.py", line 84, in <lambda>
+    j = [lambda k=k: d.oracle(CK(T, k), SEQ[k]) for k in range(6)]
+                     ~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 244, in oracle
+    c = man()["ckpts"][ckpt]
+        ~~~~~~~~~~~~~~^^^^^^
+KeyError: 'S2_r8_b0-ck3'
+Traceback (most recent call last):
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 291, in safe
+    return j()
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_fam.py", line 84, in <lambda>
+    j = [lambda k=k: d.oracle(CK(T, k), SEQ[k]) for k in range(6)]
+                     ~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 244, in oracle
+    c = man()["ckpts"][ckpt]
+        ~~~~~~~~~~~~~~^^^^^^
+KeyError: 'S2_r8_b0-ck4'
+Traceback (most recent call last):
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 291, in safe
+    return j()
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_fam.py", line 84, in <lambda>
+    j = [lambda k=k: d.oracle(CK(T, k), SEQ[k]) for k in range(6)]
+                     ~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 244, in oracle
+    c = man()["ckpts"][ckpt]
+        ~~~~~~~~~~~~~~^^^^^^
+KeyError: 'S2_r8_b0-ck5'
+Traceback (most recent call last):
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 291, in safe
+    return j()
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_fam.py", line 87, in <lambda>
+    j.append(lambda k=k: d.chain(f"{T}_fresh_ck{k}", r,
+                         ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+                                 one(SEQ[k], d.D(beta1=0.0), f"step{k + 1}"),
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                                 exp="S2", kind="fresh", ckpt=CK(T, k)))
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Traceback (most recent call last):
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 291, in safe
+    return j()
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 197, in chain
+    tc = new_client(kind, rank, ckpt, tag=name)
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_fam.py", line 87, in <lambda>
+    j.append(lambda k=k: d.chain(f"{T}_fresh_ck{k}", r,
+                         ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+                                 one(SEQ[k], d.D(beta1=0.0), f"step{k + 1}"),
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                                 exp="S2", kind="fresh", ckpt=CK(T, k)))
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 162, in new_client
+    return _new_client(kind, rank, ckpt, optimizer, tag)
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 197, in chain
+    tc = new_client(kind, rank, ckpt, tag=name)
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 162, in new_client
+    return _new_client(kind, rank, ckpt, optimizer, tag)
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 175, in _new_client
+    path = man()["ckpts"][ckpt]["path"]
+           ~~~~~~~~~~~~~~^^^^^^
+KeyError: 'S2_r8_b0-ck2'
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 175, in _new_client
+    path = man()["ckpts"][ckpt]["path"]
+           ~~~~~~~~~~~~~~^^^^^^
+KeyError: 'S2_r8_b0-ck1'
+Traceback (most recent call last):
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 291, in safe
+    return j()
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_fam.py", line 87, in <lambda>
+    j.append(lambda k=k: d.chain(f"{T}_fresh_ck{k}", r,
+                         ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+                                 one(SEQ[k], d.D(beta1=0.0), f"step{k + 1}"),
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                                 exp="S2", kind="fresh", ckpt=CK(T, k)))
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 197, in chain
+    tc = new_client(kind, rank, ckpt, tag=name)
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 162, in new_client
+    return _new_client(kind, rank, ckpt, optimizer, tag)
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 175, in _new_client
+    path = man()["ckpts"][ckpt]["path"]
+           ~~~~~~~~~~~~~~^^^^^^
+KeyError: 'S2_r8_b0-ck3'
+Traceback (most recent call last):
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 291, in safe
+    return j()
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_fam.py", line 87, in <lambda>
+    j.append(lambda k=k: d.chain(f"{T}_fresh_ck{k}", r,
+                         ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+                                 one(SEQ[k], d.D(beta1=0.0), f"step{k + 1}"),
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                                 exp="S2", kind="fresh", ckpt=CK(T, k)))
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 197, in chain
+    tc = new_client(kind, rank, ckpt, tag=name)
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 162, in new_client
+    return _new_client(kind, rank, ckpt, optimizer, tag)
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 175, in _new_client
+    path = man()["ckpts"][ckpt]["path"]
+           ~~~~~~~~~~~~~~^^^^^^
+KeyError: 'S2_r8_b0-ck4'
+Traceback (most recent call last):
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 291, in safe
+    return j()
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_fam.py", line 87, in <lambda>
+    j.append(lambda k=k: d.chain(f"{T}_fresh_ck{k}", r,
+                         ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+                                 one(SEQ[k], d.D(beta1=0.0), f"step{k + 1}"),
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                                 exp="S2", kind="fresh", ckpt=CK(T, k)))
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 197, in chain
+    tc = new_client(kind, rank, ckpt, tag=name)
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 162, in new_client
+    return _new_client(kind, rank, ckpt, optimizer, tag)
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 175, in _new_client
+    path = man()["ckpts"][ckpt]["path"]
+           ~~~~~~~~~~~~~~^^^^^^
+KeyError: 'S2_r8_b0-ck5'
+Traceback (most recent call last):
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 291, in safe
+    return j()
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_fam.py", line 18, in <lambda>
+    return lambda: d.chain(T, r, d.seq_steps(beta1, texts=texts), exp=exp, save=True)
+                   ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 205, in chain
+    sid, w = export_state(tc, f"{name}-s0", rank)
+             ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 119, in export_state
+    w = export_tmp(tc, name)
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 103, in export_tmp
+    w, path = tk.export(tc, name, return_path=True)
+              ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/tk.py", line 133, in export
+    r = tc.save_weights_external(name, ttl_seconds=TTL).result()
+  File "/tmp/claude-0/-home-user-AGsResearch-Claudeoppolous/31484cee-6902-5b45-bc20-3fc4fb38db73/scratchpad/venv/lib/python3.13/site-packages/tinker/lib/public_interfaces/api_future.py", line 151, in result
+    return self._future.result(timeout)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/usr/local/lib/python3.13/concurrent/futures/_base.py", line 460, in result
+    return self.__get_result()
+           ~~~~~~~~~~~~~~~~~^^
+  File "/usr/local/lib/python3.13/concurrent/futures/_base.py", line 402, in __get_result
+    raise self._exception
+  File "/tmp/claude-0/-home-user-AGsResearch-Claudeoppolous/31484cee-6902-5b45-bc20-3fc4fb38db73/scratchpad/venv/lib/python3.13/site-packages/tinker/lib/telemetry.py", line 423, in _awrapper
+    return await cast(Callable[..., Awaitable[R]], func)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/claude-0/-home-user-AGsResearch-Claudeoppolous/31484cee-6902-5b45-bc20-3fc4fb38db73/scratchpad/venv/lib/python3.13/site-packages/tinker/lib/public_interfaces/training_client.py", line 1241, in _save_weights_external_async
+    result = await _APIFuture(
+             ^^^^^^^^^^^^^^^^^
+    ...<6 lines>...
+    )
+    ^
+  File "/tmp/claude-0/-home-user-AGsResearch-Claudeoppolous/31484cee-6902-5b45-bc20-3fc4fb38db73/scratchpad/venv/lib/python3.13/site-packages/tinker/lib/api_future_impl.py", line 635, in result_async
+    return await asyncio.wait_for(self._future, timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/asyncio/tasks.py", line 514, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "/tmp/claude-0/-home-user-AGsResearch-Claudeoppolous/31484cee-6902-5b45-bc20-3fc4fb38db73/scratchpad/venv/lib/python3.13/site-packages/tinker/lib/public_interfaces/api_future.py", line 156, in result_async
+    return await asyncio.wrap_future(self._future)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/claude-0/-home-user-AGsResearch-Claudeoppolous/31484cee-6902-5b45-bc20-3fc4fb38db73/scratchpad/venv/lib/python3.13/site-packages/tinker/lib/api_future_impl.py", line 288, in _result_async
+    result = await self._handle_outcome(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        fetched, state, stack, iteration, start_time
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/tmp/claude-0/-home-user-AGsResearch-Claudeoppolous/31484cee-6902-5b45-bc20-3fc4fb38db73/scratchpad/venv/lib/python3.13/site-packages/tinker/lib/api_future_impl.py", line 558, in _handle_outcome
+    raise RequestFailedError(
+    ...<4 lines>...
+    )
+tinker.RequestFailedError: Request failed: This ServiceClient is poisoned. We cannot run further operations against it. Please create a new ServiceClient if you wish to continue. Failure reason: training run 8886d663-ec03-5cab-a20f-0609eabb4616:train:31 failed: Training checkpoint saved. Free checkpoint storage limit reached (bytes or checkpoint count); this training client is closed. Delete checkpoints or switch to paid storage, then resume from the checkpoint with a new ServiceClient and training client.. for self.request_id='8886d663-ec03-5cab-a20f-0609eabb4616:train:42:1' and expected type self.model_cls=<class 'tinker.types._pydantic_types.save_weights_external_response.SaveWeightsExternalResponseInternal'>
+errors so far 36
+COUNTS {'clients': 34, 'forward_backward': 47, 'optim_step': 47, 'exports': 79, 'uploads': 0}
+=== pool 4
+Traceback (most recent call last):
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 291, in safe
+    return j()
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_fam.py", line 24, in <lambda>
+    j = [lambda k=k: d.oracle(CK(T, k), SEQ[k]) for k in range(6)]
+                     ~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 244, in oracle
+    c = man()["ckpts"][ckpt]
+        ~~~~~~~~~~~~~~^^^^^^
+KeyError: 'S2_r32_b0.9-ck0'
+Traceback (most recent call last):
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 291, in safe
+    return j()
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_fam.py", line 24, in <lambda>
+    j = [lambda k=k: d.oracle(CK(T, k), SEQ[k]) for k in range(6)]
+                     ~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 244, in oracle
+    c = man()["ckpts"][ckpt]
+        ~~~~~~~~~~~~~~^^^^^^
+KeyError: 'S2_r32_b0.9-ck1'
+Traceback (most recent call last):
+Traceback (most recent call last):
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 291, in safe
+    return j()
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 291, in safe
+    return j()
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_fam.py", line 24, in <lambda>
+    j = [lambda k=k: d.oracle(CK(T, k), SEQ[k]) for k in range(6)]
+                     ~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 244, in oracle
+    c = man()["ckpts"][ckpt]
+        ~~~~~~~~~~~~~~^^^^^^
+KeyError: 'S2_r32_b0.9-ck3'
+Traceback (most recent call last):
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 291, in safe
+    return j()
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_fam.py", line 24, in <lambda>
+    j = [lambda k=k: d.oracle(CK(T, k), SEQ[k]) for k in range(6)]
+                     ~~~~~~~~^^^^^^^^^^^^^^^^^^
+Traceback (most recent call last):
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 291, in safe
+    return j()
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_fam.py", line 24, in <lambda>
+    j = [lambda k=k: d.oracle(CK(T, k), SEQ[k]) for k in range(6)]
+                     ~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 244, in oracle
+    c = man()["ckpts"][ckpt]
+        ~~~~~~~~~~~~~~^^^^^^
+KeyError: 'S2_r32_b0.9-ck5'
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 244, in oracle
+    c = man()["ckpts"][ckpt]
+        ~~~~~~~~~~~~~~^^^^^^
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_fam.py", line 24, in <lambda>
+    j = [lambda k=k: d.oracle(CK(T, k), SEQ[k]) for k in range(6)]
+                     ~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 244, in oracle
+    c = man()["ckpts"][ckpt]
+        ~~~~~~~~~~~~~~^^^^^^
+KeyError: 'S2_r32_b0.9-ck2'
+KeyError: 'S2_r32_b0.9-ck4'
+Traceback (most recent call last):
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 291, in safe
+    return j()
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_fam.py", line 26, in <lambda>
+    j.append(lambda b=b: d.chain(f"S3_r{r}_b{b:g}", r, one(SEQ[3], d.D(beta1=b), "step4"),
+                         ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                                 exp="S3", kind="opt", ckpt=CK(T, 3)))
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 197, in chain
+    tc = new_client(kind, rank, ckpt, tag=name)
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 162, in new_client
+    return _new_client(kind, rank, ckpt, optimizer, tag)
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 175, in _new_client
+    path = man()["ckpts"][ckpt]["path"]
+           ~~~~~~~~~~~~~~^^^^^^
+KeyError: 'S2_r32_b0.9-ck3'
+Traceback (most recent call last):
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 291, in safe
+    return j()
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_fam.py", line 26, in <lambda>
+    j.append(lambda b=b: d.chain(f"S3_r{r}_b{b:g}", r, one(SEQ[3], d.D(beta1=b), "step4"),
+                         ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                                 exp="S3", kind="opt", ckpt=CK(T, 3)))
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 197, in chain
+    tc = new_client(kind, rank, ckpt, tag=name)
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 162, in new_client
+    return _new_client(kind, rank, ckpt, optimizer, tag)
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 175, in _new_client
+    path = man()["ckpts"][ckpt]["path"]
+           ~~~~~~~~~~~~~~^^^^^^
+KeyError: 'S2_r32_b0.9-ck3'
+Traceback (most recent call last):
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 291, in safe
+    return j()
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_fam.py", line 26, in <lambda>
+    j.append(lambda b=b: d.chain(f"S3_r{r}_b{b:g}", r, one(SEQ[3], d.D(beta1=b), "step4"),
+                         ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                                 exp="S3", kind="opt", ckpt=CK(T, 3)))
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 197, in chain
+    tc = new_client(kind, rank, ckpt, tag=name)
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 162, in new_client
+    return _new_client(kind, rank, ckpt, optimizer, tag)
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 175, in _new_client
+    path = man()["ckpts"][ckpt]["path"]
+           ~~~~~~~~~~~~~~^^^^^^
+KeyError: 'S2_r32_b0.9-ck3'
+Traceback (most recent call last):
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 291, in safe
+    return j()
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_fam.py", line 28, in <lambda>
+    j.append(lambda: d.chain(f"S4_r{r}_fresh_ck2", r,
+                     ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+                             one(0, d.D(), "zero1", weight=0.0, note="zero-gradient"),
+                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                             exp="S4", kind="fresh", ckpt=CK(T, 2)))
+                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 197, in chain
+    tc = new_client(kind, rank, ckpt, tag=name)
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 162, in new_client
+    return _new_client(kind, rank, ckpt, optimizer, tag)
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 175, in _new_client
+    path = man()["ckpts"][ckpt]["path"]
+           ~~~~~~~~~~~~~~^^^^^^
+KeyError: 'S2_r32_b0.9-ck2'
+Traceback (most recent call last):
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 291, in safe
+    return j()
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_fam.py", line 33, in <lambda>
+    j.append(lambda lr=lr: d.chain(f"S6_r{r}_ck2_lr{lr:g}", r,
+                           ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                                   one(SEQ[2], d.D(lr=lr), "step3"), exp="S6",
+                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                                   kind="opt", ckpt=CK(T, 2)))
+                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 197, in chain
+    tc = new_client(kind, rank, ckpt, tag=name)
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 162, in new_client
+    return _new_client(kind, rank, ckpt, optimizer, tag)
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 175, in _new_client
+    path = man()["ckpts"][ckpt]["path"]
+           ~~~~~~~~~~~~~~^^^^^^
+KeyError: 'S2_r32_b0.9-ck2'
+Traceback (most recent call last):
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 291, in safe
+    return j()
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_fam.py", line 33, in <lambda>
+    j.append(lambda lr=lr: d.chain(f"S6_r{r}_ck2_lr{lr:g}", r,
+                           ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                                   one(SEQ[2], d.D(lr=lr), "step3"), exp="S6",
+                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                                   kind="opt", ckpt=CK(T, 2)))
+                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 197, in chain
+    tc = new_client(kind, rank, ckpt, tag=name)
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 162, in new_client
+    return _new_client(kind, rank, ckpt, optimizer, tag)
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 175, in _new_client
+    path = man()["ckpts"][ckpt]["path"]
+           ~~~~~~~~~~~~~~^^^^^^
+KeyError: 'S2_r32_b0.9-ck2'
+Traceback (most recent call last):
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 291, in safe
+    return j()
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_fam.py", line 33, in <lambda>
+    j.append(lambda lr=lr: d.chain(f"S6_r{r}_ck2_lr{lr:g}", r,
+                           ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                                   one(SEQ[2], d.D(lr=lr), "step3"), exp="S6",
+                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                                   kind="opt", ckpt=CK(T, 2)))
+                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 197, in chain
+    tc = new_client(kind, rank, ckpt, tag=name)
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 162, in new_client
+    return _new_client(kind, rank, ckpt, optimizer, tag)
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 175, in _new_client
+    path = man()["ckpts"][ckpt]["path"]
+           ~~~~~~~~~~~~~~^^^^^^
+KeyError: 'S2_r32_b0.9-ck2'
+Traceback (most recent call last):
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 291, in safe
+    return j()
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_fam.py", line 18, in <lambda>
+    return lambda: d.chain(T, r, d.seq_steps(beta1, texts=texts), exp=exp, save=True)
+                   ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 205, in chain
+    sid, w = export_state(tc, f"{name}-s0", rank)
+             ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 119, in export_state
+    w = export_tmp(tc, name)
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 103, in export_tmp
+    w, path = tk.export(tc, name, return_path=True)
+              ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/tk.py", line 133, in export
+    r = tc.save_weights_external(name, ttl_seconds=TTL).result()
+  File "/tmp/claude-0/-home-user-AGsResearch-Claudeoppolous/31484cee-6902-5b45-bc20-3fc4fb38db73/scratchpad/venv/lib/python3.13/site-packages/tinker/lib/public_interfaces/api_future.py", line 151, in result
+    return self._future.result(timeout)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/usr/local/lib/python3.13/concurrent/futures/_base.py", line 460, in result
+    return self.__get_result()
+           ~~~~~~~~~~~~~~~~~^^
+  File "/usr/local/lib/python3.13/concurrent/futures/_base.py", line 402, in __get_result
+    raise self._exception
+  File "/tmp/claude-0/-home-user-AGsResearch-Claudeoppolous/31484cee-6902-5b45-bc20-3fc4fb38db73/scratchpad/venv/lib/python3.13/site-packages/tinker/lib/telemetry.py", line 423, in _awrapper
+    return await cast(Callable[..., Awaitable[R]], func)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/claude-0/-home-user-AGsResearch-Claudeoppolous/31484cee-6902-5b45-bc20-3fc4fb38db73/scratchpad/venv/lib/python3.13/site-packages/tinker/lib/public_interfaces/training_client.py", line 1241, in _save_weights_external_async
+    result = await _APIFuture(
+             ^^^^^^^^^^^^^^^^^
+    ...<6 lines>...
+    )
+    ^
+  File "/tmp/claude-0/-home-user-AGsResearch-Claudeoppolous/31484cee-6902-5b45-bc20-3fc4fb38db73/scratchpad/venv/lib/python3.13/site-packages/tinker/lib/api_future_impl.py", line 635, in result_async
+    return await asyncio.wait_for(self._future, timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/asyncio/tasks.py", line 514, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "/tmp/claude-0/-home-user-AGsResearch-Claudeoppolous/31484cee-6902-5b45-bc20-3fc4fb38db73/scratchpad/venv/lib/python3.13/site-packages/tinker/lib/public_interfaces/api_future.py", line 156, in result_async
+    return await asyncio.wrap_future(self._future)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/claude-0/-home-user-AGsResearch-Claudeoppolous/31484cee-6902-5b45-bc20-3fc4fb38db73/scratchpad/venv/lib/python3.13/site-packages/tinker/lib/api_future_impl.py", line 288, in _result_async
+    result = await self._handle_outcome(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        fetched, state, stack, iteration, start_time
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/tmp/claude-0/-home-user-AGsResearch-Claudeoppolous/31484cee-6902-5b45-bc20-3fc4fb38db73/scratchpad/venv/lib/python3.13/site-packages/tinker/lib/api_future_impl.py", line 558, in _handle_outcome
+    raise RequestFailedError(
+    ...<4 lines>...
+    )
+tinker.RequestFailedError: Request failed: This ServiceClient is poisoned. We cannot run further operations against it. Please create a new ServiceClient if you wish to continue. Failure reason: training run 8886d663-ec03-5cab-a20f-0609eabb4616:train:31 failed: Training checkpoint saved. Free checkpoint storage limit reached (bytes or checkpoint count); this training client is closed. Delete checkpoints or switch to paid storage, then resume from the checkpoint with a new ServiceClient and training client.. for self.request_id='8886d663-ec03-5cab-a20f-0609eabb4616:train:43:1' and expected type self.model_cls=<class 'tinker.types._pydantic_types.save_weights_external_response.SaveWeightsExternalResponseInternal'>
+errors so far 50
+COUNTS {'clients': 35, 'forward_backward': 47, 'optim_step': 47, 'exports': 79, 'uploads': 0}
+=== pool 5
+Traceback (most recent call last):
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 291, in safe
+    return j()
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_fam.py", line 84, in <lambda>
+    j = [lambda k=k: d.oracle(CK(T, k), SEQ[k]) for k in range(6)]
+                     ~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 244, in oracle
+    c = man()["ckpts"][ckpt]
+        ~~~~~~~~~~~~~~^^^^^^
+KeyError: 'S2_r8_b0.5-ck0'
+Traceback (most recent call last):
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 291, in safe
+    return j()
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_fam.py", line 84, in <lambda>
+    j = [lambda k=k: d.oracle(CK(T, k), SEQ[k]) for k in range(6)]
+                     ~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 244, in oracle
+    c = man()["ckpts"][ckpt]
+        ~~~~~~~~~~~~~~^^^^^^
+KeyError: 'S2_r8_b0.5-ck1'
+Traceback (most recent call last):
+Traceback (most recent call last):
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 291, in safe
+    return j()
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 291, in safe
+    return j()
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_fam.py", line 84, in <lambda>
+    j = [lambda k=k: d.oracle(CK(T, k), SEQ[k]) for k in range(6)]
+                     ~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_fam.py", line 84, in <lambda>
+    j = [lambda k=k: d.oracle(CK(T, k), SEQ[k]) for k in range(6)]
+                     ~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 244, in oracle
+    c = man()["ckpts"][ckpt]
+        ~~~~~~~~~~~~~~^^^^^^
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 244, in oracle
+    c = man()["ckpts"][ckpt]
+        ~~~~~~~~~~~~~~^^^^^^
+KeyError: 'S2_r8_b0.5-ck3'
+KeyError: 'S2_r8_b0.5-ck2'
+Traceback (most recent call last):
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 291, in safe
+    return j()
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_fam.py", line 84, in <lambda>
+    j = [lambda k=k: d.oracle(CK(T, k), SEQ[k]) for k in range(6)]
+                     ~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 244, in oracle
+    c = man()["ckpts"][ckpt]
+        ~~~~~~~~~~~~~~^^^^^^
+KeyError: 'S2_r8_b0.5-ck4'
+Traceback (most recent call last):
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 291, in safe
+    return j()
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_fam.py", line 84, in <lambda>
+    j = [lambda k=k: d.oracle(CK(T, k), SEQ[k]) for k in range(6)]
+                     ~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 244, in oracle
+    c = man()["ckpts"][ckpt]
+        ~~~~~~~~~~~~~~^^^^^^
+KeyError: 'S2_r8_b0.5-ck5'
+Traceback (most recent call last):
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 291, in safe
+    return j()
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_fam.py", line 18, in <lambda>
+    return lambda: d.chain(T, r, d.seq_steps(beta1, texts=texts), exp=exp, save=True)
+                   ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 205, in chain
+    sid, w = export_state(tc, f"{name}-s0", rank)
+             ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 119, in export_state
+    w = export_tmp(tc, name)
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 103, in export_tmp
+    w, path = tk.export(tc, name, return_path=True)
+              ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/tk.py", line 133, in export
+    r = tc.save_weights_external(name, ttl_seconds=TTL).result()
+  File "/tmp/claude-0/-home-user-AGsResearch-Claudeoppolous/31484cee-6902-5b45-bc20-3fc4fb38db73/scratchpad/venv/lib/python3.13/site-packages/tinker/lib/public_interfaces/api_future.py", line 151, in result
+    return self._future.result(timeout)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/usr/local/lib/python3.13/concurrent/futures/_base.py", line 460, in result
+    return self.__get_result()
+           ~~~~~~~~~~~~~~~~~^^
+  File "/usr/local/lib/python3.13/concurrent/futures/_base.py", line 402, in __get_result
+    raise self._exception
+  File "/tmp/claude-0/-home-user-AGsResearch-Claudeoppolous/31484cee-6902-5b45-bc20-3fc4fb38db73/scratchpad/venv/lib/python3.13/site-packages/tinker/lib/telemetry.py", line 423, in _awrapper
+    return await cast(Callable[..., Awaitable[R]], func)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/claude-0/-home-user-AGsResearch-Claudeoppolous/31484cee-6902-5b45-bc20-3fc4fb38db73/scratchpad/venv/lib/python3.13/site-packages/tinker/lib/public_interfaces/training_client.py", line 1241, in _save_weights_external_async
+    result = await _APIFuture(
+             ^^^^^^^^^^^^^^^^^
+    ...<6 lines>...
+    )
+    ^
+  File "/tmp/claude-0/-home-user-AGsResearch-Claudeoppolous/31484cee-6902-5b45-bc20-3fc4fb38db73/scratchpad/venv/lib/python3.13/site-packages/tinker/lib/api_future_impl.py", line 635, in result_async
+    return await asyncio.wait_for(self._future, timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/asyncio/tasks.py", line 514, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "/tmp/claude-0/-home-user-AGsResearch-Claudeoppolous/31484cee-6902-5b45-bc20-3fc4fb38db73/scratchpad/venv/lib/python3.13/site-packages/tinker/lib/public_interfaces/api_future.py", line 156, in result_async
+    return await asyncio.wrap_future(self._future)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/claude-0/-home-user-AGsResearch-Claudeoppolous/31484cee-6902-5b45-bc20-3fc4fb38db73/scratchpad/venv/lib/python3.13/site-packages/tinker/lib/api_future_impl.py", line 288, in _result_async
+    result = await self._handle_outcome(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        fetched, state, stack, iteration, start_time
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/tmp/claude-0/-home-user-AGsResearch-Claudeoppolous/31484cee-6902-5b45-bc20-3fc4fb38db73/scratchpad/venv/lib/python3.13/site-packages/tinker/lib/api_future_impl.py", line 558, in _handle_outcome
+    raise RequestFailedError(
+    ...<4 lines>...
+    )
+tinker.RequestFailedError: Request failed: This ServiceClient is poisoned. We cannot run further operations against it. Please create a new ServiceClient if you wish to continue. Failure reason: training run 8886d663-ec03-5cab-a20f-0609eabb4616:train:31 failed: Training checkpoint saved. Free checkpoint storage limit reached (bytes or checkpoint count); this training client is closed. Delete checkpoints or switch to paid storage, then resume from the checkpoint with a new ServiceClient and training client.. for self.request_id='8886d663-ec03-5cab-a20f-0609eabb4616:train:44:1' and expected type self.model_cls=<class 'tinker.types._pydantic_types.save_weights_external_response.SaveWeightsExternalResponseInternal'>
+errors so far 57
+COUNTS {'clients': 36, 'forward_backward': 47, 'optim_step': 47, 'exports': 79, 'uploads': 0}
+=== pool 6
+Traceback (most recent call last):
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 291, in safe
+    return j()
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_fam.py", line 84, in <lambda>
+    j = [lambda k=k: d.oracle(CK(T, k), SEQ[k]) for k in range(6)]
+                     ~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 244, in oracle
+    c = man()["ckpts"][ckpt]
+        ~~~~~~~~~~~~~~^^^^^^
+KeyError: 'S2_r32_b0-ck0'
+Traceback (most recent call last):
+Traceback (most recent call last):
+Traceback (most recent call last):
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 291, in safe
+    return j()
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_fam.py", line 84, in <lambda>
+    j = [lambda k=k: d.oracle(CK(T, k), SEQ[k]) for k in range(6)]
+                     ~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 244, in oracle
+    c = man()["ckpts"][ckpt]
+        ~~~~~~~~~~~~~~^^^^^^
+KeyError: 'S2_r32_b0-ck2'
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 291, in safe
+    return j()
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 291, in safe
+    return j()
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_fam.py", line 84, in <lambda>
+    j = [lambda k=k: d.oracle(CK(T, k), SEQ[k]) for k in range(6)]
+                     ~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 244, in oracle
+    c = man()["ckpts"][ckpt]
+        ~~~~~~~~~~~~~~^^^^^^
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_fam.py", line 84, in <lambda>
+    j = [lambda k=k: d.oracle(CK(T, k), SEQ[k]) for k in range(6)]
+                     ~~~~~~~~^^^^^^^^^^^^^^^^^^
+Traceback (most recent call last):
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 291, in safe
+    return j()
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 244, in oracle
+    c = man()["ckpts"][ckpt]
+        ~~~~~~~~~~~~~~^^^^^^
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_fam.py", line 84, in <lambda>
+    j = [lambda k=k: d.oracle(CK(T, k), SEQ[k]) for k in range(6)]
+                     ~~~~~~~~^^^^^^^^^^^^^^^^^^
+KeyError: 'S2_r32_b0-ck3'
+KeyError: 'S2_r32_b0-ck1'
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 244, in oracle
+    c = man()["ckpts"][ckpt]
+        ~~~~~~~~~~~~~~^^^^^^
+KeyError: 'S2_r32_b0-ck4'
+Traceback (most recent call last):
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 291, in safe
+    return j()
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_fam.py", line 84, in <lambda>
+    j = [lambda k=k: d.oracle(CK(T, k), SEQ[k]) for k in range(6)]
+                     ~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 244, in oracle
+    c = man()["ckpts"][ckpt]
+        ~~~~~~~~~~~~~~^^^^^^
+KeyError: 'S2_r32_b0-ck5'
+Traceback (most recent call last):
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 291, in safe
+    return j()
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_fam.py", line 87, in <lambda>
+    j.append(lambda k=k: d.chain(f"{T}_fresh_ck{k}", r,
+                         ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+                                 one(SEQ[k], d.D(beta1=0.0), f"step{k + 1}"),
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                                 exp="S2", kind="fresh", ckpt=CK(T, k)))
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 197, in chain
+    tc = new_client(kind, rank, ckpt, tag=name)
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 162, in new_client
+    return _new_client(kind, rank, ckpt, optimizer, tag)
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 175, in _new_client
+    path = man()["ckpts"][ckpt]["path"]
+           ~~~~~~~~~~~~~~^^^^^^
+KeyError: 'S2_r32_b0-ck1'
+Traceback (most recent call last):
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 291, in safe
+    return j()
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_fam.py", line 87, in <lambda>
+    j.append(lambda k=k: d.chain(f"{T}_fresh_ck{k}", r,
+                         ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+                                 one(SEQ[k], d.D(beta1=0.0), f"step{k + 1}"),
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                                 exp="S2", kind="fresh", ckpt=CK(T, k)))
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 197, in chain
+    tc = new_client(kind, rank, ckpt, tag=name)
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 162, in new_client
+    return _new_client(kind, rank, ckpt, optimizer, tag)
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 175, in _new_client
+    path = man()["ckpts"][ckpt]["path"]
+           ~~~~~~~~~~~~~~^^^^^^
+KeyError: 'S2_r32_b0-ck2'
+Traceback (most recent call last):
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 291, in safe
+    return j()
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_fam.py", line 87, in <lambda>
+    j.append(lambda k=k: d.chain(f"{T}_fresh_ck{k}", r,
+                         ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+                                 one(SEQ[k], d.D(beta1=0.0), f"step{k + 1}"),
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                                 exp="S2", kind="fresh", ckpt=CK(T, k)))
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 197, in chain
+    tc = new_client(kind, rank, ckpt, tag=name)
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 162, in new_client
+    return _new_client(kind, rank, ckpt, optimizer, tag)
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 175, in _new_client
+    path = man()["ckpts"][ckpt]["path"]
+           ~~~~~~~~~~~~~~^^^^^^
+KeyError: 'S2_r32_b0-ck3'
+Traceback (most recent call last):
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 291, in safe
+    return j()
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_fam.py", line 87, in <lambda>
+    j.append(lambda k=k: d.chain(f"{T}_fresh_ck{k}", r,
+                         ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+                                 one(SEQ[k], d.D(beta1=0.0), f"step{k + 1}"),
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                                 exp="S2", kind="fresh", ckpt=CK(T, k)))
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 197, in chain
+    tc = new_client(kind, rank, ckpt, tag=name)
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 162, in new_client
+    return _new_client(kind, rank, ckpt, optimizer, tag)
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 175, in _new_client
+    path = man()["ckpts"][ckpt]["path"]
+           ~~~~~~~~~~~~~~^^^^^^
+KeyError: 'S2_r32_b0-ck4'
+Traceback (most recent call last):
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 291, in safe
+    return j()
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_fam.py", line 87, in <lambda>
+    j.append(lambda k=k: d.chain(f"{T}_fresh_ck{k}", r,
+                         ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+                                 one(SEQ[k], d.D(beta1=0.0), f"step{k + 1}"),
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                                 exp="S2", kind="fresh", ckpt=CK(T, k)))
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 197, in chain
+    tc = new_client(kind, rank, ckpt, tag=name)
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 162, in new_client
+    return _new_client(kind, rank, ckpt, optimizer, tag)
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 175, in _new_client
+    path = man()["ckpts"][ckpt]["path"]
+           ~~~~~~~~~~~~~~^^^^^^
+KeyError: 'S2_r32_b0-ck5'
+Traceback (most recent call last):
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 291, in safe
+    return j()
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_fam.py", line 18, in <lambda>
+    return lambda: d.chain(T, r, d.seq_steps(beta1, texts=texts), exp=exp, save=True)
+                   ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 205, in chain
+    sid, w = export_state(tc, f"{name}-s0", rank)
+             ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 119, in export_state
+    w = export_tmp(tc, name)
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 103, in export_tmp
+    w, path = tk.export(tc, name, return_path=True)
+              ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/tk.py", line 133, in export
+    r = tc.save_weights_external(name, ttl_seconds=TTL).result()
+  File "/tmp/claude-0/-home-user-AGsResearch-Claudeoppolous/31484cee-6902-5b45-bc20-3fc4fb38db73/scratchpad/venv/lib/python3.13/site-packages/tinker/lib/public_interfaces/api_future.py", line 151, in result
+    return self._future.result(timeout)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/usr/local/lib/python3.13/concurrent/futures/_base.py", line 460, in result
+    return self.__get_result()
+           ~~~~~~~~~~~~~~~~~^^
+  File "/usr/local/lib/python3.13/concurrent/futures/_base.py", line 402, in __get_result
+    raise self._exception
+  File "/tmp/claude-0/-home-user-AGsResearch-Claudeoppolous/31484cee-6902-5b45-bc20-3fc4fb38db73/scratchpad/venv/lib/python3.13/site-packages/tinker/lib/telemetry.py", line 423, in _awrapper
+    return await cast(Callable[..., Awaitable[R]], func)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/claude-0/-home-user-AGsResearch-Claudeoppolous/31484cee-6902-5b45-bc20-3fc4fb38db73/scratchpad/venv/lib/python3.13/site-packages/tinker/lib/public_interfaces/training_client.py", line 1241, in _save_weights_external_async
+    result = await _APIFuture(
+             ^^^^^^^^^^^^^^^^^
+    ...<6 lines>...
+    )
+    ^
+  File "/tmp/claude-0/-home-user-AGsResearch-Claudeoppolous/31484cee-6902-5b45-bc20-3fc4fb38db73/scratchpad/venv/lib/python3.13/site-packages/tinker/lib/api_future_impl.py", line 635, in result_async
+    return await asyncio.wait_for(self._future, timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/asyncio/tasks.py", line 514, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "/tmp/claude-0/-home-user-AGsResearch-Claudeoppolous/31484cee-6902-5b45-bc20-3fc4fb38db73/scratchpad/venv/lib/python3.13/site-packages/tinker/lib/public_interfaces/api_future.py", line 156, in result_async
+    return await asyncio.wrap_future(self._future)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/claude-0/-home-user-AGsResearch-Claudeoppolous/31484cee-6902-5b45-bc20-3fc4fb38db73/scratchpad/venv/lib/python3.13/site-packages/tinker/lib/api_future_impl.py", line 288, in _result_async
+    result = await self._handle_outcome(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        fetched, state, stack, iteration, start_time
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/tmp/claude-0/-home-user-AGsResearch-Claudeoppolous/31484cee-6902-5b45-bc20-3fc4fb38db73/scratchpad/venv/lib/python3.13/site-packages/tinker/lib/api_future_impl.py", line 558, in _handle_outcome
+    raise RequestFailedError(
+    ...<4 lines>...
+    )
+tinker.RequestFailedError: Request failed: This ServiceClient is poisoned. We cannot run further operations against it. Please create a new ServiceClient if you wish to continue. Failure reason: training run 8886d663-ec03-5cab-a20f-0609eabb4616:train:31 failed: Training checkpoint saved. Free checkpoint storage limit reached (bytes or checkpoint count); this training client is closed. Delete checkpoints or switch to paid storage, then resume from the checkpoint with a new ServiceClient and training client.. for self.request_id='8886d663-ec03-5cab-a20f-0609eabb4616:train:45:1' and expected type self.model_cls=<class 'tinker.types._pydantic_types.save_weights_external_response.SaveWeightsExternalResponseInternal'>
+errors so far 69
+COUNTS {'clients': 37, 'forward_backward': 47, 'optim_step': 47, 'exports': 79, 'uploads': 0}
+=== pool 7
+Traceback (most recent call last):
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 291, in safe
+    return j()
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_fam.py", line 84, in <lambda>
+    j = [lambda k=k: d.oracle(CK(T, k), SEQ[k]) for k in range(6)]
+                     ~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 244, in oracle
+    c = man()["ckpts"][ckpt]
+        ~~~~~~~~~~~~~~^^^^^^
+KeyError: 'S2_r8_b0.99-ck0'
+Traceback (most recent call last):
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 291, in safe
+    return j()
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_fam.py", line 84, in <lambda>
+    j = [lambda k=k: d.oracle(CK(T, k), SEQ[k]) for k in range(6)]
+                     ~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 244, in oracle
+    c = man()["ckpts"][ckpt]
+        ~~~~~~~~~~~~~~^^^^^^
+KeyError: 'S2_r8_b0.99-ck1'
+Traceback (most recent call last):
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 291, in safe
+    return j()
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_fam.py", line 84, in <lambda>
+    j = [lambda k=k: d.oracle(CK(T, k), SEQ[k]) for k in range(6)]
+                     ~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 244, in oracle
+    c = man()["ckpts"][ckpt]
+        ~~~~~~~~~~~~~~^^^^^^
+KeyError: 'S2_r8_b0.99-ck2'
+Traceback (most recent call last):
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 291, in safe
+    return j()
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_fam.py", line 84, in <lambda>
+    j = [lambda k=k: d.oracle(CK(T, k), SEQ[k]) for k in range(6)]
+                     ~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 244, in oracle
+    c = man()["ckpts"][ckpt]
+        ~~~~~~~~~~~~~~^^^^^^
+KeyError: 'S2_r8_b0.99-ck3'
+Traceback (most recent call last):
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 291, in safe
+    return j()
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_fam.py", line 84, in <lambda>
+    j = [lambda k=k: d.oracle(CK(T, k), SEQ[k]) for k in range(6)]
+                     ~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 244, in oracle
+    c = man()["ckpts"][ckpt]
+        ~~~~~~~~~~~~~~^^^^^^
+KeyError: 'S2_r8_b0.99-ck4'
+Traceback (most recent call last):
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 291, in safe
+    return j()
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_fam.py", line 84, in <lambda>
+    j = [lambda k=k: d.oracle(CK(T, k), SEQ[k]) for k in range(6)]
+                     ~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "/home/user/AGsResearch_Claudeoppolous/dimuon/pipeline/s_d2.py", line 244, in oracle
+    c = man()["ckpts"][ckpt]
+        ~~~~~~~~~~~~~~^^^^^^
+KeyError: 'S2_r8_b0.99-ck5'
+errors so far 75
+COUNTS {'clients': 37, 'forward_backward': 47, 'optim_step': 47, 'exports': 79, 'uploads': 0}

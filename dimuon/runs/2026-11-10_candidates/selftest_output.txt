@@ -1,0 +1,104 @@
+[PASS] NS matrix == NS spectral (f64) err=2.50e-15
+[PASS] NS per-step coefficient list err=1.97e-15
+[PASS] cubic NS (spec prenorm, 60 steps) -> polar err=2.21e-16
+[PASS] precision: f32 err ~1e-6, fp16 < bf16 err ~1e-2 f32=9.48e-07 fp16=3.57e-03 bf16=3.06e-02
+[PASS] bf16_round [ 1.0000000e+00  1.0000000e+00  1.0000000e+00  3.1406250e+00
+ -2.5024414e-03  1.0078125e+00]
+[PASS] cpolar(0,0,0,0) == polar 
+[PASS] diag_precond(-1/2,0) == row_norm 
+[PASS] diag_precond(0,-1/2) == col_norm 
+[PASS] rank 1: polar == frob == col_norm 
+[PASS] rank 1: row_norm == sign 
+[PASS] rank 1: cpolar(a,b,c,d) == G*|G|^(2(a+b)) 
+  quintic NS (5 steps) transfer f(x) at x=s/||G||_F: {0.01: 0.6989, 0.05: 0.7581, 0.1: 0.7121, 0.25: 0.7145, 0.5: 0.7654, 0.7: 1.1203, 1.0: 0.6964}
+  diag[polar                 ] outside_colG=2.22e-16 offdiag=1.14e-15 loglog_slope=-0.000 lscan_q=+0.0000 (oos 1.7e-17) S_asym=8.25e-16 row_slope=+0.934 sv_D_rel_min=1.000
+  diag[sign                  ] outside_colG=7.34e-01 offdiag=4.71e-01 loglog_slope=+0.424 lscan_q=-0.6628 (oos 1.5e-01) S_asym=7.87e-01 row_slope=-0.000 sv_D_rel_min=0.301
+  diag[cpolar_rowwhite       ] outside_colG=6.07e-01 offdiag=1.77e-01 loglog_slope=-0.090 lscan_q=-0.5000 (oos 2.1e-15) S_asym=2.54e-01 row_slope=-0.042 sv_D_rel_min=1.000
+  diag[cpolar(.3,-.4,-.2,.1) ] outside_colG=3.09e-02 offdiag=2.07e-01 loglog_slope=+0.202 lscan_q=-0.1000 (oos 2.2e-15) S_asym=2.99e-01 row_slope=+0.757 sv_D_rel_min=0.353
+[PASS] left scan recovers a+b=-0.1 q=-0.10000
+[PASS] bf16 lattice test 4.7e-08 vs 1.4e-03
+  column_response (G -> G diag(k)): {'col_norm': {'q': 0.0, 'r2': 0.0011, 'resid_after_colscale': 0.0}, 'frob': {'q': 1.0, 'r2': 1.0, 'resid_after_colscale': 0.0}, 'polar': {'q': 0.0, 'r2': 0.0405, 'resid_after_colscale': 0.4071}}
+[PASS] column_response separates col_norm(q=0) / frob(q=1) / polar(resid>0) 
+
+=== hidden=ns_quintic5 r=16 eps=0.001 (top 8 of 21)
+  # candidate                test_err  train_err   max_test      cos         global(best renorm)  params
+  1 FIT ns5_coeffs          9.994e-04  1.001e-03  1.003e-03  -1.0000            9.994e-04 [none]  c0=+3.4445 c1=-4.7750 c2=+2.0315
+  2~ns_quintic5_f32         9.994e-04  1.001e-03  1.003e-03  -1.0000            9.994e-04 [none]  
+  3~ns_quintic5             9.994e-04  1.001e-03  1.003e-03  -1.0000            9.994e-04 [none]  
+  4 ns_quintic5_bf16        3.403e-02  3.486e-02  4.603e-02  -0.9994            3.410e-02 [none]  
+  5 FIT cpolar              1.727e-01  1.708e-01  1.872e-01  -0.9850             1.731e-01 [fro]  a=+0.0039 b=-0.0036 c=+0.0005 d=+0.0166
+  6 FIT spec_power          1.734e-01  1.716e-01  1.882e-01  -0.9848             1.738e-01 [fro]  p=+0.0082
+  7 polar                   1.754e-01  1.719e-01  1.912e-01  -0.9845            1.758e-01 [none]  
+  8 ns_cubic15              1.756e-01  1.733e-01  1.912e-01  -0.9845      1.760e-01 [fro_sqrt_r]  
+[PASS] ns_quintic5 r=16 eps=0.001: no fixed candidate beats the true rule by >1% order=['ns_quintic5_f32', 'ns_quintic5', 'ns_quintic5_bf16'] confusable(<1.5x)=['ns_quintic5_f32']
+[PASS] ns_quintic5: FIT ns5_coeffs recovers params fit=[3.4445, -4.775, 2.0315] true=[3.4445, -4.775, 2.0315] maxdev=2.9e-05
+
+=== hidden=cpolar(.3,-.4,-.2,.1) r=16 eps=0.001 (top 8 of 21)
+  # candidate                test_err  train_err   max_test      cos         global(best renorm)  params
+  1 FIT cpolar              9.953e-04  1.002e-03  9.981e-04  -1.0000            9.953e-04 [none]  a=+0.3000 b=-0.4000 c=-0.2000 d=+0.1000
+  2 FIT ns5_coeffs          2.646e-01  2.559e-01  2.853e-01  -0.9644  3.061e-01 [spec_muon_shape]  c0=+2.4187 c1=-3.3866 c2=+2.0954
+  3 FIT spec_power          2.667e-01  2.582e-01  2.873e-01  -0.9638            3.078e-01 [none]  p=+0.1390
+  4 ns_cubic15              3.043e-01  3.014e-01  3.283e-01  -0.9526            3.584e-01 [spec]  
+  5 polar                   3.043e-01  3.014e-01  3.284e-01  -0.9525            3.585e-01 [spec]  
+  6 ns_quintic5             3.293e-01  3.253e-01  3.675e-01  -0.9442            3.711e-01 [spec]  
+  7 ns_quintic5_f32         3.293e-01  3.253e-01  3.675e-01  -0.9442            3.711e-01 [spec]  
+  8 ns_quintic5_bf16        3.312e-01  3.269e-01  3.666e-01  -0.9435            3.715e-01 [spec]  
+[PASS] cpolar(.3,-.4,-.2,.1): FIT cpolar recovers params fit=[0.3, -0.4, -0.2, 0.1] true=[0.3, -0.4, -0.2, 0.1] maxdev=1.6e-05
+
+=== hidden=cpolar_dshampoo r=4 eps=0.01 (top 8 of 21)
+  # candidate                test_err  train_err   max_test      cos         global(best renorm)  params
+  1 FIT cpolar              9.990e-03  1.001e-02  1.008e-02  -1.0000             9.991e-03 [fro]  a=-0.0000 b=-0.2500 c=-0.2500 d=+0.0001
+  2~cpolar_dshampoo         9.990e-03  1.001e-02  1.009e-02  -1.0000            9.991e-03 [none]  
+  3 FIT spec_power          5.175e-01  5.305e-01  5.739e-01  -0.8554            5.179e-01 [spec]  p=+0.0144
+  4 polar                   5.180e-01  5.308e-01  5.747e-01  -0.8551            5.185e-01 [none]  
+  5 ns_cubic15              5.191e-01  5.308e-01  5.789e-01  -0.8544            5.195e-01 [spec]  
+  6 cpolar_colwhite         5.240e-01  5.378e-01  5.995e-01  -0.8512            5.250e-01 [spec]  
+  7 FIT ns5_coeffs          5.349e-01  5.309e-01  6.342e-01  -0.8439            5.353e-01 [spec]  c0=+2.5288 c1=-4.3843 c2=+2.8519
+  8 ns_quintic5             5.361e-01  5.506e-01  5.867e-01  -0.8439             5.366e-01 [fro]  
+[PASS] cpolar_dshampoo r=4 eps=0.01: no fixed candidate beats the true rule by >1% order=['cpolar_dshampoo', 'polar', 'ns_cubic15'] confusable(<1.5x)=[]
+[PASS] cpolar_dshampoo: FIT cpolar recovers params fit=[-0.0, -0.25, -0.25, 0.0001] true=[0.0, -0.25, -0.25, 0.0] maxdev=5.7e-05
+
+=== hidden=spec_p0.5 r=8 eps=1e-06 (top 8 of 21)
+  # candidate                test_err  train_err   max_test      cos         global(best renorm)  params
+  1 spec_p0.5               1.004e-06  9.980e-07  1.008e-06  -1.0000            1.003e-06 [none]  
+  2~FIT spec_power          1.004e-06  9.985e-07  1.008e-06  -1.0000            1.003e-06 [none]  p=+0.5000
+  3 FIT ns5_coeffs          8.266e-02  8.350e-02  9.351e-02  -0.9966      2.401e-01 [fro_sqrt_r]  c0=+1.8114 c1=-0.2260 c2=+0.0206
+  4 FIT cpolar              2.587e-01  2.146e-01  3.321e-01  -0.9658      3.504e-01 [fro_sqrt_r]  a=+0.7263 b=-0.7274 c=-0.0778 d=+0.1166
+  5 ns_cubic5               2.604e-01  2.585e-01  3.330e-01  -0.9654      3.477e-01 [fro_sqrt_r]  
+  6 FIT diag_precond        2.802e-01  2.712e-01  3.085e-01  -0.9599            2.948e-01 [none]  a=-0.0253 c=-0.1670
+  7 frob                    3.049e-01  3.130e-01  3.617e-01  -0.9523            3.787e-01 [none]  
+  8 col_norm                4.136e-01  4.556e-01  5.659e-01  -0.9091             4.791e-01 [fro]  
+[PASS] spec_p0.5 r=8 eps=1e-06: no fixed candidate beats the true rule by >1% order=['spec_p0.5', 'ns_cubic5', 'frob'] confusable(<1.5x)=[]
+[PASS] spec_p0.5: FIT spec_power recovers params fit=[0.5] true=[0.5] maxdev=8.2e-09
+
+=== hidden=ns_quintic5_bf16 r=16 eps=0.001 (top 8 of 21)
+  # candidate                test_err  train_err   max_test      cos         global(best renorm)  params
+  1 ns_quintic5_bf16        9.980e-04  1.003e-03  1.006e-03  -1.0000            9.980e-04 [none]  
+  2 FIT ns5_coeffs          4.316e-02  3.777e-02  5.194e-02  -0.9991            4.346e-02 [none]  c0=+3.4473 c1=-4.7638 c2=+2.0193
+  3 ns_quintic5_f32         4.318e-02  3.788e-02  5.225e-02  -0.9991            4.349e-02 [none]  
+  4 ns_quintic5             4.318e-02  3.788e-02  5.225e-02  -0.9991            4.349e-02 [none]  
+  5 FIT spec_power          1.709e-01  1.816e-01  1.875e-01  -0.9853      1.733e-01 [fro_sqrt_r]  p=+0.0001
+  6 polar                   1.709e-01  1.816e-01  1.875e-01  -0.9853            1.733e-01 [spec]  
+  7 ns_cubic15              1.715e-01  1.835e-01  1.878e-01  -0.9852            1.738e-01 [spec]  
+  8 FIT cpolar              1.718e-01  1.815e-01  1.878e-01  -0.9851            1.739e-01 [none]  a=-0.0060 b=+0.0056 c=-0.0005 d=+0.0016
+[PASS] ns_quintic5_bf16 r=16 eps=0.001: no fixed candidate beats the true rule by >1% order=['ns_quintic5_bf16', 'ns_quintic5_f32', 'ns_quintic5'] confusable(<1.5x)=[]
+
+=== hidden=polar r=1 eps=0.001 (top 8 of 21)
+  # candidate                test_err  train_err   max_test      cos         global(best renorm)  params
+  1 FIT spec_power          9.849e-04  1.005e-03  9.966e-04  -1.0000             9.850e-04 [fro]  p=+0.4100
+  2~polar                   9.849e-04  1.005e-03  9.966e-04  -1.0000      9.850e-04 [fro_sqrt_r]  
+  3~ns_quintic3             9.849e-04  1.005e-03  9.966e-04  -1.0000            9.850e-04 [none]  
+  4~ns_quintic8             9.849e-04  1.005e-03  9.966e-04  -1.0000      9.850e-04 [fro_sqrt_r]  
+  5~ns_cubic5               9.849e-04  1.005e-03  9.966e-04  -1.0000      9.850e-04 [fro_sqrt_r]  
+  6~ns_cubic15              9.849e-04  1.005e-03  9.966e-04  -1.0000      9.850e-04 [fro_sqrt_r]  
+  7~ns_quintic5             9.849e-04  1.005e-03  9.966e-04  -1.0000      9.850e-04 [fro_sqrt_r]  
+  8~frob                    9.849e-04  1.005e-03  9.966e-04  -1.0000            9.850e-04 [spec]  
+  rank-1 ties with polar (err ratio<1.5): ['polar', 'ns_quintic3', 'ns_quintic8', 'ns_cubic5', 'ns_cubic15', 'ns_quintic5', 'frob', 'col_norm', 'cpolar_colwhite', 'spec_p0.5', 'ns_quintic5_f32']
+  harness runs: 23s
+[PASS] norm_scaling: polar fro ~ r^0.5, no d_out / |G| dependence {"fro": {"const": -6.90775527898214, "log_d_out": 8.136113781333117e-16, "log_r": 0.4999999999999998, "log_G_fro": -1.4393653886162274e-16, "resid_sd": 1.1726160426184136e-15}, "spec": {"const": -6.907755278982142, "log_d_out": 7.468172954832277e-16, "log_r": 4.825107863677813e-17, "log_G_fro": -7.537518421213811e-16, "resid_sd": 7.548065156004902e-16}}
+
+SELFTEST: 23/23 checks passed
+
+real	0m24.469s
+user	1m14.221s
+sys	0m0.258s

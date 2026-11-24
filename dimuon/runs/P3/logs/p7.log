@@ -1,0 +1,10 @@
+22:02:30 start p7
+chain P7_r8 done 138s
+oracle b909bf5963df328d_t2_w1_P3 done 45.3s resid 5.76e-04 bad 0
+oracle e29cfd03d6df62a4_t1_w1_P3 done 45.5s resid 2.64e-05 bad 0
+oracle 4c7b2d56f9a87f58_t0_w1_P3 done 46.7s resid 1.32e-05 bad 0
+oracle f1c10d7975179457_t0_w1_P3 done 48.0s resid 4.99e-06 bad 0
+chain P7_b0_fresh done 40s
+chain P7_b0_cont done 41s
+oracle aa36c2d57cb8efa9_t0_w1_P3 done 41.4s resid 4.27e-06 bad 0
+22:06:16 done p7 {'clients': 8, 'forward_backward': 12, 'optim_step': 12, 'exports': 20, 'uploads': 0}

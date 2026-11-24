@@ -1,0 +1,24 @@
+g2 global norm 232.033 (N1 = 232.04); per-tensor |g2_B| max 179.55, |g2_A| max 4.751; clip 0.5N1 = 116.0
+clip 0.5: B tensors changed 152/152; tensors whose own |g2| > threshold 116.02: B 1, A 0; changed-but-not-over 151
+clip 0.01: B tensors changed 152/152; tensors whose own |g2| > threshold 2.32: B 124, A 1; changed-but-not-over 28
+
+clip c = 1 (unclipped)
+  baseline PE5(g2) own gradient      [med 0.776  p90 0.842  max 0.871  (n=38)]
+  PE5(g2n + a g1n), a fitted per tensor: resid [med 0.757  p90 0.835  max 0.871  (n=38)]  a median 1.141 (p10 0.06039, p90 25.54)
+  PE5(g2n + a U1n), a fitted per tensor: resid [med 0.775  p90 0.837  max 0.871  (n=38)]  a median 0.01178 (p10 0, p90 0.03639)
+
+clip c = 0.5:  dB vs unclipped dB  [med 0.0755  p90 0.096  max 0.134  (n=38)]
+  baseline PE5(g2) own gradient      [med 0.775  p90 0.844  max 0.876  (n=38)]
+  PE5(g2n + a g1n), a fitted per tensor: resid [med 0.757  p90 0.835  max 0.876  (n=38)]  a median 1.661 (p10 0.06328, p90 218)
+  PE5(g2n + a U1n), a fitted per tensor: resid [med 0.77  p90 0.84  max 0.876  (n=38)]  a median 0.01151 (p10 0, p90 0.03505)
+
+clip c = 0.01:  dB vs unclipped dB  [med 0.129  p90 0.153  max 0.174  (n=38)]
+  baseline PE5(g2) own gradient      [med 0.786  p90 0.846  max 0.884  (n=38)]
+  PE5(g2n + a g1n), a fitted per tensor: resid [med 0.76  p90 0.835  max 0.883  (n=38)]  a median 3.274 (p10 0.3956, p90 380.9)
+  PE5(g2n + a U1n), a fitted per tensor: resid [med 0.781  p90 0.845  max 0.884  (n=38)]  a median 0.01001 (p10 0, p90 0.02732)
+  g1: a(c=0.5)/a(1) median 1.029 p10 0.9984 p90 13.58   [1/c = 2 if clip scales g2 only]
+  g1: a(c=0.01)/a(1) median 1.659 p10 0.9753 p90 281.2   [1/c = 100 if clip scales g2 only]
+  U1: a(c=0.5)/a(1) median 1 p10 0.3388 p90 1.134   [1/c = 2 if clip scales g2 only]
+  U1: a(c=0.01)/a(1) median 0.9901 p10 0.08115 p90 1.114   [1/c = 100 if clip scales g2 only]
+
+A tensors: differing elements vs unclipped across clip 0.5/0.01/2: 0

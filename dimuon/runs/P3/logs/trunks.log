@@ -1,0 +1,5 @@
+21:52:06 start trunks
+chain P5_r8_b0 done 65s
+chain P2_r32 done 105s
+chain P6_r8 done 271s
+21:56:38 done trunks {'clients': 3, 'forward_backward': 20, 'optim_step': 20, 'exports': 23, 'uploads': 0}
