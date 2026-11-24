@@ -1,0 +1,103 @@
+2026-10-30T18:03:18+00:00 WATCHDOG running; S3 budget=15000000000 bytes; opening balance=AWS month-to-date net USD 0.00 for 2026-10 at 2026-10-30 23:20 IST, Cost Explorer, credits offset charges, may lag 24h; budget 15 GB S3 reads, about USD 2 maximum
+2026-10-30T18:03:27+00:00 HF embedding rows 4096/248320
+2026-10-30T18:03:44+00:00 HF embedding rows 36864/248320
+2026-10-30T18:03:48+00:00 WATCHDOG S3 reserved=0.4057 GB; last progress 0s ago
+2026-10-30T18:04:07+00:00 HF embedding rows 69632/248320
+2026-10-30T18:04:18+00:00 WATCHDOG S3 reserved=0.4057 GB; last progress 1s ago
+2026-10-30T18:04:26+00:00 HF embedding rows 102400/248320
+2026-10-30T18:04:45+00:00 HF embedding rows 135168/248320
+2026-10-30T18:04:48+00:00 WATCHDOG S3 reserved=0.4057 GB; last progress 1s ago
+2026-10-30T18:05:03+00:00 HF embedding rows 167936/248320
+2026-10-30T18:05:18+00:00 WATCHDOG S3 reserved=0.4057 GB; last progress 2s ago
+2026-10-30T18:05:20+00:00 HF embedding rows 200704/248320
+2026-10-30T18:05:43+00:00 HF embedding rows 233472/248320
+2026-10-30T18:05:48+00:00 WATCHDOG S3 reserved=0.4057 GB; last progress 2s ago
+2026-10-30T18:05:58+00:00 LOGIT CHECK {"prompt": "tay|sin x|2|hold", "variant": "forced", "tokens_checked": 52, "vocabulary_checked": 248320, "max_abs_difference": 0.06486892700195312, "rmse": 0.005661397064948961, "max_abs_saved_logit": 31.625, "precision": "float32 projection from stored F16 residuals and original BF16 weights", "passed": true, "tolerance": "max <= 0.5 AND RMSE <= 0.05 AND max / maximum absolute saved logit <= 1%; bf16 capture differs from float32 projection"}
+2026-10-30T18:06:02+00:00 [1/338] RESUME lat__choose3__forced
+2026-10-30T18:06:03+00:00 [2/338] RESUME lat__choose3__free
+2026-10-30T18:06:04+00:00 [3/338] RESUME lat__cube_volume__forced
+2026-10-30T18:06:06+00:00 [4/338] RESUME lat__cube_volume__free
+2026-10-30T18:06:07+00:00 [5/338] RESUME lat__integral_x2__forced
+2026-10-30T18:06:08+00:00 [6/338] RESUME lat__integral_x2__free
+2026-10-30T18:06:09+00:00 [7/338] RESUME lat__neutral__forced
+2026-10-30T18:06:09+00:00 [8/338] START lat__neutral__free
+2026-10-30T18:06:18+00:00 [8/338] lens complete lat__neutral__free
+2026-10-30T18:06:18+00:00 WATCHDOG S3 reserved=0.4484 GB; last progress 1s ago
+2026-10-30T18:06:26+00:00 [8/338] norm maps complete lat__neutral__free
+2026-10-30T18:06:28+00:00 [8/338] DONE lat__neutral__free; tokens=40; file=70183; S3=0.4521GB
+2026-10-30T18:06:28+00:00 [9/338] START lat__pizza_sixth__forced
+2026-10-30T18:06:31+00:00 [9/338] lens complete lat__pizza_sixth__forced
+2026-10-30T18:06:35+00:00 [9/338] norm maps complete lat__pizza_sixth__forced
+2026-10-30T18:06:38+00:00 [9/338] DONE lat__pizza_sixth__forced; tokens=26; file=62383; S3=0.4669GB
+2026-10-30T18:06:38+00:00 [10/338] START lat__pizza_sixth__free
+2026-10-30T18:06:46+00:00 [10/338] lens complete lat__pizza_sixth__free
+2026-10-30T18:06:48+00:00 WATCHDOG S3 reserved=0.4974 GB; last progress 2s ago
+2026-10-30T18:07:01+00:00 [10/338] norm maps complete lat__pizza_sixth__free
+2026-10-30T18:07:04+00:00 [10/338] DONE lat__pizza_sixth__free; tokens=78; file=90190; S3=0.5085GB
+2026-10-30T18:07:04+00:00 [11/338] START lat__rubik__forced
+2026-10-30T18:07:11+00:00 [11/338] lens complete lat__rubik__forced
+2026-10-30T18:07:18+00:00 WATCHDOG S3 reserved=0.5322 GB; last progress 3s ago
+2026-10-30T18:07:20+00:00 [11/338] norm maps complete lat__rubik__forced
+2026-10-30T18:07:22+00:00 [11/338] DONE lat__rubik__forced; tokens=38; file=75924; S3=0.5293GB
+2026-10-30T18:07:22+00:00 [12/338] START lat__rubik__free
+2026-10-30T18:07:37+00:00 [12/338] lens complete lat__rubik__free
+2026-10-30T18:07:48+00:00 WATCHDOG S3 reserved=0.5681 GB; last progress 11s ago
+2026-10-30T18:08:00+00:00 [12/338] norm maps complete lat__rubik__free
+2026-10-30T18:08:04+00:00 [12/338] DONE lat__rubik__free; tokens=103; file=109296; S3=0.5845GB
+2026-10-30T18:08:04+00:00 [13/338] START lat__sphere_vol__forced
+2026-10-30T18:08:11+00:00 [13/338] lens complete lat__sphere_vol__forced
+2026-10-30T18:08:16+00:00 [13/338] norm maps complete lat__sphere_vol__forced
+2026-10-30T18:08:18+00:00 [13/338] DONE lat__sphere_vol__forced; tokens=29; file=65612; S3=0.6007GB
+2026-10-30T18:08:18+00:00 [14/338] START lat__sphere_vol__free
+2026-10-30T18:08:18+00:00 WATCHDOG S3 reserved=0.6158 GB; last progress 0s ago
+2026-10-30T18:08:27+00:00 [14/338] lens complete lat__sphere_vol__free
+2026-10-30T18:08:41+00:00 [14/338] norm maps complete lat__sphere_vol__free
+2026-10-30T18:08:43+00:00 [14/338] DONE lat__sphere_vol__free; tokens=62; file=83527; S3=0.6339GB
+2026-10-30T18:08:43+00:00 [15/338] START lat__square_area__forced
+2026-10-30T18:08:48+00:00 WATCHDOG S3 reserved=0.6438 GB; last progress 0s ago
+2026-10-30T18:08:49+00:00 [15/338] lens complete lat__square_area__forced
+2026-10-30T18:08:56+00:00 [15/338] norm maps complete lat__square_area__forced
+2026-10-30T18:08:58+00:00 [15/338] DONE lat__square_area__forced; tokens=30; file=66674; S3=0.6507GB
+2026-10-30T18:08:58+00:00 [16/338] START lat__square_area__free
+2026-10-30T18:09:08+00:00 [16/338] lens complete lat__square_area__free
+2026-10-30T18:09:18+00:00 WATCHDOG S3 reserved=0.6955 GB; last progress 3s ago
+2026-10-30T18:09:23+00:00 [16/338] norm maps complete lat__square_area__free
+Traceback (most recent call last):
+  File "/Users/adithyagiridharan/Desktop/PythonProjects/AGs_Research/latent_cube/dashboard/build_data.py", line 482, in <module>
+    main()
+  File "/Users/adithyagiridharan/Desktop/PythonProjects/AGs_Research/latent_cube/dashboard/build_data.py", line 476, in main
+    Exporter(reader, lens, scratch, inventory, check).run()
+  File "/Users/adithyagiridharan/Desktop/PythonProjects/AGs_Research/latent_cube/dashboard/build_data.py", line 378, in run
+    full_attention = capture.array('attn') if length <= 128 else capture.rows('attn', retained)
+                     ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/adithyagiridharan/Desktop/PythonProjects/AGs_Research/latent_cube/dashboard/build_data.py", line 177, in array
+    raw = self.reader.get(self.source, begin, begin+count*size-1)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/adithyagiridharan/Desktop/PythonProjects/AGs_Research/latent_cube/dashboard/build_data.py", line 129, in get
+    data = body.read()
+           ^^^^^^^^^^^
+  File "/Users/adithyagiridharan/miniforge3/lib/python3.12/site-packages/urllib3/response.py", line 955, in read
+    data = self._raw_read(amt)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/Users/adithyagiridharan/miniforge3/lib/python3.12/site-packages/urllib3/response.py", line 879, in _raw_read
+    data = self._fp_read(amt, read1=read1) if not fp_closed else b""
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/adithyagiridharan/miniforge3/lib/python3.12/site-packages/urllib3/response.py", line 862, in _fp_read
+    return self._fp.read(amt) if amt is not None else self._fp.read()
+                                                      ^^^^^^^^^^^^^^^
+  File "/Users/adithyagiridharan/miniforge3/lib/python3.12/http/client.py", line 495, in read
+    s = self._safe_read(self.length)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/adithyagiridharan/miniforge3/lib/python3.12/http/client.py", line 640, in _safe_read
+    data = self.fp.read(amt)
+           ^^^^^^^^^^^^^^^^^
+  File "/Users/adithyagiridharan/miniforge3/lib/python3.12/socket.py", line 720, in readinto
+    return self._sock.recv_into(b)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/adithyagiridharan/miniforge3/lib/python3.12/ssl.py", line 1251, in recv_into
+    return self.read(nbytes, buffer)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/adithyagiridharan/miniforge3/lib/python3.12/ssl.py", line 1103, in read
+    return self._sslobj.read(len, buffer)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+KeyboardInterrupt

@@ -1,0 +1,7 @@
+Initial reply rendered expressions: 3
+{
+  "replies": 676,
+  "expressions": 3077,
+  "errors": []
+}
+Unrendered math command cases: []

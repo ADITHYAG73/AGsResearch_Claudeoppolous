@@ -1,0 +1,13 @@
+- [One experiment at a time](one-experiment-at-a-time.md) — finish before starting the next; course-correct him when he drifts.
+- [Check before you claim](check-before-you-claim.md) — use tools, not recall; real traceback + last working log before naming a cause.
+- [GPU idle watchdog](gpu-idle-watchdog.md) — run it with every pod; orchestration bugs hang silently and bill forever.
+- [GPU run preflight](gpu-run-preflight.md) — before any billed run: progress logs, incremental checkpoints, memory trajectory, kill safety — flagged while READING the code, before launch.
+- [Mathematics objective](mathematics-curiosity-thread.md) — how LLMs do maths with no tools; queued: parabola words-vs-image, e^x; infra exists; teach backwards from something he ran.
+- [Backward learning](backward-learning.md) — AG learns from a concrete stuck point backwards to the atomic idea; never give him a forward reading plan.
+- [Originator sources only](originator-sources-only.md) — for tweets/announcements cite only the lab's own post, never a third party's summary.
+- [Post-training maths project](posttrain-math-project.md) — 4 cells (alone/sandbox × base/fine-tuned) on Qwen3.5-4B; FT-01 done 2026-10-18 (fine-tune kills sandbox use with thinking on); AG plans a 'slightly different' follow-up — ask what changes.
+- [Plain-text maths](plain-text-math.md) — no LaTeX in terminal replies; write x³/3! style, it renders raw otherwise.
+- [Let him build the idea](let-him-build-the-idea.md) — stay proactive, but while AG thinks an idea through out loud, let him finish before adding options or flaws.
+- [Over-collect on GPU](overcollect-on-gpu.md) — compute is expensive, storage cheap: save every internal plausibly useful to S3 during a billed run.
+- [Latent cube experiment](latent-cube-experiment.md) — AG's interp idea: imagine sin's 2nd Taylor term, find x³/6 in hidden states; prompt set; backlog: read Biology of an LLM.
+- [MATS outcome, paper dread](mats-outcome-and-paper-dread.md) — Neel-stream application rejected; long interp papers intimidate him: one example at a time, never front to back.

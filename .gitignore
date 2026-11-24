@@ -62,3 +62,6 @@ mathematics/runs/**/*.npy
 # regenerate with posttrain_math/data_inspect/sample_ifc4.py, seed 20261018)
 posttrain_math/data_inspect/ifc4_sample600.jsonl
 **/.s3_sync_state.json
+
+# ---- latent_cube dashboard: base64 copy for claude.ai publishing, regenerable with make_publish.py ----
+latent_cube/dashboard/site_pub/

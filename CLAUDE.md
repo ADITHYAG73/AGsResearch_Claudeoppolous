@@ -1,5 +1,7 @@
 # CLAUDE.md — Research Context
 
+> **New session (local or cloud)? Read `HANDOFF.md` first, then `claude_config/` (AG's global rules and memory notes).**
+
 > Root of the repo. Edit anything wrong or stale — this file is mine, not fixed.
 > Update **Section 9: Current State** at the end of every session. That is what makes
 > picking this up again after three weeks cheap.
@@ -1430,3 +1432,12 @@ trained NLAs. Completion condition sized to my resources, public artifact at the
   - Cannot yet claim maths moved more than untrained skills (no untargeted control). IAM uploader user deleted.
   **Next (my call): untargeted control; s025; a mixed-mode or tool-containing SFT to test the thinking-only reading;
   my hand-read of ~20 no-call wrong answers. Nothing committed. HF token STILL not rotated.**
+
+- **2026-10-29 → 11-24 — latent_cube opened; CAPTURE-01 done; moving to cloud sessions. Start from `HANDOFF.md`.**
+  - CAPTURE-01 (10-29): Qwen3.5-4B internals for 201 "imagine the Taylor term" prompts, 140.6 GB in S3, ≈ $2.29.
+    Explorer (Codex) and What-Qwen-Wrote pages (10-30/31). The model never obeys "don't write it".
+  - First result (11-01): logit lens shows sin x and cos x the same before the reply; I pointed out the lens only
+    sees the next token. Anthropic's J-space paper is the right tool; a pre-fitted Qwen3.5-4B J-lens may exist (unverified).
+  - 11-24: I'm moving to daily scheduled cloud Claude Code sessions for consistency. Everything pushed to GitHub;
+    my global rules and Claude's memory notes copied into `claude_config/` because cloud sessions can't see `~/.claude`.
+  **Next: read "The J-space is subject to directed modulation"; verify the Qwen3.5-4B J-lens; rerun sin vs cos with it.**

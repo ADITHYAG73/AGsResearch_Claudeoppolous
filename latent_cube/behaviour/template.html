@@ -1,0 +1,101 @@
+<title>What Qwen Wrote</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+Condensed:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<style>
+/* Layout: a reading sheet. Each row puts the exact true term beside the model's full reply, grouped by function. */
+:root{--bg:#f5f6f8;--panel:#ffffff;--fg:#1a1f27;--muted:#5a6573;--rule:#d8dde4;--truth:#0b5cad;--truth-soft:#e3eefa;--code:#eef1f5;
+--display:"IBM Plex Sans Condensed","Arial Narrow",system-ui,sans-serif;--body:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;--mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#11151a;--panel:#191e25;--fg:#e5e9ee;--muted:#9aa6b3;--rule:#2b333d;--truth:#7db8f2;--truth-soft:#16293d;--code:#212830;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#11151a;--panel:#191e25;--fg:#e5e9ee;--muted:#9aa6b3;--rule:#2b333d;--truth:#7db8f2;--truth-soft:#16293d;--code:#212830;color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:16px;line-height:1.55;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:26px 56px}
+.wrap{max-width:1040px;margin:0 auto;display:flex;flex-direction:column;gap:22px}
+h1,h2{font-family:var(--display);margin:0;line-height:1.15;text-wrap:balance}
+h1{font-size:clamp(28px,4.5vw,38px);font-weight:700}
+h2{font-size:21px;font-weight:600}
+p{margin:0;max-width:72ch}
+.muted{color:var(--muted)}
+.tabs{display:flex;flex-wrap:wrap;gap:8px}
+.tabs button{font:inherit;font-weight:500;padding:8px 14px;border:1px solid var(--rule);background:var(--panel);color:var(--fg);border-radius:6px;cursor:pointer}
+.tabs button[aria-selected="true"]{background:var(--truth);border-color:var(--truth);color:var(--panel)}
+button:focus-visible,select:focus-visible,input:focus-visible{outline:2px solid var(--truth);outline-offset:2px}
+.controls{display:flex;flex-wrap:wrap;gap:16px;align-items:center;font-size:14px}
+select{font:inherit;padding:6px 8px;border:1px solid var(--rule);border-radius:6px;background:var(--panel);color:var(--fg);max-width:100%}
+.ask{background:var(--panel);border:1px solid var(--rule);border-radius:8px;padding:12px 16px}
+.ask b{font-weight:600}
+.func{display:flex;flex-direction:column;gap:0;background:var(--panel);border:1px solid var(--rule);border-radius:10px;overflow:hidden}
+.func header{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:baseline;padding:12px 16px;border-bottom:1px solid var(--rule)}
+.tag{font-size:12.5px;color:var(--muted)}
+.row{display:grid;grid-template-columns:64px minmax(130px,190px) minmax(0,1fr);gap:16px;padding:14px 16px;border-top:1px solid var(--rule)}
+.row:first-of-type{border-top:0}
+.k{font-family:var(--mono);font-size:13px;color:var(--muted);padding-top:3px}
+.truth{background:var(--truth-soft);color:var(--truth);border-radius:6px;padding:8px 10px;font-size:18px;align-self:start;overflow-x:auto;min-width:0}
+.truth small{display:block;font-family:var(--body);font-size:11.5px;letter-spacing:.04em;text-transform:uppercase;opacity:.85;margin-bottom:2px}
+.reply{min-width:0;overflow-wrap:anywhere}
+.reply .raw{font-family:var(--mono);font-size:13px;white-space:pre-wrap;background:var(--code);padding:8px 10px;border-radius:6px;display:block}
+.reply .disp{display:block;overflow-x:auto;padding:6px 0;font-size:1.1em}
+.meta{font-family:var(--mono);font-size:12px;color:var(--muted);margin-top:6px}
+math{font-size:1.08em}
+.q{font-size:14px;color:var(--muted);margin-bottom:6px}
+footer{font-size:13px;color:var(--muted);border-top:1px solid var(--rule);padding-top:12px}
+@media (max-width:640px){.row{grid-template-columns:1fr;gap:8px}}
+</style>
+<div class="wrap">
+  <header style="display:flex;flex-direction:column;gap:8px">
+    <h1>What Qwen wrote, next to the true answer</h1>
+    <p class="muted">Qwen3.5-4B, thinking off, greedy. These are all 201 of its own replies, complete and untouched. The true terms were computed exactly with fractions. Nothing here has been scored; you are the judge.</p>
+  </header>
+  <div class="tabs" role="tablist" id="tabs"></div>
+  <div class="ask" id="ask"></div>
+  <div class="controls">
+    <label for="fsel">Function</label><select id="fsel"></select>
+    <label><input type="checkbox" id="raw"> Show raw text, exactly as the model produced it</label>
+    <span class="muted" id="count"></span>
+  </div>
+  <div id="list" style="display:flex;flex-direction:column;gap:16px"></div>
+  <footer>"Term" means the k-th non-zero term of the Taylor series about x = 0. So the 2nd term of sin x is −x³/6. "Composed" functions such as sin(x/2) are ones whose terms are rarely written out, and test whether it can combine what it knows. Source: <code>latent_cube/behaviour/replies.jsonl</code>, pulled from <code>s3://…/latent_cube/capture01/out/</code>.</footer>
+</div>
+<script>
+const R=__DATA__;
+const TABS=[["write","Asked directly"],["imagine","Imagine, don't write"],["hold","Imagine, then Paris"],["latent","Free-form"]];
+const ASK={write:"<b>Prompt:</b> What is the {k} term of the Taylor series of {f} about x = 0? Reply with the term only.",
+ imagine:"<b>Prompt:</b> Imagine the {k} term of the Taylor series of {f} about x = 0. Do not write it.",
+ hold:"<b>Prompt:</b> Imagine the {k} term of the Taylor series of {f} about x = 0, and keep it in mind. Now answer: what is the capital of France?",
+ latent:"<b>Prompt:</b> shown on each row. These need a cube, a square, or nothing, without saying so. The blue box says what each one involves."};
+let tab="write",fn="all";
+const esc=s=>s.replace(/[&<>]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]));
+function tex(t,d){try{return katex.renderToString(t,{output:"mathml",displayMode:d,throwOnError:false})}catch(e){return esc(t)}}
+function inline(s){return esc(s).replace(/\*\*([\s\S]+?)\*\*/g,"<b>$1</b>").replace(/\n/g,"<br>")}
+function render(s){ // splits maths from text; every character is kept
+  if(!/\$|\\\[|\\\(/.test(s) && /\\[a-zA-Z]+|\^|_\{/.test(s) && !/[a-zA-Z]{4,}\s+[a-zA-Z]{2,}/.test(s.replace(/\\[a-zA-Z]+/g,""))) return tex(s.trim(),false); // model wrote bare LaTeX with no $ around it
+  const re=/\$\$([\s\S]+?)\$\$|\\\[([\s\S]+?)\\\]|\\\(([\s\S]+?)\\\)|\$([^$\n]+?)\$/g;let out="",i=0,m;
+  while((m=re.exec(s))){out+=inline(s.slice(i,m.index));
+    if(m[1]!==undefined||m[2]!==undefined)out+='<span class="disp">'+tex(m[1]??m[2],true)+'</span>';
+    else out+=tex(m[3]??m[4],false);i=re.lastIndex}
+  return out+inline(s.slice(i))}
+function truthTex(r){const[n,d]=(r.coef+"/1").split("/");const neg=n.startsWith("-");const a=neg?n.slice(1):n;
+  const x=r.power===0?"":(r.power===1?"x":"x^{"+r.power+"}");
+  const num=(a==="1"&&x)?x:a+x;return (neg?"-":"")+(d==="1"?num:"\\frac{"+num+"}{"+d+"}")}
+const FTEX={"sin x":"\\sin x","cos x":"\\cos x","e^x":"e^{x}","sinh x":"\\sinh x","cosh x":"\\cosh x","tan x":"\\tan x","arctan x":"\\arctan x","ln(1+x)":"\\ln(1+x)","1/(1-x)":"\\frac{1}{1-x}","sin(2x)":"\\sin(2x)","sin(x/2)":"\\sin(x/2)","cos(2x)":"\\cos(2x)","e^(2x)":"e^{2x}","sin(x)·e^x":"\\sin(x)\\cdot e^{x}","sin²x":"\\sin^2 x","x·sin x":"x\\sin x"};
+const ORD={1:"1st",2:"2nd",3:"3rd",4:"4th"};
+function draw(){
+  document.querySelectorAll("#tabs button").forEach(b=>b.setAttribute("aria-selected",b.dataset.t===tab));
+  const raw=document.getElementById("raw").checked;
+  const rows=R.filter(r=>tab==="latent"?r.set==="latent":(r.set==="taylor"&&r.template===tab));
+  const funcs=[...new Set(rows.map(r=>r.func||"Free-form"))];
+  const sel=document.getElementById("fsel");sel.innerHTML='<option value="all">All</option>'+funcs.map(f=>`<option value="${esc(f)}">${esc(f)}</option>`).join("");
+  if(!funcs.includes(fn))fn="all";sel.value=fn;sel.parentElement.querySelector("label").hidden=tab==="latent";sel.hidden=tab==="latent";
+  document.getElementById("ask").innerHTML=ASK[tab].replace("{k}","k-th").replace("{f}","f");
+  const show=funcs.filter(f=>fn==="all"||f===fn);
+  const n=rows.filter(r=>show.includes(r.func||"Free-form")).length;document.getElementById("count").textContent=n+" replies shown";
+  document.getElementById("list").innerHTML=show.map(f=>{
+    const rs=rows.filter(r=>(r.func||"Free-form")===f);
+    const g=rs[0].group==="composed"?"Composed":rs[0].group==="base"?"Standard":"";
+    return `<section class="func"><header><h2>${tab==="latent"?"Free-form prompts":tex(FTEX[f]||f,false)}</h2><span class="tag">${g}</span></header>`+
+    rs.map(r=>`<div class="row"><div class="k">${tab==="latent"?"":ORD[r.kth]+" term"}</div>
+      <div class="truth"><small>${tab==="latent"?"Involves":"True term"}</small>${tab==="latent"?esc(r.answer):tex(truthTex(r),false)}</div>
+      <div class="reply">${tab==="latent"?`<div class="q">${esc(r.prompt)}</div>`:""}${raw?`<span class="raw">${esc(r.free_reply)}</span>`:render(r.free_reply)}<div class="meta">${r.reply_tokens} tokens</div></div></div>`).join("")+`</section>`}).join("")}
+const tb=document.getElementById("tabs");TABS.forEach(([k,l])=>{const b=document.createElement("button");b.textContent=l;b.dataset.t=k;b.id="t-"+k;b.setAttribute("role","tab");b.onclick=()=>{tab=k;draw()};tb.appendChild(b)});
+document.getElementById("fsel").onchange=e=>{fn=e.target.value;draw()};document.getElementById("raw").onchange=draw;draw();
+</script>

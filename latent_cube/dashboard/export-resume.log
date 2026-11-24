@@ -1,0 +1,48 @@
+2026-10-30T17:58:32+00:00 WATCHDOG running; S3 budget=15000000000 bytes; opening balance=AWS month-to-date net USD 0.00 for 2026-10 at 2026-10-30 23:20 IST, Cost Explorer, credits offset charges, may lag 24h; budget 15 GB S3 reads, about USD 2 maximum
+2026-10-30T17:58:39+00:00 HF embedding rows 4096/248320
+2026-10-30T17:58:53+00:00 HF embedding rows 36864/248320
+2026-10-30T17:59:02+00:00 WATCHDOG S3 reserved=0.1807 GB; last progress 1s ago
+2026-10-30T17:59:16+00:00 HF embedding rows 69632/248320
+2026-10-30T17:59:32+00:00 WATCHDOG S3 reserved=0.1807 GB; last progress 2s ago
+2026-10-30T17:59:32+00:00 HF embedding rows 102400/248320
+2026-10-30T17:59:47+00:00 HF embedding rows 135168/248320
+2026-10-30T18:00:02+00:00 WATCHDOG S3 reserved=0.1807 GB; last progress 1s ago
+2026-10-30T18:00:03+00:00 HF embedding rows 167936/248320
+2026-10-30T18:00:21+00:00 HF embedding rows 200704/248320
+2026-10-30T18:00:32+00:00 WATCHDOG S3 reserved=0.1807 GB; last progress 2s ago
+2026-10-30T18:00:33+00:00 HF embedding rows 233472/248320
+2026-10-30T18:01:00+00:00 LOGIT CHECK {"prompt": "tay|sin x|2|hold", "variant": "forced", "tokens_checked": 52, "vocabulary_checked": 248320, "max_abs_difference": 0.06486892700195312, "rmse": 0.005661397064948961, "max_abs_saved_logit": 31.625, "precision": "float32 projection from stored F16 residuals and original BF16 weights", "passed": true, "tolerance": "max <= 0.5 AND RMSE <= 0.05 AND max / maximum absolute saved logit <= 1%; bf16 capture differs from float32 projection"}
+2026-10-30T18:01:02+00:00 WATCHDOG S3 reserved=0.2068 GB; last progress 0s ago
+2026-10-30T18:01:03+00:00 [1/338] RESUME lat__choose3__forced
+2026-10-30T18:01:04+00:00 [2/338] RESUME lat__choose3__free
+2026-10-30T18:01:19+00:00 [3/338] DONE lat__cube_volume__forced; tokens=30; file=106094; S3=0.2196GB
+2026-10-30T18:01:32+00:00 WATCHDOG S3 reserved=0.2440 GB; last progress 12s ago
+2026-10-30T18:02:02+00:00 WATCHDOG S3 reserved=0.2848 GB; last progress 1s ago
+2026-10-30T18:02:07+00:00 [4/338] DONE lat__cube_volume__free; tokens=119; file=195080; S3=0.2835GB
+2026-10-30T18:02:23+00:00 [5/338] DONE lat__integral_x2__forced; tokens=29; file=104706; S3=0.2997GB
+2026-10-30T18:02:32+00:00 WATCHDOG S3 reserved=0.3469 GB; last progress 0s ago
+2026-10-30T18:02:41+00:00 [6/338] DONE lat__integral_x2__free; tokens=169; file=221450; S3=0.3650GB
+2026-10-30T18:02:57+00:00 [7/338] DONE lat__neutral__forced; tokens=26; file=96209; S3=0.3797GB
+2026-10-30T18:03:02+00:00 WATCHDOG S3 reserved=0.3912 GB; last progress 4s ago
+Traceback (most recent call last):
+  File "/Users/adithyagiridharan/Desktop/PythonProjects/AGs_Research/latent_cube/dashboard/build_data.py", line 458, in <module>
+    ap.add_argument('--opening-balance', required=True, help='Recorded AWS opening balance/budget or explicit user waiver')
+    ^^^^^^
+  File "/Users/adithyagiridharan/Desktop/PythonProjects/AGs_Research/latent_cube/dashboard/build_data.py", line 452, in main
+    
+  File "/Users/adithyagiridharan/Desktop/PythonProjects/AGs_Research/latent_cube/dashboard/build_data.py", line 358, in run
+    del values
+              ^
+  File "/Users/adithyagiridharan/Desktop/PythonProjects/AGs_Research/latent_cube/dashboard/build_data.py", line 204, in rows
+    list(self.reader.pool.map(read, requests_to_make))
+  File "/Users/adithyagiridharan/miniforge3/lib/python3.12/concurrent/futures/_base.py", line 619, in result_iterator
+    yield _result_or_cancel(fs.pop())
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/adithyagiridharan/miniforge3/lib/python3.12/concurrent/futures/_base.py", line 317, in _result_or_cancel
+    return fut.result(timeout)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/Users/adithyagiridharan/miniforge3/lib/python3.12/concurrent/futures/_base.py", line 451, in result
+    self._condition.wait(timeout)
+  File "/Users/adithyagiridharan/miniforge3/lib/python3.12/threading.py", line 355, in wait
+    waiter.acquire()
+KeyboardInterrupt

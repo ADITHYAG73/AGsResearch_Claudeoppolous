@@ -84,3 +84,12 @@ Prior work to read AFTER design (AG's order): Anthropic "On the Biology of a Lar
 - **Cost:** pod 19:18:39 → ~20:34 ≈ 1 h 16 min × $1.79–1.81/hr ≈ **$2.29**. Balance $127.92 → $125.68 at 20:34
   (PROVISIONAL: the API still showed spend $1.81/hr seconds after terminate; RunPod posts late — re-read).
   Pre-launch estimate was $1.35 floor → ~1.7× over (disk-full recovery + upload slower than the first measurement).
+
+## DASHBOARD-01 (Codex build, 2026-10-30)
+- Opening AWS figure for the S3 reads: month-to-date net **$0.00** for 2026-10 at 23:20 IST (credits offset charges;
+  Cost Explorer lags up to ~24 h). Budget: 15 GB of S3 reads, about $2 at most.
+- Brief: `dashboard/BRIEF.md`. Credentials: 12-h federation token, GetObject/ListBucket on `latent_cube/*` only (tested).
+- Done 2026-10-31 00:44 IST. 13.46 GB S3 read (limit 15). Site 54.6 MB, 438 files. Logit gate max diff 0.0649, RMSE 0.00566.
+  Sampling, disclosed on the page: norm maps first 128 tokens + 3 readouts (24,811/33,551 positions; 65 captures affected);
+  lens/MLP/attention all tokens only on the opening capture, 3 readouts elsewhere; cross-prompt neurons 64 of 9,216.
+  Claude's independent check: 132 comparisons, 0 mismatches. Published: https://claude.ai/artifact/Vhkj2EQGXtyufVUcUbCKYe

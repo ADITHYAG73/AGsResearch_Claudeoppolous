@@ -1,0 +1,1194 @@
+2026-10-30T18:27:55+00:00 WATCHDOG running; S3 budget=15000000000 bytes; opening balance=AWS month-to-date net USD 0.00 for 2026-10 at 2026-10-30 23:20 IST, Cost Explorer, credits offset charges, may lag 24h; budget 15 GB S3 reads, about USD 2 maximum
+2026-10-30T18:28:02+00:00 HF embedding rows 4096/248320
+2026-10-30T18:28:25+00:00 WATCHDOG S3 reserved=3.1750 GB; last progress 1s ago
+2026-10-30T18:28:29+00:00 HF embedding rows 36864/248320
+2026-10-30T18:28:44+00:00 HF embedding rows 69632/248320
+2026-10-30T18:28:55+00:00 WATCHDOG S3 reserved=3.1750 GB; last progress 1s ago
+2026-10-30T18:28:56+00:00 HF embedding rows 102400/248320
+2026-10-30T18:29:13+00:00 HF embedding rows 135168/248320
+2026-10-30T18:29:25+00:00 WATCHDOG S3 reserved=3.1750 GB; last progress 3s ago
+2026-10-30T18:29:33+00:00 HF embedding rows 167936/248320
+2026-10-30T18:29:46+00:00 HF embedding rows 200704/248320
+2026-10-30T18:29:55+00:00 WATCHDOG S3 reserved=3.1750 GB; last progress 0s ago
+2026-10-30T18:29:59+00:00 HF embedding rows 233472/248320
+2026-10-30T18:30:17+00:00 LOGIT CHECK {"prompt": "tay|sin x|2|hold", "variant": "forced", "tokens_checked": 52, "vocabulary_checked": 248320, "max_abs_difference": 0.06486892700195312, "rmse": 0.005661397064948961, "max_abs_saved_logit": 31.625, "precision": "float32 projection from stored F16 residuals and original BF16 weights", "passed": true, "tolerance": "max <= 0.5 AND RMSE <= 0.05 AND max / maximum absolute saved logit <= 1%; bf16 capture differs from float32 projection"}
+2026-10-30T18:30:20+00:00 [1/338] RESUME lat__choose3__forced
+2026-10-30T18:30:21+00:00 [2/338] RESUME lat__choose3__free
+2026-10-30T18:30:22+00:00 [3/338] RESUME lat__cube_volume__forced
+2026-10-30T18:30:24+00:00 [4/338] RESUME lat__cube_volume__free
+2026-10-30T18:30:25+00:00 WATCHDOG S3 reserved=3.2036 GB; last progress 0s ago
+2026-10-30T18:30:25+00:00 [5/338] RESUME lat__integral_x2__forced
+2026-10-30T18:30:26+00:00 [6/338] RESUME lat__integral_x2__free
+2026-10-30T18:30:27+00:00 [7/338] RESUME lat__neutral__forced
+2026-10-30T18:30:28+00:00 [8/338] RESUME lat__neutral__free
+2026-10-30T18:30:29+00:00 [9/338] RESUME lat__pizza_sixth__forced
+2026-10-30T18:30:30+00:00 [10/338] RESUME lat__pizza_sixth__free
+2026-10-30T18:30:31+00:00 [11/338] RESUME lat__rubik__forced
+2026-10-30T18:30:32+00:00 [12/338] RESUME lat__rubik__free
+2026-10-30T18:30:33+00:00 [13/338] RESUME lat__sphere_vol__forced
+2026-10-30T18:30:34+00:00 [14/338] RESUME lat__sphere_vol__free
+2026-10-30T18:30:35+00:00 [15/338] RESUME lat__square_area__forced
+2026-10-30T18:30:36+00:00 [16/338] RESUME lat__square_area__free
+2026-10-30T18:30:37+00:00 [17/338] RESUME lat__two_cubed__forced
+2026-10-30T18:30:39+00:00 [18/338] RESUME lat__two_cubed__free
+2026-10-30T18:30:40+00:00 [19/338] RESUME tay__1_1-x__1__hold__forced
+2026-10-30T18:30:41+00:00 [20/338] RESUME tay__1_1-x__1__hold__free
+2026-10-30T18:30:42+00:00 [21/338] RESUME tay__1_1-x__1__imagine__forced
+2026-10-30T18:30:43+00:00 [22/338] RESUME tay__1_1-x__1__imagine__free
+2026-10-30T18:30:44+00:00 [23/338] RESUME tay__1_1-x__1__write__free
+2026-10-30T18:30:45+00:00 [24/338] RESUME tay__1_1-x__2__hold__forced
+2026-10-30T18:30:46+00:00 [25/338] RESUME tay__1_1-x__2__hold__free
+2026-10-30T18:30:47+00:00 [26/338] RESUME tay__1_1-x__2__imagine__forced
+2026-10-30T18:30:49+00:00 [27/338] RESUME tay__1_1-x__2__imagine__free
+2026-10-30T18:30:50+00:00 [28/338] RESUME tay__1_1-x__2__write__free
+2026-10-30T18:30:51+00:00 [29/338] RESUME tay__1_1-x__3__hold__forced
+2026-10-30T18:30:52+00:00 [30/338] RESUME tay__1_1-x__3__hold__free
+2026-10-30T18:30:53+00:00 [31/338] RESUME tay__1_1-x__3__imagine__forced
+2026-10-30T18:30:55+00:00 WATCHDOG S3 reserved=3.2169 GB; last progress 0s ago
+2026-10-30T18:30:55+00:00 [32/338] RESUME tay__1_1-x__3__imagine__free
+2026-10-30T18:30:56+00:00 [33/338] RESUME tay__1_1-x__3__write__free
+2026-10-30T18:30:57+00:00 [34/338] RESUME tay__1_1-x__4__hold__forced
+2026-10-30T18:30:58+00:00 [35/338] RESUME tay__1_1-x__4__hold__free
+2026-10-30T18:30:59+00:00 [36/338] RESUME tay__1_1-x__4__imagine__forced
+2026-10-30T18:31:01+00:00 [37/338] RESUME tay__1_1-x__4__imagine__free
+2026-10-30T18:31:02+00:00 [38/338] RESUME tay__1_1-x__4__write__free
+2026-10-30T18:31:03+00:00 [39/338] RESUME tay__arctan x__1__hold__forced
+2026-10-30T18:31:04+00:00 [40/338] RESUME tay__arctan x__1__hold__free
+2026-10-30T18:31:05+00:00 [41/338] RESUME tay__arctan x__1__imagine__forced
+2026-10-30T18:31:06+00:00 [42/338] RESUME tay__arctan x__1__imagine__free
+2026-10-30T18:31:07+00:00 [43/338] RESUME tay__arctan x__1__write__free
+2026-10-30T18:31:08+00:00 [44/338] RESUME tay__arctan x__2__hold__forced
+2026-10-30T18:31:09+00:00 [45/338] RESUME tay__arctan x__2__hold__free
+2026-10-30T18:31:10+00:00 [46/338] RESUME tay__arctan x__2__imagine__forced
+2026-10-30T18:31:11+00:00 [47/338] RESUME tay__arctan x__2__imagine__free
+2026-10-30T18:31:13+00:00 [48/338] RESUME tay__arctan x__2__write__free
+2026-10-30T18:31:14+00:00 [49/338] RESUME tay__arctan x__3__hold__forced
+2026-10-30T18:31:15+00:00 [50/338] RESUME tay__arctan x__3__hold__free
+2026-10-30T18:31:17+00:00 [51/338] RESUME tay__arctan x__3__imagine__forced
+2026-10-30T18:31:18+00:00 [52/338] RESUME tay__arctan x__3__imagine__free
+2026-10-30T18:31:19+00:00 [53/338] RESUME tay__arctan x__3__write__free
+2026-10-30T18:31:20+00:00 [54/338] RESUME tay__arctan x__4__hold__forced
+2026-10-30T18:31:22+00:00 [55/338] RESUME tay__arctan x__4__hold__free
+2026-10-30T18:31:23+00:00 [56/338] RESUME tay__arctan x__4__imagine__forced
+2026-10-30T18:31:24+00:00 [57/338] RESUME tay__arctan x__4__imagine__free
+2026-10-30T18:31:25+00:00 WATCHDOG S3 reserved=3.2296 GB; last progress 0s ago
+2026-10-30T18:31:25+00:00 [58/338] RESUME tay__arctan x__4__write__free
+2026-10-30T18:31:26+00:00 [59/338] RESUME tay__cos x__1__hold__forced
+2026-10-30T18:31:27+00:00 [60/338] RESUME tay__cos x__1__hold__free
+2026-10-30T18:31:28+00:00 [61/338] RESUME tay__cos x__1__imagine__forced
+2026-10-30T18:31:30+00:00 [62/338] RESUME tay__cos x__1__imagine__free
+2026-10-30T18:31:31+00:00 [63/338] RESUME tay__cos x__1__write__free
+2026-10-30T18:31:32+00:00 [64/338] RESUME tay__cos x__2__hold__forced
+2026-10-30T18:31:33+00:00 [65/338] RESUME tay__cos x__2__hold__free
+2026-10-30T18:31:34+00:00 [66/338] RESUME tay__cos x__2__imagine__forced
+2026-10-30T18:31:35+00:00 [67/338] RESUME tay__cos x__2__imagine__free
+2026-10-30T18:31:36+00:00 [68/338] RESUME tay__cos x__2__write__free
+2026-10-30T18:31:37+00:00 [69/338] RESUME tay__cos x__3__hold__forced
+2026-10-30T18:31:39+00:00 [70/338] RESUME tay__cos x__3__hold__free
+2026-10-30T18:31:40+00:00 [71/338] RESUME tay__cos x__3__imagine__forced
+2026-10-30T18:31:41+00:00 [72/338] RESUME tay__cos x__3__imagine__free
+2026-10-30T18:31:42+00:00 [73/338] RESUME tay__cos x__3__write__free
+2026-10-30T18:31:43+00:00 [74/338] RESUME tay__cos x__4__hold__forced
+2026-10-30T18:31:44+00:00 [75/338] RESUME tay__cos x__4__hold__free
+2026-10-30T18:31:45+00:00 [76/338] RESUME tay__cos x__4__imagine__forced
+2026-10-30T18:31:47+00:00 [77/338] RESUME tay__cos x__4__imagine__free
+2026-10-30T18:31:47+00:00 [78/338] START tay__cos x__4__write__free
+2026-10-30T18:31:55+00:00 WATCHDOG S3 reserved=3.2469 GB; last progress 0s ago
+2026-10-30T18:31:55+00:00 [78/338] lens complete tay__cos x__4__write__free
+2026-10-30T18:32:03+00:00 [78/338] norm maps complete tay__cos x__4__write__free
+2026-10-30T18:32:05+00:00 [78/338] DONE tay__cos x__4__write__free; tokens=48; file=81525; S3=3.2581GB
+2026-10-30T18:32:05+00:00 [79/338] START tay__cos2x__1__hold__forced
+2026-10-30T18:32:08+00:00 [79/338] lens complete tay__cos2x__1__hold__forced
+2026-10-30T18:32:14+00:00 [79/338] norm maps complete tay__cos2x__1__hold__forced
+2026-10-30T18:32:15+00:00 [79/338] DONE tay__cos2x__1__hold__forced; tokens=55; file=92311; S3=3.2877GB
+2026-10-30T18:32:15+00:00 [80/338] START tay__cos2x__1__hold__free
+2026-10-30T18:32:21+00:00 [80/338] lens complete tay__cos2x__1__hold__free
+2026-10-30T18:32:25+00:00 WATCHDOG S3 reserved=3.3309 GB; last progress 0s ago
+2026-10-30T18:32:31+00:00 [80/338] norm maps complete tay__cos2x__1__hold__free
+2026-10-30T18:32:36+00:00 [80/338] DONE tay__cos2x__1__hold__free; tokens=111; file=119338; S3=3.3471GB
+2026-10-30T18:32:36+00:00 [81/338] START tay__cos2x__1__imagine__forced
+2026-10-30T18:32:40+00:00 [81/338] lens complete tay__cos2x__1__imagine__forced
+2026-10-30T18:32:43+00:00 [81/338] norm maps complete tay__cos2x__1__imagine__forced
+2026-10-30T18:32:46+00:00 [81/338] DONE tay__cos2x__1__imagine__forced; tokens=39; file=77395; S3=3.3685GB
+2026-10-30T18:32:46+00:00 [82/338] START tay__cos2x__1__imagine__free
+2026-10-30T18:32:53+00:00 [82/338] lens complete tay__cos2x__1__imagine__free
+2026-10-30T18:32:55+00:00 WATCHDOG S3 reserved=3.4110 GB; last progress 0s ago
+2026-10-30T18:33:04+00:00 [82/338] norm maps complete tay__cos2x__1__imagine__free
+2026-10-30T18:33:08+00:00 [82/338] DONE tay__cos2x__1__imagine__free; tokens=456; file=172979; S3=3.4340GB
+2026-10-30T18:33:08+00:00 [83/338] START tay__cos2x__1__write__free
+2026-10-30T18:33:11+00:00 [83/338] lens complete tay__cos2x__1__write__free
+2026-10-30T18:33:15+00:00 [83/338] norm maps complete tay__cos2x__1__write__free
+2026-10-30T18:33:17+00:00 [83/338] DONE tay__cos2x__1__write__free; tokens=43; file=80298; S3=3.4574GB
+2026-10-30T18:33:17+00:00 [84/338] START tay__cos2x__2__hold__forced
+2026-10-30T18:33:21+00:00 [84/338] lens complete tay__cos2x__2__hold__forced
+2026-10-30T18:33:25+00:00 WATCHDOG S3 reserved=3.4910 GB; last progress 0s ago
+2026-10-30T18:33:26+00:00 [84/338] norm maps complete tay__cos2x__2__hold__forced
+2026-10-30T18:33:28+00:00 [84/338] DONE tay__cos2x__2__hold__forced; tokens=55; file=92467; S3=3.4870GB
+2026-10-30T18:33:28+00:00 [85/338] START tay__cos2x__2__hold__free
+2026-10-30T18:33:34+00:00 [85/338] lens complete tay__cos2x__2__hold__free
+2026-10-30T18:33:47+00:00 [85/338] norm maps complete tay__cos2x__2__hold__free
+2026-10-30T18:33:51+00:00 [85/338] DONE tay__cos2x__2__hold__free; tokens=107; file=117675; S3=3.5443GB
+2026-10-30T18:33:51+00:00 [86/338] START tay__cos2x__2__imagine__forced
+2026-10-30T18:33:54+00:00 [86/338] lens complete tay__cos2x__2__imagine__forced
+2026-10-30T18:33:55+00:00 WATCHDOG S3 reserved=3.5607 GB; last progress 0s ago
+2026-10-30T18:33:59+00:00 [86/338] norm maps complete tay__cos2x__2__imagine__forced
+2026-10-30T18:34:01+00:00 [86/338] DONE tay__cos2x__2__imagine__forced; tokens=39; file=77165; S3=3.5656GB
+2026-10-30T18:34:01+00:00 [87/338] START tay__cos2x__2__imagine__free
+2026-10-30T18:34:08+00:00 [87/338] lens complete tay__cos2x__2__imagine__free
+2026-10-30T18:34:21+00:00 [87/338] norm maps complete tay__cos2x__2__imagine__free
+2026-10-30T18:34:24+00:00 [87/338] DONE tay__cos2x__2__imagine__free; tokens=297; file=150571; S3=3.6310GB
+2026-10-30T18:34:24+00:00 [88/338] START tay__cos2x__2__write__free
+2026-10-30T18:34:25+00:00 WATCHDOG S3 reserved=3.6379 GB; last progress 0s ago
+2026-10-30T18:34:28+00:00 [88/338] lens complete tay__cos2x__2__write__free
+2026-10-30T18:34:33+00:00 [88/338] norm maps complete tay__cos2x__2__write__free
+2026-10-30T18:34:36+00:00 [88/338] DONE tay__cos2x__2__write__free; tokens=49; file=83560; S3=3.6575GB
+2026-10-30T18:34:36+00:00 [89/338] START tay__cos2x__3__hold__forced
+2026-10-30T18:34:40+00:00 [89/338] lens complete tay__cos2x__3__hold__forced
+2026-10-30T18:34:45+00:00 [89/338] norm maps complete tay__cos2x__3__hold__forced
+2026-10-30T18:34:48+00:00 [89/338] DONE tay__cos2x__3__hold__forced; tokens=55; file=92280; S3=3.6871GB
+2026-10-30T18:34:48+00:00 [90/338] START tay__cos2x__3__hold__free
+2026-10-30T18:34:53+00:00 [90/338] lens complete tay__cos2x__3__hold__free
+2026-10-30T18:34:55+00:00 WATCHDOG S3 reserved=3.7206 GB; last progress 0s ago
+2026-10-30T18:35:03+00:00 [90/338] norm maps complete tay__cos2x__3__hold__free
+2026-10-30T18:35:08+00:00 [90/338] DONE tay__cos2x__3__hold__free; tokens=102; file=115170; S3=3.7416GB
+2026-10-30T18:35:08+00:00 [91/338] START tay__cos2x__3__imagine__forced
+2026-10-30T18:35:10+00:00 [91/338] lens complete tay__cos2x__3__imagine__forced
+2026-10-30T18:35:13+00:00 [91/338] norm maps complete tay__cos2x__3__imagine__forced
+2026-10-30T18:35:15+00:00 [91/338] DONE tay__cos2x__3__imagine__forced; tokens=39; file=76937; S3=3.7630GB
+2026-10-30T18:35:15+00:00 [92/338] START tay__cos2x__3__imagine__free
+2026-10-30T18:35:22+00:00 [92/338] lens complete tay__cos2x__3__imagine__free
+2026-10-30T18:35:22+00:00 Transient ConnectionClosedError; retry 1/2; each S3 retry reserves its bytes again
+2026-10-30T18:35:25+00:00 WATCHDOG S3 reserved=3.8022 GB; last progress 0s ago
+2026-10-30T18:35:28+00:00 [92/338] norm maps complete tay__cos2x__3__imagine__free
+2026-10-30T18:35:36+00:00 [92/338] DONE tay__cos2x__3__imagine__free; tokens=145; file=124007; S3=3.8282GB
+2026-10-30T18:35:36+00:00 [93/338] START tay__cos2x__3__write__free
+2026-10-30T18:35:38+00:00 [93/338] lens complete tay__cos2x__3__write__free
+2026-10-30T18:35:40+00:00 [93/338] norm maps complete tay__cos2x__3__write__free
+2026-10-30T18:35:41+00:00 [93/338] DONE tay__cos2x__3__write__free; tokens=52; file=85211; S3=3.8563GB
+2026-10-30T18:35:41+00:00 [94/338] START tay__cos2x__4__hold__forced
+2026-10-30T18:35:43+00:00 [94/338] lens complete tay__cos2x__4__hold__forced
+2026-10-30T18:35:44+00:00 [94/338] norm maps complete tay__cos2x__4__hold__forced
+2026-10-30T18:35:45+00:00 [94/338] DONE tay__cos2x__4__hold__forced; tokens=55; file=92570; S3=3.8859GB
+2026-10-30T18:35:45+00:00 [95/338] START tay__cos2x__4__hold__free
+2026-10-30T18:35:47+00:00 [95/338] lens complete tay__cos2x__4__hold__free
+2026-10-30T18:35:49+00:00 [95/338] norm maps complete tay__cos2x__4__hold__free
+2026-10-30T18:35:52+00:00 [95/338] DONE tay__cos2x__4__hold__free; tokens=193; file=140798; S3=3.9512GB
+2026-10-30T18:35:52+00:00 [96/338] START tay__cos2x__4__imagine__forced
+2026-10-30T18:35:54+00:00 [96/338] lens complete tay__cos2x__4__imagine__forced
+2026-10-30T18:35:55+00:00 WATCHDOG S3 reserved=3.9779 GB; last progress 0s ago
+2026-10-30T18:35:55+00:00 [96/338] norm maps complete tay__cos2x__4__imagine__forced
+2026-10-30T18:35:56+00:00 [96/338] DONE tay__cos2x__4__imagine__forced; tokens=39; file=77721; S3=3.9725GB
+2026-10-30T18:35:56+00:00 [97/338] START tay__cos2x__4__imagine__free
+2026-10-30T18:35:58+00:00 [97/338] lens complete tay__cos2x__4__imagine__free
+2026-10-30T18:36:00+00:00 [97/338] norm maps complete tay__cos2x__4__imagine__free
+2026-10-30T18:36:04+00:00 [97/338] DONE tay__cos2x__4__imagine__free; tokens=671; file=205138; S3=4.0382GB
+2026-10-30T18:36:04+00:00 [98/338] START tay__cos2x__4__write__free
+2026-10-30T18:36:06+00:00 [98/338] lens complete tay__cos2x__4__write__free
+2026-10-30T18:36:06+00:00 [98/338] norm maps complete tay__cos2x__4__write__free
+2026-10-30T18:36:07+00:00 [98/338] DONE tay__cos2x__4__write__free; tokens=52; file=85017; S3=4.0662GB
+2026-10-30T18:36:07+00:00 [99/338] START tay__cosh x__1__hold__forced
+2026-10-30T18:36:09+00:00 [99/338] lens complete tay__cosh x__1__hold__forced
+2026-10-30T18:36:10+00:00 [99/338] norm maps complete tay__cosh x__1__hold__forced
+2026-10-30T18:36:11+00:00 [99/338] DONE tay__cosh x__1__hold__forced; tokens=53; file=89932; S3=4.0948GB
+2026-10-30T18:36:11+00:00 [100/338] START tay__cosh x__1__hold__free
+2026-10-30T18:36:13+00:00 [100/338] lens complete tay__cosh x__1__hold__free
+2026-10-30T18:36:14+00:00 [100/338] norm maps complete tay__cosh x__1__hold__free
+2026-10-30T18:36:15+00:00 [100/338] DONE tay__cosh x__1__hold__free; tokens=113; file=119105; S3=4.1554GB
+2026-10-30T18:36:15+00:00 [101/338] START tay__cosh x__1__imagine__forced
+2026-10-30T18:36:17+00:00 [101/338] lens complete tay__cosh x__1__imagine__forced
+2026-10-30T18:36:18+00:00 [101/338] norm maps complete tay__cosh x__1__imagine__forced
+2026-10-30T18:36:18+00:00 [101/338] DONE tay__cosh x__1__imagine__forced; tokens=37; file=74757; S3=4.1757GB
+2026-10-30T18:36:18+00:00 [102/338] START tay__cosh x__1__imagine__free
+2026-10-30T18:36:20+00:00 [102/338] lens complete tay__cosh x__1__imagine__free
+2026-10-30T18:36:21+00:00 [102/338] norm maps complete tay__cosh x__1__imagine__free
+2026-10-30T18:36:22+00:00 [102/338] DONE tay__cosh x__1__imagine__free; tokens=87; file=100861; S3=4.2221GB
+2026-10-30T18:36:22+00:00 [103/338] START tay__cosh x__1__write__free
+2026-10-30T18:36:24+00:00 [103/338] lens complete tay__cosh x__1__write__free
+2026-10-30T18:36:25+00:00 WATCHDOG S3 reserved=4.2496 GB; last progress 0s ago
+2026-10-30T18:36:25+00:00 [103/338] norm maps complete tay__cosh x__1__write__free
+2026-10-30T18:36:26+00:00 [103/338] DONE tay__cosh x__1__write__free; tokens=41; file=78128; S3=4.2445GB
+2026-10-30T18:36:26+00:00 [104/338] START tay__cosh x__2__hold__forced
+2026-10-30T18:36:27+00:00 [104/338] lens complete tay__cosh x__2__hold__forced
+2026-10-30T18:36:28+00:00 [104/338] norm maps complete tay__cosh x__2__hold__forced
+2026-10-30T18:36:29+00:00 [104/338] DONE tay__cosh x__2__hold__forced; tokens=53; file=90128; S3=4.2730GB
+2026-10-30T18:36:29+00:00 [105/338] START tay__cosh x__2__hold__free
+2026-10-30T18:36:31+00:00 [105/338] lens complete tay__cosh x__2__hold__free
+2026-10-30T18:36:32+00:00 [105/338] norm maps complete tay__cosh x__2__hold__free
+2026-10-30T18:36:33+00:00 [105/338] DONE tay__cosh x__2__hold__free; tokens=91; file=109054; S3=4.3217GB
+2026-10-30T18:36:33+00:00 [106/338] START tay__cosh x__2__imagine__forced
+2026-10-30T18:36:34+00:00 [106/338] lens complete tay__cosh x__2__imagine__forced
+2026-10-30T18:36:35+00:00 [106/338] norm maps complete tay__cosh x__2__imagine__forced
+2026-10-30T18:36:36+00:00 [106/338] DONE tay__cosh x__2__imagine__forced; tokens=37; file=74839; S3=4.3420GB
+2026-10-30T18:36:36+00:00 [107/338] START tay__cosh x__2__imagine__free
+2026-10-30T18:36:38+00:00 [107/338] lens complete tay__cosh x__2__imagine__free
+2026-10-30T18:36:40+00:00 [107/338] norm maps complete tay__cosh x__2__imagine__free
+2026-10-30T18:36:42+00:00 [107/338] DONE tay__cosh x__2__imagine__free; tokens=140; file=122437; S3=4.4073GB
+2026-10-30T18:36:42+00:00 [108/338] START tay__cosh x__2__write__free
+2026-10-30T18:36:44+00:00 [108/338] lens complete tay__cosh x__2__write__free
+2026-10-30T18:36:45+00:00 [108/338] norm maps complete tay__cosh x__2__write__free
+2026-10-30T18:36:46+00:00 [108/338] DONE tay__cosh x__2__write__free; tokens=48; file=81903; S3=4.4332GB
+2026-10-30T18:36:46+00:00 [109/338] START tay__cosh x__3__hold__forced
+2026-10-30T18:36:47+00:00 [109/338] lens complete tay__cosh x__3__hold__forced
+2026-10-30T18:36:48+00:00 [109/338] norm maps complete tay__cosh x__3__hold__forced
+2026-10-30T18:36:49+00:00 [109/338] DONE tay__cosh x__3__hold__forced; tokens=53; file=90172; S3=4.4618GB
+2026-10-30T18:36:49+00:00 [110/338] START tay__cosh x__3__hold__free
+2026-10-30T18:36:51+00:00 [110/338] lens complete tay__cosh x__3__hold__free
+2026-10-30T18:36:52+00:00 [110/338] norm maps complete tay__cosh x__3__hold__free
+2026-10-30T18:36:53+00:00 [110/338] DONE tay__cosh x__3__hold__free; tokens=90; file=108742; S3=4.5098GB
+2026-10-30T18:36:53+00:00 [111/338] START tay__cosh x__3__imagine__forced
+2026-10-30T18:36:55+00:00 WATCHDOG S3 reserved=4.5235 GB; last progress 0s ago
+2026-10-30T18:36:55+00:00 [111/338] lens complete tay__cosh x__3__imagine__forced
+2026-10-30T18:36:56+00:00 [111/338] norm maps complete tay__cosh x__3__imagine__forced
+2026-10-30T18:36:57+00:00 [111/338] DONE tay__cosh x__3__imagine__forced; tokens=37; file=75045; S3=4.5301GB
+2026-10-30T18:36:57+00:00 [112/338] START tay__cosh x__3__imagine__free
+2026-10-30T18:36:59+00:00 [112/338] lens complete tay__cosh x__3__imagine__free
+2026-10-30T18:37:01+00:00 [112/338] norm maps complete tay__cosh x__3__imagine__free
+2026-10-30T18:37:03+00:00 [112/338] DONE tay__cosh x__3__imagine__free; tokens=220; file=137518; S3=4.5955GB
+2026-10-30T18:37:03+00:00 [113/338] START tay__cosh x__3__write__free
+2026-10-30T18:37:05+00:00 [113/338] lens complete tay__cosh x__3__write__free
+2026-10-30T18:37:06+00:00 [113/338] norm maps complete tay__cosh x__3__write__free
+2026-10-30T18:37:07+00:00 [113/338] DONE tay__cosh x__3__write__free; tokens=49; file=82534; S3=4.6220GB
+2026-10-30T18:37:07+00:00 [114/338] START tay__cosh x__4__hold__forced
+2026-10-30T18:37:08+00:00 [114/338] lens complete tay__cosh x__4__hold__forced
+2026-10-30T18:37:10+00:00 [114/338] norm maps complete tay__cosh x__4__hold__forced
+2026-10-30T18:37:10+00:00 [114/338] DONE tay__cosh x__4__hold__forced; tokens=53; file=89973; S3=4.6505GB
+2026-10-30T18:37:10+00:00 [115/338] START tay__cosh x__4__hold__free
+2026-10-30T18:37:12+00:00 [115/338] lens complete tay__cosh x__4__hold__free
+2026-10-30T18:37:14+00:00 [115/338] norm maps complete tay__cosh x__4__hold__free
+2026-10-30T18:37:15+00:00 [115/338] DONE tay__cosh x__4__hold__free; tokens=94; file=111025; S3=4.7007GB
+2026-10-30T18:37:15+00:00 [116/338] START tay__cosh x__4__imagine__forced
+2026-10-30T18:37:17+00:00 [116/338] lens complete tay__cosh x__4__imagine__forced
+2026-10-30T18:37:17+00:00 [116/338] norm maps complete tay__cosh x__4__imagine__forced
+2026-10-30T18:37:18+00:00 [116/338] DONE tay__cosh x__4__imagine__forced; tokens=37; file=75056; S3=4.7211GB
+2026-10-30T18:37:18+00:00 [117/338] START tay__cosh x__4__imagine__free
+2026-10-30T18:37:20+00:00 [117/338] lens complete tay__cosh x__4__imagine__free
+2026-10-30T18:37:22+00:00 [117/338] norm maps complete tay__cosh x__4__imagine__free
+2026-10-30T18:37:25+00:00 [117/338] DONE tay__cosh x__4__imagine__free; tokens=236; file=139512; S3=4.7864GB
+2026-10-30T18:37:25+00:00 [118/338] START tay__cosh x__4__write__free
+2026-10-30T18:37:25+00:00 WATCHDOG S3 reserved=4.7940 GB; last progress 0s ago
+2026-10-30T18:37:26+00:00 [118/338] lens complete tay__cosh x__4__write__free
+2026-10-30T18:37:27+00:00 [118/338] norm maps complete tay__cosh x__4__write__free
+2026-10-30T18:37:28+00:00 [118/338] DONE tay__cosh x__4__write__free; tokens=49; file=82595; S3=4.8129GB
+2026-10-30T18:37:28+00:00 [119/338] START tay__epow2x__1__hold__forced
+2026-10-30T18:37:30+00:00 [119/338] lens complete tay__epow2x__1__hold__forced
+2026-10-30T18:37:30+00:00 [119/338] norm maps complete tay__epow2x__1__hold__forced
+2026-10-30T18:37:31+00:00 [119/338] DONE tay__epow2x__1__hold__forced; tokens=55; file=92165; S3=4.8425GB
+2026-10-30T18:37:31+00:00 [120/338] START tay__epow2x__1__hold__free
+2026-10-30T18:37:33+00:00 [120/338] lens complete tay__epow2x__1__hold__free
+2026-10-30T18:37:34+00:00 [120/338] norm maps complete tay__epow2x__1__hold__free
+2026-10-30T18:37:35+00:00 [120/338] DONE tay__epow2x__1__hold__free; tokens=101; file=115040; S3=4.8965GB
+2026-10-30T18:37:35+00:00 [121/338] START tay__epow2x__1__imagine__forced
+2026-10-30T18:37:37+00:00 [121/338] lens complete tay__epow2x__1__imagine__forced
+2026-10-30T18:37:38+00:00 [121/338] norm maps complete tay__epow2x__1__imagine__forced
+2026-10-30T18:37:39+00:00 [121/338] DONE tay__epow2x__1__imagine__forced; tokens=39; file=77138; S3=4.9178GB
+2026-10-30T18:37:39+00:00 [122/338] START tay__epow2x__1__imagine__free
+2026-10-30T18:37:41+00:00 [122/338] lens complete tay__epow2x__1__imagine__free
+2026-10-30T18:37:43+00:00 [122/338] norm maps complete tay__epow2x__1__imagine__free
+2026-10-30T18:37:45+00:00 [122/338] DONE tay__epow2x__1__imagine__free; tokens=173; file=129342; S3=4.9831GB
+2026-10-30T18:37:45+00:00 [123/338] START tay__epow2x__1__write__free
+2026-10-30T18:37:47+00:00 [123/338] lens complete tay__epow2x__1__write__free
+2026-10-30T18:37:47+00:00 [123/338] norm maps complete tay__epow2x__1__write__free
+2026-10-30T18:37:48+00:00 [123/338] DONE tay__epow2x__1__write__free; tokens=43; file=80357; S3=5.0065GB
+2026-10-30T18:37:48+00:00 [124/338] START tay__epow2x__2__hold__forced
+2026-10-30T18:37:50+00:00 [124/338] lens complete tay__epow2x__2__hold__forced
+2026-10-30T18:37:51+00:00 [124/338] norm maps complete tay__epow2x__2__hold__forced
+2026-10-30T18:37:52+00:00 [124/338] DONE tay__epow2x__2__hold__forced; tokens=55; file=92363; S3=5.0361GB
+2026-10-30T18:37:52+00:00 [125/338] START tay__epow2x__2__hold__free
+2026-10-30T18:37:54+00:00 [125/338] lens complete tay__epow2x__2__hold__free
+2026-10-30T18:37:55+00:00 WATCHDOG S3 reserved=5.0958 GB; last progress 0s ago
+2026-10-30T18:37:55+00:00 [125/338] norm maps complete tay__epow2x__2__hold__free
+2026-10-30T18:37:56+00:00 [125/338] DONE tay__epow2x__2__hold__free; tokens=106; file=117443; S3=5.0929GB
+2026-10-30T18:37:56+00:00 [126/338] START tay__epow2x__2__imagine__forced
+2026-10-30T18:37:57+00:00 [126/338] lens complete tay__epow2x__2__imagine__forced
+2026-10-30T18:37:58+00:00 [126/338] norm maps complete tay__epow2x__2__imagine__forced
+2026-10-30T18:37:59+00:00 [126/338] DONE tay__epow2x__2__imagine__forced; tokens=39; file=77375; S3=5.1142GB
+2026-10-30T18:37:59+00:00 [127/338] START tay__epow2x__2__imagine__free
+2026-10-30T18:38:01+00:00 [127/338] lens complete tay__epow2x__2__imagine__free
+2026-10-30T18:38:03+00:00 [127/338] norm maps complete tay__epow2x__2__imagine__free
+2026-10-30T18:38:06+00:00 [127/338] DONE tay__epow2x__2__imagine__free; tokens=300; file=154343; S3=5.1796GB
+2026-10-30T18:38:06+00:00 [128/338] START tay__epow2x__2__write__free
+2026-10-30T18:38:08+00:00 [128/338] lens complete tay__epow2x__2__write__free
+2026-10-30T18:38:08+00:00 [128/338] norm maps complete tay__epow2x__2__write__free
+2026-10-30T18:38:09+00:00 [128/338] DONE tay__epow2x__2__write__free; tokens=44; file=81030; S3=5.2035GB
+2026-10-30T18:38:09+00:00 [129/338] START tay__epow2x__3__hold__forced
+2026-10-30T18:38:11+00:00 [129/338] lens complete tay__epow2x__3__hold__forced
+2026-10-30T18:38:12+00:00 [129/338] norm maps complete tay__epow2x__3__hold__forced
+2026-10-30T18:38:13+00:00 [129/338] DONE tay__epow2x__3__hold__forced; tokens=55; file=92509; S3=5.2331GB
+2026-10-30T18:38:13+00:00 [130/338] START tay__epow2x__3__hold__free
+2026-10-30T18:38:15+00:00 [130/338] lens complete tay__epow2x__3__hold__free
+2026-10-30T18:38:17+00:00 [130/338] norm maps complete tay__epow2x__3__hold__free
+2026-10-30T18:38:18+00:00 [130/338] DONE tay__epow2x__3__hold__free; tokens=107; file=118042; S3=5.2904GB
+2026-10-30T18:38:18+00:00 [131/338] START tay__epow2x__3__imagine__forced
+2026-10-30T18:38:20+00:00 [131/338] lens complete tay__epow2x__3__imagine__forced
+2026-10-30T18:38:20+00:00 [131/338] norm maps complete tay__epow2x__3__imagine__forced
+2026-10-30T18:38:21+00:00 [131/338] DONE tay__epow2x__3__imagine__forced; tokens=39; file=76994; S3=5.3117GB
+2026-10-30T18:38:21+00:00 [132/338] START tay__epow2x__3__imagine__free
+2026-10-30T18:38:23+00:00 [132/338] lens complete tay__epow2x__3__imagine__free
+2026-10-30T18:38:25+00:00 WATCHDOG S3 reserved=5.3754 GB; last progress 0s ago
+2026-10-30T18:38:25+00:00 [132/338] norm maps complete tay__epow2x__3__imagine__free
+2026-10-30T18:38:28+00:00 [132/338] DONE tay__epow2x__3__imagine__free; tokens=265; file=144924; S3=5.3771GB
+2026-10-30T18:38:28+00:00 [133/338] START tay__epow2x__3__write__free
+2026-10-30T18:38:30+00:00 [133/338] lens complete tay__epow2x__3__write__free
+2026-10-30T18:38:31+00:00 [133/338] norm maps complete tay__epow2x__3__write__free
+2026-10-30T18:38:31+00:00 [133/338] DONE tay__epow2x__3__write__free; tokens=52; file=85281; S3=5.4051GB
+2026-10-30T18:38:31+00:00 [134/338] START tay__epow2x__4__hold__forced
+2026-10-30T18:38:33+00:00 [134/338] lens complete tay__epow2x__4__hold__forced
+2026-10-30T18:38:34+00:00 [134/338] norm maps complete tay__epow2x__4__hold__forced
+2026-10-30T18:38:35+00:00 [134/338] DONE tay__epow2x__4__hold__forced; tokens=55; file=92416; S3=5.4347GB
+2026-10-30T18:38:35+00:00 [135/338] START tay__epow2x__4__hold__free
+2026-10-30T18:38:37+00:00 [135/338] lens complete tay__epow2x__4__hold__free
+2026-10-30T18:38:39+00:00 [135/338] norm maps complete tay__epow2x__4__hold__free
+2026-10-30T18:38:41+00:00 [135/338] DONE tay__epow2x__4__hold__free; tokens=112; file=120728; S3=5.4947GB
+2026-10-30T18:38:41+00:00 [136/338] START tay__epow2x__4__imagine__forced
+2026-10-30T18:38:42+00:00 [136/338] lens complete tay__epow2x__4__imagine__forced
+2026-10-30T18:38:43+00:00 [136/338] norm maps complete tay__epow2x__4__imagine__forced
+2026-10-30T18:38:44+00:00 [136/338] DONE tay__epow2x__4__imagine__forced; tokens=39; file=77383; S3=5.5161GB
+2026-10-30T18:38:44+00:00 [137/338] START tay__epow2x__4__imagine__free
+2026-10-30T18:38:46+00:00 [137/338] lens complete tay__epow2x__4__imagine__free
+2026-10-30T18:38:48+00:00 [137/338] norm maps complete tay__epow2x__4__imagine__free
+2026-10-30T18:38:51+00:00 [137/338] DONE tay__epow2x__4__imagine__free; tokens=304; file=151615; S3=5.5815GB
+2026-10-30T18:38:51+00:00 [138/338] START tay__epow2x__4__write__free
+2026-10-30T18:38:52+00:00 [138/338] lens complete tay__epow2x__4__write__free
+2026-10-30T18:38:53+00:00 [138/338] norm maps complete tay__epow2x__4__write__free
+2026-10-30T18:38:54+00:00 [138/338] DONE tay__epow2x__4__write__free; tokens=52; file=85268; S3=5.6095GB
+2026-10-30T18:38:54+00:00 [139/338] START tay__epowx__1__hold__forced
+2026-10-30T18:38:55+00:00 WATCHDOG S3 reserved=5.6255 GB; last progress 0s ago
+2026-10-30T18:38:56+00:00 [139/338] lens complete tay__epowx__1__hold__forced
+2026-10-30T18:38:57+00:00 [139/338] norm maps complete tay__epowx__1__hold__forced
+2026-10-30T18:38:57+00:00 [139/338] DONE tay__epowx__1__hold__forced; tokens=53; file=89867; S3=5.6380GB
+2026-10-30T18:38:57+00:00 [140/338] START tay__epowx__1__hold__free
+2026-10-30T18:38:59+00:00 [140/338] lens complete tay__epowx__1__hold__free
+2026-10-30T18:39:01+00:00 [140/338] norm maps complete tay__epowx__1__hold__free
+2026-10-30T18:39:02+00:00 [140/338] DONE tay__epowx__1__hold__free; tokens=98; file=112554; S3=5.6904GB
+2026-10-30T18:39:02+00:00 [141/338] START tay__epowx__1__imagine__forced
+2026-10-30T18:39:04+00:00 [141/338] lens complete tay__epowx__1__imagine__forced
+2026-10-30T18:39:05+00:00 [141/338] norm maps complete tay__epowx__1__imagine__forced
+2026-10-30T18:39:05+00:00 [141/338] DONE tay__epowx__1__imagine__forced; tokens=37; file=74838; S3=5.7107GB
+2026-10-30T18:39:05+00:00 [142/338] START tay__epowx__1__imagine__free
+2026-10-30T18:39:08+00:00 [142/338] lens complete tay__epowx__1__imagine__free
+2026-10-30T18:39:09+00:00 [142/338] norm maps complete tay__epowx__1__imagine__free
+2026-10-30T18:39:12+00:00 [142/338] DONE tay__epowx__1__imagine__free; tokens=151; file=124781; S3=5.7760GB
+2026-10-30T18:39:12+00:00 [143/338] START tay__epowx__1__write__free
+2026-10-30T18:39:14+00:00 [143/338] lens complete tay__epowx__1__write__free
+2026-10-30T18:39:15+00:00 [143/338] norm maps complete tay__epowx__1__write__free
+2026-10-30T18:39:15+00:00 [143/338] DONE tay__epowx__1__write__free; tokens=41; file=77927; S3=5.7984GB
+2026-10-30T18:39:15+00:00 [144/338] START tay__epowx__2__hold__forced
+2026-10-30T18:39:17+00:00 [144/338] lens complete tay__epowx__2__hold__forced
+2026-10-30T18:39:18+00:00 [144/338] norm maps complete tay__epowx__2__hold__forced
+2026-10-30T18:39:19+00:00 [144/338] DONE tay__epowx__2__hold__forced; tokens=53; file=90250; S3=5.8269GB
+2026-10-30T18:39:19+00:00 [145/338] START tay__epowx__2__hold__free
+2026-10-30T18:39:22+00:00 [145/338] lens complete tay__epowx__2__hold__free
+2026-10-30T18:39:24+00:00 [145/338] norm maps complete tay__epowx__2__hold__free
+2026-10-30T18:39:25+00:00 WATCHDOG S3 reserved=5.8997 GB; last progress 0s ago
+2026-10-30T18:39:26+00:00 [145/338] DONE tay__epowx__2__hold__free; tokens=144; file=129562; S3=5.8922GB
+2026-10-30T18:39:26+00:00 [146/338] START tay__epowx__2__imagine__forced
+2026-10-30T18:39:28+00:00 [146/338] lens complete tay__epowx__2__imagine__forced
+2026-10-30T18:39:29+00:00 [146/338] norm maps complete tay__epowx__2__imagine__forced
+2026-10-30T18:39:29+00:00 [146/338] DONE tay__epowx__2__imagine__forced; tokens=37; file=75043; S3=5.9125GB
+2026-10-30T18:39:29+00:00 [147/338] START tay__epowx__2__imagine__free
+2026-10-30T18:39:32+00:00 [147/338] lens complete tay__epowx__2__imagine__free
+2026-10-30T18:39:33+00:00 [147/338] norm maps complete tay__epowx__2__imagine__free
+2026-10-30T18:39:36+00:00 [147/338] DONE tay__epowx__2__imagine__free; tokens=282; file=148868; S3=5.9779GB
+2026-10-30T18:39:36+00:00 [148/338] START tay__epowx__2__write__free
+2026-10-30T18:39:38+00:00 [148/338] lens complete tay__epowx__2__write__free
+2026-10-30T18:39:38+00:00 [148/338] norm maps complete tay__epowx__2__write__free
+2026-10-30T18:39:39+00:00 [148/338] DONE tay__epowx__2__write__free; tokens=41; file=78011; S3=6.0003GB
+2026-10-30T18:39:39+00:00 [149/338] START tay__epowx__3__hold__forced
+2026-10-30T18:39:41+00:00 [149/338] lens complete tay__epowx__3__hold__forced
+2026-10-30T18:39:42+00:00 [149/338] norm maps complete tay__epowx__3__hold__forced
+2026-10-30T18:39:43+00:00 [149/338] DONE tay__epowx__3__hold__forced; tokens=53; file=90039; S3=6.0288GB
+2026-10-30T18:39:43+00:00 [150/338] START tay__epowx__3__hold__free
+2026-10-30T18:39:44+00:00 [150/338] lens complete tay__epowx__3__hold__free
+2026-10-30T18:39:46+00:00 [150/338] norm maps complete tay__epowx__3__hold__free
+2026-10-30T18:39:48+00:00 [150/338] DONE tay__epowx__3__hold__free; tokens=103; file=114745; S3=6.0839GB
+2026-10-30T18:39:48+00:00 [151/338] START tay__epowx__3__imagine__forced
+2026-10-30T18:39:49+00:00 [151/338] lens complete tay__epowx__3__imagine__forced
+2026-10-30T18:39:50+00:00 [151/338] norm maps complete tay__epowx__3__imagine__forced
+2026-10-30T18:39:51+00:00 [151/338] DONE tay__epowx__3__imagine__forced; tokens=37; file=74791; S3=6.1042GB
+2026-10-30T18:39:51+00:00 [152/338] START tay__epowx__3__imagine__free
+2026-10-30T18:39:53+00:00 [152/338] lens complete tay__epowx__3__imagine__free
+2026-10-30T18:39:55+00:00 WATCHDOG S3 reserved=6.1723 GB; last progress 0s ago
+2026-10-30T18:39:55+00:00 [152/338] norm maps complete tay__epowx__3__imagine__free
+2026-10-30T18:39:56+00:00 [152/338] DONE tay__epowx__3__imagine__free; tokens=123; file=116748; S3=6.1704GB
+2026-10-30T18:39:56+00:00 [153/338] START tay__epowx__3__write__free
+2026-10-30T18:39:57+00:00 [153/338] lens complete tay__epowx__3__write__free
+2026-10-30T18:39:58+00:00 [153/338] norm maps complete tay__epowx__3__write__free
+2026-10-30T18:39:59+00:00 [153/338] DONE tay__epowx__3__write__free; tokens=48; file=81936; S3=6.1963GB
+2026-10-30T18:39:59+00:00 [154/338] START tay__epowx__4__hold__forced
+2026-10-30T18:40:01+00:00 [154/338] lens complete tay__epowx__4__hold__forced
+2026-10-30T18:40:02+00:00 [154/338] norm maps complete tay__epowx__4__hold__forced
+2026-10-30T18:40:03+00:00 [154/338] DONE tay__epowx__4__hold__forced; tokens=53; file=90252; S3=6.2248GB
+2026-10-30T18:40:03+00:00 [155/338] START tay__epowx__4__hold__free
+2026-10-30T18:40:05+00:00 [155/338] lens complete tay__epowx__4__hold__free
+2026-10-30T18:40:07+00:00 [155/338] norm maps complete tay__epowx__4__hold__free
+2026-10-30T18:40:09+00:00 [155/338] DONE tay__epowx__4__hold__free; tokens=116; file=121215; S3=6.2871GB
+2026-10-30T18:40:09+00:00 [156/338] START tay__epowx__4__imagine__forced
+2026-10-30T18:40:10+00:00 [156/338] lens complete tay__epowx__4__imagine__forced
+2026-10-30T18:40:11+00:00 [156/338] norm maps complete tay__epowx__4__imagine__forced
+2026-10-30T18:40:12+00:00 [156/338] DONE tay__epowx__4__imagine__forced; tokens=37; file=75007; S3=6.3074GB
+2026-10-30T18:40:12+00:00 [157/338] START tay__epowx__4__imagine__free
+2026-10-30T18:40:14+00:00 [157/338] lens complete tay__epowx__4__imagine__free
+2026-10-30T18:40:16+00:00 [157/338] norm maps complete tay__epowx__4__imagine__free
+2026-10-30T18:40:18+00:00 [157/338] DONE tay__epowx__4__imagine__free; tokens=223; file=138209; S3=6.3727GB
+2026-10-30T18:40:18+00:00 [158/338] START tay__epowx__4__write__free
+2026-10-30T18:40:20+00:00 [158/338] lens complete tay__epowx__4__write__free
+2026-10-30T18:40:21+00:00 [158/338] norm maps complete tay__epowx__4__write__free
+2026-10-30T18:40:22+00:00 [158/338] DONE tay__epowx__4__write__free; tokens=48; file=82110; S3=6.3987GB
+2026-10-30T18:40:22+00:00 [159/338] START tay__ln1+x__1__hold__forced
+2026-10-30T18:40:24+00:00 [159/338] lens complete tay__ln1+x__1__hold__forced
+2026-10-30T18:40:25+00:00 WATCHDOG S3 reserved=6.4322 GB; last progress 0s ago
+2026-10-30T18:40:25+00:00 [159/338] norm maps complete tay__ln1+x__1__hold__forced
+2026-10-30T18:40:26+00:00 [159/338] DONE tay__ln1+x__1__hold__forced; tokens=55; file=92375; S3=6.4283GB
+2026-10-30T18:40:26+00:00 [160/338] START tay__ln1+x__1__hold__free
+2026-10-30T18:40:28+00:00 [160/338] lens complete tay__ln1+x__1__hold__free
+2026-10-30T18:40:30+00:00 [160/338] norm maps complete tay__ln1+x__1__hold__free
+2026-10-30T18:40:31+00:00 [160/338] DONE tay__ln1+x__1__hold__free; tokens=108; file=118411; S3=6.4861GB
+2026-10-30T18:40:31+00:00 [161/338] START tay__ln1+x__1__imagine__forced
+2026-10-30T18:40:33+00:00 [161/338] lens complete tay__ln1+x__1__imagine__forced
+2026-10-30T18:40:34+00:00 [161/338] norm maps complete tay__ln1+x__1__imagine__forced
+2026-10-30T18:40:34+00:00 [161/338] DONE tay__ln1+x__1__imagine__forced; tokens=39; file=77228; S3=6.5075GB
+2026-10-30T18:40:34+00:00 [162/338] START tay__ln1+x__1__imagine__free
+2026-10-30T18:40:36+00:00 [162/338] lens complete tay__ln1+x__1__imagine__free
+2026-10-30T18:40:38+00:00 [162/338] norm maps complete tay__ln1+x__1__imagine__free
+2026-10-30T18:40:39+00:00 [162/338] DONE tay__ln1+x__1__imagine__free; tokens=112; file=113503; S3=6.5675GB
+2026-10-30T18:40:39+00:00 [163/338] START tay__ln1+x__1__write__free
+2026-10-30T18:40:40+00:00 [163/338] lens complete tay__ln1+x__1__write__free
+2026-10-30T18:40:41+00:00 [163/338] norm maps complete tay__ln1+x__1__write__free
+2026-10-30T18:40:42+00:00 [163/338] DONE tay__ln1+x__1__write__free; tokens=43; file=80185; S3=6.5909GB
+2026-10-30T18:40:42+00:00 [164/338] START tay__ln1+x__2__hold__forced
+2026-10-30T18:40:44+00:00 [164/338] lens complete tay__ln1+x__2__hold__forced
+2026-10-30T18:40:45+00:00 [164/338] norm maps complete tay__ln1+x__2__hold__forced
+2026-10-30T18:40:46+00:00 [164/338] DONE tay__ln1+x__2__hold__forced; tokens=55; file=92334; S3=6.6204GB
+2026-10-30T18:40:46+00:00 [165/338] START tay__ln1+x__2__hold__free
+2026-10-30T18:40:48+00:00 [165/338] lens complete tay__ln1+x__2__hold__free
+2026-10-30T18:40:49+00:00 [165/338] norm maps complete tay__ln1+x__2__hold__free
+2026-10-30T18:40:50+00:00 [165/338] DONE tay__ln1+x__2__hold__free; tokens=104; file=116758; S3=6.6761GB
+2026-10-30T18:40:50+00:00 [166/338] START tay__ln1+x__2__imagine__forced
+2026-10-30T18:40:52+00:00 [166/338] lens complete tay__ln1+x__2__imagine__forced
+2026-10-30T18:40:53+00:00 [166/338] norm maps complete tay__ln1+x__2__imagine__forced
+2026-10-30T18:40:54+00:00 [166/338] DONE tay__ln1+x__2__imagine__forced; tokens=39; file=77014; S3=6.6974GB
+2026-10-30T18:40:54+00:00 [167/338] START tay__ln1+x__2__imagine__free
+2026-10-30T18:40:55+00:00 WATCHDOG S3 reserved=6.7181 GB; last progress 0s ago
+2026-10-30T18:40:56+00:00 [167/338] lens complete tay__ln1+x__2__imagine__free
+2026-10-30T18:40:57+00:00 [167/338] norm maps complete tay__ln1+x__2__imagine__free
+2026-10-30T18:40:59+00:00 [167/338] DONE tay__ln1+x__2__imagine__free; tokens=128; file=120792; S3=6.7663GB
+2026-10-30T18:40:59+00:00 [168/338] START tay__ln1+x__2__write__free
+2026-10-30T18:41:00+00:00 [168/338] lens complete tay__ln1+x__2__write__free
+2026-10-30T18:41:01+00:00 [168/338] norm maps complete tay__ln1+x__2__write__free
+2026-10-30T18:41:02+00:00 [168/338] DONE tay__ln1+x__2__write__free; tokens=43; file=80178; S3=6.7897GB
+2026-10-30T18:41:02+00:00 [169/338] START tay__ln1+x__3__hold__forced
+2026-10-30T18:41:04+00:00 [169/338] lens complete tay__ln1+x__3__hold__forced
+2026-10-30T18:41:04+00:00 [169/338] norm maps complete tay__ln1+x__3__hold__forced
+2026-10-30T18:41:05+00:00 [169/338] DONE tay__ln1+x__3__hold__forced; tokens=55; file=92407; S3=6.8193GB
+2026-10-30T18:41:05+00:00 [170/338] START tay__ln1+x__3__hold__free
+2026-10-30T18:41:08+00:00 [170/338] lens complete tay__ln1+x__3__hold__free
+2026-10-30T18:41:09+00:00 [170/338] norm maps complete tay__ln1+x__3__hold__free
+2026-10-30T18:41:11+00:00 [170/338] DONE tay__ln1+x__3__hold__free; tokens=95; file=112463; S3=6.8701GB
+2026-10-30T18:41:11+00:00 [171/338] START tay__ln1+x__3__imagine__forced
+2026-10-30T18:41:13+00:00 [171/338] lens complete tay__ln1+x__3__imagine__forced
+2026-10-30T18:41:13+00:00 [171/338] norm maps complete tay__ln1+x__3__imagine__forced
+2026-10-30T18:41:14+00:00 [171/338] DONE tay__ln1+x__3__imagine__forced; tokens=39; file=77110; S3=6.8914GB
+2026-10-30T18:41:14+00:00 [172/338] START tay__ln1+x__3__imagine__free
+2026-10-30T18:41:16+00:00 [172/338] lens complete tay__ln1+x__3__imagine__free
+2026-10-30T18:41:18+00:00 [172/338] norm maps complete tay__ln1+x__3__imagine__free
+2026-10-30T18:41:20+00:00 [172/338] DONE tay__ln1+x__3__imagine__free; tokens=157; file=127156; S3=6.9567GB
+2026-10-30T18:41:20+00:00 [173/338] START tay__ln1+x__3__write__free
+2026-10-30T18:41:22+00:00 [173/338] lens complete tay__ln1+x__3__write__free
+2026-10-30T18:41:23+00:00 [173/338] norm maps complete tay__ln1+x__3__write__free
+2026-10-30T18:41:24+00:00 [173/338] DONE tay__ln1+x__3__write__free; tokens=47; file=82492; S3=6.9821GB
+2026-10-30T18:41:24+00:00 [174/338] START tay__ln1+x__4__hold__forced
+2026-10-30T18:41:25+00:00 WATCHDOG S3 reserved=6.9987 GB; last progress 0s ago
+2026-10-30T18:41:25+00:00 [174/338] lens complete tay__ln1+x__4__hold__forced
+2026-10-30T18:41:26+00:00 [174/338] norm maps complete tay__ln1+x__4__hold__forced
+2026-10-30T18:41:28+00:00 [174/338] DONE tay__ln1+x__4__hold__forced; tokens=55; file=92454; S3=7.0117GB
+2026-10-30T18:41:28+00:00 [175/338] START tay__ln1+x__4__hold__free
+2026-10-30T18:41:30+00:00 [175/338] lens complete tay__ln1+x__4__hold__free
+2026-10-30T18:41:31+00:00 [175/338] norm maps complete tay__ln1+x__4__hold__free
+2026-10-30T18:41:32+00:00 [175/338] DONE tay__ln1+x__4__hold__free; tokens=108; file=118671; S3=7.0696GB
+2026-10-30T18:41:32+00:00 [176/338] START tay__ln1+x__4__imagine__forced
+2026-10-30T18:41:34+00:00 [176/338] lens complete tay__ln1+x__4__imagine__forced
+2026-10-30T18:41:35+00:00 [176/338] norm maps complete tay__ln1+x__4__imagine__forced
+2026-10-30T18:41:35+00:00 [176/338] DONE tay__ln1+x__4__imagine__forced; tokens=39; file=77122; S3=7.0909GB
+2026-10-30T18:41:35+00:00 [177/338] START tay__ln1+x__4__imagine__free
+2026-10-30T18:41:38+00:00 [177/338] lens complete tay__ln1+x__4__imagine__free
+2026-10-30T18:41:39+00:00 [177/338] norm maps complete tay__ln1+x__4__imagine__free
+2026-10-30T18:41:42+00:00 [177/338] DONE tay__ln1+x__4__imagine__free; tokens=185; file=132502; S3=7.1562GB
+2026-10-30T18:41:42+00:00 [178/338] START tay__ln1+x__4__write__free
+2026-10-30T18:41:44+00:00 [178/338] lens complete tay__ln1+x__4__write__free
+2026-10-30T18:41:45+00:00 [178/338] norm maps complete tay__ln1+x__4__write__free
+2026-10-30T18:41:46+00:00 [178/338] DONE tay__ln1+x__4__write__free; tokens=51; file=84759; S3=7.1837GB
+2026-10-30T18:41:46+00:00 [179/338] START tay__sin x__1__hold__forced
+2026-10-30T18:41:47+00:00 [179/338] lens complete tay__sin x__1__hold__forced
+2026-10-30T18:41:48+00:00 [179/338] norm maps complete tay__sin x__1__hold__forced
+2026-10-30T18:41:49+00:00 [179/338] DONE tay__sin x__1__hold__forced; tokens=52; file=88873; S3=7.2117GB
+2026-10-30T18:41:49+00:00 [180/338] START tay__sin x__1__hold__free
+2026-10-30T18:41:51+00:00 [180/338] lens complete tay__sin x__1__hold__free
+2026-10-30T18:41:52+00:00 [180/338] norm maps complete tay__sin x__1__hold__free
+2026-10-30T18:41:53+00:00 [180/338] DONE tay__sin x__1__hold__free; tokens=84; file=105538; S3=7.2566GB
+2026-10-30T18:41:53+00:00 [181/338] START tay__sin x__1__imagine__forced
+2026-10-30T18:41:55+00:00 WATCHDOG S3 reserved=7.2701 GB; last progress 0s ago
+2026-10-30T18:41:55+00:00 [181/338] lens complete tay__sin x__1__imagine__forced
+2026-10-30T18:41:56+00:00 [181/338] norm maps complete tay__sin x__1__imagine__forced
+2026-10-30T18:41:57+00:00 [181/338] DONE tay__sin x__1__imagine__forced; tokens=36; file=73931; S3=7.2764GB
+2026-10-30T18:41:57+00:00 [182/338] START tay__sin x__1__imagine__free
+2026-10-30T18:41:59+00:00 [182/338] lens complete tay__sin x__1__imagine__free
+2026-10-30T18:42:00+00:00 [182/338] norm maps complete tay__sin x__1__imagine__free
+2026-10-30T18:42:01+00:00 [182/338] DONE tay__sin x__1__imagine__free; tokens=115; file=113017; S3=7.3381GB
+2026-10-30T18:42:01+00:00 [183/338] START tay__sin x__1__write__free
+2026-10-30T18:42:03+00:00 [183/338] lens complete tay__sin x__1__write__free
+2026-10-30T18:42:03+00:00 [183/338] norm maps complete tay__sin x__1__write__free
+2026-10-30T18:42:04+00:00 [183/338] DONE tay__sin x__1__write__free; tokens=40; file=76919; S3=7.3599GB
+2026-10-30T18:42:04+00:00 [184/338] START tay__sin x__2__hold__forced
+2026-10-30T18:42:18+00:00 [184/338] lens complete tay__sin x__2__hold__forced
+2026-10-30T18:42:20+00:00 [184/338] norm maps complete tay__sin x__2__hold__forced
+2026-10-30T18:42:22+00:00 [184/338] DONE tay__sin x__2__hold__forced; tokens=52; file=758635; S3=7.4168GB
+2026-10-30T18:42:22+00:00 [185/338] START tay__sin x__2__hold__free
+2026-10-30T18:42:23+00:00 [185/338] lens complete tay__sin x__2__hold__free
+2026-10-30T18:42:25+00:00 [185/338] norm maps complete tay__sin x__2__hold__free
+2026-10-30T18:42:25+00:00 WATCHDOG S3 reserved=7.4690 GB; last progress 0s ago
+2026-10-30T18:42:26+00:00 [185/338] DONE tay__sin x__2__hold__free; tokens=90; file=108274; S3=7.4649GB
+2026-10-30T18:42:26+00:00 [186/338] START tay__sin x__2__imagine__forced
+2026-10-30T18:42:27+00:00 [186/338] lens complete tay__sin x__2__imagine__forced
+2026-10-30T18:42:28+00:00 [186/338] norm maps complete tay__sin x__2__imagine__forced
+2026-10-30T18:42:29+00:00 [186/338] DONE tay__sin x__2__imagine__forced; tokens=36; file=73876; S3=7.4847GB
+2026-10-30T18:42:29+00:00 [187/338] START tay__sin x__2__imagine__free
+2026-10-30T18:42:31+00:00 [187/338] lens complete tay__sin x__2__imagine__free
+2026-10-30T18:42:33+00:00 [187/338] norm maps complete tay__sin x__2__imagine__free
+2026-10-30T18:42:36+00:00 [187/338] DONE tay__sin x__2__imagine__free; tokens=175; file=128463; S3=7.5500GB
+2026-10-30T18:42:36+00:00 [188/338] START tay__sin x__2__write__free
+2026-10-30T18:42:37+00:00 [188/338] lens complete tay__sin x__2__write__free
+2026-10-30T18:42:38+00:00 [188/338] norm maps complete tay__sin x__2__write__free
+2026-10-30T18:42:39+00:00 [188/338] DONE tay__sin x__2__write__free; tokens=48; file=81246; S3=7.5760GB
+2026-10-30T18:42:39+00:00 [189/338] START tay__sin x__3__hold__forced
+2026-10-30T18:42:41+00:00 [189/338] lens complete tay__sin x__3__hold__forced
+2026-10-30T18:42:42+00:00 [189/338] norm maps complete tay__sin x__3__hold__forced
+2026-10-30T18:42:43+00:00 [189/338] DONE tay__sin x__3__hold__forced; tokens=52; file=88933; S3=7.6040GB
+2026-10-30T18:42:43+00:00 [190/338] START tay__sin x__3__hold__free
+2026-10-30T18:42:45+00:00 [190/338] lens complete tay__sin x__3__hold__free
+2026-10-30T18:42:46+00:00 [190/338] norm maps complete tay__sin x__3__hold__free
+2026-10-30T18:42:47+00:00 [190/338] DONE tay__sin x__3__hold__free; tokens=90; file=108233; S3=7.6521GB
+2026-10-30T18:42:47+00:00 [191/338] START tay__sin x__3__imagine__forced
+2026-10-30T18:42:49+00:00 [191/338] lens complete tay__sin x__3__imagine__forced
+2026-10-30T18:42:50+00:00 [191/338] norm maps complete tay__sin x__3__imagine__forced
+2026-10-30T18:42:50+00:00 [191/338] DONE tay__sin x__3__imagine__forced; tokens=36; file=74253; S3=7.6719GB
+2026-10-30T18:42:50+00:00 [192/338] START tay__sin x__3__imagine__free
+2026-10-30T18:42:53+00:00 [192/338] lens complete tay__sin x__3__imagine__free
+2026-10-30T18:42:54+00:00 [192/338] norm maps complete tay__sin x__3__imagine__free
+2026-10-30T18:42:55+00:00 WATCHDOG S3 reserved=7.7438 GB; last progress 0s ago
+2026-10-30T18:42:57+00:00 [192/338] DONE tay__sin x__3__imagine__free; tokens=488; file=181139; S3=7.7375GB
+2026-10-30T18:42:57+00:00 [193/338] START tay__sin x__3__write__free
+2026-10-30T18:42:59+00:00 [193/338] lens complete tay__sin x__3__write__free
+2026-10-30T18:43:01+00:00 [193/338] norm maps complete tay__sin x__3__write__free
+2026-10-30T18:43:02+00:00 [193/338] DONE tay__sin x__3__write__free; tokens=47; file=80715; S3=7.7629GB
+2026-10-30T18:43:02+00:00 [194/338] START tay__sin x__4__hold__forced
+2026-10-30T18:43:04+00:00 [194/338] lens complete tay__sin x__4__hold__forced
+2026-10-30T18:43:04+00:00 [194/338] norm maps complete tay__sin x__4__hold__forced
+2026-10-30T18:43:05+00:00 [194/338] DONE tay__sin x__4__hold__forced; tokens=52; file=89065; S3=7.7909GB
+2026-10-30T18:43:05+00:00 [195/338] START tay__sin x__4__hold__free
+2026-10-30T18:43:07+00:00 [195/338] lens complete tay__sin x__4__hold__free
+2026-10-30T18:43:09+00:00 [195/338] norm maps complete tay__sin x__4__hold__free
+2026-10-30T18:43:10+00:00 [195/338] DONE tay__sin x__4__hold__free; tokens=103; file=114300; S3=7.8460GB
+2026-10-30T18:43:10+00:00 [196/338] START tay__sin x__4__imagine__forced
+2026-10-30T18:43:11+00:00 [196/338] lens complete tay__sin x__4__imagine__forced
+2026-10-30T18:43:12+00:00 [196/338] norm maps complete tay__sin x__4__imagine__forced
+2026-10-30T18:43:13+00:00 [196/338] DONE tay__sin x__4__imagine__forced; tokens=36; file=73734; S3=7.8658GB
+2026-10-30T18:43:13+00:00 [197/338] START tay__sin x__4__imagine__free
+2026-10-30T18:43:15+00:00 [197/338] lens complete tay__sin x__4__imagine__free
+2026-10-30T18:43:17+00:00 [197/338] norm maps complete tay__sin x__4__imagine__free
+2026-10-30T18:43:19+00:00 [197/338] DONE tay__sin x__4__imagine__free; tokens=181; file=129884; S3=7.9312GB
+2026-10-30T18:43:19+00:00 [198/338] START tay__sin x__4__write__free
+2026-10-30T18:43:21+00:00 [198/338] lens complete tay__sin x__4__write__free
+2026-10-30T18:43:22+00:00 [198/338] norm maps complete tay__sin x__4__write__free
+2026-10-30T18:43:23+00:00 [198/338] DONE tay__sin x__4__write__free; tokens=47; file=80901; S3=7.9566GB
+2026-10-30T18:43:23+00:00 [199/338] START tay__sin2x__1__hold__forced
+2026-10-30T18:43:24+00:00 [199/338] lens complete tay__sin2x__1__hold__forced
+2026-10-30T18:43:25+00:00 WATCHDOG S3 reserved=7.9822 GB; last progress 0s ago
+2026-10-30T18:43:25+00:00 [199/338] norm maps complete tay__sin2x__1__hold__forced
+2026-10-30T18:43:26+00:00 [199/338] DONE tay__sin2x__1__hold__forced; tokens=55; file=92451; S3=7.9862GB
+2026-10-30T18:43:26+00:00 [200/338] START tay__sin2x__1__hold__free
+2026-10-30T18:43:29+00:00 [200/338] lens complete tay__sin2x__1__hold__free
+2026-10-30T18:43:31+00:00 [200/338] norm maps complete tay__sin2x__1__hold__free
+2026-10-30T18:43:34+00:00 [200/338] DONE tay__sin2x__1__hold__free; tokens=217; file=142982; S3=8.0515GB
+2026-10-30T18:43:34+00:00 [201/338] START tay__sin2x__1__imagine__forced
+2026-10-30T18:43:35+00:00 [201/338] lens complete tay__sin2x__1__imagine__forced
+2026-10-30T18:43:36+00:00 [201/338] norm maps complete tay__sin2x__1__imagine__forced
+2026-10-30T18:43:37+00:00 [201/338] DONE tay__sin2x__1__imagine__forced; tokens=39; file=77197; S3=8.0729GB
+2026-10-30T18:43:37+00:00 [202/338] START tay__sin2x__1__imagine__free
+2026-10-30T18:43:39+00:00 [202/338] lens complete tay__sin2x__1__imagine__free
+2026-10-30T18:43:41+00:00 [202/338] norm maps complete tay__sin2x__1__imagine__free
+2026-10-30T18:43:44+00:00 [202/338] DONE tay__sin2x__1__imagine__free; tokens=198; file=135528; S3=8.1382GB
+2026-10-30T18:43:44+00:00 [203/338] START tay__sin2x__1__write__free
+2026-10-30T18:43:45+00:00 [203/338] lens complete tay__sin2x__1__write__free
+2026-10-30T18:43:46+00:00 [203/338] norm maps complete tay__sin2x__1__write__free
+2026-10-30T18:43:47+00:00 [203/338] DONE tay__sin2x__1__write__free; tokens=43; file=80251; S3=8.1616GB
+2026-10-30T18:43:47+00:00 [204/338] START tay__sin2x__2__hold__forced
+2026-10-30T18:43:49+00:00 [204/338] lens complete tay__sin2x__2__hold__forced
+2026-10-30T18:43:50+00:00 [204/338] norm maps complete tay__sin2x__2__hold__forced
+2026-10-30T18:43:51+00:00 [204/338] DONE tay__sin2x__2__hold__forced; tokens=55; file=92219; S3=8.1912GB
+2026-10-30T18:43:51+00:00 [205/338] START tay__sin2x__2__hold__free
+2026-10-30T18:43:53+00:00 [205/338] lens complete tay__sin2x__2__hold__free
+2026-10-30T18:43:55+00:00 WATCHDOG S3 reserved=8.2538 GB; last progress 0s ago
+2026-10-30T18:43:55+00:00 [205/338] norm maps complete tay__sin2x__2__hold__free
+2026-10-30T18:43:56+00:00 [205/338] DONE tay__sin2x__2__hold__free; tokens=112; file=120301; S3=8.2512GB
+2026-10-30T18:43:56+00:00 [206/338] START tay__sin2x__2__imagine__forced
+2026-10-30T18:43:58+00:00 [206/338] lens complete tay__sin2x__2__imagine__forced
+2026-10-30T18:43:59+00:00 [206/338] norm maps complete tay__sin2x__2__imagine__forced
+2026-10-30T18:44:00+00:00 [206/338] DONE tay__sin2x__2__imagine__forced; tokens=39; file=77232; S3=8.2725GB
+2026-10-30T18:44:00+00:00 [207/338] START tay__sin2x__2__imagine__free
+2026-10-30T18:44:02+00:00 [207/338] lens complete tay__sin2x__2__imagine__free
+2026-10-30T18:44:04+00:00 [207/338] norm maps complete tay__sin2x__2__imagine__free
+2026-10-30T18:44:06+00:00 [207/338] DONE tay__sin2x__2__imagine__free; tokens=239; file=141392; S3=8.3379GB
+2026-10-30T18:44:06+00:00 [208/338] START tay__sin2x__2__write__free
+2026-10-30T18:44:08+00:00 [208/338] lens complete tay__sin2x__2__write__free
+2026-10-30T18:44:09+00:00 [208/338] norm maps complete tay__sin2x__2__write__free
+2026-10-30T18:44:10+00:00 [208/338] DONE tay__sin2x__2__write__free; tokens=54; file=86111; S3=8.3669GB
+2026-10-30T18:44:10+00:00 [209/338] START tay__sin2x__3__hold__forced
+2026-10-30T18:44:12+00:00 [209/338] lens complete tay__sin2x__3__hold__forced
+2026-10-30T18:44:13+00:00 [209/338] norm maps complete tay__sin2x__3__hold__forced
+2026-10-30T18:44:14+00:00 [209/338] DONE tay__sin2x__3__hold__forced; tokens=55; file=92425; S3=8.3965GB
+2026-10-30T18:44:14+00:00 [210/338] START tay__sin2x__3__hold__free
+2026-10-30T18:44:16+00:00 [210/338] lens complete tay__sin2x__3__hold__free
+2026-10-30T18:44:18+00:00 [210/338] norm maps complete tay__sin2x__3__hold__free
+2026-10-30T18:44:19+00:00 [210/338] DONE tay__sin2x__3__hold__free; tokens=112; file=120243; S3=8.4566GB
+2026-10-30T18:44:19+00:00 [211/338] START tay__sin2x__3__imagine__forced
+2026-10-30T18:44:20+00:00 [211/338] lens complete tay__sin2x__3__imagine__forced
+2026-10-30T18:44:21+00:00 [211/338] norm maps complete tay__sin2x__3__imagine__forced
+2026-10-30T18:44:22+00:00 [211/338] DONE tay__sin2x__3__imagine__forced; tokens=39; file=77412; S3=8.4779GB
+2026-10-30T18:44:22+00:00 [212/338] START tay__sin2x__3__imagine__free
+2026-10-30T18:44:24+00:00 [212/338] lens complete tay__sin2x__3__imagine__free
+2026-10-30T18:44:25+00:00 WATCHDOG S3 reserved=8.5277 GB; last progress 0s ago
+2026-10-30T18:44:26+00:00 [212/338] norm maps complete tay__sin2x__3__imagine__free
+2026-10-30T18:44:29+00:00 [212/338] DONE tay__sin2x__3__imagine__free; tokens=408; file=166363; S3=8.5434GB
+2026-10-30T18:44:29+00:00 [213/338] START tay__sin2x__3__write__free
+2026-10-30T18:44:31+00:00 [213/338] lens complete tay__sin2x__3__write__free
+2026-10-30T18:44:31+00:00 [213/338] norm maps complete tay__sin2x__3__write__free
+2026-10-30T18:44:32+00:00 [213/338] DONE tay__sin2x__3__write__free; tokens=54; file=86196; S3=8.5724GB
+2026-10-30T18:44:32+00:00 [214/338] START tay__sin2x__4__hold__forced
+2026-10-30T18:44:34+00:00 [214/338] lens complete tay__sin2x__4__hold__forced
+2026-10-30T18:44:35+00:00 [214/338] norm maps complete tay__sin2x__4__hold__forced
+2026-10-30T18:44:36+00:00 [214/338] DONE tay__sin2x__4__hold__forced; tokens=55; file=92457; S3=8.6020GB
+2026-10-30T18:44:36+00:00 [215/338] START tay__sin2x__4__hold__free
+2026-10-30T18:44:38+00:00 [215/338] lens complete tay__sin2x__4__hold__free
+2026-10-30T18:44:39+00:00 [215/338] norm maps complete tay__sin2x__4__hold__free
+2026-10-30T18:44:41+00:00 [215/338] DONE tay__sin2x__4__hold__free; tokens=127; file=127059; S3=8.6704GB
+2026-10-30T18:44:41+00:00 [216/338] START tay__sin2x__4__imagine__forced
+2026-10-30T18:44:42+00:00 [216/338] lens complete tay__sin2x__4__imagine__forced
+2026-10-30T18:44:43+00:00 [216/338] norm maps complete tay__sin2x__4__imagine__forced
+2026-10-30T18:44:44+00:00 [216/338] DONE tay__sin2x__4__imagine__forced; tokens=39; file=77932; S3=8.6917GB
+2026-10-30T18:44:44+00:00 [217/338] START tay__sin2x__4__imagine__free
+2026-10-30T18:44:46+00:00 [217/338] lens complete tay__sin2x__4__imagine__free
+2026-10-30T18:44:47+00:00 [217/338] norm maps complete tay__sin2x__4__imagine__free
+2026-10-30T18:44:51+00:00 [217/338] DONE tay__sin2x__4__imagine__free; tokens=877; file=234599; S3=8.7575GB
+2026-10-30T18:44:51+00:00 [218/338] START tay__sin2x__4__write__free
+2026-10-30T18:44:53+00:00 [218/338] lens complete tay__sin2x__4__write__free
+2026-10-30T18:44:54+00:00 [218/338] norm maps complete tay__sin2x__4__write__free
+2026-10-30T18:44:55+00:00 [218/338] DONE tay__sin2x__4__write__free; tokens=52; file=85153; S3=8.7856GB
+2026-10-30T18:44:55+00:00 [219/338] START tay__sinh x__1__hold__forced
+2026-10-30T18:44:55+00:00 WATCHDOG S3 reserved=8.7931 GB; last progress 0s ago
+2026-10-30T18:44:57+00:00 [219/338] lens complete tay__sinh x__1__hold__forced
+2026-10-30T18:44:58+00:00 [219/338] norm maps complete tay__sinh x__1__hold__forced
+2026-10-30T18:44:58+00:00 [219/338] DONE tay__sinh x__1__hold__forced; tokens=52; file=89115; S3=8.8136GB
+2026-10-30T18:44:58+00:00 [220/338] START tay__sinh x__1__hold__free
+2026-10-30T18:45:00+00:00 [220/338] lens complete tay__sinh x__1__hold__free
+2026-10-30T18:45:02+00:00 [220/338] norm maps complete tay__sinh x__1__hold__free
+2026-10-30T18:45:03+00:00 [220/338] DONE tay__sinh x__1__hold__free; tokens=108; file=116752; S3=8.8714GB
+2026-10-30T18:45:03+00:00 [221/338] START tay__sinh x__1__imagine__forced
+2026-10-30T18:45:05+00:00 [221/338] lens complete tay__sinh x__1__imagine__forced
+2026-10-30T18:45:06+00:00 [221/338] norm maps complete tay__sinh x__1__imagine__forced
+2026-10-30T18:45:06+00:00 [221/338] DONE tay__sinh x__1__imagine__forced; tokens=36; file=73770; S3=8.8912GB
+2026-10-30T18:45:06+00:00 [222/338] START tay__sinh x__1__imagine__free
+2026-10-30T18:45:09+00:00 [222/338] lens complete tay__sinh x__1__imagine__free
+2026-10-30T18:45:10+00:00 [222/338] norm maps complete tay__sinh x__1__imagine__free
+2026-10-30T18:45:13+00:00 [222/338] DONE tay__sinh x__1__imagine__free; tokens=149; file=122635; S3=8.9565GB
+2026-10-30T18:45:13+00:00 [223/338] START tay__sinh x__1__write__free
+2026-10-30T18:45:15+00:00 [223/338] lens complete tay__sinh x__1__write__free
+2026-10-30T18:45:15+00:00 [223/338] norm maps complete tay__sinh x__1__write__free
+2026-10-30T18:45:16+00:00 [223/338] DONE tay__sinh x__1__write__free; tokens=40; file=76908; S3=8.9784GB
+2026-10-30T18:45:16+00:00 [224/338] START tay__sinh x__2__hold__forced
+2026-10-30T18:45:18+00:00 [224/338] lens complete tay__sinh x__2__hold__forced
+2026-10-30T18:45:18+00:00 [224/338] norm maps complete tay__sinh x__2__hold__forced
+2026-10-30T18:45:19+00:00 [224/338] DONE tay__sinh x__2__hold__forced; tokens=52; file=88914; S3=9.0064GB
+2026-10-30T18:45:19+00:00 [225/338] START tay__sinh x__2__hold__free
+2026-10-30T18:45:21+00:00 [225/338] lens complete tay__sinh x__2__hold__free
+2026-10-30T18:45:22+00:00 [225/338] norm maps complete tay__sinh x__2__hold__free
+2026-10-30T18:45:23+00:00 [225/338] DONE tay__sinh x__2__hold__free; tokens=87; file=106750; S3=9.0529GB
+2026-10-30T18:45:23+00:00 [226/338] START tay__sinh x__2__imagine__forced
+2026-10-30T18:45:25+00:00 WATCHDOG S3 reserved=9.0663 GB; last progress 0s ago
+2026-10-30T18:45:25+00:00 [226/338] lens complete tay__sinh x__2__imagine__forced
+2026-10-30T18:45:26+00:00 [226/338] norm maps complete tay__sinh x__2__imagine__forced
+2026-10-30T18:45:26+00:00 [226/338] DONE tay__sinh x__2__imagine__forced; tokens=36; file=73706; S3=9.0727GB
+2026-10-30T18:45:26+00:00 [227/338] START tay__sinh x__2__imagine__free
+2026-10-30T18:45:28+00:00 [227/338] lens complete tay__sinh x__2__imagine__free
+2026-10-30T18:45:30+00:00 [227/338] norm maps complete tay__sinh x__2__imagine__free
+2026-10-30T18:45:33+00:00 [227/338] DONE tay__sinh x__2__imagine__free; tokens=129; file=119458; S3=9.1379GB
+2026-10-30T18:45:33+00:00 [228/338] START tay__sinh x__2__write__free
+2026-10-30T18:45:34+00:00 [228/338] lens complete tay__sinh x__2__write__free
+2026-10-30T18:45:35+00:00 [228/338] norm maps complete tay__sinh x__2__write__free
+2026-10-30T18:45:36+00:00 [228/338] DONE tay__sinh x__2__write__free; tokens=44; file=79108; S3=9.1618GB
+2026-10-30T18:45:36+00:00 [229/338] START tay__sinh x__3__hold__forced
+2026-10-30T18:45:38+00:00 [229/338] lens complete tay__sinh x__3__hold__forced
+2026-10-30T18:45:39+00:00 [229/338] norm maps complete tay__sinh x__3__hold__forced
+2026-10-30T18:45:40+00:00 [229/338] DONE tay__sinh x__3__hold__forced; tokens=52; file=89040; S3=9.1899GB
+2026-10-30T18:45:40+00:00 [230/338] START tay__sinh x__3__hold__free
+2026-10-30T18:45:42+00:00 [230/338] lens complete tay__sinh x__3__hold__free
+2026-10-30T18:45:43+00:00 [230/338] norm maps complete tay__sinh x__3__hold__free
+2026-10-30T18:45:45+00:00 [230/338] DONE tay__sinh x__3__hold__free; tokens=91; file=108863; S3=9.2385GB
+2026-10-30T18:45:45+00:00 [231/338] START tay__sinh x__3__imagine__forced
+2026-10-30T18:45:46+00:00 [231/338] lens complete tay__sinh x__3__imagine__forced
+2026-10-30T18:45:47+00:00 [231/338] norm maps complete tay__sinh x__3__imagine__forced
+2026-10-30T18:45:48+00:00 [231/338] DONE tay__sinh x__3__imagine__forced; tokens=36; file=73779; S3=9.2583GB
+2026-10-30T18:45:48+00:00 [232/338] START tay__sinh x__3__imagine__free
+2026-10-30T18:45:50+00:00 [232/338] lens complete tay__sinh x__3__imagine__free
+2026-10-30T18:45:52+00:00 [232/338] norm maps complete tay__sinh x__3__imagine__free
+2026-10-30T18:45:54+00:00 [232/338] DONE tay__sinh x__3__imagine__free; tokens=162; file=126369; S3=9.3236GB
+2026-10-30T18:45:54+00:00 [233/338] START tay__sinh x__3__write__free
+2026-10-30T18:45:55+00:00 WATCHDOG S3 reserved=9.3388 GB; last progress 0s ago
+2026-10-30T18:45:55+00:00 [233/338] lens complete tay__sinh x__3__write__free
+2026-10-30T18:45:56+00:00 [233/338] norm maps complete tay__sinh x__3__write__free
+2026-10-30T18:45:57+00:00 [233/338] DONE tay__sinh x__3__write__free; tokens=47; file=80851; S3=9.3490GB
+2026-10-30T18:45:57+00:00 [234/338] START tay__sinh x__4__hold__forced
+2026-10-30T18:45:59+00:00 [234/338] lens complete tay__sinh x__4__hold__forced
+2026-10-30T18:46:00+00:00 [234/338] norm maps complete tay__sinh x__4__hold__forced
+2026-10-30T18:46:00+00:00 [234/338] DONE tay__sinh x__4__hold__forced; tokens=52; file=89063; S3=9.3771GB
+2026-10-30T18:46:00+00:00 [235/338] START tay__sinh x__4__hold__free
+2026-10-30T18:46:03+00:00 [235/338] lens complete tay__sinh x__4__hold__free
+2026-10-30T18:46:04+00:00 [235/338] norm maps complete tay__sinh x__4__hold__free
+2026-10-30T18:46:05+00:00 [235/338] DONE tay__sinh x__4__hold__free; tokens=93; file=109914; S3=9.4267GB
+2026-10-30T18:46:05+00:00 [236/338] START tay__sinh x__4__imagine__forced
+2026-10-30T18:46:07+00:00 [236/338] lens complete tay__sinh x__4__imagine__forced
+2026-10-30T18:46:07+00:00 [236/338] norm maps complete tay__sinh x__4__imagine__forced
+2026-10-30T18:46:08+00:00 [236/338] DONE tay__sinh x__4__imagine__forced; tokens=36; file=73917; S3=9.4465GB
+2026-10-30T18:46:08+00:00 [237/338] START tay__sinh x__4__imagine__free
+2026-10-30T18:46:10+00:00 [237/338] lens complete tay__sinh x__4__imagine__free
+2026-10-30T18:46:12+00:00 [237/338] norm maps complete tay__sinh x__4__imagine__free
+2026-10-30T18:46:14+00:00 [237/338] DONE tay__sinh x__4__imagine__free; tokens=205; file=133591; S3=9.5119GB
+2026-10-30T18:46:14+00:00 [238/338] START tay__sinh x__4__write__free
+2026-10-30T18:46:16+00:00 [238/338] lens complete tay__sinh x__4__write__free
+2026-10-30T18:46:17+00:00 [238/338] norm maps complete tay__sinh x__4__write__free
+2026-10-30T18:46:18+00:00 [238/338] DONE tay__sinh x__4__write__free; tokens=47; file=80770; S3=9.5373GB
+2026-10-30T18:46:18+00:00 [239/338] START tay__sinsqx__1__hold__forced
+2026-10-30T18:46:20+00:00 [239/338] lens complete tay__sinsqx__1__hold__forced
+2026-10-30T18:46:21+00:00 [239/338] norm maps complete tay__sinsqx__1__hold__forced
+2026-10-30T18:46:22+00:00 [239/338] DONE tay__sinsqx__1__hold__forced; tokens=53; file=90397; S3=9.5659GB
+2026-10-30T18:46:22+00:00 [240/338] START tay__sinsqx__1__hold__free
+2026-10-30T18:46:24+00:00 [240/338] lens complete tay__sinsqx__1__hold__free
+2026-10-30T18:46:25+00:00 WATCHDOG S3 reserved=9.6243 GB; last progress 0s ago
+2026-10-30T18:46:25+00:00 [240/338] norm maps complete tay__sinsqx__1__hold__free
+2026-10-30T18:46:28+00:00 [240/338] DONE tay__sinsqx__1__hold__free; tokens=185; file=137426; S3=9.6312GB
+2026-10-30T18:46:28+00:00 [241/338] START tay__sinsqx__1__imagine__forced
+2026-10-30T18:46:29+00:00 [241/338] lens complete tay__sinsqx__1__imagine__forced
+2026-10-30T18:46:30+00:00 [241/338] norm maps complete tay__sinsqx__1__imagine__forced
+2026-10-30T18:46:31+00:00 [241/338] DONE tay__sinsqx__1__imagine__forced; tokens=37; file=74826; S3=9.6515GB
+2026-10-30T18:46:31+00:00 [242/338] START tay__sinsqx__1__imagine__free
+2026-10-30T18:46:33+00:00 [242/338] lens complete tay__sinsqx__1__imagine__free
+2026-10-30T18:46:34+00:00 [242/338] norm maps complete tay__sinsqx__1__imagine__free
+2026-10-30T18:46:36+00:00 [242/338] DONE tay__sinsqx__1__imagine__free; tokens=122; file=116068; S3=9.7170GB
+2026-10-30T18:46:36+00:00 [243/338] START tay__sinsqx__1__write__free
+2026-10-30T18:46:37+00:00 [243/338] lens complete tay__sinsqx__1__write__free
+2026-10-30T18:46:38+00:00 [243/338] norm maps complete tay__sinsqx__1__write__free
+2026-10-30T18:46:39+00:00 [243/338] DONE tay__sinsqx__1__write__free; tokens=41; file=78113; S3=9.7394GB
+2026-10-30T18:46:39+00:00 [244/338] START tay__sinsqx__2__hold__forced
+2026-10-30T18:46:41+00:00 [244/338] lens complete tay__sinsqx__2__hold__forced
+2026-10-30T18:46:42+00:00 [244/338] norm maps complete tay__sinsqx__2__hold__forced
+2026-10-30T18:46:43+00:00 [244/338] DONE tay__sinsqx__2__hold__forced; tokens=53; file=90077; S3=9.7679GB
+2026-10-30T18:46:43+00:00 [245/338] START tay__sinsqx__2__hold__free
+2026-10-30T18:46:45+00:00 [245/338] lens complete tay__sinsqx__2__hold__free
+2026-10-30T18:46:47+00:00 [245/338] norm maps complete tay__sinsqx__2__hold__free
+2026-10-30T18:46:48+00:00 [245/338] DONE tay__sinsqx__2__hold__free; tokens=94; file=110623; S3=9.8182GB
+2026-10-30T18:46:48+00:00 [246/338] START tay__sinsqx__2__imagine__forced
+2026-10-30T18:46:49+00:00 [246/338] lens complete tay__sinsqx__2__imagine__forced
+2026-10-30T18:46:50+00:00 [246/338] norm maps complete tay__sinsqx__2__imagine__forced
+2026-10-30T18:46:51+00:00 [246/338] DONE tay__sinsqx__2__imagine__forced; tokens=37; file=74812; S3=9.8385GB
+2026-10-30T18:46:51+00:00 [247/338] START tay__sinsqx__2__imagine__free
+2026-10-30T18:46:53+00:00 [247/338] lens complete tay__sinsqx__2__imagine__free
+2026-10-30T18:46:55+00:00 WATCHDOG S3 reserved=9.9011 GB; last progress 0s ago
+2026-10-30T18:46:55+00:00 [247/338] norm maps complete tay__sinsqx__2__imagine__free
+2026-10-30T18:46:58+00:00 [247/338] DONE tay__sinsqx__2__imagine__free; tokens=112; file=112490; S3=9.8985GB
+2026-10-30T18:46:58+00:00 [248/338] START tay__sinsqx__2__write__free
+2026-10-30T18:47:00+00:00 [248/338] lens complete tay__sinsqx__2__write__free
+2026-10-30T18:47:01+00:00 [248/338] norm maps complete tay__sinsqx__2__write__free
+2026-10-30T18:47:02+00:00 [248/338] DONE tay__sinsqx__2__write__free; tokens=45; file=80313; S3=9.9229GB
+2026-10-30T18:47:02+00:00 [249/338] START tay__sinsqx__3__hold__forced
+2026-10-30T18:47:04+00:00 [249/338] lens complete tay__sinsqx__3__hold__forced
+2026-10-30T18:47:05+00:00 [249/338] norm maps complete tay__sinsqx__3__hold__forced
+2026-10-30T18:47:05+00:00 [249/338] DONE tay__sinsqx__3__hold__forced; tokens=53; file=90010; S3=9.9515GB
+2026-10-30T18:47:05+00:00 [250/338] START tay__sinsqx__3__hold__free
+2026-10-30T18:47:07+00:00 [250/338] lens complete tay__sinsqx__3__hold__free
+2026-10-30T18:47:08+00:00 [250/338] norm maps complete tay__sinsqx__3__hold__free
+2026-10-30T18:47:10+00:00 [250/338] DONE tay__sinsqx__3__hold__free; tokens=94; file=110825; S3=10.0017GB
+2026-10-30T18:47:10+00:00 [251/338] START tay__sinsqx__3__imagine__forced
+2026-10-30T18:47:11+00:00 [251/338] lens complete tay__sinsqx__3__imagine__forced
+2026-10-30T18:47:12+00:00 [251/338] norm maps complete tay__sinsqx__3__imagine__forced
+2026-10-30T18:47:13+00:00 [251/338] DONE tay__sinsqx__3__imagine__forced; tokens=37; file=74785; S3=10.0220GB
+2026-10-30T18:47:13+00:00 [252/338] START tay__sinsqx__3__imagine__free
+2026-10-30T18:47:15+00:00 [252/338] lens complete tay__sinsqx__3__imagine__free
+2026-10-30T18:47:17+00:00 [252/338] norm maps complete tay__sinsqx__3__imagine__free
+2026-10-30T18:47:19+00:00 [252/338] DONE tay__sinsqx__3__imagine__free; tokens=130; file=120253; S3=10.0873GB
+2026-10-30T18:47:19+00:00 [253/338] START tay__sinsqx__3__write__free
+2026-10-30T18:47:21+00:00 [253/338] lens complete tay__sinsqx__3__write__free
+2026-10-30T18:47:22+00:00 [253/338] norm maps complete tay__sinsqx__3__write__free
+2026-10-30T18:47:23+00:00 [253/338] DONE tay__sinsqx__3__write__free; tokens=50; file=82883; S3=10.1143GB
+2026-10-30T18:47:23+00:00 [254/338] START tay__sinsqx__4__hold__forced
+2026-10-30T18:47:25+00:00 WATCHDOG S3 reserved=10.1305 GB; last progress 0s ago
+2026-10-30T18:47:25+00:00 [254/338] lens complete tay__sinsqx__4__hold__forced
+2026-10-30T18:47:26+00:00 [254/338] norm maps complete tay__sinsqx__4__hold__forced
+2026-10-30T18:47:27+00:00 [254/338] DONE tay__sinsqx__4__hold__forced; tokens=53; file=90059; S3=10.1428GB
+2026-10-30T18:47:27+00:00 [255/338] START tay__sinsqx__4__hold__free
+2026-10-30T18:47:29+00:00 [255/338] lens complete tay__sinsqx__4__hold__free
+2026-10-30T18:47:31+00:00 [255/338] norm maps complete tay__sinsqx__4__hold__free
+2026-10-30T18:47:32+00:00 [255/338] DONE tay__sinsqx__4__hold__free; tokens=93; file=110686; S3=10.1925GB
+2026-10-30T18:47:32+00:00 [256/338] START tay__sinsqx__4__imagine__forced
+2026-10-30T18:47:33+00:00 [256/338] lens complete tay__sinsqx__4__imagine__forced
+2026-10-30T18:47:34+00:00 [256/338] norm maps complete tay__sinsqx__4__imagine__forced
+2026-10-30T18:47:34+00:00 [256/338] DONE tay__sinsqx__4__imagine__forced; tokens=37; file=74916; S3=10.2128GB
+2026-10-30T18:47:34+00:00 [257/338] START tay__sinsqx__4__imagine__free
+2026-10-30T18:47:36+00:00 [257/338] lens complete tay__sinsqx__4__imagine__free
+2026-10-30T18:47:38+00:00 [257/338] norm maps complete tay__sinsqx__4__imagine__free
+2026-10-30T18:47:39+00:00 [257/338] DONE tay__sinsqx__4__imagine__free; tokens=116; file=114460; S3=10.2751GB
+2026-10-30T18:47:39+00:00 [258/338] START tay__sinsqx__4__write__free
+2026-10-30T18:47:40+00:00 [258/338] lens complete tay__sinsqx__4__write__free
+2026-10-30T18:47:41+00:00 [258/338] norm maps complete tay__sinsqx__4__write__free
+2026-10-30T18:47:42+00:00 [258/338] DONE tay__sinsqx__4__write__free; tokens=50; file=82798; S3=10.3021GB
+2026-10-30T18:47:42+00:00 [259/338] START tay__sinx_2__1__hold__forced
+2026-10-30T18:47:44+00:00 [259/338] lens complete tay__sinx_2__1__hold__forced
+2026-10-30T18:47:45+00:00 [259/338] norm maps complete tay__sinx_2__1__hold__forced
+2026-10-30T18:47:46+00:00 [259/338] DONE tay__sinx_2__1__hold__forced; tokens=55; file=92193; S3=10.3316GB
+2026-10-30T18:47:46+00:00 [260/338] START tay__sinx_2__1__hold__free
+2026-10-30T18:47:48+00:00 [260/338] lens complete tay__sinx_2__1__hold__free
+2026-10-30T18:47:49+00:00 [260/338] norm maps complete tay__sinx_2__1__hold__free
+2026-10-30T18:47:50+00:00 [260/338] DONE tay__sinx_2__1__hold__free; tokens=98; file=113935; S3=10.3840GB
+2026-10-30T18:47:50+00:00 [261/338] START tay__sinx_2__1__imagine__forced
+2026-10-30T18:47:52+00:00 [261/338] lens complete tay__sinx_2__1__imagine__forced
+2026-10-30T18:47:53+00:00 [261/338] norm maps complete tay__sinx_2__1__imagine__forced
+2026-10-30T18:47:53+00:00 [261/338] DONE tay__sinx_2__1__imagine__forced; tokens=39; file=77319; S3=10.4054GB
+2026-10-30T18:47:54+00:00 [262/338] START tay__sinx_2__1__imagine__free
+2026-10-30T18:47:55+00:00 WATCHDOG S3 reserved=10.4341 GB; last progress 0s ago
+2026-10-30T18:47:56+00:00 [262/338] lens complete tay__sinx_2__1__imagine__free
+2026-10-30T18:47:58+00:00 [262/338] norm maps complete tay__sinx_2__1__imagine__free
+2026-10-30T18:48:00+00:00 [262/338] DONE tay__sinx_2__1__imagine__free; tokens=191; file=132691; S3=10.4707GB
+2026-10-30T18:48:00+00:00 [263/338] START tay__sinx_2__1__write__free
+2026-10-30T18:48:02+00:00 [263/338] lens complete tay__sinx_2__1__write__free
+2026-10-30T18:48:03+00:00 [263/338] norm maps complete tay__sinx_2__1__write__free
+2026-10-30T18:48:04+00:00 [263/338] DONE tay__sinx_2__1__write__free; tokens=43; file=80299; S3=10.4941GB
+2026-10-30T18:48:04+00:00 [264/338] START tay__sinx_2__2__hold__forced
+2026-10-30T18:48:06+00:00 [264/338] lens complete tay__sinx_2__2__hold__forced
+2026-10-30T18:48:06+00:00 [264/338] norm maps complete tay__sinx_2__2__hold__forced
+2026-10-30T18:48:07+00:00 [264/338] DONE tay__sinx_2__2__hold__forced; tokens=55; file=92480; S3=10.5237GB
+2026-10-30T18:48:07+00:00 [265/338] START tay__sinx_2__2__hold__free
+2026-10-30T18:48:10+00:00 [265/338] lens complete tay__sinx_2__2__hold__free
+2026-10-30T18:48:11+00:00 [265/338] norm maps complete tay__sinx_2__2__hold__free
+2026-10-30T18:48:12+00:00 [265/338] DONE tay__sinx_2__2__hold__free; tokens=112; file=119968; S3=10.5837GB
+2026-10-30T18:48:12+00:00 [266/338] START tay__sinx_2__2__imagine__forced
+2026-10-30T18:48:14+00:00 [266/338] lens complete tay__sinx_2__2__imagine__forced
+2026-10-30T18:48:15+00:00 [266/338] norm maps complete tay__sinx_2__2__imagine__forced
+2026-10-30T18:48:15+00:00 [266/338] DONE tay__sinx_2__2__imagine__forced; tokens=39; file=77168; S3=10.6050GB
+2026-10-30T18:48:15+00:00 [267/338] START tay__sinx_2__2__imagine__free
+2026-10-30T18:48:17+00:00 [267/338] lens complete tay__sinx_2__2__imagine__free
+2026-10-30T18:48:19+00:00 [267/338] norm maps complete tay__sinx_2__2__imagine__free
+2026-10-30T18:48:22+00:00 [267/338] DONE tay__sinx_2__2__imagine__free; tokens=223; file=138817; S3=10.6704GB
+2026-10-30T18:48:22+00:00 [268/338] START tay__sinx_2__2__write__free
+2026-10-30T18:48:24+00:00 [268/338] lens complete tay__sinx_2__2__write__free
+2026-10-30T18:48:25+00:00 [268/338] norm maps complete tay__sinx_2__2__write__free
+2026-10-30T18:48:25+00:00 WATCHDOG S3 reserved=10.7036 GB; last progress 0s ago
+2026-10-30T18:48:25+00:00 [268/338] DONE tay__sinx_2__2__write__free; tokens=51; file=84607; S3=10.6979GB
+2026-10-30T18:48:25+00:00 [269/338] START tay__sinx_2__3__hold__forced
+2026-10-30T18:48:27+00:00 [269/338] lens complete tay__sinx_2__3__hold__forced
+2026-10-30T18:48:28+00:00 [269/338] norm maps complete tay__sinx_2__3__hold__forced
+2026-10-30T18:48:29+00:00 [269/338] DONE tay__sinx_2__3__hold__forced; tokens=55; file=92355; S3=10.7275GB
+2026-10-30T18:48:29+00:00 [270/338] START tay__sinx_2__3__hold__free
+2026-10-30T18:48:31+00:00 [270/338] lens complete tay__sinx_2__3__hold__free
+2026-10-30T18:48:32+00:00 [270/338] norm maps complete tay__sinx_2__3__hold__free
+2026-10-30T18:48:35+00:00 [270/338] DONE tay__sinx_2__3__hold__free; tokens=115; file=121608; S3=10.7891GB
+2026-10-30T18:48:35+00:00 [271/338] START tay__sinx_2__3__imagine__forced
+2026-10-30T18:48:36+00:00 [271/338] lens complete tay__sinx_2__3__imagine__forced
+2026-10-30T18:48:37+00:00 [271/338] norm maps complete tay__sinx_2__3__imagine__forced
+2026-10-30T18:48:38+00:00 [271/338] DONE tay__sinx_2__3__imagine__forced; tokens=39; file=77108; S3=10.8105GB
+2026-10-30T18:48:38+00:00 [272/338] START tay__sinx_2__3__imagine__free
+2026-10-30T18:48:40+00:00 [272/338] lens complete tay__sinx_2__3__imagine__free
+2026-10-30T18:48:42+00:00 [272/338] norm maps complete tay__sinx_2__3__imagine__free
+2026-10-30T18:48:45+00:00 [272/338] DONE tay__sinx_2__3__imagine__free; tokens=269; file=145336; S3=10.8759GB
+2026-10-30T18:48:45+00:00 [273/338] START tay__sinx_2__3__write__free
+2026-10-30T18:48:46+00:00 [273/338] lens complete tay__sinx_2__3__write__free
+2026-10-30T18:48:48+00:00 [273/338] norm maps complete tay__sinx_2__3__write__free
+2026-10-30T18:48:48+00:00 [273/338] DONE tay__sinx_2__3__write__free; tokens=51; file=84467; S3=10.9034GB
+2026-10-30T18:48:48+00:00 [274/338] START tay__sinx_2__4__hold__forced
+2026-10-30T18:48:50+00:00 [274/338] lens complete tay__sinx_2__4__hold__forced
+2026-10-30T18:48:51+00:00 [274/338] norm maps complete tay__sinx_2__4__hold__forced
+2026-10-30T18:48:52+00:00 [274/338] DONE tay__sinx_2__4__hold__forced; tokens=55; file=92405; S3=10.9329GB
+2026-10-30T18:48:52+00:00 [275/338] START tay__sinx_2__4__hold__free
+2026-10-30T18:48:54+00:00 [275/338] lens complete tay__sinx_2__4__hold__free
+2026-10-30T18:48:55+00:00 WATCHDOG S3 reserved=10.9851 GB; last progress 0s ago
+2026-10-30T18:48:55+00:00 [275/338] norm maps complete tay__sinx_2__4__hold__free
+2026-10-30T18:48:57+00:00 [275/338] DONE tay__sinx_2__4__hold__free; tokens=109; file=118470; S3=10.9913GB
+2026-10-30T18:48:57+00:00 [276/338] START tay__sinx_2__4__imagine__forced
+2026-10-30T18:48:58+00:00 [276/338] lens complete tay__sinx_2__4__imagine__forced
+2026-10-30T18:48:59+00:00 [276/338] norm maps complete tay__sinx_2__4__imagine__forced
+2026-10-30T18:49:00+00:00 [276/338] DONE tay__sinx_2__4__imagine__forced; tokens=39; file=77257; S3=11.0127GB
+2026-10-30T18:49:00+00:00 [277/338] START tay__sinx_2__4__imagine__free
+2026-10-30T18:49:02+00:00 [277/338] lens complete tay__sinx_2__4__imagine__free
+2026-10-30T18:49:05+00:00 [277/338] norm maps complete tay__sinx_2__4__imagine__free
+2026-10-30T18:49:08+00:00 [277/338] DONE tay__sinx_2__4__imagine__free; tokens=343; file=156434; S3=11.0781GB
+2026-10-30T18:49:08+00:00 [278/338] START tay__sinx_2__4__write__free
+2026-10-30T18:49:10+00:00 [278/338] lens complete tay__sinx_2__4__write__free
+2026-10-30T18:49:10+00:00 [278/338] norm maps complete tay__sinx_2__4__write__free
+2026-10-30T18:49:11+00:00 [278/338] DONE tay__sinx_2__4__write__free; tokens=51; file=84577; S3=11.1056GB
+2026-10-30T18:49:11+00:00 [279/338] START tay__sinxdotepowx__1__hold__forced
+2026-10-30T18:49:13+00:00 [279/338] lens complete tay__sinxdotepowx__1__hold__forced
+2026-10-30T18:49:15+00:00 [279/338] norm maps complete tay__sinxdotepowx__1__hold__forced
+2026-10-30T18:49:15+00:00 [279/338] DONE tay__sinxdotepowx__1__hold__forced; tokens=57; file=94724; S3=11.1362GB
+2026-10-30T18:49:15+00:00 [280/338] START tay__sinxdotepowx__1__hold__free
+2026-10-30T18:49:18+00:00 [280/338] lens complete tay__sinxdotepowx__1__hold__free
+2026-10-30T18:49:20+00:00 [280/338] norm maps complete tay__sinxdotepowx__1__hold__free
+2026-10-30T18:49:22+00:00 [280/338] DONE tay__sinxdotepowx__1__hold__free; tokens=219; file=145484; S3=11.2016GB
+2026-10-30T18:49:22+00:00 [281/338] START tay__sinxdotepowx__1__imagine__forced
+2026-10-30T18:49:24+00:00 [281/338] lens complete tay__sinxdotepowx__1__imagine__forced
+2026-10-30T18:49:25+00:00 WATCHDOG S3 reserved=11.2293 GB; last progress 0s ago
+2026-10-30T18:49:25+00:00 [281/338] norm maps complete tay__sinxdotepowx__1__imagine__forced
+2026-10-30T18:49:26+00:00 [281/338] DONE tay__sinxdotepowx__1__imagine__forced; tokens=41; file=79627; S3=11.2239GB
+2026-10-30T18:49:26+00:00 [282/338] START tay__sinxdotepowx__1__imagine__free
+2026-10-30T18:49:28+00:00 [282/338] lens complete tay__sinxdotepowx__1__imagine__free
+2026-10-30T18:49:30+00:00 [282/338] norm maps complete tay__sinxdotepowx__1__imagine__free
+2026-10-30T18:49:32+00:00 [282/338] DONE tay__sinxdotepowx__1__imagine__free; tokens=349; file=158052; S3=11.2894GB
+2026-10-30T18:49:32+00:00 [283/338] START tay__sinxdotepowx__1__write__free
+2026-10-30T18:49:34+00:00 [283/338] lens complete tay__sinxdotepowx__1__write__free
+2026-10-30T18:49:35+00:00 [283/338] norm maps complete tay__sinxdotepowx__1__write__free
+2026-10-30T18:49:36+00:00 [283/338] DONE tay__sinxdotepowx__1__write__free; tokens=45; file=82770; S3=11.3138GB
+2026-10-30T18:49:36+00:00 [284/338] START tay__sinxdotepowx__2__hold__forced
+2026-10-30T18:49:38+00:00 [284/338] lens complete tay__sinxdotepowx__2__hold__forced
+2026-10-30T18:49:39+00:00 [284/338] norm maps complete tay__sinxdotepowx__2__hold__forced
+2026-10-30T18:49:40+00:00 [284/338] DONE tay__sinxdotepowx__2__hold__forced; tokens=57; file=94553; S3=11.3444GB
+2026-10-30T18:49:40+00:00 [285/338] START tay__sinxdotepowx__2__hold__free
+2026-10-30T18:49:41+00:00 [285/338] lens complete tay__sinxdotepowx__2__hold__free
+2026-10-30T18:49:43+00:00 [285/338] norm maps complete tay__sinxdotepowx__2__hold__free
+2026-10-30T18:49:44+00:00 [285/338] DONE tay__sinxdotepowx__2__hold__free; tokens=116; file=123971; S3=11.4067GB
+2026-10-30T18:49:44+00:00 [286/338] START tay__sinxdotepowx__2__imagine__forced
+2026-10-30T18:49:45+00:00 [286/338] lens complete tay__sinxdotepowx__2__imagine__forced
+2026-10-30T18:49:46+00:00 [286/338] norm maps complete tay__sinxdotepowx__2__imagine__forced
+2026-10-30T18:49:47+00:00 [286/338] DONE tay__sinxdotepowx__2__imagine__forced; tokens=41; file=79863; S3=11.4290GB
+2026-10-30T18:49:47+00:00 [287/338] START tay__sinxdotepowx__2__imagine__free
+2026-10-30T18:49:49+00:00 [287/338] lens complete tay__sinxdotepowx__2__imagine__free
+2026-10-30T18:49:51+00:00 [287/338] norm maps complete tay__sinxdotepowx__2__imagine__free
+2026-10-30T18:49:54+00:00 [287/338] DONE tay__sinxdotepowx__2__imagine__free; tokens=545; file=185179; S3=11.4946GB
+2026-10-30T18:49:54+00:00 [288/338] START tay__sinxdotepowx__2__write__free
+2026-10-30T18:49:55+00:00 WATCHDOG S3 reserved=11.5072 GB; last progress 0s ago
+2026-10-30T18:49:56+00:00 [288/338] lens complete tay__sinxdotepowx__2__write__free
+2026-10-30T18:49:58+00:00 [288/338] norm maps complete tay__sinxdotepowx__2__write__free
+2026-10-30T18:49:59+00:00 [288/338] DONE tay__sinxdotepowx__2__write__free; tokens=45; file=82582; S3=11.5190GB
+2026-10-30T18:49:59+00:00 [289/338] START tay__sinxdotepowx__3__hold__forced
+2026-10-30T18:50:00+00:00 [289/338] lens complete tay__sinxdotepowx__3__hold__forced
+2026-10-30T18:50:01+00:00 [289/338] norm maps complete tay__sinxdotepowx__3__hold__forced
+2026-10-30T18:50:02+00:00 [289/338] DONE tay__sinxdotepowx__3__hold__forced; tokens=57; file=95133; S3=11.5497GB
+2026-10-30T18:50:02+00:00 [290/338] START tay__sinxdotepowx__3__hold__free
+2026-10-30T18:50:05+00:00 [290/338] lens complete tay__sinxdotepowx__3__hold__free
+2026-10-30T18:50:07+00:00 [290/338] norm maps complete tay__sinxdotepowx__3__hold__free
+2026-10-30T18:50:10+00:00 [290/338] DONE tay__sinxdotepowx__3__hold__free; tokens=477; file=182425; S3=11.6152GB
+2026-10-30T18:50:10+00:00 [291/338] START tay__sinxdotepowx__3__imagine__forced
+2026-10-30T18:50:11+00:00 [291/338] lens complete tay__sinxdotepowx__3__imagine__forced
+2026-10-30T18:50:12+00:00 [291/338] norm maps complete tay__sinxdotepowx__3__imagine__forced
+2026-10-30T18:50:13+00:00 [291/338] DONE tay__sinxdotepowx__3__imagine__forced; tokens=41; file=79741; S3=11.6376GB
+2026-10-30T18:50:13+00:00 [292/338] START tay__sinxdotepowx__3__imagine__free
+2026-10-30T18:50:16+00:00 [292/338] lens complete tay__sinxdotepowx__3__imagine__free
+2026-10-30T18:50:18+00:00 [292/338] norm maps complete tay__sinxdotepowx__3__imagine__free
+2026-10-30T18:50:22+00:00 [292/338] DONE tay__sinxdotepowx__3__imagine__free; tokens=701; file=207638; S3=11.7033GB
+2026-10-30T18:50:22+00:00 [293/338] START tay__sinxdotepowx__3__write__free
+2026-10-30T18:50:24+00:00 [293/338] lens complete tay__sinxdotepowx__3__write__free
+2026-10-30T18:50:25+00:00 WATCHDOG S3 reserved=11.7317 GB; last progress 0s ago
+2026-10-30T18:50:26+00:00 [293/338] norm maps complete tay__sinxdotepowx__3__write__free
+2026-10-30T18:50:26+00:00 [293/338] DONE tay__sinxdotepowx__3__write__free; tokens=55; file=87973; S3=11.7329GB
+2026-10-30T18:50:26+00:00 [294/338] START tay__sinxdotepowx__4__hold__forced
+2026-10-30T18:50:28+00:00 [294/338] lens complete tay__sinxdotepowx__4__hold__forced
+2026-10-30T18:50:29+00:00 [294/338] norm maps complete tay__sinxdotepowx__4__hold__forced
+2026-10-30T18:50:31+00:00 [294/338] DONE tay__sinxdotepowx__4__hold__forced; tokens=57; file=94669; S3=11.7635GB
+2026-10-30T18:50:31+00:00 [295/338] START tay__sinxdotepowx__4__hold__free
+2026-10-30T18:50:33+00:00 [295/338] lens complete tay__sinxdotepowx__4__hold__free
+2026-10-30T18:50:34+00:00 [295/338] norm maps complete tay__sinxdotepowx__4__hold__free
+2026-10-30T18:50:36+00:00 [295/338] DONE tay__sinxdotepowx__4__hold__free; tokens=105; file=118659; S3=11.8197GB
+2026-10-30T18:50:36+00:00 [296/338] START tay__sinxdotepowx__4__imagine__forced
+2026-10-30T18:50:37+00:00 [296/338] lens complete tay__sinxdotepowx__4__imagine__forced
+2026-10-30T18:50:38+00:00 [296/338] norm maps complete tay__sinxdotepowx__4__imagine__forced
+2026-10-30T18:50:39+00:00 [296/338] DONE tay__sinxdotepowx__4__imagine__forced; tokens=41; file=79677; S3=11.8420GB
+2026-10-30T18:50:39+00:00 [297/338] START tay__sinxdotepowx__4__imagine__free
+2026-10-30T18:50:41+00:00 [297/338] lens complete tay__sinxdotepowx__4__imagine__free
+2026-10-30T18:50:44+00:00 [297/338] norm maps complete tay__sinxdotepowx__4__imagine__free
+2026-10-30T18:50:47+00:00 [297/338] DONE tay__sinxdotepowx__4__imagine__free; tokens=565; file=189691; S3=11.9077GB
+2026-10-30T18:50:47+00:00 [298/338] START tay__sinxdotepowx__4__write__free
+2026-10-30T18:50:49+00:00 [298/338] lens complete tay__sinxdotepowx__4__write__free
+2026-10-30T18:50:50+00:00 [298/338] norm maps complete tay__sinxdotepowx__4__write__free
+2026-10-30T18:50:51+00:00 [298/338] DONE tay__sinxdotepowx__4__write__free; tokens=54; file=87508; S3=11.9367GB
+2026-10-30T18:50:51+00:00 [299/338] START tay__tan x__1__hold__forced
+2026-10-30T18:50:53+00:00 [299/338] lens complete tay__tan x__1__hold__forced
+2026-10-30T18:50:53+00:00 [299/338] norm maps complete tay__tan x__1__hold__forced
+2026-10-30T18:50:54+00:00 [299/338] DONE tay__tan x__1__hold__forced; tokens=52; file=88850; S3=11.9648GB
+2026-10-30T18:50:54+00:00 [300/338] START tay__tan x__1__hold__free
+2026-10-30T18:50:55+00:00 WATCHDOG S3 reserved=11.9841 GB; last progress 0s ago
+2026-10-30T18:50:56+00:00 [300/338] lens complete tay__tan x__1__hold__free
+2026-10-30T18:50:57+00:00 [300/338] norm maps complete tay__tan x__1__hold__free
+2026-10-30T18:50:58+00:00 [300/338] DONE tay__tan x__1__hold__free; tokens=85; file=105874; S3=12.0102GB
+2026-10-30T18:50:58+00:00 [301/338] START tay__tan x__1__imagine__forced
+2026-10-30T18:51:00+00:00 [301/338] lens complete tay__tan x__1__imagine__forced
+2026-10-30T18:51:01+00:00 [301/338] norm maps complete tay__tan x__1__imagine__forced
+2026-10-30T18:51:01+00:00 [301/338] DONE tay__tan x__1__imagine__forced; tokens=36; file=73816; S3=12.0300GB
+2026-10-30T18:51:01+00:00 [302/338] START tay__tan x__1__imagine__free
+2026-10-30T18:51:04+00:00 [302/338] lens complete tay__tan x__1__imagine__free
+2026-10-30T18:51:05+00:00 [302/338] norm maps complete tay__tan x__1__imagine__free
+2026-10-30T18:51:06+00:00 [302/338] DONE tay__tan x__1__imagine__free; tokens=119; file=114501; S3=12.0938GB
+2026-10-30T18:51:06+00:00 [303/338] START tay__tan x__1__write__free
+2026-10-30T18:51:08+00:00 [303/338] lens complete tay__tan x__1__write__free
+2026-10-30T18:51:09+00:00 [303/338] norm maps complete tay__tan x__1__write__free
+2026-10-30T18:51:10+00:00 [303/338] DONE tay__tan x__1__write__free; tokens=40; file=76892; S3=12.1157GB
+2026-10-30T18:51:10+00:00 [304/338] START tay__tan x__2__hold__forced
+2026-10-30T18:51:11+00:00 [304/338] lens complete tay__tan x__2__hold__forced
+2026-10-30T18:51:12+00:00 [304/338] norm maps complete tay__tan x__2__hold__forced
+2026-10-30T18:51:13+00:00 [304/338] DONE tay__tan x__2__hold__forced; tokens=52; file=89006; S3=12.1437GB
+2026-10-30T18:51:13+00:00 [305/338] START tay__tan x__2__hold__free
+2026-10-30T18:51:15+00:00 [305/338] lens complete tay__tan x__2__hold__free
+2026-10-30T18:51:16+00:00 [305/338] norm maps complete tay__tan x__2__hold__free
+2026-10-30T18:51:18+00:00 [305/338] DONE tay__tan x__2__hold__free; tokens=90; file=108330; S3=12.1918GB
+2026-10-30T18:51:18+00:00 [306/338] START tay__tan x__2__imagine__forced
+2026-10-30T18:51:19+00:00 [306/338] lens complete tay__tan x__2__imagine__forced
+2026-10-30T18:51:20+00:00 [306/338] norm maps complete tay__tan x__2__imagine__forced
+2026-10-30T18:51:20+00:00 [306/338] DONE tay__tan x__2__imagine__forced; tokens=36; file=73906; S3=12.2116GB
+2026-10-30T18:51:20+00:00 [307/338] START tay__tan x__2__imagine__free
+2026-10-30T18:51:23+00:00 [307/338] lens complete tay__tan x__2__imagine__free
+2026-10-30T18:51:24+00:00 [307/338] norm maps complete tay__tan x__2__imagine__free
+2026-10-30T18:51:25+00:00 WATCHDOG S3 reserved=12.2840 GB; last progress 0s ago
+2026-10-30T18:51:27+00:00 [307/338] DONE tay__tan x__2__imagine__free; tokens=202; file=133631; S3=12.2769GB
+2026-10-30T18:51:27+00:00 [308/338] START tay__tan x__2__write__free
+2026-10-30T18:51:29+00:00 [308/338] lens complete tay__tan x__2__write__free
+2026-10-30T18:51:30+00:00 [308/338] norm maps complete tay__tan x__2__write__free
+2026-10-30T18:51:31+00:00 [308/338] DONE tay__tan x__2__write__free; tokens=42; file=77954; S3=12.2998GB
+2026-10-30T18:51:31+00:00 [309/338] START tay__tan x__3__hold__forced
+2026-10-30T18:51:32+00:00 [309/338] lens complete tay__tan x__3__hold__forced
+2026-10-30T18:51:33+00:00 [309/338] norm maps complete tay__tan x__3__hold__forced
+2026-10-30T18:51:34+00:00 [309/338] DONE tay__tan x__3__hold__forced; tokens=52; file=89036; S3=12.3278GB
+2026-10-30T18:51:34+00:00 [310/338] START tay__tan x__3__hold__free
+2026-10-30T18:51:36+00:00 [310/338] lens complete tay__tan x__3__hold__free
+2026-10-30T18:51:38+00:00 [310/338] norm maps complete tay__tan x__3__hold__free
+2026-10-30T18:51:39+00:00 [310/338] DONE tay__tan x__3__hold__free; tokens=94; file=110254; S3=12.3781GB
+2026-10-30T18:51:39+00:00 [311/338] START tay__tan x__3__imagine__forced
+2026-10-30T18:51:40+00:00 [311/338] lens complete tay__tan x__3__imagine__forced
+2026-10-30T18:51:41+00:00 [311/338] norm maps complete tay__tan x__3__imagine__forced
+2026-10-30T18:51:42+00:00 [311/338] DONE tay__tan x__3__imagine__forced; tokens=36; file=73573; S3=12.3979GB
+2026-10-30T18:51:42+00:00 [312/338] START tay__tan x__3__imagine__free
+2026-10-30T18:51:44+00:00 [312/338] lens complete tay__tan x__3__imagine__free
+2026-10-30T18:51:45+00:00 [312/338] norm maps complete tay__tan x__3__imagine__free
+2026-10-30T18:51:47+00:00 [312/338] DONE tay__tan x__3__imagine__free; tokens=105; file=108612; S3=12.4541GB
+2026-10-30T18:51:47+00:00 [313/338] START tay__tan x__3__write__free
+2026-10-30T18:51:48+00:00 [313/338] lens complete tay__tan x__3__write__free
+2026-10-30T18:51:49+00:00 [313/338] norm maps complete tay__tan x__3__write__free
+2026-10-30T18:51:50+00:00 [313/338] DONE tay__tan x__3__write__free; tokens=49; file=81944; S3=12.4805GB
+2026-10-30T18:51:50+00:00 [314/338] START tay__tan x__4__hold__forced
+2026-10-30T18:51:52+00:00 [314/338] lens complete tay__tan x__4__hold__forced
+2026-10-30T18:51:53+00:00 [314/338] norm maps complete tay__tan x__4__hold__forced
+2026-10-30T18:51:54+00:00 [314/338] DONE tay__tan x__4__hold__forced; tokens=52; file=89058; S3=12.5086GB
+2026-10-30T18:51:54+00:00 [315/338] START tay__tan x__4__hold__free
+2026-10-30T18:51:55+00:00 WATCHDOG S3 reserved=12.5315 GB; last progress 0s ago
+2026-10-30T18:51:56+00:00 [315/338] lens complete tay__tan x__4__hold__free
+2026-10-30T18:51:57+00:00 [315/338] norm maps complete tay__tan x__4__hold__free
+2026-10-30T18:51:58+00:00 [315/338] DONE tay__tan x__4__hold__free; tokens=94; file=110486; S3=12.5588GB
+2026-10-30T18:51:58+00:00 [316/338] START tay__tan x__4__imagine__forced
+2026-10-30T18:52:00+00:00 [316/338] lens complete tay__tan x__4__imagine__forced
+2026-10-30T18:52:00+00:00 [316/338] norm maps complete tay__tan x__4__imagine__forced
+2026-10-30T18:52:01+00:00 [316/338] DONE tay__tan x__4__imagine__forced; tokens=36; file=73672; S3=12.5786GB
+2026-10-30T18:52:01+00:00 [317/338] START tay__tan x__4__imagine__free
+2026-10-30T18:52:03+00:00 [317/338] lens complete tay__tan x__4__imagine__free
+2026-10-30T18:52:05+00:00 [317/338] norm maps complete tay__tan x__4__imagine__free
+2026-10-30T18:52:08+00:00 [317/338] DONE tay__tan x__4__imagine__free; tokens=145; file=121766; S3=12.6439GB
+2026-10-30T18:52:08+00:00 [318/338] START tay__tan x__4__write__free
+2026-10-30T18:52:09+00:00 [318/338] lens complete tay__tan x__4__write__free
+2026-10-30T18:52:10+00:00 [318/338] norm maps complete tay__tan x__4__write__free
+2026-10-30T18:52:11+00:00 [318/338] DONE tay__tan x__4__write__free; tokens=50; file=82517; S3=12.6709GB
+2026-10-30T18:52:11+00:00 [319/338] START tay__xdotsin x__1__hold__forced
+2026-10-30T18:52:13+00:00 [319/338] lens complete tay__xdotsin x__1__hold__forced
+2026-10-30T18:52:13+00:00 [319/338] norm maps complete tay__xdotsin x__1__hold__forced
+2026-10-30T18:52:14+00:00 [319/338] DONE tay__xdotsin x__1__hold__forced; tokens=54; file=91301; S3=12.6999GB
+2026-10-30T18:52:14+00:00 [320/338] START tay__xdotsin x__1__hold__free
+2026-10-30T18:52:16+00:00 [320/338] lens complete tay__xdotsin x__1__hold__free
+2026-10-30T18:52:18+00:00 [320/338] norm maps complete tay__xdotsin x__1__hold__free
+2026-10-30T18:52:21+00:00 [320/338] DONE tay__xdotsin x__1__hold__free; tokens=183; file=137898; S3=12.7652GB
+2026-10-30T18:52:21+00:00 [321/338] START tay__xdotsin x__1__imagine__forced
+2026-10-30T18:52:22+00:00 [321/338] lens complete tay__xdotsin x__1__imagine__forced
+2026-10-30T18:52:23+00:00 [321/338] norm maps complete tay__xdotsin x__1__imagine__forced
+2026-10-30T18:52:23+00:00 [321/338] DONE tay__xdotsin x__1__imagine__forced; tokens=38; file=76080; S3=12.7861GB
+2026-10-30T18:52:23+00:00 [322/338] START tay__xdotsin x__1__imagine__free
+2026-10-30T18:52:25+00:00 WATCHDOG S3 reserved=12.8148 GB; last progress 0s ago
+2026-10-30T18:52:26+00:00 [322/338] lens complete tay__xdotsin x__1__imagine__free
+2026-10-30T18:52:28+00:00 [322/338] norm maps complete tay__xdotsin x__1__imagine__free
+2026-10-30T18:52:31+00:00 [322/338] DONE tay__xdotsin x__1__imagine__free; tokens=285; file=149332; S3=12.8515GB
+2026-10-30T18:52:31+00:00 [323/338] START tay__xdotsin x__1__write__free
+2026-10-30T18:52:32+00:00 [323/338] lens complete tay__xdotsin x__1__write__free
+2026-10-30T18:52:33+00:00 [323/338] norm maps complete tay__xdotsin x__1__write__free
+2026-10-30T18:52:34+00:00 [323/338] DONE tay__xdotsin x__1__write__free; tokens=42; file=79242; S3=12.8743GB
+2026-10-30T18:52:34+00:00 [324/338] START tay__xdotsin x__2__hold__forced
+2026-10-30T18:52:36+00:00 [324/338] lens complete tay__xdotsin x__2__hold__forced
+2026-10-30T18:52:36+00:00 [324/338] norm maps complete tay__xdotsin x__2__hold__forced
+2026-10-30T18:52:37+00:00 [324/338] DONE tay__xdotsin x__2__hold__forced; tokens=54; file=91053; S3=12.9034GB
+2026-10-30T18:52:37+00:00 [325/338] START tay__xdotsin x__2__hold__free
+2026-10-30T18:52:39+00:00 [325/338] lens complete tay__xdotsin x__2__hold__free
+2026-10-30T18:52:40+00:00 [325/338] norm maps complete tay__xdotsin x__2__hold__free
+2026-10-30T18:52:42+00:00 [325/338] DONE tay__xdotsin x__2__hold__free; tokens=96; file=112552; S3=12.9547GB
+2026-10-30T18:52:42+00:00 [326/338] START tay__xdotsin x__2__imagine__forced
+2026-10-30T18:52:43+00:00 [326/338] lens complete tay__xdotsin x__2__imagine__forced
+2026-10-30T18:52:44+00:00 [326/338] norm maps complete tay__xdotsin x__2__imagine__forced
+2026-10-30T18:52:44+00:00 [326/338] DONE tay__xdotsin x__2__imagine__forced; tokens=38; file=76090; S3=12.9755GB
+2026-10-30T18:52:45+00:00 [327/338] START tay__xdotsin x__2__imagine__free
+2026-10-30T18:52:47+00:00 [327/338] lens complete tay__xdotsin x__2__imagine__free
+2026-10-30T18:52:49+00:00 [327/338] norm maps complete tay__xdotsin x__2__imagine__free
+2026-10-30T18:52:51+00:00 [327/338] DONE tay__xdotsin x__2__imagine__free; tokens=203; file=136954; S3=13.0409GB
+2026-10-30T18:52:51+00:00 [328/338] START tay__xdotsin x__2__write__free
+2026-10-30T18:52:53+00:00 [328/338] lens complete tay__xdotsin x__2__write__free
+2026-10-30T18:52:54+00:00 [328/338] norm maps complete tay__xdotsin x__2__write__free
+2026-10-30T18:52:55+00:00 [328/338] DONE tay__xdotsin x__2__write__free; tokens=49; file=82943; S3=13.0673GB
+2026-10-30T18:52:55+00:00 [329/338] START tay__xdotsin x__3__hold__forced
+2026-10-30T18:52:55+00:00 WATCHDOG S3 reserved=13.0749 GB; last progress 0s ago
+2026-10-30T18:52:56+00:00 [329/338] lens complete tay__xdotsin x__3__hold__forced
+2026-10-30T18:52:57+00:00 [329/338] norm maps complete tay__xdotsin x__3__hold__forced
+2026-10-30T18:52:58+00:00 [329/338] DONE tay__xdotsin x__3__hold__forced; tokens=54; file=91288; S3=13.0964GB
+2026-10-30T18:52:58+00:00 [330/338] START tay__xdotsin x__3__hold__free
+2026-10-30T18:53:00+00:00 [330/338] lens complete tay__xdotsin x__3__hold__free
+2026-10-30T18:53:01+00:00 [330/338] norm maps complete tay__xdotsin x__3__hold__free
+2026-10-30T18:53:03+00:00 [330/338] DONE tay__xdotsin x__3__hold__free; tokens=98; file=113217; S3=13.1488GB
+2026-10-30T18:53:03+00:00 [331/338] START tay__xdotsin x__3__imagine__forced
+2026-10-30T18:53:04+00:00 [331/338] lens complete tay__xdotsin x__3__imagine__forced
+2026-10-30T18:53:05+00:00 [331/338] norm maps complete tay__xdotsin x__3__imagine__forced
+2026-10-30T18:53:06+00:00 [331/338] DONE tay__xdotsin x__3__imagine__forced; tokens=38; file=76133; S3=13.1696GB
+2026-10-30T18:53:06+00:00 [332/338] START tay__xdotsin x__3__imagine__free
+2026-10-30T18:53:08+00:00 [332/338] lens complete tay__xdotsin x__3__imagine__free
+2026-10-30T18:53:10+00:00 [332/338] norm maps complete tay__xdotsin x__3__imagine__free
+2026-10-30T18:53:13+00:00 [332/338] DONE tay__xdotsin x__3__imagine__free; tokens=361; file=162135; S3=13.2351GB
+2026-10-30T18:53:13+00:00 [333/338] START tay__xdotsin x__3__write__free
+2026-10-30T18:53:15+00:00 [333/338] lens complete tay__xdotsin x__3__write__free
+2026-10-30T18:53:16+00:00 [333/338] norm maps complete tay__xdotsin x__3__write__free
+2026-10-30T18:53:17+00:00 [333/338] DONE tay__xdotsin x__3__write__free; tokens=49; file=83007; S3=13.2616GB
+2026-10-30T18:53:17+00:00 [334/338] START tay__xdotsin x__4__hold__forced
+2026-10-30T18:53:18+00:00 [334/338] lens complete tay__xdotsin x__4__hold__forced
+2026-10-30T18:53:19+00:00 [334/338] norm maps complete tay__xdotsin x__4__hold__forced
+2026-10-30T18:53:20+00:00 [334/338] DONE tay__xdotsin x__4__hold__forced; tokens=54; file=91290; S3=13.2906GB
+2026-10-30T18:53:20+00:00 [335/338] START tay__xdotsin x__4__hold__free
+2026-10-30T18:53:22+00:00 [335/338] lens complete tay__xdotsin x__4__hold__free
+2026-10-30T18:53:23+00:00 [335/338] norm maps complete tay__xdotsin x__4__hold__free
+2026-10-30T18:53:24+00:00 [335/338] DONE tay__xdotsin x__4__hold__free; tokens=97; file=112767; S3=13.3425GB
+2026-10-30T18:53:24+00:00 [336/338] START tay__xdotsin x__4__imagine__forced
+2026-10-30T18:53:25+00:00 WATCHDOG S3 reserved=13.3563 GB; last progress 0s ago
+2026-10-30T18:53:26+00:00 [336/338] lens complete tay__xdotsin x__4__imagine__forced
+2026-10-30T18:53:26+00:00 [336/338] norm maps complete tay__xdotsin x__4__imagine__forced
+2026-10-30T18:53:27+00:00 [336/338] DONE tay__xdotsin x__4__imagine__forced; tokens=38; file=75978; S3=13.3633GB
+2026-10-30T18:53:27+00:00 [337/338] START tay__xdotsin x__4__imagine__free
+2026-10-30T18:53:29+00:00 [337/338] lens complete tay__xdotsin x__4__imagine__free
+2026-10-30T18:53:30+00:00 [337/338] norm maps complete tay__xdotsin x__4__imagine__free
+2026-10-30T18:53:33+00:00 [337/338] DONE tay__xdotsin x__4__imagine__free; tokens=153; file=125453; S3=13.4286GB
+2026-10-30T18:53:33+00:00 [338/338] START tay__xdotsin x__4__write__free
+2026-10-30T18:53:35+00:00 [338/338] lens complete tay__xdotsin x__4__write__free
+2026-10-30T18:53:35+00:00 [338/338] norm maps complete tay__xdotsin x__4__write__free
+2026-10-30T18:53:36+00:00 [338/338] DONE tay__xdotsin x__4__write__free; tokens=50; file=83389; S3=13.4556GB
+2026-10-30T18:53:40+00:00 ACROSS PROMPTS complete: instr_end
+2026-10-30T18:53:44+00:00 ACROSS PROMPTS complete: prompt_end
+2026-10-30T18:53:47+00:00 ACROSS PROMPTS complete: reply_end
+Traceback (most recent call last):
+  File "/Users/adithyagiridharan/Desktop/PythonProjects/AGs_Research/latent_cube/dashboard/build_data.py", line 516, in <module>
+    main()
+  File "/Users/adithyagiridharan/Desktop/PythonProjects/AGs_Research/latent_cube/dashboard/build_data.py", line 510, in main
+    Exporter(reader, lens, scratch, inventory, check).run()
+  File "/Users/adithyagiridharan/Desktop/PythonProjects/AGs_Research/latent_cube/dashboard/build_data.py", line 445, in run
+    raise RuntimeError('Static publication size gate failed')
+RuntimeError: Static publication size gate failed

@@ -1,0 +1,60 @@
+2026-10-30T17:52:48+00:00 WATCHDOG running; S3 budget=15000000000 bytes; opening balance=AWS month-to-date net USD 0.00 for 2026-10 at 2026-10-30 23:20 IST, Cost Explorer, credits offset charges, may lag 24h; budget 15 GB S3 reads, about USD 2 maximum
+2026-10-30T17:52:55+00:00 HF embedding rows 4096/248320
+2026-10-30T17:53:11+00:00 HF embedding rows 36864/248320
+2026-10-30T17:53:18+00:00 WATCHDOG S3 reserved=0.0261 GB; last progress 1s ago
+2026-10-30T17:53:41+00:00 HF embedding rows 69632/248320
+2026-10-30T17:53:48+00:00 WATCHDOG S3 reserved=0.0261 GB; last progress 0s ago
+2026-10-30T17:53:56+00:00 HF embedding rows 102400/248320
+2026-10-30T17:54:08+00:00 HF embedding rows 135168/248320
+2026-10-30T17:54:18+00:00 WATCHDOG S3 reserved=0.0261 GB; last progress 2s ago
+2026-10-30T17:54:33+00:00 HF embedding rows 167936/248320
+2026-10-30T17:54:48+00:00 WATCHDOG S3 reserved=0.0261 GB; last progress 1s ago
+2026-10-30T17:54:50+00:00 HF embedding rows 200704/248320
+2026-10-30T17:55:04+00:00 HF embedding rows 233472/248320
+2026-10-30T17:55:18+00:00 WATCHDOG S3 reserved=0.0423 GB; last progress 1s ago
+2026-10-30T17:55:24+00:00 LOGIT CHECK {"prompt": "tay|sin x|2|hold", "variant": "forced", "tokens_checked": 52, "vocabulary_checked": 248320, "max_abs_difference": 0.06486892700195312, "rmse": 0.005661397064948961, "max_abs_saved_logit": 31.625, "precision": "float32 projection from stored F16 residuals and original BF16 weights", "passed": true, "tolerance": "max <= 0.5 AND RMSE <= 0.05 AND max / maximum absolute saved logit <= 1%; bf16 capture differs from float32 projection"}
+2026-10-30T17:55:48+00:00 WATCHDOG S3 reserved=0.0739 GB; last progress 0s ago
+2026-10-30T17:55:49+00:00 [1/338] DONE lat__choose3__forced; tokens=41; file=131355; S3=0.0745GB
+2026-10-30T17:56:18+00:00 WATCHDOG S3 reserved=0.1375 GB; last progress 11s ago
+2026-10-30T17:56:48+00:00 WATCHDOG S3 reserved=0.1697 GB; last progress 0s ago
+2026-10-30T17:57:18+00:00 WATCHDOG S3 reserved=0.1708 GB; last progress 0s ago
+2026-10-30T17:57:22+00:00 [2/338] DONE lat__choose3__free; tokens=192; file=260613; S3=0.1708GB
+Traceback (most recent call last):
+  File "/Users/adithyagiridharan/Desktop/PythonProjects/AGs_Research/latent_cube/dashboard/build_data.py", line 417, in <module>
+    main()
+  File "/Users/adithyagiridharan/Desktop/PythonProjects/AGs_Research/latent_cube/dashboard/build_data.py", line 411, in main
+    Exporter(reader, lens, scratch, inventory, check).run()
+  File "/Users/adithyagiridharan/Desktop/PythonProjects/AGs_Research/latent_cube/dashboard/build_data.py", line 316, in run
+    values = capture.array(name)
+             ^^^^^^^^^^^^^^^^^^^
+  File "/Users/adithyagiridharan/Desktop/PythonProjects/AGs_Research/latent_cube/dashboard/build_data.py", line 170, in array
+    raw = self.reader.get(self.source, begin, begin+count*size-1)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/adithyagiridharan/Desktop/PythonProjects/AGs_Research/latent_cube/dashboard/build_data.py", line 124, in get
+    data = body.read()
+           ^^^^^^^^^^^
+  File "/Users/adithyagiridharan/miniforge3/lib/python3.12/site-packages/urllib3/response.py", line 955, in read
+    data = self._raw_read(amt)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/Users/adithyagiridharan/miniforge3/lib/python3.12/site-packages/urllib3/response.py", line 879, in _raw_read
+    data = self._fp_read(amt, read1=read1) if not fp_closed else b""
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/adithyagiridharan/miniforge3/lib/python3.12/site-packages/urllib3/response.py", line 862, in _fp_read
+    return self._fp.read(amt) if amt is not None else self._fp.read()
+                                                      ^^^^^^^^^^^^^^^
+  File "/Users/adithyagiridharan/miniforge3/lib/python3.12/http/client.py", line 495, in read
+    s = self._safe_read(self.length)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/adithyagiridharan/miniforge3/lib/python3.12/http/client.py", line 640, in _safe_read
+    data = self.fp.read(amt)
+           ^^^^^^^^^^^^^^^^^
+  File "/Users/adithyagiridharan/miniforge3/lib/python3.12/socket.py", line 720, in readinto
+    return self._sock.recv_into(b)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/adithyagiridharan/miniforge3/lib/python3.12/ssl.py", line 1251, in recv_into
+    return self.read(nbytes, buffer)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/adithyagiridharan/miniforge3/lib/python3.12/ssl.py", line 1103, in read
+    return self._sslobj.read(len, buffer)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+KeyboardInterrupt
