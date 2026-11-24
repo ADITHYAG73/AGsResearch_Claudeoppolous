@@ -33,6 +33,8 @@ Prior work to read AFTER design (AG's order): Anthropic "On the Biology of a Lar
    sanity numbers, file size and ETA; `MODEL READY` and `CAPTURE DONE` markers.
 2. **Incremental results?** Yes: one .safetensors + .json per prompt, written as soon as the prompt
    finishes; the .json is written last, so its presence = prompt complete; reruns skip completed prompts.
+   [CORRECTED 2026-11-24: superseded during the run. Final capture.py writes each variant's .safetensors then
+   .json, and `<id>.done` after ALL variants of a prompt; resume keys on `.done` (capture.py lines 127, 149).]
    Results sync to S3 in the background every 5 min.
 3. **Memory trajectory?** Flat. Weights ~9.3 GB; per prompt the largest live tensors are logits
    [~90 × 248,320] fp32 ≈ 90 MB and eager attention for T ≤ ~100 (tiny); `cap` is cleared each prompt.

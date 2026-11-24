@@ -55,7 +55,10 @@ either way yet.
 2. Claude verifies the pre-fitted **J-lens for Qwen3.5-4B**: a community mirror says it copies Neuronpedia's
    (MIT, n=1000 texts): https://huggingface.co/JamesBentley/jacobian-lens-mirror — NOT yet verified against
    Neuronpedia's own repo, nor against our model revision `851bf6e806efd8d0a36b00ddf55e13ccb7b8cd0a`.
-3. If it holds: J-lens = softmax(W_U · norm(J_ℓ · h)) — one extra matrix on the residual stream we already have in
+3. Why the J-lens can see past the next token (from the paper's Methods, read 2026-11-02): J_ℓ is the average,
+   over prompts and over positions t and every LATER position t′ ≥ t, of ∂h_final,t′ / ∂h_ℓ,t — how a nudge at layer ℓ
+   now changes the model's final state at the current AND all later tokens. The logit lens has no J_ℓ, so it only reads
+   the next-token prediction. If the lens holds: J-lens = softmax(W_U · norm(J_ℓ · h)) — one extra matrix on the residual stream we already have in
    S3 (R1). Rerun the sin-vs-cos comparison at the three readouts. No GPU needed for reading.
 4. Later options AG listed: composition prompts (sin(x/2) → −x³/48) as the recall-vs-composing test; a "cube
    direction" from mean differences; patching on a GPU only if something shows up; a better prompt borrowed from
